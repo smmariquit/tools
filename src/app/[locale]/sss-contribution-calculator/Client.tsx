@@ -91,6 +91,16 @@ export default function SSSCalculator() {
               min="0"
               step="500"
             />
+            {salary > 0 && salary < 5000 && (
+              <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#fff3e0", borderRadius: "6px", fontSize: "12px", color: "#e65100", border: "1px solid #ffe0b2", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>⚠️</span> Below MSC floor — minimum MSC of ₱5,000 applies
+              </div>
+            )}
+            {salary >= 34750 && (
+              <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#e3f2fd", borderRadius: "6px", fontSize: "12px", color: "#0d47a1", border: "1px solid #bbdefb", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>ℹ️</span> Above MSC ceiling — maximum MSC of ₱35,000 applies
+              </div>
+            )}
           </div>
         </div>
 

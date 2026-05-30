@@ -52,6 +52,16 @@ export default function PhilHealthClient() {
               min="0"
             />
             <p className="form-hint" style={{ marginTop: "4px" }}>Input your basic pay excluding allowances and overtime.</p>
+            {basicSalary > 0 && basicSalary < floorSalary && (
+              <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#fff3e0", borderRadius: "6px", fontSize: "12px", color: "#e65100", border: "1px solid #ffe0b2", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>⚠️</span> Below ₱10,000 floor — minimum premium of ₱500 applies
+              </div>
+            )}
+            {basicSalary >= ceilingSalary && (
+              <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#e3f2fd", borderRadius: "6px", fontSize: "12px", color: "#0d47a1", border: "1px solid #bbdefb", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>ℹ️</span> Above ₱100,000 ceiling — maximum premium of ₱5,000 applies
+              </div>
+            )}
           </div>
         </div>
 

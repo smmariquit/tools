@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
 
 export default function SalaryCalculator() {
   const [salaryStr, setSalaryStr] = useState("30000");
+  const [shareText, setShareText] = useState("Share Computation");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const salary = parseFloat(salaryStr) || 0;
 
@@ -38,18 +44,27 @@ export default function SalaryCalculator() {
   const netPay = salary - totalContributions - tax;
 
   const handleShare = async () => {
+    const shareData = {
+      title: 'My Philippine Salary Computation',
+      text: `My gross salary is ₱${salary.toLocaleString()}, and my net take-home pay is ₱${netPay.toLocaleString()} after taxes and deductions! Calculate yours here:`,
+      url: window.location.href,
+    };
+
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: 'My Philippine Salary Computation',
-          text: `My gross salary is ₱${salary.toLocaleString()}, and my net take-home pay is ₱${netPay.toLocaleString()} after taxes and deductions! Calculate yours here:`,
-          url: window.location.href,
-        });
+        await navigator.share(shareData);
       } catch (error) {
         console.log('Error sharing', error);
       }
     } else {
-      alert("Sharing is not supported on this browser.");
+      // Fallback for PC/Desktop: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+        setShareText("Copied to Clipboard!");
+        setTimeout(() => setShareText("Share Computation"), 2500);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
     }
   };
 
@@ -139,14 +154,20 @@ export default function SalaryCalculator() {
             className="btn-secondary" 
             style={{ width: "100%", marginTop: "16px", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="18" cy="5" r="3"></circle>
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-            </svg>
-            Share Computation
+            {shareText === "Copied to Clipboard!" ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            )}
+            {shareText}
           </button>
           
           <p style={{ textAlign: "center", fontSize: "12px", color: "var(--text-secondary)", marginTop: "16px" }}>

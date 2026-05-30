@@ -84,6 +84,11 @@ export default function PagIbigClient() {
               onChange={(e) => setBasicSalaryStr(e.target.value)}
               min="0"
             />
+            {basicSalary >= 10000 && (
+              <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#e3f2fd", borderRadius: "6px", fontSize: "12px", color: "#0d47a1", border: "1px solid #bbdefb", display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>ℹ️</span> Above MFS ceiling — regular contributions are capped at ₱10,000 basis (₱200 max)
+              </div>
+            )}
           </div>
 
           <div style={{ marginTop: "16px", padding: "12px", backgroundColor: "var(--surface-color)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--border-color)" }}>
