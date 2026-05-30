@@ -76,13 +76,66 @@ export default function PhilHealthClient() {
         </div>
       </div>
 
+      {/* Interactive Contribution Table */}
       <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", color: "var(--text-primary)" }}>
         <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>PhilHealth 2026 Contribution Table</h2>
         <p style={{ marginBottom: "16px" }}>
-          Under the Universal Health Care (UHC) Law (Republic Act No. 11223), the premium rate for direct contributors increases gradually until it caps at 5.0%.
+          Under the Universal Health Care (UHC) Law (Republic Act No. 11223), the premium rate for direct contributors is 5.0%. Your bracket is <strong>highlighted</strong> below.
         </p>
-        <ul style={{ paddingLeft: "24px", marginBottom: "16px", lineHeight: "1.6" }}>
-          <li><strong>Premium Rate:</strong> 5.0% of your basic monthly salary.</li>
+
+        <div style={{ overflowX: "auto", marginBottom: "24px" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid var(--border-color)", textAlign: "right" }}>
+                <th style={{ padding: "10px 8px", textAlign: "left" }}>Monthly Salary Range</th>
+                <th style={{ padding: "10px 8px" }}>Total Premium</th>
+                <th style={{ padding: "10px 8px" }}>Employee Share</th>
+                <th style={{ padding: "10px 8px" }}>Employer Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { min: 0, max: 10000, label: "₱10,000 and below" },
+                { min: 10001, max: 20000, label: "₱10,001 – ₱20,000" },
+                { min: 20001, max: 30000, label: "₱20,001 – ₱30,000" },
+                { min: 30001, max: 40000, label: "₱30,001 – ₱40,000" },
+                { min: 40001, max: 50000, label: "₱40,001 – ₱50,000" },
+                { min: 50001, max: 60000, label: "₱50,001 – ₱60,000" },
+                { min: 60001, max: 70000, label: "₱60,001 – ₱70,000" },
+                { min: 70001, max: 80000, label: "₱70,001 – ₱80,000" },
+                { min: 80001, max: 90000, label: "₱80,001 – ₱90,000" },
+                { min: 90001, max: 100000, label: "₱90,001 – ₱100,000" },
+                { min: 100001, max: Infinity, label: "₱100,001 and above" },
+              ].map((bracket) => {
+                const isActive = basicSalary >= bracket.min && basicSalary <= bracket.max;
+                const salForCalc = bracket.max === Infinity ? 100000 : (bracket.min <= 10000 ? 10000 : bracket.max);
+                const premium = salForCalc * 0.05;
+                return (
+                  <tr
+                    key={bracket.label}
+                    style={{
+                      borderBottom: "1px solid var(--border-color)",
+                      textAlign: "right",
+                      backgroundColor: isActive ? "rgba(13, 71, 161, 0.08)" : "transparent",
+                      fontWeight: isActive ? 600 : 400,
+                      transition: "background-color 0.2s ease",
+                    }}
+                  >
+                    <td style={{ padding: "10px 8px", textAlign: "left" }}>
+                      {isActive && <span style={{ color: "var(--primary)", marginRight: "4px" }}>▸</span>}
+                      {bracket.label}
+                    </td>
+                    <td style={{ padding: "10px 8px" }}>{formatCurrency(premium)}</td>
+                    <td style={{ padding: "10px 8px", color: isActive ? "#b71c1c" : "inherit" }}>{formatCurrency(premium / 2)}</td>
+                    <td style={{ padding: "10px 8px", color: "var(--text-secondary)" }}>{formatCurrency(premium / 2)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <ul style={{ paddingLeft: "24px", marginBottom: "16px", lineHeight: "1.6", fontSize: "14px" }}>
           <li><strong>Salary Floor:</strong> ₱10,000 (Minimum contribution is ₱500/month).</li>
           <li><strong>Salary Ceiling:</strong> ₱100,000 (Maximum contribution is ₱5,000/month).</li>
           <li><strong>Sharing:</strong> The total premium is split evenly (50/50) between the employee and the employer.</li>

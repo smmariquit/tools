@@ -165,12 +165,83 @@ export default function SSSCalculator() {
         </div>
       </div>
 
-      {/* SEO Content */}
+      {/* Interactive SSS Contribution Table */}
       <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", color: "var(--text-primary)" }}>
-        <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>Understanding the 2026 SSS Contribution Table</h2>
+        <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>Complete 2026 SSS Contribution Table</h2>
         <p style={{ marginBottom: "16px" }}>
-          In accordance with the Social Security Act of 2018 (RA 11199), the SSS contribution rate remains at <strong>15%</strong> for 2026. The Monthly Salary Credit (MSC) minimum is ₱5,000, and the maximum ceiling is ₱35,000.
+          Your MSC bracket is <strong>highlighted</strong> below. The total contribution rate is 15% (5% Employee + 10% Employer for private employees).
         </p>
+
+        <div style={{ overflowX: "auto", marginBottom: "24px" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid var(--border-color)", textAlign: "right" }}>
+                <th style={{ padding: "8px 6px", textAlign: "left" }}>Salary Range</th>
+                <th style={{ padding: "8px 6px" }}>MSC</th>
+                <th style={{ padding: "8px 6px" }}>EE (5%)</th>
+                <th style={{ padding: "8px 6px" }}>ER (10%)</th>
+                <th style={{ padding: "8px 6px" }}>EC</th>
+                <th style={{ padding: "8px 6px", fontWeight: 700 }}>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(() => {
+                const rows = [];
+                const mscValues = [
+                  5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000,
+                  10500, 11000, 11500, 12000, 12500, 13000, 13500, 14000, 14500, 15000,
+                  15500, 16000, 16500, 17000, 17500, 18000, 18500, 19000, 19500, 20000,
+                  20500, 21000, 21500, 22000, 22500, 23000, 23500, 24000, 24500, 25000,
+                  25500, 26000, 26500, 27000, 27500, 28000, 28500, 29000, 29500, 30000,
+                  30500, 31000, 31500, 32000, 32500, 33000, 33500, 34000, 34500, 35000,
+                ];
+                for (let i = 0; i < mscValues.length; i++) {
+                  const currentMSC = mscValues[i];
+                  const low = i === 0 ? 0 : mscValues[i - 1] + 250.01;
+                  const high = i === mscValues.length - 1 ? Infinity : currentMSC + 249.99;
+                  const isActive = currentMSC === msc;
+                  
+                  const regMSC = Math.min(currentMSC, 20000);
+                  const mpf = Math.max(0, currentMSC - 20000);
+                  const ee = (regMSC * 0.05) + (mpf * 0.05);
+                  const er = (regMSC * 0.10) + (mpf * 0.10);
+                  const ec = currentMSC < 15000 ? 10 : 30;
+                  const total = ee + er + ec;
+                  
+                  const label = i === 0 
+                    ? "Below ₱5,250"
+                    : i === mscValues.length - 1 
+                      ? "₱34,750 and above"
+                      : `₱${(low).toLocaleString(undefined, {maximumFractionDigits: 0})} – ₱${(high).toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+
+                  rows.push(
+                    <tr
+                      key={currentMSC}
+                      style={{
+                        borderBottom: "1px solid var(--border-color)",
+                        textAlign: "right",
+                        backgroundColor: isActive ? "rgba(13, 71, 161, 0.08)" : "transparent",
+                        fontWeight: isActive ? 600 : 400,
+                        transition: "background-color 0.2s ease",
+                      }}
+                    >
+                      <td style={{ padding: "6px", textAlign: "left", whiteSpace: "nowrap" }}>
+                        {isActive && <span style={{ color: "var(--primary)", marginRight: "2px" }}>▸</span>}
+                        {label}
+                      </td>
+                      <td style={{ padding: "6px", color: isActive ? "var(--primary)" : "inherit" }}>{formatCurrency(currentMSC)}</td>
+                      <td style={{ padding: "6px", color: isActive ? "#b71c1c" : "inherit" }}>{formatCurrency(ee)}</td>
+                      <td style={{ padding: "6px" }}>{formatCurrency(er)}</td>
+                      <td style={{ padding: "6px" }}>{formatCurrency(ec)}</td>
+                      <td style={{ padding: "6px", fontWeight: 600 }}>{formatCurrency(total)}</td>
+                    </tr>
+                  );
+                }
+                return rows;
+              })()}
+            </tbody>
+          </table>
+        </div>
         
         <h3 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>For Private Employees</h3>
         <ul style={{ paddingLeft: "24px", marginBottom: "16px", lineHeight: "1.6" }}>
