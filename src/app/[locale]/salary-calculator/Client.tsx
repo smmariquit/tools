@@ -37,6 +37,22 @@ export default function SalaryCalculator() {
 
   const netPay = salary - totalContributions - tax;
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Philippine Salary Computation',
+          text: `My gross salary is ₱${salary.toLocaleString()}, and my net take-home pay is ₱${netPay.toLocaleString()} after taxes and deductions! Calculate yours here:`,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.log('Error sharing', error);
+      }
+    } else {
+      alert("Sharing is not supported on this browser.");
+    }
+  };
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
   };
@@ -118,7 +134,22 @@ export default function SalaryCalculator() {
             <span style={{ color: "#1b5e20" }}>{formatCurrency(netPay)}</span>
           </div>
           
-          <p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "16px", textAlign: "center" }}>
+          <button 
+            onClick={handleShare}
+            className="btn-secondary" 
+            style={{ width: "100%", marginTop: "16px", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            Share Computation
+          </button>
+          
+          <p style={{ textAlign: "center", fontSize: "12px", color: "var(--text-secondary)", marginTop: "16px" }}>
             * This is an estimate based on standard 2026 rates.
           </p>
         </div>
