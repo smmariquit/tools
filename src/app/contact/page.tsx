@@ -15,7 +15,7 @@ export default function Contact() {
     const message = formData.get('message');
     const email = formData.get('email');
     
-    const mailtoLink = `mailto:hello@phtools.app?subject=${encodeURIComponent(`[${subject}] PHTools Contact: ${name}`)}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
+    const mailtoLink = `mailto:parazeez@proton.me?subject=${encodeURIComponent(`[${subject}] PHTools Contact: ${name}`)}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
     window.location.href = mailtoLink;
     
     setStatus("success");
