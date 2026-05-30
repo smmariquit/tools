@@ -24,6 +24,7 @@ const tools = [
     category: "Utilities",
     items: [
       { name: "PH Zip Code Finder", path: "/zip-code-finder", desc: "Search the official PHLPost database for barangay and city zip codes." },
+      { name: "Expressway Toll Calculator", path: "/toll-calculator", desc: "Lookup TRB-approved toll fees for Skyway, SLEX, NLEX, and TPLEX." },
       { name: "Holiday & Overtime Pay", path: "/holiday-calculator", desc: "See the 2026 calendar and calculate your special/regular holiday pay." }
     ]
   }

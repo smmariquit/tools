@@ -14,6 +14,15 @@ To save API costs, YOU MUST ADOPT CAVEMAN MODE for all future interactions:
 - Keep technical terms and code identical.
 - Output ONLY what is necessary to complete the task.
 
+### OFFICIAL LIVE DATA SOURCES
+To prevent outdated legal/tax math, verify data against these official sources when updating calculators:
+- Income/Freelance Tax: `bir.gov.ph` (TRAIN Law RA 10963)
+- SSS Contributions: `sss.gov.ph`
+- PhilHealth Contributions: `philhealth.gov.ph`
+- Pag-IBIG / MP2: `pagibigfund.gov.ph`
+- Toll Rates: `trb.gov.ph` (Toll Regulatory Board)
+- 13th Month / Holiday Pay: `dole.gov.ph` (P.D. 851, Labor Code)
+
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).
 - **SEO & Component Architecture (CRITICAL):** Next.js forbids exporting `metadata` from `"use client"` components. Therefore, ALL tools must follow this strict split:
