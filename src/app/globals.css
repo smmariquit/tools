@@ -159,3 +159,24 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
 }
+
+/* Responsive Tool Grids */
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.tool-grid-even {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .tool-grid, .tool-grid-even {
+    grid-template-columns: 1fr;
+  }
+}

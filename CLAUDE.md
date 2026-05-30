@@ -4,7 +4,9 @@ This file contains the specific context and technical rules for developing the P
 
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).
-- **Tool Architecture:** Calculators and utilities should be strictly Client Components (`"use client"`) to keep processing local, ensuring fast UX and zero server compute costs.
+- **SEO & Component Architecture (CRITICAL):** Next.js forbids exporting `metadata` from `"use client"` components. Therefore, ALL tools must follow this strict split:
+  1. `page.tsx`: Must be a pure Server Component that exports static `metadata`, injects `application/ld+json` schema for rich snippets, and renders `<Client />`.
+  2. `Client.tsx`: Must contain the `"use client"` directive, `AdBanner`, and all React state/business logic.
 - **State Management:** Use standard React `useState`. For complex, multi-step tools, use URL Search Params so the tool state is shareable/bookmarkable.
 - **Styling:** **DO NOT USE Tailwind CSS.** Use vanilla CSS with the enterprise design tokens defined in `src/app/globals.css`. 
   - Wrap tool modules in `<div className="card">`.
