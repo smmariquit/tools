@@ -22,6 +22,7 @@ To prevent outdated legal/tax math, verify data against these official sources w
 - Pag-IBIG / MP2: `pagibigfund.gov.ph`
 - Toll Rates: `trb.gov.ph` (Toll Regulatory Board)
 - 13th Month / Holiday Pay: `dole.gov.ph` (P.D. 851, Labor Code)
+- LTO MVUC Fines: `lto.gov.ph`
 
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).
