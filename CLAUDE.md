@@ -29,6 +29,7 @@ To prevent outdated legal/tax math, verify data against these official sources w
 - **SEO & Component Architecture (CRITICAL):** Next.js forbids exporting `metadata` from `"use client"` components. Therefore, ALL tools must follow this strict split:
   1. `page.tsx`: Must be a pure Server Component that exports static `metadata`, injects `application/ld+json` schema for rich snippets, and renders `<Client />`.
   2. `Client.tsx`: Must contain the `"use client"` directive, `AdBanner`, and all React state/business logic.
+- **i18n Architecture Rule:** Always implement Internationalization (i18n) before mass-producing pages or blog content. Retrofitting `[locale]` dynamic routing into a massive existing project creates massive technical debt.
 - **State Management:** Use standard React `useState`. For complex, multi-step tools, use URL Search Params so the tool state is shareable/bookmarkable.
 - **Analytics & A/B Testing:** DO NOT implement custom databases or NextAuth. We use **PostHog** (`providers.tsx`) for all analytics, session replays, and A/B testing to maintain zero-cost infrastructure and bypass Data Privacy Act (DPA) liabilities.
 - **Styling:** **DO NOT USE Tailwind CSS.** Use vanilla CSS with the enterprise design tokens defined in `src/app/globals.css`. 
