@@ -5,21 +5,21 @@
 
  RUN  v4.1.7 /home/stimmie/dev/personal/tools
 
- ✓ __tests__/salary.test.ts (3 tests) 6ms
- ✓ __tests__/philhealth.test.ts (3 tests) 5ms
- ✓ __tests__/holiday.test.ts (3 tests) 8ms
- ✓ __tests__/freelance.test.ts (2 tests) 15ms
- ✓ __tests__/amilyar.test.ts (2 tests) 5ms
- ✓ __tests__/lto.test.ts (2 tests) 5ms
+ ✓ __tests__/electric.test.ts (1 test) 5ms
+ ✓ __tests__/13thMonth.test.ts (2 tests) 8ms
  ✓ __tests__/shopee.test.ts (2 tests) 8ms
- ✓ __tests__/toll.test.ts (3 tests) 7ms
- ✓ __tests__/electric.test.ts (1 test) 4ms
- ✓ __tests__/13thMonth.test.ts (2 tests) 4ms
- ✓ __tests__/fuel.test.ts (2 tests) 4ms
- ✓ __tests__/pagibig.test.ts (2 tests) 4ms
+ ✓ __tests__/lto.test.ts (2 tests) 7ms
+ ✓ __tests__/freelance.test.ts (2 tests) 7ms
+ ✓ __tests__/amilyar.test.ts (2 tests) 8ms
+ ✓ __tests__/pagibig.test.ts (2 tests) 8ms
+ ✓ __tests__/fuel.test.ts (2 tests) 7ms
+ ✓ __tests__/salary.test.ts (3 tests) 7ms
+ ✓ __tests__/philhealth.test.ts (3 tests) 9ms
+ ✓ __tests__/holiday.test.ts (3 tests) 6ms
+ ✓ __tests__/toll.test.ts (3 tests) 5ms
 
  Test Files  12 passed (12)
       Tests  27 passed (27)
-   Start at  00:13:44
-   Duration  2.02s (transform 640ms, setup 1.77s, import 839ms, tests 75ms, environment 17.17s)
+   Start at  00:17:08
+   Duration  2.25s (transform 957ms, setup 2.07s, import 711ms, tests 85ms, environment 20.26s)
 

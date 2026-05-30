@@ -1,62 +1,58 @@
 import { MetadataRoute } from 'next';
+import { toolCategories } from '../lib/routes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://phtools.com'; // Replace with actual domain when purchased
+  const baseUrl = 'https://www.phtools.me';
+  const locales = ['en', 'tl'];
+  
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/salary-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/sss-contribution-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/income-tax-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/id-photo-maker`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms-of-use`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+  // 1. Add static pages for each locale
+  const staticPages = [
+    { path: '', priority: 1.0 },
+    { path: '/blog', priority: 0.8 },
+    { path: '/about', priority: 0.5 },
+    { path: '/contact', priority: 0.5 },
+    { path: '/privacy-policy', priority: 0.3 },
+    { path: '/terms-of-use', priority: 0.3 }
   ];
+
+  locales.forEach(locale => {
+    staticPages.forEach(page => {
+      sitemapEntries.push({
+        url: `${baseUrl}/${locale}${page.path}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: page.priority,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en${page.path}`,
+            tl: `${baseUrl}/tl${page.path}`,
+          }
+        }
+      });
+    });
+  });
+
+  // 2. Add all dynamically fetched tools for each locale
+  locales.forEach(locale => {
+    toolCategories.forEach(category => {
+      category.items.forEach(tool => {
+        sitemapEntries.push({
+          url: `${baseUrl}/${locale}${tool.path}`,
+          lastModified: new Date(),
+          changeFrequency: 'monthly',
+          priority: tool.priority,
+          alternates: {
+            languages: {
+              en: `${baseUrl}/en${tool.path}`,
+              tl: `${baseUrl}/tl${tool.path}`,
+            }
+          }
+        });
+      });
+    });
+  });
+
+  return sitemapEntries;
 }

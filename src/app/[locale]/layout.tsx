@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Link from "next/link";
-import Script from "next/script";
 import { PostHogProvider } from "./providers";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -94,6 +94,7 @@ export default async function RootLayout({
               </div>
             </div>
           </footer>
+          <Analytics />
         </PostHogProvider>
       </NextIntlClientProvider>
     </body>
