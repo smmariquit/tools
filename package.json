@@ -22,7 +22,8 @@
     "next-mdx-remote": "^6.0.0",
     "posthog-js": "^1.376.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "recharts": "^3.8.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

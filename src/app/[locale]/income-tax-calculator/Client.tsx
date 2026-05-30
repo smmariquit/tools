@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 export default function IncomeTaxCalculator() {
   const [incomeStr, setIncomeStr] = useState("400000");
   const [period, setPeriod] = useState<"annual" | "monthly">("annual");
   const [taxType, setTaxType] = useState<"graduated" | "flat8">("graduated");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const inputIncome = parseFloat(incomeStr) || 0;
   
@@ -51,6 +57,13 @@ export default function IncomeTaxCalculator() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
   };
+
+  const pieData = [
+    { name: "Net Income", value: netAnnual },
+    { name: "Income Tax", value: annualTax }
+  ];
+  
+  const COLORS = ["#1b5e20", "#d32f2f"];
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
@@ -157,6 +170,35 @@ export default function IncomeTaxCalculator() {
             <span>Annual Net Income</span>
             <span style={{ color: "#1b5e20" }}>{formatCurrency(netAnnual)}</span>
           </div>
+
+          {/* Visual Chart */}
+          {mounted && annualIncome > 0 && (
+            <div style={{ height: "250px", marginTop: "32px", marginBottom: "8px" }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    paddingAngle={2}
+                    dataKey="value"
+                    stroke="none"
+                  >
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    formatter={(value: number) => formatCurrency(value)}
+                    contentStyle={{ borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
+                  />
+                  <Legend verticalAlign="bottom" height={36} iconType="circle" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </div>
       </div>
 

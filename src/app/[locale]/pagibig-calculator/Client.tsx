@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 export default function PagIbigClient() {
   const [basicSalaryStr, setBasicSalaryStr] = useState("20000");
   const [mp2MonthlyStr, setMp2MonthlyStr] = useState("1000");
   const [dividendRateStr, setDividendRateStr] = useState("7"); // Historical avg is around 6-7%
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const basicSalary = parseFloat(basicSalaryStr) || 0;
   const mp2Monthly = parseFloat(mp2MonthlyStr) || 0;
@@ -142,6 +148,39 @@ export default function PagIbigClient() {
             <span>Total Tax-Free Dividends</span>
             <span style={{ color: "#2e7d32", fontWeight: 600 }}>+ {formatCurrency(totalDividends)}</span>
           </div>
+
+          {/* Visual Chart */}
+          {mounted && (
+            <div style={{ height: "250px", marginTop: "32px", marginBottom: "16px" }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart
+                  data={mp2Table}
+                  margin={{ top: 10, right: 0, left: -20, bottom: 0 }}
+                >
+                  <defs>
+                    <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0d47a1" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#0d47a1" stopOpacity={0}/>
+                    </linearGradient>
+                    <linearGradient id="colorDividend" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#2e7d32" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#2e7d32" stopOpacity={0.1}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-color)" />
+                  <XAxis dataKey="year" tickFormatter={(tick) => `Yr ${tick}`} tick={{ fontSize: 12, fill: "var(--text-secondary)" }} axisLine={false} tickLine={false} />
+                  <YAxis tickFormatter={(tick) => `₱${(tick / 1000).toFixed(0)}k`} tick={{ fontSize: 12, fill: "var(--text-secondary)" }} axisLine={false} tickLine={false} />
+                  <Tooltip 
+                    formatter={(value: number) => formatCurrency(value)}
+                    labelFormatter={(label) => `Year ${label}`}
+                    contentStyle={{ borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
+                  />
+                  <Area type="monotone" dataKey="totalSaved" name="Total Principal" stackId="1" stroke="#0d47a1" fill="url(#colorPrincipal)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="dividendsEarned" name="Dividends Earned" stackId="1" stroke="#2e7d32" fill="url(#colorDividend)" strokeWidth={2} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          )}
 
           {/* Table */}
           <div style={{ overflowX: "auto" }}>
