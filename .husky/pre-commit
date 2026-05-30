@@ -1,0 +1,14 @@
+
+
+echo "🚧 Running Pre-Commit Agent Wall..."
+
+echo "📝 1. Running Lint Staged..."
+npx lint-staged
+
+echo "🔎 2. Running TypeScript Typecheck..."
+npm run typecheck
+
+echo "🧪 3. Running Unit Tests..."
+npm run test:ci
+
+echo "✅ All checks passed! Proceeding with commit."

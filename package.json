@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
-    "test:ci": "vitest run"
+    "test:ci": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "agent:verify": "npm run typecheck && npm run test:ci > .agent-log.txt 2>&1 || (cat .agent-log.txt && exit 1)",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.2.6",
@@ -26,8 +29,15 @@
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.6",
     "typescript": "^5",
     "vitest": "^4.1.7"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }
