@@ -1,1 +1,39 @@
-@AGENTS.md
+# PHTools Project Guidelines
+
+This file contains the specific context and technical rules for developing the PHTools repository. When assisting with this project, you must adhere to these constraints to minimize technical debt, ensure accurate calculations, and maintain Google AdSense compliance.
+
+## 1. Tech Stack & Architecture
+- **Framework:** Next.js 15+ (App Router).
+- **Tool Architecture:** Calculators and utilities should be strictly Client Components (`"use client"`) to keep processing local, ensuring fast UX and zero server compute costs.
+- **State Management:** Use standard React `useState`. For complex, multi-step tools, use URL Search Params so the tool state is shareable/bookmarkable.
+- **Styling:** **DO NOT USE Tailwind CSS.** Use vanilla CSS with the enterprise design tokens defined in `src/app/globals.css`. 
+  - Wrap tool modules in `<div className="card">`.
+  - Use `var(--primary)`, `var(--text-secondary)`, etc., for all styling.
+
+## 2. Design System & Accessibility
+- The site follows a "2019-era Enterprise" aesthetic—clean, trustworthy, and minimal. Avoid flashy "vibe" animations or modern bloat.
+- **WCAG AAA Compliance is strictly enforced.**
+  - Primary blue: `#0d47a1`
+  - Secondary text: `#3c4043`
+  - Red (Deductions): `#b71c1c`
+  - Green (Net Income): `#1b5e20`
+  - Do not introduce light gray text (`#5f6368` or lighter) against white backgrounds.
+
+## 3. Philippine Domain Knowledge (2026 Standards)
+When writing logic for financial calculators, use exact, current Philippine laws. Do not hallucinate tax brackets.
+- **SSS (Social Security System):** 15% total rate (10% Employer, 5% Employee). MSC capped at ₱35,000. Excess over ₱20,000 goes to MPF (WISP).
+- **PhilHealth:** 5% total rate (split equally between EE/ER). Base floor ₱10,000, ceiling ₱100,000.
+- **Pag-IBIG:** 2% employee, 2% employer. Capped at ₱200 each (Total ₱400).
+- **Income Tax (TRAIN Law):** First ₱250,000 is tax-exempt. 
+
+## 4. Monetization (AdSense Compliance)
+- **Ad Placements:** Every new tool page must import and render the `AdBanner` component (`import AdBanner from "../components/AdBanner";`) above the main grid layout.
+- **Legal SEO:** Every tool must feature a comprehensive explanation below the calculator (using `<h2>` and `<h3>` tags) detailing how the computation works. This is required to prevent AdSense "Thin Content" rejections.
+
+## 5. Testing & CI/CD
+- **Mathematical Logic:** If you write a new calculator, you MUST write a corresponding unit test in the `__tests__/` directory using Vitest. Extract complex logic into pure functions to make them testable.
+- **E2E UI:** Add basic routing checks to `e2e/home.spec.ts` using Playwright when a new tool is added.
+- **Commands:** 
+  - Lint: `npm run lint`
+  - Test: `npm run test:ci`
+  - Run both locally before pushing to `main` to prevent the Vercel GitHub Action from failing.
