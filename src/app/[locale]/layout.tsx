@@ -33,6 +33,9 @@ export default async function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9785940474424207" crossOrigin="anonymous"></script>
       </head>
       <body className={inter.className}>
+        <a href="#main-content" className="skip-to-content">
+          Skip to content
+        </a>
         <NextIntlClientProvider messages={messages}>
           <PostHogProvider>
             <header style={{ backgroundColor: "#ffffff", borderBottom: "1px solid var(--border-color)", padding: "16px 0" }}>
@@ -51,7 +54,7 @@ export default async function RootLayout({
             </div>
           </header>
           
-          <main style={{ minHeight: "calc(100vh - 140px)", padding: "40px 0" }}>
+          <main id="main-content" style={{ minHeight: "calc(100vh - 140px)", padding: "40px 0" }}>
             <div className="container">
               {children}
             </div>
