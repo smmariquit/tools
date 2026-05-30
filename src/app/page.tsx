@@ -9,9 +9,15 @@ const tools = [
       { name: "PhilHealth Premium Calculator", path: "/philhealth-calculator", desc: "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate." },
       { name: "Income Tax Calculator (BIR)", path: "/income-tax-calculator", desc: "Calculate your annual and monthly income tax using TRAIN law brackets." },
       { name: "13th Month & Final Pay Calculator", path: "/13th-month-pay-calculator", desc: "Compute your prorated 13th month, separation pay, and final back pay." },
-      { name: "Pag-IBIG / MP2 Calculator", path: "/pagibig-calculator", desc: "Estimate your MP2 savings dividends and standard housing loan amortization." },
       { name: "Freelance 8% Tax Calculator", path: "/freelance-tax-calculator", desc: "Calculate your net take-home pay under the BIR 8% flat income tax rate." },
       { name: "Electric Bill Estimator", path: "/electric-bill-calculator", desc: "Estimate your Meralco bill based on appliance usage and current rates." }
+    ]
+  },
+  {
+    category: "Real Estate & Housing",
+    items: [
+      { name: "Amilyar (Property Tax) Calculator", path: "/amilyar-calculator", desc: "Estimate your annual Philippine Real Property Tax (RPT) and SEF." },
+      { name: "Pag-IBIG / MP2 Calculator", path: "/pagibig-calculator", desc: "Estimate your MP2 savings dividends and standard housing loan amortization." },
     ]
   },
   {
