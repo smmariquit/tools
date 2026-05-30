@@ -141,6 +141,46 @@ export default function TollCalculatorClient() {
         </p>
         <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>Last Updated: May 2026. Note: This calculator uses publicly available data from TRB. Prices are subject to change without prior notice. Some complex segmented routes may not be perfectly represented.</p>
       </div>
+
+      <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", overflowX: "auto" }}>
+        <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>{selectedExpressway} Toll Matrix (Class {vehicleClass.replace('class', '')})</h2>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px", textAlign: "center" }}>
+          <thead>
+            <tr>
+              <th style={{ padding: "8px", border: "1px solid var(--border-color)", backgroundColor: "var(--surface-color)" }}>Entry \\ Exit</th>
+              {currentExpressway.exits.map(exit => (
+                <th key={exit} style={{ padding: "8px", border: "1px solid var(--border-color)", backgroundColor: "var(--surface-color)", minWidth: "80px" }}>{exit}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {currentExpressway.exits.map((rowExit) => (
+              <tr key={rowExit}>
+                <td style={{ padding: "8px", border: "1px solid var(--border-color)", fontWeight: "bold", backgroundColor: "var(--surface-color)", textAlign: "left" }}>{rowExit}</td>
+                {currentExpressway.exits.map((colExit) => {
+                  const fee = getTollFee(selectedExpressway, rowExit, colExit, vehicleClass);
+                  const isCurrentRoute = (origin === rowExit && destination === colExit) || (origin === colExit && destination === rowExit);
+                  
+                  return (
+                    <td 
+                      key={`${rowExit}-${colExit}`} 
+                      style={{ 
+                        padding: "8px", 
+                        border: "1px solid var(--border-color)",
+                        backgroundColor: isCurrentRoute && origin !== destination ? "#bbdefb" : rowExit === colExit ? "#f5f5f5" : "transparent",
+                        fontWeight: isCurrentRoute ? "bold" : "normal",
+                        color: isCurrentRoute ? "#0d47a1" : "inherit"
+                      }}
+                    >
+                      {rowExit === colExit ? "-" : fee !== null ? `₱${fee}` : "N/A"}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

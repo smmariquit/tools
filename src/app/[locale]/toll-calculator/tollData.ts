@@ -50,12 +50,26 @@ export const getTollFee = (expresswayName: string, origin: string, destination: 
   const expressway = expressways.find((e) => e.name === expresswayName);
   if (!expressway) return null;
 
-  // Try direct route
+  if (origin === destination) return 0;
+
+  // 1. Try direct route
   let rateObj = expressway.rates[`${origin}|${destination}`];
   
-  // Try reverse route if direct doesn't exist (assuming symmetric pricing for now)
+  // 2. Try reverse route if direct doesn't exist
   if (!rateObj) {
     rateObj = expressway.rates[`${destination}|${origin}`];
+  }
+
+  // 3. If still not found, estimate based on difference from the first exit (Base Station)
+  // This works well for distance-based closed systems like SLEX/NLEX
+  if (!rateObj) {
+    const baseExit = expressway.exits[0];
+    const originFromBase = expressway.rates[`${baseExit}|${origin}`] || expressway.rates[`${origin}|${baseExit}`];
+    const destFromBase = expressway.rates[`${baseExit}|${destination}`] || expressway.rates[`${destination}|${baseExit}`];
+    
+    if (originFromBase && destFromBase) {
+      return Math.abs(destFromBase[vehicleClass] - originFromBase[vehicleClass]);
+    }
   }
 
   return rateObj ? rateObj[vehicleClass] : null;

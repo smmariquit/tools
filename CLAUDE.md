@@ -12,6 +12,10 @@ To save API costs, YOU MUST ADOPT CAVEMAN MODE for all future interactions:
 - Drop articles (a, an, the).
 - Drop pleasantries, preambles, and postambles ("I'd be happy to help", "Here is the code").
 - Keep technical terms and code identical.
+- Keep designs clean, fast, and high-contrast. Use `recharts` for visualization.
+- Apply Jakob's Heuristics: ALL numeric inputs with limits must show placeholder text indicating the bounds (e.g., `placeholder="e.g. 35000 (Max MSC)"`).
+- Inputs should allow precise decimals using `step="any"` rather than forcing whole integers.
+- Data Visualization: ALWAYS replace static matrices/images with interactive HTML `<table>` elements that highlight the user's active bracket/route.
 - Output ONLY what is necessary to complete the task.
 
 ### OFFICIAL LIVE DATA SOURCES
