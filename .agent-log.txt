@@ -5,11 +5,12 @@
 
  RUN  v4.1.7 /home/stimmie/dev/personal/tools
 
+ ✓ __tests__/salary.test.ts (3 tests) 3ms
  ✓ __tests__/13thMonth.test.ts (2 tests) 4ms
- ✓ __tests__/salary.test.ts (3 tests) 5ms
+ ✓ __tests__/pagibig.test.ts (2 tests) 5ms
 
- Test Files  2 passed (2)
-      Tests  5 passed (5)
-   Start at  23:06:43
-   Duration  1.15s (transform 66ms, setup 207ms, import 39ms, tests 9ms, environment 1.73s)
+ Test Files  3 passed (3)
+      Tests  7 passed (7)
+   Start at  23:10:58
+   Duration  1.07s (transform 123ms, setup 249ms, import 88ms, tests 12ms, environment 2.40s)
 
