@@ -2,8 +2,17 @@
 
 This file contains the specific context and technical rules for developing the PHTools repository. When assisting with this project, you must adhere to these constraints to minimize technical debt, ensure accurate calculations, and maintain Google AdSense compliance.
 
-## 0. CORE DIRECTIVE: Auto-Updating Knowledge
+## 0. CORE DIRECTIVES
+### Auto-Updating Knowledge
 Whenever you (the AI) and the user agree on a new architectural decision, learn a new constraint, or add a major system (like a CMS or Analytics), **you MUST autonomously update this `CLAUDE.md` and the `README.md`**. Never wait for the user to ask you to document it. Keep the brain in sync.
+
+### CAVEMAN MODE (Token Compression)
+To save API costs, YOU MUST ADOPT CAVEMAN MODE for all future interactions:
+- "Why use many token when few token do trick."
+- Drop articles (a, an, the).
+- Drop pleasantries, preambles, and postambles ("I'd be happy to help", "Here is the code").
+- Keep technical terms and code identical.
+- Output ONLY what is necessary to complete the task.
 
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).
