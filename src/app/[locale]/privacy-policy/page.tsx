@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 
 export default function PrivacyPolicy() {
   return (
@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
 
       <div className="card" style={{ color: "var(--text-primary)" }}>
         <p style={{ marginBottom: "16px" }}>
-          At PHTools, accessible from phtools.com (or your custom domain), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by PHTools and how we use it.
+          At PHTools, accessible from phtools.me, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by PHTools and how we use it.
         </p>
 
         <h2 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>1. Information We Collect</h2>
@@ -25,7 +25,7 @@ export default function PrivacyPolicy() {
 
         <h2 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>3. Cookies and Web Beacons</h2>
         <p style={{ marginBottom: "16px" }}>
-          Like any other website, PHTools uses "cookies". These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.
+          Like any other website, PHTools uses &quot;cookies&quot;. These cookies are used to store information including visitors&apos; preferences, and the pages on the website that the visitor accessed or visited.
         </p>
 
         <h2 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>4. Google DoubleClick DART Cookie</h2>
@@ -35,10 +35,10 @@ export default function PrivacyPolicy() {
 
         <h2 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>5. Third Party Privacy Policies</h2>
         <p style={{ marginBottom: "16px" }}>
-          Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on PHTools, which are sent directly to users' browser. They automatically receive your IP address when this occurs.
+          Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on PHTools, which are sent directly to users&apos; browser. They automatically receive your IP address when this occurs.
         </p>
         <p style={{ marginBottom: "16px" }}>
-          PHTools's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+          PHTools&apos;s Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
         </p>
 
         <h2 style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}>6. Consent</h2>

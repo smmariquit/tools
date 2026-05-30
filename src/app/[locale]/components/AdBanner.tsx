@@ -31,7 +31,7 @@ export default function AdBanner({
       <ins
         className="adsbygoogle"
         style={{ display: "block", width: "100%" }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // Replace with your actual AdSense Publisher ID
+        data-ad-client="ca-pub-9785940474424207"
         data-ad-slot={dataAdSlot}
         data-ad-format={dataAdFormat}
         data-full-width-responsive={dataFullWidthResponsive.toString()}

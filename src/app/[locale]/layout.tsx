@@ -6,8 +6,15 @@ import { PostHogProvider } from "./providers";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
+import { setRequestLocale } from 'next-intl/server';
+
+const locales = ['en', 'tl'];
 
 const inter = Inter({ subsets: ["latin"] });
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   title: "PH Tools & Calculators | Free Online Utilities",
@@ -25,6 +32,7 @@ export default async function RootLayout({
   params: Promise<{locale: string}>;
 }>) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
