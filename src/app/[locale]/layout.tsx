@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Link from "next/link";
 import Script from "next/script";
 import { PostHogProvider } from "./providers";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,19 +17,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{locale: string}>;
 }>) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9785940474424207" crossOrigin="anonymous"></script>
       </head>
       <body className={inter.className}>
-        <PostHogProvider>
-          <header style={{ backgroundColor: "#ffffff", borderBottom: "1px solid var(--border-color)", padding: "16px 0" }}>
+        <NextIntlClientProvider messages={messages}>
+          <PostHogProvider>
+            <header style={{ backgroundColor: "#ffffff", borderBottom: "1px solid var(--border-color)", padding: "16px 0" }}>
             <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <Link href="/" style={{ fontSize: "20px", fontWeight: 600, color: "var(--text-primary)", textDecoration: "none" }}>
                 <span style={{ color: "var(--primary)" }}>PH</span>Tools
@@ -87,7 +95,8 @@ export default function RootLayout({
             </div>
           </footer>
         </PostHogProvider>
-      </body>
+      </NextIntlClientProvider>
+    </body>
     </html>
   );
 }

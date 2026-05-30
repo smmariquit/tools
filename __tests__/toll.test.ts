@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getTollFee } from '../src/app/toll-calculator/tollData';
+import { getTollFee } from '../src/app/[locale]/toll-calculator/tollData';
 
 describe('Toll Matrix Lookup Logic', () => {
   it('should find exact direct route toll fee', () => {

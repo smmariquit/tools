@@ -17,12 +17,12 @@ To save API costs, YOU MUST ADOPT CAVEMAN MODE for all future interactions:
 ### OFFICIAL LIVE DATA SOURCES
 To prevent outdated legal/tax math, verify data against these official sources when updating calculators:
 - Income/Freelance Tax: `bir.gov.ph` (TRAIN Law RA 10963)
-- SSS Contributions: `sss.gov.ph`
-- PhilHealth Contributions: `philhealth.gov.ph`
+- SSS Contributions: `sss.gov.ph` (2026 SSS Contribution Schedule)
+- PhilHealth Contributions: `philhealth.gov.ph` (2026 UHC 5% Premium Schedule)
 - Pag-IBIG / MP2: `pagibigfund.gov.ph`
-- Toll Rates: `trb.gov.ph` (Toll Regulatory Board)
 - 13th Month / Holiday Pay: `dole.gov.ph` (P.D. 851, Labor Code)
 - LTO MVUC Fines: `lto.gov.ph`
+- **Toll Matrix Updates:** Fetch the latest PDF matrices from `trb.gov.ph/index.php/toll-rates`. Ask Claude (or another LLM) to run a Python script with `pdfplumber` to extract the 2D grid into a JSON object. Manually verify the top 5 highest rates against the PDF before pasting into `src/app/[locale]/toll-calculator/tollData.ts`.
 
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).

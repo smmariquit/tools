@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPostsMeta, PostMeta } from "../../lib/mdx";
+import { getAllPostsMeta, PostMeta } from "../../../lib/mdx";
 
 export const metadata = {
   title: "PHTools Blog | Financial Guides & Tax Tips for Filipinos",

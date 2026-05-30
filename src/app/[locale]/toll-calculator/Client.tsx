@@ -95,9 +95,9 @@ export default function TollCalculatorClient() {
               value={vehicleClass}
               onChange={(e) => setVehicleClass(e.target.value as "class1" | "class2" | "class3")}
             >
-              <option value="class1">Class 1 (Cars, Jeepneys, Vans, Pickups, Motorcycles &gt;400cc)</option>
-              <option value="class2">Class 2 (Buses, Light Trucks)</option>
-              <option value="class3">Class 3 (Heavy Trucks, Trailers)</option>
+              <option value="class1">🚗🚙 Class 1 (Cars, Jeepneys, Vans, Pickups, Motorcycles &gt;400cc)</option>
+              <option value="class2">🚌🚐 Class 2 (Buses, Light Trucks)</option>
+              <option value="class3">🚛🚜 Class 3 (Heavy Trucks, Trailers)</option>
             </select>
           </div>
         </div>
@@ -132,11 +132,14 @@ export default function TollCalculatorClient() {
           Toll fees in the Philippines are regulated by the Toll Regulatory Board (TRB). Prices vary strictly based on your vehicle classification.
         </p>
         <ul style={{ paddingLeft: "24px", marginBottom: "16px", lineHeight: "1.6" }}>
-          <li><strong>Class 1:</strong> 2-axle vehicles up to 7ft high. Includes sedans, hatchbacks, SUVs, vans, pick-up trucks, and expressways-legal motorcycles (400cc and above).</li>
-          <li><strong>Class 2:</strong> 2-axle vehicles over 7ft high, or 3-axle vehicles. Includes buses, tourist vans, and light cargo trucks.</li>
-          <li><strong>Class 3:</strong> Vehicles with 4 or more axles. Includes heavy cargo trucks and multi-axle trailers.</li>
+          <li><strong>🚗🚙 Class 1:</strong> 2-axle vehicles up to 7ft high. Includes sedans, hatchbacks, SUVs, vans, pick-up trucks, and expressways-legal motorcycles (400cc and above).</li>
+          <li><strong>🚌🚐 Class 2:</strong> 2-axle vehicles over 7ft high, or 3-axle vehicles. Includes buses, tourist vans, and light cargo trucks.</li>
+          <li><strong>🚛🚜 Class 3:</strong> Vehicles with 4 or more axles. Includes heavy cargo trucks and multi-axle trailers.</li>
         </ul>
-        <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>Note: This calculator uses publicly available data from TRB. Prices are subject to change without prior notice. Some complex segmented routes may not be perfectly represented.</p>
+        <p style={{ fontSize: "14px", marginBottom: "8px" }}>
+          <strong>Official Source:</strong> <a href="https://trb.gov.ph/index.php/toll-rates" target="_blank" rel="noopener noreferrer" style={{ color: "var(--primary)", textDecoration: "underline" }}>Toll Regulatory Board (TRB) Toll Rates</a>
+        </p>
+        <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>Last Updated: May 2026. Note: This calculator uses publicly available data from TRB. Prices are subject to change without prior notice. Some complex segmented routes may not be perfectly represented.</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getPostBySlug, getAllPostsMeta, PostMeta } from "../../../lib/mdx";
+import { getPostBySlug, getAllPostsMeta, PostMeta } from "../../../../lib/mdx";
 import React from "react";
 import Link from "next/link";
 import AdBanner from "../../components/AdBanner";
