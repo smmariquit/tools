@@ -15,7 +15,7 @@ export default function AdBanner({
 }: AdBannerProps) {
   useEffect(() => {
     try {
-      // @ts-ignore
+      // @ts-expect-error Google AdSense injects this onto the window object
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
       console.error("AdSense error:", err);
@@ -23,7 +23,7 @@ export default function AdBanner({
   }, []);
 
   return (
-    <div style={{ margin: "24px 0", textAlign: "center", minHeight: "90px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#f1f3f4", border: "1px dashed var(--border-color)", color: "var(--text-secondary)", fontSize: "14px" }}>
+    <div style={{ margin: "24px 0", textAlign: "center", minHeight: "280px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#f1f3f4", border: "1px dashed var(--border-color)", color: "var(--text-secondary)", fontSize: "14px", overflow: "hidden" }}>
       {/* 
         This is a placeholder wrapper. When running locally or before approval, AdSense won't show.
         The inline styles above are just to show the banner area during development.
