@@ -2,12 +2,16 @@
 
 This file contains the specific context and technical rules for developing the PHTools repository. When assisting with this project, you must adhere to these constraints to minimize technical debt, ensure accurate calculations, and maintain Google AdSense compliance.
 
+## 0. CORE DIRECTIVE: Auto-Updating Knowledge
+Whenever you (the AI) and the user agree on a new architectural decision, learn a new constraint, or add a major system (like a CMS or Analytics), **you MUST autonomously update this `CLAUDE.md` and the `README.md`**. Never wait for the user to ask you to document it. Keep the brain in sync.
+
 ## 1. Tech Stack & Architecture
 - **Framework:** Next.js 15+ (App Router).
 - **SEO & Component Architecture (CRITICAL):** Next.js forbids exporting `metadata` from `"use client"` components. Therefore, ALL tools must follow this strict split:
   1. `page.tsx`: Must be a pure Server Component that exports static `metadata`, injects `application/ld+json` schema for rich snippets, and renders `<Client />`.
   2. `Client.tsx`: Must contain the `"use client"` directive, `AdBanner`, and all React state/business logic.
 - **State Management:** Use standard React `useState`. For complex, multi-step tools, use URL Search Params so the tool state is shareable/bookmarkable.
+- **Analytics & A/B Testing:** DO NOT implement custom databases or NextAuth. We use **PostHog** (`providers.tsx`) for all analytics, session replays, and A/B testing to maintain zero-cost infrastructure and bypass Data Privacy Act (DPA) liabilities.
 - **Styling:** **DO NOT USE Tailwind CSS.** Use vanilla CSS with the enterprise design tokens defined in `src/app/globals.css`. 
   - Wrap tool modules in `<div className="card">`.
   - Use `var(--primary)`, `var(--text-secondary)`, etc., for all styling.
