@@ -7,9 +7,13 @@ export default function Home() {
     <>
       <div className="page-header" style={{ textAlign: "center", borderBottom: "none", marginBottom: "48px" }}>
         <h1 className="page-title" style={{ fontSize: "36px", marginBottom: "16px" }}>Free Online Tools for Filipinos</h1>
-        <p className="page-subtitle" style={{ maxWidth: "600px", margin: "0 auto", fontSize: "18px" }}>
+        <p className="page-subtitle" style={{ maxWidth: "600px", margin: "0 auto", fontSize: "18px", marginBottom: "24px" }}>
           Accurate calculators, generators, and utilities designed specifically for the Philippines.
         </p>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#e3f2fd", color: "var(--primary)", padding: "8px 16px", borderRadius: "20px", fontSize: "14px", fontWeight: 600 }}>
+          <span style={{ fontSize: "18px" }}>⚡</span>
+          100% Offline Capable — Install as an app to calculate anywhere without WiFi!
+        </div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>

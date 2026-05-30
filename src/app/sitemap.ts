@@ -3,7 +3,7 @@ import { toolCategories } from '../lib/routes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.phtools.me';
-  const locales = ['en', 'tl'];
+  const locales = ['en', 'tl', 'ceb'];
   
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
@@ -28,7 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             en: `${baseUrl}/en${page.path}`,
             tl: `${baseUrl}/tl${page.path}`,
-          }
+            ceb: `${baseUrl}/ceb${page.path}`,
+          } as Record<string, string>
         }
       });
     });
@@ -47,7 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             languages: {
               en: `${baseUrl}/en${tool.path}`,
               tl: `${baseUrl}/tl${tool.path}`,
-            }
+              ceb: `${baseUrl}/ceb${tool.path}`,
+            } as Record<string, string>
           }
         });
       });
