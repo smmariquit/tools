@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import AdBanner from "../components/AdBanner";
+import ToolLayout from "../components/ToolLayout";
+import ToolHeader from "../components/ToolHeader";
 
 export default function SSSCalculator() {
   const [salaryStr, setSalaryStr] = useState("30000");
@@ -55,14 +56,12 @@ export default function SSSCalculator() {
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      <div style={{ marginBottom: "24px" }}>
-        <Link href="/" style={{ fontSize: "14px", display: "inline-block", marginBottom: "16px" }}>&larr; Back to All Tools</Link>
-        <h1 className="page-title">SSS Contribution Calculator (2026)</h1>
-        <p className="page-subtitle">Find your exact SSS Monthly Salary Credit (MSC), employer share, and MPF breakdown based on the updated 15% rate schedule.</p>
-      </div>
-
-      <AdBanner dataAdSlot="0987654321" />
+    <ToolLayout>
+      <ToolHeader 
+        title="SSS Contribution Calculator (2026)" 
+        subtitle="See your exact SSS breakdown (EE/ER/EC/MPF) based on the latest 15% table." 
+        adSlotId="0987654321" 
+      />
 
       <div className="tool-grid" style={{ marginTop: "24px" }}>
         {/* Input Card */}
@@ -269,6 +268,6 @@ export default function SSSCalculator() {
           Also known as the Workers&apos; Investment and Savings Program (WISP), the MPF is an automatic retirement savings program for members with a Monthly Salary Credit exceeding ₱20,000. Any portion of your MSC between ₱20,000 and the ₱35,000 ceiling goes directly into this fund, which earns tax-free dividends.
         </p>
       </div>
-    </div>
+    </ToolLayout>
   );
 }

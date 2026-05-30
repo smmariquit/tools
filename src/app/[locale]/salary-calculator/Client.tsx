@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import AdBanner from "../components/AdBanner";
+import ToolLayout from "../components/ToolLayout";
+import ToolHeader from "../components/ToolHeader";
 
 export default function SalaryCalculator() {
   const [salaryStr, setSalaryStr] = useState("30000");
@@ -73,14 +74,12 @@ export default function SalaryCalculator() {
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-      <div style={{ marginBottom: "24px" }}>
-        <Link href="/" style={{ fontSize: "14px", display: "inline-block", marginBottom: "16px" }}>&larr; Back to All Tools</Link>
-        <h1 className="page-title">Salary Net Pay Calculator (2026)</h1>
-        <p className="page-subtitle">Calculate your take-home pay after SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions.</p>
-      </div>
-
-      <AdBanner dataAdSlot="1234567890" />
+    <ToolLayout>
+      <ToolHeader 
+        title="Salary Net Pay Calculator (2026)" 
+        subtitle="Calculate your take-home pay after SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions." 
+        adSlotId="1234567890" 
+      />
 
       <div className="tool-grid" style={{ marginTop: "24px" }}>
         {/* Input Card */}
@@ -196,6 +195,6 @@ export default function SalaryCalculator() {
           To find your taxable income, subtract your total contributions from your gross salary. Then, apply the TRAIN Law tax brackets to compute your withholding tax. If your taxable income is below ₱20,833 per month (₱250,000 annually), you are exempt from income tax.
         </p>
       </div>
-    </div>
+    </ToolLayout>
   );
 }
