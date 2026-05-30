@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { setRequestLocale } from 'next-intl/server';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const locales = ['en', 'tl', 'ceb'];
 
@@ -60,6 +61,9 @@ export default async function RootLayout({
                 <Link href="/13th-month-pay-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>13th Month</Link>
                 <Link href="/pagibig-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>Pag-IBIG/MP2</Link>
                 <Link href="/id-photo-maker" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>ID Photo</Link>
+                <div style={{ marginLeft: "12px", display: "flex", alignItems: "center" }}>
+                  <LanguageSwitcher />
+                </div>
               </nav>
             </div>
           </header>
