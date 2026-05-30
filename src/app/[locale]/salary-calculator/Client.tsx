@@ -68,7 +68,6 @@ export default function SalaryCalculator() {
             />
             <span className="form-hint">Your basic salary before any deductions.</span>
           </div>
-          <button className="btn-primary" style={{ width: "100%" }}>Calculate</button>
         </div>
 
         {/* Results Card */}

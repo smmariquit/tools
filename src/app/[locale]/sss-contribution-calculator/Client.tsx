@@ -98,10 +98,16 @@ export default function SSSCalculator() {
         <div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
           <h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px", color: "var(--primary)" }}>Contribution Breakdown</h2>
           
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", padding: "12px", backgroundColor: "var(--surface-color)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--border-color)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", padding: "12px", backgroundColor: "var(--surface-color)", borderRadius: "var(--border-radius-sm)", border: "1px solid var(--border-color)" }}>
             <span style={{ fontWeight: 500 }}>Monthly Salary Credit (MSC)</span>
             <strong style={{ color: "var(--primary)" }}>{formatCurrency(msc)}</strong>
           </div>
+          {msc >= 35000 && (
+            <p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px", marginBottom: "16px", textAlign: "right", fontStyle: "italic" }}>
+              * By law, the maximum MSC is capped at ₱35,000.
+            </p>
+          )}
+          {msc < 35000 && <div style={{ marginBottom: "16px" }}></div>}
           
           {/* Employee Share Section */}
           <div style={{ marginBottom: "20px" }}>
