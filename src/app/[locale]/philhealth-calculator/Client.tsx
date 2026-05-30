@@ -15,8 +15,9 @@ export default function PhilHealthClient() {
   const ceilingSalary = 100000;
 
   let applicableSalary = basicSalary;
-  if (basicSalary < floorSalary) applicableSalary = floorSalary;
-  if (basicSalary > ceilingSalary) applicableSalary = ceilingSalary;
+  if (basicSalary === 0) applicableSalary = 0;
+  else if (basicSalary < floorSalary) applicableSalary = floorSalary;
+  else if (basicSalary > ceilingSalary) applicableSalary = ceilingSalary;
 
   const totalPremium = applicableSalary * premiumRate;
   const employeeShare = totalPremium / 2;

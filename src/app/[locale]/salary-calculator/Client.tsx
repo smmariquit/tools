@@ -16,13 +16,13 @@ export default function SalaryCalculator() {
   const salary = parseFloat(salaryStr) || 0;
 
   // Contributions
-  const sssMSC = Math.min(Math.max(salary, 5000), 35000);
+  const sssMSC = salary > 0 ? Math.min(Math.max(salary, 5000), 35000) : 0;
   const sssDeduction = sssMSC * 0.05;
 
-  const philhealthBase = Math.min(Math.max(salary, 10000), 100000);
+  const philhealthBase = salary > 0 ? Math.min(Math.max(salary, 10000), 100000) : 0;
   const philhealthDeduction = philhealthBase * 0.025;
 
-  const pagibigDeduction = Math.min(salary * 0.02, 200);
+  const pagibigDeduction = salary > 0 ? Math.min(salary * 0.02, 200) : 0;
 
   const totalContributions = sssDeduction + philhealthDeduction + pagibigDeduction;
   const taxableIncome = Math.max(0, salary - totalContributions);

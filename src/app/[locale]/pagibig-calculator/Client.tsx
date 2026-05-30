@@ -20,12 +20,14 @@ export default function PagIbigClient() {
   const dividendRate = parseFloat(dividendRateStr) || 0;
 
   // Regular Pag-IBIG Computation (2024/2026 update: 2% up to 10k max MFS = P200)
-  const maxFundSalary = 10000;
-  const applicableSalary = Math.min(basicSalary, maxFundSalary);
+  const regularFundSalary = basicSalary > 0 ? Math.min(basicSalary, 10000) : 0;
   
-  // If salary <= 1500, EE is 1%, ER is 2%. But min wage is way higher, so assume 2% for both.
-  const regularEE = basicSalary <= 1500 ? applicableSalary * 0.01 : applicableSalary * 0.02;
-  const regularER = applicableSalary * 0.02;
+  // Rate logic: 1% if basic salary <= 1500, else 2%. Employer always pays 2%.
+  const employeeRate = basicSalary === 0 ? 0 : (basicSalary <= 1500 ? 0.01 : 0.02);
+  const employerRate = basicSalary === 0 ? 0 : 0.02;
+  
+  const regularEE = regularFundSalary * employeeRate;
+  const regularER = regularFundSalary * employerRate;
 
   // MP2 Computation (5 Year Term, compounded annually)
   // Simplified compound interest for monthly deposits:

@@ -15,6 +15,7 @@ export default function SSSCalculator() {
   // to get the exact MSC bracket.
   // Official SSS brackets round to the nearest 500.
   const getMSC = (salary: number) => {
+    if (salary === 0) return 0;
     if (salary < 5000) return 5000;
     if (salary >= 34750) return 35000; // Anything above 34,750 falls into the max 35,000 bracket
     // Round to nearest 500
@@ -29,18 +30,20 @@ export default function SSSCalculator() {
 
   let eeRegular = 0, eeMPF = 0, erRegular = 0, erMPF = 0, ecFee = 0;
 
-  if (memberType === "employed") {
-    eeRegular = regularMSC * 0.05;
-    eeMPF = mpfMSC * 0.05;
-    
-    erRegular = regularMSC * 0.10;
-    erMPF = mpfMSC * 0.10;
-    
-    ecFee = msc < 15000 ? 10 : 30;
-  } else {
-    // Voluntary / Self-Employed pays the full 15%
-    eeRegular = regularMSC * 0.15;
-    eeMPF = mpfMSC * 0.15;
+  if (msc > 0) {
+    if (memberType === "employed") {
+      eeRegular = regularMSC * 0.05;
+      eeMPF = mpfMSC * 0.05;
+      
+      erRegular = regularMSC * 0.10;
+      erMPF = mpfMSC * 0.10;
+      
+      ecFee = msc < 15000 ? 10 : 30;
+    } else {
+      // Voluntary / Self-Employed pays the full 15%
+      eeRegular = regularMSC * 0.15;
+      eeMPF = mpfMSC * 0.15;
+    }
   }
 
   const eeTotal = eeRegular + eeMPF;
