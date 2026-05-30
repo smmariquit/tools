@@ -91,6 +91,7 @@ export default async function RootLayout({
                     <h4 style={{ fontSize: "14px", color: "var(--text-primary)", marginBottom: "12px", textTransform: "uppercase" }}>Company</h4>
                     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                       <Link href="/about" style={{ color: "var(--text-secondary)", fontSize: "14px" }}>About Us</Link>
+                      <Link href="/faq" style={{ color: "var(--text-secondary)", fontSize: "14px" }}>Help & FAQs</Link>
                       <Link href="/contact" style={{ color: "var(--text-secondary)", fontSize: "14px" }}>Contact</Link>
                     </div>
                   </div>
