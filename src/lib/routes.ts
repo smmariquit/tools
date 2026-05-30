@@ -20,6 +20,12 @@ export const toolCategories = [
     ]
   },
   {
+    category: "Education & Students",
+    items: [
+      { name: "UP/PUP GWA Calculator", path: "/gwa-calculator", desc: "Calculate your General Weighted Average (1.0-5.0) and predict target grades.", priority: 0.8 }
+    ]
+  },
+  {
     category: "Creative & Media",
     items: [
       { name: "ID Photo Maker", path: "/id-photo-maker", desc: "Create 2x2, 1x1, and passport photos from your selfies for free.", priority: 0.6 }
