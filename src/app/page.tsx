@@ -6,6 +6,7 @@ const tools = [
     items: [
       { name: "Salary Net Pay Calculator", path: "/salary-calculator", desc: "Compute your take-home pay after SSS, PhilHealth, Pag-IBIG & Tax." },
       { name: "SSS Contribution Calculator", path: "/sss-contribution-calculator", desc: "See your exact SSS breakdown (EE/ER/EC/MPF) based on the 2026 table." },
+      { name: "PhilHealth Premium Calculator", path: "/philhealth-calculator", desc: "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate." },
       { name: "Income Tax Calculator (BIR)", path: "/income-tax-calculator", desc: "Calculate your annual and monthly income tax using TRAIN law brackets." },
       { name: "13th Month & Final Pay Calculator", path: "/13th-month-pay-calculator", desc: "Compute your prorated 13th month, separation pay, and final back pay." },
       { name: "Pag-IBIG / MP2 Calculator", path: "/pagibig-calculator", desc: "Estimate your MP2 savings dividends and standard housing loan amortization." },
