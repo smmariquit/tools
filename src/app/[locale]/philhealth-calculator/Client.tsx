@@ -51,6 +51,7 @@ export default function PhilHealthClient() {
               onChange={(e) => setBasicSalaryStr(e.target.value)}
               min="0"
               step="any"
+              placeholder="e.g., 100000 (Max Ceiling)"
             />
             <p className="form-hint" style={{ marginTop: "4px" }}>Input your basic pay excluding allowances and overtime.</p>
             {basicSalary > 0 && basicSalary < floorSalary && (

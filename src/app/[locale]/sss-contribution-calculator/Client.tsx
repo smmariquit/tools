@@ -90,6 +90,7 @@ export default function SSSCalculator() {
               onChange={(e) => setSalaryStr(e.target.value)}
               min="0"
               step="any"
+              placeholder="e.g., 35000 (Max MSC)"
             />
             {salary > 0 && salary < 5000 && (
               <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#fff3e0", borderRadius: "6px", fontSize: "12px", color: "#e65100", border: "1px solid #ffe0b2", display: "flex", alignItems: "center", gap: "6px" }}>

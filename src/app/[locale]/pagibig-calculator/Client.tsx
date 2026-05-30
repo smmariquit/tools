@@ -84,6 +84,7 @@ export default function PagIbigClient() {
               onChange={(e) => setBasicSalaryStr(e.target.value)}
               min="0"
               step="any"
+              placeholder="e.g., 10000 (Max MFS)"
             />
             {basicSalary >= 10000 && (
               <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#e3f2fd", borderRadius: "6px", fontSize: "12px", color: "#0d47a1", border: "1px solid #bbdefb", display: "flex", alignItems: "center", gap: "6px" }}>
