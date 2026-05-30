@@ -7,8 +7,8 @@ export const toolCategories = [
       { name: "PhilHealth Premium Calculator", path: "/philhealth-calculator", desc: "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate.", priority: 0.9 },
       { name: "Income Tax Calculator (BIR)", path: "/income-tax-calculator", desc: "Calculate your annual and monthly income tax using TRAIN law brackets.", priority: 0.9 },
       { name: "13th Month & Final Pay Calculator", path: "/13th-month-pay-calculator", desc: "Compute your prorated 13th month, separation pay, and final back pay.", priority: 0.8 },
-      { name: "Freelance 8% Tax Calculator", path: "/freelance-tax-calculator", desc: "Calculate your net take-home pay under the BIR 8% flat income tax rate.", priority: 0.8 },
-      { name: "Shopee & Lazada Fee Calculator", path: "/shopee-lazada-fee-calculator", desc: "Calculate exact seller deductions (Commission, FSS, CCB) and net payout.", priority: 0.8 },
+      { name: "Upwork & Freelance Tax Calculator", path: "/freelance-tax-calculator", desc: "Calculate your net PHP after Upwork fees, forex spread, and 8% BIR tax.", priority: 0.9 },
+      { name: "TikTok, Shopee & Lazada Fee Calculator", path: "/shopee-lazada-fee-calculator", desc: "Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout.", priority: 0.9 },
       { name: "Electric Bill Estimator", path: "/electric-bill-calculator", desc: "Estimate your Meralco bill based on appliance usage and current rates.", priority: 0.7 }
     ]
   },
@@ -16,7 +16,8 @@ export const toolCategories = [
     category: "Real Estate & Housing",
     items: [
       { name: "Amilyar (Property Tax) Calculator", path: "/amilyar-calculator", desc: "Estimate your annual Philippine Real Property Tax (RPT) and SEF.", priority: 0.7 },
-      { name: "Pag-IBIG / MP2 Calculator", path: "/pagibig-calculator", desc: "Estimate your MP2 savings dividends and standard housing loan amortization.", priority: 0.8 }
+      { name: "Pag-IBIG / MP2 Calculator", path: "/pagibig-calculator", desc: "Estimate your MP2 savings dividends and standard housing loan amortization.", priority: 0.8 },
+      { name: "Pag-IBIG Foreclosed Property ROI Calculator", path: "/pagibig-foreclosed-roi-calculator", desc: "Calculate rental yield and flipping ROI for Acquired Assets.", priority: 0.9 }
     ]
   },
   {

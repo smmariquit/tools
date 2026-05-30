@@ -5,7 +5,7 @@ import Link from "next/link";
 import AdBanner from "../components/AdBanner";
 
 export default function EcommerceFeeClient() {
-  const [platform, setPlatform] = useState<"shopee" | "lazada">("shopee");
+  const [platform, setPlatform] = useState<"shopee" | "lazada" | "tiktok">("shopee");
   const [itemPriceStr, setItemPriceStr] = useState("1000");
   const [shippingFeeStr, setShippingFeeStr] = useState("50");
   
@@ -23,13 +23,14 @@ export default function EcommerceFeeClient() {
   const transactionFee = totalOrderAmount * transactionFeeRate;
 
   // 2. Commission Fee (Standard is around 4% - 5% of Item Price depending on category)
-  // We'll use 5% as a conservative estimate for non-mall sellers.
-  const commissionFeeRate = platform === "shopee" ? 0.05 : 0.045; // slightly different average structures
+  // We'll use 5% for Shopee, 4.5% for Lazada, and 4% for TikTok Shop as conservative estimates.
+  const commissionFeeRate = platform === "shopee" ? 0.05 : platform === "lazada" ? 0.045 : 0.04;
   const commissionFee = itemPrice * commissionFeeRate;
 
-  // 3. Optional Program Fees (FSS & CCB) - applied to Item Price
+  // 3. Optional Program Fees (FSS & CCB or TikTok Affiliate) - applied to Item Price
   // Shopee FSS is typically ~5.6% (5% + VAT). Lazada Free Shipping Max is similar.
-  const programFeeRate = (isFss ? 0.056 : 0) + (isCcb ? 0.0336 : 0);
+  // TikTok Affiliate commission is typically 10% average.
+  const programFeeRate = (isFss ? (platform === "tiktok" ? 0.10 : 0.056) : 0) + (isCcb ? 0.0336 : 0);
   const programFee = itemPrice * programFeeRate;
 
   // Total Deductions
@@ -50,8 +51,8 @@ export default function EcommerceFeeClient() {
     <div style={{ maxWidth: "800px", margin: "0 auto" }}>
       <div style={{ marginBottom: "24px" }}>
         <Link href="/" style={{ fontSize: "14px", display: "inline-block", marginBottom: "16px" }}>&larr; Back to Tools</Link>
-        <h1 className="page-title">Shopee & Lazada Seller Fee Calculator</h1>
-        <p className="page-subtitle">Calculate exact deductions (Commission, Transaction, FSS/CCB) and find out your actual net payout per item.</p>
+        <h1 className="page-title">TikTok, Shopee & Lazada Seller Fee Calculator</h1>
+        <p className="page-subtitle">Calculate exact deductions (Commission, Transaction, Affiliate) and find out your actual net payout per item.</p>
       </div>
 
       <AdBanner dataAdSlot="ecommerce-top" />
@@ -74,6 +75,11 @@ export default function EcommerceFeeClient() {
                 style={{ flex: 1, backgroundColor: platform === "lazada" ? "#0f136d" : "", color: platform === "lazada" ? "white" : "" }}
                 onClick={() => setPlatform("lazada")}
               >Lazada</button>
+              <button 
+                className={`btn-secondary ${platform === "tiktok" ? "active" : ""}`}
+                style={{ flex: 1, backgroundColor: platform === "tiktok" ? "#000000" : "", color: platform === "tiktok" ? "white" : "" }}
+                onClick={() => setPlatform("tiktok")}
+              >TikTok Shop</button>
             </div>
           </div>
 
@@ -112,18 +118,20 @@ export default function EcommerceFeeClient() {
                 onChange={(e) => setIsFss(e.target.checked)} 
                 style={{ width: "16px", height: "16px" }}
               />
-              Joined Free Shipping Program (~5.6% Fee)
+              {platform === "tiktok" ? "Paid to Affiliate Creators (~10% Fee)" : "Joined Free Shipping Program (~5.6% Fee)"}
             </label>
 
-            <label style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "12px", cursor: "pointer", fontSize: "14px" }}>
-              <input 
-                type="checkbox" 
-                checked={isCcb} 
-                onChange={(e) => setIsCcb(e.target.checked)} 
-                style={{ width: "16px", height: "16px" }}
-              />
-              Joined Cashback Program (~3.36% Fee)
-            </label>
+            {platform !== "tiktok" && (
+              <label style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "12px", cursor: "pointer", fontSize: "14px" }}>
+                <input 
+                  type="checkbox" 
+                  checked={isCcb} 
+                  onChange={(e) => setIsCcb(e.target.checked)} 
+                  style={{ width: "16px", height: "16px" }}
+                />
+                Joined Cashback Program (~3.36% Fee)
+              </label>
+            )}
           </div>
         </div>
 
@@ -142,13 +150,13 @@ export default function EcommerceFeeClient() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-            <span>Commission Fee (~{platform === "shopee" ? "5" : "4.5"}%)</span>
+            <span>Commission Fee (~{platform === "shopee" ? "5" : platform === "lazada" ? "4.5" : "4"}%)</span>
             <span style={{ color: "var(--text-secondary)" }}>- {formatCurrency(commissionFee)}</span>
           </div>
 
           {(isFss || isCcb) && (
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-              <span>Program Fees (FSS/CCB)</span>
+              <span>{platform === "tiktok" ? "Affiliate Commission" : "Program Fees (FSS/CCB)"}</span>
               <span style={{ color: "var(--text-secondary)" }}>- {formatCurrency(programFee)}</span>
             </div>
           )}
