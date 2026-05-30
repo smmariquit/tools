@@ -10,9 +10,23 @@ export default function Home() {
         <p className="page-subtitle" style={{ maxWidth: "600px", margin: "0 auto", fontSize: "18px", marginBottom: "24px" }}>
           Accurate calculators, generators, and utilities designed specifically for the Philippines.
         </p>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#e3f2fd", color: "var(--primary)", padding: "8px 16px", borderRadius: "20px", fontSize: "14px", fontWeight: 600 }}>
-          <span style={{ fontSize: "18px" }}>⚡</span>
-          100% Offline Capable — Install as an app to calculate anywhere without WiFi!
+        <div style={{ 
+          display: "inline-flex", 
+          alignItems: "center", 
+          gap: "8px", 
+          backgroundColor: "rgba(13, 71, 161, 0.08)", 
+          color: "var(--primary)", 
+          padding: "8px 16px", 
+          borderRadius: "6px", 
+          fontSize: "14px", 
+          fontWeight: 600,
+          border: "1px solid rgba(13, 71, 161, 0.15)",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.02)"
+        }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+          Works Offline (PWA Supported)
         </div>
       </div>
 
