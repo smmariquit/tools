@@ -5,14 +5,20 @@ import { useState } from "react";
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
     
-    // Simulate API call for now. In production, connect this to a real backend or service like Formspree.
-    setTimeout(() => {
-      setStatus("success");
-    }, 1000);
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    const email = formData.get('email');
+    
+    const mailtoLink = `mailto:hello@phtools.app?subject=${encodeURIComponent(`[${subject}] PHTools Contact: ${name}`)}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
+    window.location.href = mailtoLink;
+    
+    setStatus("success");
   };
 
   return (
@@ -40,17 +46,17 @@ export default function Contact() {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label" htmlFor="name">Name</label>
-              <input type="text" id="name" className="form-control" required placeholder="Juan Dela Cruz" />
+              <input type="text" id="name" name="name" className="form-control" required placeholder="Juan Dela Cruz" />
             </div>
             
             <div className="form-group">
               <label className="form-label" htmlFor="email">Email Address</label>
-              <input type="email" id="email" className="form-control" required placeholder="juan@example.com" />
+              <input type="email" id="email" name="email" className="form-control" required placeholder="juan@example.com" />
             </div>
             
             <div className="form-group">
               <label className="form-label" htmlFor="subject">Subject</label>
-              <select id="subject" className="form-control" required>
+              <select id="subject" name="subject" className="form-control" required>
                 <option value="feedback">General Feedback</option>
                 <option value="bug">Report a Calculation Error / Bug</option>
                 <option value="feature">Request a New Tool</option>
@@ -62,6 +68,7 @@ export default function Contact() {
               <label className="form-label" htmlFor="message">Message</label>
               <textarea 
                 id="message" 
+                name="message"
                 className="form-control" 
                 rows={5} 
                 required 
