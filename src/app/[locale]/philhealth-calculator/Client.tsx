@@ -50,6 +50,7 @@ export default function PhilHealthClient() {
               value={basicSalaryStr}
               onChange={(e) => setBasicSalaryStr(e.target.value)}
               min="0"
+              step="any"
             />
             <p className="form-hint" style={{ marginTop: "4px" }}>Input your basic pay excluding allowances and overtime.</p>
             {basicSalary > 0 && basicSalary < floorSalary && (

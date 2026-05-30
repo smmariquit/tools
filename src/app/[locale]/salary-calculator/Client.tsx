@@ -95,7 +95,7 @@ export default function SalaryCalculator() {
               value={salaryStr}
               onChange={(e) => setSalaryStr(e.target.value)}
               min="0"
-              step="500"
+              step="any"
             />
             <span className="form-hint">Your basic salary before any deductions.</span>
           </div>

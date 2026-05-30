@@ -103,7 +103,9 @@ export default async function RootLayout({
               
               <div style={{ borderTop: "1px solid var(--border-color)", paddingTop: "16px", textAlign: "center", color: "var(--text-secondary)", fontSize: "13px" }}>
                 <p>&copy; {new Date().getFullYear()} PHTools. All rights reserved.</p>
-                <p style={{ marginTop: "4px", fontSize: "12px" }}>Disclaimer: Computations are estimates based on standard Philippine rates and are not professional financial advice.</p>
+                <p style={{ marginTop: "8px", fontSize: "12px", maxWidth: "800px", margin: "8px auto 0 auto", lineHeight: "1.5" }}>
+                  <strong>Limitation of Liability:</strong> All calculators and tools provided on this platform are for estimation purposes only and do not replace official payroll processing or tax advice. PHTools and its developers shall not be held liable for any damages, penalties, or financial losses resulting from the use of, or reliance on, these computations.
+                </p>
               </div>
             </div>
           </footer>

@@ -129,7 +129,7 @@ export default function IncomeTaxCalculator() {
               value={incomeStr}
               onChange={(e) => setIncomeStr(e.target.value)}
               min="0"
-              step="1000"
+              step="any"
             />
             <span className="form-hint">Income after deducting mandatory contributions (SSS, PhilHealth, Pag-IBIG).</span>
           </div>

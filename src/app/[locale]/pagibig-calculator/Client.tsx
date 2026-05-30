@@ -83,6 +83,7 @@ export default function PagIbigClient() {
               value={basicSalaryStr}
               onChange={(e) => setBasicSalaryStr(e.target.value)}
               min="0"
+              step="any"
             />
             {basicSalary >= 10000 && (
               <div style={{ marginTop: "8px", padding: "6px 10px", backgroundColor: "#e3f2fd", borderRadius: "6px", fontSize: "12px", color: "#0d47a1", border: "1px solid #bbdefb", display: "flex", alignItems: "center", gap: "6px" }}>
