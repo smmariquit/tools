@@ -30,6 +30,7 @@ const tools = [
   {
     category: "Utilities",
     items: [
+      { name: "Fuel Cost Calculator", path: "/fuel-cost-calculator", desc: "Estimate your road trip gas expenses and easily divide costs for ambagan." },
       { name: "LTO Penalty Calculator", path: "/lto-penalty-calculator", desc: "Check exactly how much your MVUC fine is for late vehicle registration." },
       { name: "PH Zip Code Finder", path: "/zip-code-finder", desc: "Search the official PHLPost database for barangay and city zip codes." },
       { name: "Expressway Toll Calculator", path: "/toll-calculator", desc: "Lookup TRB-approved toll fees for Skyway, SLEX, NLEX, and TPLEX." },
