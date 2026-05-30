@@ -10,6 +10,7 @@ const tools = [
       { name: "Income Tax Calculator (BIR)", path: "/income-tax-calculator", desc: "Calculate your annual and monthly income tax using TRAIN law brackets." },
       { name: "13th Month & Final Pay Calculator", path: "/13th-month-pay-calculator", desc: "Compute your prorated 13th month, separation pay, and final back pay." },
       { name: "Freelance 8% Tax Calculator", path: "/freelance-tax-calculator", desc: "Calculate your net take-home pay under the BIR 8% flat income tax rate." },
+      { name: "Shopee & Lazada Fee Calculator", path: "/shopee-lazada-fee-calculator", desc: "Calculate exact seller deductions (Commission, FSS, CCB) and net payout." },
       { name: "Electric Bill Estimator", path: "/electric-bill-calculator", desc: "Estimate your Meralco bill based on appliance usage and current rates." }
     ]
   },
