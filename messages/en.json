@@ -1,40 +1,40 @@
 {
-  "Index": {
-    "title": "Free Online Tools for Filipinos",
-    "subtitle": "Accurate calculators, generators, and utilities designed specifically for the Philippines.",
-    "worksOffline": "Works Offline"
-  },
-  "Navigation": {
-    "tools": "Tools",
-    "blog": "Blog",
-    "salary": "Salary",
-    "13thMonth": "13th Month",
-    "pagibig": "Pag-IBIG/MP2",
-    "idPhoto": "ID Photo"
-  },
-  "SalaryCalculator": {
-    "shareText": "Share Computation",
-    "shareTextCopied": "Copied to Clipboard!",
-    "detailsTitle": "Your Details",
-    "grossSalaryLabel": "Gross Monthly Salary (PHP)",
-    "grossSalaryPlaceholder": "e.g., 30000",
-    "grossSalaryHint": "Your basic salary before any deductions.",
-    "resultsTitle": "Computation Results",
-    "grossSalaryResult": "Gross Salary",
-    "mandatoryDeductions": "Mandatory Deductions",
-    "sss": "SSS Contribution (5%)",
-    "philhealth": "PhilHealth (2.5%)",
-    "pagibig": "Pag-IBIG",
-    "totalContributions": "Total Contributions",
-    "taxableIncome": "Taxable Income",
-    "tax": "Withholding Tax (BIR)",
-    "netPay": "Net Take-Home Pay",
-    "estimateDisclaimer": "* This is an estimate based on standard 2026 rates.",
-    "chartTitle": "Salary Breakdown",
-    "chartNetPay": "Net Pay",
-    "chartTax": "Tax",
-    "chartSSS": "SSS",
-    "chartPhilhealth": "PhilHealth",
-    "chartPagibig": "Pag-IBIG"
-  }
+	"Index": {
+		"title": "Free Online Tools for Filipinos",
+		"subtitle": "Accurate calculators, generators, and utilities designed specifically for the Philippines.",
+		"worksOffline": "Works Offline"
+	},
+	"Navigation": {
+		"tools": "Tools",
+		"blog": "Blog",
+		"salary": "Salary",
+		"13thMonth": "13th Month",
+		"pagibig": "Pag-IBIG/MP2",
+		"idPhoto": "ID Photo"
+	},
+	"SalaryCalculator": {
+		"shareText": "Share Computation",
+		"shareTextCopied": "Copied to Clipboard!",
+		"detailsTitle": "Your Details",
+		"grossSalaryLabel": "Gross Monthly Salary (PHP)",
+		"grossSalaryPlaceholder": "e.g., 30000",
+		"grossSalaryHint": "Your basic salary before any deductions.",
+		"resultsTitle": "Computation Results",
+		"grossSalaryResult": "Gross Salary",
+		"mandatoryDeductions": "Mandatory Deductions",
+		"sss": "SSS Contribution (5%)",
+		"philhealth": "PhilHealth (2.5%)",
+		"pagibig": "Pag-IBIG",
+		"totalContributions": "Total Contributions",
+		"taxableIncome": "Taxable Income",
+		"tax": "Withholding Tax (BIR)",
+		"netPay": "Net Take-Home Pay",
+		"estimateDisclaimer": "* This is an estimate based on standard 2026 rates.",
+		"chartTitle": "Salary Breakdown",
+		"chartNetPay": "Net Pay",
+		"chartTax": "Tax",
+		"chartSSS": "SSS",
+		"chartPhilhealth": "PhilHealth",
+		"chartPagibig": "Pag-IBIG"
+	}
 }

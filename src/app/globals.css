@@ -18,7 +18,7 @@
 	--border-radius-sm: 4px;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
 	--primary: #66b2ff;
 	--primary-hover: #99ccff;
 	--bg-color: #121212;

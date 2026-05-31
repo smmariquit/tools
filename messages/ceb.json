@@ -1,14 +1,14 @@
 {
-  "Index": {
-    "title": "Libreng Online Tools para sa mga Pinoy",
-    "subtitle": "Mga saktong calculator, generator, ug uban pang utilities nga gihimo gyud para sa Pilipinas."
-  },
-  "Navigation": {
-    "tools": "Mga Tools",
-    "blog": "Mga Blog",
-    "salary": "Sweldo",
-    "13thMonth": "13th Month",
-    "pagibig": "Pag-IBIG/MP2",
-    "idPhoto": "ID Photo"
-  }
+	"Index": {
+		"title": "Libreng Online Tools para sa mga Pinoy",
+		"subtitle": "Mga saktong calculator, generator, ug uban pang utilities nga gihimo gyud para sa Pilipinas."
+	},
+	"Navigation": {
+		"tools": "Mga Tools",
+		"blog": "Mga Blog",
+		"salary": "Sweldo",
+		"13thMonth": "13th Month",
+		"pagibig": "Pag-IBIG/MP2",
+		"idPhoto": "ID Photo"
+	}
 }
