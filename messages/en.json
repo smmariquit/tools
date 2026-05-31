@@ -794,6 +794,34 @@
 		"customs-brokerage-fee-calculator": {
 			"name": "Standard Customs Brokerage Fee Calculator",
 			"desc": "Calculate minimum professional fees for customs brokers under CAO No. 1-2001."
+		},
+		"influencer-rate-calculator": {
+			"name": "Philippine Influencer & Talent Rate Calculator",
+			"desc": "Calculate standard creator rates based on engagement metrics."
+		},
+		"final-pay-calculator": {
+			"name": "Pro-Rated 13th Month & Final Pay Calculator",
+			"desc": "Calculate final pay, prorated 13th-month bonus, and unused SIL conversion."
+		},
+		"tax-refund-calculator": {
+			"name": "Year-End Tax Refund Estimator",
+			"desc": "Calculate potential tax refunds by reconciling YTD withheld taxes against actual tax due."
+		},
+		"kasambahay-payroll-calculator": {
+			"name": "Kasambahay Monthly Contribution & Payroll Calculator",
+			"desc": "Compute SSS, PhilHealth, and Pag-IBIG contributions for household employees."
+		},
+		"kasambahay-retirement-calculator": {
+			"name": "Batas Kasambahay Statutory Retirement Pay Calculator",
+			"desc": "Calculate retirement pay for domestic workers under Article 302 of the Labor Code."
+		},
+		"estate-tax-calculator": {
+			"name": "Philippine Estate Tax Calculator",
+			"desc": "Calculate the 6% flat estate tax under the TRAIN Law."
+		},
+		"gotrade-vs-ibkr-calculator": {
+			"name": "GoTrade vs IBKR Wise Fee Calculator",
+			"desc": "Compare FX spreads and trading fees to find the break-even deposit amount."
 		}
 	}
 }

@@ -159,6 +159,48 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Philippine Influencer & Talent Rate Calculator",
+				path: "/influencer-rate-calculator",
+				desc: "Calculate standard creator rates based on engagement metrics.",
+				priority: 0.9,
+			},
+			{
+				name: "Pro-Rated 13th Month & Final Pay Calculator",
+				path: "/final-pay-calculator",
+				desc: "Calculate final pay, prorated 13th-month bonus, and unused SIL conversion.",
+				priority: 0.9,
+			},
+			{
+				name: "Year-End Tax Refund Estimator",
+				path: "/tax-refund-calculator",
+				desc: "Calculate potential tax refunds by reconciling YTD withheld taxes against actual tax due.",
+				priority: 0.9,
+			},
+			{
+				name: "Kasambahay Monthly Contribution & Payroll Calculator",
+				path: "/kasambahay-payroll-calculator",
+				desc: "Compute SSS, PhilHealth, and Pag-IBIG contributions for household employees.",
+				priority: 0.9,
+			},
+			{
+				name: "Batas Kasambahay Statutory Retirement Pay Calculator",
+				path: "/kasambahay-retirement-calculator",
+				desc: "Calculate retirement pay for domestic workers under Article 302 of the Labor Code.",
+				priority: 0.9,
+			},
+			{
+				name: "Philippine Estate Tax Calculator",
+				path: "/estate-tax-calculator",
+				desc: "Calculate the 6% flat estate tax under the TRAIN Law.",
+				priority: 0.9,
+			},
+			{
+				name: "GoTrade vs IBKR Wise Fee Calculator",
+				path: "/gotrade-vs-ibkr-calculator",
+				desc: "Compare FX spreads and trading fees to find the break-even deposit amount.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

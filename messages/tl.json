@@ -794,6 +794,34 @@
 		"customs-brokerage-fee-calculator": {
 			"name": "Standard Customs Brokerage Fee Calculator",
 			"desc": "Kwentahin ang minimum professional fees para sa customs brokers."
+		},
+		"influencer-rate-calculator": {
+			"name": "Philippine Influencer & Talent Rate Calculator",
+			"desc": "Kwentahin ang standard creator rates base sa engagement metrics."
+		},
+		"final-pay-calculator": {
+			"name": "Pro-Rated 13th Month & Final Pay Calculator",
+			"desc": "Kwentahin ang final pay at 13th-month bonus."
+		},
+		"tax-refund-calculator": {
+			"name": "Year-End Tax Refund Estimator",
+			"desc": "Kwentahin ang potensyal na tax refund."
+		},
+		"kasambahay-payroll-calculator": {
+			"name": "Kasambahay Monthly Contribution & Payroll Calculator",
+			"desc": "Kwentahin ang kontribusyon para sa mga kasambahay."
+		},
+		"kasambahay-retirement-calculator": {
+			"name": "Batas Kasambahay Statutory Retirement Pay Calculator",
+			"desc": "Kwentahin ang retirement pay para sa mga kasambahay."
+		},
+		"estate-tax-calculator": {
+			"name": "Philippine Estate Tax Calculator",
+			"desc": "Kwentahin ang estate tax base sa TRAIN Law."
+		},
+		"gotrade-vs-ibkr-calculator": {
+			"name": "GoTrade vs IBKR Wise Fee Calculator",
+			"desc": "Ikumpara ang FX spreads at fees."
 		}
 	}
 }

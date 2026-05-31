@@ -38,6 +38,13 @@ const toolToBlogMap: Record<string, string> = {
 	"/bir-donors-tax-calculator": "/blog/bir-donors-tax-guide",
 	"/architectural-fee-calculator": "/blog/architectural-fee-guide",
 	"/customs-brokerage-fee-calculator": "/blog/customs-brokerage-fee-guide",
+	"/influencer-rate-calculator": "/blog/influencer-rate-guide",
+	"/final-pay-calculator": "/blog/final-pay-guide",
+	"/tax-refund-calculator": "/blog/tax-refund-guide",
+	"/kasambahay-payroll-calculator": "/blog/kasambahay-payroll-guide",
+	"/kasambahay-retirement-calculator": "/blog/kasambahay-retirement-guide",
+	"/estate-tax-calculator": "/blog/estate-tax-guide",
+	"/gotrade-vs-ibkr-calculator": "/blog/gotrade-vs-ibkr-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
