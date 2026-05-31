@@ -476,7 +476,31 @@ export const toolCategories = [
 				path: "/dota2-battlepass-calculator",
 				desc: "Estimate PHP cost to reach Aegis/Arcana.",
 				priority: 0.9,
-			}
+			},
+			{
+				name: "Roblox Robux to PHP Calculator",
+				path: "/roblox-robux-calculator",
+				desc: "Calculate Robux packages or compute DevEx cashout value in PHP.",
+				priority: 0.9,
+			},
+			{
+				name: "Roblox Trading Fairness Calculator",
+				path: "/roblox-trade-calculator",
+				desc: "Evaluate Adopt Me and Blox Fruits trades based on points fairness.",
+				priority: 0.9,
+			},
+			{
+				name: "Web3 Token to PHP Cash-Out Calculator",
+				path: "/web3-token-calculator",
+				desc: "Estimate net GCash/Bank cashout value for SLP, RON, and PIXEL.",
+				priority: 0.9,
+			},
+			{
+				name: "Web3 Scholar-Manager Split Calculator",
+				path: "/web3-scholar-calculator",
+				desc: "Calculate and visualises manager vs scholar payout shares.",
+				priority: 0.9,
+			},
 		],
 	},
 ];

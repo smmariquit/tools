@@ -46,7 +46,8 @@ const toolToBlogMap: Record<string, string> = {
 	"/estate-tax-calculator": "/blog/estate-tax-guide",
 	"/gotrade-vs-ibkr-calculator": "/blog/gotrade-vs-ibkr-guide",
 	"/pdic-insurance-calculator": "/blog/pdic-insurance-guide",
-	"/philhealth-late-contribution-calculator": "/blog/philhealth-late-contribution-guide",
+	"/philhealth-late-contribution-calculator":
+		"/blog/philhealth-late-contribution-guide",
 	"/retail-treasury-bond-calculator": "/blog/retail-treasury-bond-guide",
 	"/shipping-logistics-estimator": "/blog/shipping-logistics-guide",
 	"/crypto-spread-calculator": "/blog/crypto-spread-guide",
@@ -63,11 +64,14 @@ const toolToBlogMap: Record<string, string> = {
 	"/separation-pay-calculator": "/blog/philippine-separation-pay-guide",
 	"/freelance-rate-calculator": "/blog/freelance-hourly-rate-guide",
 	"/bir-withholding-tax-calculator": "/blog/bir-withholding-tax-guide",
-	"/motorcycle-loan-calculator": "/blog/philippine-car-loan-guide-bank-vs-dealer",
-	"/pagibig-affordability-calculator": "/blog/pagibig-housing-loan-affordability-guide",
+	"/motorcycle-loan-calculator":
+		"/blog/philippine-car-loan-guide-bank-vs-dealer",
+	"/pagibig-affordability-calculator":
+		"/blog/pagibig-housing-loan-affordability-guide",
 	"/prc-board-exam-rating-calculator": "/blog/prc-board-exam-rating-guide",
 	"/latin-honors-calculator": "/blog/philippine-latin-honors-guide",
-	"/dost-scholarship-stipend-calculator": "/blog/dost-scholarship-stipend-guide",
+	"/dost-scholarship-stipend-calculator":
+		"/blog/dost-scholarship-stipend-guide",
 	"/ched-scholarship-calculator": "/blog/ched-scholarship-guide",
 	"/qpi-gpa-calculator": "/blog/qpi-gpa-calculator-guide",
 	"/dfa-age-calculator": "/blog/dfa-age-requirements-guide",
@@ -81,9 +85,11 @@ const toolToBlogMap: Record<string, string> = {
 	"/gaming-edpi-calculator": "/blog/gaming-edpi-guide",
 	"/dota2-mmr-calculator": "/blog/dota2-mmr-guide",
 	"/dota2-battlepass-calculator": "/blog/dota2-battlepass-guide",
+	"/roblox-robux-calculator": "/blog/roblox-robux-guide",
+	"/roblox-trade-calculator": "/blog/roblox-trade-guide",
+	"/web3-token-calculator": "/blog/web3-token-guide",
+	"/web3-scholar-calculator": "/blog/web3-scholar-guide",
 };
-
-
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
 	const t = useTranslations("ToolFooter");

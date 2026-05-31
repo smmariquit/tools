@@ -898,6 +898,22 @@
 		"dota2-battlepass-calculator": {
 			"name": "Dota 2 Battle Pass PHP Calculator",
 			"desc": "Estimate PHP cost to reach Aegis/Arcana."
+		},
+		"roblox-robux-calculator": {
+			"name": "Roblox Robux to PHP Calculator",
+			"desc": "Calculate Robux packages or compute DevEx cashout value in PHP."
+		},
+		"roblox-trade-calculator": {
+			"name": "Roblox Trading Fairness Calculator",
+			"desc": "Evaluate Adopt Me and Blox Fruits trades based on points fairness."
+		},
+		"web3-token-calculator": {
+			"name": "Web3 Token to PHP Cash-Out Calculator",
+			"desc": "Estimate net GCash/Bank cashout value for SLP, RON, and PIXEL."
+		},
+		"web3-scholar-calculator": {
+			"name": "Web3 Scholar-Manager Split Calculator",
+			"desc": "Calculate and visualises manager vs scholar payout shares."
 		}
 	}
 }

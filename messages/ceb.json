@@ -467,6 +467,22 @@
 		"dota2-battlepass-calculator": {
 			"name": "Dota 2 Battle Pass PHP Calculator",
 			"desc": "Kwenthaha ang gasto sa Dota Battle Pass."
+		},
+		"roblox-robux-calculator": {
+			"name": "Roblox Robux to PHP Calculator",
+			"desc": "Kwenthaha ang presyo sa Robux sa PHP."
+		},
+		"roblox-trade-calculator": {
+			"name": "Roblox Trading Fairness Calculator",
+			"desc": "Kwenthaha kung daug o pildi ang inyong Roblox trade."
+		},
+		"web3-token-calculator": {
+			"name": "Web3 Token to PHP Cash-Out Calculator",
+			"desc": "Kwenthaha ang palit sa SLP, RON, ug PIXEL sa PHP."
+		},
+		"web3-scholar-calculator": {
+			"name": "Web3 Scholar-Manager Split Calculator",
+			"desc": "Kwenthaha ang bahin sa Scholar ug Manager."
 		}
 	}
 }
