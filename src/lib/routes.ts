@@ -9,6 +9,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "BPO / Night Shift Calculator",
+				path: "/bpo-night-differential-calculator",
+				desc: "Calculate your exact night differential, overtime, and holiday pay.",
+				priority: 0.8,
+			},
+			{
 				name: "SSS Contribution Calculator",
 				path: "/sss-contribution-calculator",
 				desc: "See your exact SSS breakdown (EE/ER/EC/MPF) based on the 2026 table.",

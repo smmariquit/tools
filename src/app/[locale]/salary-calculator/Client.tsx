@@ -185,7 +185,7 @@ export default function SalaryCalculator({
 					</h2>
 					<div className="form-group" style={{ marginBottom: "16px" }}>
 						<label className="form-label" htmlFor="employmentType">
-							Employment Type
+							{t("empTypeLabel")}
 						</label>
 						<select
 							id="employmentType"
@@ -193,11 +193,11 @@ export default function SalaryCalculator({
 							value={employmentType}
 							onChange={handleEmploymentTypeChange}
 						>
-							<option value="Private">Private Sector</option>
-							<option value="Government">Government / Public Sector</option>
-							<option value="Minimum Wage">Minimum Wage Earner</option>
-							<option value="Self-Employed">Self-Employed / Freelancer</option>
-							<option value="Kasambahay">Kasambahay (Domestic Worker)</option>
+							<option value="Private">{t("empTypePrivate")}</option>
+							<option value="Government">{t("empTypeGovt")}</option>
+							<option value="Minimum Wage">{t("empTypeMinWage")}</option>
+							<option value="Self-Employed">{t("empTypeSelf")}</option>
+							<option value="Kasambahay">{t("empTypeKasambahay")}</option>
 						</select>
 					</div>
 					<div className="form-group">
