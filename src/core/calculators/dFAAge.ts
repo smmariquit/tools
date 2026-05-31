@@ -16,7 +16,7 @@ export function calculateAgeExact(
 	const bDay = new Date(birthDateStr);
 	const target = targetDateStr ? new Date(targetDateStr) : new Date();
 
-	if (isNaN(bDay.getTime()) || isNaN(target.getTime())) {
+	if (Number.isNaN(bDay.getTime()) || Number.isNaN(target.getTime())) {
 		return {
 			years: 0,
 			months: 0,

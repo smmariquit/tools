@@ -111,6 +111,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Expanded Withholding Tax (EWT) Calculator",
+				path: "/bir-withholding-tax-calculator",
+				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",
+				priority: 0.9,
+			},
+			{
 				name: "Electric Bill Estimator",
 				path: "/electric-bill-calculator",
 				desc: "Estimate your Meralco bill based on appliance usage and current rates.",
@@ -125,6 +131,12 @@ export const toolCategories = [
 				name: "Car Loan & Amortization Calculator",
 				path: "/car-loan-calculator",
 				desc: "Compare bank vs in-house auto loans, down payment, and monthly amortization.",
+				priority: 0.9,
+			},
+			{
+				name: "Motorcycle Loan Calculator (Hulugan)",
+				path: "/motorcycle-loan-calculator",
+				desc: "Calculate your exact monthly amortization, total interest, and hidden costs for in-house dealer financing.",
 				priority: 0.9,
 			},
 			{
@@ -173,6 +185,12 @@ export const toolCategories = [
 				path: "/gwa-calculator",
 				desc: "Calculate your General Weighted Average (1.0-5.0) and predict target grades.",
 				priority: 0.8,
+			},
+			{
+				name: "PRC Board Exam Rating Calculator",
+				path: "/prc-board-exam-rating-calculator",
+				desc: "Calculate your general average and passing status for NLE, CE, MTLE, and CPALE.",
+				priority: 0.9,
 			},
 		],
 	},
