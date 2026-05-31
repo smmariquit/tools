@@ -65,8 +65,20 @@ export const toolCategories = [
 		],
 	},
 	{
-		category: "Real Estate & Housing",
+		category: "Loans, Housing & Real Estate",
 		items: [
+			{
+				name: "Car Loan & Amortization Calculator",
+				path: "/car-loan-calculator",
+				desc: "Compare bank vs in-house auto loans, down payment, and monthly amortization.",
+				priority: 0.9,
+			},
+			{
+				name: "Home Loan & Amortization Calculator",
+				path: "/home-loan-calculator",
+				desc: "Compute monthly bank home loan payments, interest rates, and loan terms.",
+				priority: 0.9,
+			},
 			{
 				name: "Amilyar (Property Tax) Calculator",
 				path: "/amilyar-calculator",

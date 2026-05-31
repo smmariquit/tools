@@ -14,6 +14,8 @@ const toolToBlogMap: Record<string, string> = {
 	"/shopee-lazada-fee-calculator": "/blog/shopee-lazada-seller-fees-explained",
 	"/electric-bill-calculator": "/blog/meralco-electric-bill-guide",
 	"/amilyar-calculator": "/blog/amilyar-real-property-tax-guide",
+	"/car-loan-calculator": "/blog/philippine-car-loan-guide-bank-vs-dealer",
+	"/home-loan-calculator": "/blog/philippine-home-loan-guide-bank-comparison",
 	"/pagibig-calculator": "/blog/pagibig-mp2-dividend-calculator",
 	"/pagibig-foreclosed-roi-calculator": "/blog/pagibig-foreclosed-property-roi",
 	"/gwa-calculator": "/blog/how-to-compute-gwa-college",

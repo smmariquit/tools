@@ -105,5 +105,37 @@
 		"estimatedDeductions": "Estimated Deductions & Tax",
 		"howItWorksTitle": "How does this work?",
 		"howItWorksDesc": "This tool works backwards. It adds up all your required expenses to find your target net pay, then reverse-engineers the SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions to find the exact gross salary you should ask for in your job interview."
+	},
+	"CarLoanCalculator": {
+		"detailsTitle": "Car Loan Details",
+		"vehiclePriceLabel": "Vehicle Purchase Price (PHP)",
+		"vehiclePriceHint": "The cash price of the car you are buying.",
+		"downpaymentLabel": "Down Payment (%)",
+		"interestRateLabel": "Annual Interest Rate (%)",
+		"interestRateHint": "Typical bank rates are 8-10%, while in-house is 15-20%!",
+		"loanTermLabel": "Loan Term (Years)",
+		"resultsTitle": "Loan Amortization Summary",
+		"monthlyAmortization": "Monthly Amortization",
+		"loanAmount": "Required Loan Amount",
+		"totalInterest": "Total Interest Charged",
+		"totalPaid": "Total Payments Over Term",
+		"bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
+		"bankVsInhouseDesc": "Bank financing is almost ALWAYS cheaper. Dealerships often lure you in with 'low down payment' promos, but compensate by charging extremely high interest rates (15%+). Always try to get pre-approved by a bank first!"
+	},
+	"HomeLoanCalculator": {
+		"detailsTitle": "Home Loan Details",
+		"propertyPriceLabel": "Property Purchase Price (PHP)",
+		"propertyPriceHint": "The market value or selling price of the home.",
+		"downpaymentLabel": "Down Payment (%)",
+		"interestRateLabel": "Annual Interest Rate (%)",
+		"interestRateHint": "Bank home loan rates typically range from 6% to 8% fixed.",
+		"loanTermLabel": "Loan Term (Years)",
+		"resultsTitle": "Amortization Breakdown",
+		"monthlyAmortization": "Monthly Payment (Principal + Interest)",
+		"loanAmount": "Loan Amount (Principal)",
+		"totalInterest": "Total Interest Paid",
+		"totalPaid": "Total Cost of Home",
+		"refinancingTitle": "Home Loan Tip",
+		"refinancingDesc": "Banks offer fixed terms (e.g., 1-year, 5-year fixed). After the fixed period, the interest rate will repriced based on current market rates. Keep this in mind when budgeting for long terms!"
 	}
 }

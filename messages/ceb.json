@@ -103,5 +103,37 @@
 		"estimatedDeductions": "Estimated Nga Kinaltas ug Tax",
 		"howItWorksTitle": "Unsaon man ni pag-gamit?",
 		"howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview."
+	},
+	"CarLoanCalculator": {
+		"detailsTitle": "Car Loan Details Nimo",
+		"vehiclePriceLabel": "Presyo sa Sakyanan / Vehicle Price (PHP)",
+		"vehiclePriceHint": "Ang cash price sa sakyanan nga imong paliton.",
+		"downpaymentLabel": "Down Payment (%)",
+		"interestRateLabel": "Annual Interest Rate (%)",
+		"interestRateHint": "Typical bank rates kay 8-10%, pero if in-house sa dealer, abot gyud ug 15-20%!",
+		"loanTermLabel": "Loan Term (Pila ka Tuig)",
+		"resultsTitle": "Amortization Summary sa Sakyanan",
+		"monthlyAmortization": "Monthly Amortization Nimo",
+		"loanAmount": "Kinahanglan nga Loan Amount",
+		"totalInterest": "Total nga Interest nga Bayran",
+		"totalPaid": "Total nga Magasto Nimo sa Sakyanan",
+		"bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
+		"bankVsInhouseDesc": "Mas barato gyud ang bank financing. Ang in-house sa dealer, kay hilig mo-offer ug 'low down payment' promos pero grabe ka taas ang interest rate (15%+). Pag-apply una sa bangko para maka-save ka!"
+	},
+	"HomeLoanCalculator": {
+		"detailsTitle": "Home Loan Details Nimo",
+		"propertyPriceLabel": "Presyo sa Balay ug Yuta / Property Price (PHP)",
+		"propertyPriceHint": "Ang market value o selling price sa balay.",
+		"downpaymentLabel": "Down Payment (%)",
+		"interestRateLabel": "Annual Interest Rate (%)",
+		"interestRateHint": "Ang home loan rates sa bangko usually naa sa 6% to 8% fixed range.",
+		"loanTermLabel": "Loan Term (Pila ka Tuig)",
+		"resultsTitle": "Amortization Breakdown",
+		"monthlyAmortization": "Monthly Payment (Principal + Interest)",
+		"loanAmount": "Loan Amount (Principal)",
+		"totalInterest": "Total nga Interest nga Bayran",
+		"totalPaid": "Total Cost sa Balay",
+		"refinancingTitle": "Home Loan Tip",
+		"refinancingDesc": "Ang bangko kay naay fixed terms (e.g., 1-year o 5-year fixed). Human ana, mag-reprice ang interest rate base sa market rate. Planoha ni og tarong para dili ka makalatan!"
 	}
 }
