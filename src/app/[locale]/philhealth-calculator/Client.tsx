@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import InteractiveSlider from "../components/InteractiveSlider";
+import TipCard from "../components/TipCard";
 
 export default function PhilHealthClient() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "30000");
+	const [basicSalaryStr, setBasicSalaryStr] = useState(
+		searchParams.get("salary") || "30000",
+	);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -22,7 +25,9 @@ export default function PhilHealthClient() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const basicSalary = parseFloat(basicSalaryStr) || 0;
@@ -86,65 +91,56 @@ export default function PhilHealthClient() {
 						Monthly Salary
 					</h2>
 
-					<div className="form-group">
-						<label className="form-label" htmlFor="basicSalary">
-							Basic Monthly Salary (PHP)
-						</label>
-						<input
-							type="number"
-							id="basicSalary"
-							className="form-control"
-							value={basicSalaryStr}
-							onChange={(e) => {
-								setBasicSalaryStr(e.target.value);
-								updateUrl({ salary: e.target.value });
+					<InteractiveSlider
+						label="Basic Monthly Salary (PHP)"
+						value={basicSalary}
+						min={0}
+						max={150000}
+						step={1000}
+						onChange={(val) => {
+							setBasicSalaryStr(val.toString());
+							updateUrl({ salary: val.toString() });
+						}}
+						hint="Input your basic pay excluding allowances and overtime."
+					/>
+					{basicSalary > 0 && basicSalary < floorSalary && (
+						<div
+							style={{
+								marginTop: "8px",
+								padding: "6px 10px",
+								backgroundColor: "#fff3e0",
+								borderRadius: "6px",
+								fontSize: "12px",
+								color: "#e65100",
+								border: "1px solid #ffe0b2",
+								display: "flex",
+								alignItems: "center",
+								gap: "6px",
 							}}
-							min="0"
-							step="any"
-							placeholder="e.g., 100000 (Max Ceiling)"
-						/>
-						<p className="form-hint" style={{ marginTop: "4px" }}>
-							Input your basic pay excluding allowances and overtime.
-						</p>
-						{basicSalary > 0 && basicSalary < floorSalary && (
-							<div
-								style={{
-									marginTop: "8px",
-									padding: "6px 10px",
-									backgroundColor: "#fff3e0",
-									borderRadius: "6px",
-									fontSize: "12px",
-									color: "#e65100",
-									border: "1px solid #ffe0b2",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<span>⚠️</span> Below ₱10,000 floor — minimum premium of ₱500
-								applies
-							</div>
-						)}
-						{basicSalary >= ceilingSalary && (
-							<div
-								style={{
-									marginTop: "8px",
-									padding: "6px 10px",
-									backgroundColor: "#e3f2fd",
-									borderRadius: "6px",
-									fontSize: "12px",
-									color: "#0d47a1",
-									border: "1px solid #bbdefb",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<span>ℹ️</span> Above ₱100,000 ceiling — maximum premium of
-								₱5,000 applies
-							</div>
-						)}
-					</div>
+						>
+							<span>⚠️</span> Below ₱10,000 floor — minimum premium of ₱500
+							applies
+						</div>
+					)}
+					{basicSalary >= ceilingSalary && (
+						<div
+							style={{
+								marginTop: "8px",
+								padding: "6px 10px",
+								backgroundColor: "#e3f2fd",
+								borderRadius: "6px",
+								fontSize: "12px",
+								color: "#0d47a1",
+								border: "1px solid #bbdefb",
+								display: "flex",
+								alignItems: "center",
+								gap: "6px",
+							}}
+						>
+							<span>ℹ️</span> Above ₱100,000 ceiling — maximum premium of ₱5,000
+							applies
+						</div>
+					)}
 				</div>
 
 				{/* Results Card */}
@@ -344,10 +340,13 @@ export default function PhilHealthClient() {
 						between the employee and the employer.
 					</li>
 				</ul>
-				<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-					Note: Voluntary members, freelancers, and OFWs are required to pay the
-					full 100% of the premium rate out-of-pocket.
-				</p>
+				<div style={{ marginTop: "16px" }}>
+					<TipCard title="Did you know?">
+						Voluntary members, freelancers, and OFWs are required to pay the
+						full 100% of the premium rate out-of-pocket, as they do not have an
+						employer to share the cost with.
+					</TipCard>
+				</div>
 			</div>
 		</div>
 	);

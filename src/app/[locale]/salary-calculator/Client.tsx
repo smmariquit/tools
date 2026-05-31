@@ -13,6 +13,8 @@ import {
 	Tooltip,
 } from "recharts";
 import { computeSalary, EmploymentType } from "../../../lib/salaryLogic";
+import InteractiveSlider from "../components/InteractiveSlider";
+import PremiumLegend from "../components/PremiumLegend";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -147,8 +149,8 @@ export default function SalaryCalculator({
 	};
 
 	const chartData = [
-		{ name: t("chartNetPay"), value: netPay, color: "#1b5e20" },
-		{ name: t("chartTax"), value: tax, color: "#b71c1c" },
+		{ name: t("chartNetPay"), value: netPay, color: "var(--primary)" },
+		{ name: t("chartTax"), value: tax, color: "#d32f2f" },
 		{
 			name: employmentType === "Government" ? "GSIS" : t("chartSSS"),
 			value: sssDeduction,
@@ -157,9 +159,9 @@ export default function SalaryCalculator({
 		{
 			name: t("chartPhilhealth"),
 			value: philhealthDeduction,
-			color: "#1976d2",
+			color: "#0288d1",
 		},
-		{ name: t("chartPagibig"), value: pagibigDeduction, color: "#d32f2f" },
+		{ name: t("chartPagibig"), value: pagibigDeduction, color: "#7b1fa2" },
 	].filter((item) => item.value > 0);
 
 	return (
@@ -200,22 +202,18 @@ export default function SalaryCalculator({
 							<option value="Kasambahay">{t("empTypeKasambahay")}</option>
 						</select>
 					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="salary">
-							{t("grossSalaryLabel")}
-						</label>
-						<input
-							type="number"
-							id="salary"
-							className="form-control"
-							value={salaryStr}
-							onChange={handleSalaryChange}
-							min="0"
-							step="any"
-							placeholder={t("grossSalaryPlaceholder")}
-						/>
-						<span className="form-hint">{t("grossSalaryHint")}</span>
-					</div>
+					<InteractiveSlider
+						label={t("grossSalaryLabel")}
+						value={salary}
+						min={0}
+						max={250000}
+						step={1000}
+						onChange={(val) => {
+							setSalaryStr(val.toString());
+							updateUrl({ salary: val.toString() });
+						}}
+						hint={t("grossSalaryHint")}
+					/>
 				</div>
 
 				{/* Results Card */}
@@ -437,31 +435,44 @@ export default function SalaryCalculator({
 					>
 						{t("chartTitle")}
 					</h2>
-					<div style={{ width: "100%", height: 300 }}>
+					<div style={{ width: "100%", height: 200 }}>
 						<ResponsiveContainer width="100%" height="100%">
 							<PieChart>
 								<Pie
 									data={chartData}
 									cx="50%"
 									cy="50%"
-									innerRadius={50}
+									innerRadius={55}
 									outerRadius={80}
 									paddingAngle={2}
 									dataKey="value"
-									label={({ value }) => formatCurrency(value)}
-									labelLine={false}
+									label={false}
 								>
 									{chartData.map((entry, index) => (
 										<Cell key={`cell-${index}`} fill={entry.color} />
 									))}
 								</Pie>
 								<Tooltip
+									contentStyle={{
+										backgroundColor: "var(--surface-color)",
+										borderColor: "var(--border-color)",
+										borderRadius: "var(--border-radius-sm)",
+										color: "var(--text-primary)",
+									}}
+									itemStyle={{ color: "var(--text-primary)" }}
+									labelStyle={{ display: "none" }}
 									formatter={(value) => formatCurrency(Number(value) || 0)}
 								/>
-								<Legend />
 							</PieChart>
 						</ResponsiveContainer>
 					</div>
+
+					{/* Clean Deduction Legend Grid */}
+					<PremiumLegend
+						items={chartData}
+						total={salary}
+						formatValue={formatCurrency}
+					/>
 				</div>
 			)}
 

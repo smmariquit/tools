@@ -66,7 +66,7 @@ export default function GwaCalculatorClient() {
 			: null;
 
 	return (
-		<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+		<div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 			<div style={{ marginBottom: "24px" }}>
 				<Link
 					href="/"
@@ -329,10 +329,15 @@ export default function GwaCalculatorClient() {
 							}}
 						>
 							<div className="form-group" style={{ marginBottom: 0 }}>
-								<label className="form-label" style={{ fontSize: "12px" }}>
+								<label
+									className="form-label"
+									style={{ fontSize: "12px" }}
+									htmlFor="current-total-units"
+								>
 									Current Total Units
 								</label>
 								<input
+									id="current-total-units"
 									type="number"
 									className="form-control"
 									value={currentUnits}
@@ -344,10 +349,15 @@ export default function GwaCalculatorClient() {
 								/>
 							</div>
 							<div className="form-group" style={{ marginBottom: 0 }}>
-								<label className="form-label" style={{ fontSize: "12px" }}>
+								<label
+									className="form-label"
+									style={{ fontSize: "12px" }}
+									htmlFor="current-gwa"
+								>
 									Current GWA
 								</label>
 								<input
+									id="current-gwa"
 									type="number"
 									className="form-control"
 									step="0.01"
@@ -360,10 +370,15 @@ export default function GwaCalculatorClient() {
 								/>
 							</div>
 							<div className="form-group" style={{ marginBottom: 0 }}>
-								<label className="form-label" style={{ fontSize: "12px" }}>
+								<label
+									className="form-label"
+									style={{ fontSize: "12px" }}
+									htmlFor="remaining-units"
+								>
 									Remaining Units
 								</label>
 								<input
+									id="remaining-units"
 									type="number"
 									className="form-control"
 									value={targetUnits}
@@ -375,10 +390,15 @@ export default function GwaCalculatorClient() {
 								/>
 							</div>
 							<div className="form-group" style={{ marginBottom: 0 }}>
-								<label className="form-label" style={{ fontSize: "12px" }}>
+								<label
+									className="form-label"
+									style={{ fontSize: "12px" }}
+									htmlFor="target-gwa"
+								>
 									Target GWA
 								</label>
 								<input
+									id="target-gwa"
 									type="number"
 									className="form-control"
 									step="0.01"
@@ -514,6 +534,52 @@ export default function GwaCalculatorClient() {
 						semester)
 					</li>
 				</ul>
+				<h3
+					style={{ fontSize: "18px", marginBottom: "12px", marginTop: "24px" }}
+				>
+					Other Universities Using the 1.0 – 5.0 Grading System
+				</h3>
+				<p style={{ marginBottom: "16px", fontSize: "15px" }}>
+					Aside from the **University of the Philippines (UP)** and the
+					**Polytechnic University of the Philippines (PUP)**, many other
+					prominent higher education institutions in the country utilize this
+					standard inverted scale where 1.0 is the highest mark and 3.0 is
+					passing:
+				</p>
+				<ul
+					style={{
+						paddingLeft: "24px",
+						marginBottom: "24px",
+						lineHeight: "1.7",
+						fontSize: "15px",
+					}}
+				>
+					<li>
+						<strong>Pamantasan ng Lungsod ng Maynila (PLM)</strong> — Standard
+						1.00 to 5.00 scale.
+					</li>
+					<li>
+						<strong>Technological University of the Philippines (TUP)</strong> —
+						Excellent (1.0) to Failure (5.0).
+					</li>
+					<li>
+						<strong>Rizal Technological University (RTU)</strong> — Inverted
+						1.00 to 5.00 grading.
+					</li>
+					<li>
+						<strong>Bulacan State University (BulSU)</strong> — Follows the 1.0
+						to 5.0 grade brackets.
+					</li>
+					<li>
+						<strong>Cavite State University (CvSU)</strong> — Inverted decimal
+						system where 3.0 is passing.
+					</li>
+					<li>
+						<strong>Batangas State University (BatStateU)</strong> — State
+						university standard 1.00 to 5.00 system.
+					</li>
+				</ul>
+
 				<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
 					Note: Grades like &quot;INC&quot; (Incomplete) or &quot;DRP&quot;
 					(Dropped) are typically not included in the GWA computation. Consult

@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -369,35 +370,11 @@ export default function HomeLoanCalculator() {
 					)}
 
 					{/* Home Loan Tip */}
-					<div
-						className="card"
-						style={{
-							backgroundColor: "var(--bg-color)",
-							border: "1px solid var(--border-color)",
-							borderLeft: "4px solid var(--primary)",
-							marginTop: "24px",
-						}}
-					>
-						<h3
-							style={{
-								fontSize: "14px",
-								marginBottom: "8px",
-								color: "var(--primary)",
-							}}
-						>
-							💡 {t("refinancingTitle")}
-						</h3>
-						<p
-							style={{
-								fontSize: "13px",
-								color: "var(--text-secondary)",
-								lineHeight: 1.6,
-								margin: 0,
-							}}
-						>
-							{t("refinancingDesc")}
-						</p>
-					</div>
+					<TipCard
+						title={t("refinancingTitle")}
+						description={t("refinancingDesc")}
+						icon="💡"
+					/>
 				</div>
 			</div>
 

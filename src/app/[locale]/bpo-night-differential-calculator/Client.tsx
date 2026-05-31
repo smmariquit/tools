@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
 	Bar,
 	BarChart,
@@ -104,20 +104,37 @@ export default function BpoCalculator() {
 	);
 	const [mounted, setMounted] = useState(false);
 
-	useState(() => {
-		setMounted(true);
-	});
+	const updateUrl = useCallback(
+		(updates: Record<string, string>) => {
+			const newSearchParams = new URLSearchParams(searchParams.toString());
+			for (const [key, value] of Object.entries(updates)) {
+				if (value) newSearchParams.set(key, value);
+				else newSearchParams.delete(key);
+			}
+			router.replace(`${pathname}?${newSearchParams.toString()}`, {
+				scroll: false,
+			});
+		},
+		[router, pathname, searchParams],
+	);
 
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) newSearchParams.set(key, value);
-			else newSearchParams.delete(key);
+	useEffect(() => {
+		setMounted(true);
+		// Check if URL parameters are missing and initialize them
+		if (
+			!searchParams.has("salary") ||
+			!searchParams.has("shiftStart") ||
+			!searchParams.has("shiftEnd") ||
+			!searchParams.has("type")
+		) {
+			updateUrl({
+				salary: salaryStr,
+				shiftStart: shiftStart,
+				shiftEnd: shiftEnd,
+				type: dayType,
+			});
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
+	}, [searchParams, updateUrl, salaryStr, shiftStart, shiftEnd, dayType]);
 
 	// Core computations
 	const monthlySalary = parseFloat(salaryStr) || 0;
@@ -154,7 +171,11 @@ export default function BpoCalculator() {
 	};
 
 	const chartData = [
-		{ name: "Base Pay", value: basePay - holidayPremium, color: "#1b5e20" },
+		{
+			name: "Base Pay",
+			value: basePay - holidayPremium,
+			color: "var(--primary)",
+		},
 		{ name: "Holiday Premium", value: holidayPremium, color: "#f57c00" },
 		{ name: "ND Premium", value: ndPremium, color: "#7c4dff" },
 	].filter((item) => item.value > 0);
@@ -181,10 +202,32 @@ export default function BpoCalculator() {
 						{t("detailsTitle")}
 					</h2>
 
-					<div className="form-group" style={{ marginBottom: "16px" }}>
-						<label className="form-label" htmlFor="bpo-salary">
-							{t("salaryLabel")}
-						</label>
+					{/* Monthly Salary Input with Slider */}
+					<div className="form-group" style={{ marginBottom: "20px" }}>
+						<div style={{ display: "flex", justifyContent: "space-between" }}>
+							<label className="form-label" htmlFor="bpo-salary">
+								{t("salaryLabel")}
+							</label>
+							<strong style={{ color: "var(--primary)" }}>
+								{formatCurrency(monthlySalary)}
+							</strong>
+						</div>
+						<input
+							type="range"
+							min="10000"
+							max="150000"
+							step="1000"
+							value={salaryStr}
+							onChange={(e) => {
+								setSalaryStr(e.target.value);
+								updateUrl({ salary: e.target.value });
+							}}
+							style={{
+								width: "100%",
+								accentColor: "var(--primary)",
+								marginBottom: "8px",
+							}}
+						/>
 						<input
 							type="number"
 							id="bpo-salary"
@@ -197,6 +240,7 @@ export default function BpoCalculator() {
 							min="0"
 							step="any"
 							placeholder="e.g., 25000"
+							style={{ fontSize: "14px" }}
 						/>
 						<span className="form-hint">{t("salaryHint")}</span>
 					</div>
@@ -243,7 +287,7 @@ export default function BpoCalculator() {
 						</select>
 					</div>
 
-					<div className="form-group" style={{ marginBottom: "16px" }}>
+					<div className="form-group" style={{ marginBottom: "20px" }}>
 						<label className="form-label" htmlFor="bpo-day-type">
 							{t("dayTypeLabel")}
 						</label>
@@ -272,7 +316,8 @@ export default function BpoCalculator() {
 					<div
 						className="card"
 						style={{
-							backgroundColor: "var(--bg-alt-color, #f8f9fa)",
+							backgroundColor: "var(--bg-color)",
+							border: "1px solid var(--border-color)",
 							borderLeft: "4px solid #7c4dff",
 							marginTop: "16px",
 						}}
@@ -282,6 +327,7 @@ export default function BpoCalculator() {
 								fontSize: "14px",
 								marginBottom: "8px",
 								color: "#7c4dff",
+								fontWeight: 600,
 							}}
 						>
 							ℹ️ What is Night Differential?
@@ -439,7 +485,7 @@ export default function BpoCalculator() {
 						}}
 					>
 						<span>{t("totalShiftPay")}</span>
-						<span style={{ color: "#1b5e20" }}>
+						<span style={{ color: "var(--primary)" }}>
 							{formatCurrency(totalShiftPay)}
 						</span>
 					</div>
@@ -450,7 +496,8 @@ export default function BpoCalculator() {
 							marginTop: "24px",
 							padding: "16px",
 							borderRadius: "8px",
-							backgroundColor: "var(--bg-alt-color, #f8f9fa)",
+							border: "1px solid var(--border-color)",
+							backgroundColor: "var(--bg-color)",
 						}}
 					>
 						<h3
@@ -484,7 +531,7 @@ export default function BpoCalculator() {
 											key={i}
 											style={{
 												flex: 1,
-												backgroundColor: isND ? "#7c4dff" : "#1b5e20",
+												backgroundColor: isND ? "#7c4dff" : "var(--primary)",
 												color: "white",
 												display: "flex",
 												alignItems: "center",
@@ -505,33 +552,34 @@ export default function BpoCalculator() {
 							style={{
 								display: "flex",
 								gap: "16px",
-								marginTop: "8px",
-								fontSize: "12px",
+								marginTop: "12px",
+								fontSize: "13px",
+								fontWeight: 500,
 								color: "var(--text-secondary)",
 							}}
 						>
-							<span>
+							<span style={{ display: "flex", alignItems: "center" }}>
 								<span
 									style={{
 										display: "inline-block",
-										width: "10px",
-										height: "10px",
+										width: "12px",
+										height: "12px",
 										borderRadius: "2px",
-										backgroundColor: "#1b5e20",
-										marginRight: "4px",
+										backgroundColor: "var(--primary)",
+										marginRight: "6px",
 									}}
 								/>
 								Regular ({regularHours}h)
 							</span>
-							<span>
+							<span style={{ display: "flex", alignItems: "center" }}>
 								<span
 									style={{
 										display: "inline-block",
-										width: "10px",
-										height: "10px",
+										width: "12px",
+										height: "12px",
 										borderRadius: "2px",
 										backgroundColor: "#7c4dff",
-										marginRight: "4px",
+										marginRight: "6px",
 									}}
 								/>
 								Night Diff ({ndHours}h)
@@ -540,7 +588,7 @@ export default function BpoCalculator() {
 					</div>
 
 					{/* Chart */}
-					{chartData.length > 0 && (
+					{mounted && chartData.length > 0 && (
 						<div style={{ marginTop: "24px" }}>
 							<h3
 								style={{
@@ -558,9 +606,19 @@ export default function BpoCalculator() {
 										type="category"
 										dataKey="name"
 										width={120}
-										tick={{ fontSize: 12 }}
+										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
+										axisLine={false}
+										tickLine={false}
 									/>
 									<Tooltip
+										contentStyle={{
+											backgroundColor: "var(--surface-color)",
+											borderColor: "var(--border-color)",
+											borderRadius: "var(--border-radius-sm)",
+											color: "var(--text-primary)",
+										}}
+										itemStyle={{ color: "var(--text-primary)" }}
+										labelStyle={{ color: "var(--text-secondary)" }}
 										formatter={(value) => formatCurrency(Number(value))}
 									/>
 									<Bar dataKey="value" radius={[0, 4, 4, 0]}>

@@ -137,11 +137,11 @@ export default function BudgetCalculator() {
 	};
 
 	const chartData = [
-		{ name: "Expenses", value: totalExpenses, color: "#1b5e20" },
+		{ name: "Expenses", value: totalExpenses, color: "var(--primary)" },
 		{ name: "SSS", value: result.sss, color: "#f57c00" },
-		{ name: "PhilHealth", value: result.philhealth, color: "#1976d2" },
-		{ name: "Pag-IBIG", value: result.pagibig, color: "#d32f2f" },
-		{ name: "Tax", value: result.tax, color: "#b71c1c" },
+		{ name: "PhilHealth", value: result.philhealth, color: "#0288d1" },
+		{ name: "Pag-IBIG", value: result.pagibig, color: "#7b1fa2" },
+		{ name: "Tax", value: result.tax, color: "#d32f2f" },
 	].filter((item) => item.value > 0);
 
 	const expenseChartData = expenses
@@ -303,29 +303,101 @@ export default function BudgetCalculator() {
 							>
 								{t("expenseBreakdown")}
 							</h3>
-							<ResponsiveContainer width="100%" height={220}>
+							<ResponsiveContainer width="100%" height={160}>
 								<PieChart>
 									<Pie
 										data={expenseChartData}
 										cx="50%"
 										cy="50%"
-										innerRadius={50}
-										outerRadius={80}
+										innerRadius={45}
+										outerRadius={65}
 										dataKey="value"
 										paddingAngle={2}
-										label={({ name, percent }) =>
-											`${name} (${((percent ?? 0) * 100).toFixed(0)}%)`
-										}
+										label={false}
 									>
 										{expenseChartData.map((entry, index) => (
 											<Cell key={`cell-${index}`} fill={entry.color} />
 										))}
 									</Pie>
 									<Tooltip
+										contentStyle={{
+											backgroundColor: "var(--surface-color)",
+											borderColor: "var(--border-color)",
+											borderRadius: "var(--border-radius-sm)",
+											color: "var(--text-primary)",
+										}}
+										itemStyle={{ color: "var(--text-primary)" }}
+										labelStyle={{ color: "var(--text-secondary)" }}
 										formatter={(value) => formatCurrency(Number(value))}
 									/>
 								</PieChart>
 							</ResponsiveContainer>
+
+							{/* Clean, Non-Truncated Legend List */}
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									gap: "8px",
+									marginTop: "16px",
+									padding: "12px",
+									backgroundColor: "var(--bg-color)",
+									border: "1px solid var(--border-color)",
+									borderRadius: "var(--border-radius)",
+								}}
+							>
+								{expenseChartData.map((item, idx) => (
+									<div
+										key={idx}
+										style={{
+											display: "flex",
+											justifyContent: "space-between",
+											alignItems: "center",
+											fontSize: "12px",
+										}}
+									>
+										<div
+											style={{
+												display: "flex",
+												alignItems: "center",
+												gap: "8px",
+												minWidth: 0,
+											}}
+										>
+											<span
+												style={{
+													display: "inline-block",
+													width: "8px",
+													height: "8px",
+													borderRadius: "50%",
+													backgroundColor: item.color,
+													flexShrink: 0,
+												}}
+											/>
+											<span
+												style={{
+													color: "var(--text-secondary)",
+													textOverflow: "ellipsis",
+													overflow: "hidden",
+													whiteSpace: "nowrap",
+												}}
+											>
+												{item.name}
+											</span>
+										</div>
+										<strong
+											style={{
+												color: "var(--text-primary)",
+												flexShrink: 0,
+												marginLeft: "8px",
+											}}
+										>
+											{formatCurrency(item.value)} (
+											{((item.value / totalExpenses) * 100).toFixed(0)}%)
+										</strong>
+									</div>
+								))}
+							</div>
 						</div>
 					)}
 				</div>
@@ -496,30 +568,83 @@ export default function BudgetCalculator() {
 							>
 								{t("whereSalaryGoes")}
 							</h3>
-							<ResponsiveContainer width="100%" height={260}>
+							<ResponsiveContainer width="100%" height={200}>
 								<PieChart>
 									<Pie
 										data={chartData}
 										cx="50%"
 										cy="50%"
-										innerRadius={60}
-										outerRadius={100}
+										innerRadius={55}
+										outerRadius={80}
 										dataKey="value"
 										paddingAngle={2}
-										label={({ name, percent }) =>
-											`${name} (${((percent ?? 0) * 100).toFixed(0)}%)`
-										}
+										label={false}
 									>
 										{chartData.map((entry, index) => (
 											<Cell key={`cell-${index}`} fill={entry.color} />
 										))}
 									</Pie>
 									<Tooltip
+										contentStyle={{
+											backgroundColor: "var(--surface-color)",
+											borderColor: "var(--border-color)",
+											borderRadius: "var(--border-radius-sm)",
+											color: "var(--text-primary)",
+										}}
+										itemStyle={{ color: "var(--text-primary)" }}
+										labelStyle={{ color: "var(--text-secondary)" }}
 										formatter={(value) => formatCurrency(Number(value))}
 									/>
-									<Legend />
 								</PieChart>
 							</ResponsiveContainer>
+
+							{/* Clean Deduction Legend Grid */}
+							<div
+								style={{
+									display: "flex",
+									flexWrap: "wrap",
+									gap: "12px",
+									justifyContent: "center",
+									marginTop: "16px",
+									padding: "12px",
+									backgroundColor: "var(--bg-color)",
+									border: "1px solid var(--border-color)",
+									borderRadius: "var(--border-radius)",
+								}}
+							>
+								{chartData.map((item, idx) => (
+									<div
+										key={idx}
+										style={{
+											display: "flex",
+											alignItems: "center",
+											gap: "6px",
+											fontSize: "12px",
+										}}
+									>
+										<span
+											style={{
+												display: "inline-block",
+												width: "8px",
+												height: "8px",
+												borderRadius: "50%",
+												backgroundColor: item.color,
+												flexShrink: 0,
+											}}
+										/>
+										<span style={{ color: "var(--text-secondary)" }}>
+											{item.name}:{" "}
+											<strong style={{ color: "var(--text-primary)" }}>
+												{(
+													(item.value / (result.grossSalary || 1)) *
+													100
+												).toFixed(1)}
+												%
+											</strong>
+										</span>
+									</div>
+								))}
+							</div>
 						</div>
 					)}
 
@@ -527,7 +652,8 @@ export default function BudgetCalculator() {
 					<div
 						className="card"
 						style={{
-							backgroundColor: "var(--bg-alt-color, #f8f9fa)",
+							backgroundColor: "var(--bg-color)",
+							border: "1px solid var(--border-color)",
 							borderLeft: "4px solid var(--primary)",
 							marginTop: "24px",
 						}}

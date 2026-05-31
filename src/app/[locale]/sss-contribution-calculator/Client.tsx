@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
 	Bar,
@@ -11,18 +12,22 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import InteractiveSlider from "../components/InteractiveSlider";
+import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
-
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function SSSCalculator() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [salaryStr, setSalaryStr] = useState(searchParams.get("salary") || "30000");
-	const [memberType, setMemberType] = useState(searchParams.get("type") || "employed"); // 'employed' or 'voluntary'
+	const [salaryStr, setSalaryStr] = useState(
+		searchParams.get("salary") || "30000",
+	);
+	const [memberType, setMemberType] = useState(
+		searchParams.get("type") || "employed",
+	); // 'employed' or 'voluntary'
 	const [mounted, setMounted] = useState(false);
 
 	const updateUrl = (updates: Record<string, string>) => {
@@ -34,7 +39,9 @@ export default function SSSCalculator() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	useEffect(() => {
@@ -147,61 +154,32 @@ export default function SSSCalculator() {
 						</select>
 					</div>
 
-					<div className="form-group">
-						<label className="form-label" htmlFor="salary">
-							Actual Monthly Income (PHP)
-						</label>
-						<input
-							type="number"
-							id="salary"
-							className="form-control"
-							value={salaryStr}
-							onChange={(e) => {
-								setSalaryStr(e.target.value);
-								updateUrl({ salary: e.target.value });
-							}}
-							min="0"
-							step="any"
-							placeholder="e.g., 35000 (Max MSC)"
-						/>
-						{salary > 0 && salary < 5000 && (
-							<div
-								style={{
-									marginTop: "8px",
-									padding: "6px 10px",
-									backgroundColor: "#fff3e0",
-									borderRadius: "6px",
-									fontSize: "12px",
-									color: "#e65100",
-									border: "1px solid #ffe0b2",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<span>⚠️</span> Below MSC floor — minimum MSC of ₱5,000 applies
-							</div>
-						)}
-						{salary >= 34750 && (
-							<div
-								style={{
-									marginTop: "8px",
-									padding: "6px 10px",
-									backgroundColor: "#e3f2fd",
-									borderRadius: "6px",
-									fontSize: "12px",
-									color: "#0d47a1",
-									border: "1px solid #bbdefb",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<span>ℹ️</span> Above MSC ceiling — maximum MSC of ₱35,000
-								applies
-							</div>
-						)}
-					</div>
+					<InteractiveSlider
+						label="Basic Monthly Salary (PHP)"
+						value={salary}
+						min={0}
+						max={150000}
+						step={1000}
+						onChange={(val) => {
+							setSalaryStr(val.toString());
+							updateUrl({ salary: val.toString() });
+						}}
+						hint="Input your basic pay excluding allowances and overtime."
+					/>
+					{salary > 0 && salary < 5000 && (
+						<div style={{ marginTop: "12px" }}>
+							<TipCard title="Minimum Contribution Applied">
+								Below MSC floor — minimum MSC of ₱5,000 applies
+							</TipCard>
+						</div>
+					)}
+					{salary >= 34750 && (
+						<div style={{ marginTop: "12px" }}>
+							<TipCard title="Maximum Contribution Reached">
+								Above MSC ceiling — maximum MSC of ₱35,000 applies
+							</TipCard>
+						</div>
+					)}
 				</div>
 
 				{/* Results Card */}
@@ -419,12 +397,32 @@ export default function SSSCalculator() {
 								<XAxis type="number" />
 								<YAxis dataKey="name" type="category" hide />
 								<Tooltip
+									contentStyle={{
+										backgroundColor: "var(--surface-color)",
+										borderColor: "var(--border-color)",
+										borderRadius: "var(--border-radius-sm)",
+										color: "var(--text-primary)",
+									}}
+									itemStyle={{ color: "var(--text-primary)" }}
+									labelStyle={{ display: "none" }}
 									formatter={(value) => formatCurrency(Number(value) || 0)}
 								/>
-								<Legend />
-								<Bar dataKey="Employee Share" stackId="a" fill="#b71c1c" />
+								<Legend
+									formatter={(value) => (
+										<span
+											style={{ color: "var(--text-primary)", fontSize: "12px" }}
+										>
+											{value}
+										</span>
+									)}
+								/>
+								<Bar
+									dataKey="Employee Share"
+									stackId="a"
+									fill="var(--primary)"
+								/>
 								{memberType === "employed" && (
-									<Bar dataKey="Employer Share" stackId="a" fill="#0d47a1" />
+									<Bar dataKey="Employer Share" stackId="a" fill="#7c4dff" />
 								)}
 							</BarChart>
 						</ResponsiveContainer>
@@ -455,7 +453,7 @@ export default function SSSCalculator() {
 						style={{
 							width: "100%",
 							borderCollapse: "collapse",
-							fontSize: "12px",
+							fontSize: "15px",
 						}}
 					>
 						<thead>
@@ -465,14 +463,14 @@ export default function SSSCalculator() {
 									textAlign: "right",
 								}}
 							>
-								<th style={{ padding: "8px 6px", textAlign: "left" }}>
+								<th style={{ padding: "14px 12px", textAlign: "left" }}>
 									Salary Range
 								</th>
-								<th style={{ padding: "8px 6px" }}>MSC</th>
-								<th style={{ padding: "8px 6px" }}>EE (5%)</th>
-								<th style={{ padding: "8px 6px" }}>ER (10%)</th>
-								<th style={{ padding: "8px 6px" }}>EC</th>
-								<th style={{ padding: "8px 6px", fontWeight: 700 }}>Total</th>
+								<th style={{ padding: "14px 12px" }}>MSC</th>
+								<th style={{ padding: "14px 12px" }}>EE (5%)</th>
+								<th style={{ padding: "14px 12px" }}>ER (10%)</th>
+								<th style={{ padding: "14px 12px" }}>EC</th>
+								<th style={{ padding: "14px 12px", fontWeight: 700 }}>Total</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -515,15 +513,15 @@ export default function SSSCalculator() {
 												borderBottom: "1px solid var(--border-color)",
 												textAlign: "right",
 												backgroundColor: isActive
-													? "rgba(13, 71, 161, 0.08)"
+													? "rgba(13, 71, 161, 0.12)"
 													: "transparent",
-												fontWeight: isActive ? 600 : 400,
+												fontWeight: isActive ? 700 : 400,
 												transition: "background-color 0.2s ease",
 											}}
 										>
 											<td
 												style={{
-													padding: "6px",
+													padding: "12px 10px",
 													textAlign: "left",
 													whiteSpace: "nowrap",
 												}}
@@ -532,17 +530,18 @@ export default function SSSCalculator() {
 													<span
 														style={{
 															color: "var(--primary)",
-															marginRight: "2px",
+															marginRight: "6px",
+															fontWeight: 800,
 														}}
 													>
-														▸
+														▶
 													</span>
 												)}
 												{label}
 											</td>
 											<td
 												style={{
-													padding: "6px",
+													padding: "12px 10px",
 													color: isActive ? "var(--primary)" : "inherit",
 												}}
 											>
@@ -550,15 +549,25 @@ export default function SSSCalculator() {
 											</td>
 											<td
 												style={{
-													padding: "6px",
-													color: isActive ? "#b71c1c" : "inherit",
+													padding: "12px 10px",
+													color: isActive ? "var(--primary)" : "inherit",
 												}}
 											>
 												{formatCurrency(ee)}
 											</td>
-											<td style={{ padding: "6px" }}>{formatCurrency(er)}</td>
-											<td style={{ padding: "6px" }}>{formatCurrency(ec)}</td>
-											<td style={{ padding: "6px", fontWeight: 600 }}>
+											<td style={{ padding: "12px 10px" }}>
+												{formatCurrency(er)}
+											</td>
+											<td style={{ padding: "12px 10px" }}>
+												{formatCurrency(ec)}
+											</td>
+											<td
+												style={{
+													padding: "12px 10px",
+													fontWeight: isActive ? 700 : 600,
+													color: isActive ? "var(--primary)" : "inherit",
+												}}
+											>
 												{formatCurrency(total)}
 											</td>
 										</tr>,

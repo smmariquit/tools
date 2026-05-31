@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
 	Area,
 	AreaChart,
@@ -13,15 +13,23 @@ import {
 	YAxis,
 } from "recharts";
 import AdBanner from "../components/AdBanner";
+import InteractiveSlider from "../components/InteractiveSlider";
+import TipCard from "../components/TipCard";
 
 export default function PagIbigClient() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "20000");
-	const [mp2MonthlyStr, setMp2MonthlyStr] = useState(searchParams.get("mp2") || "1000");
-	const [dividendRateStr, setDividendRateStr] = useState(searchParams.get("rate") || "7"); // Historical avg is around 6-7%
+	const [basicSalaryStr, setBasicSalaryStr] = useState(
+		searchParams.get("salary") || "20000",
+	);
+	const [mp2MonthlyStr, setMp2MonthlyStr] = useState(
+		searchParams.get("mp2") || "1000",
+	);
+	const [dividendRateStr, setDividendRateStr] = useState(
+		searchParams.get("rate") || "7",
+	); // Historical avg is around 6-7%
 	const [mounted, setMounted] = useState(false);
 
 	const updateUrl = (updates: Record<string, string>) => {
@@ -30,7 +38,9 @@ export default function PagIbigClient() {
 			if (value) newSearchParams.set(key, value);
 			else newSearchParams.delete(key);
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	useEffect(() => {
@@ -89,7 +99,7 @@ export default function PagIbigClient() {
 	};
 
 	return (
-		<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+		<div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 			<div style={{ marginBottom: "24px" }}>
 				<Link
 					href="/"
@@ -124,50 +134,33 @@ export default function PagIbigClient() {
 						Mandatory Pag-IBIG
 					</h2>
 
-					<div className="form-group">
-						<label className="form-label" htmlFor="basicSalary">
-							Monthly Basic Salary (PHP)
-						</label>
-						<input
-							type="number"
-							id="basicSalary"
-							className="form-control"
-							value={basicSalaryStr}
-							onChange={(e) => {
-								setBasicSalaryStr(e.target.value);
-								updateUrl({ salary: e.target.value });
-							}}
-							min="0"
-							step="any"
-							placeholder="e.g., 10000 (Max MFS)"
-						/>
-						{basicSalary >= 10000 && (
-							<div
-								style={{
-									marginTop: "8px",
-									padding: "6px 10px",
-									backgroundColor: "#e3f2fd",
-									borderRadius: "6px",
-									fontSize: "12px",
-									color: "#0d47a1",
-									border: "1px solid #bbdefb",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<span>ℹ️</span> Above MFS ceiling — regular contributions are
-								capped at ₱10,000 basis (₱200 max)
-							</div>
-						)}
-					</div>
+					<InteractiveSlider
+						label="Basic Monthly Salary (PHP)"
+						value={basicSalary}
+						min={0}
+						max={150000}
+						step={1000}
+						onChange={(val) => {
+							setBasicSalaryStr(val.toString());
+							updateUrl({ salary: val.toString() });
+						}}
+						hint="Input your basic pay excluding allowances and overtime."
+					/>
+					{basicSalary >= 10000 && (
+						<div style={{ marginTop: "12px" }}>
+							<TipCard title="Max Contribution Reached">
+								Above MFS ceiling — regular contributions are capped at ₱10,000
+								basis (₱200 max)
+							</TipCard>
+						</div>
+					)}
 
 					<div
 						style={{
 							marginTop: "16px",
-							padding: "12px",
-							backgroundColor: "var(--surface-color)",
-							borderRadius: "var(--border-radius-sm)",
+							padding: "16px",
+							backgroundColor: "var(--bg-color)",
+							borderRadius: "var(--border-radius)",
 							border: "1px solid var(--border-color)",
 						}}
 					>
@@ -175,26 +168,34 @@ export default function PagIbigClient() {
 							style={{
 								display: "flex",
 								justifyContent: "space-between",
-								marginBottom: "8px",
+								gap: "16px",
+								marginBottom: "12px",
 								fontSize: "14px",
 							}}
 						>
-							<span>Employee Share (You pay)</span>
-							<span style={{ color: "#b71c1c", fontWeight: 600 }}>
-								{formatCurrency(regularEE)}
+							<span style={{ color: "var(--text-secondary)" }}>
+								Employee Share (You pay)
 							</span>
+							<strong style={{ color: "var(--primary)", fontSize: "16px" }}>
+								{formatCurrency(regularEE)}
+							</strong>
 						</div>
 						<div
 							style={{
 								display: "flex",
 								justifyContent: "space-between",
+								gap: "16px",
 								fontSize: "14px",
 							}}
 						>
-							<span>Employer Share</span>
 							<span style={{ color: "var(--text-secondary)" }}>
-								{formatCurrency(regularER)}
+								Employer Share
 							</span>
+							<strong
+								style={{ color: "var(--text-primary)", fontSize: "16px" }}
+							>
+								{formatCurrency(regularER)}
+							</strong>
 						</div>
 					</div>
 
