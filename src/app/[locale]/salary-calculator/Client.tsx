@@ -58,6 +58,8 @@ export default function SalaryCalculator({
 		taxableIncome,
 		tax,
 		netPay,
+		taxableAllowance: computedTaxableAllow,
+		nonTaxableAllowance: computedNonTaxableAllow,
 	} = computeSalary(
 		salaryStr,
 		payrollPeriod,
@@ -196,6 +198,26 @@ export default function SalaryCalculator({
 						onChange={(val) => updateState({ salary: val.toString() })}
 						hint={t("grossSalaryHint")}
 					/>
+
+					<InteractiveSlider
+						label={t("taxableAllowanceLabel")}
+						value={Number(taxableAllowance) || 0}
+						min={0}
+						max={100000}
+						step={500}
+						onChange={(val) => updateState({ taxable: val.toString() })}
+						hint={t("taxableAllowanceHint")}
+					/>
+
+					<InteractiveSlider
+						label={t("nonTaxableAllowanceLabel")}
+						value={Number(nonTaxableAllowance) || 0}
+						min={0}
+						max={100000}
+						step={500}
+						onChange={(val) => updateState({ nontaxable: val.toString() })}
+						hint={t("nonTaxableAllowanceHint")}
+					/>
 				</div>
 
 				{/* Results Card */}
@@ -222,6 +244,33 @@ export default function SalaryCalculator({
 						<span>{t("grossSalaryResult")}</span>
 						<strong>{formatCurrency(salary)}</strong>
 					</div>
+
+					{Number(computedTaxableAllow) > 0 && (
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>{t("taxableAllowanceLabel")}</span>
+							<span>+ {formatCurrency(computedTaxableAllow)}</span>
+						</div>
+					)}
+					{Number(computedNonTaxableAllow) > 0 && (
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>{t("nonTaxableAllowanceLabel")}</span>
+							<span>+ {formatCurrency(computedNonTaxableAllow)}</span>
+						</div>
+					)}
 
 					<div
 						style={{

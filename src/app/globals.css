@@ -242,6 +242,10 @@ h6 {
 	text-decoration: none;
 }
 
+.mobile-menu-btn {
+	display: none;
+}
+
 @media (max-width: 900px) {
 	.mobile-menu-btn {
 		display: block;

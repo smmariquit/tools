@@ -7,14 +7,26 @@ import { toolCategories } from "../../../lib/routes";
 
 export default function ToolSearch() {
 	const t = useTranslations("Index");
+	const tRoutes = useTranslations("Routes");
 	const [query, setQuery] = useState("");
 
 	const filteredCategories = toolCategories
 		.map((category) => {
-			const filteredItems = category.items.filter((item) => {
-				const searchStr = `${item.name} ${item.desc}`.toLowerCase();
-				return searchStr.includes(query.toLowerCase());
-			});
+			const filteredItems = category.items
+				.map((item) => {
+					const key = item.path.replace("/", "");
+					const localizedName = tRoutes.has(`${key}.name`)
+						? tRoutes(`${key}.name`)
+						: item.name;
+					const localizedDesc = tRoutes.has(`${key}.desc`)
+						? tRoutes(`${key}.desc`)
+						: item.desc;
+					return { ...item, name: localizedName, desc: localizedDesc };
+				})
+				.filter((item) => {
+					const searchStr = `${item.name} ${item.desc}`.toLowerCase();
+					return searchStr.includes(query.toLowerCase());
+				});
 			return { ...category, items: filteredItems };
 		})
 		.filter((category) => category.items.length > 0);

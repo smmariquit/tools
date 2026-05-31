@@ -80,35 +80,6 @@ export default function Navbar() {
 					<span>PHTools</span>
 				</Link>
 
-				<search>
-					<form
-						onSubmit={(e) => {
-							e.preventDefault();
-							const parts = (pathname || "").split("/").filter(Boolean);
-							const localePrefix = parts.length ? `/${parts[0]}` : "";
-							const qs = encodeURIComponent(query.trim());
-							if (qs.length) router.push(`${localePrefix}/search?query=${qs}`);
-						}}
-						style={{ marginLeft: "12px", marginRight: "12px" }}
-					>
-						<input
-							aria-label="Search tools"
-							placeholder={t("searchPlaceholder")}
-							value={query}
-							onChange={(e) => setQuery(e.target.value)}
-							style={{
-								padding: "8px 10px",
-								borderRadius: 6,
-								border: "1px solid var(--border-color)",
-								width: "100%",
-								minWidth: "120px",
-								maxWidth: "200px",
-								background: "var(--surface-color)",
-								color: "var(--text-primary)",
-							}}
-						/>
-					</form>
-				</search>
 				<button
 					className="mobile-menu-btn"
 					onClick={() => setIsOpen(!isOpen)}
@@ -119,7 +90,6 @@ export default function Navbar() {
 						color: "var(--text-primary)",
 						fontSize: "24px",
 						cursor: "pointer",
-						display: "none", // Hidden by default, shown via CSS on mobile
 					}}
 				>
 					{isOpen ? "✕" : "☰"}
@@ -133,6 +103,36 @@ export default function Navbar() {
 						alignItems: "center",
 					}}
 				>
+					<search>
+						<form
+							onSubmit={(e) => {
+								e.preventDefault();
+								const parts = (pathname || "").split("/").filter(Boolean);
+								const localePrefix = parts.length ? `/${parts[0]}` : "";
+								const qs = encodeURIComponent(query.trim());
+								if (qs.length)
+									router.push(`${localePrefix}/search?query=${qs}`);
+							}}
+							style={{ marginRight: "12px" }}
+						>
+							<input
+								aria-label="Search tools"
+								placeholder={t("searchPlaceholder")}
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+								style={{
+									padding: "8px 10px",
+									borderRadius: 6,
+									border: "1px solid var(--border-color)",
+									width: "100%",
+									minWidth: "120px",
+									maxWidth: "200px",
+									background: "var(--surface-color)",
+									color: "var(--text-primary)",
+								}}
+							/>
+						</form>
+					</search>
 					<Link href="/" className="nav-link" onClick={() => setIsOpen(false)}>
 						{t("tools")}
 					</Link>

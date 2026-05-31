@@ -64,21 +64,18 @@ export default function TermsOfUse() {
 				<h2
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					3. Intellectual Property Rights
+					3. Open Source & Public Domain
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
-					Unless otherwise stated, PHTools owns the intellectual property rights
-					for all material on this website. All intellectual property rights are
-					reserved. You may access this from PHTools for your own personal use
-					subjected to restrictions set in these terms and conditions.
+					PHTools is built on the philosophy of open access to information. The
+					underlying calculator code, mathematical algorithms, and logic are
+					open-source and released into the public domain. You are entirely free
+					to:
 				</p>
 				<ul style={{ paddingLeft: "24px", marginBottom: "16px" }}>
-					<li>You must not republish material from PHTools</li>
-					<li>You must not sell, rent or sub-license material from PHTools</li>
-					<li>
-						You must not reproduce, duplicate or copy the calculator algorithms
-						or code
-					</li>
+					<li>Use our calculators for any personal or commercial purpose</li>
+					<li>View, learn from, and duplicate our mathematical formulas</li>
+					<li>Share and distribute our tools without restriction</li>
 				</ul>
 
 				<h2

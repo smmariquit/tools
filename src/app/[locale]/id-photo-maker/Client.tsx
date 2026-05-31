@@ -15,8 +15,30 @@ type PhotoSize = keyof typeof dimensions;
 export default function IDPhotoMaker() {
 	const [size, setSize] = useState<PhotoSize>("2x2");
 	const [imageSrc, setImageSrc] = useState<string | null>(null);
+	const [originalImageSrc, setOriginalImageSrc] = useState<string | null>(null);
+	const [isRemovingBg, setIsRemovingBg] = useState(false);
+
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const cameraInputRef = useRef<HTMLInputElement>(null);
+
+	const handleRemoveBg = async () => {
+		if (!originalImageSrc) return;
+		setIsRemovingBg(true);
+		try {
+			// Dynamically import to avoid SSR issues
+			const removeBackground = (await import("@imgly/background-removal"))
+				.default;
+			const imageBlob = await removeBackground(originalImageSrc);
+			const url = URL.createObjectURL(imageBlob);
+			setImageSrc(url);
+		} catch (error) {
+			console.error("Failed to remove background:", error);
+			alert("Failed to remove background. Please try a different photo.");
+		} finally {
+			setIsRemovingBg(false);
+		}
+	};
 
 	const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -25,6 +47,7 @@ export default function IDPhotoMaker() {
 		const reader = new FileReader();
 		reader.onload = (event) => {
 			setImageSrc(event.target?.result as string);
+			setOriginalImageSrc(event.target?.result as string);
 		};
 		reader.readAsDataURL(file);
 	};
@@ -139,16 +162,73 @@ export default function IDPhotoMaker() {
 							onChange={handleImageUpload}
 							style={{ display: "none" }}
 						/>
-						<button
-							className="btn-secondary"
-							style={{ width: "100%", padding: "16px" }}
-							onClick={() => fileInputRef.current?.click()}
+						<input
+							id="cameraUpload"
+							type="file"
+							accept="image/*"
+							capture="user"
+							ref={cameraInputRef}
+							onChange={handleImageUpload}
+							style={{ display: "none" }}
+						/>
+						<div style={{ display: "flex", gap: "8px", width: "100%" }}>
+							<button
+								className="btn-secondary"
+								style={{
+									flex: 1,
+									padding: "16px",
+									fontSize: "14px",
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "center",
+									gap: "4px",
+								}}
+								onClick={() => fileInputRef.current?.click()}
+							>
+								<span style={{ fontSize: "20px" }}>📁</span>
+								Upload Photo
+							</button>
+							<button
+								className="btn-secondary"
+								style={{
+									flex: 1,
+									padding: "16px",
+									fontSize: "14px",
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "center",
+									gap: "4px",
+								}}
+								onClick={() => cameraInputRef.current?.click()}
+							>
+								<span style={{ fontSize: "20px" }}>📷</span>
+								Take Photo
+							</button>
+						</div>
+						<p
+							className="form-hint"
+							style={{ marginTop: "8px", marginBottom: "16px" }}
 						>
-							📷 Choose a Photo from your Device
-						</button>
-						<p className="form-hint" style={{ marginTop: "8px" }}>
 							Tip: Use a photo with a plain, well-lit background.
 						</p>
+
+						{imageSrc && (
+							<button
+								className="btn-secondary"
+								style={{
+									width: "100%",
+									padding: "12px",
+									border: "1px solid var(--primary)",
+									color: "var(--primary)",
+								}}
+								onClick={handleRemoveBg}
+								disabled={isRemovingBg}
+							>
+								{isRemovingBg
+									? "✨ Removing Background (Please wait)..."
+									: "✨ Remove Background (AI)"}
+							</button>
+						)}
 					</div>
 				</div>
 
@@ -229,8 +309,13 @@ export default function IDPhotoMaker() {
 				}}
 			>
 				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How to Take a Good ID Photo at Home
+					Official DFA Passport Photo Guidelines
 				</h2>
+				<p style={{ marginBottom: "16px" }}>
+					To ensure your passport application is not rejected by the Department
+					of Foreign Affairs (DFA), please follow these official image
+					guidelines when taking your photo:
+				</p>
 				<ul
 					style={{
 						paddingLeft: "24px",
@@ -239,22 +324,51 @@ export default function IDPhotoMaker() {
 					}}
 				>
 					<li>
-						<strong>Lighting:</strong> Face a window. Natural, even lighting
-						prevents harsh shadows on your face or the background.
+						<strong>Size and Quality:</strong> Photo must be exactly 4.5 cm x
+						3.5 cm in size. It must be high resolution, not pixelated, and
+						printed on high-quality photo paper.
 					</li>
 					<li>
-						<strong>Background:</strong> Stand about one foot away from a plain
-						white or light-colored wall.
+						<strong>Background:</strong> The background must be completely{" "}
+						<strong>plain white</strong>. There should be no shadows, patterns,
+						or other objects visible.
 					</li>
 					<li>
-						<strong>Pose:</strong> Look directly at the camera with a neutral
-						expression. Ensure your shoulders are visible.
+						<strong>Pose and Expression:</strong> Keep a neutral facial
+						expression with both eyes open and mouth closed (no smiling or teeth
+						showing). Look straight into the camera showing your full face and
+						both ears.
 					</li>
 					<li>
-						<strong>Attire:</strong> Wear a collared shirt or professional
-						clothing. Avoid wearing white against a white wall.
+						<strong>Attire:</strong> Wear decent attire with a collar (e.g.,
+						polo shirt, collared blouse). Sleeveless shirts, plunge necklines,
+						or spaghetti straps are strictly prohibited.
+					</li>
+					<li>
+						<strong>Accessories:</strong> You must remove eyeglasses, contact
+						lenses, earrings, necklaces, and heavy makeup. Head coverings are
+						only allowed for religious or medical reasons, but must not cover
+						the face.
 					</li>
 				</ul>
+				<p
+					style={{
+						marginBottom: "24px",
+						fontSize: "14px",
+					}}
+				>
+					<em>
+						Source:{" "}
+						<a
+							href="https://dfa-oca.ph/passport/passport-requirements/acceptable-ids-for-passport-application/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							DFA Consular Affairs - Passport Requirements
+						</a>
+					</em>
+				</p>
 				<p
 					style={{
 						marginBottom: "16px",
@@ -263,10 +377,10 @@ export default function IDPhotoMaker() {
 					}}
 				>
 					<em>
-						Note: This tool auto-centers and crops your photo to exact pixel
-						dimensions at 300 DPI, perfect for printing at any standard photo
-						lab or at home. All processing happens locally on your device; we do
-						not upload or store your photos.
+						Privacy Note: This tool auto-centers and crops your photo to exact
+						pixel dimensions at 300 DPI, perfect for printing. All processing
+						(including AI background removal) happens locally on your device; we
+						do not upload or store your photos.
 					</em>
 				</p>
 			</div>

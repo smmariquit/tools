@@ -1,170 +1,340 @@
 {
-	"Index": {
-		"title": "Libreng Online Tools para sa mga Pinoy",
-		"subtitle": "Mga saktong calculator, generator, ug uban pang utilities nga gihimo gyud para sa Pilipinas."
-	},
-	"Navigation": {
-		"tools": "Mga Tools",
-		"blog": "Mga Blog",
-		"salary": "Sweldo",
-		"13thMonth": "13th Month",
-		"pagibig": "Pag-IBIG/MP2"
-	},
-	"SalaryCalculator": {
-		"shareText": "Share Computation",
-		"shareTextCopied": "Copied to Clipboard!",
-		"detailsTitle": "Your Details",
-		"empTypeLabel": "Klase sa Trabaho",
-		"empTypePrivate": "Private Sector",
-		"empTypeGovt": "Gobyerno / Public Sector",
-		"empTypeMinWage": "Minimum Wage Earner",
-		"empTypeSelf": "Self-Employed / Freelancer",
-		"empTypeKasambahay": "Kasambahay",
-		"grossSalaryLabel": "Gross Monthly Salary (PHP)",
-		"grossSalaryPlaceholder": "e.g., 30000",
-		"grossSalaryHint": "Your basic salary before any deductions.",
-		"resultsTitle": "Computation Results",
-		"grossSalaryResult": "Gross Salary",
-		"mandatoryDeductions": "Mandatory Deductions",
-		"sss": "SSS Contribution (5%)",
-		"philhealth": "PhilHealth (2.5%)",
-		"pagibig": "Pag-IBIG",
-		"totalContributions": "Total Contributions",
-		"taxableIncome": "Taxable Income",
-		"tax": "Withholding Tax (BIR)",
-		"netPay": "Net Take-Home Pay",
-		"estimateDisclaimer": "* This is an estimate based on standard 2026 rates.",
-		"chartTitle": "Salary Breakdown",
-		"chartNetPay": "Net Pay",
-		"chartTax": "Tax",
-		"chartSSS": "SSS",
-		"chartPhilhealth": "PhilHealth",
-		"chartPagibig": "Pag-IBIG"
-	},
-	"ThirteenthMonth": {
-		"title": "13th Month Pay Calculator",
-		"subtitle": "Calculate your prorated 13th month pay and check if it exceeds the ₱90k tax exemption limit.",
-		"detailsTitle": "Your Details",
-		"basicSalaryLabel": "Monthly Basic Salary (PHP)",
-		"basicSalaryHint": "Exclude overtime, holiday pay, and allowances.",
-		"monthsWorkedLabel": "Months Worked This Year",
-		"unpaidAbsencesLabel": "Total Unpaid Absences (PHP Deduction)",
-		"resultsTitle": "Computed 13th Month Pay",
-		"totalEarned": "Total Basic Salary Earned",
-		"formula": "Formula",
-		"formulaDesc": "Total Earned ÷ 12",
-		"netPay": "Net 13th Month Pay",
-		"trainStatus": "TRAIN Law Tax Status",
-		"taxExempt": "Tax-Exempt Portion (Max ₱90k)",
-		"taxable": "Taxable Portion (Added to Gross)",
-		"howComputedTitle": "How is 13th Month Pay Computed?",
-		"howComputedDesc": "By Philippine Law (P.D. 851), your 13th month pay is strictly 1/12th of the total <strong>basic salary</strong> you earned within a calendar year.",
-		"exclusionsTitle": "Exclusions from Basic Salary",
-		"exclusion1": "Overtime Pay",
-		"exclusion2": "Holiday Pay",
-		"exclusion3": "Night Shift Differential (NSD)",
-		"exclusion4": "Allowances (COLA, Transportation)",
-		"exclusion5": "Cash equivalent of unused leaves",
-		"taxabilityTitle": "Taxability (₱90,000 Exemption Limit)",
-		"taxabilityDesc": "Under the TRAIN Law, the 13th month pay and other equivalent bonuses are tax-exempt up to ₱90,000. Any amount exceeding this limit is added to your taxable income for the year."
-	},
-	"BpoCalculator": {
-		"detailsTitle": "Shift Details Nimo",
-		"salaryLabel": "Basic Monthly Salary Nimo (PHP)",
-		"salaryHint": "Basic pay lang ha, walay allowances",
-		"shiftStartLabel": "Unsang orasa mag-start imong shift?",
-		"shiftEndLabel": "Unsang orasa mag-end imong shift?",
-		"dayTypeLabel": "Unsang klase nga adlaw?",
-		"dayRegular": "Regular Work Day",
-		"dayRest": "Rest Day",
-		"daySpecial": "Special Non-Working Holiday",
-		"daySpecialRest": "Special Holiday + Rest Day",
-		"dayRegularHoliday": "Regular Holiday",
-		"dayRegularHolidayRest": "Regular Holiday + Rest Day",
-		"resultsTitle": "Mao Ni Ang Breakdown sa Shift Pay Nimo",
-		"basicHourlyRate": "Basic Hourly Rate Nimo",
-		"totalHours": "Total Work Hours (Minus 1h Lunch)",
-		"ndHours": "Night Differential Hours",
-		"basePay": "Base Pay sa Shift Nimo",
-		"ndPremium": "Night Differential Premium (+10%)",
-		"holidayPremium": "Holiday / Rest Day Premium",
-		"totalShiftPay": "Total Shift Pay Nimo"
-	},
-	"BudgetCalculator": {
-		"title": "Budget & Reverse Salary Calculator (2026)",
-		"subtitle": "I-list ang imong monthly gastos aron mahibaloan kung pila ang gross salary nga dapat nimo pangayoon.",
-		"detailsTitle": "Monthly Gastos Nimo",
-		"targetNetPayLabel": "Target Na Net Take-Home Pay (PHP)",
-		"targetNetPayHint": "Pila gyud ang kinahanglan nimo madawat sa bank nimo kada buwan?",
-		"addExpenseButton": "+ Dugang Pa Ug Gastos",
-		"expenseNamePlaceholder": "e.g., Renta, Groceries",
-		"expenseAmountPlaceholder": "Kantidad",
-		"extraSavingsLabel": "Extra Monthly Savings / Pang-Leisure (PHP)",
-		"extraSavingsHint": "Bisan unsang extra cash nga gusto nimo mabilin gawas sa fixed expenses nimo.",
-		"expenseBreakdown": "Breakdown sa Imong Gastos",
-		"resultsTitle": "Kinahanglan Nimong Salary",
-		"grossSalaryNeeded": "Gross Salary Nga Dapat Nimo Pangayoon",
-		"totalExpenses": "Total Monthly Gastos Nimo",
-		"estimatedDeductions": "Estimated Nga Kinaltas ug Tax",
-		"totalDeductions": "Total nga Kinaltas",
-		"minimumSalaryTip": "Kini ang pinaka-ubos nga gross salary nga angay nimong i-negotiate.",
-		"whereSalaryGoes": "Asa Napunta ang Imong Suholan?",
-		"howItWorksTitle": "Unsaon man ni pag-gamit?",
-		"howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview.",
-		"disclaimer": "* Base sa SSS, PhilHealth, Pag-IBIG rates ug TRAIN Law tax brackets. Private sector employee ang assumed."
-	},
-	"CarLoanCalculator": {
-		"title": "Car Loan & Amortization Calculator",
-		"subtitle": "Kalkulaha ang imong monthly amortization ug hibal-i kung ngano mas makadaginot ka sa Bank Financing kaysa In-House.",
-		"detailsTitle": "Car Loan Details Nimo",
-		"vehiclePriceLabel": "Presyo sa Sakyanan / Vehicle Price (PHP)",
-		"vehiclePriceHint": "Ang cash price sa sakyanan nga imong paliton.",
-		"downpaymentLabel": "Down Payment (%)",
-		"interestRateLabel": "Annual Interest Rate (%)",
-		"interestRateHint": "Typical bank rates kay 8-10%, pero if in-house sa dealer, abot gyud ug 15-20%!",
-		"loanTermLabel": "Loan Term (Pila ka Tuig)",
-		"resultsTitle": "Amortization Summary sa Sakyanan",
-		"monthlyAmortization": "Monthly Amortization Nimo",
-		"loanAmount": "Kinahanglan nga Loan Amount",
-		"totalInterest": "Total nga Interest nga Bayran",
-		"totalPaid": "Total nga Magasto Nimo sa Sakyanan",
-		"bankSavingsTitle": "Bank Financing Savings Nimo",
-		"bankSavingsDesc": "Tungod kay nag-bank loan ka (sa rate nga {interestRate}%) kaysa sa dealer in-house financing (nga kasagaran ~{inHouseRate}%), makadaginot ka og:",
-		"totalSavings": "Total nga Nadaginot Nimo",
-		"monthlyDifference": "Bawas sa Monthly Pay Nimo",
-		"totalCostBreakdown": "Breakdown sa Kinatibuk-ang Gastos",
-		"bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
-		"bankVsInhouseDesc": "Mas barato gyud ang bank financing. Ang in-house sa dealer, kay hilig mo-offer ug 'low down payment' promos pero grabe ka taas ang interest rate (15%+). Pag-apply una sa bangko para maka-save ka!",
-		"viewSchedule": "Tan-awa ang Monthly Payment Schedule",
-		"hideSchedule": "Itago ang Monthly Payment Schedule",
-		"month": "Buwan",
-		"principal": "Principal",
-		"interest": "Interest",
-		"remainingBalance": "Natitirang Balance"
-	},
-	"HomeLoanCalculator": {
-		"title": "Home Loan & Amortization Calculator",
-		"subtitle": "Kalkulaha ang monthly mortgage payments, down payment options, ug total interest charges para sa home loans.",
-		"detailsTitle": "Home Loan Details Nimo",
-		"propertyPriceLabel": "Presyo sa Balay ug Yuta / Property Price (PHP)",
-		"propertyPriceHint": "Ang market value o selling price sa balay.",
-		"downpaymentLabel": "Down Payment (%)",
-		"interestRateLabel": "Annual Interest Rate (%)",
-		"interestRateHint": "Ang home loan rates sa bangko usually naa sa 6% to 8% fixed range.",
-		"loanTermLabel": "Loan Term (Pila ka Tuig)",
-		"resultsTitle": "Amortization Breakdown",
-		"monthlyAmortization": "Monthly Payment (Principal + Interest)",
-		"loanAmount": "Loan Amount (Principal)",
-		"totalInterest": "Total nga Interest nga Bayran",
-		"totalPaid": "Total Cost sa Balay",
-		"totalHouseCostBreakdown": "Breakdown sa Kinatibuk-ang Bili sa Balay",
-		"refinancingTitle": "Home Loan Tip",
-		"refinancingDesc": "Ang bangko kay naay fixed terms (e.g., 1-year o 5-year fixed). Human ana, mag-reprice ang interest rate base sa market rate. Planoha ni og tarong para dili ka makalatan!",
-		"viewSchedule": "Tan-awa ang Amortization Schedule",
-		"hideSchedule": "Itago ang Amortization Schedule",
-		"month": "Buwan",
-		"principal": "Principal",
-		"interest": "Interest",
-		"remainingBalance": "Natitirang Balance"
-	}
+    "Index": {
+        "title": "Libreng Online Tools para sa mga Pinoy",
+        "subtitle": "Mga saktong calculator, generator, ug uban pang utilities nga gihimo gyud para sa Pilipinas."
+    },
+    "Navigation": {
+        "tools": "Mga Tools",
+        "blog": "Mga Blog",
+        "salary": "Sweldo",
+        "13thMonth": "13th Month",
+        "pagibig": "Pag-IBIG/MP2"
+    },
+    "SalaryCalculator": {
+        "shareText": "Share Computation",
+        "shareTextCopied": "Copied to Clipboard!",
+        "detailsTitle": "Your Details",
+        "empTypeLabel": "Klase sa Trabaho",
+        "empTypePrivate": "Private Sector",
+        "empTypeGovt": "Gobyerno / Public Sector",
+        "empTypeMinWage": "Minimum Wage Earner",
+        "empTypeSelf": "Self-Employed / Freelancer",
+        "empTypeKasambahay": "Kasambahay",
+        "grossSalaryLabel": "Gross Monthly Salary (PHP)",
+        "grossSalaryPlaceholder": "e.g., 30000",
+        "grossSalaryHint": "Your basic salary before any deductions.",
+        "resultsTitle": "Computation Results",
+        "grossSalaryResult": "Gross Salary",
+        "mandatoryDeductions": "Mandatory Deductions",
+        "sss": "SSS Contribution (5%)",
+        "philhealth": "PhilHealth (2.5%)",
+        "pagibig": "Pag-IBIG",
+        "totalContributions": "Total Contributions",
+        "taxableIncome": "Taxable Income",
+        "tax": "Withholding Tax (BIR)",
+        "netPay": "Net Take-Home Pay",
+        "estimateDisclaimer": "* This is an estimate based on standard 2026 rates.",
+        "chartTitle": "Salary Breakdown",
+        "chartNetPay": "Net Pay",
+        "chartTax": "Tax",
+        "chartSSS": "SSS",
+        "chartPhilhealth": "PhilHealth",
+        "chartPagibig": "Pag-IBIG"
+    },
+    "ThirteenthMonth": {
+        "title": "13th Month Pay Calculator",
+        "subtitle": "Calculate your prorated 13th month pay and check if it exceeds the \u20b190k tax exemption limit.",
+        "detailsTitle": "Your Details",
+        "basicSalaryLabel": "Monthly Basic Salary (PHP)",
+        "basicSalaryHint": "Exclude overtime, holiday pay, and allowances.",
+        "monthsWorkedLabel": "Months Worked This Year",
+        "unpaidAbsencesLabel": "Total Unpaid Absences (PHP Deduction)",
+        "resultsTitle": "Computed 13th Month Pay",
+        "totalEarned": "Total Basic Salary Earned",
+        "formula": "Formula",
+        "formulaDesc": "Total Earned \u00f7 12",
+        "netPay": "Net 13th Month Pay",
+        "trainStatus": "TRAIN Law Tax Status",
+        "taxExempt": "Tax-Exempt Portion (Max \u20b190k)",
+        "taxable": "Taxable Portion (Added to Gross)",
+        "howComputedTitle": "How is 13th Month Pay Computed?",
+        "howComputedDesc": "By Philippine Law (P.D. 851), your 13th month pay is strictly 1/12th of the total <strong>basic salary</strong> you earned within a calendar year.",
+        "exclusionsTitle": "Exclusions from Basic Salary",
+        "exclusion1": "Overtime Pay",
+        "exclusion2": "Holiday Pay",
+        "exclusion3": "Night Shift Differential (NSD)",
+        "exclusion4": "Allowances (COLA, Transportation)",
+        "exclusion5": "Cash equivalent of unused leaves",
+        "taxabilityTitle": "Taxability (\u20b190,000 Exemption Limit)",
+        "taxabilityDesc": "Under the TRAIN Law, the 13th month pay and other equivalent bonuses are tax-exempt up to \u20b190,000. Any amount exceeding this limit is added to your taxable income for the year."
+    },
+    "BpoCalculator": {
+        "detailsTitle": "Shift Details Nimo",
+        "salaryLabel": "Basic Monthly Salary Nimo (PHP)",
+        "salaryHint": "Basic pay lang ha, walay allowances",
+        "shiftStartLabel": "Unsang orasa mag-start imong shift?",
+        "shiftEndLabel": "Unsang orasa mag-end imong shift?",
+        "dayTypeLabel": "Unsang klase nga adlaw?",
+        "dayRegular": "Regular Work Day",
+        "dayRest": "Rest Day",
+        "daySpecial": "Special Non-Working Holiday",
+        "daySpecialRest": "Special Holiday + Rest Day",
+        "dayRegularHoliday": "Regular Holiday",
+        "dayRegularHolidayRest": "Regular Holiday + Rest Day",
+        "resultsTitle": "Mao Ni Ang Breakdown sa Shift Pay Nimo",
+        "basicHourlyRate": "Basic Hourly Rate Nimo",
+        "totalHours": "Total Work Hours (Minus 1h Lunch)",
+        "ndHours": "Night Differential Hours",
+        "basePay": "Base Pay sa Shift Nimo",
+        "ndPremium": "Night Differential Premium (+10%)",
+        "holidayPremium": "Holiday / Rest Day Premium",
+        "totalShiftPay": "Total Shift Pay Nimo"
+    },
+    "BudgetCalculator": {
+        "title": "Budget & Reverse Salary Calculator (2026)",
+        "subtitle": "I-list ang imong monthly gastos aron mahibaloan kung pila ang gross salary nga dapat nimo pangayoon.",
+        "detailsTitle": "Monthly Gastos Nimo",
+        "targetNetPayLabel": "Target Na Net Take-Home Pay (PHP)",
+        "targetNetPayHint": "Pila gyud ang kinahanglan nimo madawat sa bank nimo kada buwan?",
+        "addExpenseButton": "+ Dugang Pa Ug Gastos",
+        "expenseNamePlaceholder": "e.g., Renta, Groceries",
+        "expenseAmountPlaceholder": "Kantidad",
+        "extraSavingsLabel": "Extra Monthly Savings / Pang-Leisure (PHP)",
+        "extraSavingsHint": "Bisan unsang extra cash nga gusto nimo mabilin gawas sa fixed expenses nimo.",
+        "expenseBreakdown": "Breakdown sa Imong Gastos",
+        "resultsTitle": "Kinahanglan Nimong Salary",
+        "grossSalaryNeeded": "Gross Salary Nga Dapat Nimo Pangayoon",
+        "totalExpenses": "Total Monthly Gastos Nimo",
+        "estimatedDeductions": "Estimated Nga Kinaltas ug Tax",
+        "totalDeductions": "Total nga Kinaltas",
+        "minimumSalaryTip": "Kini ang pinaka-ubos nga gross salary nga angay nimong i-negotiate.",
+        "whereSalaryGoes": "Asa Napunta ang Imong Suholan?",
+        "howItWorksTitle": "Unsaon man ni pag-gamit?",
+        "howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview.",
+        "disclaimer": "* Base sa SSS, PhilHealth, Pag-IBIG rates ug TRAIN Law tax brackets. Private sector employee ang assumed."
+    },
+    "CarLoanCalculator": {
+        "title": "Car Loan & Amortization Calculator",
+        "subtitle": "Kalkulaha ang imong monthly amortization ug hibal-i kung ngano mas makadaginot ka sa Bank Financing kaysa In-House.",
+        "detailsTitle": "Car Loan Details Nimo",
+        "vehiclePriceLabel": "Presyo sa Sakyanan / Vehicle Price (PHP)",
+        "vehiclePriceHint": "Ang cash price sa sakyanan nga imong paliton.",
+        "downpaymentLabel": "Down Payment (%)",
+        "interestRateLabel": "Annual Interest Rate (%)",
+        "interestRateHint": "Typical bank rates kay 8-10%, pero if in-house sa dealer, abot gyud ug 15-20%!",
+        "loanTermLabel": "Loan Term (Pila ka Tuig)",
+        "resultsTitle": "Amortization Summary sa Sakyanan",
+        "monthlyAmortization": "Monthly Amortization Nimo",
+        "loanAmount": "Kinahanglan nga Loan Amount",
+        "totalInterest": "Total nga Interest nga Bayran",
+        "totalPaid": "Total nga Magasto Nimo sa Sakyanan",
+        "bankSavingsTitle": "Bank Financing Savings Nimo",
+        "bankSavingsDesc": "Tungod kay nag-bank loan ka (sa rate nga {interestRate}%) kaysa sa dealer in-house financing (nga kasagaran ~{inHouseRate}%), makadaginot ka og:",
+        "totalSavings": "Total nga Nadaginot Nimo",
+        "monthlyDifference": "Bawas sa Monthly Pay Nimo",
+        "totalCostBreakdown": "Breakdown sa Kinatibuk-ang Gastos",
+        "bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
+        "bankVsInhouseDesc": "Mas barato gyud ang bank financing. Ang in-house sa dealer, kay hilig mo-offer ug 'low down payment' promos pero grabe ka taas ang interest rate (15%+). Pag-apply una sa bangko para maka-save ka!",
+        "viewSchedule": "Tan-awa ang Monthly Payment Schedule",
+        "hideSchedule": "Itago ang Monthly Payment Schedule",
+        "month": "Buwan",
+        "principal": "Principal",
+        "interest": "Interest",
+        "remainingBalance": "Natitirang Balance"
+    },
+    "HomeLoanCalculator": {
+        "title": "Home Loan & Amortization Calculator",
+        "subtitle": "Kalkulaha ang monthly mortgage payments, down payment options, ug total interest charges para sa home loans.",
+        "detailsTitle": "Home Loan Details Nimo",
+        "propertyPriceLabel": "Presyo sa Balay ug Yuta / Property Price (PHP)",
+        "propertyPriceHint": "Ang market value o selling price sa balay.",
+        "downpaymentLabel": "Down Payment (%)",
+        "interestRateLabel": "Annual Interest Rate (%)",
+        "interestRateHint": "Ang home loan rates sa bangko usually naa sa 6% to 8% fixed range.",
+        "loanTermLabel": "Loan Term (Pila ka Tuig)",
+        "resultsTitle": "Amortization Breakdown",
+        "monthlyAmortization": "Monthly Payment (Principal + Interest)",
+        "loanAmount": "Loan Amount (Principal)",
+        "totalInterest": "Total nga Interest nga Bayran",
+        "totalPaid": "Total Cost sa Balay",
+        "totalHouseCostBreakdown": "Breakdown sa Kinatibuk-ang Bili sa Balay",
+        "refinancingTitle": "Home Loan Tip",
+        "refinancingDesc": "Ang bangko kay naay fixed terms (e.g., 1-year o 5-year fixed). Human ana, mag-reprice ang interest rate base sa market rate. Planoha ni og tarong para dili ka makalatan!",
+        "viewSchedule": "Tan-awa ang Amortization Schedule",
+        "hideSchedule": "Itago ang Amortization Schedule",
+        "month": "Buwan",
+        "principal": "Principal",
+        "interest": "Interest",
+        "remainingBalance": "Natitirang Balance"
+    },
+    "Routes": {
+        "salary-calculator": {
+            "name": "Salary Net Pay Calculator",
+            "desc": "Kwenthaha imong take-home pay human sa kaltas sa SSS, PhilHealth, Pag-IBIG, ug Tax."
+        },
+        "bpo-night-differential-calculator": {
+            "name": "BPO Night Differential Calculator",
+            "desc": "Kwentaha ang 10% night shift differential pay base sa BPO hours."
+        },
+        "overtime-pay-calculator": {
+            "name": "Overtime & Holiday Pay Calculator",
+            "desc": "Kwentaha imong DOLE-compliant overtime ug premium pay para sa rest days ug holidays."
+        },
+        "budget-calculator": {
+            "name": "Budget & Reverse Salary Calculator",
+            "desc": "I-lista imong mga gastos para mahibaw-an pila nga gross salary dapat nimo pangayuon."
+        },
+        "sss-contribution-calculator": {
+            "name": "SSS Contribution Calculator",
+            "desc": "Tan-awa ang exact SSS breakdown (EE/ER/EC/MPF) base sa 2026 table."
+        },
+        "sss-pension-calculator": {
+            "name": "SSS Retirement Pension Calculator",
+            "desc": "I-estimate imong monthly lifetime pension base sa imong AMSC ug Credited Years of Service."
+        },
+        "gsis-pension-calculator": {
+            "name": "GSIS Retirement Pension Calculator",
+            "desc": "Calculate your GSIS Basic Monthly Pension (BMP) based on RA 8291."
+        },
+        "sss-maternity-calculator": {
+            "name": "SSS Maternity Benefit Calculator",
+            "desc": "Calculate your 105-day Expanded Maternity Leave cash benefit based on your SSS contributions."
+        },
+        "philhealth-calculator": {
+            "name": "PhilHealth Premium Calculator",
+            "desc": "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate."
+        },
+        "income-tax-calculator": {
+            "name": "Income Tax Calculator (BIR)",
+            "desc": "Calculate your annual and monthly income tax using TRAIN law brackets."
+        },
+        "gross-from-tax-calculator": {
+            "name": "Gross from Tax Calculator",
+            "desc": "Estimate your equivalent gross salary directly from a target withholding tax amount."
+        },
+        "13th-month-pay-calculator": {
+            "name": "13th Month Calculator",
+            "desc": "Kwentaha imong prorated 13th month ug tax exemptions."
+        },
+        "backpay-calculator": {
+            "name": "Final Pay (Backpay) Calculator",
+            "desc": "I-estimate imong final pay, prorated 13th month, ug leave conversions human mag-resign."
+        },
+        "separation-pay-calculator": {
+            "name": "Separation Pay Calculator",
+            "desc": "Calculate your DOLE separation pay for redundancy, retrenchment, and other terminations."
+        },
+        "freelance-tax-calculator": {
+            "name": "Upwork & Freelance Tax Calculator",
+            "desc": "Kwentaha imong net PHP after sa Upwork fees, forex spread, ug 8% BIR tax."
+        },
+        "freelance-rate-calculator": {
+            "name": "Freelance Hourly Rate Calculator",
+            "desc": "Find out exactly how much to charge clients per hour to hit your net income goals."
+        },
+        "tax-optimizer-calculator": {
+            "name": "8% vs Graduated Tax Optimizer",
+            "desc": "Find out if 8% Flat Rate, OSD, or Itemized deductions will save you more money."
+        },
+        "digital-bank-calculator": {
+            "name": "Digital Bank Interest Calculator",
+            "desc": "Compare high-yield savings (Maya, SeaBank, Gotyme) and calculate net interest after 20% tax."
+        },
+        "shopee-lazada-fee-calculator": {
+            "name": "TikTok, Shopee & Lazada Fee Calculator",
+            "desc": "Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout."
+        },
+        "bir-withholding-tax-calculator": {
+            "name": "Expanded Withholding Tax (EWT) Calculator",
+            "desc": "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers."
+        },
+        "electric-bill-calculator": {
+            "name": "Electric Bill Estimator",
+            "desc": "I-estimate imong Meralco bill base sa gamit sa appliances ug current rates."
+        },
+        "car-loan-calculator": {
+            "name": "Car Loan & Amortization Calculator",
+            "desc": "I-compare ang bank vs in-house auto loans, down payment, ug monthly amortization."
+        },
+        "motorcycle-loan-calculator": {
+            "name": "Motorcycle Loan Calculator (Hulugan)",
+            "desc": "Calculate your exact monthly amortization, total interest, and hidden costs for in-house dealer financing."
+        },
+        "pagibig-mp2-calculator": {
+            "name": "Pag-IBIG MP2 Dividend Calculator",
+            "desc": "Kwentaha imong tax-free earnings gikan sa Pag-IBIG MP2 Savings Program sulod sa 5 ka tuig."
+        },
+        "home-loan-calculator": {
+            "name": "Home Loan & Mortgage Calculator",
+            "desc": "Compute monthly bank home loan payments, interest rates, and loan terms."
+        },
+        "amilyar-calculator": {
+            "name": "Amilyar (Property Tax) Calculator",
+            "desc": "Estimate your annual Philippine Real Property Tax (RPT) and SEF."
+        },
+        "pagibig-calculator": {
+            "name": "Pag-IBIG / MP2 Calculator",
+            "desc": "Estimate your MP2 savings dividends and standard housing loan amortization."
+        },
+        "pagibig-foreclosed-roi-calculator": {
+            "name": "Pag-IBIG Foreclosed Property ROI Calculator",
+            "desc": "Calculate rental yield and flipping ROI for Acquired Assets."
+        },
+        "pagibig-affordability-calculator": {
+            "name": "Pag-IBIG Housing Loan Affordability",
+            "desc": "Find out exactly how much housing loan you can afford based on your salary and age."
+        },
+        "gwa-calculator": {
+            "name": "UP/PUP GWA Calculator",
+            "desc": "Calculate your General Weighted Average (1.0-5.0) and predict target grades."
+        },
+        "prc-board-exam-rating-calculator": {
+            "name": "PRC Board Exam Rating Calculator",
+            "desc": "Calculate your general average and passing status for NLE, CE, MTLE, and CPALE."
+        },
+        "latin-honors-calculator": {
+            "name": "Latin Honors Calculator",
+            "desc": "Check if your GWA qualifies for Cum Laude at UP, PUP, UST, Ateneo, or DLSU."
+        },
+        "dost-scholarship-stipend-calculator": {
+            "name": "DOST-SEI Scholarship Stipend Calculator",
+            "desc": "Calculate your exact yearly DOST scholarship benefits and stipend breakdown."
+        },
+        "ched-scholarship-calculator": {
+            "name": "CHED Scholarship Calculator",
+            "desc": "Calculate your exact annual benefits for CHED Merit (CMSP) and Tulong Dunong (TDP)."
+        },
+        "qpi-gpa-calculator": {
+            "name": "QPI / GPA Calculator (4.0 Scale)",
+            "desc": "Calculate your Ateneo QPI or DLSU CGPA with the 4.0 grading scale."
+        },
+        "id-photo-maker": {
+            "name": "ID Photo Maker",
+            "desc": "Paghimo og 2x2, 1x1, ug passport photos gikan sa imong mga selfies, libre lang."
+        },
+        "fuel-cost-calculator": {
+            "name": "Fuel Cost Calculator",
+            "desc": "Estimate your road trip gas expenses and easily divide costs for ambagan."
+        },
+        "lto-penalty-calculator": {
+            "name": "LTO Penalty Calculator",
+            "desc": "Check exactly how much your MVUC fine is for late vehicle registration."
+        },
+        "toll-calculator": {
+            "name": "Expressway Toll Calculator",
+            "desc": "Lookup TRB-approved toll fees for Skyway, SLEX, NLEX, and TPLEX."
+        },
+        "holiday-calculator": {
+            "name": "Holiday & Overtime Pay",
+            "desc": "See the 2026 calendar and calculate your special/regular holiday pay."
+        },
+        "dfa-age-calculator": {
+            "name": "Exact Age Calculator (DFA & PRC)",
+            "desc": "Calculate your exact age in years, months, and days for passports and board exams."
+        },
+        "bill-splitter-calculator": {
+            "name": "GCash & Maya Bill Splitter",
+            "desc": "Split restaurant bills fairly including VAT and service charges."
+        }
+    }
 }

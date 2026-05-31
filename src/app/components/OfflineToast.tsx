@@ -56,7 +56,7 @@ export default function OfflineToast() {
 				`}
 			</style>
 			<span>🚀</span>
-			<span>App downloaded and ready for offline use.</span>
+			<span style={{ whiteSpace: "nowrap" }}>Ready for offline use.</span>
 			<button
 				type="button"
 				onClick={() => setShow(false)}
