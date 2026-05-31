@@ -243,6 +243,30 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Civil Service Exam Reviewer",
+				path: "/civil-service-reviewer",
+				desc: "Offline-capable mock exams for the Philippine CSE.",
+				priority: 0.9,
+			},
+			{
+				name: "Legal Contract Generator",
+				path: "/legal-contract-generator",
+				desc: "Generate standard Philippine legal documents securely.",
+				priority: 0.9,
+			},
+			{
+				name: "Invoice Factoring & Discount Calculator",
+				path: "/invoice-factoring-calculator",
+				desc: "Calculate NPV, APR, and ROI when selling unpaid invoices.",
+				priority: 0.9,
+			},
+			{
+				name: "Digital Ticketing QR Generator",
+				path: "/digital-ticket-generator",
+				desc: "Generate secure QR code tickets without a database.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

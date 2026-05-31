@@ -52,6 +52,10 @@ const toolToBlogMap: Record<string, string> = {
 	"/crypto-spread-calculator": "/blog/crypto-spread-guide",
 	"/crypto-p2p-cashout-calculator": "/blog/crypto-p2p-cashout-guide",
 	"/crypto-tax-calculator": "/blog/crypto-tax-guide",
+	"/civil-service-reviewer": "/blog/civil-service-reviewer-guide",
+	"/legal-contract-generator": "/blog/legal-contract-guide",
+	"/invoice-factoring-calculator": "/blog/invoice-factoring-guide",
+	"/digital-ticket-generator": "/blog/digital-ticket-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {

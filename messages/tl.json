@@ -850,6 +850,22 @@
 		"crypto-tax-calculator": {
 			"name": "BIR Crypto Tax Calculator",
 			"desc": "Kwentahin ang iyong tax liability sa crypto profits."
+		},
+		"civil-service-reviewer": {
+			"name": "Civil Service Exam Reviewer",
+			"desc": "Mock exam para sa Philippine Civil Service Exam."
+		},
+		"legal-contract-generator": {
+			"name": "Legal Contract Generator",
+			"desc": "Gumawa ng legal documents ng ligtas."
+		},
+		"invoice-factoring-calculator": {
+			"name": "Invoice Factoring & Discount Calculator",
+			"desc": "Kwentahin ang APR kapag nagbebenta ng invoices."
+		},
+		"digital-ticket-generator": {
+			"name": "Digital Ticketing QR Generator",
+			"desc": "Gumawa ng secure na QR ticket."
 		}
 	}
 }

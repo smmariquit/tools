@@ -850,6 +850,22 @@
 		"crypto-tax-calculator": {
 			"name": "BIR Crypto Tax Calculator",
 			"desc": "Estimate income tax liability on crypto profits under BIR rules."
+		},
+		"civil-service-reviewer": {
+			"name": "Civil Service Exam Reviewer",
+			"desc": "Offline-capable mock exams for the Philippine CSE."
+		},
+		"legal-contract-generator": {
+			"name": "Legal Contract Generator",
+			"desc": "Generate standard Philippine legal documents securely."
+		},
+		"invoice-factoring-calculator": {
+			"name": "Invoice Factoring & Discount Calculator",
+			"desc": "Calculate NPV, APR, and ROI when selling unpaid invoices."
+		},
+		"digital-ticket-generator": {
+			"name": "Digital Ticketing QR Generator",
+			"desc": "Generate secure QR code tickets without a database."
 		}
 	}
 }
