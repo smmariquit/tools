@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { toolCategories } from "../../lib/routes";
+import ToolSearch from "./components/ToolSearch";
 
 export const metadata: Metadata = {
 	title: "PH Tools & Calculators | Free Online Utilities",
@@ -78,58 +77,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-				{toolCategories.map((section) => (
-					<div key={section.category}>
-						<h2
-							style={{
-								fontSize: "20px",
-								marginBottom: "20px",
-								paddingBottom: "8px",
-								borderBottom: "1px solid var(--border-color)",
-							}}
-						>
-							{section.category}
-						</h2>
-						<div
-							style={{
-								display: "grid",
-								gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-								gap: "20px",
-							}}
-						>
-							{section.items.map((tool) => (
-								<Link
-									href={tool.path}
-									key={tool.name}
-									style={{ textDecoration: "none" }}
-								>
-									<div className="card tool-card" style={{ height: "100%" }}>
-										<h3
-											style={{
-												fontSize: "16px",
-												color: "var(--primary)",
-												marginBottom: "8px",
-											}}
-										>
-											{tool.name}
-										</h3>
-										<p
-											style={{
-												fontSize: "14px",
-												color: "var(--text-secondary)",
-												margin: 0,
-											}}
-										>
-											{tool.desc}
-										</p>
-									</div>
-								</Link>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
+			<ToolSearch />
 		</>
 	);
 }
