@@ -451,6 +451,22 @@
 		"genshin-pity-calculator": {
 			"name": "Genshin Pity & Primogem Calculator",
 			"desc": "Kwenthaha ang primogems para makuha ang 5-star character."
+		},
+		"valorant-vp-calculator": {
+			"name": "Valorant VP to PHP Calculator",
+			"desc": "Kwenthaha ang VP to PHP."
+		},
+		"gaming-edpi-calculator": {
+			"name": "Gaming eDPI Converter",
+			"desc": "I-convert ang eDPI ug sensitivity."
+		},
+		"dota2-mmr-calculator": {
+			"name": "Dota 2 MMR to Rank Calculator",
+			"desc": "Kwenthaha ang MMR to Medal ug wins needed."
+		},
+		"dota2-battlepass-calculator": {
+			"name": "Dota 2 Battle Pass PHP Calculator",
+			"desc": "Kwenthaha ang gasto sa Dota Battle Pass."
 		}
 	}
 }

@@ -452,6 +452,30 @@ export const toolCategories = [
 				path: "/genshin-pity-calculator",
 				desc: "Calculate pulls and PHP needed to guarantee a 5-star character.",
 				priority: 0.9,
+			},
+			{
+				name: "Valorant VP to PHP Calculator",
+				path: "/valorant-vp-calculator",
+				desc: "Convert VP to PHP and find the best top-up.",
+				priority: 0.9,
+			},
+			{
+				name: "Gaming eDPI Converter",
+				path: "/gaming-edpi-calculator",
+				desc: "Convert sensitivity between Valorant, CS2, and Apex.",
+				priority: 0.9,
+			},
+			{
+				name: "Dota 2 MMR to Rank Calculator",
+				path: "/dota2-mmr-calculator",
+				desc: "Convert MMR to Medal and calculate wins needed.",
+				priority: 0.9,
+			},
+			{
+				name: "Dota 2 Battle Pass PHP Calculator",
+				path: "/dota2-battlepass-calculator",
+				desc: "Estimate PHP cost to reach Aegis/Arcana.",
+				priority: 0.9,
 			}
 		],
 	},

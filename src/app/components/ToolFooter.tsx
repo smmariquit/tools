@@ -77,7 +77,12 @@ const toolToBlogMap: Record<string, string> = {
 	"/mlbb-winrate-calculator": "/blog/mlbb-winrate-guide",
 	"/codm-lucky-draw-calculator": "/blog/codm-lucky-draw-guide",
 	"/genshin-pity-calculator": "/blog/genshin-pity-guide",
+	"/valorant-vp-calculator": "/blog/valorant-vp-guide",
+	"/gaming-edpi-calculator": "/blog/gaming-edpi-guide",
+	"/dota2-mmr-calculator": "/blog/dota2-mmr-guide",
+	"/dota2-battlepass-calculator": "/blog/dota2-battlepass-guide",
 };
+
 
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
