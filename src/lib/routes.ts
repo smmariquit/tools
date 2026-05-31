@@ -123,6 +123,24 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "De Minimis Tax Optimization Estimator",
+				path: "/de-minimis-tax-calculator",
+				desc: "Maximize your tax-free allowances and bonuses based on BIR regulations.",
+				priority: 0.9,
+			},
+			{
+				name: "LTO Annual Registration Fee Estimator",
+				path: "/lto-registration-fee-calculator",
+				desc: "Calculate your Motor Vehicle User's Charge (MVUC) and late renewal penalties.",
+				priority: 0.9,
+			},
+			{
+				name: "SSS Maternity Benefit Estimator",
+				path: "/sss-maternity-benefit-calculator",
+				desc: "Calculate your expected SSS Maternity Cash Benefit based on the Expanded Maternity Leave Law.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

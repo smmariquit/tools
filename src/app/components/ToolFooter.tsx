@@ -32,6 +32,9 @@ const toolToBlogMap: Record<string, string> = {
 	"/lto-penalty-calculator": "/blog/lto-late-registration-penalty",
 	"/toll-calculator": "/blog/philippine-toll-fees-guide",
 	"/food-cost-calculator": "/blog/food-costing-pricing-guide",
+	"/de-minimis-tax-calculator": "/blog/de-minimis-benefits-guide",
+	"/lto-registration-fee-calculator": "/blog/lto-registration-renewal-guide",
+	"/sss-maternity-benefit-calculator": "/blog/sss-maternity-benefit-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {

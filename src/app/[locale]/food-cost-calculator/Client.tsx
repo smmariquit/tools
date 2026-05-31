@@ -5,7 +5,6 @@ import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 import TrustBadge from "../../components/TrustBadge";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
-import CpaAttestation from "../../components/CpaAttestation";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
 type UnitType = "mass" | "volume" | "count";
@@ -450,7 +449,7 @@ export default function FoodCostCalculatorClient() {
 											<Cell key={`cell-${index}`} fill={entry.fill} />
 										))}
 									</Pie>
-									<Tooltip formatter={(value: number) => formatPHP(value)} />
+									<Tooltip formatter={(value: any) => formatPHP(Number(value))} />
 									<Legend />
 								</PieChart>
 							</ResponsiveContainer>
@@ -459,10 +458,6 @@ export default function FoodCostCalculatorClient() {
 						<PrivacyGuarantee />
 					</div>
 				</div>
-			</div>
-			
-			<div style={{ maxWidth: "800px", margin: "0 auto" }}>
-				<CpaAttestation />
 			</div>
 		</ToolLayout>
 	);

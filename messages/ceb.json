@@ -339,6 +339,18 @@
 		"food-cost-calculator": {
 			"name": "Food Cost & Pricing Calculator",
 			"desc": "Kwenthaha ang gasto sa imong recipe ug pangitaa ang sakto nga presyo nga naay target profit."
+		},
+		"de-minimis-tax-calculator": {
+			"name": "De Minimis Tax Optimization Estimator",
+			"desc": "Pataasa ang imong tax-free allowances ug bonuses."
+		},
+		"lto-registration-fee-calculator": {
+			"name": "LTO Annual Registration Fee Estimator",
+			"desc": "Kwenthaha ang imong MVUC ug late renewal penalties sa LTO."
+		},
+		"sss-maternity-benefit-calculator": {
+			"name": "SSS Maternity Benefit Estimator",
+			"desc": "Kwenthaha ang imong makuha nga SSS Maternity Cash Benefit."
 		}
 	}
 }
