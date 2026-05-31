@@ -36,5 +36,32 @@
 		"chartSSS": "SSS",
 		"chartPhilhealth": "PhilHealth",
 		"chartPagibig": "Pag-IBIG"
+	},
+	"ThirteenthMonth": {
+		"title": "13th Month Pay Calculator",
+		"subtitle": "Calculate your prorated 13th month pay and check if it exceeds the ₱90k tax exemption limit.",
+		"detailsTitle": "Your Details",
+		"basicSalaryLabel": "Monthly Basic Salary (PHP)",
+		"basicSalaryHint": "Exclude overtime, holiday pay, and allowances.",
+		"monthsWorkedLabel": "Months Worked This Year",
+		"unpaidAbsencesLabel": "Total Unpaid Absences (PHP Deduction)",
+		"resultsTitle": "Computed 13th Month Pay",
+		"totalEarned": "Total Basic Salary Earned",
+		"formula": "Formula",
+		"formulaDesc": "Total Earned ÷ 12",
+		"netPay": "Net 13th Month Pay",
+		"trainStatus": "TRAIN Law Tax Status",
+		"taxExempt": "Tax-Exempt Portion (Max ₱90k)",
+		"taxable": "Taxable Portion (Added to Gross)",
+		"howComputedTitle": "How is 13th Month Pay Computed?",
+		"howComputedDesc": "By Philippine Law (P.D. 851), your 13th month pay is strictly 1/12th of the total <strong>basic salary</strong> you earned within a calendar year.",
+		"exclusionsTitle": "Exclusions from Basic Salary",
+		"exclusion1": "Overtime Pay",
+		"exclusion2": "Holiday Pay",
+		"exclusion3": "Night Shift Differential (NSD)",
+		"exclusion4": "Allowances (COLA, Transportation)",
+		"exclusion5": "Cash equivalent of unused leaves",
+		"taxabilityTitle": "Taxability (₱90,000 Exemption Limit)",
+		"taxabilityDesc": "Under the TRAIN Law, the 13th month pay and other equivalent bonuses are tax-exempt up to ₱90,000. Any amount exceeding this limit is added to your taxable income for the year."
 	}
 }

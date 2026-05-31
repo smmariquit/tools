@@ -36,5 +36,32 @@
 		"chartSSS": "SSS",
 		"chartPhilhealth": "PhilHealth",
 		"chartPagibig": "Pag-IBIG"
+	},
+	"ThirteenthMonth": {
+		"title": "13th Month Pay Calculator",
+		"subtitle": "Alamin kung magkano ang 13th month pay mo, at check na rin natin kung lalagpas sa ₱90k na tax exemption limit.",
+		"detailsTitle": "Detalye Mo",
+		"basicSalaryLabel": "Buwanang Basic Salary (PHP)",
+		"basicSalaryHint": "Wag isama ang overtime, holiday pay, at allowances.",
+		"monthsWorkedLabel": "Ilang buwan ka nagtrabaho this year?",
+		"unpaidAbsencesLabel": "Total ng Unpaid Absences (Bawas in PHP)",
+		"resultsTitle": "Computed 13th Month Pay",
+		"totalEarned": "Total Basic Salary Earned",
+		"formula": "Formula",
+		"formulaDesc": "Total Earned ÷ 12",
+		"netPay": "Net 13th Month Pay Mo",
+		"trainStatus": "TRAIN Law Tax Status",
+		"taxExempt": "Tax-Exempt Portion (Max ₱90k)",
+		"taxable": "Taxable Portion (Dagdag sa Gross)",
+		"howComputedTitle": "Paano ba kinocompute ang 13th Month Pay?",
+		"howComputedDesc": "Ayon sa batas (P.D. 851), ang 13th month pay mo ay eksaktong 1/12th ng total <strong>basic salary</strong> na kinita mo sa buong taon.",
+		"exclusionsTitle": "Hindi Kasama sa Basic Salary",
+		"exclusion1": "Overtime Pay",
+		"exclusion2": "Holiday Pay",
+		"exclusion3": "Night Shift Differential (NSD)",
+		"exclusion4": "Allowances (COLA, Transportation)",
+		"exclusion5": "Cash equivalent ng unused leaves",
+		"taxabilityTitle": "Taxability (₱90,000 Exemption Limit)",
+		"taxabilityDesc": "Under the TRAIN Law, tax-exempt o walang bawas ang 13th month pay mo at iba pang bonuses hanggang ₱90,000. Pag sumobra diyan, yung excess ay isasama na sa taxable income mo for the year."
 	}
 }

@@ -89,7 +89,7 @@ a:hover {
 }
 
 .btn-secondary {
-	background-color: white;
+	background-color: var(--surface-color);
 	color: var(--primary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-sm);
@@ -104,8 +104,8 @@ a:hover {
 }
 
 .btn-secondary:hover {
-	background-color: #f8f9fa;
-	border-color: #cecece;
+	background-color: var(--bg-color);
+	border-color: var(--text-secondary);
 	text-decoration: none;
 }
 

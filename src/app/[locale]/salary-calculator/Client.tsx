@@ -369,6 +369,8 @@ export default function SalaryCalculator() {
 									outerRadius={100}
 									paddingAngle={2}
 									dataKey="value"
+									label={({ value }) => formatCurrency(value)}
+									labelLine={false}
 								>
 									{chartData.map((entry, index) => (
 										<Cell key={`cell-${index}`} fill={entry.color} />

@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
 
 export default function ThirteenthMonthClient() {
+	const t = useTranslations("ThirteenthMonth");
 	const [basicSalaryStr, setBasicSalaryStr] = useState("30000");
 	const [monthsWorkedStr, setMonthsWorkedStr] = useState("12");
 	const [unpaidAbsencesStr, setUnpaidAbsencesStr] = useState("0");
@@ -41,11 +43,8 @@ export default function ThirteenthMonthClient() {
 				>
 					&larr; Back to Tools
 				</Link>
-				<h1 className="page-title">13th Month Pay Calculator</h1>
-				<p className="page-subtitle">
-					Calculate your prorated 13th month pay and check if it exceeds the
-					₱90k tax exemption limit.
-				</p>
+				<h1 className="page-title">{t("title")}</h1>
+				<p className="page-subtitle">{t("subtitle")}</p>
 			</div>
 
 			<AdBanner dataAdSlot="13th-month-top" />
@@ -61,12 +60,12 @@ export default function ThirteenthMonthClient() {
 							paddingBottom: "8px",
 						}}
 					>
-						Your Details
+						{t("detailsTitle")}
 					</h2>
 
 					<div className="form-group">
 						<label className="form-label" htmlFor="basicSalary">
-							Monthly Basic Salary (PHP)
+							{t("basicSalaryLabel")}
 						</label>
 						<input
 							type="number"
@@ -77,13 +76,13 @@ export default function ThirteenthMonthClient() {
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
-							Exclude overtime, holiday pay, and allowances.
+							{t("basicSalaryHint")}
 						</p>
 					</div>
 
 					<div className="form-group" style={{ marginTop: "16px" }}>
 						<label className="form-label" htmlFor="monthsWorked">
-							Months Worked This Year
+							{t("monthsWorkedLabel")}
 						</label>
 						<input
 							type="number"
@@ -98,7 +97,7 @@ export default function ThirteenthMonthClient() {
 
 					<div className="form-group" style={{ marginTop: "16px" }}>
 						<label className="form-label" htmlFor="unpaidAbsences">
-							Total Unpaid Absences (PHP Deduction)
+							{t("unpaidAbsencesLabel")}
 						</label>
 						<input
 							type="number"
@@ -122,7 +121,7 @@ export default function ThirteenthMonthClient() {
 							color: "var(--primary)",
 						}}
 					>
-						Computed 13th Month Pay
+						{t("resultsTitle")}
 					</h2>
 
 					<div
@@ -136,7 +135,7 @@ export default function ThirteenthMonthClient() {
 							border: "1px solid var(--border-color)",
 						}}
 					>
-						<span style={{ fontWeight: 500 }}>Total Basic Salary Earned</span>
+						<span style={{ fontWeight: 500 }}>{t("totalEarned")}</span>
 						<strong style={{ color: "var(--text-primary)" }}>
 							{formatCurrency(totalEarned)}
 						</strong>
@@ -150,8 +149,8 @@ export default function ThirteenthMonthClient() {
 							fontSize: "14px",
 						}}
 					>
-						<span>Formula</span>
-						<span>Total Earned ÷ 12</span>
+						<span>{t("formula")}</span>
+						<span>{t("formulaDesc")}</span>
 					</div>
 
 					<div
@@ -166,7 +165,7 @@ export default function ThirteenthMonthClient() {
 							color: "var(--text-primary)",
 						}}
 					>
-						<span>Net 13th Month Pay</span>
+						<span>{t("netPay")}</span>
 						<span style={{ color: "#1b5e20" }}>
 							{formatCurrency(thirteenthMonthPay)}
 						</span>
@@ -188,7 +187,7 @@ export default function ThirteenthMonthClient() {
 								textTransform: "uppercase",
 							}}
 						>
-							TRAIN Law Tax Status
+							{t("trainStatus")}
 						</h3>
 						<div
 							style={{
@@ -198,7 +197,7 @@ export default function ThirteenthMonthClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Tax-Exempt Portion (Max ₱90k)</span>
+							<span>{t("taxExempt")}</span>
 							<span style={{ color: "#1b5e20" }}>
 								{formatCurrency(taxExemptAmount)}
 							</span>
@@ -210,7 +209,7 @@ export default function ThirteenthMonthClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Taxable Portion (Added to Gross)</span>
+							<span>{t("taxable")}</span>
 							<span
 								style={{
 									color:
@@ -233,17 +232,16 @@ export default function ThirteenthMonthClient() {
 				}}
 			>
 				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How is 13th Month Pay Computed?
+					{t("howComputedTitle")}
 				</h2>
-				<p style={{ marginBottom: "16px" }}>
-					By Philippine Law (P.D. 851), your 13th month pay is strictly 1/12th
-					of the total <strong>basic salary</strong> you earned within a
-					calendar year.
-				</p>
+				<p
+					style={{ marginBottom: "16px" }}
+					dangerouslySetInnerHTML={{ __html: t.raw("howComputedDesc") }}
+				/>
 				<h3
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					Exclusions from Basic Salary
+					{t("exclusionsTitle")}
 				</h3>
 				<ul
 					style={{
@@ -252,22 +250,18 @@ export default function ThirteenthMonthClient() {
 						lineHeight: "1.6",
 					}}
 				>
-					<li>Overtime Pay</li>
-					<li>Holiday Pay</li>
-					<li>Night Shift Differential (NSD)</li>
-					<li>Allowances (COLA, Transportation)</li>
-					<li>Cash equivalent of unused leaves</li>
+					<li>{t("exclusion1")}</li>
+					<li>{t("exclusion2")}</li>
+					<li>{t("exclusion3")}</li>
+					<li>{t("exclusion4")}</li>
+					<li>{t("exclusion5")}</li>
 				</ul>
 				<h3
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					Taxability (₱90,000 Exemption Limit)
+					{t("taxabilityTitle")}
 				</h3>
-				<p style={{ marginBottom: "16px" }}>
-					Under the TRAIN Law, the 13th month pay and other equivalent bonuses
-					are tax-exempt up to ₱90,000. Any amount exceeding this limit is added
-					to your taxable income for the year.
-				</p>
+				<p style={{ marginBottom: "16px" }}>{t("taxabilityDesc")}</p>
 			</div>
 		</div>
 	);
