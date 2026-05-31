@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { ThemeToggle } from "../../../components/ThemeToggle";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import Logo from "../../components/Logo";
@@ -10,6 +11,9 @@ import Logo from "../../components/Logo";
 export default function Navbar() {
 	const t = useTranslations("Navigation");
 	const [isOpen, setIsOpen] = useState(false);
+	const router = useRouter();
+	const pathname = usePathname();
+	const [query, setQuery] = useState("");
 
 	return (
 		<header
@@ -46,6 +50,32 @@ export default function Navbar() {
 					<span>PHTools</span>
 				</Link>
 
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							const parts = (pathname || "").split("/").filter(Boolean);
+							const localePrefix = parts.length ? `/${parts[0]}` : "";
+							const qs = encodeURIComponent(query.trim());
+							if (qs.length) router.push(`${localePrefix}/search?query=${qs}`);
+						}}
+						style={{ marginLeft: "12px", marginRight: "12px" }}
+						role="search"
+					>
+						<input
+							aria-label="Search tools"
+							placeholder={t("searchPlaceholder")}
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+							style={{
+								padding: "8px 10px",
+								borderRadius: 6,
+								border: "1px solid var(--border-color)",
+								minWidth: 200,
+								background: "var(--surface-color)",
+								color: "var(--text-primary)",
+							}}
+						/>
+					</form>
 				<button
 					className="mobile-menu-btn"
 					onClick={() => setIsOpen(!isOpen)}

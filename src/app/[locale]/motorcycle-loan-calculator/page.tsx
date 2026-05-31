@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import MotorcycleLoanClient from "./Client";
 
@@ -19,5 +20,5 @@ export default function Page({
 	params: { locale: string };
 }) {
 	setRequestLocale(locale);
-	return <MotorcycleLoanClient />;
+	return <Suspense fallback={<div className="loading">Loading...</div>}><MotorcycleLoanClient /></Suspense>;
 }

@@ -192,6 +192,24 @@ export const toolCategories = [
 				desc: "Calculate your general average and passing status for NLE, CE, MTLE, and CPALE.",
 				priority: 0.9,
 			},
+			{
+				name: "Latin Honors Calculator",
+				path: "/latin-honors-calculator",
+				desc: "Check if your GWA qualifies for Cum Laude at UP, PUP, UST, Ateneo, or DLSU.",
+				priority: 0.9,
+			},
+			{
+				name: "DOST-SEI Scholarship Stipend Calculator",
+				path: "/dost-scholarship-stipend-calculator",
+				desc: "Calculate your exact yearly DOST scholarship benefits and stipend breakdown.",
+				priority: 0.9,
+			},
+			{
+				name: "QPI / GPA Calculator (4.0 Scale)",
+				path: "/qpi-gpa-calculator",
+				desc: "Calculate your Ateneo QPI or DLSU CGPA with the 4.0 grading scale.",
+				priority: 0.8,
+			},
 		],
 	},
 	{

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import SssPensionClient from "./Client";
@@ -19,5 +20,5 @@ export async function generateMetadata({
 }
 
 export default function SssPensionCalculatorPage() {
-	return <SssPensionClient />;
+	return <Suspense fallback={<div className="loading">Loading...</div>}><SssPensionClient /></Suspense>;
 }

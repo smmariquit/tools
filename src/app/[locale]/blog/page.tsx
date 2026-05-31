@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { getAllPostsMeta, type PostMeta } from "../../../lib/mdx";
 

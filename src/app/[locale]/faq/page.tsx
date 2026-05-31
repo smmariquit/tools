@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 
 import Link from "next/link";
 import { useState } from "react";

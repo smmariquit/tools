@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import DFAAgeClient from "./Client";
 
@@ -19,5 +20,5 @@ export default function Page({
 	params: { locale: string };
 }) {
 	setRequestLocale(locale);
-	return <DFAAgeClient />;
+	return <Suspense fallback={<div className="loading">Loading...</div>}><DFAAgeClient /></Suspense>;
 }

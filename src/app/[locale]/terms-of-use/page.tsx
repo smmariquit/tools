@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 export default function TermsOfUse() {
 	return (
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>

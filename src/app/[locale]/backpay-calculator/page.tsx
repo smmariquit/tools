@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import BackpayClient from "./Client";
@@ -19,5 +20,5 @@ export async function generateMetadata({
 }
 
 export default function BackpayCalculatorPage() {
-	return <BackpayClient />;
+	return <Suspense fallback={<div className="loading">Loading...</div>}><BackpayClient /></Suspense>;
 }
