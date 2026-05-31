@@ -230,5 +230,24 @@
 		"warningMinimum": "You need at least 10 years of service (120 contributions) to qualify for a monthly pension. Otherwise, you will only receive a lump-sum amount.",
 		"totalAt80": "Total Payout by Age 80",
 		"totalAt80Hint": "If you retire at 60 and live until 80, this is your total estimated cash received."
+	},
+	"DigitalBank": {
+		"title": "Digital Bank Interest Calculator",
+		"subtitle": "Compare high-yield savings accounts across 10 top digital banks in the Philippines. Factors in the 20% withholding tax.",
+		"inputDetails": "Savings Details",
+		"initialDeposit": "Initial Deposit (PHP)",
+		"initialDepositHint": "Your starting balance",
+		"monthlyAddition": "Monthly Addition (PHP)",
+		"monthlyAdditionHint": "Amount you plan to add every month",
+		"selectBank": "Select Digital Bank",
+		"interestRate": "Annual Interest Rate (% p.a.)",
+		"interestRateHint": "You can manually adjust this if you have a promo rate.",
+		"years": "Years to Grow",
+		"resultsTitle": "Growth Projection",
+		"totalBalance": "Total Balance",
+		"totalDeposits": "Total Deposits Made",
+		"netInterestEarned": "Net Interest Earned",
+		"taxDeducted": "20% Tax Deducted",
+		"note": "Note: Real-world results may vary slightly due to daily vs monthly compounding exact days, but this provides a highly accurate estimate. Philippine banks apply a 20% final withholding tax on interest earned."
 	}
 }

@@ -230,5 +230,24 @@
 		"warningMinimum": "Kailangan mo ng at least 10 years of service (120 hulog) para magka-monthly pension. Kung hindi aabot, lump-sum (isahang bigay) lang ang makukuha mo.",
 		"totalAt80": "Total Payout Hanggang Edad 80",
 		"totalAt80Hint": "Kung mag-retire ka ng 60 at umabot ng 80, ito ang kabuuang pera na matatanggap mo."
+	},
+	"DigitalBank": {
+		"title": "Digital Bank Interest Calculator",
+		"subtitle": "I-kumpara ang kikitain ng pera mo sa 10 digital banks sa Pilipinas. Kasama na rito ang bawas na 20% withholding tax.",
+		"inputDetails": "Detalye ng Ipon Mo",
+		"initialDeposit": "Initial Deposit (PHP)",
+		"initialDepositHint": "Yung unang halaga na ilalagay mo",
+		"monthlyAddition": "Monthly Addition (PHP)",
+		"monthlyAdditionHint": "Yung halagang idadagdag mo buwan-buwan",
+		"selectBank": "Pumili ng Digital Bank",
+		"interestRate": "Annual Interest Rate (% p.a.)",
+		"interestRateHint": "Pwede mo itong baguhin kung may special promo rate ka.",
+		"years": "Ilang Taon Iipunin?",
+		"resultsTitle": "Expected Growth",
+		"totalBalance": "Total Balance",
+		"totalDeposits": "Total na Hinulog Mo",
+		"netInterestEarned": "Net Interest na Kinita (Tubo)",
+		"taxDeducted": "20% Tax na Binawas",
+		"note": "Note: Pwedeng may onting diperensya sa totoong buhay dahil sa exact days ng daily compounding, pero highly accurate estimate ito. Ang mga bangko sa Pilipinas ay may automatic na 20% withholding tax sa lahat ng interest na kinikita."
 	}
 }

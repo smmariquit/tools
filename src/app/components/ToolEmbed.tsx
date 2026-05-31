@@ -17,6 +17,9 @@ const tools = {
 	"amilyar-calculator": dynamic(
 		() => import("../[locale]/amilyar-calculator/Client"),
 	),
+	"digital-bank-calculator": dynamic(
+		() => import("../[locale]/digital-bank-calculator/Client"),
+	),
 	"electric-bill-calculator": dynamic(
 		() => import("../[locale]/electric-bill-calculator/Client"),
 	),

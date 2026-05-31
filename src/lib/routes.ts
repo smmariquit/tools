@@ -69,6 +69,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Digital Bank Interest Calculator",
+				path: "/digital-bank-calculator",
+				desc: "Compare high-yield savings (Maya, SeaBank, Gotyme) and calculate net interest after 20% tax.",
+				priority: 0.9,
+			},
+			{
 				name: "TikTok, Shopee & Lazada Fee Calculator",
 				path: "/shopee-lazada-fee-calculator",
 				desc: "Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout.",
