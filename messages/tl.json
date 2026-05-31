@@ -782,6 +782,18 @@
 		"sss-maternity-benefit-calculator": {
 			"name": "SSS Maternity Benefit Estimator",
 			"desc": "Kwentahin ang inaasahang SSS Maternity Cash Benefit."
+		},
+		"bir-donors-tax-calculator": {
+			"name": "BIR Donor's Tax Cumulative Calculator",
+			"desc": "Kwentahin ang iyong cumulative donor's tax liability."
+		},
+		"architectural-fee-calculator": {
+			"name": "Architectural Fee Calculator (UAP SPP 202)",
+			"desc": "Kwentahin ang minimum basic fees para sa architectural design."
+		},
+		"customs-brokerage-fee-calculator": {
+			"name": "Standard Customs Brokerage Fee Calculator",
+			"desc": "Kwentahin ang minimum professional fees para sa customs brokers."
 		}
 	}
 }

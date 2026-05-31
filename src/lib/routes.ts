@@ -141,6 +141,24 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "BIR Donor's Tax Cumulative Calculator",
+				path: "/bir-donors-tax-calculator",
+				desc: "Calculate your cumulative donor's tax liability based on the BIR TRAIN Law (RA 10963).",
+				priority: 0.9,
+			},
+			{
+				name: "Architectural Fee Calculator (UAP SPP 202)",
+				path: "/architectural-fee-calculator",
+				desc: "Calculate minimum basic fees for architectural design based on UAP SPP 202.",
+				priority: 0.9,
+			},
+			{
+				name: "Standard Customs Brokerage Fee Calculator",
+				path: "/customs-brokerage-fee-calculator",
+				desc: "Calculate minimum professional fees for customs brokers under CAO No. 1-2001.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

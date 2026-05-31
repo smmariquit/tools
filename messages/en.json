@@ -782,6 +782,18 @@
 		"sss-maternity-benefit-calculator": {
 			"name": "SSS Maternity Benefit Estimator",
 			"desc": "Calculate your expected SSS Maternity Cash Benefit based on the Expanded Maternity Leave Law."
+		},
+		"bir-donors-tax-calculator": {
+			"name": "BIR Donor's Tax Cumulative Calculator",
+			"desc": "Calculate your cumulative donor's tax liability based on the BIR TRAIN Law (RA 10963)."
+		},
+		"architectural-fee-calculator": {
+			"name": "Architectural Fee Calculator (UAP SPP 202)",
+			"desc": "Calculate minimum basic fees for architectural design based on UAP SPP 202."
+		},
+		"customs-brokerage-fee-calculator": {
+			"name": "Standard Customs Brokerage Fee Calculator",
+			"desc": "Calculate minimum professional fees for customs brokers under CAO No. 1-2001."
 		}
 	}
 }

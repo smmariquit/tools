@@ -35,6 +35,9 @@ const toolToBlogMap: Record<string, string> = {
 	"/de-minimis-tax-calculator": "/blog/de-minimis-benefits-guide",
 	"/lto-registration-fee-calculator": "/blog/lto-registration-renewal-guide",
 	"/sss-maternity-benefit-calculator": "/blog/sss-maternity-benefit-guide",
+	"/bir-donors-tax-calculator": "/blog/bir-donors-tax-guide",
+	"/architectural-fee-calculator": "/blog/architectural-fee-guide",
+	"/customs-brokerage-fee-calculator": "/blog/customs-brokerage-fee-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
