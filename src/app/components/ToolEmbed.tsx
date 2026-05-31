@@ -11,6 +11,9 @@ const tools = {
 	"13th-month-pay-calculator": dynamic(
 		() => import("../[locale]/13th-month-pay-calculator/Client"),
 	),
+	"backpay-calculator": dynamic(
+		() => import("../[locale]/backpay-calculator/Client"),
+	),
 	"amilyar-calculator": dynamic(
 		() => import("../[locale]/amilyar-calculator/Client"),
 	),

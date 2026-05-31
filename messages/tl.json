@@ -168,5 +168,28 @@
 		"principal": "Principal",
 		"interest": "Tubo (Interest)",
 		"remainingBalance": "Natitirang Balance"
+	},
+	"BackpayCalculator": {
+		"title": "Final Pay & Backpay Calculator",
+		"subtitle": "Kalkulahin ang estimated na prorated 13th month, converted leaves, at final pay mo pagkatapos mag-resign.",
+		"salaryDetails": "Detalye ng Sweldo",
+		"monthlySalary": "Basic Monthly Salary (PHP)",
+		"monthlySalaryHint": "Ang basic pay mo minus allowance",
+		"daysWorked": "Unpaid Days Worked",
+		"daysWorkedHint": "Ilang araw ka pumasok sa final cut-off na hindi pa nababayaran",
+		"prorated13th": "Detalye ng Prorated 13th Month",
+		"monthsWorked": "Months Worked ngayong Taon",
+		"monthsWorkedHint": "Ilang buwan ka pumasok mula Jan 1 hanggang sa last day mo",
+		"leaveConversion": "Leave Conversions",
+		"unusedLeaves": "Unused Convertible Leaves",
+		"unusedLeavesHint": "Total VLs/SLs na pwedeng i-convert to cash (i-check ang company policy)",
+		"leaveValue": "Value ng Leave Conversion",
+		"otherDeductions": "Deductions & Cash Advances",
+		"totalDeductions": "Total Deductions (PHP)",
+		"totalDeductionsHint": "Unliquidated cash advance, company loans, final withholding tax, etc.",
+		"resultsTitle": "Estimated Final Pay",
+		"unpaidSalary": "Unpaid Salary (Huling Sweldo)",
+		"prorated13thAmount": "Prorated 13th Month Pay",
+		"totalBackpay": "Total Estimated Backpay"
 	}
 }

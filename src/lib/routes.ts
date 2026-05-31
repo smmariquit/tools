@@ -39,9 +39,15 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
-				name: "13th Month & Final Pay Calculator",
+				name: "13th Month Calculator",
 				path: "/13th-month-pay-calculator",
-				desc: "Compute your prorated 13th month, separation pay, and final back pay.",
+				desc: "Compute your prorated 13th month and tax exemptions.",
+				priority: 0.8,
+			},
+			{
+				name: "Final Pay (Backpay) Calculator",
+				path: "/backpay-calculator",
+				desc: "Estimate your final pay, prorated 13th month, and leave conversions after resigning.",
 				priority: 0.8,
 			},
 			{

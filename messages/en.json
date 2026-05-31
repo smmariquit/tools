@@ -168,5 +168,28 @@
 		"principal": "Principal",
 		"interest": "Interest",
 		"remainingBalance": "Remaining Balance"
+	},
+	"BackpayCalculator": {
+		"title": "Final Pay & Backpay Calculator",
+		"subtitle": "Estimate your prorated 13th month, leave conversions, and final pay after resignation in the Philippines.",
+		"salaryDetails": "Salary & Basic Details",
+		"monthlySalary": "Basic Monthly Salary (PHP)",
+		"monthlySalaryHint": "Your basic pay without allowances",
+		"daysWorked": "Unpaid Days Worked",
+		"daysWorkedHint": "Days worked in your final cut-off that haven't been paid",
+		"prorated13th": "Prorated 13th Month Details",
+		"monthsWorked": "Months Worked this Year",
+		"monthsWorkedHint": "Number of months worked from Jan 1 up to your last day",
+		"leaveConversion": "Leave Conversions",
+		"unusedLeaves": "Unused Convertible Leaves",
+		"unusedLeavesHint": "Total VLs/SLs convertible to cash (check company policy)",
+		"leaveValue": "Leave Conversion Value",
+		"otherDeductions": "Deductions & Cash Advances",
+		"totalDeductions": "Total Deductions (PHP)",
+		"totalDeductionsHint": "Unliquidated cash advances, remaining company loans, final tax, etc.",
+		"resultsTitle": "Estimated Final Pay",
+		"unpaidSalary": "Unpaid Salary",
+		"prorated13thAmount": "Prorated 13th Month Pay",
+		"totalBackpay": "Total Estimated Backpay"
 	}
 }
