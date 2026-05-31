@@ -9,6 +9,7 @@ export default function InvoiceFactoringClient() {
 	const [discountRateMonthly, setDiscountRateMonthly] = useState(2.0); // 2% per month
 	const [daysOutstanding, setDaysOutstanding] = useState(60);
 	const [processingFee, setProcessingFee] = useState(1500);
+	const [hasAgreed, setHasAgreed] = useState(false);
 
 	// Formula calculations
 	const discountRateDaily = (discountRateMonthly / 100) / 30;
@@ -30,6 +31,24 @@ export default function InvoiceFactoringClient() {
 				subtitle="Calculate Net Present Value (NPV), discount fees, and APR when selling unpaid invoices for working capital."
 			/>
 			
+			{!hasAgreed ? (
+				<div className="card" style={{ marginTop: "24px", border: "2px solid #f59e0b", backgroundColor: "rgba(245, 158, 11, 0.05)" }}>
+					<h2 style={{ fontSize: "20px", color: "#d97706", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+						FINANCIAL DISCLAIMER
+					</h2>
+					<p style={{ marginBottom: "12px", lineHeight: 1.6 }}>
+						This calculator is provided for <strong>estimation and educational purposes only</strong>. It is not financial advice. 
+					</p>
+					<p style={{ marginBottom: "16px", lineHeight: 1.6 }}>
+						The developers of PHTools <strong>assume no liability</strong> for any financial decisions, commercial agreements, or losses incurred based on the outputs of this tool. Factoring contracts can contain hidden fees (recourse vs non-recourse, holding periods, hidden bank charges) that are not accounted for in this basic NPV calculation. Always consult a certified financial professional or thoroughly review your financing contract.
+					</p>
+					<div style={{ display: "flex", alignItems: "center", gap: "12px", marginTop: "24px", padding: "16px", backgroundColor: "var(--bg-color)", borderRadius: "8px", border: "1px solid var(--border-color)" }}>
+						<input type="checkbox" id="agree" style={{ width: "20px", height: "20px", cursor: "pointer" }} onChange={(e) => { if(e.target.checked) setHasAgreed(true) }} />
+						<label htmlFor="agree" style={{ fontSize: "14px", fontWeight: "bold", cursor: "pointer" }}>I have read and understood the disclaimer. I accept full responsibility for my financial decisions.</label>
+					</div>
+				</div>
+			) : (
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
@@ -92,6 +111,7 @@ export default function InvoiceFactoringClient() {
 					</div>
 				</div>
 			</div>
+			)}
 		</ToolLayout>
 	);
 }
