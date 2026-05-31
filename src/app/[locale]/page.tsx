@@ -2,13 +2,16 @@ import Link from "next/link";
 
 import { toolCategories } from "../../lib/routes";
 
+import { useTranslations } from 'next-intl';
+
 export default function Home() {
+  const t = useTranslations('Index');
   return (
     <>
       <div className="page-header" style={{ textAlign: "center", borderBottom: "none", marginBottom: "48px" }}>
-        <h1 className="page-title" style={{ fontSize: "36px", marginBottom: "16px" }}>Free Online Tools for Filipinos</h1>
+        <h1 className="page-title" style={{ fontSize: "36px", marginBottom: "16px" }}>{t('title')}</h1>
         <p className="page-subtitle" style={{ maxWidth: "600px", margin: "0 auto", fontSize: "18px", marginBottom: "24px" }}>
-          Accurate calculators, generators, and utilities designed specifically for the Philippines.
+          {t('subtitle')}
         </p>
         <div style={{ 
           display: "inline-flex", 
@@ -26,7 +29,7 @@ export default function Home() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
           </svg>
-          Works Offline (PWA Supported)
+          {t('worksOffline')}
         </div>
       </div>
 

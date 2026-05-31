@@ -1,14 +1,40 @@
 {
   "Index": {
-    "title": "Mga Libreng Tools para sa Pinoy",
-    "subtitle": "Accurate na mga calculator, generator, at utilities na ginawa specifically para sa Pilipinas."
+    "title": "Libreng Tools Para sa mga Pinoy",
+    "subtitle": "Mga accurate na calculator, generator, at utilities na ginawa specifically para sa Pinas. Try mo na ba?",
+    "worksOffline": "Works Offline Na Pala (PWA)"
   },
   "Navigation": {
     "tools": "Mga Tools",
-    "blog": "Blog",
+    "blog": "Blog Naman",
     "salary": "Sweldo",
     "13thMonth": "13th Month",
     "pagibig": "Pag-IBIG/MP2",
     "idPhoto": "ID Photo"
+  },
+  "SalaryCalculator": {
+    "shareText": "Share Mo Computation",
+    "shareTextCopied": "Na-copy na sa Clipboard!",
+    "detailsTitle": "Details Mo",
+    "grossSalaryLabel": "Gross Monthly Salary Mo (PHP)",
+    "grossSalaryPlaceholder": "e.g., 30000",
+    "grossSalaryHint": "Yung basic salary mo bago kaltasan.",
+    "resultsTitle": "Eto Na Ang Results",
+    "grossSalaryResult": "Gross Salary",
+    "mandatoryDeductions": "Mandatory Na Kaltas",
+    "sss": "SSS Contribution (5%)",
+    "philhealth": "PhilHealth (2.5%)",
+    "pagibig": "Pag-IBIG",
+    "totalContributions": "Total Na Kinaltas",
+    "taxableIncome": "Taxable Income",
+    "tax": "Withholding Tax (BIR)",
+    "netPay": "Net Take-Home Pay Mo",
+    "estimateDisclaimer": "* Estimate lang 'to based sa 2026 rates ha.",
+    "chartTitle": "Saan Napunta Sweldo Mo",
+    "chartNetPay": "Net Pay",
+    "chartTax": "Tax",
+    "chartSSS": "SSS",
+    "chartPhilhealth": "PhilHealth",
+    "chartPagibig": "Pag-IBIG"
   }
 }
