@@ -1,10 +1,18 @@
+export type EmploymentType =
+	| "Private"
+	| "Government"
+	| "Minimum Wage"
+	| "Self-Employed"
+	| "Kasambahay";
+
 export function computeSalary(
 	basicPayStr: string | null,
 	payrollPeriod: string = "Monthly",
 	taxableAllowanceStr: string | null = "0",
-	nonTaxableAllowanceStr: string | null = "0"
+	nonTaxableAllowanceStr: string | null = "0",
+	employmentType: EmploymentType = "Private",
 ) {
-	let basicPay = parseFloat(basicPayStr || "0") || 0;
+	const basicPay = parseFloat(basicPayStr || "0") || 0;
 	const taxableAllowance = parseFloat(taxableAllowanceStr || "0") || 0;
 	const nonTaxableAllowance = parseFloat(nonTaxableAllowanceStr || "0") || 0;
 
@@ -29,38 +37,100 @@ export function computeSalary(
 
 	const totalTaxableMonthly = monthlySalary + monthlyTaxableAllowance;
 
-	// Mandatory Contributions (based on Monthly Basic Pay typically, but if allowances are integrated into basic, it can vary. We use totalTaxableMonthly here for simplicity as standard practice)
-	const sssMSC = totalTaxableMonthly > 0 ? Math.min(Math.max(totalTaxableMonthly, 5000), 35000) : 0;
-	const sssDeduction = sssMSC * 0.05;
+	// Mandatory Contributions
+	let sssDeduction = 0;
+	let philhealthDeduction = 0;
+	let pagibigDeduction = 0;
 
-	const philhealthBase = totalTaxableMonthly > 0 ? Math.min(Math.max(totalTaxableMonthly, 10000), 100000) : 0;
-	const philhealthDeduction = philhealthBase * 0.025;
+	if (
+		employmentType === "Private" ||
+		employmentType === "Minimum Wage" ||
+		employmentType === "Kasambahay"
+	) {
+		// SSS
+		const sssMSC =
+			totalTaxableMonthly > 0
+				? Math.min(Math.max(totalTaxableMonthly, 5000), 35000)
+				: 0;
+		sssDeduction = sssMSC * 0.05;
 
-	const pagibigDeduction = totalTaxableMonthly > 0 ? Math.min(totalTaxableMonthly * 0.02, 200) : 0;
+		if (employmentType === "Kasambahay" && totalTaxableMonthly < 5000) {
+			sssDeduction = 0; // Employer pays full if below 5000 for Kasambahay
+		}
 
-	const totalContributions = sssDeduction + philhealthDeduction + pagibigDeduction;
+		// PhilHealth
+		const philhealthBase =
+			totalTaxableMonthly > 0
+				? Math.min(Math.max(totalTaxableMonthly, 10000), 100000)
+				: 0;
+		philhealthDeduction = philhealthBase * 0.025;
+
+		if (employmentType === "Kasambahay") {
+			philhealthDeduction = 0; // Kasambahay Philhealth is paid by employer
+		}
+
+		// Pag-IBIG
+		pagibigDeduction =
+			totalTaxableMonthly > 0 ? Math.min(totalTaxableMonthly * 0.02, 200) : 0;
+		if (employmentType === "Kasambahay" && totalTaxableMonthly <= 5000) {
+			pagibigDeduction = 0; // Employer pays full if <= 5000
+		}
+	} else if (employmentType === "Government") {
+		// GSIS is exactly 9% of basic salary
+		sssDeduction = monthlySalary * 0.09; // Use sssDeduction variable for GSIS in UI
+
+		// PhilHealth is the same
+		const philhealthBase =
+			totalTaxableMonthly > 0
+				? Math.min(Math.max(totalTaxableMonthly, 10000), 100000)
+				: 0;
+		philhealthDeduction = philhealthBase * 0.025;
+
+		// Pag-IBIG is typically 100 or 2% of basic up to 5000 (which is 100)
+		pagibigDeduction = 100;
+	} else if (employmentType === "Self-Employed") {
+		// Self-employed pays full contributions voluntarily, we'll assume they pay them manually
+		// but standard "net pay" from clients doesn't deduct this automatically.
+		sssDeduction = 0;
+		philhealthDeduction = 0;
+		pagibigDeduction = 0;
+	}
+
+	const totalContributions =
+		sssDeduction + philhealthDeduction + pagibigDeduction;
 	const taxableIncome = Math.max(0, totalTaxableMonthly - totalContributions);
 
 	// Tax computation (Monthly based on Jan 2023 TRAIN Law)
 	let tax = 0;
-	if (taxableIncome > 666667) {
-		tax = 183541.67 + (taxableIncome - 666667) * 0.35;
-	} else if (taxableIncome > 166667) {
-		tax = 33541.67 + (taxableIncome - 166667) * 0.3;
-	} else if (taxableIncome > 66667) {
-		tax = 8541.67 + (taxableIncome - 66667) * 0.25;
-	} else if (taxableIncome > 33333) {
-		tax = 1875 + (taxableIncome - 33333) * 0.2;
-	} else if (taxableIncome > 20833) {
-		tax = (taxableIncome - 20833) * 0.15;
+
+	if (employmentType === "Minimum Wage" || employmentType === "Kasambahay") {
+		tax = 0; // Tax Exempt
+	} else if (employmentType === "Self-Employed") {
+		// Simplified 8% Flat Tax on gross in excess of 250k annually (20,833 monthly)
+		if (totalTaxableMonthly > 20833.33) {
+			tax = (totalTaxableMonthly - 20833.33) * 0.08;
+		}
+	} else {
+		if (taxableIncome > 666667) {
+			tax = 183541.67 + (taxableIncome - 666667) * 0.35;
+		} else if (taxableIncome > 166667) {
+			tax = 33541.67 + (taxableIncome - 166667) * 0.3;
+		} else if (taxableIncome > 66667) {
+			tax = 8541.67 + (taxableIncome - 66667) * 0.25;
+		} else if (taxableIncome > 33333) {
+			tax = 1875 + (taxableIncome - 33333) * 0.2;
+		} else if (taxableIncome > 20833) {
+			tax = (taxableIncome - 20833) * 0.15;
+		}
 	}
 
-	const monthlyNetPay = totalTaxableMonthly - totalContributions - tax + monthlyNonTaxableAllowance;
+	const monthlyNetPay =
+		totalTaxableMonthly - totalContributions - tax + monthlyNonTaxableAllowance;
 
 	// Convert back to chosen period for display
-	let finalBasic = basicPay;
-	let finalTaxableAllow = taxableAllowance;
-	let finalNonTaxableAllow = nonTaxableAllowance;
+	const finalBasic = basicPay;
+	const finalTaxableAllow = taxableAllowance;
+	const finalNonTaxableAllow = nonTaxableAllowance;
 	let finalSSS = sssDeduction;
 	let finalPhilHealth = philhealthDeduction;
 	let finalPagibig = pagibigDeduction;

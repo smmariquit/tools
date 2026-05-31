@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import {
@@ -11,26 +12,35 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 } from "recharts";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { computeSalary, EmploymentType } from "../../../lib/salaryLogic";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
-import { computeSalary } from "../../../lib/salaryLogic";
 
-export default function SalaryCalculator({ initialSalary = "30000" }: { initialSalary?: string }) {
+export default function SalaryCalculator({
+	initialSalary = "30000",
+}: {
+	initialSalary?: string;
+}) {
 	const t = useTranslations("SalaryCalculator");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-	
+
 	const defaultSalary = searchParams.get("salary") || initialSalary;
 	const defaultPeriod = searchParams.get("period") || "Monthly";
 	const defaultTaxable = searchParams.get("taxable") || "";
 	const defaultNonTaxable = searchParams.get("nontaxable") || "";
+	const defaultEmploymentType =
+		(searchParams.get("empType") as EmploymentType) || "Private";
 
 	const [salaryStr, setSalaryStr] = useState(defaultSalary);
 	const [payrollPeriod, setPayrollPeriod] = useState(defaultPeriod);
 	const [taxableAllowance, setTaxableAllowance] = useState(defaultTaxable);
-	const [nonTaxableAllowance, setNonTaxableAllowance] = useState(defaultNonTaxable);
+	const [nonTaxableAllowance, setNonTaxableAllowance] =
+		useState(defaultNonTaxable);
+	const [employmentType, setEmploymentType] = useState<EmploymentType>(
+		defaultEmploymentType,
+	);
 	const [shareText, setShareText] = useState("Share Computation");
 	const [mounted, setMounted] = useState(false);
 
@@ -48,7 +58,13 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 		taxableIncome,
 		tax,
 		netPay,
-	} = computeSalary(salaryStr, payrollPeriod, taxableAllowance, nonTaxableAllowance);
+	} = computeSalary(
+		salaryStr,
+		payrollPeriod,
+		taxableAllowance,
+		nonTaxableAllowance,
+		employmentType,
+	);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -59,7 +75,9 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,6 +102,14 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 		const val = e.target.value;
 		setNonTaxableAllowance(val);
 		updateUrl({ nontaxable: val });
+	};
+
+	const handleEmploymentTypeChange = (
+		e: React.ChangeEvent<HTMLSelectElement>,
+	) => {
+		const val = e.target.value as EmploymentType;
+		setEmploymentType(val);
+		updateUrl({ empType: val });
 	};
 
 	const handleShare = async () => {
@@ -123,7 +149,11 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 	const chartData = [
 		{ name: t("chartNetPay"), value: netPay, color: "#1b5e20" },
 		{ name: t("chartTax"), value: tax, color: "#b71c1c" },
-		{ name: t("chartSSS"), value: sssDeduction, color: "#f57c00" },
+		{
+			name: employmentType === "Government" ? "GSIS" : t("chartSSS"),
+			value: sssDeduction,
+			color: "#f57c00",
+		},
 		{
 			name: t("chartPhilhealth"),
 			value: philhealthDeduction,
@@ -153,6 +183,23 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 					>
 						{t("detailsTitle")}
 					</h2>
+					<div className="form-group" style={{ marginBottom: "16px" }}>
+						<label className="form-label" htmlFor="employmentType">
+							Employment Type
+						</label>
+						<select
+							id="employmentType"
+							className="form-control"
+							value={employmentType}
+							onChange={handleEmploymentTypeChange}
+						>
+							<option value="Private">Private Sector</option>
+							<option value="Government">Government / Public Sector</option>
+							<option value="Minimum Wage">Minimum Wage Earner</option>
+							<option value="Self-Employed">Self-Employed / Freelancer</option>
+							<option value="Kasambahay">Kasambahay (Domestic Worker)</option>
+						</select>
+					</div>
 					<div className="form-group">
 						<label className="form-label" htmlFor="salary">
 							{t("grossSalaryLabel")}
@@ -220,11 +267,14 @@ export default function SalaryCalculator({ initialSalary = "30000" }: { initialS
 								display: "flex",
 								justifyContent: "space-between",
 								marginBottom: "8px",
-								fontSize: "14px",
 							}}
 						>
-							<span>{t("sss")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span
+								style={{ fontSize: "14px", color: "var(--text-secondary)" }}
+							>
+								{employmentType === "Government" ? "GSIS" : t("sss")}
+							</span>
+							<span style={{ fontSize: "14px", fontWeight: 500 }}>
 								- {formatCurrency(sssDeduction)}
 							</span>
 						</div>
