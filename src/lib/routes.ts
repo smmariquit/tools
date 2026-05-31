@@ -117,6 +117,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Food Cost & Pricing Calculator",
+				path: "/food-cost-calculator",
+				desc: "Calculate your recipe costs and find the perfect selling price with a target profit margin.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

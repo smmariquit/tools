@@ -27,8 +27,7 @@ export default function IDPhotoMaker() {
 		setIsRemovingBg(true);
 		try {
 			// Dynamically import to avoid SSR issues
-			const removeBackground = (await import("@imgly/background-removal"))
-				.default;
+			const { removeBackground } = await import("@imgly/background-removal");
 			const imageBlob = await removeBackground(originalImageSrc);
 			const url = URL.createObjectURL(imageBlob);
 			setImageSrc(url);

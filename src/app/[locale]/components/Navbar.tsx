@@ -15,32 +15,6 @@ export default function Navbar() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const [query, setQuery] = useState("");
-	const [isVisible, setIsVisible] = useState(true);
-	const [lastScrollY, setLastScrollY] = useState(0);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
-
-			if (window.innerWidth >= 900) {
-				setIsVisible(true);
-				setLastScrollY(currentScrollY);
-				return;
-			}
-
-			// Only hide if we scroll down and are past the header height
-			if (currentScrollY > lastScrollY && currentScrollY > 80) {
-				setIsVisible(false);
-				setIsOpen(false); // also close mobile menu if open
-			} else {
-				setIsVisible(true);
-			}
-			setLastScrollY(currentScrollY);
-		};
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastScrollY]);
 
 	return (
 		<header
@@ -49,9 +23,8 @@ export default function Navbar() {
 				borderBottom: "1px solid var(--border-color)",
 				padding: "16px 0",
 				position: "sticky",
-				top: isVisible ? 0 : "-100px",
+				top: 0,
 				zIndex: 1000,
-				transition: "top 0.3s ease-in-out",
 			}}
 		>
 			<div

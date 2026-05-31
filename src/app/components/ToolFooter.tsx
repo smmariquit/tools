@@ -31,6 +31,7 @@ const toolToBlogMap: Record<string, string> = {
 	"/fuel-cost-calculator": "/blog/philippine-fuel-cost-trip-calculator",
 	"/lto-penalty-calculator": "/blog/lto-late-registration-penalty",
 	"/toll-calculator": "/blog/philippine-toll-fees-guide",
+	"/food-cost-calculator": "/blog/food-costing-pricing-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
