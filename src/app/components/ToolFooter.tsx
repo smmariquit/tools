@@ -73,7 +73,12 @@ const toolToBlogMap: Record<string, string> = {
 	"/dfa-age-calculator": "/blog/dfa-age-requirements-guide",
 	"/bill-splitter-calculator": "/blog/how-to-split-bills-properly",
 
+	"/mlbb-diamond-calculator": "/blog/mlbb-diamond-topup-guide",
+	"/mlbb-winrate-calculator": "/blog/mlbb-winrate-guide",
+	"/codm-lucky-draw-calculator": "/blog/codm-lucky-draw-guide",
+	"/genshin-pity-calculator": "/blog/genshin-pity-guide",
 };
+
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
 	const t = useTranslations("ToolFooter");

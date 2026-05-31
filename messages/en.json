@@ -866,6 +866,22 @@
 		"digital-ticket-generator": {
 			"name": "Digital Ticketing QR Generator",
 			"desc": "Generate secure QR code tickets without a database."
+		},
+		"mlbb-diamond-calculator": {
+			"name": "MLBB Diamond Top-Up Optimizer",
+			"desc": "Find the best PHP-to-Diamond ratio across top-up sites."
+		},
+		"mlbb-winrate-calculator": {
+			"name": "MLBB Win Rate Calculator",
+			"desc": "Calculate consecutive wins needed for your target win rate."
+		},
+		"codm-lucky-draw-calculator": {
+			"name": "CODM Lucky Draw Estimator",
+			"desc": "Calculate the total CP and PHP cost of a Lucky Draw."
+		},
+		"genshin-pity-calculator": {
+			"name": "Genshin Pity & Primogem Calculator",
+			"desc": "Calculate pulls and PHP needed to guarantee a 5-star character."
 		}
 	}
 }

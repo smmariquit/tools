@@ -866,6 +866,22 @@
 		"digital-ticket-generator": {
 			"name": "Digital Ticketing QR Generator",
 			"desc": "Gumawa ng secure na QR ticket."
+		},
+		"mlbb-diamond-calculator": {
+			"name": "MLBB Diamond Top-Up Optimizer",
+			"desc": "Hanapin ang pinakamurang bentahan ng MLBB Diamonds."
+		},
+		"mlbb-winrate-calculator": {
+			"name": "MLBB Win Rate Calculator",
+			"desc": "Kwentahin kung ilang panalo kailangan para sa target win rate."
+		},
+		"codm-lucky-draw-calculator": {
+			"name": "CODM Lucky Draw Estimator",
+			"desc": "Kwentahin ang total na gastos sa CODM Lucky Draw."
+		},
+		"genshin-pity-calculator": {
+			"name": "Genshin Pity & Primogem Calculator",
+			"desc": "Kwentahin ang kailangang primogems para sa 5-star character."
 		}
 	}
 }
