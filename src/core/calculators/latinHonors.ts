@@ -33,9 +33,9 @@ export const SCHOOL_CONFIGS: Record<
 		scale: "1.0 – 5.0 (1.0 = Highest)",
 		lowerIsBetter: true,
 		honors: [
-			{ label: "Summa Cum Laude", cutoff: 1.2 },
-			{ label: "Magna Cum Laude", cutoff: 1.45 },
-			{ label: "Cum Laude", cutoff: 1.75 },
+			{ label: "Summa Cum Laude", cutoff: 1.15 },
+			{ label: "Magna Cum Laude", cutoff: 1.35 },
+			{ label: "Cum Laude", cutoff: 1.6 },
 		],
 	},
 	ust: {
