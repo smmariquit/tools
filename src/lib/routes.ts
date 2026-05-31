@@ -81,6 +81,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Freelance Hourly Rate Calculator",
+				path: "/freelance-rate-calculator",
+				desc: "Find out exactly how much to charge clients per hour to hit your net income goals.",
+				priority: 0.9,
+			},
+			{
 				name: "8% vs Graduated Tax Optimizer",
 				path: "/tax-optimizer-calculator",
 				desc: "Find out if 8% Flat Rate, OSD, or Itemized deductions will save you more money.",

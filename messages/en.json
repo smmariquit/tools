@@ -328,5 +328,26 @@
 		"daysAllocated": "Compensable Days",
 		"maternityBenefit": "Estimated Maternity Benefit",
 		"note": "Note: You must have paid at least 3 monthly contributions in the 12-month period immediately preceding the semester of your delivery or miscarriage to qualify."
+	},
+	"FreelanceRate": {
+		"title": "Freelance Hourly Rate Calculator",
+		"subtitle": "Calculate the exact hourly rate you should charge as a freelancer to hit your target net income, covering taxes, expenses, and vacation days.",
+		"inputDetails": "Your Target Goals & Limits",
+		"targetNet": "Target Net Monthly Income (PHP)",
+		"targetNetHint": "The take-home money you want in your bank account every month after taxes and expenses.",
+		"monthlyExpenses": "Estimated Monthly Business Expenses (PHP)",
+		"monthlyExpensesHint": "Internet, software subscriptions, coworking space, electricity.",
+		"billableHours": "Target Billable Hours per Week",
+		"billableHoursHint": "Actual hours you can charge clients for (excluding admin work). Default is 30.",
+		"vacationDays": "Vacation / Sick Days per Year",
+		"vacationDaysHint": "Number of unpaid days off you plan to take.",
+		"resultsTitle": "Required Hourly Rate",
+		"grossAnnual": "Gross Annual Revenue Required",
+		"hoursPerYear": "Total Billable Hours per Year",
+		"hoursSuffix": "hours",
+		"hourlyRatePhp": "Target Hourly Rate (PHP)",
+		"hourlyRateUsd": "Target Hourly Rate (USD)",
+		"exchangeRateNote": "Based on an estimated exchange rate of $1 = ₱56.",
+		"note": "Note: This calculation automatically reverse-engineers the BIR 8% flat rate tax (if exceeding ₱250,000 gross) so you are guaranteed your target net income."
 	}
 }

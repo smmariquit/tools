@@ -328,5 +328,26 @@
 		"daysAllocated": "Bilang ng Araw na Bayad",
 		"maternityBenefit": "Estimated Maternity Benefit Mo",
 		"note": "Note: Kailangan may naihulog kang at least 3 buwan sa loob ng 12-month period bago ang semester ng iyong panganganak o pagkakunan para maging qualified."
+	},
+	"FreelanceRate": {
+		"title": "Freelance Hourly Rate Calculator",
+		"subtitle": "Kalkulahin kung magkano dapat ang hourly rate mo bilang freelancer para makuha ang target mong kita. Kasama na rito ang computation para sa tax, expenses, at leave.",
+		"inputDetails": "Mga Target Mo",
+		"targetNet": "Target Net Monthly Income (PHP)",
+		"targetNetHint": "Yung perang gusto mong naiuuwi at naiiwan sa bangko mo every month.",
+		"monthlyExpenses": "Estimated Monthly Business Expenses (PHP)",
+		"monthlyExpensesHint": "Internet, kuryente, software, at iba pang gastos sa trabaho.",
+		"billableHours": "Target Billable Hours per Week",
+		"billableHoursHint": "Ilang oras ka ba talagang may bayad (hindi kasama ang admin work/paghahanap ng client).",
+		"vacationDays": "Vacation / Sick Days sa Isang Taon",
+		"vacationDaysHint": "Ilang araw na unpaid leave ang plano mo.",
+		"resultsTitle": "Required Hourly Rate Mo",
+		"grossAnnual": "Required Gross Annual Revenue",
+		"hoursPerYear": "Total Billable Hours sa Isang Taon",
+		"hoursSuffix": "oras",
+		"hourlyRatePhp": "Target Hourly Rate (PHP)",
+		"hourlyRateUsd": "Target Hourly Rate (USD)",
+		"exchangeRateNote": "Base sa estimated exchange rate na $1 = ₱56.",
+		"note": "Note: Automatic nang kasama sa computation ang BIR 8% flat rate tax (kung lagpas ₱250k ang gross) para siguradong makukuha mo ang target net income mo."
 	}
 }
