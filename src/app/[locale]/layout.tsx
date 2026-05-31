@@ -12,6 +12,7 @@ import {
 import { ThemeProvider } from "../../components/ThemeProvider";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import OfflineToast from "../components/OfflineToast";
 import { PostHogProvider } from "./providers";
 
 const locales = ["en", "tl", "ceb"];
@@ -88,6 +89,8 @@ export default async function RootLayout({
 										display: "flex",
 										justifyContent: "space-between",
 										alignItems: "center",
+										flexWrap: "wrap",
+										gap: "16px",
 									}}
 								>
 									<Link
@@ -101,7 +104,14 @@ export default async function RootLayout({
 									>
 										<span style={{ color: "var(--primary)" }}>PH</span>Tools
 									</Link>
-									<nav style={{ display: "flex", gap: "20px" }}>
+									<nav
+										style={{
+											display: "flex",
+											gap: "16px",
+											alignItems: "center",
+											flexWrap: "wrap",
+										}}
+									>
 										<Link
 											href="/"
 											style={{
@@ -183,6 +193,7 @@ export default async function RootLayout({
 							>
 								<div className="container">{children}</div>
 							</main>
+							<OfflineToast />
 
 							<footer
 								style={{

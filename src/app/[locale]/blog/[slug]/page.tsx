@@ -26,6 +26,17 @@ export async function generateMetadata({
 	return {
 		title: `${meta.title} | PHTools Blog`,
 		description: meta.description,
+		openGraph: {
+			images: [
+				{
+					url: `/api/og?type=blog&title=${encodeURIComponent(
+						meta.title,
+					)}&desc=${encodeURIComponent(meta.description)}`,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
 	};
 }
 
@@ -140,8 +151,15 @@ export default async function BlogPost({
 						{meta.title}
 					</h1>
 					<p style={{ color: "var(--text-secondary)", fontSize: "14px" }}>
-						Published on{" "}
+						<strong>Published:</strong>{" "}
 						{new Date(meta.date).toLocaleDateString("en-US", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})}
+						{" • "}
+						<strong>Last Updated:</strong>{" "}
+						{new Date(meta.updatedAt || meta.date).toLocaleDateString("en-US", {
 							year: "numeric",
 							month: "long",
 							day: "numeric",

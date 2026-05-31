@@ -8,6 +8,7 @@ export interface PostMeta {
 	title: string;
 	description: string;
 	date: string;
+	updatedAt?: string;
 	slug: string;
 }
 
