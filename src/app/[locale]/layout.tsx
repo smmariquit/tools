@@ -4,7 +4,7 @@ import "../globals.css";
 import Link from "next/link";
 import { PostHogProvider } from "./providers";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { setRequestLocale } from 'next-intl/server';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -25,6 +25,19 @@ export const metadata: Metadata = {
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>',
   },
+  openGraph: {
+    title: "PH Tools & Calculators | Free Online Utilities",
+    description: "Free, accurate calculators and tools for Filipinos. Compute your SSS, PhilHealth, Pag-IBIG, tax, net pay, and more.",
+    url: "https://www.phtools.me",
+    siteName: "PHTools",
+    locale: "en_PH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PH Tools & Calculators",
+    description: "Free, accurate calculators and tools for Filipinos.",
+  },
 };
 
 export default async function RootLayout({
@@ -37,6 +50,7 @@ export default async function RootLayout({
   const { locale } = await params;
   setRequestLocale(locale);
   const messages = await getMessages();
+  const t = await getTranslations('Navigation');
 
   return (
     <html lang={locale}>
@@ -55,12 +69,12 @@ export default async function RootLayout({
                 <span style={{ color: "var(--primary)" }}>PH</span>Tools
               </Link>
               <nav style={{ display: "flex", gap: "20px" }}>
-                <Link href="/" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>Tools</Link>
-                <Link href="/blog" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>Blog</Link>
-                <Link href="/salary-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>Salary</Link>
-                <Link href="/13th-month-pay-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>13th Month</Link>
-                <Link href="/pagibig-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>Pag-IBIG/MP2</Link>
-                <Link href="/id-photo-maker" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>ID Photo</Link>
+                <Link href="/" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('tools')}</Link>
+                <Link href="/blog" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('blog')}</Link>
+                <Link href="/salary-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('salary')}</Link>
+                <Link href="/13th-month-pay-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('13thMonth')}</Link>
+                <Link href="/pagibig-calculator" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('pagibig')}</Link>
+                <Link href="/id-photo-maker" style={{ color: "var(--text-secondary)", fontSize: "14px", fontWeight: 500 }}>{t('idPhoto')}</Link>
                 <div style={{ marginLeft: "12px", display: "flex", alignItems: "center" }}>
                   <LanguageSwitcher />
                 </div>

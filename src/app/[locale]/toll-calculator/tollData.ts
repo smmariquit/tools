@@ -25,6 +25,9 @@ export const expressways: ExpresswayData[] = [
       "Quirino|Balintawak": { class1: 129, class2: 258, class3: 387 },
       "Quirino|NLEX": { class1: 129, class2: 258, class3: 387 },
 
+      "E. Rodriguez|Balintawak": { class1: 129, class2: 258, class3: 387 },
+      "E. Rodriguez|NLEX": { class1: 129, class2: 258, class3: 387 },
+
       "Quezon Ave|Balintawak": { class1: 129, class2: 258, class3: 387 },
       "Quezon Ave|NLEX": { class1: 129, class2: 258, class3: 387 },
     }
