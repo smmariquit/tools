@@ -77,7 +77,7 @@ export default async function RootLayout({
 						<PostHogProvider>
 							<header
 								style={{
-									backgroundColor: "#ffffff",
+									backgroundColor: "var(--surface-color)",
 									borderBottom: "1px solid var(--border-color)",
 									padding: "16px 0",
 								}}
@@ -186,7 +186,7 @@ export default async function RootLayout({
 
 							<footer
 								style={{
-									backgroundColor: "#ffffff",
+									backgroundColor: "var(--surface-color)",
 									borderTop: "1px solid var(--border-color)",
 									padding: "32px 0 16px 0",
 									marginTop: "auto",
