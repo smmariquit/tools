@@ -526,6 +526,7 @@
 		"schoolPrivate": "Private HEI — May Tuition Subsidy",
 		"schoolPrivateNoTuition": "Private HEI — May Ibang Tuition Scholarship",
 		"yearLabel": "Year Level",
+		"isFinalYearLabel": "Final/Thesis year mo na ba ito?",
 		"semLabel": "Ilang Semester Per Year?",
 		"tuitionLabel": "Actual na Tuition Per Semester (PHP)",
 		"tuitionHint": "Hanggang ₱40,000 lang per sem ang babayaran ng DOST sa private schools.",
@@ -538,9 +539,11 @@
 		"tuitionDesc": "per semester (max ₱40k)",
 		"thesisLabel": "Thesis/Dissertation Grant",
 		"thesisDesc": "Isang beses lang, pang-final year",
-		"gradLabel": "Graduation Clothing",
+		"gradLabel": "Graduation Clothing Allowance",
 		"gradDesc": "Isang beses lang, pang-final year",
-		"totalLabel": "Kabuuang Benefits sa Isang Taon",
+		"uniformLabel": "Uniform Allowance",
+		"uniformDesc": "Isang beses lang, sa 1st year",
+		"totalLabel": "Kabuuang Estimated na Yearly Benefits",
 		"readGuideBtn": "Basahin ang DOST Scholarship Guide →"
 	},
 	"QPIGPA": {
@@ -560,5 +563,35 @@
 		"totalUnitsLabel": "Kabuuang Units",
 		"totalQPLabel": "Kabuuang Quality Points",
 		"readGuideBtn": "Basahin ang QPI Guide →"
+	},
+	"GrossFromTax": {
+		"title": "Reverse Tax to Gross Salary Calculator",
+		"subtitle": "Ilagay ang withholding tax para malaman ang estimated na gross salary mo kada buwan.",
+		"inputDetails": "Detalye ng Tax",
+		"targetTaxLabel": "Target Withholding Tax (PHP)",
+		"resultsTitle": "Estimated Breakdown ng Sweldo",
+		"grossSalaryLabel": "Estimated na Gross Salary",
+		"netPayLabel": "Net Take-Home Pay",
+		"sssLabel": "Bawas sa SSS",
+		"philhealthLabel": "Bawas sa PhilHealth",
+		"pagibigLabel": "Bawas sa Pag-IBIG",
+		"taxLabel": "Withholding Tax (Eksakto)"
+	},
+	"CHEDScholarship": {
+		"title": "CHED Scholarship Benefits Calculator",
+		"subtitle": "Kwentahin ang eksaktong benefits na matatanggap mo mula sa CHED Merit (CMSP) o Tulong Dunong (TDP).",
+		"inputDetails": "Detalye ng Scholarship",
+		"scholarshipTypeLabel": "Programa ng Scholarship",
+		"typeTDP": "Tulong Dunong Program (TDP) - ₱15k/year",
+		"typeMeritHalf": "Half Merit Scholarship (PESFA/SSP)",
+		"typeMeritFull": "Full Merit Scholarship (PESFA/SSP)",
+		"schoolTypeLabel": "Anong Klaseng School?",
+		"schoolSUC": "State University / Local College (Libre ang Tuition)",
+		"schoolPrivate": "Private Higher Education Institution (HEI)",
+		"resultsTitle": "Taunang Financial Assistance",
+		"stipendLabel": "Living Stipend",
+		"tuitionLabel": "Tuition Subsidy (TOSF)",
+		"bookLabel": "Book / Connectivity Allowance",
+		"totalLabel": "Kabuuang Yearly Benefits"
 	}
 }

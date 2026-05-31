@@ -8,8 +8,9 @@ describe("DOST Scholarship Stipend Logic", () => {
 		expect(res.livingAllowanceAnnual).toBe(70000); // 7k * 10 months
 		expect(res.bookAllowanceAnnual).toBe(20000); // 10k * 2 sems
 		expect(res.tuitionSubsidyAnnual).toBe(0);
+		expect(res.uniformAllowance).toBe(1000); // Year 1
 		expect(res.thesisGrant).toBe(0); // not final year
-		expect(res.totalAnnual).toBe(90000);
+		expect(res.totalAnnual).toBe(91000);
 	});
 
 	it("should calculate private HEI with tuition subsidy", () => {
@@ -19,10 +20,11 @@ describe("DOST Scholarship Stipend Logic", () => {
 		expect(res.totalAnnual).toBe(170000); // 70k + 20k + 80k
 	});
 
-	it("should include thesis and graduation for year 4+", () => {
-		const res = calculateDOSTStipend("suc", 4, 2, 0);
+	it("should include thesis and graduation for final year", () => {
+		const res = calculateDOSTStipend("suc", 4, 2, 0, true);
 		expect(res.thesisGrant).toBe(10000);
 		expect(res.graduationClothing).toBe(2000);
+		expect(res.uniformAllowance).toBe(0);
 		expect(res.totalAnnual).toBe(102000); // 70k + 20k + 10k + 2k
 	});
 });

@@ -287,6 +287,66 @@ export default function TollCalculatorClient() {
 						</div>
 					</div>
 
+					<div className="card" style={{ border: "2px solid var(--primary)" }}>
+						<h3
+							style={{
+								fontSize: "16px",
+								marginBottom: "12px",
+								color: "var(--primary)",
+								display: "flex",
+								alignItems: "center",
+								gap: "8px",
+							}}
+						>
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+								<line x1="2" y1="10" x2="22" y2="10"></line>
+							</svg>
+							Reload Your RFID
+						</h3>
+						<p
+							style={{
+								fontSize: "14px",
+								color: "var(--text-secondary)",
+								marginBottom: "16px",
+							}}
+						>
+							Make sure your account has enough balance before your trip to
+							avoid penalties.
+						</p>
+						<div
+							style={{ display: "flex", gap: "12px", flexDirection: "column" }}
+						>
+							<a
+								href="https://easytrip.ph"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn-primary"
+								style={{ textAlign: "center", textDecoration: "none" }}
+							>
+								Reload Easytrip (NLEX, SCTEX, CAVITEX, CALAX)
+							</a>
+							<a
+								href="https://autosweeprfid.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn-secondary"
+								style={{ textAlign: "center", textDecoration: "none" }}
+							>
+								Reload Autosweep (SLEX, Skyway, STAR, TPLEX)
+							</a>
+						</div>
+					</div>
+
 					<div className="card">
 						<h3
 							style={{

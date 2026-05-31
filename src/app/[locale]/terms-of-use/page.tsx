@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 export default function TermsOfUse() {
 	return (
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
@@ -19,15 +18,15 @@ export default function TermsOfUse() {
 						fontSize: "18px",
 						marginTop: "24px",
 						marginBottom: "12px",
-						color: "#b71c1c",
+						color: "var(--warning-text)",
 					}}
 				>
 					1. Financial & Legal Disclaimer (No Professional Advice)
 				</h2>
 				<div
 					style={{
-						backgroundColor: "#fce8e6",
-						borderLeft: "4px solid #b71c1c",
+						backgroundColor: "var(--warning-bg)",
+						borderLeft: "4px solid var(--warning-border)",
 						padding: "16px",
 						marginBottom: "24px",
 						borderRadius: "0 4px 4px 0",

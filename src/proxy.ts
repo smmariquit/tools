@@ -1,6 +1,6 @@
 import createMiddleware from "next-intl/middleware";
 
-export default createMiddleware({
+export const proxy = createMiddleware({
 	// A list of all locales that are supported
 	locales: ["en", "tl", "ceb"],
 

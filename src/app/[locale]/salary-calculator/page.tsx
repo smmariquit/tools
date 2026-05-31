@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { computeSalary } from "../../../lib/salaryLogic";
 import ToolFooter from "../../components/ToolFooter";

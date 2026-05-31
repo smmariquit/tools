@@ -81,3 +81,74 @@ export function reverseSalary(targetNetPay: number): ReverseSalaryResult {
 		netPay: final.netPay,
 	};
 }
+
+export function grossFromTax(targetTax: number): ReverseSalaryResult {
+	if (targetTax <= 0) {
+		return {
+			grossSalary: 0,
+			sss: 0,
+			philhealth: 0,
+			pagibig: 0,
+			totalContributions: 0,
+			tax: 0,
+			netPay: 0,
+		};
+	}
+
+	// Binary search: the gross salary is at least the target tax
+	let low = targetTax;
+	let high = targetTax * 10; // Upper bound (effective tax rate is at most ~35%)
+	let bestGross = high;
+
+	// Need to find upper bound properly if target is very high
+	let maxIter = 0;
+	while (
+		computeSalary(high.toFixed(2), "Monthly", "0", "0", "Private").tax <
+			targetTax &&
+		maxIter < 10
+	) {
+		high *= 2;
+		maxIter++;
+	}
+
+	for (let i = 0; i < 100; i++) {
+		const mid = (low + high) / 2;
+		const result = computeSalary(
+			mid.toFixed(2),
+			"Monthly",
+			"0",
+			"0",
+			"Private",
+		);
+
+		if (Math.abs(result.tax - targetTax) < 0.5) {
+			bestGross = mid;
+			break;
+		}
+
+		if (result.tax < targetTax) {
+			low = mid;
+		} else {
+			high = mid;
+			bestGross = mid;
+		}
+	}
+
+	const final = computeSalary(
+		bestGross.toFixed(2),
+		"Monthly",
+		"0",
+		"0",
+		"Private",
+	);
+
+	return {
+		grossSalary: Math.ceil(bestGross),
+		sss: final.sssDeduction,
+		philhealth: final.philhealthDeduction,
+		pagibig: final.pagibigDeduction,
+		totalContributions: final.totalContributions,
+		tax: final.tax,
+		netPay: final.netPay,
+	};
+}

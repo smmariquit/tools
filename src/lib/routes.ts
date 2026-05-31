@@ -63,6 +63,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Gross from Tax Calculator",
+				path: "/gross-from-tax-calculator",
+				desc: "Estimate your equivalent gross salary directly from a target withholding tax amount.",
+				priority: 0.8,
+			},
+			{
 				name: "13th Month Calculator",
 				path: "/13th-month-pay-calculator",
 				desc: "Compute your prorated 13th month and tax exemptions.",
@@ -146,7 +152,7 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
-				name: "Home Loan & Amortization Calculator",
+				name: "Home Loan & Mortgage Calculator",
 				path: "/home-loan-calculator",
 				desc: "Compute monthly bank home loan payments, interest rates, and loan terms.",
 				priority: 0.9,
@@ -202,6 +208,12 @@ export const toolCategories = [
 				name: "DOST-SEI Scholarship Stipend Calculator",
 				path: "/dost-scholarship-stipend-calculator",
 				desc: "Calculate your exact yearly DOST scholarship benefits and stipend breakdown.",
+				priority: 0.9,
+			},
+			{
+				name: "CHED Scholarship Calculator",
+				path: "/ched-scholarship-calculator",
+				desc: "Calculate your exact annual benefits for CHED Merit (CMSP) and Tulong Dunong (TDP).",
 				priority: 0.9,
 			},
 			{

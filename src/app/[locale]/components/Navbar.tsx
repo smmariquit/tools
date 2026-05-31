@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { ThemeToggle } from "../../../components/ThemeToggle";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import Logo from "../../components/Logo";
@@ -11,9 +11,36 @@ import Logo from "../../components/Logo";
 export default function Navbar() {
 	const t = useTranslations("Navigation");
 	const [isOpen, setIsOpen] = useState(false);
+
 	const router = useRouter();
 	const pathname = usePathname();
 	const [query, setQuery] = useState("");
+	const [isVisible, setIsVisible] = useState(true);
+	const [lastScrollY, setLastScrollY] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+
+			if (window.innerWidth >= 900) {
+				setIsVisible(true);
+				setLastScrollY(currentScrollY);
+				return;
+			}
+
+			// Only hide if we scroll down and are past the header height
+			if (currentScrollY > lastScrollY && currentScrollY > 80) {
+				setIsVisible(false);
+				setIsOpen(false); // also close mobile menu if open
+			} else {
+				setIsVisible(true);
+			}
+			setLastScrollY(currentScrollY);
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [lastScrollY]);
 
 	return (
 		<header
@@ -21,7 +48,10 @@ export default function Navbar() {
 				backgroundColor: "var(--surface-color)",
 				borderBottom: "1px solid var(--border-color)",
 				padding: "16px 0",
-				position: "relative",
+				position: "sticky",
+				top: isVisible ? 0 : "-100px",
+				zIndex: 1000,
+				transition: "top 0.3s ease-in-out",
 			}}
 		>
 			<div
@@ -50,6 +80,7 @@ export default function Navbar() {
 					<span>PHTools</span>
 				</Link>
 
+				<search>
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
@@ -59,7 +90,6 @@ export default function Navbar() {
 							if (qs.length) router.push(`${localePrefix}/search?query=${qs}`);
 						}}
 						style={{ marginLeft: "12px", marginRight: "12px" }}
-						role="search"
 					>
 						<input
 							aria-label="Search tools"
@@ -70,12 +100,15 @@ export default function Navbar() {
 								padding: "8px 10px",
 								borderRadius: 6,
 								border: "1px solid var(--border-color)",
-								minWidth: 200,
+								width: "100%",
+								minWidth: "120px",
+								maxWidth: "200px",
 								background: "var(--surface-color)",
 								color: "var(--text-primary)",
 							}}
 						/>
 					</form>
+				</search>
 				<button
 					className="mobile-menu-btn"
 					onClick={() => setIsOpen(!isOpen)}

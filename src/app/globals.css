@@ -8,6 +8,9 @@
 	--text-secondary: #3c4043; /* Darker gray for AAA contrast */
 	--border-color: #dadce0;
 	--input-border: #5f6368; /* 3:1 contrast for non-text elements */
+	--warning-bg: #fce8e6;
+	--warning-border: #b71c1c;
+	--warning-text: #b71c1c;
 
 	--shadow-sm:
 		0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
@@ -27,6 +30,9 @@
 	--text-secondary: #c4c7c5; /* Improved WCAG AA contrast against surface-color */
 	--border-color: #3c4043;
 	--input-border: #80868b;
+	--warning-bg: #2d1313;
+	--warning-border: #d32f2f;
+	--warning-text: #ff8a80;
 
 	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.6), 0 1px 3px 1px rgba(0, 0, 0, 0.3);
 	--shadow-md: 0 4px 6px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.3);

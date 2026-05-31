@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
 import GwaCalculatorClient from "./Client";
 

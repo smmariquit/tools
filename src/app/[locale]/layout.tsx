@@ -224,6 +224,15 @@ export default async function RootLayout({
 													>
 														Terms of Use
 													</Link>
+													<Link
+														href="/accessibility"
+														style={{
+															color: "var(--text-secondary)",
+															fontSize: "14px",
+														}}
+													>
+														Accessibility Statement
+													</Link>
 												</div>
 											</div>
 										</div>

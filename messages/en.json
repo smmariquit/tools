@@ -526,6 +526,7 @@
 		"schoolPrivate": "Private HEI — With Tuition Subsidy",
 		"schoolPrivateNoTuition": "Private HEI — Has Separate Tuition Scholarship",
 		"yearLabel": "Year Level",
+		"isFinalYearLabel": "Is this your final/thesis year?",
 		"semLabel": "Semesters Per Year",
 		"tuitionLabel": "Actual Tuition Per Semester (PHP)",
 		"tuitionHint": "DOST will pay up to ₱40,000/sem for private HEIs.",
@@ -538,9 +539,11 @@
 		"tuitionDesc": "per semester (max ₱40k)",
 		"thesisLabel": "Thesis/Dissertation Grant",
 		"thesisDesc": "One-time, final year only",
-		"gradLabel": "Graduation Clothing",
+		"gradLabel": "Graduation Clothing Allowance",
 		"gradDesc": "One-time, final year only",
-		"totalLabel": "Total Annual Benefits",
+		"uniformLabel": "Uniform Allowance",
+		"uniformDesc": "One-time, 1st year only",
+		"totalLabel": "Total Estimated Annual Benefits",
 		"readGuideBtn": "Read DOST Scholarship Guide →"
 	},
 	"QPIGPA": {
@@ -560,5 +563,35 @@
 		"totalUnitsLabel": "Total Units",
 		"totalQPLabel": "Total Quality Points",
 		"readGuideBtn": "Read QPI Guide →"
+	},
+	"GrossFromTax": {
+		"title": "Reverse Tax to Gross Salary Calculator",
+		"subtitle": "Enter the amount of withholding tax to estimate the equivalent gross monthly salary.",
+		"inputDetails": "Tax Details",
+		"targetTaxLabel": "Target Withholding Tax (PHP)",
+		"resultsTitle": "Estimated Salary Breakdown",
+		"grossSalaryLabel": "Estimated Gross Salary",
+		"netPayLabel": "Net Take-Home Pay",
+		"sssLabel": "SSS Deduction",
+		"philhealthLabel": "PhilHealth Deduction",
+		"pagibigLabel": "Pag-IBIG Deduction",
+		"taxLabel": "Withholding Tax (Exact)"
+	},
+	"CHEDScholarship": {
+		"title": "CHED Scholarship Benefits Calculator",
+		"subtitle": "Calculate your exact annual benefits for CHED Merit (CMSP) and Tulong Dunong Program (TDP).",
+		"inputDetails": "Scholarship Details",
+		"scholarshipTypeLabel": "Scholarship Program",
+		"typeTDP": "Tulong Dunong Program (TDP) - ₱15k/year",
+		"typeMeritHalf": "Half Merit Scholarship (PESFA/SSP)",
+		"typeMeritFull": "Full Merit Scholarship (PESFA/SSP)",
+		"schoolTypeLabel": "Type of School",
+		"schoolSUC": "State University / Local College (Free Tuition)",
+		"schoolPrivate": "Private Higher Education Institution (HEI)",
+		"resultsTitle": "Annual Financial Assistance",
+		"stipendLabel": "Living Stipend",
+		"tuitionLabel": "Tuition Subsidy (TOSF)",
+		"bookLabel": "Book / Connectivity Allowance",
+		"totalLabel": "Total Annual Benefits"
 	}
 }
