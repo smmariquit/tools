@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import AdBanner from "../components/AdBanner";
 
 export default function FreelanceTaxClient() {
@@ -10,6 +11,12 @@ export default function FreelanceTaxClient() {
   const [forexRateStr, setForexRateStr] = useState("57.50");
   const [grossIncomeStr, setGrossIncomeStr] = useState("100000");
   const [includeUpwork, setIncludeUpwork] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   const usdIncome = parseFloat(usdIncomeStr) || 0;
   const forexRate = parseFloat(forexRateStr) || 0;
@@ -32,6 +39,14 @@ export default function FreelanceTaxClient() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
   };
+
+  const platformFeePhp = currencyMode === "usd" ? platformFeeUsd * forexRate : 0;
+
+  const chartData = [
+    { name: "Net Take Home", value: netIncome8Percent, color: "#1b5e20" },
+    { name: "8% BIR Tax", value: eightPercentTax, color: "#b71c1c" },
+    { name: "Upwork Fee", value: platformFeePhp, color: "#f57c00" }
+  ].filter(item => item.value > 0);
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -157,6 +172,34 @@ export default function FreelanceTaxClient() {
           </div>
         </div>
       </div>
+
+      {/* Recharts Visualization */}
+      {mounted && totalPhp > 0 && (
+        <div className="card" style={{ marginTop: "24px", padding: "24px", maxWidth: "100%" }}>
+          <h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Income Breakdown</h2>
+          <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value: number | string) => formatCurrency(Number(value) || 0)} />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
 
       <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", color: "var(--text-primary)" }}>
         <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>Freelancing Taxes & Fees</h2>

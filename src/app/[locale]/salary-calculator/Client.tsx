@@ -2,15 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { useTranslations } from "next-intl";
 import ToolLayout from "../components/ToolLayout";
 import ToolHeader from "../components/ToolHeader";
 
 export default function SalaryCalculator() {
+  const t = useTranslations("SalaryCalculator");
   const [salaryStr, setSalaryStr] = useState("30000");
   const [shareText, setShareText] = useState("Share Computation");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -61,8 +65,8 @@ export default function SalaryCalculator() {
       // Fallback for PC/Desktop: Copy to clipboard
       try {
         await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-        setShareText("Copied to Clipboard!");
-        setTimeout(() => setShareText("Share Computation"), 2500);
+        setShareText(t('shareTextCopied'));
+        setTimeout(() => setShareText(t('shareText')), 2500);
       } catch (err) {
         console.error('Failed to copy text: ', err);
       }
@@ -72,6 +76,14 @@ export default function SalaryCalculator() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
   };
+
+  const chartData = [
+    { name: t('chartNetPay'), value: netPay, color: "#1b5e20" },
+    { name: t('chartTax'), value: tax, color: "#b71c1c" },
+    { name: t('chartSSS'), value: sssDeduction, color: "#f57c00" },
+    { name: t('chartPhilhealth'), value: philhealthDeduction, color: "#1976d2" },
+    { name: t('chartPagibig'), value: pagibigDeduction, color: "#d32f2f" }
+  ].filter(item => item.value > 0);
 
   return (
     <ToolLayout>
@@ -84,9 +96,9 @@ export default function SalaryCalculator() {
       <div className="tool-grid" style={{ marginTop: "24px" }}>
         {/* Input Card */}
         <div className="card">
-          <h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px" }}>Your Details</h2>
+          <h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px" }}>{t('detailsTitle')}</h2>
           <div className="form-group">
-            <label className="form-label" htmlFor="salary">Gross Monthly Salary (PHP)</label>
+            <label className="form-label" htmlFor="salary">{t('grossSalaryLabel')}</label>
             <input 
               type="number" 
               id="salary"
@@ -95,57 +107,57 @@ export default function SalaryCalculator() {
               onChange={(e) => setSalaryStr(e.target.value)}
               min="0"
               step="any"
-              placeholder="e.g., 30000"
+              placeholder={t('grossSalaryPlaceholder')}
             />
-            <span className="form-hint">Your basic salary before any deductions.</span>
+            <span className="form-hint">{t('grossSalaryHint')}</span>
           </div>
         </div>
 
         {/* Results Card */}
         <div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
-          <h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px", color: "var(--primary)" }}>Computation Results</h2>
+          <h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px", color: "var(--primary)" }}>{t('resultsTitle')}</h2>
           
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px" }}>
-            <span>Gross Salary</span>
+            <span>{t('grossSalaryResult')}</span>
             <strong>{formatCurrency(salary)}</strong>
           </div>
           
           <div style={{ margin: "16px 0", padding: "16px 0", borderTop: "1px dashed var(--border-color)", borderBottom: "1px dashed var(--border-color)" }}>
-            <h3 style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "12px", textTransform: "uppercase" }}>Mandatory Deductions</h3>
+            <h3 style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "12px", textTransform: "uppercase" }}>{t('mandatoryDeductions')}</h3>
             
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-              <span>SSS Contribution (5%)</span>
+              <span>{t('sss')}</span>
               <span style={{ color: "#b71c1c" }}>- {formatCurrency(sssDeduction)}</span>
             </div>
             
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-              <span>PhilHealth (2.5%)</span>
+              <span>{t('philhealth')}</span>
               <span style={{ color: "#b71c1c" }}>- {formatCurrency(philhealthDeduction)}</span>
             </div>
             
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-              <span>Pag-IBIG</span>
+              <span>{t('pagibig')}</span>
               <span style={{ color: "#b71c1c" }}>- {formatCurrency(pagibigDeduction)}</span>
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "12px", paddingTop: "12px", borderTop: "1px solid var(--border-color)", fontSize: "14px", fontWeight: 600 }}>
-              <span>Total Contributions</span>
+              <span>{t('totalContributions')}</span>
               <span>{formatCurrency(totalContributions)}</span>
             </div>
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", fontSize: "14px" }}>
-            <span>Taxable Income</span>
+            <span>{t('taxableIncome')}</span>
             <span>{formatCurrency(taxableIncome)}</span>
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px" }}>
-            <span>Withholding Tax (BIR)</span>
+            <span>{t('tax')}</span>
             <span style={{ color: "#b71c1c" }}>- {formatCurrency(tax)}</span>
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px", paddingTop: "16px", borderTop: "2px solid var(--border-color)", fontSize: "24px", fontWeight: 700, color: "var(--text-primary)" }}>
-            <span>Net Take-Home Pay</span>
+            <span>{t('netPay')}</span>
             <span style={{ color: "#1b5e20" }}>{formatCurrency(netPay)}</span>
           </div>
           
@@ -167,14 +179,42 @@ export default function SalaryCalculator() {
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
               </svg>
             )}
-            {shareText}
+            {t('shareText') === "Share Computation" && shareText === "Share Computation" ? "Share Computation" : shareText}
           </button>
           
           <p style={{ textAlign: "center", fontSize: "12px", color: "var(--text-secondary)", marginTop: "16px" }}>
-            * This is an estimate based on standard 2026 rates.
+            {t('estimateDisclaimer')}
           </p>
         </div>
       </div>
+
+      {/* Recharts Visualization */}
+      {mounted && salary > 0 && (
+        <div className="card" style={{ marginTop: "24px", padding: "24px" }}>
+          <h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>{t('chartTitle')}</h2>
+          <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value: number | string) => formatCurrency(Number(value) || 0)} />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
 
       {/* SEO Content */}
       <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", color: "var(--text-primary)" }}>

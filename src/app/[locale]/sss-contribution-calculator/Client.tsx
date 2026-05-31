@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import ToolLayout from "../components/ToolLayout";
 import ToolHeader from "../components/ToolHeader";
 
 export default function SSSCalculator() {
   const [salaryStr, setSalaryStr] = useState("30000");
   const [memberType, setMemberType] = useState("employed"); // 'employed' or 'voluntary'
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   const salary = parseFloat(salaryStr) || 0;
 
@@ -54,6 +61,14 @@ export default function SSSCalculator() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
   };
+
+  const chartData = [
+    {
+      name: "SSS Breakdown",
+      "Employee Share": eeTotal,
+      "Employer Share": erTotal
+    }
+  ];
 
   return (
     <ToolLayout>
@@ -177,6 +192,27 @@ export default function SSSCalculator() {
           </div>
         </div>
       </div>
+
+      {/* Recharts Visualization */}
+      {mounted && grandTotal > 0 && (
+        <div className="card" style={{ marginTop: "24px", padding: "24px" }}>
+          <h2 style={{ fontSize: "18px", marginBottom: "16px", textAlign: "center" }}>Contribution Distribution</h2>
+          <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <XAxis type="number" />
+                <YAxis dataKey="name" type="category" hide />
+                <Tooltip formatter={(value: number | string) => formatCurrency(Number(value) || 0)} />
+                <Legend />
+                <Bar dataKey="Employee Share" stackId="a" fill="#b71c1c" />
+                {memberType === "employed" && (
+                  <Bar dataKey="Employer Share" stackId="a" fill="#0d47a1" />
+                )}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
 
       {/* Interactive SSS Contribution Table */}
       <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid var(--border-color)", color: "var(--text-primary)" }}>

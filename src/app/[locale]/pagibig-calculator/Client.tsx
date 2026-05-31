@@ -12,6 +12,7 @@ export default function PagIbigClient() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -180,7 +181,7 @@ export default function PagIbigClient() {
                   <XAxis dataKey="year" tickFormatter={(tick) => `Yr ${tick}`} tick={{ fontSize: 12, fill: "var(--text-secondary)" }} axisLine={false} tickLine={false} />
                   <YAxis tickFormatter={(tick) => `₱${(tick / 1000).toFixed(0)}k`} tick={{ fontSize: 12, fill: "var(--text-secondary)" }} axisLine={false} tickLine={false} />
                   <Tooltip 
-                    formatter={(value: number) => formatCurrency(value)}
+                    formatter={(value: number | string) => formatCurrency(Number(value) || 0)}
                     labelFormatter={(label) => `Year ${label}`}
                     contentStyle={{ borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
                   />
