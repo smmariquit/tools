@@ -46,6 +46,9 @@ const tools = {
 	"pagibig-foreclosed-roi-calculator": dynamic(
 		() => import("../[locale]/pagibig-foreclosed-roi-calculator/Client"),
 	),
+	"pagibig-mp2-calculator": dynamic(
+		() => import("../[locale]/pagibig-mp2-calculator/Client"),
+	),
 	"philhealth-calculator": dynamic(
 		() => import("../[locale]/philhealth-calculator/Client"),
 	),

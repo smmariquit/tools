@@ -249,5 +249,24 @@
 		"netInterestEarned": "Net Interest na Kinita (Tubo)",
 		"taxDeducted": "20% Tax na Binawas",
 		"note": "Note: Pwedeng may onting diperensya sa totoong buhay dahil sa exact days ng daily compounding, pero highly accurate estimate ito. Ang mga bangko sa Pilipinas ay may automatic na 20% withholding tax sa lahat ng interest na kinikita."
+	},
+	"PagibigMP2": {
+		"title": "Pag-IBIG MP2 Dividend Calculator",
+		"subtitle": "Kalkulahin ang tax-free mong kikitain sa Pag-IBIG MP2 Savings Program sa loob ng 5 years na lock-in period.",
+		"inputDetails": "Detalye ng Ipon",
+		"initialContribution": "Initial One-Time Contribution (PHP)",
+		"initialContributionHint": "Yung unang malaking hulog mo (optional)",
+		"monthlyContribution": "Monthly Contribution (PHP)",
+		"monthlyContributionHint": "Minimum na ₱500 kada buwan",
+		"dividendRate": "Expected Annual Dividend Rate (%)",
+		"dividendRateHint": "Ang historical na bigayan ng Pag-IBIG ay nasa 6.0% hanggang 7.5% taon-taon.",
+		"payoutType": "Kailan mo kukunin ang Tubo?",
+		"payoutCompounded": "Compounded (Kunin lahat after 5 Years)",
+		"payoutAnnual": "Annual Payout (Kunin ang tubo taon-taon)",
+		"resultsTitle": "5-Year Maturity Projection",
+		"totalSavings": "Total Accumulated Value",
+		"totalContributions": "Total na Hinulog Mo",
+		"totalDividends": "Total Tax-Free Dividends (Tubo)",
+		"note": "Note: Ang dividends ay naka-base sa Average Monthly Balance (AMB) mo. Ang computation na ito ay nag-aassume na naghuhulog ka maaga sa buwan. Ang kita sa MP2 ay 100% tax-free at guaranteed ng gobyerno."
 	}
 }

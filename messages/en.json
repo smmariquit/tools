@@ -249,5 +249,24 @@
 		"netInterestEarned": "Net Interest Earned",
 		"taxDeducted": "20% Tax Deducted",
 		"note": "Note: Real-world results may vary slightly due to daily vs monthly compounding exact days, but this provides a highly accurate estimate. Philippine banks apply a 20% final withholding tax on interest earned."
+	},
+	"PagibigMP2": {
+		"title": "Pag-IBIG MP2 Dividend Calculator",
+		"subtitle": "Calculate your tax-free earnings from the Pag-IBIG Modified Pag-IBIG II (MP2) Savings Program over the 5-year lock-in period.",
+		"inputDetails": "Savings Details",
+		"initialContribution": "Initial One-Time Contribution (PHP)",
+		"initialContributionHint": "Your starting deposit",
+		"monthlyContribution": "Monthly Contribution (PHP)",
+		"monthlyContributionHint": "Must be at least ₱500 per month",
+		"dividendRate": "Expected Annual Dividend Rate (%)",
+		"dividendRateHint": "Historical rates average between 6.0% to 7.5% annually.",
+		"payoutType": "Dividend Payout Type",
+		"payoutCompounded": "Compounded (Paid after 5 Years)",
+		"payoutAnnual": "Annual Payout (Withdrawn Yearly)",
+		"resultsTitle": "5-Year Maturity Projection",
+		"totalSavings": "Total Accumulated Value",
+		"totalContributions": "Total Contributions",
+		"totalDividends": "Total Tax-Free Dividends",
+		"note": "Note: Dividends are calculated based on your Average Monthly Balance (AMB). This assumes contributions are made early in the month. Pag-IBIG MP2 earnings are 100% tax-free and government-guaranteed."
 	}
 }

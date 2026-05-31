@@ -98,6 +98,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "Pag-IBIG MP2 Dividend Calculator",
+				path: "/pagibig-mp2-calculator",
+				desc: "Calculate your tax-free earnings from the Pag-IBIG MP2 Savings Program over 5 years.",
+				priority: 0.9,
+			},
+			{
 				name: "Home Loan & Amortization Calculator",
 				path: "/home-loan-calculator",
 				desc: "Compute monthly bank home loan payments, interest rates, and loan terms.",
