@@ -91,5 +91,19 @@
 		"ndPremium": "Night Differential Premium (+10%)",
 		"holidayPremium": "Holiday / Rest Day Premium",
 		"totalShiftPay": "Total Shift Pay"
+	},
+	"BudgetCalculator": {
+		"detailsTitle": "Monthly Expenses",
+		"targetNetPayLabel": "Target Net Take-Home Pay (PHP)",
+		"targetNetPayHint": "How much cash you need in your bank account every month.",
+		"addExpenseButton": "+ Add Expense",
+		"expenseNamePlaceholder": "e.g., Rent, Groceries",
+		"expenseAmountPlaceholder": "Amount",
+		"resultsTitle": "Required Asking Salary",
+		"grossSalaryNeeded": "Gross Salary to Negotiate",
+		"totalExpenses": "Total Monthly Expenses",
+		"estimatedDeductions": "Estimated Deductions & Tax",
+		"howItWorksTitle": "How does this work?",
+		"howItWorksDesc": "This tool works backwards. It adds up all your required expenses to find your target net pay, then reverse-engineers the SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions to find the exact gross salary you should ask for in your job interview."
 	}
 }

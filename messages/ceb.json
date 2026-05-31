@@ -89,5 +89,19 @@
 		"ndPremium": "Night Differential Premium (+10%)",
 		"holidayPremium": "Holiday / Rest Day Premium",
 		"totalShiftPay": "Total Shift Pay Nimo"
+	},
+	"BudgetCalculator": {
+		"detailsTitle": "Monthly Gastos Nimo",
+		"targetNetPayLabel": "Target Na Net Take-Home Pay (PHP)",
+		"targetNetPayHint": "Pila gyud ang kinahanglan nimo madawat sa bank nimo kada buwan?",
+		"addExpenseButton": "+ Dugang Pa Ug Gastos",
+		"expenseNamePlaceholder": "e.g., Renta, Groceries",
+		"expenseAmountPlaceholder": "Kantidad",
+		"resultsTitle": "Kinahanglan Nimong Salary",
+		"grossSalaryNeeded": "Gross Salary Nga Dapat Nimo Pangayoon",
+		"totalExpenses": "Total Monthly Gastos Nimo",
+		"estimatedDeductions": "Estimated Nga Kinaltas ug Tax",
+		"howItWorksTitle": "Unsaon man ni pag-gamit?",
+		"howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview."
 	}
 }

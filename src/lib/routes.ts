@@ -15,6 +15,12 @@ export const toolCategories = [
 				priority: 0.8,
 			},
 			{
+				name: "Budget & Reverse Salary Calculator",
+				path: "/budget-calculator",
+				desc: "List your expenses and find out what gross salary you should ask for.",
+				priority: 0.8,
+			},
+			{
 				name: "SSS Contribution Calculator",
 				path: "/sss-contribution-calculator",
 				desc: "See your exact SSS breakdown (EE/ER/EC/MPF) based on the 2026 table.",

@@ -5,6 +5,7 @@ const toolToBlogMap: Record<string, string> = {
 	"/salary-calculator": "/blog/salary-tax-deductions-guide",
 	"/bpo-night-differential-calculator":
 		"/blog/bpo-night-differential-philippines",
+	"/budget-calculator": "/blog/budget-reverse-salary-calculator-guide",
 	"/sss-contribution-calculator": "/blog/sss-contribution-table-2026",
 	"/philhealth-calculator": "/blog/philhealth-contribution-table-2026",
 	"/income-tax-calculator": "/blog/income-tax-brackets-2026",

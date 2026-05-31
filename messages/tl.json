@@ -91,5 +91,19 @@
 		"ndPremium": "Night Differential Premium (+10%)",
 		"holidayPremium": "Holiday / Rest Day Premium",
 		"totalShiftPay": "Total Shift Pay Mo"
+	},
+	"BudgetCalculator": {
+		"detailsTitle": "Monthly Gastos Mo",
+		"targetNetPayLabel": "Target Na Net Take-Home Pay (PHP)",
+		"targetNetPayHint": "Magkano ba kailangan mo talagang matanggap sa bank mo every month?",
+		"addExpenseButton": "+ Dagdag Pa Ng Gastos",
+		"expenseNamePlaceholder": "e.g., Renta, Groceries",
+		"expenseAmountPlaceholder": "Halaga",
+		"resultsTitle": "Kailangan Mong Hinging Salary",
+		"grossSalaryNeeded": "Gross Salary Na Dapat Mo Hingin",
+		"totalExpenses": "Total Monthly Gastos Mo",
+		"estimatedDeductions": "Estimated Na Kaltas at Tax",
+		"howItWorksTitle": "Paano ba gumagana 'to?",
+		"howItWorksDesc": "Bale, binaliktad natin yung computation. Sino-sum up natin lahat ng gastos mo para malaman yung target net pay, tapos reverse-engineer natin yung SSS, PhilHealth, Pag-IBIG, at Withholding Tax para makuha yung exact gross salary na dapat mong hingin sa job interview."
 	}
 }
