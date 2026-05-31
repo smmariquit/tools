@@ -349,5 +349,22 @@
 		"hourlyRateUsd": "Target Hourly Rate (USD)",
 		"exchangeRateNote": "Base sa estimated exchange rate na $1 = ₱56.",
 		"note": "Note: Automatic nang kasama sa computation ang BIR 8% flat rate tax (kung lagpas ₱250k ang gross) para siguradong makukuha mo ang target net income mo."
+	},
+	"PagibigAffordability": {
+		"title": "Pag-IBIG Housing Loan Affordability Calculator",
+		"subtitle": "Alamin kung hanggang magkano ang pwede mong ma-loan sa Pag-IBIG para sa bahay, base sa sweldo at edad mo.",
+		"inputDetails": "Detalye Mo",
+		"grossIncome": "Gross Monthly Income (PHP)",
+		"age": "Ilang taon ka na ngayon?",
+		"fixingPeriod": "Interest Rate Fixing Period",
+		"fixingPeriodHint": "Pag mas maikli ang fixing period, mas mababa ang interest pero mas mabilis magbabago ang rate.",
+		"resultsTitle": "Maximum Loan Capacity",
+		"maxTerm": "Pinakamahabang Loan Term",
+		"maxTermHint": "Hanggang 30 years ang pwede, pero dapat bayad na bago ka mag-70 years old.",
+		"yearsSuffix": "taon",
+		"maxAmortization": "Max Monthly Amortization",
+		"maxLoanAmount": "Maximum na Pwedeng Ma-Loan",
+		"cappedHint": "Hanggang ₱6,000,000 lang ang maximum limit ng Pag-IBIG.",
+		"note": "Note: Ayon sa rule ng Pag-IBIG, ang monthly amortization mo ay hindi dapat lumagpas sa 35% ng iyong gross monthly income."
 	}
 }

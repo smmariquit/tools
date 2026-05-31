@@ -151,6 +151,12 @@ export const toolCategories = [
 				desc: "Calculate rental yield and flipping ROI for Acquired Assets.",
 				priority: 0.9,
 			},
+			{
+				name: "Pag-IBIG Housing Loan Affordability",
+				path: "/pagibig-affordability-calculator",
+				desc: "Find out exactly how much housing loan you can afford based on your salary and age.",
+				priority: 0.9,
+			},
 		],
 	},
 	{
