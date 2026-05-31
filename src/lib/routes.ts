@@ -225,6 +225,24 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "PH Crypto Exchange Spread Calculator",
+				path: "/crypto-spread-calculator",
+				desc: "Compare hidden spreads when buying crypto on local apps.",
+				priority: 0.9,
+			},
+			{
+				name: "P2P Crypto Cash-Out Calculator",
+				path: "/crypto-p2p-cashout-calculator",
+				desc: "Calculate exact PHP earnings when selling USDT via P2P.",
+				priority: 0.9,
+			},
+			{
+				name: "BIR Crypto Tax Calculator",
+				path: "/crypto-tax-calculator",
+				desc: "Estimate income tax liability on crypto profits under BIR rules.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",

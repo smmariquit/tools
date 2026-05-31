@@ -49,6 +49,9 @@ const toolToBlogMap: Record<string, string> = {
 	"/philhealth-late-contribution-calculator": "/blog/philhealth-late-contribution-guide",
 	"/retail-treasury-bond-calculator": "/blog/retail-treasury-bond-guide",
 	"/shipping-logistics-estimator": "/blog/shipping-logistics-guide",
+	"/crypto-spread-calculator": "/blog/crypto-spread-guide",
+	"/crypto-p2p-cashout-calculator": "/blog/crypto-p2p-cashout-guide",
+	"/crypto-tax-calculator": "/blog/crypto-tax-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {

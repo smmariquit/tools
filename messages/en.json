@@ -838,6 +838,18 @@
 		"shipping-logistics-estimator": {
 			"name": "Local Shipping & Logistics Rate Estimator",
 			"desc": "Calculate standard delivery costs for local MSME e-commerce."
+		},
+		"crypto-spread-calculator": {
+			"name": "PH Crypto Exchange Spread Calculator",
+			"desc": "Compare hidden spreads when buying crypto on local apps."
+		},
+		"crypto-p2p-cashout-calculator": {
+			"name": "P2P Crypto Cash-Out Calculator",
+			"desc": "Calculate exact PHP earnings when selling USDT via P2P."
+		},
+		"crypto-tax-calculator": {
+			"name": "BIR Crypto Tax Calculator",
+			"desc": "Estimate income tax liability on crypto profits under BIR rules."
 		}
 	}
 }

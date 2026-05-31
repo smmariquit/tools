@@ -407,6 +407,18 @@
 		"shipping-logistics-estimator": {
 			"name": "Local Shipping & Logistics Rate Estimator",
 			"desc": "Kwenthaha ang shipping costs para sa imong negosyo."
+		},
+		"crypto-spread-calculator": {
+			"name": "PH Crypto Exchange Spread Calculator",
+			"desc": "Ikompara ang hidden spreads inig palit og crypto."
+		},
+		"crypto-p2p-cashout-calculator": {
+			"name": "P2P Crypto Cash-Out Calculator",
+			"desc": "Kwenthaha ang imong kita nga PHP inig baligya og USDT via P2P."
+		},
+		"crypto-tax-calculator": {
+			"name": "BIR Crypto Tax Calculator",
+			"desc": "Kwenthaha ang imong tax liability sa crypto profits."
 		}
 	}
 }
