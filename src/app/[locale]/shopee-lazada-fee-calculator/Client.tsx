@@ -3,16 +3,30 @@
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function EcommerceFeeClient() {
-	const [platform, setPlatform] = useState<"shopee" | "lazada" | "tiktok">(
-		"shopee",
-	);
-	const [itemPriceStr, setItemPriceStr] = useState("1000");
-	const [shippingFeeStr, setShippingFeeStr] = useState("50");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
 
-	const [isFss, setIsFss] = useState(false); // Free Shipping Special
-	const [isCcb, setIsCcb] = useState(false); // Coins Cashback / Everyday Cashback
+	const [platform, setPlatform] = useState<"shopee" | "lazada" | "tiktok">(
+		(searchParams.get("platform") as "shopee" | "lazada" | "tiktok") || "shopee"
+	);
+	const [itemPriceStr, setItemPriceStr] = useState(searchParams.get("price") || "1000");
+	const [shippingFeeStr, setShippingFeeStr] = useState(searchParams.get("shipping") || "50");
+
+	const [isFss, setIsFss] = useState(searchParams.get("fss") === "true");
+	const [isCcb, setIsCcb] = useState(searchParams.get("ccb") === "true");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) newSearchParams.set(key, value);
+			else newSearchParams.delete(key);
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const itemPrice = parseFloat(itemPriceStr) || 0;
 	const shippingFee = parseFloat(shippingFeeStr) || 0;
@@ -102,7 +116,10 @@ export default function EcommerceFeeClient() {
 									backgroundColor: platform === "shopee" ? "#ff5722" : "",
 									color: platform === "shopee" ? "white" : "",
 								}}
-								onClick={() => setPlatform("shopee")}
+								onClick={() => {
+									setPlatform("shopee");
+									updateUrl({ platform: "shopee" });
+								}}
 							>
 								Shopee
 							</button>
@@ -113,7 +130,10 @@ export default function EcommerceFeeClient() {
 									backgroundColor: platform === "lazada" ? "#0f136d" : "",
 									color: platform === "lazada" ? "white" : "",
 								}}
-								onClick={() => setPlatform("lazada")}
+								onClick={() => {
+									setPlatform("lazada");
+									updateUrl({ platform: "lazada" });
+								}}
 							>
 								Lazada
 							</button>
@@ -124,7 +144,10 @@ export default function EcommerceFeeClient() {
 									backgroundColor: platform === "tiktok" ? "#000000" : "",
 									color: platform === "tiktok" ? "white" : "",
 								}}
-								onClick={() => setPlatform("tiktok")}
+								onClick={() => {
+									setPlatform("tiktok");
+									updateUrl({ platform: "tiktok" });
+								}}
 							>
 								TikTok Shop
 							</button>
@@ -140,7 +163,10 @@ export default function EcommerceFeeClient() {
 							id="itemPrice"
 							className="form-control"
 							value={itemPriceStr}
-							onChange={(e) => setItemPriceStr(e.target.value)}
+							onChange={(e) => {
+								setItemPriceStr(e.target.value);
+								updateUrl({ price: e.target.value });
+							}}
 							min="0"
 						/>
 					</div>
@@ -154,7 +180,10 @@ export default function EcommerceFeeClient() {
 							id="shippingFee"
 							className="form-control"
 							value={shippingFeeStr}
-							onChange={(e) => setShippingFeeStr(e.target.value)}
+							onChange={(e) => {
+								setShippingFeeStr(e.target.value);
+								updateUrl({ shipping: e.target.value });
+							}}
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
@@ -187,7 +216,10 @@ export default function EcommerceFeeClient() {
 							<input
 								type="checkbox"
 								checked={isFss}
-								onChange={(e) => setIsFss(e.target.checked)}
+								onChange={(e) => {
+									setIsFss(e.target.checked);
+									updateUrl({ fss: e.target.checked ? "true" : "" });
+								}}
 								style={{ width: "16px", height: "16px" }}
 							/>
 							{platform === "tiktok"
@@ -209,7 +241,10 @@ export default function EcommerceFeeClient() {
 								<input
 									type="checkbox"
 									checked={isCcb}
-									onChange={(e) => setIsCcb(e.target.checked)}
+									onChange={(e) => {
+										setIsCcb(e.target.checked);
+										updateUrl({ ccb: e.target.checked ? "true" : "" });
+									}}
 									style={{ width: "16px", height: "16px" }}
 								/>
 								Joined Cashback Program (~3.36% Fee)

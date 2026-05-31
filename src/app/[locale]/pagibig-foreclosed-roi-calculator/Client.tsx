@@ -3,12 +3,26 @@
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function PagibigRoiClient() {
-	const [purchasePriceStr, setPurchasePriceStr] = useState("1000000");
-	const [repairCostStr, setRepairCostStr] = useState("200000");
-	const [monthlyRentStr, setMonthlyRentStr] = useState("12000");
-	const [resalePriceStr, setResalePriceStr] = useState("1800000");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [purchasePriceStr, setPurchasePriceStr] = useState(searchParams.get("price") || "1000000");
+	const [repairCostStr, setRepairCostStr] = useState(searchParams.get("repair") || "200000");
+	const [monthlyRentStr, setMonthlyRentStr] = useState(searchParams.get("rent") || "12000");
+	const [resalePriceStr, setResalePriceStr] = useState(searchParams.get("resale") || "1800000");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) newSearchParams.set(key, value);
+			else newSearchParams.delete(key);
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const purchasePrice = parseFloat(purchasePriceStr) || 0;
 	const repairCost = parseFloat(repairCostStr) || 0;
@@ -87,7 +101,10 @@ export default function PagibigRoiClient() {
 							id="purchasePrice"
 							className="form-control"
 							value={purchasePriceStr}
-							onChange={(e) => setPurchasePriceStr(e.target.value)}
+							onChange={(e) => {
+								setPurchasePriceStr(e.target.value);
+								updateUrl({ price: e.target.value });
+							}}
 							min="0"
 							step="50000"
 						/>
@@ -102,7 +119,10 @@ export default function PagibigRoiClient() {
 							id="repairCost"
 							className="form-control"
 							value={repairCostStr}
-							onChange={(e) => setRepairCostStr(e.target.value)}
+							onChange={(e) => {
+								setRepairCostStr(e.target.value);
+								updateUrl({ repair: e.target.value });
+							}}
 							min="0"
 							step="10000"
 						/>
@@ -127,7 +147,10 @@ export default function PagibigRoiClient() {
 							id="monthlyRent"
 							className="form-control"
 							value={monthlyRentStr}
-							onChange={(e) => setMonthlyRentStr(e.target.value)}
+							onChange={(e) => {
+								setMonthlyRentStr(e.target.value);
+								updateUrl({ rent: e.target.value });
+							}}
 							min="0"
 							step="1000"
 						/>
@@ -142,7 +165,10 @@ export default function PagibigRoiClient() {
 							id="resalePrice"
 							className="form-control"
 							value={resalePriceStr}
-							onChange={(e) => setResalePriceStr(e.target.value)}
+							onChange={(e) => {
+								setResalePriceStr(e.target.value);
+								updateUrl({ resale: e.target.value });
+							}}
 							min="0"
 							step="50000"
 						/>

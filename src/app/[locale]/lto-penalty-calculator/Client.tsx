@@ -3,12 +3,26 @@
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function LtoPenaltyClient() {
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
 	const [vehicleType, setVehicleType] = useState<
 		"motorcycle" | "carLight" | "carMedium" | "carHeavy"
-	>("motorcycle");
-	const [monthsLateStr, setMonthsLateStr] = useState("1");
+	>((searchParams.get("vehicle") as "motorcycle" | "carLight" | "carMedium" | "carHeavy") || "motorcycle");
+	const [monthsLateStr, setMonthsLateStr] = useState(searchParams.get("months") || "1");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) newSearchParams.set(key, value);
+			else newSearchParams.delete(key);
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const monthsLate = parseInt(monthsLateStr) || 0;
 
@@ -93,15 +107,11 @@ export default function LtoPenaltyClient() {
 							id="vehicleType"
 							className="form-control"
 							value={vehicleType}
-							onChange={(e) =>
-								setVehicleType(
-									e.target.value as
-										| "motorcycle"
-										| "carLight"
-										| "carMedium"
-										| "carHeavy",
-								)
-							}
+							onChange={(e) => {
+								const val = e.target.value as "motorcycle" | "carLight" | "carMedium" | "carHeavy";
+								setVehicleType(val);
+								updateUrl({ vehicle: val });
+							}}
 						>
 							<option value="motorcycle">Motorcycle (w/ or w/o sidecar)</option>
 							<option value="carLight">
@@ -125,7 +135,10 @@ export default function LtoPenaltyClient() {
 							id="monthsLate"
 							className="form-control"
 							value={monthsLateStr}
-							onChange={(e) => setMonthsLateStr(e.target.value)}
+							onChange={(e) => {
+								setMonthsLateStr(e.target.value);
+								updateUrl({ months: e.target.value });
+							}}
 							min="0"
 							max="120"
 						/>

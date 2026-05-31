@@ -3,14 +3,28 @@
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function HolidayClient() {
-	const [dailyRateStr, setDailyRateStr] = useState("1000");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [dailyRateStr, setDailyRateStr] = useState(searchParams.get("rate") || "1000");
 	const [dayType, setDayType] = useState<
 		"regular" | "special" | "regularRest" | "specialRest"
-	>("regular");
-	const [didWork, setDidWork] = useState<"yes" | "no">("yes");
-	const [hoursWorkedStr, setHoursWorkedStr] = useState("8");
+	>((searchParams.get("type") as "regular" | "special" | "regularRest" | "specialRest") || "regular");
+	const [didWork, setDidWork] = useState<"yes" | "no">((searchParams.get("worked") as "yes" | "no") || "yes");
+	const [hoursWorkedStr, setHoursWorkedStr] = useState(searchParams.get("hours") || "8");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) newSearchParams.set(key, value);
+			else newSearchParams.delete(key);
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const dailyRate = parseFloat(dailyRateStr) || 0;
 	const hoursWorked = parseFloat(hoursWorkedStr) || 0;
@@ -125,7 +139,10 @@ export default function HolidayClient() {
 							id="dailyRate"
 							className="form-control"
 							value={dailyRateStr}
-							onChange={(e) => setDailyRateStr(e.target.value)}
+							onChange={(e) => {
+								setDailyRateStr(e.target.value);
+								updateUrl({ rate: e.target.value });
+							}}
 							min="0"
 						/>
 					</div>
@@ -138,15 +155,11 @@ export default function HolidayClient() {
 							id="dayType"
 							className="form-control"
 							value={dayType}
-							onChange={(e) =>
-								setDayType(
-									e.target.value as
-										| "regular"
-										| "special"
-										| "regularRest"
-										| "specialRest",
-								)
-							}
+							onChange={(e) => {
+								const val = e.target.value as "regular" | "special" | "regularRest" | "specialRest";
+								setDayType(val);
+								updateUrl({ type: val });
+							}}
 						>
 							<option value="regular">
 								Regular Holiday (e.g. Christmas, Independence Day)
@@ -179,7 +192,10 @@ export default function HolidayClient() {
 									name="didWork"
 									value="yes"
 									checked={didWork === "yes"}
-									onChange={() => setDidWork("yes")}
+									onChange={() => {
+										setDidWork("yes");
+										updateUrl({ worked: "yes" });
+									}}
 								/>{" "}
 								Yes
 							</label>
@@ -196,7 +212,10 @@ export default function HolidayClient() {
 									name="didWork"
 									value="no"
 									checked={didWork === "no"}
-									onChange={() => setDidWork("no")}
+									onChange={() => {
+										setDidWork("no");
+										updateUrl({ worked: "no" });
+									}}
 								/>{" "}
 								No (Rest/Leave)
 							</label>
@@ -213,7 +232,10 @@ export default function HolidayClient() {
 								id="hoursWorked"
 								className="form-control"
 								value={hoursWorkedStr}
-								onChange={(e) => setHoursWorkedStr(e.target.value)}
+								onChange={(e) => {
+									setHoursWorkedStr(e.target.value);
+									updateUrl({ hours: e.target.value });
+								}}
 								min="1"
 								max="24"
 							/>

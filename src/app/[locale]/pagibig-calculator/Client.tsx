@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
 	Area,
 	AreaChart,
@@ -14,10 +15,23 @@ import {
 import AdBanner from "../components/AdBanner";
 
 export default function PagIbigClient() {
-	const [basicSalaryStr, setBasicSalaryStr] = useState("20000");
-	const [mp2MonthlyStr, setMp2MonthlyStr] = useState("1000");
-	const [dividendRateStr, setDividendRateStr] = useState("7"); // Historical avg is around 6-7%
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "20000");
+	const [mp2MonthlyStr, setMp2MonthlyStr] = useState(searchParams.get("mp2") || "1000");
+	const [dividendRateStr, setDividendRateStr] = useState(searchParams.get("rate") || "7"); // Historical avg is around 6-7%
 	const [mounted, setMounted] = useState(false);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) newSearchParams.set(key, value);
+			else newSearchParams.delete(key);
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/set-state-in-effect
@@ -119,7 +133,10 @@ export default function PagIbigClient() {
 							id="basicSalary"
 							className="form-control"
 							value={basicSalaryStr}
-							onChange={(e) => setBasicSalaryStr(e.target.value)}
+							onChange={(e) => {
+								setBasicSalaryStr(e.target.value);
+								updateUrl({ salary: e.target.value });
+							}}
 							min="0"
 							step="any"
 							placeholder="e.g., 10000 (Max MFS)"
@@ -202,7 +219,10 @@ export default function PagIbigClient() {
 							id="mp2Monthly"
 							className="form-control"
 							value={mp2MonthlyStr}
-							onChange={(e) => setMp2MonthlyStr(e.target.value)}
+							onChange={(e) => {
+								setMp2MonthlyStr(e.target.value);
+								updateUrl({ mp2: e.target.value });
+							}}
 							min="500"
 							step="500"
 						/>
@@ -220,7 +240,10 @@ export default function PagIbigClient() {
 							id="dividendRate"
 							className="form-control"
 							value={dividendRateStr}
-							onChange={(e) => setDividendRateStr(e.target.value)}
+							onChange={(e) => {
+								setDividendRateStr(e.target.value);
+								updateUrl({ rate: e.target.value });
+							}}
 							min="1"
 							max="15"
 							step="0.1"

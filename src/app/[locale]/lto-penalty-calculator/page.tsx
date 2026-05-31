@@ -1,31 +1,100 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
+import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "LTO Late Registration Penalty Calculator | PHTools",
-	description:
-		"Calculate the exact fines, MVUC surcharges, and total fees for late LTO vehicle or motorcycle registration renewal in the Philippines.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=LTO%20Late%20Registration%20Penalty%20Calculator%20%7C%20PHTools&desc=Calculate%20the%20exact%20fines%2C%20MVUC%20surcharges%2C%20and%20total%20fees%20for%20late%20LTO%20vehicle%20or%20motorcycle%20registration%20renewal%20in%20the%20Philippines.&s1l=Vehicle&s1v=Car&s2l=Delay&s2v=1%20Mo&s3l=Penalty&s3v=₱200`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ vehicle?: string; months?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "LTO Late Registration Penalty Calculator | PHTools";
+	const description =
+		"Check exactly how much your MVUC fine is for late vehicle registration in the Philippines.";
 
-export default function LtoPenaltyPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.vehicle || resolvedParams.months) {
+		const vehicleType =
+			(resolvedParams.vehicle as
+				| "motorcycle"
+				| "carLight"
+				| "carMedium"
+				| "carHeavy") || "motorcycle";
+		const monthsLate = parseInt(resolvedParams.months || "1") || 0;
+
+		const mvucRates = {
+			motorcycle: 240,
+			carLight: 1600,
+			carMedium: 3600,
+			carHeavy: 8000,
+		};
+
+		const baseMvuc = mvucRates[vehicleType] || 240;
+		let penalty = 0;
+
+		if (monthsLate > 0) {
+			if (monthsLate <= 12) {
+				penalty = baseMvuc * 0.5;
+			} else {
+				const yearsLate = Math.ceil(monthsLate / 12);
+				penalty = baseMvuc * (0.5 * yearsLate);
+			}
+		}
+
+		const lrfFee = 10;
+		const computerFee = 169.06;
+		const totalDue = baseMvuc + penalty + lrfFee + computerFee;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		const vehicleNames = {
+			motorcycle: "Motorcycle",
+			carLight: "Light Car",
+			carMedium: "Medium Car",
+			carHeavy: "Heavy Car",
+		};
+
+		ogUrl += `&s1l=Vehicle&s1v=${encodeURIComponent(vehicleNames[vehicleType])}`;
+		ogUrl += `&s2l=Penalty&s2v=${encodeURIComponent(formatAmount(penalty))}`;
+		ogUrl += `&s3l=Total%20Due&s3v=${encodeURIComponent(formatAmount(totalDue))}`;
+	} else {
+		ogUrl +=
+			"&s1l=Vehicle&s1v=Motorcycle&s2l=Penalty&s2v=%E2%82%B1120&s3l=Total%20Due&s3v=%E2%82%B1539";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function LtoPenaltyPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
 		name: "LTO Penalty Calculator",
-		applicationCategory: "UtilitiesApplication",
+		applicationCategory: "UtilityApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Check exactly how much your MVUC fine is for late vehicle registration in the Philippines.",
 		offers: {
 			"@type": "Offer",
 			price: "0",

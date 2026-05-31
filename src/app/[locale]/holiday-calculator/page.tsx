@@ -1,31 +1,111 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
+import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "Holiday & Overtime Pay Calculator (DOLE Rules) | PHTools",
-	description:
-		"Calculate your exact pay for working on Regular Holidays, Special Non-Working Days, and Rest Days based on DOLE Philippine labor rules.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=Holiday%20%26%20Overtime%20Pay%20Calculator%20%28DOLE%20Rules%29%20%7C%20PHTools&desc=Calculate%20your%20exact%20pay%20for%20working%20on%20Regular%20Holidays%2C%20Special%20Non-Working%20Days%2C%20and%20Rest%20Days%20based%20on%20DOLE%20Philippine%20labor%20rules.&s1l=Rate&s1v=₱1k&s2l=Multiplier&s2v=200%25&s3l=Pay&s3v=₱2k`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ rate?: string; type?: string; worked?: string; hours?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "Holiday & Overtime Pay Calculator (DOLE) | PHTools";
+	const description =
+		"Calculate your exact pay for working on Philippine Regular Holidays, Special Non-Working Days, and Rest Days.";
 
-export default function HolidayPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.rate || resolvedParams.type || resolvedParams.worked || resolvedParams.hours) {
+		const dailyRate = parseFloat(resolvedParams.rate || "1000") || 0;
+		const hoursWorked = parseFloat(resolvedParams.hours || "8") || 0;
+		const dayType = (resolvedParams.type || "regular") as "regular" | "special" | "regularRest" | "specialRest";
+		const didWork = (resolvedParams.worked || "yes") as "yes" | "no";
+
+		const hourlyRate = dailyRate / 8;
+		let computedPay = 0;
+
+		if (didWork === "no") {
+			if (dayType === "regular" || dayType === "regularRest") {
+				computedPay = dailyRate;
+			} else {
+				computedPay = 0;
+			}
+		} else {
+			let baseMultiplier = 1;
+			switch (dayType) {
+				case "regular":
+					baseMultiplier = 2.0;
+					break;
+				case "special":
+					baseMultiplier = 1.3;
+					break;
+				case "regularRest":
+					baseMultiplier = 2.6;
+					break;
+				case "specialRest":
+					baseMultiplier = 1.5;
+					break;
+			}
+
+			if (hoursWorked <= 8) {
+				computedPay = hourlyRate * hoursWorked * baseMultiplier;
+			} else {
+				const regularPay = hourlyRate * 8 * baseMultiplier;
+				const otHours = hoursWorked - 8;
+				const otRate = hourlyRate * baseMultiplier * 1.3;
+				const otPay = otHours * otRate;
+				computedPay = regularPay + otPay;
+			}
+		}
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		const dayNames = {
+			regular: "Regular Holiday",
+			special: "Special Holiday",
+			regularRest: "Regular (Rest Day)",
+			specialRest: "Special (Rest Day)",
+		};
+
+		ogUrl += `&s1l=Daily%20Rate&s1v=${encodeURIComponent(formatAmount(dailyRate))}`;
+		ogUrl += `&s2l=Type&s2v=${encodeURIComponent(dayNames[dayType] || "Holiday")}`;
+		ogUrl += `&s3l=Holiday%20Pay&s3v=${encodeURIComponent(formatAmount(computedPay))}`;
+	} else {
+		ogUrl +=
+			"&s1l=Daily%20Rate&s1v=%E2%82%B11,000&s2l=Type&s2v=Regular%20Holiday&s3l=Holiday%20Pay&s3v=%E2%82%B12,000";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function HolidayPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Holiday Pay Calculator",
-		applicationCategory: "BusinessApplication",
+		name: "Holiday & Overtime Pay Calculator",
+		applicationCategory: "FinanceApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Calculate your exact pay for working on Philippine Regular Holidays, Special Non-Working Days, and Rest Days based on DOLE rules.",
 		offers: {
 			"@type": "Offer",
 			price: "0",

@@ -1,31 +1,99 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
+import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "Shopee & Lazada Seller Fee Calculator | PHTools",
-	description:
-		"Calculate your exact e-commerce seller deductions. Compute transaction fees, commission fees, and FSS/CCB deductions to find your net payout.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=Shopee%20%26%20Lazada%20Seller%20Fee%20Calculator%20%7C%20PHTools&desc=Calculate%20your%20exact%20e-commerce%20seller%20deductions.%20Compute%20transaction%20fees%2C%20commission%20fees%2C%20and%20FSS/CCB%20deductions%20to%20find%20your%20net%20payout.&s1l=Price&s1v=₱1k&s2l=Fees&s2v=10%25&s3l=Payout&s3v=₱900`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ platform?: string; price?: string; shipping?: string; fss?: string; ccb?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "TikTok, Shopee & Lazada Seller Fee Calculator | PHTools";
+	const description =
+		"Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout.";
 
-export default function EcommerceFeePage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (
+		resolvedParams.platform ||
+		resolvedParams.price ||
+		resolvedParams.shipping ||
+		resolvedParams.fss ||
+		resolvedParams.ccb
+	) {
+		const platform = resolvedParams.platform || "shopee";
+		const itemPrice = parseFloat(resolvedParams.price || "1000") || 0;
+		const shippingFee = parseFloat(resolvedParams.shipping || "50") || 0;
+		const isFss = resolvedParams.fss === "true";
+		const isCcb = resolvedParams.ccb === "true";
+
+		const totalOrderAmount = itemPrice + shippingFee;
+		const transactionFeeRate = 0.0224;
+		const transactionFee = totalOrderAmount * transactionFeeRate;
+
+		const commissionFeeRate =
+			platform === "shopee" ? 0.05 : platform === "lazada" ? 0.045 : 0.04;
+		const commissionFee = itemPrice * commissionFeeRate;
+
+		const programFeeRate =
+			(isFss ? (platform === "tiktok" ? 0.1 : 0.056) : 0) +
+			(isCcb ? 0.0336 : 0);
+		const programFee = itemPrice * programFeeRate;
+
+		const totalDeductions = transactionFee + commissionFee + programFee;
+		const netPayout = itemPrice - totalDeductions;
+		const profitMargin = itemPrice > 0 ? (netPayout / itemPrice) * 100 : 0;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		const platformNames = {
+			shopee: "Shopee",
+			lazada: "Lazada",
+			tiktok: "TikTok Shop",
+		};
+
+		ogUrl += `&s1l=Platform&s1v=${encodeURIComponent(
+			platformNames[platform as keyof typeof platformNames] || "Shopee",
+		)}`;
+		ogUrl += `&s2l=Item%20Price&s2v=${encodeURIComponent(formatAmount(itemPrice))}`;
+		ogUrl += `&s3l=Net%20Payout&s3v=${encodeURIComponent(formatAmount(netPayout))}`;
+	} else {
+		ogUrl +=
+			"&s1l=Platform&s1v=Shopee&s2l=Item%20Price&s2v=%E2%82%B11,000&s3l=Net%20Payout&s3v=%E2%82%B1926";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function EcommerceFeePage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Shopee & Lazada Fee Calculator",
+		name: "E-Commerce Seller Fee Calculator",
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
