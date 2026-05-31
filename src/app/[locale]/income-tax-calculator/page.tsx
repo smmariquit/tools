@@ -1,5 +1,6 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -53,7 +54,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Tax%20Type&s2v=${encodeURIComponent(taxType === "flat8" ? "8% Flat Rate" : "Graduated")}`;
 		ogUrl += `&s3l=Annual%20Tax&s3v=${encodeURIComponent(formatAmount(annualTax))}`;
 	} else {
-		ogUrl += "&s1l=Annual%20Income&s1v=%E2%82%B1400%2C000&s2l=Tax%20Type&s2v=Graduated&s3l=Annual%20Tax&s3v=%E2%82%B10";
+		ogUrl +=
+			"&s1l=Annual%20Income&s1v=%E2%82%B1400%2C000&s2l=Tax%20Type&s2v=Graduated&s3l=Annual%20Tax&s3v=%E2%82%B10";
 	}
 
 	return {
@@ -93,7 +95,18 @@ export default async function IncomeTaxPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/income-tax-calculator" />
 		</>
 	);

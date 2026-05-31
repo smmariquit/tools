@@ -1,11 +1,18 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ currency?: string; usd?: string; rate?: string; php?: string; upwork?: string }>;
+	searchParams: Promise<{
+		currency?: string;
+		usd?: string;
+		rate?: string;
+		php?: string;
+		upwork?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "Freelance 8% Tax Calculator (BIR) | PHTools";
@@ -27,7 +34,8 @@ export async function generateMetadata({
 		const platformFeeUsd = includeUpwork ? usdIncome * platformFeeRate : 0;
 		const netUsd = usdIncome - platformFeeUsd;
 
-		const totalPhp = currencyMode === "usd" ? netUsd * forexRate : phpGrossIncome;
+		const totalPhp =
+			currencyMode === "usd" ? netUsd * forexRate : phpGrossIncome;
 		const eightPercentTax = totalPhp * 0.08;
 		const netIncome8Percent = totalPhp - eightPercentTax;
 
@@ -42,7 +50,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=8%25%20BIR%20Tax&s2v=${encodeURIComponent(formatAmount(eightPercentTax))}`;
 		ogUrl += `&s3l=Net%20Take%20Home&s3v=${encodeURIComponent(formatAmount(netIncome8Percent))}`;
 	} else {
-		ogUrl += "&s1l=Gross%20Income&s1v=%242%2C000&s2l=8%25%20BIR%20Tax&s2v=%E2%82%B18%2C280&s3l=Net%20Take%20Home&s3v=%E2%82%B195%2C220";
+		ogUrl +=
+			"&s1l=Gross%20Income&s1v=%242%2C000&s2l=8%25%20BIR%20Tax&s2v=%E2%82%B18%2C280&s3l=Net%20Take%20Home&s3v=%E2%82%B195%2C220";
 	}
 
 	return {
@@ -82,7 +91,18 @@ export default async function FreelanceTaxPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/freelance-tax-calculator" />
 		</>
 	);

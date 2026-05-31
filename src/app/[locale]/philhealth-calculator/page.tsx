@@ -1,5 +1,6 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -41,7 +42,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Total%20Premium&s2v=${encodeURIComponent(formatAmount(totalPremium))}`;
 		ogUrl += `&s3l=Your%20Share&s3v=${encodeURIComponent(formatAmount(employeeShare))}`;
 	} else {
-		ogUrl += "&s1l=Basic%20Salary&s1v=%E2%82%B130%2C000&s2l=Total%20Premium&s2v=%E2%82%B11%2C500&s3l=Your%20Share&s3v=%E2%82%B1750";
+		ogUrl +=
+			"&s1l=Basic%20Salary&s1v=%E2%82%B130%2C000&s2l=Total%20Premium&s2v=%E2%82%B11%2C500&s3l=Your%20Share&s3v=%E2%82%B1750";
 	}
 
 	return {
@@ -81,7 +83,18 @@ export default async function PhilHealthPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/philhealth-calculator" />
 		</>
 	);

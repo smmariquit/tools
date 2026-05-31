@@ -1,11 +1,16 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ salary?: string; months?: string; absences?: string }>;
+	searchParams: Promise<{
+		salary?: string;
+		months?: string;
+		absences?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "13th Month Pay Calculator (Philippines 2026) | PHTools";
@@ -16,7 +21,11 @@ export async function generateMetadata({
 		title,
 	)}&desc=${encodeURIComponent(description)}`;
 
-	if (resolvedParams.salary || resolvedParams.months || resolvedParams.absences) {
+	if (
+		resolvedParams.salary ||
+		resolvedParams.months ||
+		resolvedParams.absences
+	) {
 		const basicSalary = parseFloat(resolvedParams.salary || "30000") || 0;
 		const monthsWorked = parseFloat(resolvedParams.months || "12") || 0;
 		const unpaidAbsences = parseFloat(resolvedParams.absences || "0") || 0;
@@ -34,7 +43,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Months&s2v=${encodeURIComponent(monthsWorked.toString())}`;
 		ogUrl += `&s3l=13th%20Month&s3v=${encodeURIComponent(formatAmount(thirteenthMonthPay))}`;
 	} else {
-		ogUrl += "&s1l=Basic&s1v=%E2%82%B130k&s2l=Months&s2v=12&s3l=13th%20Month&s3v=%E2%82%B130k";
+		ogUrl +=
+			"&s1l=Basic&s1v=%E2%82%B130k&s2l=Months&s2v=12&s3l=13th%20Month&s3v=%E2%82%B130k";
 	}
 
 	return {
@@ -74,7 +84,18 @@ export default async function ThirteenthMonthPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/13th-month-pay-calculator" />
 		</>
 	);

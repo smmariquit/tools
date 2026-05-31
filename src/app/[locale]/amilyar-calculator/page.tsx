@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Client from "./Client";
+import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
+import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
@@ -50,7 +51,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Type&s2v=${encodeURIComponent(propertyType.charAt(0).toUpperCase() + propertyType.slice(1))}`;
 		ogUrl += `&s3l=Annual%20Tax&s3v=${encodeURIComponent(formatAmount(totalAmilyar))}`;
 	} else {
-		ogUrl += "&s1l=Market%20Value&s1v=%E2%82%B12%2C000%2C000&s2l=Type&s2v=Residential&s3l=Annual%20Tax&s3v=%E2%82%B112%2C000";
+		ogUrl +=
+			"&s1l=Market%20Value&s1v=%E2%82%B12%2C000%2C000&s2l=Type&s2v=Residential&s3l=Annual%20Tax&s3v=%E2%82%B112%2C000";
 	}
 
 	return {
@@ -90,7 +92,18 @@ export default async function AmilyarPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/amilyar-calculator" />
 		</>
 	);

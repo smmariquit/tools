@@ -1,0 +1,36 @@
+
+> tools@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.6s
+  Running TypeScript ...
+  Finished TypeScript in 4.7s ...
+  Collecting page data using 15 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 15 workers (0/127) ...
+⚠ Unsupported metadata themeColor is configured in metadata export in /[locale]/contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ Unsupported metadata themeColor is configured in metadata export in /[locale]/id-photo-maker. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⨯ useSearchParams() should be wrapped in a suspense boundary at page "/[locale]/13th-month-pay-calculator". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at S (/home/stimmie/dev/personal/tools/.next/server/chunks/ssr/node_modules_next_0rd0oc-._.js:2:2692)
+    at r (/home/stimmie/dev/personal/tools/.next/server/chunks/ssr/node_modules_next_0rd0oc-._.js:4:6760)
+    at /home/stimmie/dev/personal/tools/.next/server/chunks/ssr/src_app_[locale]_0pcl9ll._.js:1:1037
+    at an (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:84267)
+    at ai (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:86086)
+    at ai (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:104615)
+    at al (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:107860)
+    at ao (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:105275)
+    at am (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:112789)
+    at au (/home/stimmie/dev/personal/tools/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:109892)
+Error occurred prerendering page "/en/13th-month-pay-calculator". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /[locale]/13th-month-pay-calculator/page: /en/13th-month-pay-calculator, exiting the build.
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ Unsupported metadata themeColor is configured in metadata export in /[locale]/shopee-lazada-fee-calculator. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⨯ Next.js build worker exited with code: 1 and signal: null

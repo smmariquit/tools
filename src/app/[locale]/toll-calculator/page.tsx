@@ -1,5 +1,6 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export const metadata: Metadata = {
@@ -38,7 +39,18 @@ export default function TollCalculatorPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/toll-calculator" />
 		</>
 	);

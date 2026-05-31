@@ -1,5 +1,6 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -31,7 +32,11 @@ export async function generateMetadata({
 		const regularMSC = Math.min(msc, 20000);
 		const mpfMSC = Math.max(0, msc - 20000);
 
-		let eeRegular = 0, eeMPF = 0, erRegular = 0, erMPF = 0, ecFee = 0;
+		let eeRegular = 0,
+			eeMPF = 0,
+			erRegular = 0,
+			erMPF = 0,
+			ecFee = 0;
 
 		if (msc > 0) {
 			if (memberType === "employed") {
@@ -65,7 +70,8 @@ export async function generateMetadata({
 		}
 		ogUrl += `&s3l=MPF%20Savings&s3v=${encodeURIComponent(formatAmount(eeMPF + erMPF))}`;
 	} else {
-		ogUrl += "&s1l=Employee%20Share&s1v=%E2%82%B11%2C500&s2l=Employer%20Share&s2v=%E2%82%B13%2C030&s3l=MPF%20Savings&s3v=%E2%82%B11%2C500";
+		ogUrl +=
+			"&s1l=Employee%20Share&s1v=%E2%82%B11%2C500&s2l=Employer%20Share&s2v=%E2%82%B13%2C030&s3l=MPF%20Savings&s3v=%E2%82%B11%2C500";
 	}
 
 	return {
@@ -105,7 +111,18 @@ export default async function SssCalculatorPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/sss-contribution-calculator" />
 		</>
 	);

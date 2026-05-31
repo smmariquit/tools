@@ -1,11 +1,17 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ dist?: string; eff?: string; price?: string; pax?: string }>;
+	searchParams: Promise<{
+		dist?: string;
+		eff?: string;
+		price?: string;
+		pax?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "Philippine Fuel Cost & Trip Calculator | PHTools";
@@ -24,7 +30,8 @@ export async function generateMetadata({
 
 		const litersNeeded = efficiency > 0 ? distance / efficiency : 0;
 		const totalFuelCost = litersNeeded * fuelPrice;
-		const costPerPerson = passengers > 0 ? totalFuelCost / passengers : totalFuelCost;
+		const costPerPerson =
+			passengers > 0 ? totalFuelCost / passengers : totalFuelCost;
 
 		const formatAmount = (val: number) =>
 			new Intl.NumberFormat("en-PH", {
@@ -37,7 +44,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Total%20Cost&s2v=${encodeURIComponent(formatAmount(totalFuelCost))}`;
 		ogUrl += `&s3l=Cost%20per%20Pax&s3v=${encodeURIComponent(formatAmount(costPerPerson))}`;
 	} else {
-		ogUrl += "&s1l=Distance&s1v=250%20km&s2l=Total%20Cost&s2v=%E2%82%B11%2C354&s3l=Cost%20per%20Pax&s3v=%E2%82%B1338";
+		ogUrl +=
+			"&s1l=Distance&s1v=250%20km&s2l=Total%20Cost&s2v=%E2%82%B11%2C354&s3l=Cost%20per%20Pax&s3v=%E2%82%B1338";
 	}
 
 	return {
@@ -77,7 +85,18 @@ export default async function FuelCostPage() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolFooter currentPath="/fuel-cost-calculator" />
 		</>
 	);

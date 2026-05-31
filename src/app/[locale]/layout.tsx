@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
@@ -13,8 +13,8 @@ import { ThemeProvider } from "../../components/ThemeProvider";
 import { ThemeToggle } from "../../components/ThemeToggle";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import OfflineToast from "../components/OfflineToast";
-import { PostHogProvider } from "./providers";
 import Navbar from "./components/Navbar";
+import { PostHogProvider } from "./providers";
 
 const locales = ["en", "tl", "ceb"];
 
@@ -24,12 +24,16 @@ export function generateStaticParams() {
 	return locales.map((locale) => ({ locale }));
 }
 
+export const viewport: Viewport = {
+	themeColor: "#0d47a1",
+};
+
 export const metadata: Metadata = {
+	metadataBase: new URL("https://phtools.me"),
 	title: "PH Tools & Calculators | Free Online Utilities",
 	description:
 		"Free, accurate calculators and tools for Filipinos. Compute your SSS, PhilHealth, Pag-IBIG, tax, net pay, and more.",
 	manifest: "/manifest.json",
-	themeColor: "#0d47a1",
 	icons: {
 		icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>',
 	},
