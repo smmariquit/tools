@@ -191,5 +191,26 @@
 		"unpaidSalary": "Unpaid Salary",
 		"prorated13thAmount": "Prorated 13th Month Pay",
 		"totalBackpay": "Total Estimated Backpay"
+	},
+	"TaxOptimizer": {
+		"title": "8% vs Graduated Tax Optimizer",
+		"subtitle": "Find out which BIR tax classification saves you the most money: 8% Flat Rate, OSD, or Itemized Deductions.",
+		"incomeDetails": "Annual Income & Expenses",
+		"grossIncome": "Estimated Annual Gross Income (PHP)",
+		"grossIncomeHint": "Your total sales or receipts for the entire year before any expenses.",
+		"annualExpenses": "Estimated Annual Expenses (PHP)",
+		"annualExpensesHint": "Your actual business expenses with official receipts (rent, utilities, supplies).",
+		"resultsTitle": "Tax Comparison",
+		"bestOption": "Best Option for You!",
+		"option8Percent": "8% Flat Rate",
+		"optionOsd": "Graduated (40% OSD)",
+		"optionItemized": "Graduated (Itemized)",
+		"netIncome": "Net Income",
+		"totalTax": "Total Tax Paid",
+		"breakdownIncomeTax": "Income Tax",
+		"breakdownPercentageTax": "Percentage Tax (3%)",
+		"warningVat": "Since your income exceeds ₱3,000,000, you must register as a VAT taxpayer. The 8% flat rate is no longer applicable.",
+		"notApplicable": "Not Applicable",
+		"saveAmount": "You save {amount} compared to the most expensive option!"
 	}
 }

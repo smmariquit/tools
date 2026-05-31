@@ -191,5 +191,26 @@
 		"unpaidSalary": "Unpaid Salary (Huling Sweldo)",
 		"prorated13thAmount": "Prorated 13th Month Pay",
 		"totalBackpay": "Total Estimated Backpay"
+	},
+	"TaxOptimizer": {
+		"title": "8% vs Graduated Tax Optimizer",
+		"subtitle": "Alamin kung anong BIR tax classification ang pinakamalaki ang matitipid mo: 8% Flat Rate, OSD, o Itemized Deductions.",
+		"incomeDetails": "Taunang Kita at Gastos (Annual)",
+		"grossIncome": "Estimated Annual Gross Income (PHP)",
+		"grossIncomeHint": "Kabuuang benta o kita mo sa buong taon bago bawasan ng gastos.",
+		"annualExpenses": "Estimated Annual Expenses (PHP)",
+		"annualExpensesHint": "Tunay na gastos sa negosyo na may official receipts (renta, kuryente, supplies).",
+		"resultsTitle": "Tax Comparison",
+		"bestOption": "Pinakasulit Para Sa'yo!",
+		"option8Percent": "8% Flat Rate",
+		"optionOsd": "Graduated (40% OSD)",
+		"optionItemized": "Graduated (Itemized)",
+		"netIncome": "Net Income (Take-home)",
+		"totalTax": "Total na Buwis (Tax)",
+		"breakdownIncomeTax": "Income Tax",
+		"breakdownPercentageTax": "Percentage Tax (3%)",
+		"warningVat": "Dahil lagpas ₱3,000,000 ang kita mo, required kang mag-register bilang VAT taxpayer. Hindi na applicable ang 8% flat rate sa'yo.",
+		"notApplicable": "Hindi Applicable",
+		"saveAmount": "Makatitipid ka ng {amount} kumpara sa pinakamahal na option!"
 	}
 }

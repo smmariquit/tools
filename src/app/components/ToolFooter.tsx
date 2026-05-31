@@ -11,6 +11,7 @@ const toolToBlogMap: Record<string, string> = {
 	"/income-tax-calculator": "/blog/income-tax-brackets-2026",
 	"/13th-month-pay-calculator": "/blog/how-to-compute-13th-month-pay",
 	"/backpay-calculator": "/blog/philippine-backpay-computation-guide",
+	"/tax-optimizer-calculator": "/blog/philippine-tax-classification-guide",
 	"/freelance-tax-calculator": "/blog/upwork-freelance-tax-guide",
 	"/shopee-lazada-fee-calculator": "/blog/shopee-lazada-seller-fees-explained",
 	"/electric-bill-calculator": "/blog/meralco-electric-bill-guide",

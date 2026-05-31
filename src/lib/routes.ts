@@ -57,6 +57,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "8% vs Graduated Tax Optimizer",
+				path: "/tax-optimizer-calculator",
+				desc: "Find out if 8% Flat Rate, OSD, or Itemized deductions will save you more money.",
+				priority: 0.9,
+			},
+			{
 				name: "TikTok, Shopee & Lazada Fee Calculator",
 				path: "/shopee-lazada-fee-calculator",
 				desc: "Calculate exact seller deductions (Commission, FSS, TikTok fees) and net payout.",
