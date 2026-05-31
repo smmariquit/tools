@@ -62,6 +62,32 @@ export default function ElectricBillClient() {
 						Appliance Details
 					</h2>
 
+					<div className="form-group" style={{ marginBottom: "16px" }}>
+						<label className="form-label" htmlFor="appliance">
+							Select Common Appliance
+						</label>
+						<select
+							id="appliance"
+							className="form-control"
+							onChange={(e) => {
+								if (e.target.value) {
+									setWattsStr(e.target.value);
+								}
+							}}
+						>
+							<option value="">-- Custom / Enter Manually --</option>
+							<option value="1000">1.0 HP Non-Inverter Aircon (1000W)</option>
+							<option value="600">1.0 HP Inverter Aircon (~600W)</option>
+							<option value="60">Electric Fan (60W)</option>
+							<option value="150">Refrigerator - Medium (150W)</option>
+							<option value="70">LED TV 40" (70W)</option>
+							<option value="500">Washing Machine (500W)</option>
+							<option value="400">Rice Cooker (400W)</option>
+							<option value="1000">Flat Iron (1000W)</option>
+							<option value="60">Laptop Charger (60W)</option>
+						</select>
+					</div>
+
 					<div className="form-group">
 						<label className="form-label" htmlFor="watts">
 							Power Rating (Watts)

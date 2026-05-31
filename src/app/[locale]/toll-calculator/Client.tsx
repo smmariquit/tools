@@ -297,100 +297,103 @@ export default function TollCalculatorClient() {
 					marginTop: "48px",
 					paddingTop: "32px",
 					borderTop: "1px solid var(--border-color)",
-					overflowX: "auto",
 				}}
 			>
-				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					{selectedExpressway} Toll Matrix (Class{" "}
-					{vehicleClass.replace("class", "")})
-				</h2>
-				<table
-					style={{
-						width: "100%",
-						borderCollapse: "collapse",
-						fontSize: "12px",
-						textAlign: "center",
-					}}
-				>
-					<thead>
-						<tr>
-							<th
-								style={{
-									padding: "8px",
-									border: "1px solid var(--border-color)",
-									backgroundColor: "var(--surface-color)",
-								}}
-							>
-								Entry \\ Exit
-							</th>
-							{currentExpressway.exits.map((exit) => (
-								<th
-									key={exit}
-									style={{
-										padding: "8px",
-										border: "1px solid var(--border-color)",
-										backgroundColor: "var(--surface-color)",
-										minWidth: "80px",
-									}}
-								>
-									{exit}
-								</th>
-							))}
-						</tr>
-					</thead>
-					<tbody>
-						{currentExpressway.exits.map((rowExit) => (
-							<tr key={rowExit}>
-								<td
-									style={{
-										padding: "8px",
-										border: "1px solid var(--border-color)",
-										fontWeight: "bold",
-										backgroundColor: "var(--surface-color)",
-										textAlign: "left",
-									}}
-								>
-									{rowExit}
-								</td>
-								{currentExpressway.exits.map((colExit) => {
-									const fee = getTollFee(
-										selectedExpressway,
-										rowExit,
-										colExit,
-										vehicleClass,
-									);
-									const isCurrentRoute =
-										(origin === rowExit && destination === colExit) ||
-										(origin === colExit && destination === rowExit);
-
-									return (
-										<td
-											key={`${rowExit}-${colExit}`}
+				{(["class1", "class2", "class3"] as const).map((vClass) => (
+					<div key={vClass} style={{ marginBottom: "48px", overflowX: "auto" }}>
+						<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
+							{selectedExpressway} Toll Matrix (Class{" "}
+							{vClass.replace("class", "")})
+						</h2>
+						<table
+							style={{
+								width: "100%",
+								borderCollapse: "collapse",
+								fontSize: "12px",
+								textAlign: "center",
+							}}
+						>
+							<thead>
+								<tr>
+									<th
+										style={{
+											padding: "8px",
+											border: "1px solid var(--border-color)",
+											backgroundColor: "var(--surface-color)",
+										}}
+									>
+										Entry \\ Exit
+									</th>
+									{currentExpressway.exits.map((exit) => (
+										<th
+											key={exit}
 											style={{
 												padding: "8px",
 												border: "1px solid var(--border-color)",
-												backgroundColor:
-													isCurrentRoute && origin !== destination
-														? "#bbdefb"
-														: rowExit === colExit
-															? "#f5f5f5"
-															: "transparent",
-												fontWeight: isCurrentRoute ? "bold" : "normal",
-												color: isCurrentRoute ? "#0d47a1" : "inherit",
+												backgroundColor: "var(--surface-color)",
+												minWidth: "80px",
 											}}
 										>
-											{rowExit === colExit
-												? "-"
-												: fee !== null
-													? `₱${fee}`
-													: "N/A"}
+											{exit}
+										</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								{currentExpressway.exits.map((rowExit) => (
+									<tr key={rowExit}>
+										<td
+											style={{
+												padding: "8px",
+												border: "1px solid var(--border-color)",
+												fontWeight: "bold",
+												backgroundColor: "var(--surface-color)",
+												textAlign: "left",
+											}}
+										>
+											{rowExit}
 										</td>
-									);
-								})}
-							</tr>
-						))}
-					</tbody>
-				</table>
+										{currentExpressway.exits.map((colExit) => {
+											const fee = getTollFee(
+												selectedExpressway,
+												rowExit,
+												colExit,
+												vClass,
+											);
+											const isCurrentRoute =
+												(origin === rowExit && destination === colExit) ||
+												(origin === colExit && destination === rowExit);
+
+											return (
+												<td
+													key={`${rowExit}-${colExit}`}
+													style={{
+														padding: "8px",
+														border: "1px solid var(--border-color)",
+														backgroundColor:
+															isCurrentRoute && origin !== destination
+																? "rgba(13, 71, 161, 0.3)"
+																: rowExit === colExit
+																	? "var(--bg-color)"
+																	: "transparent",
+														fontWeight: isCurrentRoute ? "bold" : "normal",
+														color: isCurrentRoute ? "#2196f3" : "inherit",
+													}}
+												>
+													{rowExit === colExit
+														? "-"
+														: fee !== null
+															? `₱${fee}`
+															: "N/A"}
+												</td>
+											);
+										})}
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				))}
 			</div>
 		</div>
 	);
