@@ -3,14 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -33,10 +26,6 @@ export default function CarLoanCalculator() {
 	const [showAmortization, setShowAmortization] = useState(false);
 	const [mounted, setMounted] = useState(false);
 
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
 	const updateUrl = useCallback(
 		(updates: Record<string, string>) => {
 			const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -51,6 +40,31 @@ export default function CarLoanCalculator() {
 		[router, pathname, searchParams],
 	);
 
+	useEffect(() => {
+		setMounted(true);
+		// Check if URL parameters are missing and initialize them
+		if (
+			!searchParams.has("price") ||
+			!searchParams.has("down") ||
+			!searchParams.has("rate") ||
+			!searchParams.has("term")
+		) {
+			updateUrl({
+				price: priceStr,
+				down: downPercentStr,
+				rate: interestRateStr,
+				term: termStr,
+			});
+		}
+	}, [
+		searchParams,
+		updateUrl,
+		priceStr,
+		downPercentStr,
+		interestRateStr,
+		termStr,
+	]);
+
 	// Core math
 	const price = parseFloat(priceStr) || 0;
 	const downPercent = parseFloat(downPercentStr) || 0;
@@ -60,11 +74,6 @@ export default function CarLoanCalculator() {
 	const downPayment = price * (downPercent / 100);
 	const loanAmount = price - downPayment;
 
-	// Car Loan PMT logic
-	// In the Philippines, car loans are calculated either:
-	// A. Flat Interest Rate (simple interest, highly common for dealers)
-	// B. Compounded Amortization (declining balance, highly common for banks)
-	// Let's implement declining balance (PMT) since that is the standard for high-ticket bank financing comparisons.
 	const monthlyRate = interestRate / 100 / 12;
 	const totalMonths = termYears * 12;
 
@@ -83,7 +92,6 @@ export default function CarLoanCalculator() {
 	const totalInterest = totalPaid - loanAmount;
 
 	// In-House comparison mock
-	// Typically, dealer in-house financing rates are ~16% flat, plus an additional 3-5% chattel mortgage fee!
 	const inHouseRate = 16.5;
 	const inHouseMonthlyRate = inHouseRate / 100 / 12;
 	let inHouseMonthly = 0;
@@ -129,8 +137,8 @@ export default function CarLoanCalculator() {
 	return (
 		<ToolLayout>
 			<ToolHeader
-				title="Car Loan & Amortization Calculator"
-				subtitle="Compute your monthly payment, total interest, and see why Bank Financing beats Dealer In-House Financing."
+				title={t("title")}
+				subtitle={t("subtitle")}
 				adSlotId="1234567890"
 			/>
 
@@ -261,8 +269,8 @@ export default function CarLoanCalculator() {
 						<div
 							className="card"
 							style={{
-								backgroundColor: "#e8f5e9",
-								border: "1px solid #a5d6a7",
+								backgroundColor: "var(--bg-color)",
+								border: "1px solid var(--border-color)",
 								borderLeft: "5px solid #2e7d32",
 								marginTop: "20px",
 							}}
@@ -270,23 +278,24 @@ export default function CarLoanCalculator() {
 							<h3
 								style={{
 									fontSize: "15px",
-									color: "#1b5e20",
+									color: "var(--text-primary)",
 									marginBottom: "8px",
 								}}
 							>
-								💰 Bank Financing Savings
+								💰 {t("bankSavingsTitle")}
 							</h3>
 							<p
 								style={{
 									fontSize: "13px",
-									color: "#2e7d32",
+									color: "var(--text-secondary)",
 									lineHeight: 1.5,
 									margin: "0 0 12px 0",
 								}}
 							>
-								By getting a car loan from a commercial bank (at {interestRate}
-								%) instead of dealer in-house financing (usually ~{inHouseRate}
-								%), you will save:
+								{t("bankSavingsDesc", {
+									interestRate: interestRate.toString(),
+									inHouseRate: inHouseRate.toString(),
+								})}
 							</p>
 							<div
 								style={{
@@ -299,13 +308,13 @@ export default function CarLoanCalculator() {
 									<div
 										style={{
 											fontSize: "11px",
-											color: "#388e3c",
+											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
 									>
-										Total Savings
+										{t("totalSavings")}
 									</div>
-									<strong style={{ fontSize: "20px", color: "#1b5e20" }}>
+									<strong style={{ fontSize: "20px", color: "#2e7d32" }}>
 										{formatCurrency(totalSavings)}
 									</strong>
 								</div>
@@ -313,13 +322,13 @@ export default function CarLoanCalculator() {
 									<div
 										style={{
 											fontSize: "11px",
-											color: "#388e3c",
+											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
 									>
-										Monthly Difference
+										{t("monthlyDifference")}
 									</div>
-									<strong style={{ fontSize: "16px", color: "#1b5e20" }}>
+									<strong style={{ fontSize: "16px", color: "#2e7d32" }}>
 										- {formatCurrency(inHouseMonthly - monthlyAmortization)}/mo
 									</strong>
 								</div>
@@ -415,7 +424,7 @@ export default function CarLoanCalculator() {
 									color: "var(--text-secondary)",
 								}}
 							>
-								Total Cost Breakdown
+								{t("totalCostBreakdown")}
 							</h3>
 							<ResponsiveContainer width="100%" height={200}>
 								<PieChart>
@@ -447,7 +456,8 @@ export default function CarLoanCalculator() {
 					<div
 						className="card"
 						style={{
-							backgroundColor: "var(--bg-alt-color, #f8f9fa)",
+							backgroundColor: "var(--bg-color)",
+							border: "1px solid var(--border-color)",
 							borderLeft: "4px solid var(--primary)",
 							marginTop: "24px",
 						}}
@@ -483,9 +493,7 @@ export default function CarLoanCalculator() {
 						className="btn-secondary"
 						style={{ width: "100%", padding: "12px", fontWeight: 600 }}
 					>
-						{showAmortization
-							? "Hide Monthly Payment Schedule"
-							: "View Monthly Payment Schedule"}
+						{showAmortization ? t("hideSchedule") : t("viewSchedule")}
 					</button>
 
 					{showAmortization && (
@@ -501,10 +509,10 @@ export default function CarLoanCalculator() {
 											textAlign: "left",
 										}}
 									>
-										<th style={{ padding: "8px" }}>Month</th>
-										<th style={{ padding: "8px" }}>Principal</th>
-										<th style={{ padding: "8px" }}>Interest</th>
-										<th style={{ padding: "8px" }}>Remaining Balance</th>
+										<th style={{ padding: "8px" }}>{t("month")}</th>
+										<th style={{ padding: "8px" }}>{t("principal")}</th>
+										<th style={{ padding: "8px" }}>{t("interest")}</th>
+										<th style={{ padding: "8px" }}>{t("remainingBalance")}</th>
 									</tr>
 								</thead>
 								<tbody>

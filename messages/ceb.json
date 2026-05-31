@@ -91,20 +91,31 @@
 		"totalShiftPay": "Total Shift Pay Nimo"
 	},
 	"BudgetCalculator": {
+		"title": "Budget & Reverse Salary Calculator (2026)",
+		"subtitle": "I-list ang imong monthly gastos aron mahibaloan kung pila ang gross salary nga dapat nimo pangayoon.",
 		"detailsTitle": "Monthly Gastos Nimo",
 		"targetNetPayLabel": "Target Na Net Take-Home Pay (PHP)",
 		"targetNetPayHint": "Pila gyud ang kinahanglan nimo madawat sa bank nimo kada buwan?",
 		"addExpenseButton": "+ Dugang Pa Ug Gastos",
 		"expenseNamePlaceholder": "e.g., Renta, Groceries",
 		"expenseAmountPlaceholder": "Kantidad",
+		"extraSavingsLabel": "Extra Monthly Savings / Pang-Leisure (PHP)",
+		"extraSavingsHint": "Bisan unsang extra cash nga gusto nimo mabilin gawas sa fixed expenses nimo.",
+		"expenseBreakdown": "Breakdown sa Imong Gastos",
 		"resultsTitle": "Kinahanglan Nimong Salary",
 		"grossSalaryNeeded": "Gross Salary Nga Dapat Nimo Pangayoon",
 		"totalExpenses": "Total Monthly Gastos Nimo",
 		"estimatedDeductions": "Estimated Nga Kinaltas ug Tax",
+		"totalDeductions": "Total nga Kinaltas",
+		"minimumSalaryTip": "Kini ang pinaka-ubos nga gross salary nga angay nimong i-negotiate.",
+		"whereSalaryGoes": "Asa Napunta ang Imong Suholan?",
 		"howItWorksTitle": "Unsaon man ni pag-gamit?",
-		"howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview."
+		"howItWorksDesc": "Gi-reverse namo ang computation. Gi-sum up ang tanan nimong gastos para mahibaw-an ang target net pay, dayon gi-reverse-engineer ang SSS, PhilHealth, Pag-IBIG, ug Withholding Tax para makuha ang exact gross salary nga angay nimong pangayoon sa job interview.",
+		"disclaimer": "* Base sa SSS, PhilHealth, Pag-IBIG rates ug TRAIN Law tax brackets. Private sector employee ang assumed."
 	},
 	"CarLoanCalculator": {
+		"title": "Car Loan & Amortization Calculator",
+		"subtitle": "Kalkulaha ang imong monthly amortization ug hibal-i kung ngano mas makadaginot ka sa Bank Financing kaysa In-House.",
 		"detailsTitle": "Car Loan Details Nimo",
 		"vehiclePriceLabel": "Presyo sa Sakyanan / Vehicle Price (PHP)",
 		"vehiclePriceHint": "Ang cash price sa sakyanan nga imong paliton.",
@@ -117,10 +128,23 @@
 		"loanAmount": "Kinahanglan nga Loan Amount",
 		"totalInterest": "Total nga Interest nga Bayran",
 		"totalPaid": "Total nga Magasto Nimo sa Sakyanan",
+		"bankSavingsTitle": "Bank Financing Savings Nimo",
+		"bankSavingsDesc": "Tungod kay nag-bank loan ka (sa rate nga {interestRate}%) kaysa sa dealer in-house financing (nga kasagaran ~{inHouseRate}%), makadaginot ka og:",
+		"totalSavings": "Total nga Nadaginot Nimo",
+		"monthlyDifference": "Bawas sa Monthly Pay Nimo",
+		"totalCostBreakdown": "Breakdown sa Kinatibuk-ang Gastos",
 		"bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
-		"bankVsInhouseDesc": "Mas barato gyud ang bank financing. Ang in-house sa dealer, kay hilig mo-offer ug 'low down payment' promos pero grabe ka taas ang interest rate (15%+). Pag-apply una sa bangko para maka-save ka!"
+		"bankVsInhouseDesc": "Mas barato gyud ang bank financing. Ang in-house sa dealer, kay hilig mo-offer ug 'low down payment' promos pero grabe ka taas ang interest rate (15%+). Pag-apply una sa bangko para maka-save ka!",
+		"viewSchedule": "Tan-awa ang Monthly Payment Schedule",
+		"hideSchedule": "Itago ang Monthly Payment Schedule",
+		"month": "Buwan",
+		"principal": "Principal",
+		"interest": "Interest",
+		"remainingBalance": "Natitirang Balance"
 	},
 	"HomeLoanCalculator": {
+		"title": "Home Loan & Amortization Calculator",
+		"subtitle": "Kalkulaha ang monthly mortgage payments, down payment options, ug total interest charges para sa home loans.",
 		"detailsTitle": "Home Loan Details Nimo",
 		"propertyPriceLabel": "Presyo sa Balay ug Yuta / Property Price (PHP)",
 		"propertyPriceHint": "Ang market value o selling price sa balay.",
@@ -133,7 +157,14 @@
 		"loanAmount": "Loan Amount (Principal)",
 		"totalInterest": "Total nga Interest nga Bayran",
 		"totalPaid": "Total Cost sa Balay",
+		"totalHouseCostBreakdown": "Breakdown sa Kinatibuk-ang Bili sa Balay",
 		"refinancingTitle": "Home Loan Tip",
-		"refinancingDesc": "Ang bangko kay naay fixed terms (e.g., 1-year o 5-year fixed). Human ana, mag-reprice ang interest rate base sa market rate. Planoha ni og tarong para dili ka makalatan!"
+		"refinancingDesc": "Ang bangko kay naay fixed terms (e.g., 1-year o 5-year fixed). Human ana, mag-reprice ang interest rate base sa market rate. Planoha ni og tarong para dili ka makalatan!",
+		"viewSchedule": "Tan-awa ang Amortization Schedule",
+		"hideSchedule": "Itago ang Amortization Schedule",
+		"month": "Buwan",
+		"principal": "Principal",
+		"interest": "Interest",
+		"remainingBalance": "Natitirang Balance"
 	}
 }

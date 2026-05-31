@@ -93,20 +93,31 @@
 		"totalShiftPay": "Total Shift Pay"
 	},
 	"BudgetCalculator": {
+		"title": "Budget & Reverse Salary Calculator (2026)",
+		"subtitle": "List your monthly expenses and we'll tell you exactly what gross salary you should ask for.",
 		"detailsTitle": "Monthly Expenses",
 		"targetNetPayLabel": "Target Net Take-Home Pay (PHP)",
 		"targetNetPayHint": "How much cash you need in your bank account every month.",
 		"addExpenseButton": "+ Add Expense",
 		"expenseNamePlaceholder": "e.g., Rent, Groceries",
 		"expenseAmountPlaceholder": "Amount",
+		"extraSavingsLabel": "Extra Monthly Savings / Leisure (PHP)",
+		"extraSavingsHint": "Any extra cash you want on top of your fixed expenses.",
+		"expenseBreakdown": "Expense Breakdown",
 		"resultsTitle": "Required Asking Salary",
 		"grossSalaryNeeded": "Gross Salary to Negotiate",
 		"totalExpenses": "Total Monthly Expenses",
 		"estimatedDeductions": "Estimated Deductions & Tax",
+		"totalDeductions": "Total Deductions",
+		"minimumSalaryTip": "This is the minimum gross salary you should negotiate.",
+		"whereSalaryGoes": "Where Your Salary Goes",
 		"howItWorksTitle": "How does this work?",
-		"howItWorksDesc": "This tool works backwards. It adds up all your required expenses to find your target net pay, then reverse-engineers the SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions to find the exact gross salary you should ask for in your job interview."
+		"howItWorksDesc": "This tool works backwards. It adds up all your required expenses to find your target net pay, then reverse-engineers the SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions to find the exact gross salary you should ask for in your job interview.",
+		"disclaimer": "* Based on SSS, PhilHealth, Pag-IBIG rates and TRAIN Law tax brackets. Private sector employee assumed."
 	},
 	"CarLoanCalculator": {
+		"title": "Car Loan & Amortization Calculator",
+		"subtitle": "Compute your monthly payment, total interest, and see why Bank Financing beats Dealer In-House Financing.",
 		"detailsTitle": "Car Loan Details",
 		"vehiclePriceLabel": "Vehicle Purchase Price (PHP)",
 		"vehiclePriceHint": "The cash price of the car you are buying.",
@@ -119,10 +130,23 @@
 		"loanAmount": "Required Loan Amount",
 		"totalInterest": "Total Interest Charged",
 		"totalPaid": "Total Payments Over Term",
+		"bankSavingsTitle": "Bank Financing Savings",
+		"bankSavingsDesc": "By getting a car loan from a commercial bank (at {interestRate}%) instead of dealer in-house financing (usually ~{inHouseRate}%), you will save:",
+		"totalSavings": "Total Savings",
+		"monthlyDifference": "Monthly Difference",
+		"totalCostBreakdown": "Total Cost Breakdown",
 		"bankVsInhouseTitle": "Bank vs. In-House Financing Explainer",
-		"bankVsInhouseDesc": "Bank financing is almost ALWAYS cheaper. Dealerships often lure you in with 'low down payment' promos, but compensate by charging extremely high interest rates (15%+). Always try to get pre-approved by a bank first!"
+		"bankVsInhouseDesc": "Bank financing is almost ALWAYS cheaper. Dealerships often lure you in with 'low down payment' promos, but compensate by charging extremely high interest rates (15%+). Always try to get pre-approved by a bank first!",
+		"viewSchedule": "View Monthly Payment Schedule",
+		"hideSchedule": "Hide Monthly Payment Schedule",
+		"month": "Month",
+		"principal": "Principal",
+		"interest": "Interest",
+		"remainingBalance": "Remaining Balance"
 	},
 	"HomeLoanCalculator": {
+		"title": "Home Loan & Amortization Calculator",
+		"subtitle": "Estimate your monthly mortgage payments, down payment options, and total interest charges for commercial bank home loans.",
 		"detailsTitle": "Home Loan Details",
 		"propertyPriceLabel": "Property Purchase Price (PHP)",
 		"propertyPriceHint": "The market value or selling price of the home.",
@@ -135,7 +159,14 @@
 		"loanAmount": "Loan Amount (Principal)",
 		"totalInterest": "Total Interest Paid",
 		"totalPaid": "Total Cost of Home",
+		"totalHouseCostBreakdown": "Total House Cost Breakdown",
 		"refinancingTitle": "Home Loan Tip",
-		"refinancingDesc": "Banks offer fixed terms (e.g., 1-year, 5-year fixed). After the fixed period, the interest rate will repriced based on current market rates. Keep this in mind when budgeting for long terms!"
+		"refinancingDesc": "Banks offer fixed terms (e.g., 1-year, 5-year fixed). After the fixed period, the interest rate will repriced based on current market rates. Keep this in mind when budgeting for long terms!",
+		"viewSchedule": "View Amortization Schedule",
+		"hideSchedule": "Hide Amortization Schedule",
+		"month": "Month",
+		"principal": "Principal",
+		"interest": "Interest",
+		"remainingBalance": "Remaining Balance"
 	}
 }

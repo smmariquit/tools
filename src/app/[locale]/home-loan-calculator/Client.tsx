@@ -26,10 +26,6 @@ export default function HomeLoanCalculator() {
 	const [showSchedule, setShowSchedule] = useState(false);
 	const [mounted, setMounted] = useState(false);
 
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
 	const updateUrl = useCallback(
 		(updates: Record<string, string>) => {
 			const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -43,6 +39,31 @@ export default function HomeLoanCalculator() {
 		},
 		[router, pathname, searchParams],
 	);
+
+	useEffect(() => {
+		setMounted(true);
+		// Check if URL parameters are missing and initialize them
+		if (
+			!searchParams.has("price") ||
+			!searchParams.has("down") ||
+			!searchParams.has("rate") ||
+			!searchParams.has("term")
+		) {
+			updateUrl({
+				price: priceStr,
+				down: downPercentStr,
+				rate: interestRateStr,
+				term: termStr,
+			});
+		}
+	}, [
+		searchParams,
+		updateUrl,
+		priceStr,
+		downPercentStr,
+		interestRateStr,
+		termStr,
+	]);
 
 	// Core Math
 	const price = parseFloat(priceStr) || 0;
@@ -103,8 +124,8 @@ export default function HomeLoanCalculator() {
 	return (
 		<ToolLayout>
 			<ToolHeader
-				title="Home Loan & Amortization Calculator"
-				subtitle="Estimate your monthly mortgage payments, down payment options, and total interest charges for commercial bank home loans."
+				title={t("title")}
+				subtitle={t("subtitle")}
 				adSlotId="1234567890"
 			/>
 
@@ -319,7 +340,7 @@ export default function HomeLoanCalculator() {
 									color: "var(--text-secondary)",
 								}}
 							>
-								Total House Cost Breakdown
+								{t("totalHouseCostBreakdown")}
 							</h3>
 							<ResponsiveContainer width="100%" height={200}>
 								<PieChart>
@@ -351,7 +372,8 @@ export default function HomeLoanCalculator() {
 					<div
 						className="card"
 						style={{
-							backgroundColor: "var(--bg-alt-color, #f8f9fa)",
+							backgroundColor: "var(--bg-color)",
+							border: "1px solid var(--border-color)",
 							borderLeft: "4px solid var(--primary)",
 							marginTop: "24px",
 						}}
@@ -387,9 +409,7 @@ export default function HomeLoanCalculator() {
 						className="btn-secondary"
 						style={{ width: "100%", padding: "12px", fontWeight: 600 }}
 					>
-						{showSchedule
-							? "Hide Amortization Schedule"
-							: "View Amortization Schedule"}
+						{showSchedule ? t("hideSchedule") : t("viewSchedule")}
 					</button>
 
 					{showSchedule && (
@@ -405,10 +425,10 @@ export default function HomeLoanCalculator() {
 											textAlign: "left",
 										}}
 									>
-										<th style={{ padding: "8px" }}>Month</th>
-										<th style={{ padding: "8px" }}>Principal</th>
-										<th style={{ padding: "8px" }}>Interest</th>
-										<th style={{ padding: "8px" }}>Remaining Balance</th>
+										<th style={{ padding: "8px" }}>{t("month")}</th>
+										<th style={{ padding: "8px" }}>{t("principal")}</th>
+										<th style={{ padding: "8px" }}>{t("interest")}</th>
+										<th style={{ padding: "8px" }}>{t("remainingBalance")}</th>
 									</tr>
 								</thead>
 								<tbody>

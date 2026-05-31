@@ -40,7 +40,6 @@ export default function BudgetCalculator() {
 	const searchParams = useSearchParams();
 
 	const [expenses, setExpenses] = useState<Expense[]>(() => {
-		// Try to hydrate from URL
 		const urlExpenses = searchParams.get("expenses");
 		if (urlExpenses) {
 			try {
@@ -58,10 +57,6 @@ export default function BudgetCalculator() {
 	const [extraNet, setExtraNet] = useState(searchParams.get("extra") || "0");
 	const [mounted, setMounted] = useState(false);
 
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
 	const updateUrl = useCallback(
 		(updates: Record<string, string>) => {
 			const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -75,6 +70,17 @@ export default function BudgetCalculator() {
 		},
 		[router, pathname, searchParams],
 	);
+
+	useEffect(() => {
+		setMounted(true);
+		// Check if URL parameters are missing and initialize them
+		if (!searchParams.has("expenses")) {
+			updateUrl({
+				expenses: encodeURIComponent(JSON.stringify(expenses)),
+				extra: extraNet !== "0" ? extraNet : "",
+			});
+		}
+	}, [searchParams, updateUrl, expenses, extraNet]);
 
 	// Computation
 	const totalExpenses = expenses.reduce(
@@ -122,10 +128,8 @@ export default function BudgetCalculator() {
 			e.id === id ? { ...e, [field]: value } : e,
 		);
 		setExpenses(newExpenses);
-		// Debounce URL updates for expenses (they're complex)
 	};
 
-	// Sync expenses to URL on blur
 	const syncExpensesToUrl = () => {
 		updateUrl({
 			expenses: encodeURIComponent(JSON.stringify(expenses)),
@@ -133,7 +137,7 @@ export default function BudgetCalculator() {
 	};
 
 	const chartData = [
-		{ name: "Your Expenses", value: totalExpenses, color: "#1b5e20" },
+		{ name: "Expenses", value: totalExpenses, color: "#1b5e20" },
 		{ name: "SSS", value: result.sss, color: "#f57c00" },
 		{ name: "PhilHealth", value: result.philhealth, color: "#1976d2" },
 		{ name: "Pag-IBIG", value: result.pagibig, color: "#d32f2f" },
@@ -162,8 +166,8 @@ export default function BudgetCalculator() {
 	return (
 		<ToolLayout>
 			<ToolHeader
-				title="Budget & Reverse Salary Calculator (2026)"
-				subtitle="List your monthly expenses and we'll tell you exactly what gross salary you should ask for."
+				title={t("title")}
+				subtitle={t("subtitle")}
 				adSlotId="1234567890"
 			/>
 
@@ -268,7 +272,7 @@ export default function BudgetCalculator() {
 					{/* Extra discretionary income */}
 					<div className="form-group" style={{ marginTop: "16px" }}>
 						<label className="form-label" htmlFor="extra-net">
-							Extra Monthly Savings / Leisure (PHP)
+							{t("extraSavingsLabel")}
 						</label>
 						<input
 							type="number"
@@ -283,9 +287,7 @@ export default function BudgetCalculator() {
 							step="any"
 							placeholder="e.g., 5000"
 						/>
-						<span className="form-hint">
-							Any extra cash you want on top of your fixed expenses.
-						</span>
+						<span className="form-hint">{t("extraSavingsHint")}</span>
 					</div>
 
 					{/* Expense Breakdown Donut */}
@@ -299,7 +301,7 @@ export default function BudgetCalculator() {
 									marginBottom: "8px",
 								}}
 							>
-								Expense Breakdown
+								{t("expenseBreakdown")}
 							</h3>
 							<ResponsiveContainer width="100%" height={220}>
 								<PieChart>
@@ -385,7 +387,7 @@ export default function BudgetCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>SSS (5%)</span>
+							<span>SSS</span>
 							<span style={{ color: "#f57c00" }}>
 								+ {formatCurrency(result.sss)}
 							</span>
@@ -399,7 +401,7 @@ export default function BudgetCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>PhilHealth (2.5%)</span>
+							<span>PhilHealth</span>
 							<span style={{ color: "#1976d2" }}>
 								+ {formatCurrency(result.philhealth)}
 							</span>
@@ -444,7 +446,7 @@ export default function BudgetCalculator() {
 								fontWeight: 600,
 							}}
 						>
-							<span>Total Deductions</span>
+							<span>{t("totalDeductions")}</span>
 							<span>
 								{formatCurrency(result.totalContributions + result.tax)}
 							</span>
@@ -479,7 +481,7 @@ export default function BudgetCalculator() {
 							textAlign: "right",
 						}}
 					>
-						This is the minimum gross salary you should negotiate.
+						{t("minimumSalaryTip")}
 					</p>
 
 					{/* Salary Split Chart */}
@@ -492,7 +494,7 @@ export default function BudgetCalculator() {
 									color: "var(--text-primary)",
 								}}
 							>
-								Where Your Salary Goes
+								{t("whereSalaryGoes")}
 							</h3>
 							<ResponsiveContainer width="100%" height={260}>
 								<PieChart>
@@ -559,8 +561,7 @@ export default function BudgetCalculator() {
 							fontStyle: "italic",
 						}}
 					>
-						* Based on 2026 SSS, PhilHealth, Pag-IBIG rates and TRAIN Law tax
-						brackets. Private sector employee assumed.
+						{t("disclaimer")}
 					</p>
 				</div>
 			</div>
