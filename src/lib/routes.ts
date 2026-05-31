@@ -214,6 +214,18 @@ export const toolCategories = [
 				desc: "See the 2026 calendar and calculate your special/regular holiday pay.",
 				priority: 0.7,
 			},
+			{
+				name: "Exact Age Calculator (DFA & PRC)",
+				path: "/dfa-age-calculator",
+				desc: "Calculate your exact age in years, months, and days for passports and board exams.",
+				priority: 0.8,
+			},
+			{
+				name: "GCash & Maya Bill Splitter",
+				path: "/bill-splitter-calculator",
+				desc: "Split restaurant bills fairly including VAT and service charges.",
+				priority: 0.8,
+			},
 		],
 	},
 ];

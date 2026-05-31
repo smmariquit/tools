@@ -401,19 +401,41 @@
 		"capWarn": "* Capped at 90% ng AMC."
 	},
 	"DFAAge": {
-		"title": "DFA Age Calculator",
-		"subtitle": "Kalkulahin ang iyong values accurately.",
-		"inputDetails": "Ang Iyong Detalye",
-		"amountLabel": "Halaga",
-		"resultsTitle": "Resulta ng Komputasyon",
-		"resultLabel": "Resulta"
+		"title": "Exact Age Calculator (Pilipinas)",
+		"subtitle": "Alamin ang iyong eksaktong edad (taon, buwan, araw) para sa DFA Passport, PRC Exam, o Civil Service.",
+		"inputDetails": "Detalye ng Kapanganakan",
+		"birthDateLabel": "Araw ng Kapanganakan",
+		"targetDateLabel": "Target Date (Optional)",
+		"targetDateHint": "Naka-set sa araw na ito by default. Pwede mong palitan para makita ang edad mo sa future date.",
+		"resultsTitle": "Eksaktong Edad",
+		"exactAgeLabel": "Ang Iyong Edad",
+		"yearsLabel": "Taon",
+		"monthsLabel": "Buwan",
+		"daysLabel": "Araw",
+		"eligibilityTitle": "Eligibility Checks",
+		"statusMinor": "Under 18 (Minor)",
+		"statusMinorDesc": "Kailangan ng DSWD clearance at presensya ng magulang para sa DFA passport.",
+		"statusAdult": "Adult (18+)",
+		"statusAdultDesc": "Pwede na pumirma ng kontrata at bumiyahe mag-isa.",
+		"statusPRC": "PRC Board Eligible (21+)",
+		"statusPRCDesc": "May mga board exam (tulad ng CPA o Engineering) na kailangan eksaktong 21 ka na sa mismong araw ng exam.",
+		"statusSenior": "Senior Citizen (60+)",
+		"statusSeniorDesc": "Eligible ka na sa 20% discount at VAT exemption base sa RA 9994.",
+		"readGuideBtn": "Basahin ang Gabay →",
+		"relatedToolsTitle": "Mga Kaugnay na Tools"
 	},
 	"BillSplitter": {
-		"title": "Bill Splitter Calculator",
-		"subtitle": "Kalkulahin ang iyong values accurately.",
-		"inputDetails": "Ang Iyong Detalye",
-		"amountLabel": "Halaga",
-		"resultsTitle": "Resulta ng Komputasyon",
-		"resultLabel": "Resulta"
+		"title": "GCash & Maya Bill Splitter (Ambagan)",
+		"subtitle": "Hatiin ang bill sa restaurant ng walang sakit sa ulo. Kasama na ang tip at exact computation para sa GCash o Maya transfer.",
+		"inputDetails": "Detalye ng Resibo",
+		"receiptAmountLabel": "Total sa Resibo (PHP)",
+		"tipAmountLabel": "Tip / Dagdag (PHP)",
+		"paxLabel": "Ilang Tao Kayo? (Pax)",
+		"resultsTitle": "Ambagan Breakdown",
+		"perPersonLabel": "Ambag Bawat Isa",
+		"totalPayLabel": "Total na Babayaran",
+		"sendViaLabel": "I-send via GCash / Maya",
+		"sendViaDesc": "Sabihin sa mga kasama mo na i-send ang eksaktong halagang ito sa magbabayad.",
+		"readGuideBtn": "Basahin ang Gabay →"
 	}
 }

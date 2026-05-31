@@ -401,19 +401,41 @@
 		"capWarn": "* Capped at 90% of AMC."
 	},
 	"DFAAge": {
-		"title": "DFA Age Calculator",
-		"subtitle": "Calculate your values accurately.",
-		"inputDetails": "Your Details",
-		"amountLabel": "Amount",
-		"resultsTitle": "Computation Results",
-		"resultLabel": "Result"
+		"title": "Exact Age Calculator (Philippines)",
+		"subtitle": "Calculate your exact age in years, months, and days for DFA Passports, PRC Exams, and Civil Service applications.",
+		"inputDetails": "Birth Details",
+		"birthDateLabel": "Date of Birth",
+		"targetDateLabel": "Target Date (Optional)",
+		"targetDateHint": "Defaults to today. Useful for checking age on a future exam or travel date.",
+		"resultsTitle": "Exact Age Result",
+		"exactAgeLabel": "Your Exact Age",
+		"yearsLabel": "Years",
+		"monthsLabel": "Months",
+		"daysLabel": "Days",
+		"eligibilityTitle": "Age Eligibility Checks",
+		"statusMinor": "Under 18 (Minor)",
+		"statusMinorDesc": "Requires DSWD clearance for solo travel and parental presence for DFA passport application.",
+		"statusAdult": "Adult (18+)",
+		"statusAdultDesc": "Eligible to sign legal contracts and travel independently.",
+		"statusPRC": "PRC Board Eligible (21+)",
+		"statusPRCDesc": "Many professional boards require you to be exactly 21 years old on the day of the exam.",
+		"statusSenior": "Senior Citizen (60+)",
+		"statusSeniorDesc": "Eligible for 20% discount and VAT exemption under RA 9994.",
+		"readGuideBtn": "Read the Full Guide →",
+		"relatedToolsTitle": "Related Tools"
 	},
 	"BillSplitter": {
-		"title": "Bill Splitter Calculator",
-		"subtitle": "Calculate your values accurately.",
-		"inputDetails": "Your Details",
-		"amountLabel": "Amount",
-		"resultsTitle": "Computation Results",
-		"resultLabel": "Result"
+		"title": "GCash & Maya Bill Splitter",
+		"subtitle": "Easily split restaurant bills for your group. Includes options for tips and calculates the exact GCash/Maya transfer amount per person.",
+		"inputDetails": "Receipt Details",
+		"receiptAmountLabel": "Total Receipt Amount (PHP)",
+		"tipAmountLabel": "Tip Amount (PHP)",
+		"paxLabel": "Number of People (Pax)",
+		"resultsTitle": "Ambagan Breakdown",
+		"perPersonLabel": "Amount Per Person",
+		"totalPayLabel": "Total Group Payment",
+		"sendViaLabel": "Send via GCash / Maya",
+		"sendViaDesc": "Ask each person to send this exact amount to the payer.",
+		"readGuideBtn": "Read the Full Guide →"
 	}
 }
