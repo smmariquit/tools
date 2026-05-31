@@ -1,0 +1,65 @@
+# PHTools Project Audit
+
+## 1. ToolFooter Mappings (Missing or Broken)
+The following tools do not have a registered blog link in `ToolFooter.tsx`:
+- /gsis-pension-calculator
+- /sss-maternity-calculator
+- /gross-from-tax-calculator
+- /separation-pay-calculator
+- /freelance-rate-calculator
+- /bir-withholding-tax-calculator
+- /motorcycle-loan-calculator
+- /pagibig-affordability-calculator
+- /prc-board-exam-rating-calculator
+- /latin-honors-calculator
+- /dost-scholarship-stipend-calculator
+- /ched-scholarship-calculator
+- /qpi-gpa-calculator
+- /dfa-age-calculator
+- /bill-splitter-calculator
+
+## 2. Missing Translations (i18n)
+The following tools do not have an entry in `messages/en.json` (and therefore likely missing tl/ceb as well):
+- All tools have translations.
+
+## 3. SEO Blog Stubs (Action Required)
+The following 38 blog posts are considered 'stubs' (16 lines or fewer). They need comprehensive, localized SEO content to rank on Google.
+
+- [ ] civil-service-reviewer-guide.mdx (8 lines)
+- [ ] crypto-p2p-cashout-guide.mdx (8 lines)
+- [ ] crypto-spread-guide.mdx (8 lines)
+- [ ] crypto-tax-guide.mdx (8 lines)
+- [ ] digital-ticket-guide.mdx (8 lines)
+- [ ] estate-tax-guide.mdx (8 lines)
+- [ ] final-pay-guide.mdx (8 lines)
+- [ ] gotrade-vs-ibkr-guide.mdx (8 lines)
+- [ ] influencer-rate-guide.mdx (8 lines)
+- [ ] invoice-factoring-guide.mdx (8 lines)
+- [ ] kasambahay-payroll-guide.mdx (8 lines)
+- [ ] kasambahay-retirement-guide.mdx (8 lines)
+- [ ] legal-contract-guide.mdx (8 lines)
+- [ ] pdic-insurance-guide.mdx (8 lines)
+- [ ] philhealth-late-contribution-guide.mdx (8 lines)
+- [ ] retail-treasury-bond-guide.mdx (8 lines)
+- [ ] shipping-logistics-guide.mdx (8 lines)
+- [ ] tax-refund-guide.mdx (8 lines)
+- [ ] architectural-fee-guide.mdx (10 lines)
+- [ ] bir-donors-tax-guide.mdx (10 lines)
+- [ ] customs-brokerage-fee-guide.mdx (10 lines)
+- [ ] de-minimis-benefits-guide.mdx (10 lines)
+- [ ] lto-registration-renewal-guide.mdx (10 lines)
+- [ ] sss-maternity-benefit-guide.mdx (10 lines)
+- [ ] bir-withholding-tax-guide.mdx (16 lines)
+- [ ] ched-scholarship-guide.mdx (16 lines)
+- [ ] dfa-age-requirements-guide.mdx (16 lines)
+- [ ] dost-scholarship-stipend-guide.mdx (16 lines)
+- [ ] food-costing-pricing-guide.mdx (16 lines)
+- [ ] freelance-hourly-rate-guide.mdx (16 lines)
+- [ ] gross-from-tax-computation-guide.mdx (16 lines)
+- [ ] how-to-compute-gsis-pension.mdx (16 lines)
+- [ ] how-to-split-bills-properly.mdx (16 lines)
+- [ ] pagibig-housing-loan-affordability-guide.mdx (16 lines)
+- [ ] philippine-latin-honors-guide.mdx (16 lines)
+- [ ] philippine-separation-pay-guide.mdx (16 lines)
+- [ ] prc-board-exam-rating-guide.mdx (16 lines)
+- [ ] qpi-gpa-calculator-guide.mdx (16 lines)

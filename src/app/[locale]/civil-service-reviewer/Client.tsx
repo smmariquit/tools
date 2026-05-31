@@ -4,30 +4,7 @@ import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
-// AI-Generated mock JSON question bank
-const QUESTION_BANK = [
-	{
-		id: 1,
-		question: "Which of the following is a fundamental right enshrined in the 1987 Philippine Constitution?",
-		options: ["Right to bear arms", "Right to due process", "Right to free public higher education", "Right to a minimum wage"],
-		answer: 1,
-		explanation: "Article III, Section 1 of the 1987 Constitution states: 'No person shall be deprived of life, liberty, or property without due process of law...'"
-	},
-	{
-		id: 2,
-		question: "If a shirt costs ₱450 after a 10% discount, what was its original price?",
-		options: ["₱500", "₱495", "₱405", "₱510"],
-		answer: 0,
-		explanation: "Let X be original price. 0.90 * X = 450. X = 450 / 0.90 = 500."
-	},
-	{
-		id: 3,
-		question: "Identify the missing number in the sequence: 2, 6, 12, 20, ?",
-		options: ["28", "30", "32", "36"],
-		answer: 1,
-		explanation: "The differences are +4, +6, +8, so the next difference is +10. 20 + 10 = 30."
-	}
-];
+import { QUESTION_BANK } from "./questions";
 
 export default function CivilServiceClient() {
 	const [currentIndex, setCurrentIndex] = useState(0);

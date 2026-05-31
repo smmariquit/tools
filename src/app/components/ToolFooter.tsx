@@ -56,6 +56,23 @@ const toolToBlogMap: Record<string, string> = {
 	"/legal-contract-generator": "/blog/legal-contract-guide",
 	"/invoice-factoring-calculator": "/blog/invoice-factoring-guide",
 	"/digital-ticket-generator": "/blog/digital-ticket-guide",
+
+	"/gsis-pension-calculator": "/blog/how-to-compute-gsis-pension",
+	"/sss-maternity-calculator": "/blog/sss-maternity-benefit-guide",
+	"/gross-from-tax-calculator": "/blog/gross-from-tax-computation-guide",
+	"/separation-pay-calculator": "/blog/philippine-separation-pay-guide",
+	"/freelance-rate-calculator": "/blog/freelance-hourly-rate-guide",
+	"/bir-withholding-tax-calculator": "/blog/bir-withholding-tax-guide",
+	"/motorcycle-loan-calculator": "/blog/philippine-car-loan-guide-bank-vs-dealer",
+	"/pagibig-affordability-calculator": "/blog/pagibig-housing-loan-affordability-guide",
+	"/prc-board-exam-rating-calculator": "/blog/prc-board-exam-rating-guide",
+	"/latin-honors-calculator": "/blog/philippine-latin-honors-guide",
+	"/dost-scholarship-stipend-calculator": "/blog/dost-scholarship-stipend-guide",
+	"/ched-scholarship-calculator": "/blog/ched-scholarship-guide",
+	"/qpi-gpa-calculator": "/blog/qpi-gpa-calculator-guide",
+	"/dfa-age-calculator": "/blog/dfa-age-requirements-guide",
+	"/bill-splitter-calculator": "/blog/how-to-split-bills-properly",
+
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
