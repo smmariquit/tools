@@ -1,7 +1,7 @@
-import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
-import Client from "./Client";
 import { computeSalary } from "../../../lib/salaryLogic";
+import ToolFooter from "../../components/ToolFooter";
+import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
@@ -29,7 +29,8 @@ export async function generateMetadata({
 		ogUrl += `&s2l=Tax&s2v=${encodeURIComponent(formatAmount(tax))}`;
 		ogUrl += `&s3l=Net&s3v=${encodeURIComponent(formatAmount(netPay))}`;
 	} else {
-		ogUrl += "&s1l=Gross&s1v=%E2%82%B150k&s2l=Tax&s2v=%E2%82%B14.1k&s3l=Net&s3v=%E2%82%B143.2k";
+		ogUrl +=
+			"&s1l=Gross&s1v=%E2%82%B150k&s2l=Tax&s2v=%E2%82%B14.1k&s3l=Net&s3v=%E2%82%B143.2k";
 	}
 
 	return {

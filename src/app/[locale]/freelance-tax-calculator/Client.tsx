@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
 	Cell,
@@ -12,8 +13,6 @@ import {
 } from "recharts";
 import AdBanner from "../components/AdBanner";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-
 export default function FreelanceTaxClient() {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -22,10 +21,18 @@ export default function FreelanceTaxClient() {
 	const [currencyMode, setCurrencyMode] = useState<"php" | "usd">(
 		(searchParams.get("currency") as "php" | "usd") || "usd",
 	);
-	const [usdIncomeStr, setUsdIncomeStr] = useState(searchParams.get("usd") || "2000");
-	const [forexRateStr, setForexRateStr] = useState(searchParams.get("rate") || "57.50");
-	const [grossIncomeStr, setGrossIncomeStr] = useState(searchParams.get("php") || "100000");
-	const [includeUpwork, setIncludeUpwork] = useState(searchParams.get("upwork") !== "false");
+	const [usdIncomeStr, setUsdIncomeStr] = useState(
+		searchParams.get("usd") || "2000",
+	);
+	const [forexRateStr, setForexRateStr] = useState(
+		searchParams.get("rate") || "57.50",
+	);
+	const [grossIncomeStr, setGrossIncomeStr] = useState(
+		searchParams.get("php") || "100000",
+	);
+	const [includeUpwork, setIncludeUpwork] = useState(
+		searchParams.get("upwork") !== "false",
+	);
 	const [mounted, setMounted] = useState(false);
 
 	const updateUrl = (updates: Record<string, string>) => {
@@ -37,7 +44,9 @@ export default function FreelanceTaxClient() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	useEffect(() => {
@@ -116,7 +125,7 @@ export default function FreelanceTaxClient() {
 					</h2>
 
 					<div className="form-group" style={{ marginBottom: "16px" }}>
-						<label className="form-label">Currency</label>
+						<div className="form-label">Currency</div>
 						<div style={{ display: "flex", gap: "12px" }}>
 							<button
 								className={`btn-secondary ${currencyMode === "usd" ? "active" : ""}`}
@@ -195,23 +204,28 @@ export default function FreelanceTaxClient() {
 									borderTop: "1px solid var(--border-color)",
 								}}
 							>
-								<label
-									style={{
-										display: "flex",
-										alignItems: "center",
-										gap: "8px",
-										cursor: "pointer",
-										fontSize: "14px",
+								<label className="form-label" htmlFor="platformSelect">
+									Platform Fee
+								</label>
+								<select
+									id="platformSelect"
+									className="form-control"
+									value={includeUpwork ? "upwork" : "none"}
+									onChange={(e) => {
+										setIncludeUpwork(e.target.value !== "none");
+										updateUrl({
+											upwork: e.target.value === "none" ? "false" : "true",
+										});
 									}}
 								>
-									<input
-										type="checkbox"
-										checked={includeUpwork}
-										onChange={(e) => setIncludeUpwork(e.target.checked)}
-										style={{ width: "16px", height: "16px" }}
-									/>
-									Deduct Upwork 10% Freelancer Service Fee
-								</label>
+									<option value="none">No Platform Fee</option>
+									<option value="upwork">Upwork (10% flat fee)</option>
+								</select>
+								<p className="form-hint" style={{ marginTop: "6px" }}>
+									Fiverr (20%), Toptal (0% to freelancer), OnlineJobs.ph
+									(employer-paid), Freelancer.com (10-20%). Select &quot;No
+									Platform Fee&quot; for direct clients.
+								</p>
 							</div>
 						</>
 					) : (

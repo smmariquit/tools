@@ -2,9 +2,9 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const RouteSelectorMap = dynamic(
 	() => import("../../components/RouteSelectorMap"),
@@ -34,10 +34,18 @@ export default function FuelCostClient() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [distanceStr, setDistanceStr] = useState(searchParams.get("dist") || "250");
-	const [efficiencyStr, setEfficiencyStr] = useState(searchParams.get("eff") || "12");
-	const [fuelPriceStr, setFuelPriceStr] = useState(searchParams.get("price") || "65");
-	const [passengersStr, setPassengersStr] = useState(searchParams.get("pax") || "4");
+	const [distanceStr, setDistanceStr] = useState(
+		searchParams.get("dist") || "250",
+	);
+	const [efficiencyStr, setEfficiencyStr] = useState(
+		searchParams.get("eff") || "12",
+	);
+	const [fuelPriceStr, setFuelPriceStr] = useState(
+		searchParams.get("price") || "65",
+	);
+	const [passengersStr, setPassengersStr] = useState(
+		searchParams.get("pax") || "4",
+	);
 	const [showMapModal, setShowMapModal] = useState(false);
 
 	const updateUrl = (updates: Record<string, string>) => {
@@ -49,13 +57,15 @@ export default function FuelCostClient() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const distance = parseFloat(distanceStr) || 0;
 	const efficiency = parseFloat(efficiencyStr) || 0;
 	const fuelPrice = parseFloat(fuelPriceStr) || 0;
-	const passengers = parseInt(passengersStr) || 1;
+	const passengers = parseInt(passengersStr, 10) || 1;
 
 	// Math
 	const litersNeeded = efficiency > 0 ? distance / efficiency : 0;

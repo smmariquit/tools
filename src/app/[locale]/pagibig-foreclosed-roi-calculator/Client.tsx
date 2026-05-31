@@ -1,19 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function PagibigRoiClient() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [purchasePriceStr, setPurchasePriceStr] = useState(searchParams.get("price") || "1000000");
-	const [repairCostStr, setRepairCostStr] = useState(searchParams.get("repair") || "200000");
-	const [monthlyRentStr, setMonthlyRentStr] = useState(searchParams.get("rent") || "12000");
-	const [resalePriceStr, setResalePriceStr] = useState(searchParams.get("resale") || "1800000");
+	const [purchasePriceStr, setPurchasePriceStr] = useState(
+		searchParams.get("price") || "1000000",
+	);
+	const [repairCostStr, setRepairCostStr] = useState(
+		searchParams.get("repair") || "200000",
+	);
+	const [monthlyRentStr, setMonthlyRentStr] = useState(
+		searchParams.get("rent") || "12000",
+	);
+	const [resalePriceStr, setResalePriceStr] = useState(
+		searchParams.get("resale") || "1800000",
+	);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -21,7 +29,9 @@ export default function PagibigRoiClient() {
 			if (value) newSearchParams.set(key, value);
 			else newSearchParams.delete(key);
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const purchasePrice = parseFloat(purchasePriceStr) || 0;

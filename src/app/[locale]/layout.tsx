@@ -10,8 +10,8 @@ import {
 	setRequestLocale,
 } from "next-intl/server";
 import { ThemeProvider } from "../../components/ThemeProvider";
-import { ThemeToggle } from "../../components/ThemeToggle";
-import LanguageSwitcher from "../components/LanguageSwitcher";
+import CookieConsent from "../components/CookieConsent";
+import Logo from "../components/Logo";
 import OfflineToast from "../components/OfflineToast";
 import Navbar from "./components/Navbar";
 import { PostHogProvider } from "./providers";
@@ -113,13 +113,18 @@ export default async function RootLayout({
 											<Link
 												href="/"
 												style={{
+													display: "flex",
+													alignItems: "center",
+													gap: "8px",
 													fontSize: "20px",
-													fontWeight: 600,
+													fontWeight: 700,
 													color: "var(--text-primary)",
 													textDecoration: "none",
+													letterSpacing: "-0.5px",
 												}}
 											>
-												<span style={{ color: "var(--primary)" }}>PH</span>Tools
+												<Logo width={24} height={24} />
+												<span>PHTools</span>
 											</Link>
 											<p
 												style={{
@@ -235,7 +240,7 @@ export default async function RootLayout({
 									>
 										<p>
 											&copy; {new Date().getFullYear()} PHTools. All rights
-											reserved.
+											reserved. Not affiliated with any government agency.
 										</p>
 										<p
 											style={{
@@ -246,17 +251,15 @@ export default async function RootLayout({
 												lineHeight: "1.5",
 											}}
 										>
-											<strong>Limitation of Liability:</strong> All calculators
-											and tools provided on this platform are for estimation
-											purposes only and do not replace official payroll
-											processing or tax advice. PHTools and its developers shall
-											not be held liable for any damages, penalties, or
-											financial losses resulting from the use of, or reliance
-											on, these computations.
+											These calculators are for reference purposes only and do
+											not constitute professional tax or payroll advice. Always
+											verify with the official agencies (SSS, PhilHealth,
+											Pag-IBIG, BIR, GSIS) for exact computations.
 										</p>
 									</div>
 								</div>
 							</footer>
+							<CookieConsent />
 							<Analytics />
 						</PostHogProvider>
 					</NextIntlClientProvider>

@@ -1,8 +1,9 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useId, useState } from "react";
+import { useId } from "react";
+import { calculateSSSMaternity } from "../../../core/calculators/sssMaternity";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
@@ -11,42 +12,19 @@ import ToolLayout from "../components/ToolLayout";
 
 export default function SSSMaternityClient() {
 	const t = useTranslations("SSSMaternity");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 	const selectTypeId = useId();
 
-	const [monthlySalary, setMonthlySalary] = useState(
-		parseFloat(searchParams.get("salary") || "30000"),
+	const [state, updateState] = useCalculatorState(
+		{ salary: 30000, type: "normal" },
+		{ salary: parseFloat, type: String },
 	);
-	const [deliveryType, setDeliveryType] = useState(
-		searchParams.get("type") || "normal",
-	);
+	const { salary: monthlySalary, type: deliveryType } = state;
 
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
-
-	// Logic for SSS Maternity
-	const cappedMsc = Math.min(monthlySalary, 30000);
-	const totalMsc = cappedMsc * 6;
-	const adsc = totalMsc / 180;
-
-	let days = 105;
-	if (deliveryType === "solo-parent") days = 120;
-	if (deliveryType === "miscarriage") days = 60;
-
-	const maternityBenefit = adsc * days;
+	const {
+		adsc,
+		days,
+		benefit: maternityBenefit,
+	} = calculateSSSMaternity(monthlySalary, deliveryType);
 
 	const formatCurrency = (val: number) => {
 		return (
@@ -86,10 +64,7 @@ export default function SSSMaternityClient() {
 						min={4000}
 						max={100000}
 						step={1000}
-						onChange={(val) => {
-							setMonthlySalary(val);
-							updateUrl({ salary: val.toString() });
-						}}
+						onChange={(val) => updateState({ salary: val })}
 					/>
 					<div
 						style={{
@@ -110,10 +85,7 @@ export default function SSSMaternityClient() {
 							id={selectTypeId}
 							className="form-control"
 							value={deliveryType}
-							onChange={(e) => {
-								setDeliveryType(e.target.value);
-								updateUrl({ type: e.target.value });
-							}}
+							onChange={(e) => updateState({ type: e.target.value })}
 						>
 							<option value="normal">{t("typeNormal")}</option>
 							<option value="solo-parent">{t("typeSoloParent")}</option>

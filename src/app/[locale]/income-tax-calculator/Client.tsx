@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
 	Cell,
@@ -12,14 +13,14 @@ import {
 } from "recharts";
 import AdBanner from "../components/AdBanner";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-
 export default function IncomeTaxCalculator() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [incomeStr, setIncomeStr] = useState(searchParams.get("income") || "400000");
+	const [incomeStr, setIncomeStr] = useState(
+		searchParams.get("income") || "400000",
+	);
 	const [period, setPeriod] = useState<"annual" | "monthly">(
 		(searchParams.get("period") as "annual" | "monthly") || "annual",
 	);
@@ -37,7 +38,9 @@ export default function IncomeTaxCalculator() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	useEffect(() => {
@@ -135,7 +138,7 @@ export default function IncomeTaxCalculator() {
 					</h2>
 
 					<div className="form-group">
-						<label className="form-label">Tax Type</label>
+						<div className="form-label">Tax Type</div>
 						<div style={{ display: "flex", gap: "12px" }}>
 							<label
 								style={{
@@ -364,7 +367,7 @@ export default function IncomeTaxCalculator() {
 										dataKey="value"
 										stroke="none"
 									>
-										{pieData.map((entry, index) => (
+										{pieData.map((_entry, index) => (
 											<Cell
 												key={`cell-${index}`}
 												fill={COLORS[index % COLORS.length]}

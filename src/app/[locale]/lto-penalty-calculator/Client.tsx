@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function LtoPenaltyClient() {
 	const router = useRouter();
@@ -12,8 +12,16 @@ export default function LtoPenaltyClient() {
 
 	const [vehicleType, setVehicleType] = useState<
 		"motorcycle" | "carLight" | "carMedium" | "carHeavy"
-	>((searchParams.get("vehicle") as "motorcycle" | "carLight" | "carMedium" | "carHeavy") || "motorcycle");
-	const [monthsLateStr, setMonthsLateStr] = useState(searchParams.get("months") || "1");
+	>(
+		(searchParams.get("vehicle") as
+			| "motorcycle"
+			| "carLight"
+			| "carMedium"
+			| "carHeavy") || "motorcycle",
+	);
+	const [monthsLateStr, setMonthsLateStr] = useState(
+		searchParams.get("months") || "1",
+	);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -21,10 +29,12 @@ export default function LtoPenaltyClient() {
 			if (value) newSearchParams.set(key, value);
 			else newSearchParams.delete(key);
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
-	const monthsLate = parseInt(monthsLateStr) || 0;
+	const monthsLate = parseInt(monthsLateStr, 10) || 0;
 
 	// LTO MVUC (Motor Vehicle User's Charge) Base Rates
 	const mvucRates = {
@@ -108,7 +118,11 @@ export default function LtoPenaltyClient() {
 							className="form-control"
 							value={vehicleType}
 							onChange={(e) => {
-								const val = e.target.value as "motorcycle" | "carLight" | "carMedium" | "carHeavy";
+								const val = e.target.value as
+									| "motorcycle"
+									| "carLight"
+									| "carMedium"
+									| "carHeavy";
 								setVehicleType(val);
 								updateUrl({ vehicle: val });
 							}}

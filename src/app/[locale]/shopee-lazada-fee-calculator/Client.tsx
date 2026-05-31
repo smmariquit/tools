@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function EcommerceFeeClient() {
 	const router = useRouter();
@@ -11,10 +11,15 @@ export default function EcommerceFeeClient() {
 	const searchParams = useSearchParams();
 
 	const [platform, setPlatform] = useState<"shopee" | "lazada" | "tiktok">(
-		(searchParams.get("platform") as "shopee" | "lazada" | "tiktok") || "shopee"
+		(searchParams.get("platform") as "shopee" | "lazada" | "tiktok") ||
+			"shopee",
 	);
-	const [itemPriceStr, setItemPriceStr] = useState(searchParams.get("price") || "1000");
-	const [shippingFeeStr, setShippingFeeStr] = useState(searchParams.get("shipping") || "50");
+	const [itemPriceStr, setItemPriceStr] = useState(
+		searchParams.get("price") || "1000",
+	);
+	const [shippingFeeStr, setShippingFeeStr] = useState(
+		searchParams.get("shipping") || "50",
+	);
 
 	const [isFss, setIsFss] = useState(searchParams.get("fss") === "true");
 	const [isCcb, setIsCcb] = useState(searchParams.get("ccb") === "true");
@@ -25,7 +30,9 @@ export default function EcommerceFeeClient() {
 			if (value) newSearchParams.set(key, value);
 			else newSearchParams.delete(key);
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const itemPrice = parseFloat(itemPriceStr) || 0;
@@ -107,7 +114,7 @@ export default function EcommerceFeeClient() {
 					</h2>
 
 					<div className="form-group" style={{ marginBottom: "16px" }}>
-						<label className="form-label">E-Commerce Platform</label>
+						<div className="form-label">E-Commerce Platform</div>
 						<div style={{ display: "flex", gap: "12px" }}>
 							<button
 								className={`btn-secondary ${platform === "shopee" ? "active" : ""}`}
@@ -199,9 +206,7 @@ export default function EcommerceFeeClient() {
 							borderTop: "1px solid var(--border-color)",
 						}}
 					>
-						<label className="form-label">
-							Opt-in Programs (Extra Deductions)
-						</label>
+						<div className="form-label">Opt-in Programs (Extra Deductions)</div>
 
 						<label
 							style={{

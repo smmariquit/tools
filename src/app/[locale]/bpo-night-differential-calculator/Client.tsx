@@ -55,7 +55,7 @@ function generateTimeOptions() {
 
 function calculateNDHours(
 	shiftStart: number,
-	shiftEnd: number,
+	_shiftEnd: number,
 	totalWorkHours: number,
 ): number {
 	let ndHours = 0;

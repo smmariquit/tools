@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { calculateFreelanceRate } from "../../../core/calculators/freelanceRate";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
@@ -11,57 +11,30 @@ import ToolLayout from "../components/ToolLayout";
 
 export default function FreelanceRateClient() {
 	const t = useTranslations("FreelanceRate");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 
-	const [targetNet, setTargetNet] = useState(
-		parseFloat(searchParams.get("net") || "50000"),
+	const [state, updateState] = useCalculatorState(
+		{ net: 50000, expenses: 5000, hours: 30, vacation: 15 },
+		{
+			net: parseFloat,
+			expenses: parseFloat,
+			hours: parseFloat,
+			vacation: parseFloat,
+		},
 	);
-	const [monthlyExpenses, setMonthlyExpenses] = useState(
-		parseFloat(searchParams.get("expenses") || "5000"),
-	);
-	const [billableHours, setBillableHours] = useState(
-		parseFloat(searchParams.get("hours") || "30"),
-	);
-	const [vacationDays, setVacationDays] = useState(
-		parseFloat(searchParams.get("vacation") || "15"),
-	);
+	const {
+		net: targetNet,
+		expenses: monthlyExpenses,
+		hours: billableHours,
+		vacation: vacationDays,
+	} = state;
 
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
-
-	// Calculation Logic
-	const annualNet = targetNet * 12;
-	const annualExpenses = monthlyExpenses * 12;
-
-	let grossAnnual = 0;
-	if (annualNet + annualExpenses <= 250000) {
-		grossAnnual = annualNet + annualExpenses;
-	} else {
-		// BIR 8% Flat Rate logic: Gross - 0.08*(Gross - 250k) - Expenses = Net
-		grossAnnual = (annualNet + annualExpenses - 20000) / 0.92;
-		if (grossAnnual <= 250000) {
-			grossAnnual = annualNet + annualExpenses;
-		}
-	}
-
-	const workingWeeks = 52 - vacationDays / 5;
-	const billableHoursPerYear = workingWeeks * billableHours;
-	const hourlyRatePhp =
-		billableHoursPerYear > 0 ? grossAnnual / billableHoursPerYear : 0;
-	const hourlyRateUsd = hourlyRatePhp / 56; // Standard estimation exchange rate
+	const { grossAnnual, billableHoursPerYear, hourlyRatePhp, hourlyRateUsd } =
+		calculateFreelanceRate(
+			targetNet,
+			monthlyExpenses,
+			billableHours,
+			vacationDays,
+		);
 
 	const formatCurrency = (val: number, isUsd = false) => {
 		return (
@@ -101,10 +74,7 @@ export default function FreelanceRateClient() {
 						min={10000}
 						max={300000}
 						step={5000}
-						onChange={(val) => {
-							setTargetNet(val);
-							updateUrl({ net: val.toString() });
-						}}
+						onChange={(val) => updateState({ net: val })}
 					/>
 					<div
 						style={{
@@ -124,10 +94,7 @@ export default function FreelanceRateClient() {
 						min={0}
 						max={100000}
 						step={1000}
-						onChange={(val) => {
-							setMonthlyExpenses(val);
-							updateUrl({ expenses: val.toString() });
-						}}
+						onChange={(val) => updateState({ expenses: val })}
 					/>
 					<div
 						style={{
@@ -147,10 +114,7 @@ export default function FreelanceRateClient() {
 						min={5}
 						max={80}
 						step={5}
-						onChange={(val) => {
-							setBillableHours(val);
-							updateUrl({ hours: val.toString() });
-						}}
+						onChange={(val) => updateState({ hours: val })}
 					/>
 					<div
 						style={{
@@ -170,10 +134,7 @@ export default function FreelanceRateClient() {
 						min={0}
 						max={100}
 						step={1}
-						onChange={(val) => {
-							setVacationDays(val);
-							updateUrl({ vacation: val.toString() });
-						}}
+						onChange={(val) => updateState({ vacation: val })}
 					/>
 					<div
 						style={{

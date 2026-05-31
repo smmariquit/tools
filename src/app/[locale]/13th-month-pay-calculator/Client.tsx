@@ -1,45 +1,27 @@
 "use client";
 
 import Link from "next/link";
-
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { calculateThirteenthMonth } from "../../../core/calculators/thirteenthMonth";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function ThirteenthMonthClient() {
 	const t = useTranslations("ThirteenthMonth");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 
-	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "30000");
-	const [monthsWorkedStr, setMonthsWorkedStr] = useState(searchParams.get("months") || "12");
-	const [unpaidAbsencesStr, setUnpaidAbsencesStr] = useState(searchParams.get("absences") || "0");
+	const [state, updateState] = useCalculatorState(
+		{ salary: 30000, months: 12, absences: 0 },
+		{ salary: parseFloat, months: parseFloat, absences: parseFloat },
+	);
 
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
-	};
+	const {
+		salary: basicSalary,
+		months: monthsWorked,
+		absences: unpaidAbsences,
+	} = state;
 
-	const basicSalary = parseFloat(basicSalaryStr) || 0;
-	const monthsWorked = parseFloat(monthsWorkedStr) || 0;
-	const unpaidAbsences = parseFloat(unpaidAbsencesStr) || 0;
-
-	// 13th Month Computation Logic
-	const totalEarned = basicSalary * monthsWorked - unpaidAbsences;
-	const thirteenthMonthPay = totalEarned / 12;
-
-	// Tax Logic: 90k exemption
-	const taxableAmount = Math.max(0, thirteenthMonthPay - 90000);
-	const taxExemptAmount = Math.min(thirteenthMonthPay, 90000);
+	const { totalEarned, thirteenthMonthPay, taxableAmount, taxExemptAmount } =
+		calculateThirteenthMonth(basicSalary, monthsWorked, unpaidAbsences);
 
 	const formatCurrency = (amount: number) => {
 		return new Intl.NumberFormat("en-PH", {
@@ -89,11 +71,10 @@ export default function ThirteenthMonthClient() {
 							type="number"
 							id="basicSalary"
 							className="form-control"
-							value={basicSalaryStr}
-							onChange={(e) => {
-								setBasicSalaryStr(e.target.value);
-								updateUrl({ salary: e.target.value });
-							}}
+							value={basicSalary || ""}
+							onChange={(e) =>
+								updateState({ salary: parseFloat(e.target.value) || 0 })
+							}
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
@@ -109,11 +90,10 @@ export default function ThirteenthMonthClient() {
 							type="number"
 							id="monthsWorked"
 							className="form-control"
-							value={monthsWorkedStr}
-							onChange={(e) => {
-								setMonthsWorkedStr(e.target.value);
-								updateUrl({ months: e.target.value });
-							}}
+							value={monthsWorked || ""}
+							onChange={(e) =>
+								updateState({ months: parseFloat(e.target.value) || 0 })
+							}
 							min="1"
 							max="12"
 						/>
@@ -127,11 +107,10 @@ export default function ThirteenthMonthClient() {
 							type="number"
 							id="unpaidAbsences"
 							className="form-control"
-							value={unpaidAbsencesStr}
-							onChange={(e) => {
-								setUnpaidAbsencesStr(e.target.value);
-								updateUrl({ absences: e.target.value });
-							}}
+							value={unpaidAbsences || ""}
+							onChange={(e) =>
+								updateState({ absences: parseFloat(e.target.value) || 0 })
+							}
 							min="0"
 						/>
 					</div>

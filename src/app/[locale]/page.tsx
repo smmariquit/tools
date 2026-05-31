@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { toolCategories } from "../../lib/routes";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: "PH Tools & Calculators | Free Online Utilities",

@@ -10,6 +10,7 @@
 		"test": "vitest",
 		"test:ci": "vitest run",
 		"typecheck": "tsc --noEmit",
+		"generate:tool": "node scripts/generate-tool.mjs",
 		"agent:verify": "npm run typecheck && npm run test:ci > .agent-log.txt 2>&1 || (cat .agent-log.txt && exit 1)",
 		"prepare": "husky"
 	},

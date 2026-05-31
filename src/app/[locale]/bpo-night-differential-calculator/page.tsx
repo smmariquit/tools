@@ -68,8 +68,8 @@ export async function generateMetadata({
 			}).format(val);
 
 		ogUrl += `&s1l=Hourly%20Rate&s1v=${encodeURIComponent(formatAmount(hourlyRate))}`;
-		ogUrl += `&s2l=Total%20Hours&s2v=${encodeURIComponent(totalHours.toString() + "h")}`;
-		ogUrl += `&s3l=ND%20Hours&s3v=${encodeURIComponent(ndHours.toString() + "h")}`;
+		ogUrl += `&s2l=Total%20Hours&s2v=${encodeURIComponent(`${totalHours.toString()}h`)}`;
+		ogUrl += `&s3l=ND%20Hours&s3v=${encodeURIComponent(`${ndHours.toString()}h`)}`;
 	} else {
 		ogUrl +=
 			"&s1l=Hourly%20Rate&s1v=%E2%82%B1144&s2l=Total%20Hours&s2v=8h&s3l=ND%20Hours&s3v=7h";

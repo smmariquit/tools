@@ -41,7 +41,21 @@
 		"chartTax": "Tax",
 		"chartSSS": "SSS",
 		"chartPhilhealth": "PhilHealth",
-		"chartPagibig": "Pag-IBIG"
+		"chartPagibig": "Pag-IBIG",
+		"seoTitle": "How to Compute Your Net Salary in the Philippines",
+		"seoDesc": "Calculating your take-home pay involves deducting your mandatory government contributions (SSS, PhilHealth, Pag-IBIG) and withholding tax from your gross basic salary.",
+		"seoGovtTitle": "1. Government Contributions (2026 Rates)",
+		"seoGovtSSS": "<strong>SSS:</strong> The employee share is <strong>5%</strong> of the Monthly Salary Credit (MSC). The maximum MSC is ₱35,000, meaning the maximum employee deduction is ₱1,750.",
+		"seoGovtPhilHealth": "<strong>PhilHealth:</strong> The premium rate is <strong>5%</strong> of your basic salary, split equally between you and your employer (<strong>2.5% each</strong>). The salary floor is ₱10,000 and the ceiling is ₱100,000.",
+		"seoGovtPagibig": "<strong>Pag-IBIG:</strong> The standard employee contribution is <strong>₱200</strong> per month (2% of the ₱10,000 maximum fund salary).",
+		"seoTaxTitle": "2. Taxable Income & Withholding Tax",
+		"seoTaxDesc": "To find your taxable income, subtract your total contributions from your gross salary. Then, apply the TRAIN Law tax brackets to compute your withholding tax. If your taxable income is below ₱20,833 per month (₱250,000 annually), you are exempt from income tax.",
+		"payrollPeriodLabel": "Payroll Period",
+		"periodMonthly": "Monthly",
+		"periodSemiMonthly": "Semi-Monthly (15th & 30th)",
+		"periodWeekly": "Weekly",
+		"periodDaily": "Daily",
+		"periodAnnually": "Annually"
 	},
 	"ThirteenthMonth": {
 		"title": "13th Month Pay Calculator",
@@ -366,5 +380,40 @@
 		"maxLoanAmount": "Maximum Loan Amount",
 		"cappedHint": "Capped at Pag-IBIG's maximum loan limit of ₱6,000,000.",
 		"note": "Note: Pag-IBIG requires that your monthly amortization does not exceed 35% of your gross monthly income (or 30% for loans above ₱1.25M, though this calculator uses a strict 35% baseline for standard processing)."
+	},
+	"ToolFooter": {
+		"readGuideTitle": "Read the Full Guide",
+		"readGuideDesc": "Want to know the exact formula behind this calculator? Check out our comprehensive, human-written guide that explains the law, computations, and exact rules.",
+		"readGuideBtn": "Read the Guide →",
+		"relatedToolsTitle": "Related Tools"
+	},
+	"GSISPension": {
+		"title": "GSIS Pension Calculator",
+		"subtitle": "Calculate your GSIS Basic Monthly Pension (BMP) based on RA 8291.",
+		"inputDetails": "Your Details",
+		"resultsTitle": "Computation Results",
+		"amcLabel": "Average Monthly Compensation (AMC)",
+		"amcDesc": "Your average salary for the last 36 months of service.",
+		"cvsLabel": "Creditable Years of Service (CVS)",
+		"cvsDesc": "Must be at least 15 years to qualify for a regular pension.",
+		"bmpLabel": "Basic Monthly Pension (BMP)",
+		"minServiceWarn": "* Must have at least 15 years of service.",
+		"capWarn": "* Capped at 90% of AMC."
+	},
+	"DFAAge": {
+		"title": "DFA Age Calculator",
+		"subtitle": "Calculate your values accurately.",
+		"inputDetails": "Your Details",
+		"amountLabel": "Amount",
+		"resultsTitle": "Computation Results",
+		"resultLabel": "Result"
+	},
+	"BillSplitter": {
+		"title": "Bill Splitter Calculator",
+		"subtitle": "Calculate your values accurately.",
+		"inputDetails": "Your Details",
+		"amountLabel": "Amount",
+		"resultsTitle": "Computation Results",
+		"resultLabel": "Result"
 	}
 }

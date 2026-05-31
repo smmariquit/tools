@@ -1,18 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function AmilyarClient() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [marketValueStr, setMarketValueStr] = useState(searchParams.get("mv") || "2000000");
-	const [propertyType, setPropertyType] = useState<"residential" | "commercial" | "agricultural">(
-		(searchParams.get("type") as "residential" | "commercial" | "agricultural") || "residential",
+	const [marketValueStr, setMarketValueStr] = useState(
+		searchParams.get("mv") || "2000000",
+	);
+	const [propertyType, setPropertyType] = useState<
+		"residential" | "commercial" | "agricultural"
+	>(
+		(searchParams.get("type") as
+			| "residential"
+			| "commercial"
+			| "agricultural") || "residential",
 	);
 	const [location, setLocation] = useState<"metroManila" | "province">(
 		(searchParams.get("loc") as "metroManila" | "province") || "metroManila",
@@ -27,7 +34,9 @@ export default function AmilyarClient() {
 				newSearchParams.delete(key);
 			}
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const marketValue = parseFloat(marketValueStr) || 0;
@@ -131,7 +140,10 @@ export default function AmilyarClient() {
 							className="form-control"
 							value={propertyType}
 							onChange={(e) => {
-								const val = e.target.value as "residential" | "commercial" | "agricultural";
+								const val = e.target.value as
+									| "residential"
+									| "commercial"
+									| "agricultural";
 								setPropertyType(val);
 								updateUrl({ type: val });
 							}}

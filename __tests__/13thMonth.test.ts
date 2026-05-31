@@ -1,22 +1,28 @@
 import { describe, expect, it } from "vitest";
+import { calculateThirteenthMonth } from "../src/core/calculators/thirteenthMonth";
 
 describe("13th Month Pay Logic", () => {
-	it("should calculate prorated 13th month pay correctly", () => {
-		const basicSalary = 30000;
-		const monthsWorked = 6;
-		const unpaidAbsences = 0;
-		const totalEarned = basicSalary * monthsWorked - unpaidAbsences;
-		const thirteenthMonthPay = totalEarned / 12;
-
-		expect(thirteenthMonthPay).toBe(15000);
+	it("should calculate correctly for full year", () => {
+		const result = calculateThirteenthMonth(30000, 12, 0);
+		expect(result.thirteenthMonthPay).toBe(30000);
+		expect(result.taxExemptAmount).toBe(30000);
+		expect(result.taxableAmount).toBe(0);
 	});
 
-	it("should accurately calculate the tax-exempt portion (90k limit)", () => {
-		const thirteenthMonthPay = 100000;
-		const taxableAmount = Math.max(0, thirteenthMonthPay - 90000);
-		const taxExemptAmount = Math.min(thirteenthMonthPay, 90000);
+	it("should prorate for partial year", () => {
+		const result = calculateThirteenthMonth(30000, 6, 0);
+		expect(result.thirteenthMonthPay).toBe(15000);
+	});
 
-		expect(taxExemptAmount).toBe(90000);
-		expect(taxableAmount).toBe(10000);
+	it("should deduct unpaid absences", () => {
+		const result = calculateThirteenthMonth(30000, 12, 5000);
+		expect(result.thirteenthMonthPay).toBe((360000 - 5000) / 12);
+	});
+
+	it("should tax amounts over 90,000", () => {
+		const result = calculateThirteenthMonth(100000, 12, 0);
+		expect(result.thirteenthMonthPay).toBe(100000);
+		expect(result.taxExemptAmount).toBe(90000);
+		expect(result.taxableAmount).toBe(10000);
 	});
 });

@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
-import type { Metadata } from "next";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -24,7 +24,7 @@ export async function generateMetadata({
 				| "carLight"
 				| "carMedium"
 				| "carHeavy") || "motorcycle";
-		const monthsLate = parseInt(resolvedParams.months || "1") || 0;
+		const monthsLate = parseInt(resolvedParams.months || "1", 10) || 0;
 
 		const mvucRates = {
 			motorcycle: 240,

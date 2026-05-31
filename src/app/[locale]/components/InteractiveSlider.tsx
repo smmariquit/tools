@@ -91,7 +91,7 @@ export default function InteractiveSlider({
 					value={value}
 					onChange={(e) => {
 						const val = Number(e.target.value);
-						if (!isNaN(val)) {
+						if (!Number.isNaN(val)) {
 							// For number input, we only strictly enforce the min, allowing the user to type higher than max if they want
 							onChange(Math.max(min, val));
 						}

@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { ThemeToggle } from "../../../components/ThemeToggle";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import Logo from "../../components/Logo";
 
 export default function Navbar() {
 	const t = useTranslations("Navigation");
@@ -31,13 +32,18 @@ export default function Navbar() {
 				<Link
 					href="/"
 					style={{
+						display: "flex",
+						alignItems: "center",
+						gap: "8px",
 						fontSize: "20px",
-						fontWeight: 600,
+						fontWeight: 700,
 						color: "var(--text-primary)",
 						textDecoration: "none",
+						letterSpacing: "-0.5px",
 					}}
 				>
-					<span style={{ color: "var(--primary)" }}>PH</span>Tools
+					<Logo width={28} height={28} />
+					<span>PHTools</span>
 				</Link>
 
 				<button
@@ -67,19 +73,39 @@ export default function Navbar() {
 					<Link href="/" className="nav-link" onClick={() => setIsOpen(false)}>
 						{t("tools")}
 					</Link>
-					<Link href="/blog" className="nav-link" onClick={() => setIsOpen(false)}>
+					<Link
+						href="/blog"
+						className="nav-link"
+						onClick={() => setIsOpen(false)}
+					>
 						{t("blog")}
 					</Link>
-					<Link href="/salary-calculator" className="nav-link" onClick={() => setIsOpen(false)}>
+					<Link
+						href="/salary-calculator"
+						className="nav-link"
+						onClick={() => setIsOpen(false)}
+					>
 						{t("salary")}
 					</Link>
-					<Link href="/13th-month-pay-calculator" className="nav-link" onClick={() => setIsOpen(false)}>
+					<Link
+						href="/13th-month-pay-calculator"
+						className="nav-link"
+						onClick={() => setIsOpen(false)}
+					>
 						{t("13thMonth")}
 					</Link>
-					<Link href="/pagibig-calculator" className="nav-link" onClick={() => setIsOpen(false)}>
+					<Link
+						href="/pagibig-calculator"
+						className="nav-link"
+						onClick={() => setIsOpen(false)}
+					>
 						{t("pagibig")}
 					</Link>
-					<Link href="/id-photo-maker" className="nav-link" onClick={() => setIsOpen(false)}>
+					<Link
+						href="/id-photo-maker"
+						className="nav-link"
+						onClick={() => setIsOpen(false)}
+					>
 						{t("idPhoto")}
 					</Link>
 					<div

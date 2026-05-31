@@ -41,7 +41,21 @@
 		"chartTax": "Tax",
 		"chartSSS": "SSS",
 		"chartPhilhealth": "PhilHealth",
-		"chartPagibig": "Pag-IBIG"
+		"chartPagibig": "Pag-IBIG",
+		"seoTitle": "Paano I-compute ang Iyong Net Salary sa Pilipinas",
+		"seoDesc": "Ang pag-calculate ng iyong take-home pay ay kinabibilangan ng pag-deduct ng iyong mandatory government contributions (SSS, PhilHealth, Pag-IBIG) at withholding tax mula sa iyong gross basic salary.",
+		"seoGovtTitle": "1. Government Contributions (2026 Rates)",
+		"seoGovtSSS": "<strong>SSS:</strong> Ang employee share ay <strong>5%</strong> ng Monthly Salary Credit (MSC). Ang maximum MSC ay ₱35,000, kaya ang maximum employee deduction ay ₱1,750.",
+		"seoGovtPhilHealth": "<strong>PhilHealth:</strong> Ang premium rate ay <strong>5%</strong> ng iyong basic salary, split equally between you and your employer (<strong>2.5% each</strong>). Ang salary floor ay ₱10,000 at ang ceiling ay ₱100,000.",
+		"seoGovtPagibig": "<strong>Pag-IBIG:</strong> Ang standard employee contribution ay <strong>₱200</strong> per month (2% of the ₱10,000 maximum fund salary).",
+		"seoTaxTitle": "2. Taxable Income & Withholding Tax",
+		"seoTaxDesc": "Para makuha ang iyong taxable income, i-subtract ang total contributions sa iyong gross salary. Tapos, i-apply ang TRAIN Law tax brackets para ma-compute ang iyong withholding tax. Kapag ang taxable income mo ay below ₱20,833 per month (₱250,000 annually), exempt ka na sa income tax.",
+		"payrollPeriodLabel": "Payroll Period",
+		"periodMonthly": "Monthly (Buwanan)",
+		"periodSemiMonthly": "Semi-Monthly (Kinsenas/Katapusan)",
+		"periodWeekly": "Weekly (Lingguhan)",
+		"periodDaily": "Daily (Arawan)",
+		"periodAnnually": "Annually (Taunan)"
 	},
 	"ThirteenthMonth": {
 		"title": "13th Month Pay Calculator",
@@ -366,5 +380,40 @@
 		"maxLoanAmount": "Maximum na Pwedeng Ma-Loan",
 		"cappedHint": "Hanggang ₱6,000,000 lang ang maximum limit ng Pag-IBIG.",
 		"note": "Note: Ayon sa rule ng Pag-IBIG, ang monthly amortization mo ay hindi dapat lumagpas sa 35% ng iyong gross monthly income."
+	},
+	"ToolFooter": {
+		"readGuideTitle": "Basahin ang Buong Guide",
+		"readGuideDesc": "Gusto mo malaman ang exact formula behind this calculator? I-check ang aming comprehensive na guide na nag-eexplain ng batas, computations, at exact rules.",
+		"readGuideBtn": "Basahin ang Guide →",
+		"relatedToolsTitle": "Related Tools"
+	},
+	"GSISPension": {
+		"title": "GSIS Pension Calculator",
+		"subtitle": "Kalkulahin ang iyong GSIS Basic Monthly Pension (BMP) base sa RA 8291.",
+		"inputDetails": "Ang Iyong Detalye",
+		"resultsTitle": "Resulta ng Komputasyon",
+		"amcLabel": "Average Monthly Compensation (AMC)",
+		"amcDesc": "Ang average na sweldo mo for the last 36 months of service.",
+		"cvsLabel": "Creditable Years of Service (CVS)",
+		"cvsDesc": "Dapat at least 15 years of service para mag-qualify sa regular pension.",
+		"bmpLabel": "Basic Monthly Pension (BMP)",
+		"minServiceWarn": "* Dapat may at least 15 years of service.",
+		"capWarn": "* Capped at 90% ng AMC."
+	},
+	"DFAAge": {
+		"title": "DFA Age Calculator",
+		"subtitle": "Kalkulahin ang iyong values accurately.",
+		"inputDetails": "Ang Iyong Detalye",
+		"amountLabel": "Halaga",
+		"resultsTitle": "Resulta ng Komputasyon",
+		"resultLabel": "Resulta"
+	},
+	"BillSplitter": {
+		"title": "Bill Splitter Calculator",
+		"subtitle": "Kalkulahin ang iyong values accurately.",
+		"inputDetails": "Ang Iyong Detalye",
+		"amountLabel": "Halaga",
+		"resultsTitle": "Resulta ng Komputasyon",
+		"resultLabel": "Resulta"
 	}
 }

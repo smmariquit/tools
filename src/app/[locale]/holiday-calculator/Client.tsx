@@ -1,21 +1,33 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function HolidayClient() {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [dailyRateStr, setDailyRateStr] = useState(searchParams.get("rate") || "1000");
+	const [dailyRateStr, setDailyRateStr] = useState(
+		searchParams.get("rate") || "1000",
+	);
 	const [dayType, setDayType] = useState<
 		"regular" | "special" | "regularRest" | "specialRest"
-	>((searchParams.get("type") as "regular" | "special" | "regularRest" | "specialRest") || "regular");
-	const [didWork, setDidWork] = useState<"yes" | "no">((searchParams.get("worked") as "yes" | "no") || "yes");
-	const [hoursWorkedStr, setHoursWorkedStr] = useState(searchParams.get("hours") || "8");
+	>(
+		(searchParams.get("type") as
+			| "regular"
+			| "special"
+			| "regularRest"
+			| "specialRest") || "regular",
+	);
+	const [didWork, setDidWork] = useState<"yes" | "no">(
+		(searchParams.get("worked") as "yes" | "no") || "yes",
+	);
+	const [hoursWorkedStr, setHoursWorkedStr] = useState(
+		searchParams.get("hours") || "8",
+	);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -23,7 +35,9 @@ export default function HolidayClient() {
 			if (value) newSearchParams.set(key, value);
 			else newSearchParams.delete(key);
 		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+		router.replace(`${pathname}?${newSearchParams.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	const dailyRate = parseFloat(dailyRateStr) || 0;
@@ -156,7 +170,11 @@ export default function HolidayClient() {
 							className="form-control"
 							value={dayType}
 							onChange={(e) => {
-								const val = e.target.value as "regular" | "special" | "regularRest" | "specialRest";
+								const val = e.target.value as
+									| "regular"
+									| "special"
+									| "regularRest"
+									| "specialRest";
 								setDayType(val);
 								updateUrl({ type: val });
 							}}
@@ -177,7 +195,7 @@ export default function HolidayClient() {
 					</div>
 
 					<div className="form-group" style={{ marginTop: "16px" }}>
-						<label className="form-label">Did you work on this day?</label>
+						<div className="form-label">Did you work on this day?</div>
 						<div style={{ display: "flex", gap: "16px", marginTop: "8px" }}>
 							<label
 								style={{

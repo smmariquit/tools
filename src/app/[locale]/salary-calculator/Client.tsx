@@ -1,17 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import { computeSalary, EmploymentType } from "../../../lib/salaryLogic";
 import InteractiveSlider from "../components/InteractiveSlider";
 import PremiumLegend from "../components/PremiumLegend";
@@ -24,30 +16,36 @@ export default function SalaryCalculator({
 	initialSalary?: string;
 }) {
 	const t = useTranslations("SalaryCalculator");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 
-	const defaultSalary = searchParams.get("salary") || initialSalary;
-	const defaultPeriod = searchParams.get("period") || "Monthly";
-	const defaultTaxable = searchParams.get("taxable") || "";
-	const defaultNonTaxable = searchParams.get("nontaxable") || "";
-	const defaultEmploymentType =
-		(searchParams.get("empType") as EmploymentType) || "Private";
-
-	const [salaryStr, setSalaryStr] = useState(defaultSalary);
-	const [payrollPeriod, setPayrollPeriod] = useState(defaultPeriod);
-	const [taxableAllowance, setTaxableAllowance] = useState(defaultTaxable);
-	const [nonTaxableAllowance, setNonTaxableAllowance] =
-		useState(defaultNonTaxable);
-	const [employmentType, setEmploymentType] = useState<EmploymentType>(
-		defaultEmploymentType,
+	const [state, updateState] = useCalculatorState(
+		{
+			salary: initialSalary,
+			period: "Monthly",
+			taxable: "",
+			nontaxable: "",
+			empType: "Private",
+		},
+		{
+			salary: String,
+			period: String,
+			taxable: String,
+			nontaxable: String,
+			empType: String,
+		},
 	);
+
+	const {
+		salary: salaryStr,
+		period: payrollPeriod,
+		taxable: taxableAllowance,
+		nontaxable: nonTaxableAllowance,
+		empType: employmentType,
+	} = state;
+
 	const [shareText, setShareText] = useState("Share Computation");
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
-		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setMounted(true);
 	}, []);
 
@@ -65,54 +63,8 @@ export default function SalaryCalculator({
 		payrollPeriod,
 		taxableAllowance,
 		nonTaxableAllowance,
-		employmentType,
+		employmentType as EmploymentType,
 	);
-
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
-
-	const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const val = e.target.value;
-		setSalaryStr(val);
-		updateUrl({ salary: val });
-	};
-
-	const handlePeriodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const val = e.target.value;
-		setPayrollPeriod(val);
-		updateUrl({ period: val });
-	};
-
-	const handleTaxableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const val = e.target.value;
-		setTaxableAllowance(val);
-		updateUrl({ taxable: val });
-	};
-
-	const handleNonTaxableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const val = e.target.value;
-		setNonTaxableAllowance(val);
-		updateUrl({ nontaxable: val });
-	};
-
-	const handleEmploymentTypeChange = (
-		e: React.ChangeEvent<HTMLSelectElement>,
-	) => {
-		const val = e.target.value as EmploymentType;
-		setEmploymentType(val);
-		updateUrl({ empType: val });
-	};
 
 	const handleShare = async () => {
 		const shareData = {
@@ -128,7 +80,6 @@ export default function SalaryCalculator({
 				console.log("Error sharing", error);
 			}
 		} else {
-			// Fallback for PC/Desktop: Copy to clipboard
 			try {
 				await navigator.clipboard.writeText(
 					`${shareData.text} ${shareData.url}`,
@@ -193,7 +144,7 @@ export default function SalaryCalculator({
 							id="employmentType"
 							className="form-control"
 							value={employmentType}
-							onChange={handleEmploymentTypeChange}
+							onChange={(e) => updateState({ empType: e.target.value })}
 						>
 							<option value="Private">{t("empTypePrivate")}</option>
 							<option value="Government">{t("empTypeGovt")}</option>
@@ -202,16 +153,47 @@ export default function SalaryCalculator({
 							<option value="Kasambahay">{t("empTypeKasambahay")}</option>
 						</select>
 					</div>
+
+					<div className="form-group" style={{ marginBottom: "16px" }}>
+						<label className="form-label" htmlFor="payrollPeriod">
+							{t("payrollPeriodLabel")}
+						</label>
+						<select
+							id="payrollPeriod"
+							className="form-control"
+							value={payrollPeriod}
+							onChange={(e) => updateState({ period: e.target.value })}
+						>
+							<option value="Monthly">{t("periodMonthly")}</option>
+							<option value="Semi-Monthly">{t("periodSemiMonthly")}</option>
+							<option value="Weekly">{t("periodWeekly")}</option>
+							<option value="Daily">{t("periodDaily")}</option>
+							<option value="Annually">{t("periodAnnually")}</option>
+						</select>
+					</div>
 					<InteractiveSlider
 						label={t("grossSalaryLabel")}
 						value={salary}
 						min={0}
-						max={250000}
-						step={1000}
-						onChange={(val) => {
-							setSalaryStr(val.toString());
-							updateUrl({ salary: val.toString() });
-						}}
+						max={
+							payrollPeriod === "Annually"
+								? 3000000
+								: payrollPeriod === "Daily"
+									? 10000
+									: payrollPeriod === "Weekly"
+										? 50000
+										: payrollPeriod === "Semi-Monthly"
+											? 125000
+											: 250000
+						}
+						step={
+							payrollPeriod === "Annually"
+								? 10000
+								: payrollPeriod === "Daily"
+									? 100
+									: 1000
+						}
+						onChange={(val) => updateState({ salary: val.toString() })}
 						hint={t("grossSalaryHint")}
 					/>
 				</div>
@@ -486,18 +468,14 @@ export default function SalaryCalculator({
 				}}
 			>
 				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How to Compute Your Net Salary in the Philippines
+					{t("seoTitle")}
 				</h2>
-				<p style={{ marginBottom: "16px" }}>
-					Calculating your take-home pay involves deducting your mandatory
-					government contributions (SSS, PhilHealth, Pag-IBIG) and withholding
-					tax from your gross basic salary.
-				</p>
+				<p style={{ marginBottom: "16px" }}>{t("seoDesc")}</p>
 
 				<h3
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					1. Government Contributions (2026 Rates)
+					{t("seoGovtTitle")}
 				</h3>
 				<ul
 					style={{
@@ -506,35 +484,19 @@ export default function SalaryCalculator({
 						lineHeight: "1.6",
 					}}
 				>
-					<li>
-						<strong>SSS:</strong> The employee share is <strong>5%</strong> of
-						the Monthly Salary Credit (MSC). The maximum MSC is ₱35,000, meaning
-						the maximum employee deduction is ₱1,750.
-					</li>
-					<li>
-						<strong>PhilHealth:</strong> The premium rate is <strong>5%</strong>{" "}
-						of your basic salary, split equally between you and your employer (
-						<strong>2.5% each</strong>). The salary floor is ₱10,000 and the
-						ceiling is ₱100,000.
-					</li>
-					<li>
-						<strong>Pag-IBIG:</strong> The standard employee contribution is{" "}
-						<strong>₱200</strong> per month (2% of the ₱10,000 maximum fund
-						salary).
-					</li>
+					<li dangerouslySetInnerHTML={{ __html: t.raw("seoGovtSSS") }} />
+					<li
+						dangerouslySetInnerHTML={{ __html: t.raw("seoGovtPhilHealth") }}
+					/>
+					<li dangerouslySetInnerHTML={{ __html: t.raw("seoGovtPagibig") }} />
 				</ul>
 
 				<h3
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					2. Taxable Income & Withholding Tax
+					{t("seoTaxTitle")}
 				</h3>
-				<p style={{ marginBottom: "16px" }}>
-					To find your taxable income, subtract your total contributions from
-					your gross salary. Then, apply the TRAIN Law tax brackets to compute
-					your withholding tax. If your taxable income is below ₱20,833 per
-					month (₱250,000 annually), you are exempt from income tax.
-				</p>
+				<p style={{ marginBottom: "16px" }}>{t("seoTaxDesc")}</p>
 			</div>
 		</ToolLayout>
 	);

@@ -1,12 +1,18 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
-import type { Metadata } from "next";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ platform?: string; price?: string; shipping?: string; fss?: string; ccb?: string }>;
+	searchParams: Promise<{
+		platform?: string;
+		price?: string;
+		shipping?: string;
+		fss?: string;
+		ccb?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "TikTok, Shopee & Lazada Seller Fee Calculator | PHTools";

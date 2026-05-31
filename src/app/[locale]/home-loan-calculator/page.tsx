@@ -35,7 +35,7 @@ export async function generateMetadata({
 		ogUrl += `&s1l=Property%20Price&s1v=${encodeURIComponent(
 			formatAmount(price),
 		)}`;
-		ogUrl += `&s2l=Loan%20Term&s2v=${encodeURIComponent(term.toString() + "y")}`;
+		ogUrl += `&s2l=Loan%20Term&s2v=${encodeURIComponent(`${term.toString()}y`)}`;
 	} else {
 		ogUrl +=
 			"&s1l=Property%20Price&s1v=%E2%82%B15%2C000%2C000&s2l=Loan%20Term&s2v=20y";

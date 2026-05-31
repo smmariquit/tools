@@ -39,6 +39,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "GSIS Retirement Pension Calculator",
+				path: "/gsis-pension-calculator",
+				desc: "Calculate your GSIS Basic Monthly Pension (BMP) based on RA 8291.",
+				priority: 0.9,
+			},
+			{
 				name: "SSS Maternity Benefit Calculator",
 				path: "/sss-maternity-calculator",
 				desc: "Calculate your 105-day Expanded Maternity Leave cash benefit based on your SSS contributions.",

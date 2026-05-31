@@ -15,8 +15,10 @@ export default function AdBanner({
 }: AdBannerProps) {
 	useEffect(() => {
 		try {
-			// @ts-expect-error Google AdSense injects this onto the window object
-			(window.adsbygoogle = window.adsbygoogle || []).push({});
+			const w = window as any;
+			const ads = w.adsbygoogle || [];
+			ads.push({});
+			w.adsbygoogle = ads;
 		} catch (err) {
 			console.error("AdSense error:", err);
 		}

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -29,6 +28,7 @@ export default function SSSCalculator() {
 		searchParams.get("type") || "employed",
 	); // 'employed' or 'voluntary'
 	const [mounted, setMounted] = useState(false);
+	const [isTableExpanded, setIsTableExpanded] = useState(false);
 
 	const updateUrl = (updates: Record<string, string>) => {
 		const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -485,11 +485,41 @@ export default function SSSCalculator() {
 									28000, 28500, 29000, 29500, 30000, 30500, 31000, 31500, 32000,
 									32500, 33000, 33500, 34000, 34500, 35000,
 								];
+
+								const activeIndex = mscValues.indexOf(msc);
+								const startIndex = isTableExpanded
+									? 0
+									: Math.max(0, activeIndex - 2);
+								const endIndex = isTableExpanded
+									? mscValues.length
+									: Math.min(mscValues.length, activeIndex + 3);
+
+								if (!isTableExpanded && startIndex > 0) {
+									rows.push(
+										<tr key="ellipsis-top">
+											<td
+												colSpan={6}
+												style={{
+													textAlign: "center",
+													padding: "12px",
+													color: "var(--text-secondary)",
+												}}
+											>
+												...
+											</td>
+										</tr>,
+									);
+								}
+
 								for (let i = 0; i < mscValues.length; i++) {
 									const currentMSC = mscValues[i];
 									const low = i === 0 ? 0 : mscValues[i - 1] + 250.01;
 									const high =
 										i === mscValues.length - 1 ? Infinity : currentMSC + 249.99;
+
+									if (!isTableExpanded && (i < startIndex || i >= endIndex))
+										continue;
+
 									const isActive = currentMSC === msc;
 
 									const regMSC = Math.min(currentMSC, 20000);
@@ -573,10 +603,37 @@ export default function SSSCalculator() {
 										</tr>,
 									);
 								}
+
+								if (!isTableExpanded && endIndex < mscValues.length) {
+									rows.push(
+										<tr key="ellipsis-bottom">
+											<td
+												colSpan={6}
+												style={{
+													textAlign: "center",
+													padding: "12px",
+													color: "var(--text-secondary)",
+												}}
+											>
+												...
+											</td>
+										</tr>,
+									);
+								}
+
 								return rows;
 							})()}
 						</tbody>
 					</table>
+				</div>
+
+				<div style={{ textAlign: "center", marginBottom: "24px" }}>
+					<button
+						className="btn-secondary"
+						onClick={() => setIsTableExpanded(!isTableExpanded)}
+					>
+						{isTableExpanded ? "Collapse Table" : "View Full SSS Table"}
+					</button>
 				</div>
 
 				<h3

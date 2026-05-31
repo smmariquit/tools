@@ -1,12 +1,17 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
-import type { Metadata } from "next";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ price?: string; repair?: string; rent?: string; resale?: string }>;
+	searchParams: Promise<{
+		price?: string;
+		repair?: string;
+		rent?: string;
+		resale?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "Pag-IBIG Foreclosed Property ROI Calculator | PHTools";
@@ -17,7 +22,12 @@ export async function generateMetadata({
 		title,
 	)}&desc=${encodeURIComponent(description)}`;
 
-	if (resolvedParams.price || resolvedParams.repair || resolvedParams.rent || resolvedParams.resale) {
+	if (
+		resolvedParams.price ||
+		resolvedParams.repair ||
+		resolvedParams.rent ||
+		resolvedParams.resale
+	) {
 		const purchasePrice = parseFloat(resolvedParams.price || "1000000") || 0;
 		const repairCost = parseFloat(resolvedParams.repair || "200000") || 0;
 		const monthlyRent = parseFloat(resolvedParams.rent || "12000") || 0;
@@ -44,8 +54,8 @@ export async function generateMetadata({
 			}).format(val);
 
 		ogUrl += `&s1l=Total%20Capital&s1v=${encodeURIComponent(formatAmount(totalInvestment))}`;
-		ogUrl += `&s2l=Rental%20Yield&s2v=${encodeURIComponent(grossRentalYield.toFixed(2) + "%")}`;
-		ogUrl += `&s3l=Flipping%20ROI&s3v=${encodeURIComponent(flippingRoi.toFixed(2) + "%")}`;
+		ogUrl += `&s2l=Rental%20Yield&s2v=${encodeURIComponent(`${grossRentalYield.toFixed(2)}%`)}`;
+		ogUrl += `&s3l=Flipping%20ROI&s3v=${encodeURIComponent(`${flippingRoi.toFixed(2)}%`)}`;
 	} else {
 		ogUrl +=
 			"&s1l=Total%20Capital&s1v=%E2%82%B11.2M&s2l=Rental%20Yield&s2v=12.00%25&s3l=Flipping%20ROI&s3v=33.50%25";

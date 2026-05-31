@@ -46,7 +46,7 @@ export async function generateMetadata({
 				maximumFractionDigits: 0,
 			}).format(val);
 
-		ogUrl += `&s1l=Gross%20Income&s1v=${encodeURIComponent(currencyMode === "usd" ? "$" + usdIncome : formatAmount(phpGrossIncome))}`;
+		ogUrl += `&s1l=Gross%20Income&s1v=${encodeURIComponent(currencyMode === "usd" ? `$${usdIncome}` : formatAmount(phpGrossIncome))}`;
 		ogUrl += `&s2l=8%25%20BIR%20Tax&s2v=${encodeURIComponent(formatAmount(eightPercentTax))}`;
 		ogUrl += `&s3l=Net%20Take%20Home&s3v=${encodeURIComponent(formatAmount(netIncome8Percent))}`;
 	} else {

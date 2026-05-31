@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { toolCategories } from "../../lib/routes";
 
 const toolToBlogMap: Record<string, string> = {
@@ -33,6 +34,7 @@ const toolToBlogMap: Record<string, string> = {
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
+	const t = useTranslations("ToolFooter");
 	const blogPath = toolToBlogMap[currentPath];
 
 	// Find the category of the current tool
@@ -81,17 +83,13 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 			}}
 		>
 			<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-				Read the Full Guide
+				{t("readGuideTitle")}
 			</h2>
 			<div
 				className="card"
 				style={{ marginBottom: "32px", borderLeft: "4px solid var(--primary)" }}
 			>
-				<p style={{ marginBottom: "12px" }}>
-					Want to know the exact formula behind this calculator? Check out our
-					comprehensive, human-written guide that explains the law,
-					computations, and exact rules.
-				</p>
+				<p style={{ marginBottom: "12px" }}>{t("readGuideDesc")}</p>
 				<Link
 					href={blogPath || "/blog"}
 					style={{
@@ -104,7 +102,7 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 						textDecoration: "none",
 					}}
 				>
-					Read the Guide &rarr;
+					{t("readGuideBtn")}
 				</Link>
 			</div>
 
@@ -115,7 +113,7 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 					color: "var(--text-secondary)",
 				}}
 			>
-				Related Tools
+				{t("relatedToolsTitle")}
 			</h2>
 			<div
 				style={{

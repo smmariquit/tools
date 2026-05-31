@@ -150,7 +150,7 @@ export default function ElectricBillClient() {
 					<div
 						style={{ display: "flex", flexDirection: "column", gap: "16px" }}
 					>
-						{computedAppliances.map((app, index) => (
+						{computedAppliances.map((app, _index) => (
 							<div
 								key={app.id}
 								style={{

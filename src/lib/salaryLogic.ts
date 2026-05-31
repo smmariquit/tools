@@ -33,6 +33,10 @@ export function computeSalary(
 		monthlySalary = basicPay * 21.6667; // Standard working days
 		monthlyTaxableAllowance = taxableAllowance * 21.6667;
 		monthlyNonTaxableAllowance = nonTaxableAllowance * 21.6667;
+	} else if (payrollPeriod === "Annually") {
+		monthlySalary = basicPay / 12;
+		monthlyTaxableAllowance = taxableAllowance / 12;
+		monthlyNonTaxableAllowance = nonTaxableAllowance / 12;
 	}
 
 	const totalTaxableMonthly = monthlySalary + monthlyTaxableAllowance;
@@ -159,6 +163,13 @@ export function computeSalary(
 		finalContributions /= 21.6667;
 		finalTax /= 21.6667;
 		finalNetPay /= 21.6667;
+	} else if (payrollPeriod === "Annually") {
+		finalSSS *= 12;
+		finalPhilHealth *= 12;
+		finalPagibig *= 12;
+		finalContributions *= 12;
+		finalTax *= 12;
+		finalNetPay *= 12;
 	}
 
 	return {

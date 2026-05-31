@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
-import type { Metadata } from "next";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -35,25 +35,25 @@ export async function generateMetadata({
 		const employeeRate =
 			basicSalary === 0 ? 0 : basicSalary <= 1500 ? 0.01 : 0.02;
 		const regularEE = regularFundSalary * employeeRate;
-		
+
 		// MP2 logic
 		let cumulativeSavings = 0;
 		let cumulativeDividends = 0;
 		const annualDeposit = mp2Monthly * 12;
 		const rate = dividendRate / 100;
-		
+
 		for (let year = 1; year <= 5; year++) {
 			const previousTotal = cumulativeSavings + cumulativeDividends;
 			const dividendForYear = previousTotal * rate + annualDeposit * rate * 0.5;
 			cumulativeDividends += dividendForYear;
 			cumulativeSavings += annualDeposit;
 		}
-		
+
 		const mp2Total = cumulativeSavings + cumulativeDividends;
 
 		ogUrl += `&s1l=MP2%20Total&s1v=${encodeURIComponent(formatAmount(mp2Total))}`;
 		ogUrl += `&s2l=Reg%20Contribution&s2v=${encodeURIComponent(formatAmount(regularEE))}`;
-		ogUrl += `&s3l=Div%20Rate&s3v=${encodeURIComponent(dividendRate + "%")}`;
+		ogUrl += `&s3l=Div%20Rate&s3v=${encodeURIComponent(`${dividendRate}%`)}`;
 	} else {
 		ogUrl +=
 			"&s1l=MP2%20Total&s1v=%E2%82%B171k&s2l=Reg%20Contribution&s2v=%E2%82%B1200&s3l=Div%20Rate&s3v=7%25";

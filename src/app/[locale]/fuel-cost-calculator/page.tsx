@@ -26,7 +26,7 @@ export async function generateMetadata({
 		const distance = parseFloat(resolvedParams.dist || "250") || 0;
 		const efficiency = parseFloat(resolvedParams.eff || "12") || 0;
 		const fuelPrice = parseFloat(resolvedParams.price || "65") || 0;
-		const passengers = parseInt(resolvedParams.pax || "4") || 1;
+		const passengers = parseInt(resolvedParams.pax || "4", 10) || 1;
 
 		const litersNeeded = efficiency > 0 ? distance / efficiency : 0;
 		const totalFuelCost = litersNeeded * fuelPrice;
@@ -40,7 +40,7 @@ export async function generateMetadata({
 				maximumFractionDigits: 0,
 			}).format(val);
 
-		ogUrl += `&s1l=Distance&s1v=${encodeURIComponent(distance + " km")}`;
+		ogUrl += `&s1l=Distance&s1v=${encodeURIComponent(`${distance} km`)}`;
 		ogUrl += `&s2l=Total%20Cost&s2v=${encodeURIComponent(formatAmount(totalFuelCost))}`;
 		ogUrl += `&s3l=Cost%20per%20Pax&s3v=${encodeURIComponent(formatAmount(costPerPerson))}`;
 	} else {

@@ -59,7 +59,7 @@ export default function TaxOptimizerClient() {
 		: Math.max(0, (grossIncome - 250000) * 0.08);
 	const net8Percent = isVatRegistered
 		? null
-		: grossIncome - expenses - tax8Percent!;
+		: grossIncome - expenses - (tax8Percent || 0);
 
 	// --- 2. Graduated (40% OSD) ---
 	const osd = grossIncome * 0.4;

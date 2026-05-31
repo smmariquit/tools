@@ -1,8 +1,9 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useId, useState } from "react";
+import { useId } from "react";
+import { calculateSeparationPay } from "../../../core/calculators/separationPay";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
@@ -11,77 +12,40 @@ import ToolLayout from "../components/ToolLayout";
 
 export default function SeparationPayClient() {
 	const t = useTranslations("SeparationPay");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 	const selectReasonId = useId();
 
 	// Default to 1 year ago for hire date
 	const defaultHireDate = new Date();
 	defaultHireDate.setFullYear(defaultHireDate.getFullYear() - 1);
 
-	const [monthlySalary, setMonthlySalary] = useState(
-		parseFloat(searchParams.get("salary") || "25000"),
+	const [state, updateState] = useCalculatorState(
+		{
+			salary: 25000,
+			start: defaultHireDate.toISOString().split("T")[0],
+			end: new Date().toISOString().split("T")[0],
+			reason: "redundancy",
+		},
+		{
+			salary: parseFloat,
+			start: String,
+			end: String,
+			reason: String,
+		},
 	);
-	const [hireDate, setHireDate] = useState(
-		searchParams.get("start") || defaultHireDate.toISOString().split("T")[0],
+
+	const {
+		salary: monthlySalary,
+		start: hireDate,
+		end: separationDate,
+		reason,
+	} = state;
+
+	const { yearsOfService, multiplier, totalPay } = calculateSeparationPay(
+		monthlySalary,
+		hireDate,
+		separationDate,
+		reason,
 	);
-	const [separationDate, setSeparationDate] = useState(
-		searchParams.get("end") || new Date().toISOString().split("T")[0],
-	);
-	const [reason, setReason] = useState(
-		searchParams.get("reason") || "redundancy",
-	);
-
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
-
-	// Logic for Years of Service
-	const calculateYearsOfService = (start: string, end: string) => {
-		const s = new Date(start);
-		const e = new Date(end);
-		if (e < s) return 0;
-
-		let totalMonths =
-			(e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth());
-		if (e.getDate() < s.getDate()) {
-			totalMonths--;
-		}
-
-		if (totalMonths < 0) totalMonths = 0;
-
-		const years = Math.floor(totalMonths / 12);
-		const remainingMonths = totalMonths % 12;
-
-		return remainingMonths >= 6 ? years + 1 : years;
-	};
-
-	const yearsOfService = calculateYearsOfService(hireDate, separationDate);
-
-	// Multiplier logic
-	const isOneMonthMultiplier = [
-		"redundancy",
-		"labor-saving",
-		"impossible",
-	].includes(reason);
-	const multiplier = isOneMonthMultiplier ? 1 : 0.5;
-
-	// Calculate Pay
-	const calculatedPay = monthlySalary * yearsOfService * multiplier;
-	// Minimum of 1 month salary for any separation pay according to DOLE
-	const totalPay =
-		yearsOfService > 0 ? Math.max(monthlySalary, calculatedPay) : 0;
 
 	const formatCurrency = (val: number) => {
 		return (
@@ -121,10 +85,7 @@ export default function SeparationPayClient() {
 						min={10000}
 						max={200000}
 						step={1000}
-						onChange={(val) => {
-							setMonthlySalary(val);
-							updateUrl({ salary: val.toString() });
-						}}
+						onChange={(val) => updateState({ salary: val })}
 					/>
 
 					<div className="form-group" style={{ marginTop: "32px" }}>
@@ -136,10 +97,7 @@ export default function SeparationPayClient() {
 							type="date"
 							className="form-control"
 							value={hireDate}
-							onChange={(e) => {
-								setHireDate(e.target.value);
-								updateUrl({ start: e.target.value });
-							}}
+							onChange={(e) => updateState({ start: e.target.value })}
 						/>
 					</div>
 
@@ -152,10 +110,7 @@ export default function SeparationPayClient() {
 							type="date"
 							className="form-control"
 							value={separationDate}
-							onChange={(e) => {
-								setSeparationDate(e.target.value);
-								updateUrl({ end: e.target.value });
-							}}
+							onChange={(e) => updateState({ end: e.target.value })}
 						/>
 					</div>
 
@@ -167,10 +122,7 @@ export default function SeparationPayClient() {
 							id={selectReasonId}
 							className="form-control"
 							value={reason}
-							onChange={(e) => {
-								setReason(e.target.value);
-								updateUrl({ reason: e.target.value });
-							}}
+							onChange={(e) => updateState({ reason: e.target.value })}
 						>
 							<option value="redundancy">{t("reasonRedundancy")}</option>
 							<option value="labor-saving">{t("reasonLaborSaving")}</option>

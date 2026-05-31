@@ -1,8 +1,9 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useId, useState } from "react";
+import { useId } from "react";
+import { calculatePagibigAffordability } from "../../../core/calculators/pagibigAffordability";
+import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
@@ -11,44 +12,16 @@ import ToolLayout from "../components/ToolLayout";
 
 export default function PagibigAffordabilityClient() {
 	const t = useTranslations("PagibigAffordability");
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
 	const rateId = useId();
 
-	const [grossIncome, setGrossIncome] = useState(
-		parseFloat(searchParams.get("income") || "35000"),
+	const [state, updateState] = useCalculatorState(
+		{ income: 35000, age: 30, rate: 6.25 },
+		{ income: parseFloat, age: parseFloat, rate: parseFloat },
 	);
-	const [age, setAge] = useState(parseFloat(searchParams.get("age") || "30"));
-	const [interestRate, setInterestRate] = useState(
-		parseFloat(searchParams.get("rate") || "6.25"),
-	);
+	const { income: grossIncome, age, rate: interestRate } = state;
 
-	const updateUrl = (updates: Record<string, string>) => {
-		const newSearchParams = new URLSearchParams(searchParams.toString());
-		for (const [key, value] of Object.entries(updates)) {
-			if (value) {
-				newSearchParams.set(key, value);
-			} else {
-				newSearchParams.delete(key);
-			}
-		}
-		router.replace(`${pathname}?${newSearchParams.toString()}`, {
-			scroll: false,
-		});
-	};
-
-	// Logic
-	const maxTermYears = Math.max(0, Math.min(30, 70 - age));
-	const n = maxTermYears * 12;
-	const maxAmortization = grossIncome * 0.35;
-
-	let maxLoanAmount = 0;
-	if (n > 0) {
-		const r = interestRate / 100 / 12;
-		maxLoanAmount = maxAmortization * ((1 - (1 + r) ** -n) / r);
-		maxLoanAmount = Math.min(maxLoanAmount, 6000000);
-	}
+	const { maxTermYears, maxAmortization, maxLoanAmount } =
+		calculatePagibigAffordability(grossIncome, age, interestRate);
 
 	const formatCurrency = (val: number) => {
 		return (
@@ -88,10 +61,7 @@ export default function PagibigAffordabilityClient() {
 						min={10000}
 						max={300000}
 						step={1000}
-						onChange={(val) => {
-							setGrossIncome(val);
-							updateUrl({ income: val.toString() });
-						}}
+						onChange={(val) => updateState({ income: val })}
 					/>
 
 					<div style={{ marginTop: "32px" }}>
@@ -101,10 +71,7 @@ export default function PagibigAffordabilityClient() {
 							min={18}
 							max={70}
 							step={1}
-							onChange={(val) => {
-								setAge(val);
-								updateUrl({ age: val.toString() });
-							}}
+							onChange={(val) => updateState({ age: val })}
 						/>
 					</div>
 
@@ -116,10 +83,9 @@ export default function PagibigAffordabilityClient() {
 							id={rateId}
 							className="form-control"
 							value={interestRate}
-							onChange={(e) => {
-								setInterestRate(parseFloat(e.target.value));
-								updateUrl({ rate: e.target.value });
-							}}
+							onChange={(e) =>
+								updateState({ rate: parseFloat(e.target.value) })
+							}
 						>
 							<option value="5.75">1 Year Fixed (5.75%)</option>
 							<option value="6.25">3 Years Fixed (6.25%)</option>

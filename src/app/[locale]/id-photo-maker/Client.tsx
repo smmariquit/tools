@@ -4,20 +4,19 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import AdBanner from "../components/AdBanner";
 
-type PhotoSize = "2x2" | "1x1" | "passport";
+const dimensions = {
+	"2x2": { width: 600, height: 600, label: "2x2 Inches" },
+	"1x1": { width: 300, height: 300, label: "1x1 Inch" },
+	passport: { width: 413, height: 531, label: "Passport (35x45mm)" },
+};
+
+type PhotoSize = keyof typeof dimensions;
 
 export default function IDPhotoMaker() {
 	const [size, setSize] = useState<PhotoSize>("2x2");
 	const [imageSrc, setImageSrc] = useState<string | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
-
-	// Print dimensions at 300 DPI
-	const dimensions = {
-		"2x2": { width: 600, height: 600, label: "2x2 Inches" },
-		"1x1": { width: 300, height: 300, label: "1x1 Inch" },
-		passport: { width: 413, height: 531, label: "Passport (35x45mm)" },
-	};
 
 	const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -129,8 +128,11 @@ export default function IDPhotoMaker() {
 					</div>
 
 					<div className="form-group" style={{ marginTop: "24px" }}>
-						<label className="form-label">Upload Photo</label>
+						<label className="form-label" htmlFor="photoUpload">
+							Upload Photo
+						</label>
 						<input
+							id="photoUpload"
 							type="file"
 							accept="image/*"
 							ref={fileInputRef}

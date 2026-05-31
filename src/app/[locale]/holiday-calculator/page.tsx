@@ -1,12 +1,17 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import ToolFooter from "../../components/ToolFooter";
-import type { Metadata } from "next";
 import Client from "./Client";
 
 export async function generateMetadata({
 	searchParams,
 }: {
-	searchParams: Promise<{ rate?: string; type?: string; worked?: string; hours?: string }>;
+	searchParams: Promise<{
+		rate?: string;
+		type?: string;
+		worked?: string;
+		hours?: string;
+	}>;
 }): Promise<Metadata> {
 	const resolvedParams = await searchParams;
 	const title = "Holiday & Overtime Pay Calculator (DOLE) | PHTools";
@@ -17,10 +22,19 @@ export async function generateMetadata({
 		title,
 	)}&desc=${encodeURIComponent(description)}`;
 
-	if (resolvedParams.rate || resolvedParams.type || resolvedParams.worked || resolvedParams.hours) {
+	if (
+		resolvedParams.rate ||
+		resolvedParams.type ||
+		resolvedParams.worked ||
+		resolvedParams.hours
+	) {
 		const dailyRate = parseFloat(resolvedParams.rate || "1000") || 0;
 		const hoursWorked = parseFloat(resolvedParams.hours || "8") || 0;
-		const dayType = (resolvedParams.type || "regular") as "regular" | "special" | "regularRest" | "specialRest";
+		const dayType = (resolvedParams.type || "regular") as
+			| "regular"
+			| "special"
+			| "regularRest"
+			| "specialRest";
 		const didWork = (resolvedParams.worked || "yes") as "yes" | "no";
 
 		const hourlyRate = dailyRate / 8;

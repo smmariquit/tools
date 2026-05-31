@@ -300,36 +300,50 @@ export default function CarLoanCalculator() {
 							<div
 								style={{
 									display: "flex",
-									justifyContent: "space-between",
-									alignItems: "center",
+									flexDirection: "column",
+									gap: "12px",
 								}}
 							>
-								<div>
-									<div
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "space-between",
+										alignItems: "center",
+									}}
+								>
+									<span
 										style={{
-											fontSize: "11px",
+											fontSize: "13px",
 											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
 									>
 										{t("totalSavings")}
-									</div>
+									</span>
 									<strong style={{ fontSize: "20px", color: "#2e7d32" }}>
 										{formatCurrency(totalSavings)}
 									</strong>
 								</div>
-								<div>
-									<div
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "space-between",
+										alignItems: "center",
+										paddingTop: "12px",
+										borderTop: "1px dashed var(--border-color)",
+									}}
+								>
+									<span
 										style={{
-											fontSize: "11px",
+											fontSize: "13px",
 											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
 									>
 										{t("monthlyDifference")}
-									</div>
+									</span>
 									<strong style={{ fontSize: "16px", color: "#2e7d32" }}>
-										- {formatCurrency(inHouseMonthly - monthlyAmortization)}/mo
+										-{formatCurrency(inHouseMonthly - monthlyAmortization)}/mo
 									</strong>
 								</div>
 							</div>
