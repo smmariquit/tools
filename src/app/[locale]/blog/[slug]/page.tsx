@@ -6,6 +6,7 @@ import {
 	getPostBySlug,
 	type PostMeta,
 } from "../../../../lib/mdx";
+import ToolEmbed from "../../../components/ToolEmbed";
 import AdBanner from "../../components/AdBanner";
 
 // Generate static params for all posts so they render instantly at build time
@@ -52,6 +53,9 @@ export default async function BlogPost({
 	const components = {
 		AdBanner: (props: React.ComponentProps<typeof AdBanner>) => (
 			<AdBanner {...props} />
+		),
+		ToolEmbed: (props: React.ComponentProps<typeof ToolEmbed>) => (
+			<ToolEmbed {...props} />
 		),
 		h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
 			<h2

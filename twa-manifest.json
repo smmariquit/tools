@@ -1,0 +1,26 @@
+{
+	"packageId": "me.phtools.app",
+	"host": "www.phtools.me",
+	"name": "PHTools",
+	"launcherName": "PHTools",
+	"display": "standalone",
+	"themeColor": "#0d47a1",
+	"navigationColor": "#000000",
+	"navigationColorDark": "#000000",
+	"navigationDividerColor": "#000000",
+	"navigationDividerColorDark": "#000000",
+	"backgroundColor": "#ffffff",
+	"enableNotifications": false,
+	"startUrl": "/",
+	"iconUrl": "http://127.0.0.1:8080/logo512.png",
+	"maskableIconUrl": "http://127.0.0.1:8080/logo512.png",
+	"splashScreenFadeOutDuration": 300,
+	"signingKey": {
+		"path": "./android.keystore",
+		"alias": "android"
+	},
+	"appVersion": "1.0.0",
+	"appVersionCode": 1,
+	"shortcuts": [],
+	"generatorApp": "bubblewrap-cli"
+}
