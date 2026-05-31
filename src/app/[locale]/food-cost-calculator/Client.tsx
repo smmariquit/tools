@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
@@ -61,6 +61,48 @@ export default function FoodCostCalculatorClient() {
 	
 	const [vatIncluded, setVatIncluded] = useState(false);
 	const [serviceChargePct, setServiceChargePct] = useState(0);
+	
+	const [isLoaded, setIsLoaded] = useState(false);
+
+	// Load from LocalStorage
+	useEffect(() => {
+		try {
+			const saved = localStorage.getItem("foodCostDraft");
+			if (saved) {
+				const data = JSON.parse(saved);
+				if (data.recipeName) setRecipeName(data.recipeName);
+				if (data.yieldServings) setYieldServings(data.yieldServings);
+				if (data.ingredients) setIngredients(data.ingredients);
+				if (data.laborCost !== undefined) setLaborCost(data.laborCost);
+				if (data.overheadCost !== undefined) setOverheadCost(data.overheadCost);
+				if (data.targetMargin) setTargetMargin(data.targetMargin);
+				if (data.vatIncluded !== undefined) setVatIncluded(data.vatIncluded);
+				if (data.serviceChargePct !== undefined) setServiceChargePct(data.serviceChargePct);
+			}
+		} catch (e) {
+			console.error("Failed to parse saved food cost data", e);
+		}
+		setIsLoaded(true);
+	}, []);
+
+	// Save to LocalStorage
+	useEffect(() => {
+		if (!isLoaded) return;
+		const data = {
+			recipeName,
+			yieldServings,
+			ingredients,
+			laborCost,
+			overheadCost,
+			targetMargin,
+			vatIncluded,
+			serviceChargePct,
+		};
+		localStorage.setItem("foodCostDraft", JSON.stringify(data));
+	}, [
+		recipeName, yieldServings, ingredients, laborCost, 
+		overheadCost, targetMargin, vatIncluded, serviceChargePct, isLoaded
+	]);
 
 	// --- Calculations ---
 
@@ -148,7 +190,9 @@ export default function FoodCostCalculatorClient() {
 					
 					{/* Recipe Details */}
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>1. Recipe Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+							<span>📝</span> 1. Recipe Details
+						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 200px" }}>
 								<label className="form-label">Recipe Name</label>
@@ -176,9 +220,11 @@ export default function FoodCostCalculatorClient() {
 					{/* Ingredients List */}
 					<div className="card">
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-							<h2 style={{ fontSize: "18px", color: "var(--primary)", margin: 0 }}>2. Ingredients Costing</h2>
-							<button className="btn-secondary" style={{ padding: "6px 12px", fontSize: "14px" }} onClick={addIngredient}>
-								+ Add Item
+							<h2 style={{ fontSize: "18px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
+								<span>🛒</span> 2. Ingredients Costing
+							</h2>
+							<button className="btn-secondary" style={{ padding: "6px 12px", fontSize: "14px", display: "flex", alignItems: "center", gap: "4px" }} onClick={addIngredient}>
+								<span>➕</span> Add Item
 							</button>
 						</div>
 						
@@ -244,7 +290,9 @@ export default function FoodCostCalculatorClient() {
 
 					{/* Additional Costs */}
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>3. Labor & Overhead (Per Batch)</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+							<span>🧑‍🍳</span> 3. Labor & Overhead (Per Batch)
+						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
 								<label className="form-label">Labor Cost (₱)</label>
@@ -259,7 +307,9 @@ export default function FoodCostCalculatorClient() {
 
 					{/* PH Pricing Adjustments */}
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>4. Philippines Taxes & Fees</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+							<span>🇵🇭</span> 4. Philippines Taxes & Fees
+						</h2>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
@@ -300,9 +350,12 @@ export default function FoodCostCalculatorClient() {
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					
 					<div className="card" style={{ backgroundColor: "var(--bg-color)", position: "sticky", top: "100px" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "12px", color: "var(--primary)" }}>
-							Costing Summary
-						</h2>
+						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "12px" }}>
+							<h2 style={{ fontSize: "20px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
+								<span>📊</span> Costing Summary
+							</h2>
+							{isLoaded && <span style={{ fontSize: "12px", color: "var(--text-secondary)", backgroundColor: "var(--surface-color)", padding: "4px 8px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>💾 Auto-saved</span>}
+						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
 							<span>Total Ingredients Cost:</span>
