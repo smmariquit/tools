@@ -1,8 +1,32 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+
+const RouteSelectorMap = dynamic(
+	() => import("../../components/RouteSelectorMap"),
+	{
+		ssr: false,
+		loading: () => (
+			<div
+				style={{
+					height: "300px",
+					width: "100%",
+					backgroundColor: "var(--surface-color)",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					border: "1px solid var(--border-color)",
+					borderRadius: "8px",
+				}}
+			>
+				Loading Map...
+			</div>
+		),
+	},
+);
 
 export default function FuelCostClient() {
 	const [distanceStr, setDistanceStr] = useState("250");
@@ -64,6 +88,12 @@ export default function FuelCostClient() {
 						Trip Details
 					</h2>
 
+					<div style={{ marginBottom: "24px" }}>
+						<RouteSelectorMap
+							onDistanceComputed={(dist) => setDistanceStr(dist.toFixed(1))}
+						/>
+					</div>
+
 					<div className="form-group">
 						<label className="form-label" htmlFor="distance">
 							Total Distance (Kilometers)
@@ -79,6 +109,34 @@ export default function FuelCostClient() {
 						<p className="form-hint" style={{ marginTop: "4px" }}>
 							E.g., Manila to Baguio is approx 250 km.
 						</p>
+					</div>
+
+					<div className="form-group" style={{ marginTop: "16px" }}>
+						<label className="form-label" htmlFor="carType">
+							Select Common Vehicle Type
+						</label>
+						<select
+							id="carType"
+							className="form-control"
+							onChange={(e) => {
+								if (e.target.value) {
+									setEfficiencyStr(e.target.value);
+								}
+							}}
+						>
+							<option value="">-- Custom Efficiency / Enter Manually --</option>
+							<option value="25">🏍️ Motorcycle (150cc) - ~25 km/L</option>
+							<option value="15">
+								🚗 Small Hatchback (Wigo, Brio) - ~15 km/L
+							</option>
+							<option value="12">
+								🚙 Compact Sedan (Vios, City) - ~12 km/L
+							</option>
+							<option value="9">
+								🛻 Mid-size SUV (Fortuner, Montero) - ~9 km/L
+							</option>
+							<option value="7">🚐 Large Van (Hiace, Urvan) - ~7 km/L</option>
+						</select>
 					</div>
 
 					<div className="form-group" style={{ marginTop: "16px" }}>
