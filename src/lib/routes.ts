@@ -39,6 +39,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "SSS Maternity Benefit Calculator",
+				path: "/sss-maternity-calculator",
+				desc: "Calculate your 105-day Expanded Maternity Leave cash benefit based on your SSS contributions.",
+				priority: 0.9,
+			},
+			{
 				name: "PhilHealth Premium Calculator",
 				path: "/philhealth-calculator",
 				desc: "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate.",
@@ -60,6 +66,12 @@ export const toolCategories = [
 				name: "Final Pay (Backpay) Calculator",
 				path: "/backpay-calculator",
 				desc: "Estimate your final pay, prorated 13th month, and leave conversions after resigning.",
+				priority: 0.8,
+			},
+			{
+				name: "Separation Pay Calculator",
+				path: "/separation-pay-calculator",
+				desc: "Calculate your DOLE separation pay for redundancy, retrenchment, and other terminations.",
 				priority: 0.8,
 			},
 			{

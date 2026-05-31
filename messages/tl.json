@@ -291,5 +291,42 @@
 		"otPay": "Overtime Pay (Sobra sa 8 hrs)",
 		"totalPay": "Total na Kikitain sa araw na ito",
 		"note": "Note: Sumusunod ito sa DOLE Handbook on Workers' Statutory Monetary Benefits. Ang Regular Holiday na pinasukan ay 200% ang bayad. Ang OT pay ay mas malaki kapag holiday o rest day."
+	},
+	"SeparationPay": {
+		"title": "Separation Pay Calculator",
+		"subtitle": "Kalkulahin ang mandatory DOLE separation pay mo kung ikaw ay natanggal dahil sa redundancy, retrenchment, sakit, o pagsara ng kumpanya.",
+		"inputDetails": "Detalye sa Trabaho",
+		"monthlySalary": "Basic Monthly Salary (PHP)",
+		"hireDate": "Petsa ng Unang Pasok (Hire Date)",
+		"separationDate": "Petsa ng Huling Pasok (Separation Date)",
+		"reason": "Dahilan ng Pagkakatanggal",
+		"reasonRedundancy": "Redundancy (1 buwang sahod kada taon)",
+		"reasonLaborSaving": "Paggamit ng labor-saving devices (1 buwang sahod kada taon)",
+		"reasonImpossible": "Impossible reinstatement (1 buwang sahod kada taon)",
+		"reasonRetrenchment": "Retrenchment para iwas lugi (1/2 buwang sahod kada taon)",
+		"reasonClosure": "Pagsara ng kumpanya (1/2 buwang sahod kada taon)",
+		"reasonDisease": "May sakit na bawal sa trabaho (1/2 buwang sahod kada taon)",
+		"resultsTitle": "Computation ng Separation Pay",
+		"yearsOfService": "Credited Years of Service",
+		"yearsOfServiceHint": "Note: Ang butal na 6 na buwan o higit pa ay binibilang na 1 buong taon.",
+		"multiplier": "Pay Multiplier na ginamit",
+		"separationPay": "Estimated Separation Pay Mo",
+		"note": "Note: Ayon sa batas, ang minimum na separation pay ay dapat hindi bababa sa isang (1) buwang sahod. Nakabase ito sa Article 298 & 299 ng Labor Code ng Pilipinas."
+	},
+	"SSSMaternity": {
+		"title": "SSS Maternity Benefit Calculator",
+		"subtitle": "Kalkulahin ang matatanggap mong benepisyo mula sa SSS para sa panganganak o nakunan under ng 105-Day Expanded Maternity Leave Law.",
+		"inputDetails": "Detalye ng Sahod at Panganganak",
+		"monthlySalary": "Monthly Salary Credit (MSC)",
+		"monthlySalaryHint": "Ang average na buwanang sahod mo sa nakaraang taon (maximum of ₱30,000 MSC).",
+		"deliveryType": "Uri ng Panganganak",
+		"typeNormal": "Normal / Cesarean Delivery (105 days)",
+		"typeSoloParent": "Solo Parent Delivery (120 days)",
+		"typeMiscarriage": "Nakunan / Miscarriage (60 days)",
+		"resultsTitle": "Computation ng Maternity Benefit",
+		"adsc": "Average Daily Salary Credit (ADSC)",
+		"daysAllocated": "Bilang ng Araw na Bayad",
+		"maternityBenefit": "Estimated Maternity Benefit Mo",
+		"note": "Note: Kailangan may naihulog kang at least 3 buwan sa loob ng 12-month period bago ang semester ng iyong panganganak o pagkakunan para maging qualified."
 	}
 }

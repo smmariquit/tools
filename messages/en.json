@@ -291,5 +291,42 @@
 		"otPay": "Overtime Pay (Excess of 8 hrs)",
 		"totalPay": "Total Pay for this Day",
 		"note": "Note: This strictly follows the DOLE Handbook on Workers' Statutory Monetary Benefits. Regular Holidays worked are paid at 200%. Overtime on holidays has compounded premium multipliers."
+	},
+	"SeparationPay": {
+		"title": "Separation Pay Calculator",
+		"subtitle": "Calculate your mandatory DOLE separation pay if you were terminated due to redundancy, retrenchment, disease, or business closure.",
+		"inputDetails": "Employment Details",
+		"monthlySalary": "Basic Monthly Salary (PHP)",
+		"hireDate": "Date of Hire",
+		"separationDate": "Date of Separation",
+		"reason": "Reason for Separation",
+		"reasonRedundancy": "Redundancy (1 month pay per year)",
+		"reasonLaborSaving": "Installation of labor-saving devices (1 month pay per year)",
+		"reasonImpossible": "Impossible reinstatement (1 month pay per year)",
+		"reasonRetrenchment": "Retrenchment to prevent losses (1/2 month pay per year)",
+		"reasonClosure": "Closure or cessation of business (1/2 month pay per year)",
+		"reasonDisease": "Disease / Prejudicial to health (1/2 month pay per year)",
+		"resultsTitle": "Computation Results",
+		"yearsOfService": "Credited Years of Service",
+		"yearsOfServiceHint": "Note: A fraction of at least 6 months is considered as 1 whole year.",
+		"multiplier": "Pay Multiplier applied",
+		"separationPay": "Estimated Separation Pay",
+		"note": "Note: Minimum separation pay is always equivalent to at least one (1) month pay. This strictly follows Article 298 & 299 of the Labor Code of the Philippines."
+	},
+	"SSSMaternity": {
+		"title": "SSS Maternity Benefit Calculator",
+		"subtitle": "Calculate your cash benefit for normal delivery, cesarean section, solo parent, or miscarriage under the 105-Day Expanded Maternity Leave Law.",
+		"inputDetails": "Salary & Delivery Details",
+		"monthlySalary": "Monthly Salary Credit (MSC)",
+		"monthlySalaryHint": "Your average monthly salary for the past year (capped at ₱30,000 max MSC).",
+		"deliveryType": "Type of Delivery / Contingency",
+		"typeNormal": "Normal / Cesarean Delivery (105 days)",
+		"typeSoloParent": "Solo Parent Delivery (120 days)",
+		"typeMiscarriage": "Miscarriage / Emergency Termination (60 days)",
+		"resultsTitle": "Computation Results",
+		"adsc": "Average Daily Salary Credit (ADSC)",
+		"daysAllocated": "Compensable Days",
+		"maternityBenefit": "Estimated Maternity Benefit",
+		"note": "Note: You must have paid at least 3 monthly contributions in the 12-month period immediately preceding the semester of your delivery or miscarriage to qualify."
 	}
 }
