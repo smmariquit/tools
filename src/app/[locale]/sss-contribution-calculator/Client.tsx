@@ -202,7 +202,7 @@ export default function SSSCalculator() {
               <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <XAxis type="number" />
                 <YAxis dataKey="name" type="category" hide />
-                <Tooltip formatter={(value: number | string) => formatCurrency(Number(value) || 0)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value) || 0)} />
                 <Legend />
                 <Bar dataKey="Employee Share" stackId="a" fill="#b71c1c" />
                 {memberType === "employed" && (

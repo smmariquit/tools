@@ -192,7 +192,7 @@ export default function IncomeTaxCalculator() {
                     ))}
                   </Pie>
                   <Tooltip 
-                    formatter={(value: number | string) => formatCurrency(Number(value) || 0)}
+                    formatter={(value) => formatCurrency(Number(value) || 0)}
                     contentStyle={{ borderRadius: "8px", border: "none", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
                   />
                   <Legend verticalAlign="bottom" height={36} iconType="circle" />

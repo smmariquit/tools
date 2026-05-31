@@ -208,7 +208,7 @@ export default function SalaryCalculator() {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number | string) => formatCurrency(Number(value) || 0)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value) || 0)} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
