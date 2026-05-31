@@ -33,6 +33,7 @@ export default function FuelCostClient() {
 	const [efficiencyStr, setEfficiencyStr] = useState("12");
 	const [fuelPriceStr, setFuelPriceStr] = useState("65");
 	const [passengersStr, setPassengersStr] = useState("4");
+	const [showMapModal, setShowMapModal] = useState(false);
 
 	const distance = parseFloat(distanceStr) || 0;
 	const efficiency = parseFloat(efficiencyStr) || 0;
@@ -89,10 +90,94 @@ export default function FuelCostClient() {
 					</h2>
 
 					<div style={{ marginBottom: "24px" }}>
-						<RouteSelectorMap
-							onDistanceComputed={(dist) => setDistanceStr(dist.toFixed(1))}
-						/>
+						<button
+							type="button"
+							className="btn-secondary"
+							style={{
+								width: "100%",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								gap: "8px",
+							}}
+							onClick={() => setShowMapModal(true)}
+						>
+							📍 Open Map to Select Route
+						</button>
 					</div>
+
+					{showMapModal && (
+						<div
+							style={{
+								position: "fixed",
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								backgroundColor: "rgba(0,0,0,0.7)",
+								zIndex: 9999,
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								padding: "16px",
+							}}
+						>
+							<div
+								style={{
+									backgroundColor: "var(--bg-color)",
+									borderRadius: "12px",
+									width: "100%",
+									maxWidth: "800px",
+									padding: "24px",
+									position: "relative",
+									maxHeight: "90vh",
+									overflowY: "auto",
+									boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+								}}
+							>
+								<button
+									type="button"
+									onClick={() => setShowMapModal(false)}
+									style={{
+										position: "absolute",
+										top: "16px",
+										right: "16px",
+										background: "none",
+										border: "none",
+										fontSize: "24px",
+										cursor: "pointer",
+										color: "var(--text-primary)",
+										zIndex: 10,
+									}}
+								>
+									&times;
+								</button>
+								<h3 style={{ marginBottom: "16px", fontSize: "20px" }}>
+									Select Route on Map
+								</h3>
+								<RouteSelectorMap
+									onDistanceComputed={(dist) => {
+										setDistanceStr(dist.toFixed(1));
+									}}
+								/>
+								<div
+									style={{
+										marginTop: "24px",
+										display: "flex",
+										justifyContent: "flex-end",
+									}}
+								>
+									<button
+										type="button"
+										className="btn-primary"
+										onClick={() => setShowMapModal(false)}
+									>
+										Confirm Distance & Close
+									</button>
+								</div>
+							</div>
+						</div>
+					)}
 
 					<div className="form-group">
 						<label className="form-label" htmlFor="distance">

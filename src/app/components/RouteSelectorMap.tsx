@@ -115,7 +115,7 @@ export default function RouteSelectorMap({
 			</div>
 			<div
 				style={{
-					height: "300px",
+					height: "500px",
 					width: "100%",
 					borderRadius: "8px",
 					overflow: "hidden",

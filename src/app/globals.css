@@ -23,8 +23,8 @@
 	--primary-hover: #99ccff;
 	--bg-color: #121212;
 	--surface-color: #1e1e1e;
-	--text-primary: #e8eaed;
-	--text-secondary: #9aa0a6;
+	--text-primary: #f8f9fa;
+	--text-secondary: #c4c7c5; /* Improved WCAG AA contrast against surface-color */
 	--border-color: #3c4043;
 	--input-border: #80868b;
 
@@ -41,7 +41,8 @@
 body {
 	background-color: var(--bg-color);
 	color: var(--text-primary);
-	line-height: 1.5;
+	line-height: 1.6;
+	font-size: 18px;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -75,8 +76,8 @@ a:hover {
 	color: white;
 	border: none;
 	border-radius: var(--border-radius-sm);
-	padding: 10px 24px;
-	font-size: 14px;
+	padding: 12px 24px;
+	font-size: 16px;
 	font-weight: 500;
 	cursor: pointer;
 	transition: background-color 0.2s ease;
@@ -93,8 +94,8 @@ a:hover {
 	color: var(--primary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-sm);
-	padding: 10px 24px;
-	font-size: 14px;
+	padding: 12px 24px;
+	font-size: 16px;
 	font-weight: 500;
 	cursor: pointer;
 	transition:
@@ -115,16 +116,16 @@ a:hover {
 
 .form-label {
 	display: block;
-	margin-bottom: 6px;
-	font-size: 14px;
+	margin-bottom: 8px;
+	font-size: 16px;
 	font-weight: 500;
 	color: var(--text-primary);
 }
 
 .form-control {
 	width: 100%;
-	padding: 10px 12px;
-	font-size: 14px;
+	padding: 12px 16px;
+	font-size: 16px;
 	border: 1px solid var(--input-border);
 	border-radius: var(--border-radius-sm);
 	font-family: inherit;
@@ -140,7 +141,7 @@ a:hover {
 
 .form-hint {
 	display: block;
-	font-size: 12px;
+	font-size: 14px;
 	color: var(--text-secondary);
 	margin-top: 4px;
 }
