@@ -822,6 +822,22 @@
 		"gotrade-vs-ibkr-calculator": {
 			"name": "GoTrade vs IBKR Wise Fee Calculator",
 			"desc": "Ikumpara ang FX spreads at fees."
+		},
+		"pdic-insurance-calculator": {
+			"name": "PDIC Deposit Insurance Estimator",
+			"desc": "Kwentahin ang iyong PDIC deposit insurance coverage."
+		},
+		"philhealth-late-contribution-calculator": {
+			"name": "PhilHealth Late Contribution Penalty Estimator",
+			"desc": "Kwentahin ang penalty sa late na PhilHealth contribution."
+		},
+		"retail-treasury-bond-calculator": {
+			"name": "Retail Treasury Bond (RTB) Yield Estimator",
+			"desc": "Kwentahin ang kita mula sa Retail Treasury Bonds."
+		},
+		"shipping-logistics-estimator": {
+			"name": "Local Shipping & Logistics Rate Estimator",
+			"desc": "Kwentahin ang shipping costs para sa iyong negosyo."
 		}
 	}
 }

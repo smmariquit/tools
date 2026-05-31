@@ -822,6 +822,22 @@
 		"gotrade-vs-ibkr-calculator": {
 			"name": "GoTrade vs IBKR Wise Fee Calculator",
 			"desc": "Compare FX spreads and trading fees to find the break-even deposit amount."
+		},
+		"pdic-insurance-calculator": {
+			"name": "PDIC Deposit Insurance Estimator",
+			"desc": "Calculate your maximum PDIC deposit insurance coverage."
+		},
+		"philhealth-late-contribution-calculator": {
+			"name": "PhilHealth Late Contribution Penalty Estimator",
+			"desc": "Estimate interest penalties on missed PhilHealth premium payments."
+		},
+		"retail-treasury-bond-calculator": {
+			"name": "Retail Treasury Bond (RTB) Yield Estimator",
+			"desc": "Calculate net quarterly payouts and total yield on Philippine RTBs."
+		},
+		"shipping-logistics-estimator": {
+			"name": "Local Shipping & Logistics Rate Estimator",
+			"desc": "Calculate standard delivery costs for local MSME e-commerce."
 		}
 	}
 }

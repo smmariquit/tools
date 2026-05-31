@@ -45,6 +45,10 @@ const toolToBlogMap: Record<string, string> = {
 	"/kasambahay-retirement-calculator": "/blog/kasambahay-retirement-guide",
 	"/estate-tax-calculator": "/blog/estate-tax-guide",
 	"/gotrade-vs-ibkr-calculator": "/blog/gotrade-vs-ibkr-guide",
+	"/pdic-insurance-calculator": "/blog/pdic-insurance-guide",
+	"/philhealth-late-contribution-calculator": "/blog/philhealth-late-contribution-guide",
+	"/retail-treasury-bond-calculator": "/blog/retail-treasury-bond-guide",
+	"/shipping-logistics-estimator": "/blog/shipping-logistics-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {

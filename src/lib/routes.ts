@@ -201,6 +201,30 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "PDIC Deposit Insurance Estimator",
+				path: "/pdic-insurance-calculator",
+				desc: "Calculate your maximum PDIC deposit insurance coverage.",
+				priority: 0.9,
+			},
+			{
+				name: "PhilHealth Late Contribution Penalty Estimator",
+				path: "/philhealth-late-contribution-calculator",
+				desc: "Estimate interest penalties on missed PhilHealth premium payments.",
+				priority: 0.9,
+			},
+			{
+				name: "Retail Treasury Bond (RTB) Yield Estimator",
+				path: "/retail-treasury-bond-calculator",
+				desc: "Calculate net quarterly payouts and total yield on Philippine RTBs.",
+				priority: 0.9,
+			},
+			{
+				name: "Local Shipping & Logistics Rate Estimator",
+				path: "/shipping-logistics-estimator",
+				desc: "Calculate standard delivery costs for local MSME e-commerce.",
+				priority: 0.9,
+			},
+			{
 				name: "Expanded Withholding Tax (EWT) Calculator",
 				path: "/bir-withholding-tax-calculator",
 				desc: "Calculate BIR Form 2307 deductions for freelancers, professionals, and suppliers.",
