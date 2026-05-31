@@ -52,6 +52,9 @@ const tools = {
 	"sss-contribution-calculator": dynamic(
 		() => import("../[locale]/sss-contribution-calculator/Client"),
 	),
+	"sss-pension-calculator": dynamic(
+		() => import("../[locale]/sss-pension-calculator/Client"),
+	),
 	"tax-optimizer-calculator": dynamic(
 		() => import("../[locale]/tax-optimizer-calculator/Client"),
 	),

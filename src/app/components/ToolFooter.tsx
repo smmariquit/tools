@@ -7,6 +7,7 @@ const toolToBlogMap: Record<string, string> = {
 		"/blog/bpo-night-differential-philippines",
 	"/budget-calculator": "/blog/budget-reverse-salary-calculator-guide",
 	"/sss-contribution-calculator": "/blog/sss-contribution-table-2026",
+	"/sss-pension-calculator": "/blog/how-to-compute-sss-pension",
 	"/philhealth-calculator": "/blog/philhealth-contribution-table-2026",
 	"/income-tax-calculator": "/blog/income-tax-brackets-2026",
 	"/13th-month-pay-calculator": "/blog/how-to-compute-13th-month-pay",

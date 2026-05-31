@@ -212,5 +212,23 @@
 		"warningVat": "Since your income exceeds ₱3,000,000, you must register as a VAT taxpayer. The 8% flat rate is no longer applicable.",
 		"notApplicable": "Not Applicable",
 		"saveAmount": "You save {amount} compared to the most expensive option!"
+	},
+	"SSSPension": {
+		"title": "SSS Retirement Pension Calculator",
+		"subtitle": "Estimate your monthly lifetime pension based on your SSS contributions and credited years of service.",
+		"inputDetails": "Your SSS Details",
+		"amsc": "Average Monthly Salary Credit (AMSC)",
+		"amscHint": "Your average monthly salary credit for the last 60 months before retirement.",
+		"cys": "Credited Years of Service (CYS)",
+		"cysHint": "Total years you've contributed to SSS (minimum 10 years).",
+		"resultsTitle": "Estimated Pension",
+		"monthlyPension": "Monthly Pension",
+		"formulaUsed": "Best Formula Applied",
+		"formula1": "Formula 1 (Standard)",
+		"formula2": "Formula 2 (40% of AMSC)",
+		"formula3": "Formula 3 (Minimum Pension)",
+		"warningMinimum": "You need at least 10 years of service (120 contributions) to qualify for a monthly pension. Otherwise, you will only receive a lump-sum amount.",
+		"totalAt80": "Total Payout by Age 80",
+		"totalAt80Hint": "If you retire at 60 and live until 80, this is your total estimated cash received."
 	}
 }

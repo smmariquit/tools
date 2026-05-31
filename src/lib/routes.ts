@@ -27,6 +27,12 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
+				name: "SSS Retirement Pension Calculator",
+				path: "/sss-pension-calculator",
+				desc: "Estimate your monthly lifetime pension based on your AMSC and Credited Years of Service.",
+				priority: 0.9,
+			},
+			{
 				name: "PhilHealth Premium Calculator",
 				path: "/philhealth-calculator",
 				desc: "Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate.",

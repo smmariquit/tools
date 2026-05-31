@@ -212,5 +212,23 @@
 		"warningVat": "Dahil lagpas ₱3,000,000 ang kita mo, required kang mag-register bilang VAT taxpayer. Hindi na applicable ang 8% flat rate sa'yo.",
 		"notApplicable": "Hindi Applicable",
 		"saveAmount": "Makatitipid ka ng {amount} kumpara sa pinakamahal na option!"
+	},
+	"SSSPension": {
+		"title": "SSS Retirement Pension Calculator",
+		"subtitle": "Kalkulahin ang estimated na buwanang pensyon mula sa SSS based sa iyong hulog at years of service.",
+		"inputDetails": "Mga Detalye ng SSS Mo",
+		"amsc": "Average Monthly Salary Credit (AMSC)",
+		"amscHint": "Ang average na salary credit mo sa huling 60 na buwan (5 years) bago ka mag-retire.",
+		"cys": "Credited Years of Service (CYS)",
+		"cysHint": "Ilang taon ka nang naghuhulog sa SSS (minimum na 10 years para may pension).",
+		"resultsTitle": "Estimated na Pensyon",
+		"monthlyPension": "Buwanang Pensyon (Monthly)",
+		"formulaUsed": "Formula na Ginamit (Pinakamalaki)",
+		"formula1": "Formula 1 (Standard)",
+		"formula2": "Formula 2 (40% ng AMSC)",
+		"formula3": "Formula 3 (Minimum Pension)",
+		"warningMinimum": "Kailangan mo ng at least 10 years of service (120 hulog) para magka-monthly pension. Kung hindi aabot, lump-sum (isahang bigay) lang ang makukuha mo.",
+		"totalAt80": "Total Payout Hanggang Edad 80",
+		"totalAt80Hint": "Kung mag-retire ka ng 60 at umabot ng 80, ito ang kabuuang pera na matatanggap mo."
 	}
 }
