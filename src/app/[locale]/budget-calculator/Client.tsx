@@ -205,9 +205,9 @@ export default function BudgetCalculator() {
 									}
 									onBlur={syncExpensesToUrl}
 									placeholder={t("expenseNamePlaceholder")}
-									style={{ flex: 2, fontSize: "14px" }}
+									style={{ flex: "1 1 auto", minWidth: 0, fontSize: "14px" }}
 								/>
-								<div style={{ position: "relative", flex: 1 }}>
+								<div style={{ position: "relative", flex: "0 0 110px" }}>
 									<span
 										style={{
 											position: "absolute",
