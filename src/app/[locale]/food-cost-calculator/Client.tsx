@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+import TrustBadge from "../../components/TrustBadge";
+import PrivacyGuarantee from "../../components/PrivacyGuarantee";
+import CpaAttestation from "../../components/CpaAttestation";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
 type UnitType = "mass" | "volume" | "count";
@@ -183,8 +186,12 @@ export default function FoodCostCalculatorClient() {
 				title="Food Cost & Pricing Calculator"
 				subtitle="Calculate recipe costs, maximize profit margins, and price your menu perfectly."
 			/>
+			
+			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+				<TrustBadge year={2026} lastReviewed="May 2026" />
+			</div>
 
-			<div className="tool-grid" style={{ marginTop: "24px" }}>
+			<div className="tool-grid">
 				{/* LEFT COLUMN - INPUTS */}
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					
@@ -449,8 +456,13 @@ export default function FoodCostCalculatorClient() {
 							</ResponsiveContainer>
 						</div>
 
+						<PrivacyGuarantee />
 					</div>
 				</div>
+			</div>
+			
+			<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+				<CpaAttestation />
 			</div>
 		</ToolLayout>
 	);
