@@ -133,11 +133,11 @@ export async function GET(request: Request) {
 							display: "flex",
 							fontSize: 40,
 							fontWeight: "bold",
-							color: "#ffffff",
+							color: "#E2E8F0",
 							letterSpacing: "-1px",
 						}}
 					>
-						PHTools.com
+						PHTools.me
 					</div>
 				</div>
 			</div>,

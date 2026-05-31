@@ -1,29 +1,69 @@
+import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "Fuel Cost & Trip Calculator (Ambagan) | PHTools",
-	description:
-		"Estimate gas expenses for your Philippine road trips. Calculate fuel consumption and divide the cost easily among friends.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=Fuel%20Cost%20%26%20Trip%20Calculator%20%28Ambagan%29%20%7C%20PHTools&desc=Estimate%20gas%20expenses%20for%20your%20Philippine%20road%20trips.%20Calculate%20fuel%20consumption%20and%20divide%20the%20cost%20easily%20among%20friends.&s1l=Dist&s1v=250km&s2l=Efficiency&s2v=12km/L&s3l=Cost&s3v=₱1.3k`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ dist?: string; eff?: string; price?: string; pax?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "Philippine Fuel Cost & Trip Calculator | PHTools";
+	const description =
+		"Estimate your gas expenses for road trips in the Philippines. Perfect for dividing costs among friends (ambagan).";
 
-export default function FuelCostPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.dist || resolvedParams.eff || resolvedParams.price) {
+		const distance = parseFloat(resolvedParams.dist || "250") || 0;
+		const efficiency = parseFloat(resolvedParams.eff || "12") || 0;
+		const fuelPrice = parseFloat(resolvedParams.price || "65") || 0;
+		const passengers = parseInt(resolvedParams.pax || "4") || 1;
+
+		const litersNeeded = efficiency > 0 ? distance / efficiency : 0;
+		const totalFuelCost = litersNeeded * fuelPrice;
+		const costPerPerson = passengers > 0 ? totalFuelCost / passengers : totalFuelCost;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		ogUrl += `&s1l=Distance&s1v=${encodeURIComponent(distance + " km")}`;
+		ogUrl += `&s2l=Total%20Cost&s2v=${encodeURIComponent(formatAmount(totalFuelCost))}`;
+		ogUrl += `&s3l=Cost%20per%20Pax&s3v=${encodeURIComponent(formatAmount(costPerPerson))}`;
+	} else {
+		ogUrl += "&s1l=Distance&s1v=250%20km&s2l=Total%20Cost&s2v=%E2%82%B11%2C354&s3l=Cost%20per%20Pax&s3v=%E2%82%B1338";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function FuelCostPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Fuel Cost Calculator",
+		name: "Philippine Fuel Cost Calculator",
 		applicationCategory: "TravelApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Estimate your gas expenses for road trips in the Philippines. Perfect for dividing costs among friends (ambagan).",
 		offers: {
 			"@type": "Offer",
 			price: "0",
@@ -38,6 +78,7 @@ export default function FuelCostPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/fuel-cost-calculator" />
 		</>
 	);
 }

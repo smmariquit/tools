@@ -1,29 +1,97 @@
+import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "SSS Contribution Calculator (2026 Table) | PHTools",
-	description:
-		"Calculate your 2026 SSS monthly salary credit (MSC), employer share, and Mandatory Provident Fund (WISP) breakdown based on the 15% rate.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=SSS%20Contribution%20Calculator%20%282026%20Table%29%20%7C%20PHTools&desc=Calculate%20your%202026%20SSS%20monthly%20salary%20credit%20%28MSC%29%2C%20employer%20share%2C%20and%20Mandatory%20Provident%20Fund%20%28WISP%29%20breakdown%20based%20on%20the%2015%25%20rate.&s1l=Salary&s1v=₱20k&s2l=Rate&s2v=14%25&s3l=Share&s3v=₱900`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ salary?: string; type?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "SSS Contribution Calculator (2026) | PHTools";
+	const description =
+		"Calculate your exact Social Security System (SSS) monthly contribution breakdown (EE, ER, EC, MPF/WISP) based on the latest 2026 Philippine table.";
 
-export default function SSSCalculatorPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.salary || resolvedParams.type) {
+		const salary = parseFloat(resolvedParams.salary || "30000") || 0;
+		const memberType = resolvedParams.type || "employed";
+
+		const getMSC = (s: number) => {
+			if (s === 0) return 0;
+			if (s < 5000) return 5000;
+			if (s >= 34750) return 35000;
+			return Math.round(s / 500) * 500;
+		};
+
+		const msc = getMSC(salary);
+		const regularMSC = Math.min(msc, 20000);
+		const mpfMSC = Math.max(0, msc - 20000);
+
+		let eeRegular = 0, eeMPF = 0, erRegular = 0, erMPF = 0, ecFee = 0;
+
+		if (msc > 0) {
+			if (memberType === "employed") {
+				eeRegular = regularMSC * 0.05;
+				eeMPF = mpfMSC * 0.05;
+				erRegular = regularMSC * 0.1;
+				erMPF = mpfMSC * 0.1;
+				ecFee = msc < 15000 ? 10 : 30;
+			} else {
+				eeRegular = regularMSC * 0.15;
+				eeMPF = mpfMSC * 0.15;
+			}
+		}
+
+		const eeTotal = eeRegular + eeMPF;
+		const erTotal = erRegular + erMPF + ecFee;
+		const grandTotal = eeTotal + erTotal;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		ogUrl += `&s1l=Employee%20Share&s1v=${encodeURIComponent(formatAmount(eeTotal))}`;
+		if (memberType === "employed") {
+			ogUrl += `&s2l=Employer%20Share&s2v=${encodeURIComponent(formatAmount(erTotal))}`;
+		} else {
+			ogUrl += `&s2l=Total%20Contribution&s2v=${encodeURIComponent(formatAmount(eeTotal))}`;
+		}
+		ogUrl += `&s3l=MPF%20Savings&s3v=${encodeURIComponent(formatAmount(eeMPF + erMPF))}`;
+	} else {
+		ogUrl += "&s1l=Employee%20Share&s1v=%E2%82%B11%2C500&s2l=Employer%20Share&s2v=%E2%82%B13%2C030&s3l=MPF%20Savings&s3v=%E2%82%B11%2C500";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function SssCalculatorPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
 		name: "SSS Contribution Calculator",
-		applicationCategory: "BusinessApplication",
+		applicationCategory: "FinanceApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Calculate your exact Social Security System (SSS) monthly contribution breakdown (EE, ER, EC, MPF/WISP) based on the latest 2026 Philippine table.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
@@ -38,6 +106,7 @@ export default function SSSCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/sss-contribution-calculator" />
 		</>
 	);
 }

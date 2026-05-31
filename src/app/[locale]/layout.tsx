@@ -14,6 +14,7 @@ import { ThemeToggle } from "../../components/ThemeToggle";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import OfflineToast from "../components/OfflineToast";
 import { PostHogProvider } from "./providers";
+import Navbar from "./components/Navbar";
 
 const locales = ["en", "tl", "ceb"];
 
@@ -76,116 +77,7 @@ export default async function RootLayout({
 				<ThemeProvider>
 					<NextIntlClientProvider messages={messages}>
 						<PostHogProvider>
-							<header
-								style={{
-									backgroundColor: "var(--surface-color)",
-									borderBottom: "1px solid var(--border-color)",
-									padding: "16px 0",
-								}}
-							>
-								<div
-									className="container"
-									style={{
-										display: "flex",
-										justifyContent: "space-between",
-										alignItems: "center",
-										flexWrap: "wrap",
-										gap: "16px",
-									}}
-								>
-									<Link
-										href="/"
-										style={{
-											fontSize: "20px",
-											fontWeight: 600,
-											color: "var(--text-primary)",
-											textDecoration: "none",
-										}}
-									>
-										<span style={{ color: "var(--primary)" }}>PH</span>Tools
-									</Link>
-									<nav
-										style={{
-											display: "flex",
-											gap: "16px",
-											alignItems: "center",
-											flexWrap: "wrap",
-										}}
-									>
-										<Link
-											href="/"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("tools")}
-										</Link>
-										<Link
-											href="/blog"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("blog")}
-										</Link>
-										<Link
-											href="/salary-calculator"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("salary")}
-										</Link>
-										<Link
-											href="/13th-month-pay-calculator"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("13thMonth")}
-										</Link>
-										<Link
-											href="/pagibig-calculator"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("pagibig")}
-										</Link>
-										<Link
-											href="/id-photo-maker"
-											style={{
-												color: "var(--text-secondary)",
-												fontSize: "14px",
-												fontWeight: 500,
-											}}
-										>
-											{t("idPhoto")}
-										</Link>
-										<div
-											style={{
-												marginLeft: "12px",
-												display: "flex",
-												alignItems: "center",
-												gap: "12px",
-											}}
-										>
-											<ThemeToggle />
-											<LanguageSwitcher />
-										</div>
-									</nav>
-								</div>
-							</header>
+							<Navbar />
 
 							<main
 								id="main-content"

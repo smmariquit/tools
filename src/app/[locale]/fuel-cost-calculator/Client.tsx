@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const RouteSelectorMap = dynamic(
 	() => import("../../components/RouteSelectorMap"),
@@ -29,11 +30,27 @@ const RouteSelectorMap = dynamic(
 );
 
 export default function FuelCostClient() {
-	const [distanceStr, setDistanceStr] = useState("250");
-	const [efficiencyStr, setEfficiencyStr] = useState("12");
-	const [fuelPriceStr, setFuelPriceStr] = useState("65");
-	const [passengersStr, setPassengersStr] = useState("4");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [distanceStr, setDistanceStr] = useState(searchParams.get("dist") || "250");
+	const [efficiencyStr, setEfficiencyStr] = useState(searchParams.get("eff") || "12");
+	const [fuelPriceStr, setFuelPriceStr] = useState(searchParams.get("price") || "65");
+	const [passengersStr, setPassengersStr] = useState(searchParams.get("pax") || "4");
 	const [showMapModal, setShowMapModal] = useState(false);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const distance = parseFloat(distanceStr) || 0;
 	const efficiency = parseFloat(efficiencyStr) || 0;
@@ -157,7 +174,9 @@ export default function FuelCostClient() {
 								</h3>
 								<RouteSelectorMap
 									onDistanceComputed={(dist) => {
-										setDistanceStr(dist.toFixed(1));
+										const val = dist.toFixed(1);
+										setDistanceStr(val);
+										updateUrl({ dist: val });
 									}}
 								/>
 								<div
@@ -188,7 +207,10 @@ export default function FuelCostClient() {
 							id="distance"
 							className="form-control"
 							value={distanceStr}
-							onChange={(e) => setDistanceStr(e.target.value)}
+							onChange={(e) => {
+								setDistanceStr(e.target.value);
+								updateUrl({ dist: e.target.value });
+							}}
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
@@ -206,6 +228,7 @@ export default function FuelCostClient() {
 							onChange={(e) => {
 								if (e.target.value) {
 									setEfficiencyStr(e.target.value);
+									updateUrl({ eff: e.target.value });
 								}
 							}}
 						>
@@ -233,7 +256,10 @@ export default function FuelCostClient() {
 							id="efficiency"
 							className="form-control"
 							value={efficiencyStr}
-							onChange={(e) => setEfficiencyStr(e.target.value)}
+							onChange={(e) => {
+								setEfficiencyStr(e.target.value);
+								updateUrl({ eff: e.target.value });
+							}}
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
@@ -250,7 +276,10 @@ export default function FuelCostClient() {
 							id="fuelPrice"
 							className="form-control"
 							value={fuelPriceStr}
-							onChange={(e) => setFuelPriceStr(e.target.value)}
+							onChange={(e) => {
+								setFuelPriceStr(e.target.value);
+								updateUrl({ price: e.target.value });
+							}}
 							min="0"
 							step="0.01"
 						/>
@@ -265,7 +294,10 @@ export default function FuelCostClient() {
 							id="passengers"
 							className="form-control"
 							value={passengersStr}
-							onChange={(e) => setPassengersStr(e.target.value)}
+							onChange={(e) => {
+								setPassengersStr(e.target.value);
+								updateUrl({ pax: e.target.value });
+							}}
 							min="1"
 						/>
 					</div>

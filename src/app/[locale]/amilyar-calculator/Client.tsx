@@ -3,15 +3,32 @@
 import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function AmilyarClient() {
-	const [marketValueStr, setMarketValueStr] = useState("2000000");
-	const [propertyType, setPropertyType] = useState<
-		"residential" | "commercial" | "agricultural"
-	>("residential");
-	const [location, setLocation] = useState<"metroManila" | "province">(
-		"metroManila",
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [marketValueStr, setMarketValueStr] = useState(searchParams.get("mv") || "2000000");
+	const [propertyType, setPropertyType] = useState<"residential" | "commercial" | "agricultural">(
+		(searchParams.get("type") as "residential" | "commercial" | "agricultural") || "residential",
 	);
+	const [location, setLocation] = useState<"metroManila" | "province">(
+		(searchParams.get("loc") as "metroManila" | "province") || "metroManila",
+	);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const marketValue = parseFloat(marketValueStr) || 0;
 
@@ -92,7 +109,10 @@ export default function AmilyarClient() {
 							id="marketValue"
 							className="form-control"
 							value={marketValueStr}
-							onChange={(e) => setMarketValueStr(e.target.value)}
+							onChange={(e) => {
+								setMarketValueStr(e.target.value);
+								updateUrl({ mv: e.target.value });
+							}}
 							min="0"
 							step="100000"
 						/>
@@ -110,14 +130,11 @@ export default function AmilyarClient() {
 							id="propertyType"
 							className="form-control"
 							value={propertyType}
-							onChange={(e) =>
-								setPropertyType(
-									e.target.value as
-										| "residential"
-										| "commercial"
-										| "agricultural",
-								)
-							}
+							onChange={(e) => {
+								const val = e.target.value as "residential" | "commercial" | "agricultural";
+								setPropertyType(val);
+								updateUrl({ type: val });
+							}}
 						>
 							<option value="residential">
 								Residential (20% Assessment Level)
@@ -139,9 +156,11 @@ export default function AmilyarClient() {
 							id="location"
 							className="form-control"
 							value={location}
-							onChange={(e) =>
-								setLocation(e.target.value as "metroManila" | "province")
-							}
+							onChange={(e) => {
+								const val = e.target.value as "metroManila" | "province";
+								setLocation(val);
+								updateUrl({ loc: val });
+							}}
 						>
 							<option value="metroManila">Metro Manila (2% Basic Rate)</option>
 							<option value="province">

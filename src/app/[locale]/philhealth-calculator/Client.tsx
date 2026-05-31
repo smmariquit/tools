@@ -4,8 +4,26 @@ import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
 
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 export default function PhilHealthClient() {
-	const [basicSalaryStr, setBasicSalaryStr] = useState("30000");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "30000");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const basicSalary = parseFloat(basicSalaryStr) || 0;
 
@@ -77,7 +95,10 @@ export default function PhilHealthClient() {
 							id="basicSalary"
 							className="form-control"
 							value={basicSalaryStr}
-							onChange={(e) => setBasicSalaryStr(e.target.value)}
+							onChange={(e) => {
+								setBasicSalaryStr(e.target.value);
+								updateUrl({ salary: e.target.value });
+							}}
 							min="0"
 							step="any"
 							placeholder="e.g., 100000 (Max Ceiling)"

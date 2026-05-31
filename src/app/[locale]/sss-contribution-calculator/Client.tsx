@@ -14,10 +14,28 @@ import {
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 export default function SSSCalculator() {
-	const [salaryStr, setSalaryStr] = useState("30000");
-	const [memberType, setMemberType] = useState("employed"); // 'employed' or 'voluntary'
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [salaryStr, setSalaryStr] = useState(searchParams.get("salary") || "30000");
+	const [memberType, setMemberType] = useState(searchParams.get("type") || "employed"); // 'employed' or 'voluntary'
 	const [mounted, setMounted] = useState(false);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/set-state-in-effect
@@ -115,7 +133,10 @@ export default function SSSCalculator() {
 							id="memberType"
 							className="form-control"
 							value={memberType}
-							onChange={(e) => setMemberType(e.target.value)}
+							onChange={(e) => {
+								setMemberType(e.target.value);
+								updateUrl({ type: e.target.value });
+							}}
 							style={{
 								backgroundColor: "var(--surface-color)",
 								cursor: "pointer",
@@ -135,7 +156,10 @@ export default function SSSCalculator() {
 							id="salary"
 							className="form-control"
 							value={salaryStr}
-							onChange={(e) => setSalaryStr(e.target.value)}
+							onChange={(e) => {
+								setSalaryStr(e.target.value);
+								updateUrl({ salary: e.target.value });
+							}}
 							min="0"
 							step="any"
 							placeholder="e.g., 35000 (Max MSC)"

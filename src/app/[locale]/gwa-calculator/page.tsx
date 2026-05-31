@@ -1,3 +1,4 @@
+import ToolFooter from "../../components/ToolFooter";
 import { setRequestLocale } from "next-intl/server";
 import GwaCalculatorClient from "./Client";
 

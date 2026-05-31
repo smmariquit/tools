@@ -11,12 +11,26 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 } from "recharts";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+import { computeSalary } from "../../../lib/salaryLogic";
 
-export default function SalaryCalculator() {
+export default function SalaryCalculator({ initialSalary = "30000" }: { initialSalary?: string }) {
 	const t = useTranslations("SalaryCalculator");
-	const [salaryStr, setSalaryStr] = useState("30000");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+	
+	const defaultSalary = searchParams.get("salary") || initialSalary;
+	const defaultPeriod = searchParams.get("period") || "Monthly";
+	const defaultTaxable = searchParams.get("taxable") || "";
+	const defaultNonTaxable = searchParams.get("nontaxable") || "";
+
+	const [salaryStr, setSalaryStr] = useState(defaultSalary);
+	const [payrollPeriod, setPayrollPeriod] = useState(defaultPeriod);
+	const [taxableAllowance, setTaxableAllowance] = useState(defaultTaxable);
+	const [nonTaxableAllowance, setNonTaxableAllowance] = useState(defaultNonTaxable);
 	const [shareText, setShareText] = useState("Share Computation");
 	const [mounted, setMounted] = useState(false);
 
@@ -25,37 +39,52 @@ export default function SalaryCalculator() {
 		setMounted(true);
 	}, []);
 
-	const salary = parseFloat(salaryStr) || 0;
+	const {
+		salary,
+		sssDeduction,
+		philhealthDeduction,
+		pagibigDeduction,
+		totalContributions,
+		taxableIncome,
+		tax,
+		netPay,
+	} = computeSalary(salaryStr, payrollPeriod, taxableAllowance, nonTaxableAllowance);
 
-	// Contributions
-	const sssMSC = salary > 0 ? Math.min(Math.max(salary, 5000), 35000) : 0;
-	const sssDeduction = sssMSC * 0.05;
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
-	const philhealthBase =
-		salary > 0 ? Math.min(Math.max(salary, 10000), 100000) : 0;
-	const philhealthDeduction = philhealthBase * 0.025;
+	const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const val = e.target.value;
+		setSalaryStr(val);
+		updateUrl({ salary: val });
+	};
 
-	const pagibigDeduction = salary > 0 ? Math.min(salary * 0.02, 200) : 0;
+	const handlePeriodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const val = e.target.value;
+		setPayrollPeriod(val);
+		updateUrl({ period: val });
+	};
 
-	const totalContributions =
-		sssDeduction + philhealthDeduction + pagibigDeduction;
-	const taxableIncome = Math.max(0, salary - totalContributions);
+	const handleTaxableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const val = e.target.value;
+		setTaxableAllowance(val);
+		updateUrl({ taxable: val });
+	};
 
-	// Tax computation (Monthly based on Jan 2023 TRAIN Law)
-	let tax = 0;
-	if (taxableIncome > 666667) {
-		tax = 183541.67 + (taxableIncome - 666667) * 0.35;
-	} else if (taxableIncome > 166667) {
-		tax = 33541.67 + (taxableIncome - 166667) * 0.3;
-	} else if (taxableIncome > 66667) {
-		tax = 8541.67 + (taxableIncome - 66667) * 0.25;
-	} else if (taxableIncome > 33333) {
-		tax = 1875 + (taxableIncome - 33333) * 0.2;
-	} else if (taxableIncome > 20833) {
-		tax = (taxableIncome - 20833) * 0.15;
-	}
-
-	const netPay = salary - totalContributions - tax;
+	const handleNonTaxableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const val = e.target.value;
+		setNonTaxableAllowance(val);
+		updateUrl({ nontaxable: val });
+	};
 
 	const handleShare = async () => {
 		const shareData = {
@@ -133,7 +162,7 @@ export default function SalaryCalculator() {
 							id="salary"
 							className="form-control"
 							value={salaryStr}
-							onChange={(e) => setSalaryStr(e.target.value)}
+							onChange={handleSalaryChange}
 							min="0"
 							step="any"
 							placeholder={t("grossSalaryPlaceholder")}

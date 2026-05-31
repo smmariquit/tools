@@ -1,29 +1,66 @@
+import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "13th Month Pay Calculator (Philippines 2026) | PHTools",
-	description:
-		"Accurately compute your prorated 13th month pay. Automatically excludes overtime and checks the ₱90k TRAIN law tax exemption limit.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=13th%20Month%20Pay%20Calculator%20%28Philippines%202026%29%20%7C%20PHTools&desc=Accurately%20compute%20your%20prorated%2013th%20month%20pay.%20Automatically%20excludes%20overtime%20and%20checks%20the%20%E2%82%B190k%20TRAIN%20law%20tax%20exemption%20limit.&s1l=Basic&s1v=₱30k&s2l=Months&s2v=12&s3l=13th%20Month&s3v=₱30k`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ salary?: string; months?: string; absences?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "13th Month Pay Calculator (Philippines 2026) | PHTools";
+	const description =
+		"Accurately compute your prorated 13th month pay. Automatically excludes overtime and checks the ₱90k TRAIN law tax exemption limit.";
 
-export default function ThirteenthMonthPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.salary || resolvedParams.months || resolvedParams.absences) {
+		const basicSalary = parseFloat(resolvedParams.salary || "30000") || 0;
+		const monthsWorked = parseFloat(resolvedParams.months || "12") || 0;
+		const unpaidAbsences = parseFloat(resolvedParams.absences || "0") || 0;
+
+		const totalEarned = basicSalary * monthsWorked - unpaidAbsences;
+		const thirteenthMonthPay = totalEarned / 12;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+			}).format(val);
+
+		ogUrl += `&s1l=Basic&s1v=${encodeURIComponent(formatAmount(basicSalary))}`;
+		ogUrl += `&s2l=Months&s2v=${encodeURIComponent(monthsWorked.toString())}`;
+		ogUrl += `&s3l=13th%20Month&s3v=${encodeURIComponent(formatAmount(thirteenthMonthPay))}`;
+	} else {
+		ogUrl += "&s1l=Basic&s1v=%E2%82%B130k&s2l=Months&s2v=12&s3l=13th%20Month&s3v=%E2%82%B130k";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function ThirteenthMonthPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
 		name: "13th Month Pay Calculator",
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Accurately compute your prorated 13th month pay. Automatically excludes overtime and checks the ₱90k TRAIN law tax exemption limit.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
@@ -38,6 +75,7 @@ export default function ThirteenthMonthPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/13th-month-pay-calculator" />
 		</>
 	);
 }

@@ -12,11 +12,33 @@ import {
 } from "recharts";
 import AdBanner from "../components/AdBanner";
 
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 export default function IncomeTaxCalculator() {
-	const [incomeStr, setIncomeStr] = useState("400000");
-	const [period, setPeriod] = useState<"annual" | "monthly">("annual");
-	const [taxType, setTaxType] = useState<"graduated" | "flat8">("graduated");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [incomeStr, setIncomeStr] = useState(searchParams.get("income") || "400000");
+	const [period, setPeriod] = useState<"annual" | "monthly">(
+		(searchParams.get("period") as "annual" | "monthly") || "annual",
+	);
+	const [taxType, setTaxType] = useState<"graduated" | "flat8">(
+		(searchParams.get("type") as "graduated" | "flat8") || "graduated",
+	);
 	const [mounted, setMounted] = useState(false);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/set-state-in-effect
@@ -128,7 +150,10 @@ export default function IncomeTaxCalculator() {
 									type="radio"
 									name="taxType"
 									checked={taxType === "graduated"}
-									onChange={() => setTaxType("graduated")}
+									onChange={() => {
+										setTaxType("graduated");
+										updateUrl({ type: "graduated" });
+									}}
 								/>
 								Graduated (Employees)
 							</label>
@@ -147,7 +172,10 @@ export default function IncomeTaxCalculator() {
 									type="radio"
 									name="taxType"
 									checked={taxType === "flat8"}
-									onChange={() => setTaxType("flat8")}
+									onChange={() => {
+										setTaxType("flat8");
+										updateUrl({ type: "flat8" });
+									}}
 								/>
 								8% Flat Rate (Freelance/Self-Employed)
 							</label>
@@ -162,9 +190,11 @@ export default function IncomeTaxCalculator() {
 							id="period"
 							className="form-control"
 							value={period}
-							onChange={(e) =>
-								setPeriod(e.target.value as "annual" | "monthly")
-							}
+							onChange={(e) => {
+								const val = e.target.value as "annual" | "monthly";
+								setPeriod(val);
+								updateUrl({ period: val });
+							}}
 							style={{
 								backgroundColor: "var(--surface-color)",
 								cursor: "pointer",
@@ -184,7 +214,10 @@ export default function IncomeTaxCalculator() {
 							id="income"
 							className="form-control"
 							value={incomeStr}
-							onChange={(e) => setIncomeStr(e.target.value)}
+							onChange={(e) => {
+								setIncomeStr(e.target.value);
+								updateUrl({ income: e.target.value });
+							}}
 							min="0"
 							step="any"
 						/>

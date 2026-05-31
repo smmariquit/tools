@@ -64,6 +64,70 @@ export const expressways: ExpresswayData[] = [
 			"Sta. Rosa|Calamba": { class1: 35, class2: 70, class3: 105 },
 		},
 	},
+	{
+		name: "STAR Tollway",
+		exits: [
+			"Sto. Tomas",
+			"Tanauan",
+			"Malvar",
+			"Lipa",
+			"Ibaan",
+			"Batangas City",
+		],
+		rates: {
+			"Sto. Tomas|Tanauan": { class1: 17, class2: 34, class3: 51 },
+			"Sto. Tomas|Malvar": { class1: 32, class2: 64, class3: 96 },
+			"Sto. Tomas|Lipa": { class1: 56, class2: 112, class3: 168 },
+			"Sto. Tomas|Ibaan": { class1: 85, class2: 170, class3: 255 },
+			"Sto. Tomas|Batangas City": { class1: 104, class2: 208, class3: 312 },
+		},
+	},
+	{
+		name: "TPLEX",
+		exits: [
+			"Tarlac",
+			"Victoria",
+			"Pura",
+			"Ramos",
+			"Anao",
+			"Carmen",
+			"Urdaneta",
+			"Binalonan",
+			"Pozorrubio",
+			"Rosario",
+		],
+		rates: {
+			"Tarlac|Victoria": { class1: 38, class2: 95, class3: 114 },
+			"Tarlac|Pura": { class1: 66, class2: 165, class3: 198 },
+			"Tarlac|Ramos": { class1: 80, class2: 200, class3: 240 },
+			"Tarlac|Anao": { class1: 100, class2: 250, class3: 300 },
+			"Tarlac|Carmen": { class1: 161, class2: 403, class3: 483 },
+			"Tarlac|Urdaneta": { class1: 216, class2: 540, class3: 648 },
+			"Tarlac|Binalonan": { class1: 241, class2: 603, class3: 723 },
+			"Tarlac|Pozorrubio": { class1: 270, class2: 675, class3: 810 },
+			"Tarlac|Rosario": { class1: 311, class2: 778, class3: 933 },
+		},
+	},
+	{
+		name: "CAVITEX",
+		exits: ["Manila (Parañaque)", "Las Piñas", "Kawit"],
+		rates: {
+			"Manila (Parañaque)|Las Piñas": { class1: 35, class2: 70, class3: 104 },
+			"Manila (Parañaque)|Kawit": { class1: 73, class2: 146, class3: 219 },
+			"Las Piñas|Kawit": { class1: 38, class2: 76, class3: 115 },
+		},
+	},
+	{
+		name: "NAIAX",
+		exits: ["Skyway/SLEX", "NAIA T3", "NAIA T1/T2", "Macapagal"],
+		rates: {
+			"Skyway/SLEX|NAIA T3": { class1: 35, class2: 69, class3: 104 },
+			"Skyway/SLEX|NAIA T1/T2": { class1: 45, class2: 90, class3: 135 },
+			"Skyway/SLEX|Macapagal": { class1: 45, class2: 90, class3: 135 },
+			"NAIA T3|NAIA T1/T2": { class1: 35, class2: 69, class3: 104 },
+			"NAIA T3|Macapagal": { class1: 35, class2: 69, class3: 104 },
+		},
+	},
 ];
 
 export const getTollFee = (

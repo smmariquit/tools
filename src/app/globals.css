@@ -222,3 +222,48 @@ h6 {
 .skip-to-content:focus {
 	top: 0;
 }
+
+/* Responsive Navbar */
+.nav-link {
+	color: var(--text-secondary);
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.nav-link:hover {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+@media (max-width: 900px) {
+	.mobile-menu-btn {
+		display: block !important;
+	}
+
+	.main-nav {
+		display: none !important;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: var(--surface-color);
+		border-bottom: 1px solid var(--border-color);
+		flex-direction: column;
+		padding: 20px;
+		box-shadow: var(--shadow-sm);
+		z-index: 1000;
+	}
+
+	.main-nav.open {
+		display: flex !important;
+	}
+
+	.nav-actions {
+		margin-left: 0 !important;
+		margin-top: 12px;
+		width: 100%;
+		justify-content: center;
+	}
+}
+

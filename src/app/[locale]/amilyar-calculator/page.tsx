@@ -1,29 +1,82 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolFooter from "../../components/ToolFooter";
 
-export const metadata: Metadata = {
-	title: "Amilyar (Real Property Tax) Calculator Philippines | PHTools",
-	description:
-		"Estimate your annual Amilyar or Real Property Tax (RPT) in the Philippines, including the Special Education Fund (SEF) for residential and commercial properties.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=Amilyar%20%28Real%20Property%20Tax%29%20Calculator%20Philippines%20%7C%20PHTools&desc=Estimate%20your%20annual%20Amilyar%20or%20Real%20Property%20Tax%20%28RPT%29%20in%20the%20Philippines%2C%20including%20the%20Special%20Education%20Fund%20%28SEF%29%20for%20residential%20and%20commercial%20properties.&s1l=Assessed&s1v=₱1M&s2l=Rate&s2v=2%25&s3l=Tax&s3v=₱20k`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ mv?: string; type?: string; loc?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "Amilyar (Real Property Tax) Calculator | PHTools";
+	const description =
+		"Estimate your annual Philippine Real Property Tax (RPT) including the Special Education Fund (SEF) based on Local Government Code rates.";
 
-export default function AmilyarPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.mv || resolvedParams.type || resolvedParams.loc) {
+		const marketValue = parseFloat(resolvedParams.mv || "2000000") || 0;
+		const propertyType = resolvedParams.type || "residential";
+		const location = resolvedParams.loc || "metroManila";
+
+		const assessmentLevels: Record<string, number> = {
+			residential: 0.2,
+			commercial: 0.5,
+			agricultural: 0.4,
+		};
+		const rptRates: Record<string, number> = {
+			metroManila: 0.02,
+			province: 0.01,
+		};
+
+		const assessmentLevel = assessmentLevels[propertyType] || 0.2;
+		const basicRptRate = rptRates[location] || 0.02;
+
+		const assessedValue = marketValue * assessmentLevel;
+		const basicRpt = assessedValue * basicRptRate;
+		const sefTax = assessedValue * 0.01;
+		const totalAmilyar = basicRpt + sefTax;
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		ogUrl += `&s1l=Market%20Value&s1v=${encodeURIComponent(formatAmount(marketValue))}`;
+		ogUrl += `&s2l=Type&s2v=${encodeURIComponent(propertyType.charAt(0).toUpperCase() + propertyType.slice(1))}`;
+		ogUrl += `&s3l=Annual%20Tax&s3v=${encodeURIComponent(formatAmount(totalAmilyar))}`;
+	} else {
+		ogUrl += "&s1l=Market%20Value&s1v=%E2%82%B12%2C000%2C000&s2l=Type&s2v=Residential&s3l=Annual%20Tax&s3v=%E2%82%B112%2C000";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function AmilyarPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Amilyar Calculator",
-		applicationCategory: "FinanceApplication",
+		name: "Amilyar (Real Property Tax) Calculator",
+		applicationCategory: "BusinessApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Estimate your annual Philippine Real Property Tax (RPT) including the Special Education Fund (SEF) based on Local Government Code rates.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
@@ -38,6 +91,7 @@ export default function AmilyarPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/amilyar-calculator" />
 		</>
 	);
 }

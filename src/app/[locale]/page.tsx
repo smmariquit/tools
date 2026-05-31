@@ -1,6 +1,22 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { toolCategories } from "../../lib/routes";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "PH Tools & Calculators | Free Online Utilities",
+	description:
+		"Free, accurate calculators and tools for Filipinos. Compute your SSS, PhilHealth, Pag-IBIG, tax, net pay, and more.",
+	openGraph: {
+		images: [
+			{
+				url: `/api/og?title=PH%20Tools%20%26%20Calculators%20%7C%20Free%20Online%20Utilities&desc=Free%2C%20accurate%20calculators%20and%20tools%20for%20Filipinos.%20Compute%20your%20SSS%2C%20PhilHealth%2C%20Pag-IBIG%2C%20tax%2C%20net%20pay%2C%20and%20more.&s1l=Total%20Tools&s1v=17&s2l=App%20Type&s2v=PWA&s3l=Cost&s3v=Free`,
+				width: 1200,
+				height: 630,
+			},
+		],
+	},
+};
 
 export default function Home() {
 	const t = useTranslations("Index");

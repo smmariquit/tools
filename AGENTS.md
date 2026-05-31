@@ -14,3 +14,9 @@ Every time you create or modify a UI component (like a calculator in `src/app/[l
 4. Translate the strings into conversational Taglish (Tagalog + English) following `CONVERSATIONAL_GUIDE.md` and add them to `messages/tl.json`.
 5. Make sure your translation namespaces match the component name (e.g., `SalaryCalculator`, `IncomeTaxCalculator`).
 <!-- END:i18n-agent-rules -->
+
+<!-- BEGIN:tools-agent-rules -->
+# Cross-Linking Tools
+
+Whenever you create or significantly update a tool, you MUST include a "Related Tools" section at the bottom of the tool's interface (or blog post). This section should contain links to exactly 3 other tools on the platform that are contextually relevant (e.g., if it's the Salary Calculator, link to the 13th Month Pay, Income Tax, and Freelance Tax calculators).
+<!-- END:tools-agent-rules -->

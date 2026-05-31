@@ -1,3 +1,4 @@
+import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
 import Client from "./Client";
 
@@ -38,6 +39,7 @@ export default function EcommerceFeePage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/shopee-lazada-fee-calculator" />
 		</>
 	);
 }

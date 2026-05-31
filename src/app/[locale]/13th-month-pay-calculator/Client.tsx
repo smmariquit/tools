@@ -1,15 +1,33 @@
 "use client";
 
 import Link from "next/link";
+
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function ThirteenthMonthClient() {
 	const t = useTranslations("ThirteenthMonth");
-	const [basicSalaryStr, setBasicSalaryStr] = useState("30000");
-	const [monthsWorkedStr, setMonthsWorkedStr] = useState("12");
-	const [unpaidAbsencesStr, setUnpaidAbsencesStr] = useState("0");
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [basicSalaryStr, setBasicSalaryStr] = useState(searchParams.get("salary") || "30000");
+	const [monthsWorkedStr, setMonthsWorkedStr] = useState(searchParams.get("months") || "12");
+	const [unpaidAbsencesStr, setUnpaidAbsencesStr] = useState(searchParams.get("absences") || "0");
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	const basicSalary = parseFloat(basicSalaryStr) || 0;
 	const monthsWorked = parseFloat(monthsWorkedStr) || 0;
@@ -72,7 +90,10 @@ export default function ThirteenthMonthClient() {
 							id="basicSalary"
 							className="form-control"
 							value={basicSalaryStr}
-							onChange={(e) => setBasicSalaryStr(e.target.value)}
+							onChange={(e) => {
+								setBasicSalaryStr(e.target.value);
+								updateUrl({ salary: e.target.value });
+							}}
 							min="0"
 						/>
 						<p className="form-hint" style={{ marginTop: "4px" }}>
@@ -89,7 +110,10 @@ export default function ThirteenthMonthClient() {
 							id="monthsWorked"
 							className="form-control"
 							value={monthsWorkedStr}
-							onChange={(e) => setMonthsWorkedStr(e.target.value)}
+							onChange={(e) => {
+								setMonthsWorkedStr(e.target.value);
+								updateUrl({ months: e.target.value });
+							}}
 							min="1"
 							max="12"
 						/>
@@ -104,7 +128,10 @@ export default function ThirteenthMonthClient() {
 							id="unpaidAbsences"
 							className="form-control"
 							value={unpaidAbsencesStr}
-							onChange={(e) => setUnpaidAbsencesStr(e.target.value)}
+							onChange={(e) => {
+								setUnpaidAbsencesStr(e.target.value);
+								updateUrl({ absences: e.target.value });
+							}}
 							min="0"
 						/>
 					</div>

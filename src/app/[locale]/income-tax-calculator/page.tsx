@@ -1,29 +1,85 @@
+import ToolFooter from "../../components/ToolFooter";
 import type { Metadata } from "next";
 import Client from "./Client";
 
-export const metadata: Metadata = {
-	title: "Philippine Income Tax Calculator (BIR 2026) | PHTools",
-	description:
-		"Official Philippine BIR income tax calculator. Compare the graduated TRAIN Law brackets against the 8% flat rate for freelancers.",
-	openGraph: {
-		images: [
-			{
-				url: `/api/og?title=Philippine%20Income%20Tax%20Calculator%20%28BIR%202026%29%20%7C%20PHTools&desc=Official%20Philippine%20BIR%20income%20tax%20calculator.%20Compare%20the%20graduated%20TRAIN%20Law%20brackets%20against%20the%208%25%20flat%20rate%20for%20freelancers.&s1l=Income&s1v=₱500k&s2l=Bracket&s2v=20%25&s3l=Tax&s3v=₱55k`,
-				width: 1200,
-				height: 630,
-			},
-		],
-	},
-};
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ income?: string; period?: string; type?: string }>;
+}): Promise<Metadata> {
+	const resolvedParams = await searchParams;
+	const title = "Philippine Income Tax Calculator (BIR) | PHTools";
+	const description =
+		"Calculate your withholding and annual income tax based on the updated 2026 TRAIN Law brackets.";
 
-export default function IncomeTaxCalculatorPage() {
+	let ogUrl = `/api/og?title=${encodeURIComponent(
+		title,
+	)}&desc=${encodeURIComponent(description)}`;
+
+	if (resolvedParams.income || resolvedParams.period || resolvedParams.type) {
+		const inputIncome = parseFloat(resolvedParams.income || "400000") || 0;
+		const period = resolvedParams.period || "annual";
+		const taxType = resolvedParams.type || "graduated";
+
+		const annualIncome = period === "monthly" ? inputIncome * 12 : inputIncome;
+		let annualTax = 0;
+
+		if (taxType === "flat8") {
+			annualTax = Math.max(0, (annualIncome - 250000) * 0.08);
+		} else {
+			if (annualIncome > 8000000) {
+				annualTax = 2202500 + (annualIncome - 8000000) * 0.35;
+			} else if (annualIncome > 2000000) {
+				annualTax = 402500 + (annualIncome - 2000000) * 0.3;
+			} else if (annualIncome > 800000) {
+				annualTax = 102500 + (annualIncome - 800000) * 0.25;
+			} else if (annualIncome > 400000) {
+				annualTax = 22500 + (annualIncome - 400000) * 0.2;
+			} else if (annualIncome > 250000) {
+				annualTax = (annualIncome - 250000) * 0.15;
+			} else {
+				annualTax = 0;
+			}
+		}
+
+		const formatAmount = (val: number) =>
+			new Intl.NumberFormat("en-PH", {
+				style: "currency",
+				currency: "PHP",
+				maximumFractionDigits: 0,
+			}).format(val);
+
+		ogUrl += `&s1l=Annual%20Income&s1v=${encodeURIComponent(formatAmount(annualIncome))}`;
+		ogUrl += `&s2l=Tax%20Type&s2v=${encodeURIComponent(taxType === "flat8" ? "8% Flat Rate" : "Graduated")}`;
+		ogUrl += `&s3l=Annual%20Tax&s3v=${encodeURIComponent(formatAmount(annualTax))}`;
+	} else {
+		ogUrl += "&s1l=Annual%20Income&s1v=%E2%82%B1400%2C000&s2l=Tax%20Type&s2v=Graduated&s3l=Annual%20Tax&s3v=%E2%82%B10";
+	}
+
+	return {
+		title,
+		description,
+		openGraph: {
+			images: [
+				{
+					url: ogUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+	};
+}
+
+export default async function IncomeTaxPage() {
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Income Tax Calculator",
+		name: "Philippine Income Tax Calculator (BIR)",
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "All",
-		description: metadata.description,
+		description:
+			"Calculate your withholding and annual income tax based on the updated 2026 TRAIN Law brackets.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
@@ -38,6 +94,7 @@ export default function IncomeTaxCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolFooter currentPath="/income-tax-calculator" />
 		</>
 	);
 }

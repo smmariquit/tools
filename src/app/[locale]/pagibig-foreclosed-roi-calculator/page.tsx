@@ -1,3 +1,4 @@
+import ToolFooter from "../../components/ToolFooter";
 import { setRequestLocale } from "next-intl/server";
 import Client from "./Client";
 
@@ -27,5 +28,10 @@ export default async function PagibigForeclosedRoiPage({
 	const { locale } = await params;
 	setRequestLocale(locale);
 
-	return <Client />;
+	return (
+		<>
+			<Client />
+			<ToolFooter currentPath="/pagibig-foreclosed-roi-calculator" />
+		</>
+	);
 }

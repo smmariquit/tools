@@ -12,13 +12,33 @@ import {
 } from "recharts";
 import AdBanner from "../components/AdBanner";
 
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 export default function FreelanceTaxClient() {
-	const [currencyMode, setCurrencyMode] = useState<"php" | "usd">("usd");
-	const [usdIncomeStr, setUsdIncomeStr] = useState("2000");
-	const [forexRateStr, setForexRateStr] = useState("57.50");
-	const [grossIncomeStr, setGrossIncomeStr] = useState("100000");
-	const [includeUpwork, setIncludeUpwork] = useState(true);
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [currencyMode, setCurrencyMode] = useState<"php" | "usd">(
+		(searchParams.get("currency") as "php" | "usd") || "usd",
+	);
+	const [usdIncomeStr, setUsdIncomeStr] = useState(searchParams.get("usd") || "2000");
+	const [forexRateStr, setForexRateStr] = useState(searchParams.get("rate") || "57.50");
+	const [grossIncomeStr, setGrossIncomeStr] = useState(searchParams.get("php") || "100000");
+	const [includeUpwork, setIncludeUpwork] = useState(searchParams.get("upwork") !== "false");
 	const [mounted, setMounted] = useState(false);
+
+	const updateUrl = (updates: Record<string, string>) => {
+		const newSearchParams = new URLSearchParams(searchParams.toString());
+		for (const [key, value] of Object.entries(updates)) {
+			if (value) {
+				newSearchParams.set(key, value);
+			} else {
+				newSearchParams.delete(key);
+			}
+		}
+		router.replace(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+	};
 
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/set-state-in-effect
@@ -105,7 +125,10 @@ export default function FreelanceTaxClient() {
 									backgroundColor: currencyMode === "usd" ? "#14a800" : "",
 									color: currencyMode === "usd" ? "white" : "",
 								}}
-								onClick={() => setCurrencyMode("usd")}
+								onClick={() => {
+									setCurrencyMode("usd");
+									updateUrl({ currency: "usd" });
+								}}
 							>
 								USD (Upwork/Direct)
 							</button>
@@ -116,7 +139,10 @@ export default function FreelanceTaxClient() {
 									backgroundColor: currencyMode === "php" ? "#0f136d" : "",
 									color: currencyMode === "php" ? "white" : "",
 								}}
-								onClick={() => setCurrencyMode("php")}
+								onClick={() => {
+									setCurrencyMode("php");
+									updateUrl({ currency: "php" });
+								}}
 							>
 								PHP (Local)
 							</button>
@@ -134,7 +160,10 @@ export default function FreelanceTaxClient() {
 									id="usdIncome"
 									className="form-control"
 									value={usdIncomeStr}
-									onChange={(e) => setUsdIncomeStr(e.target.value)}
+									onChange={(e) => {
+										setUsdIncomeStr(e.target.value);
+										updateUrl({ usd: e.target.value });
+									}}
 									min="0"
 								/>
 							</div>
@@ -147,7 +176,10 @@ export default function FreelanceTaxClient() {
 									id="forexRate"
 									className="form-control"
 									value={forexRateStr}
-									onChange={(e) => setForexRateStr(e.target.value)}
+									onChange={(e) => {
+										setForexRateStr(e.target.value);
+										updateUrl({ rate: e.target.value });
+									}}
 									min="0"
 									step="0.01"
 								/>
