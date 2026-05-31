@@ -40,6 +40,9 @@ const tools = {
 	"lto-penalty-calculator": dynamic(
 		() => import("../[locale]/lto-penalty-calculator/Client"),
 	),
+	"overtime-pay-calculator": dynamic(
+		() => import("../[locale]/overtime-pay-calculator/Client"),
+	),
 	"pagibig-calculator": dynamic(
 		() => import("../[locale]/pagibig-calculator/Client"),
 	),

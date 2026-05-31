@@ -268,5 +268,28 @@
 		"totalContributions": "Total na Hinulog Mo",
 		"totalDividends": "Total Tax-Free Dividends (Tubo)",
 		"note": "Note: Ang dividends ay naka-base sa Average Monthly Balance (AMB) mo. Ang computation na ito ay nag-aassume na naghuhulog ka maaga sa buwan. Ang kita sa MP2 ay 100% tax-free at guaranteed ng gobyerno."
+	},
+	"OvertimePay": {
+		"title": "Overtime & Holiday Pay Calculator",
+		"subtitle": "Kalkulahin kung magkano dapat ang bayad sayo kapag nag-overtime ka o pumasok ng holiday/rest day base sa DOLE rules.",
+		"inputDetails": "Sahod at Oras",
+		"monthlySalary": "Monthly Basic Salary (PHP)",
+		"workDays": "Schedule sa Trabaho",
+		"workDays5": "5 Days a Week (21.75 divisor)",
+		"workDays6": "6 Days a Week (26.00 divisor)",
+		"dayType": "Anong klaseng araw ka pumasok?",
+		"ordinaryDay": "Ordinaryong Araw (Regular Day)",
+		"restDay": "Rest Day (Araw ng pahinga)",
+		"specialHoliday": "Special Non-Working Holiday",
+		"specialHolidayRestDay": "Special Non-Working Holiday NA Rest Day pa",
+		"regularHoliday": "Regular Holiday (e.g. Christmas, Labor Day)",
+		"regularHolidayRestDay": "Regular Holiday NA Rest Day pa",
+		"hoursWorked": "Ilang oras ka nag-trabaho?",
+		"resultsTitle": "Computation ng Sahod",
+		"hourlyRate": "Basic Hourly Rate mo",
+		"regularPay": "Bayad sa unang 8 hours",
+		"otPay": "Overtime Pay (Sobra sa 8 hrs)",
+		"totalPay": "Total na Kikitain sa araw na ito",
+		"note": "Note: Sumusunod ito sa DOLE Handbook on Workers' Statutory Monetary Benefits. Ang Regular Holiday na pinasukan ay 200% ang bayad. Ang OT pay ay mas malaki kapag holiday o rest day."
 	}
 }

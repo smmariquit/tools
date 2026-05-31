@@ -268,5 +268,28 @@
 		"totalContributions": "Total Contributions",
 		"totalDividends": "Total Tax-Free Dividends",
 		"note": "Note: Dividends are calculated based on your Average Monthly Balance (AMB). This assumes contributions are made early in the month. Pag-IBIG MP2 earnings are 100% tax-free and government-guaranteed."
+	},
+	"OvertimePay": {
+		"title": "Overtime & Holiday Pay Calculator",
+		"subtitle": "Calculate exactly how much you should be paid when working overtime, on rest days, or during Philippine holidays according to DOLE standards.",
+		"inputDetails": "Salary & Hours",
+		"monthlySalary": "Monthly Basic Salary (PHP)",
+		"workDays": "Work Schedule",
+		"workDays5": "5 Days a Week (21.75 divisor)",
+		"workDays6": "6 Days a Week (26.00 divisor)",
+		"dayType": "Type of Day Worked",
+		"ordinaryDay": "Ordinary Working Day",
+		"restDay": "Rest Day",
+		"specialHoliday": "Special Non-Working Holiday",
+		"specialHolidayRestDay": "Special Non-Working Holiday AND Rest Day",
+		"regularHoliday": "Regular Holiday",
+		"regularHolidayRestDay": "Regular Holiday AND Rest Day",
+		"hoursWorked": "Total Hours Worked",
+		"resultsTitle": "Computation Results",
+		"hourlyRate": "Basic Hourly Rate",
+		"regularPay": "Pay for First 8 Hours",
+		"otPay": "Overtime Pay (Excess of 8 hrs)",
+		"totalPay": "Total Pay for this Day",
+		"note": "Note: This strictly follows the DOLE Handbook on Workers' Statutory Monetary Benefits. Regular Holidays worked are paid at 200%. Overtime on holidays has compounded premium multipliers."
 	}
 }

@@ -10,6 +10,7 @@ const toolToBlogMap: Record<string, string> = {
 	"/sss-pension-calculator": "/blog/how-to-compute-sss-pension",
 	"/philhealth-calculator": "/blog/philhealth-contribution-table-2026",
 	"/income-tax-calculator": "/blog/income-tax-brackets-2026",
+	"/overtime-pay-calculator": "/blog/philippine-overtime-holiday-pay-guide",
 	"/13th-month-pay-calculator": "/blog/how-to-compute-13th-month-pay",
 	"/backpay-calculator": "/blog/philippine-backpay-computation-guide",
 	"/digital-bank-calculator": "/blog/digital-banks-philippines-interest-rates",

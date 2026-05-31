@@ -9,9 +9,15 @@ export const toolCategories = [
 				priority: 0.9,
 			},
 			{
-				name: "BPO / Night Shift Calculator",
+				name: "BPO Night Differential Calculator",
 				path: "/bpo-night-differential-calculator",
-				desc: "Calculate your exact night differential, overtime, and holiday pay.",
+				desc: "Compute your 10% night shift differential pay based on Philippine BPO hours.",
+				priority: 0.8,
+			},
+			{
+				name: "Overtime & Holiday Pay Calculator",
+				path: "/overtime-pay-calculator",
+				desc: "Calculate DOLE-compliant overtime and premium pay for rest days and holidays.",
 				priority: 0.8,
 			},
 			{
