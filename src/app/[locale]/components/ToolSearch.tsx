@@ -101,9 +101,9 @@ export default function ToolSearch() {
 							</h2>
 							<div
 								style={{
-									display: "grid",
-									gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-									gap: "20px",
+									display: "flex",
+									flexDirection: "column",
+									gap: "16px",
 								}}
 							>
 								{section.items.map((tool) => (
