@@ -30,3 +30,12 @@ To test the CI/CD pipeline locally before committing:
 ```bash
 npm run agent:verify
 ```
+
+## 📊 Current State of the Code
+- **Tech Stack:** React, Next.js, Node.js/NPM
+- **Repository Size:** 403 tracked files
+- **Latest Update:** `47a8412 chore: add stale issue and PR validators`
+
+
+---
+*☕ If you found this project useful, you can support my work at [kape.stimmie.dev](https://kape.stimmie.dev)!*
