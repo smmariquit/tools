@@ -32,7 +32,8 @@ export const metadata: Metadata = {
 		"Free, accurate calculators and tools for Filipinos. Compute your SSS, PhilHealth, Pag-IBIG, tax, net pay, and more.",
 	manifest: "/manifest.json",
 	icons: {
-		icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>',
+		icon: "/icon.png",
+		apple: "/icon.png",
 	},
 	openGraph: {
 		title: "PH Tools & Calculators | Free Online Utilities",
