@@ -408,7 +408,7 @@ export default function ExpresswayMap({
 				</g>
 
 				{/* Cebu Box */}
-				<g transform="translate(250, 50)">
+				<g transform="translate(250, 480)">
 					<rect
 						x="0"
 						y="0"

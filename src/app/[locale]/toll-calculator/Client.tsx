@@ -18,6 +18,7 @@ export default function TollCalculatorClient() {
 	const [vehicleClass, setVehicleClass] = useState<
 		"class1" | "class2" | "class3"
 	>("class1");
+	const [zoomedExpressway, setZoomedExpressway] = useState<string | null>(null);
 	const [legs, setLegs] = useState<TripLeg[]>([
 		{
 			id: Date.now().toString(),
@@ -223,12 +224,34 @@ export default function TollCalculatorClient() {
 											className="form-group"
 											style={{ marginBottom: "12px" }}
 										>
-											<label
-												className="form-label"
-												htmlFor={`expressway-${leg.id}`}
+											<div
+												style={{
+													display: "flex",
+													justifyContent: "space-between",
+													alignItems: "center",
+												}}
 											>
-												Expressway
-											</label>
+												<label
+													className="form-label"
+													htmlFor={`expressway-${leg.id}`}
+												>
+													Expressway
+												</label>
+												<button
+													type="button"
+													onClick={() => setZoomedExpressway(leg.expressway)}
+													style={{
+														background: "none",
+														border: "none",
+														color: "var(--primary)",
+														cursor: "pointer",
+														fontSize: "12px",
+														textDecoration: "underline",
+													}}
+												>
+													🔍 View Route Details
+												</button>
+											</div>
 											<select
 												id={`expressway-${leg.id}`}
 												className="form-control"
@@ -476,6 +499,117 @@ export default function TollCalculatorClient() {
 					</div>
 				</div>
 			</div>
+			{zoomedExpressway && (
+				<div
+					style={{
+						position: "fixed",
+						top: 0,
+						left: 0,
+						width: "100%",
+						height: "100%",
+						backgroundColor: "rgba(0,0,0,0.5)",
+						zIndex: 1000,
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<div
+						style={{
+							backgroundColor: "var(--bg-color)",
+							padding: "24px",
+							borderRadius: "8px",
+							width: "90%",
+							maxWidth: "500px",
+							maxHeight: "80vh",
+							overflowY: "auto",
+							border: "1px solid var(--border-color)",
+							boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+						}}
+					>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								alignItems: "center",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "12px",
+							}}
+						>
+							<h2 style={{ margin: 0, fontSize: "20px" }}>
+								{zoomedExpressway} Exits
+							</h2>
+							<button
+								onClick={() => setZoomedExpressway(null)}
+								style={{
+									background: "var(--bg-color-alt)",
+									border: "1px solid var(--border-color)",
+									borderRadius: "4px",
+									fontSize: "14px",
+									cursor: "pointer",
+									padding: "4px 8px",
+								}}
+							>
+								✕ Close
+							</button>
+						</div>
+						<div
+							style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+						>
+							{expressways
+								.find((e) => e.name === zoomedExpressway)
+								?.exits.map((exit, index) => (
+									<div
+										key={exit}
+										style={{
+											display: "flex",
+											alignItems: "center",
+											gap: "16px",
+											padding: "8px",
+											backgroundColor: "var(--bg-color-alt)",
+											borderRadius: "6px",
+										}}
+									>
+										<div
+											style={{
+												width: "24px",
+												height: "24px",
+												borderRadius: "50%",
+												backgroundColor: "var(--primary)",
+												color: "white",
+												display: "flex",
+												justifyContent: "center",
+												alignItems: "center",
+												fontSize: "12px",
+												fontWeight: "bold",
+												flexShrink: 0,
+											}}
+										>
+											{index + 1}
+										</div>
+										<div style={{ flex: 1, fontWeight: 500 }}>{exit} Exit</div>
+										<a
+											href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(exit + " exit " + zoomedExpressway)}`}
+											target="_blank"
+											rel="noreferrer"
+											style={{
+												fontSize: "12px",
+												color: "var(--primary)",
+												textDecoration: "none",
+												backgroundColor: "rgba(0,122,255,0.1)",
+												padding: "4px 8px",
+												borderRadius: "4px",
+											}}
+										>
+											Wikipedia ↗
+										</a>
+									</div>
+								))}
+						</div>
+					</div>
+				</div>
+			)}
 		</ToolLayout>
 	);
 }
