@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "../../../components/ThemeToggle";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import Logo from "../../components/Logo";
@@ -11,17 +11,37 @@ import Logo from "../../components/Logo";
 export default function Navbar() {
 	const t = useTranslations("Navigation");
 	const [isOpen, setIsOpen] = useState(false);
-
 	const router = useRouter();
 	const pathname = usePathname();
 	const [query, setQuery] = useState("");
+	const headerRef = React.useRef<HTMLElement>(null);
 
 	useEffect(() => {
 		if (pathname) setIsOpen(false);
 	}, [pathname]);
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				headerRef.current &&
+				!headerRef.current.contains(event.target as Node)
+			) {
+				setIsOpen(false);
+			}
+		};
+
+		if (isOpen) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isOpen]);
+
 	return (
 		<header
+			ref={headerRef}
 			style={{
 				backgroundColor: "var(--surface-color)",
 				borderBottom: "1px solid var(--border-color)",
