@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,7 +41,6 @@ export default function DonorsTaxCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolFooter currentPath="/bir-donors-tax-calculator" />
 		</>
 	);
 }

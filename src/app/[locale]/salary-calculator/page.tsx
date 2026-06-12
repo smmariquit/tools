@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { computeSalary } from "../../../lib/salaryLogic";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -76,7 +75,6 @@ export default async function SalaryCalculatorPage(props: {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client initialSalary={initialSalary} />
-			<ToolFooter currentPath="/salary-calculator" />
 		</>
 	);
 }

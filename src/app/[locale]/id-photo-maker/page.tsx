@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export const metadata: Metadata = {
@@ -51,7 +50,6 @@ export default function IDPhotoMakerPage() {
 			>
 				<Client />
 			</Suspense>
-			<ToolFooter currentPath="/id-photo-maker" />
 		</>
 	);
 }

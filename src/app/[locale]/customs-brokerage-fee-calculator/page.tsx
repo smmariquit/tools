@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const title = "Standard Customs Brokerage Fee Calculator (CAO No. 1-2001) | Philippines";
+	const title =
+		"Standard Customs Brokerage Fee Calculator (CAO No. 1-2001) | Philippines";
 	const description =
 		"Calculate minimum professional fees for customs brokers based on the Dutiable Value (DV) of your shipment under BOC CAO No. 1-2001.";
 
@@ -42,7 +42,6 @@ export default function CustomsBrokerageCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolFooter currentPath="/customs-brokerage-fee-calculator" />
 		</>
 	);
 }

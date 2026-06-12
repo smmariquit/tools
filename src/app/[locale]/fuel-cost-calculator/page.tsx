@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -97,7 +96,6 @@ export default async function FuelCostPage() {
 			>
 				<Client />
 			</Suspense>
-			<ToolFooter currentPath="/fuel-cost-calculator" />
 		</>
 	);
 }

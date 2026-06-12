@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,7 +9,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	let ogUrl = `/api/og?title=${encodeURIComponent(
 		title,
 	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Food%20Cost&s1v=30%25&s2l=Margin&s2v=70%25&s3l=Price&s3v=%E2%82%B1150";
+	ogUrl +=
+		"&s1l=Food%20Cost&s1v=30%25&s2l=Margin&s2v=70%25&s3l=Price&s3v=%E2%82%B1150";
 
 	return {
 		title,
@@ -50,7 +50,6 @@ export default function FoodCostCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolFooter currentPath="/food-cost-calculator" />
 		</>
 	);
 }

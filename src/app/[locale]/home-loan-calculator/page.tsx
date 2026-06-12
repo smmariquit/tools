@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -90,7 +89,6 @@ export default async function HomeLoanCalculatorPage() {
 			>
 				<Client />
 			</Suspense>
-			<ToolFooter currentPath="/home-loan-calculator" />
 		</>
 	);
 }

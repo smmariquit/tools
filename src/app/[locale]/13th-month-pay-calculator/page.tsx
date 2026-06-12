@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import ToolFooter from "../../components/ToolFooter";
 import Client from "./Client";
 
 export async function generateMetadata({
@@ -96,7 +95,6 @@ export default async function ThirteenthMonthPage() {
 			>
 				<Client />
 			</Suspense>
-			<ToolFooter currentPath="/13th-month-pay-calculator" />
 		</>
 	);
 }
