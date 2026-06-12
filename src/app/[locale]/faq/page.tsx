@@ -34,6 +34,16 @@ const faqs = [
 		answer:
 			"We have a dedicated 13th Month Pay Calculator that handles prorated computations. Note that under the TRAIN Law, your 13th-month pay and other benefits are tax-exempt up to ₱90,000. Any amount exceeding ₱90,000 is added to your gross taxable income.",
 	},
+	{
+		question: "How is my data and privacy handled?",
+		answer:
+			"We prioritize your privacy. The financial data you input is processed locally on your device and is never stored on our servers. For data retention inquiries or to exercise your privacy rights under the National Privacy Commission, please contact our Data Protection Officer at semariquit@gmail.com.",
+	},
+	{
+		question: "How can I contact support or request a new calculator?",
+		answer:
+			"If you have a feature request, spotted a bug, or need clarification on a computation, you can reach out to us directly by emailing semariquit@gmail.com.",
+	},
 ];
 
 export default function FAQ() {
