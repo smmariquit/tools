@@ -229,7 +229,7 @@ export default function ExpresswayMap({
 						strokeWidth={getStrokeWidth("Skyway")}
 						strokeLinecap="round"
 					/>
-					<text x="135" y="345" style={{ ...textStyle, fill: "#F44336" }}>
+					<text x="215" y="340" style={{ ...textStyle, fill: "#F44336" }}>
 						Skyway
 					</text>
 					<g onClick={(e) => handleNodeClick(e, "Skyway", "Buendia/Alabang")}>
@@ -370,7 +370,7 @@ export default function ExpresswayMap({
 						strokeWidth={getStrokeWidth("CALAX (Cavite-Laguna Expressway)")}
 						strokeLinecap="round"
 					/>
-					<text x="150" y="420" style={{ ...textStyle, fill: "#FBC02D" }}>
+					<text x="160" y="415" style={{ ...textStyle, fill: "#FBC02D" }}>
 						CALAX
 					</text>
 					<g
@@ -411,7 +411,7 @@ export default function ExpresswayMap({
 							stroke="#FBC02D"
 							strokeWidth="2"
 						/>
-						<text x="180" y="430" style={textStyle}>
+						<text x="170" y="425" style={textStyle}>
 							Sta. Rosa
 						</text>
 					</g>
@@ -432,9 +432,6 @@ export default function ExpresswayMap({
 							stroke="#FBC02D"
 							strokeWidth="2"
 						/>
-						<text x="215" y="455" style={textStyle}>
-							Mamplasan
-						</text>
 					</g>
 				</g>
 

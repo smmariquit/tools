@@ -70,6 +70,7 @@ export default function TollCalculatorClient() {
 		if (legs.length > 0) {
 			updateLeg(legs[legs.length - 1].id, "expressway", name);
 		}
+		setZoomedExpressway(name);
 	};
 
 	const handleMapNodeSelect = (expresswayName: string, nodeName: string) => {
@@ -140,9 +141,16 @@ export default function TollCalculatorClient() {
 
 				<AdBanner dataAdSlot="toll-top" />
 
-				<div className="tool-grid" style={{ marginTop: "24px" }}>
+				<div
+					style={{
+						marginTop: "24px",
+						display: "flex",
+						flexDirection: "column",
+						gap: "24px",
+					}}
+				>
 					{/* Interactive Map */}
-					<div style={{ alignSelf: "start" }}>
+					<div style={{ alignSelf: "stretch" }}>
 						<ExpresswayMap
 							onSelectExpressway={handleMapSelect}
 							onSelectNode={handleMapNodeSelect}
@@ -239,17 +247,17 @@ export default function TollCalculatorClient() {
 												</label>
 												<button
 													type="button"
+													className="btn-secondary"
 													onClick={() => setZoomedExpressway(leg.expressway)}
 													style={{
-														background: "none",
-														border: "none",
-														color: "var(--primary)",
-														cursor: "pointer",
+														padding: "4px 8px",
 														fontSize: "12px",
-														textDecoration: "underline",
+														display: "flex",
+														alignItems: "center",
+														gap: "4px",
 													}}
 												>
-													🔍 View Route Details
+													🔍 Route Details
 												</button>
 											</div>
 											<select
@@ -541,17 +549,31 @@ export default function TollCalculatorClient() {
 								{zoomedExpressway} Exits
 							</h2>
 							<button
+								type="button"
+								className="btn-secondary"
 								onClick={() => setZoomedExpressway(null)}
 								style={{
-									background: "var(--bg-color-alt)",
-									border: "1px solid var(--border-color)",
-									borderRadius: "4px",
 									fontSize: "14px",
-									cursor: "pointer",
-									padding: "4px 8px",
+									padding: "6px 12px",
+									display: "flex",
+									alignItems: "center",
+									gap: "6px",
 								}}
 							>
-								✕ Close
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								>
+									<line x1="18" y1="6" x2="6" y2="18"></line>
+									<line x1="6" y1="6" x2="18" y2="18"></line>
+								</svg>
+								Close
 							</button>
 						</div>
 						<div
@@ -588,7 +610,33 @@ export default function TollCalculatorClient() {
 										>
 											{index + 1}
 										</div>
-										<div style={{ flex: 1, fontWeight: 500 }}>{exit} Exit</div>
+										<div
+											style={{
+												flex: 1,
+												display: "flex",
+												flexDirection: "column",
+											}}
+										>
+											<span style={{ fontWeight: 600 }}>
+												{exit} Interchange
+											</span>
+											<span
+												style={{
+													fontSize: "12px",
+													color: "var(--text-secondary)",
+												}}
+											>
+												Direction: Northbound & Southbound Access
+											</span>
+											<span
+												style={{
+													fontSize: "12px",
+													color: "var(--text-secondary)",
+												}}
+											>
+												Status: Active • Electronic Toll Collection (ETC) Ready
+											</span>
+										</div>
 										<a
 											href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(exit + " exit " + zoomedExpressway)}`}
 											target="_blank"
