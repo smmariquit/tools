@@ -25,7 +25,7 @@ export default function InvoiceFactoringClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Invoice Factoring & Discount Calculator"
 				subtitle="Calculate Net Present Value (NPV), discount fees, and APR when selling unpaid invoices for working capital."

@@ -38,13 +38,13 @@ export default function ArchitecturalFeeClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Architectural Fee Calculator (UAP SPP 202)"
 				subtitle="Dynamically compute minimum basic fees based on UAP Standards of Professional Practice Document 202."
 			/>
 			
-			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
 

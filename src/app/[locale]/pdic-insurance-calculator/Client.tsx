@@ -21,7 +21,7 @@ export default function PdicClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="PDIC Deposit Insurance Calculator"
 				subtitle="Calculate your maximum deposit insurance coverage in the event of a bank closure."

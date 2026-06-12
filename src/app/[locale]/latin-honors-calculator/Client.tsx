@@ -28,7 +28,7 @@ export default function LatinHonorsClient() {
 	const hasHonor = honor !== "No Honor";
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

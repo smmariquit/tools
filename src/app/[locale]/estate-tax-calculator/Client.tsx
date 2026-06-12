@@ -22,7 +22,7 @@ export default function EstateTaxClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Philippine Estate Tax Calculator"
 				subtitle="Estimate the 6% flat estate tax under the TRAIN Law."

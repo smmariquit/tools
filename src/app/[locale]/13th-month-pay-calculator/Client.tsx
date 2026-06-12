@@ -32,8 +32,8 @@ export default function ThirteenthMonthClient() {
 	};
 
 	return (
-		<ToolLayout>
-			<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+		<ToolLayout maxWidth="1200px">
+			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
 					<Link
 						href="/"

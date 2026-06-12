@@ -82,8 +82,8 @@ export default function FuelCostClient() {
 	};
 
 	return (
-		<ToolLayout>
-			<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+		<ToolLayout maxWidth="1200px">
+			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
 					<Link
 						href="/"
@@ -156,7 +156,7 @@ export default function FuelCostClient() {
 										backgroundColor: "var(--bg-color)",
 										borderRadius: "12px",
 										width: "100%",
-										maxWidth: "800px",
+										width: "100%",
 										padding: "24px",
 										position: "relative",
 										maxHeight: "90vh",

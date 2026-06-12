@@ -35,7 +35,7 @@ export default function GotradeIbkrClient() {
 		new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="GoTrade vs. IBKR Fee & FX Total Loss Calculator"
 				subtitle="Compare the total friction costs of depositing PHP to GoTrade vs. Interactive Brokers via Wise."

@@ -24,7 +24,7 @@ export default function PhilhealthLateClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="PhilHealth Late Contribution Penalty Estimator"
 				subtitle="Estimate the interest penalties on missed PhilHealth premium payments."

@@ -48,7 +48,7 @@ export default function DOSTScholarshipStipendClient() {
 	const showTuition = schoolType === "private_with_tuition";
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

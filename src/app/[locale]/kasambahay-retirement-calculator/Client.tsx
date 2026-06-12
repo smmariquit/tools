@@ -22,7 +22,7 @@ export default function KasambahayRetirementClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Kasambahay Statutory Retirement Pay Calculator"
 				subtitle="Calculate retirement pay for domestic workers under Article 302 of the Labor Code."

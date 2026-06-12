@@ -28,7 +28,7 @@ export default function TaxRefundClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Year-End Tax Refund Estimator"
 				subtitle="Calculate your potential year-end tax refund by reconciling YTD withheld taxes against actual tax due."

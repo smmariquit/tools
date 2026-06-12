@@ -33,7 +33,7 @@ export default function CHEDScholarshipClient() {
 	const showSchoolType = scholarshipType !== "tdp";
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

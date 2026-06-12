@@ -180,13 +180,13 @@ export default function FoodCostCalculatorClient() {
 	const formatPHP = (val: number) => new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Food Cost & Pricing Calculator"
 				subtitle="Calculate recipe costs, maximize profit margins, and price your menu perfectly."
 			/>
 			
-			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
 

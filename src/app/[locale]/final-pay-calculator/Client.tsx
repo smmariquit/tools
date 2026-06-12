@@ -21,7 +21,7 @@ export default function FinalPayClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Pro-Rated 13th Month & Final Pay Calculator"
 				subtitle="Calculate your final pay, prorated 13th-month bonus, and unused SIL."

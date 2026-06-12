@@ -55,7 +55,7 @@ export default function KasambahayPayrollClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Kasambahay Payroll & Contribution Calculator"
 				subtitle="Compute SSS, PhilHealth, and Pag-IBIG splits for domestic workers."

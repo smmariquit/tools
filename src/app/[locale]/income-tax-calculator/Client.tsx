@@ -103,9 +103,9 @@ export default function IncomeTaxCalculator() {
 	const COLORS = ["#1b5e20", "#d32f2f"];
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<div
-				style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}
+				style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}
 			>
 				<div style={{ marginBottom: "24px" }}>
 					<Link

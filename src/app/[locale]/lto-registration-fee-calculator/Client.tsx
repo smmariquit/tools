@@ -66,13 +66,13 @@ export default function LtoClient() {
 	const scheduledMonth = plateEnding === 0 ? "October" : months[plateEnding];
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="LTO Annual Registration Fee Estimator"
 				subtitle="Calculate your Motor Vehicle User's Charge (MVUC) and check for late penalties."
 			/>
 			
-			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
 

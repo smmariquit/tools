@@ -95,9 +95,9 @@ export default function IDPhotoMaker() {
 	};
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<div
-				style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}
+				style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}
 			>
 				<div style={{ marginBottom: "24px" }}>
 					<Link

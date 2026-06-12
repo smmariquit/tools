@@ -20,7 +20,7 @@ export default function RtbClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Retail Treasury Bond (RTB) Yield Estimator"
 				subtitle="Calculate net quarterly payouts and total yields after the 20% final withholding tax."

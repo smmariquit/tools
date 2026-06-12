@@ -70,7 +70,7 @@ export default function SssPensionClient() {
 	const totalAt80 = monthlyPension * 12 * 20; // 20 years from 60 to 80
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

@@ -44,7 +44,7 @@ export default function InfluencerRateClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Philippine Influencer & Talent Rate Calculator"
 				subtitle="Calculate fair creator pricing based on Engagement Rate (ER) and follower metrics."

@@ -65,13 +65,13 @@ export default function SssMaternityClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="SSS Maternity Benefit Estimator"
 				subtitle="Calculate your statutory cash benefit based on the Expanded Maternity Leave Law."
 			/>
 			
-			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
 

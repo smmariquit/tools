@@ -27,13 +27,13 @@ export default function CustomsBrokerageClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Standard Customs Brokerage Fee Calculator"
 				subtitle="Calculate the professional fees for customs brokers based on CAO No. 1-2001."
 			/>
 			
-			<div style={{ marginTop: "24px", maxWidth: "800px" }}>
+			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
 

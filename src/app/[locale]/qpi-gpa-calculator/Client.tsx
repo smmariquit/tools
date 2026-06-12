@@ -39,7 +39,7 @@ export default function QPIGPAClient() {
 	const { qpi, totalUnits, totalQualityPoints } = calculateQPIGPA(courses);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

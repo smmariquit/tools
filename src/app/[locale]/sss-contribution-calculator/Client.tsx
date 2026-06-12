@@ -111,7 +111,7 @@ export default function SSSCalculator() {
 	];
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="SSS Contribution Calculator (2026)"
 				subtitle="See your exact SSS breakdown (EE/ER/EC/MPF) based on the latest 15% table."

@@ -181,7 +181,7 @@ export default function BpoCalculator() {
 	].filter((item) => item.value > 0);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="BPO Night Differential & Overtime Calculator (2026)"
 				subtitle="Calculate your exact night differential, overtime, and holiday pay for your BPO shift."

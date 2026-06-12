@@ -27,7 +27,7 @@ export default function BIRWithholdingTaxClient() {
 	};
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title={t("title")}
 				subtitle={t("subtitle")}

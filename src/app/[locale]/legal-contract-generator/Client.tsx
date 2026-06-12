@@ -37,7 +37,7 @@ ${lender} (Lender)
 `;
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Legal Contract Generator"
 				subtitle="Generate standard Philippine legal documents (e.g., Promissory Note) securely in your browser. No data is saved to any server."

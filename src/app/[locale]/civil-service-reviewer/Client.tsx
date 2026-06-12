@@ -43,14 +43,14 @@ export default function CivilServiceClient() {
 	};
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Civil Service Exam Reviewer"
 				subtitle="Offline-capable mock exams and flashcards. Progress is saved locally on your device."
 			/>
 			
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
-				<div style={{ display: "flex", flexDirection: "column", gap: "24px", gridColumn: "1 / -1", maxWidth: "800px", margin: "0 auto", width: "100%" }}>
+				<div style={{ display: "flex", flexDirection: "column", gap: "24px", gridColumn: "1 / -1", width: "100%", margin: "0 auto", width: "100%" }}>
 					<div className="card">
 						{!isFinished ? (
 							<>

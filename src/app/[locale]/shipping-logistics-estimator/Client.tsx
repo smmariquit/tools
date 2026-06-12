@@ -34,7 +34,7 @@ export default function ShippingClient() {
 		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Local Shipping & Logistics Estimator"
 				subtitle="Estimate freight and Cash-On-Delivery (COD) fees for MSME e-commerce shipments."

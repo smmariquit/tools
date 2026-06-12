@@ -118,7 +118,7 @@ export default function SalaryCalculator({
 	].filter((item) => item.value > 0);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Salary Net Pay Calculator (2026)"
 				subtitle="Calculate your take-home pay after SSS, PhilHealth, Pag-IBIG, and Withholding Tax deductions."

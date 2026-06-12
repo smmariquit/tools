@@ -20,7 +20,7 @@ export default function DigitalTicketClient() {
 	}, null, 2);
 
 	return (
-		<ToolLayout>
+		<ToolLayout maxWidth="1200px">
 			<ToolHeader
 				title="Digital Ticketing QR Generator"
 				subtitle="Generate secure, stateless JSON payloads ready for QR encoding without a centralized database."
