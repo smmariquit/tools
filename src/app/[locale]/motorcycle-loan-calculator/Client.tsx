@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateMotorcycleLoan } from "../../../core/calculators/motorcycleLoan";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -243,8 +242,6 @@ export default function MotorcycleLoanClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/motorcycle-loan-calculator" />
 		</ToolLayout>
 	);
 }

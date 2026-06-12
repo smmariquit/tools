@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { useId } from "react";
 import { calculateSeparationPay } from "../../../core/calculators/separationPay";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -224,8 +223,6 @@ export default function SeparationPayClient() {
 					<TipCard title="Labor Code Compliant">{t("note")}</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/separation-pay-calculator" />
 		</ToolLayout>
 	);
 }

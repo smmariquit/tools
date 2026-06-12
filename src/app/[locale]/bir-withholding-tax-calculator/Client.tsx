@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateBIRWithholdingTax } from "../../../core/calculators/bIRWithholdingTax";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -273,8 +272,6 @@ export default function BIRWithholdingTaxClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/bir-withholding-tax-calculator" />
 		</ToolLayout>
 	);
 }

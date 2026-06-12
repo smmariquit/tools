@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { useId } from "react";
 import { calculatePagibigAffordability } from "../../../core/calculators/pagibigAffordability";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -208,8 +207,6 @@ export default function PagibigAffordabilityClient() {
 					<TipCard title="Pag-IBIG Rule of Thumb">{t("note")}</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/pagibig-affordability-calculator" />
 		</ToolLayout>
 	);
 }

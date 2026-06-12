@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { useId } from "react";
 import { calculateSSSMaternity } from "../../../core/calculators/sssMaternity";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -172,8 +171,6 @@ export default function SSSMaternityClient() {
 					<TipCard title="SSS Eligibility">{t("note")}</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/sss-maternity-calculator" />
 		</ToolLayout>
 	);
 }

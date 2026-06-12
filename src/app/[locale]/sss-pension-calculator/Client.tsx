@@ -3,7 +3,6 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -222,8 +221,6 @@ export default function SssPensionClient() {
 					)}
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/sss-pension-calculator" />
 		</ToolLayout>
 	);
 }

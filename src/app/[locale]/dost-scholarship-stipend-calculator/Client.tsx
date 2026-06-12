@@ -6,7 +6,6 @@ import {
 	type DOSTSchoolType,
 } from "../../../core/calculators/dOSTScholarshipStipend";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -283,8 +282,6 @@ export default function DOSTScholarshipStipendClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/dost-scholarship-stipend-calculator" />
 		</ToolLayout>
 	);
 }

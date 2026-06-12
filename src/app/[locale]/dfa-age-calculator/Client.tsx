@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateAgeExact } from "../../../core/calculators/dFAAge";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -310,8 +309,6 @@ export default function DFAAgeClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/dfa-age-calculator" />
 		</ToolLayout>
 	);
 }

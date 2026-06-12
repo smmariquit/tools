@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateBillSplit } from "../../../core/calculators/billSplitter";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -192,8 +191,6 @@ export default function BillSplitterClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/bill-splitter-calculator" />
 		</ToolLayout>
 	);
 }

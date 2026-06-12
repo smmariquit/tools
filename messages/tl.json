@@ -396,7 +396,16 @@
 		"readGuideTitle": "Basahin ang Buong Guide",
 		"readGuideDesc": "Gusto mo malaman ang exact formula behind this calculator? I-check ang aming comprehensive na guide na nag-eexplain ng batas, computations, at exact rules.",
 		"readGuideBtn": "Basahin ang Guide →",
-		"relatedToolsTitle": "Related Tools"
+		"relatedToolsTitle": "Related Tools",
+		"aboutToolTitle": "Tungkol sa Tool na Ito at Metodolohiya",
+		"aboutToolDesc": "Ang calculator na ito ay ginawa para magbigay ng accurate at transparent na estimates base sa publicly available na data at pinakabagong batas sa Pilipinas. Para sa mga tools tungkol sa tax, labor laws, o mandatory contributions, ang aming computations ay striktong sumusunod sa guidelines ng Bureau of Internal Revenue (BIR), Social Security System (SSS), PhilHealth, Pag-IBIG Fund, at Department of Labor and Employment (DOLE).",
+		"sourcesTitle": "Sources at Citations",
+		"sourceBIR": "Bureau of Internal Revenue (BIR) - Para sa tax brackets, TRAIN law, at standard deductions.",
+		"sourceSSS": "Social Security System (SSS) - Para sa contribution tables at benefits.",
+		"sourcePhilHealth": "PhilHealth - Para sa premium contribution schedules.",
+		"sourcePagIbig": "Pag-IBIG Fund - Para sa regular savings, MP2, at housing loan rates.",
+		"sourceDOLE": "Department of Labor and Employment (DOLE) - Para sa labor laws at mandatory pay rules.",
+		"disclaimer": "Disclaimer: Ang tool na ito ay para sa estimation at educational purposes lamang. Hindi ito pamalit sa professional financial o legal advice. Palaging komunsulta sa certified professional o sa iyong HR para sa official computations."
 	},
 	"GSISPension": {
 		"title": "GSIS Pension Calculator",

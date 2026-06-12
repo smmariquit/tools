@@ -7,7 +7,6 @@ import {
 	calculateCHEDStipend,
 } from "../../../core/calculators/chedScholarship";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -159,8 +158,6 @@ export default function CHEDScholarshipClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/ched-scholarship-calculator" />
 		</ToolLayout>
 	);
 }

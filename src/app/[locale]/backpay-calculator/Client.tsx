@@ -11,7 +11,6 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 } from "recharts";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -342,8 +341,6 @@ export default function BackpayClient() {
 					</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/backpay-calculator" />
 		</ToolLayout>
 	);
 }

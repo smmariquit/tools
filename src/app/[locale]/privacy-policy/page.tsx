@@ -104,6 +104,35 @@ export default function PrivacyPolicy() {
 					By using our website, you hereby consent to our Privacy Policy and
 					agree to its Terms and Conditions.
 				</p>
+
+				<h2
+					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
+				>
+					7. Data Retention & Privacy Rights
+				</h2>
+				<p style={{ marginBottom: "16px" }}>
+					In accordance with the Data Privacy Act of 2012 (Republic Act No.
+					10173) and the guidelines set by the{" "}
+					<a
+						href="https://privacy.gov.ph/"
+						target="_blank"
+						rel="noopener noreferrer"
+						style={{ color: "var(--primary)", textDecoration: "underline" }}
+					>
+						National Privacy Commission (NPC)
+					</a>
+					, you have the right to be informed, object to processing, access, and
+					rectify your data. For any inquiries regarding data retention, data
+					deletion, or other privacy concerns, please contact our designated
+					Data Protection Officer at:{" "}
+					<a
+						href="mailto:semariquit@gmail.com"
+						style={{ color: "var(--primary)", textDecoration: "underline" }}
+					>
+						semariquit@gmail.com
+					</a>
+					.
+				</p>
 			</div>
 		</div>
 	);

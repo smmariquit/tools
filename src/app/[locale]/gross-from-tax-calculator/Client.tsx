@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import { grossFromTax } from "../../../lib/reverseSalaryLogic";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -190,8 +189,6 @@ export default function GrossFromTaxClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/gross-from-tax-calculator" />
 		</ToolLayout>
 	);
 }

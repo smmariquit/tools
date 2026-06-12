@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
-import ToolFooter from "../../components/ToolFooter";
+import { useState } from "react";
+import {
+	type CourseEntry,
+	calculateQPIGPA,
+} from "../../../core/calculators/qPIGPA";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
-import { calculateQPIGPA, type CourseEntry } from "../../../core/calculators/qPIGPA";
 
 export default function QPIGPAClient() {
 	const t = useTranslations("QPIGPA");
@@ -24,7 +26,11 @@ export default function QPIGPAClient() {
 		setCourses(courses.filter((_, i) => i !== index));
 	};
 
-	const updateCourse = (index: number, field: keyof CourseEntry, value: string) => {
+	const updateCourse = (
+		index: number,
+		field: keyof CourseEntry,
+		value: string,
+	) => {
 		const updated = [...courses];
 		updated[index] = { ...updated[index], [field]: Number(value) };
 		setCourses(updated);
@@ -42,11 +48,20 @@ export default function QPIGPAClient() {
 
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div className="card">
-					<h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px" }}>
+					<h2
+						style={{
+							fontSize: "18px",
+							marginBottom: "16px",
+							borderBottom: "1px solid var(--border-color)",
+							paddingBottom: "8px",
+						}}
+					>
 						{t("inputDetails")}
 					</h2>
 
-					<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+					<div
+						style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+					>
 						{courses.map((course, idx) => (
 							<div
 								key={idx}
@@ -61,7 +76,13 @@ export default function QPIGPAClient() {
 								}}
 							>
 								<div style={{ flex: 1 }}>
-									<label className="form-label" htmlFor={`grade-${idx}`} style={{ fontSize: "12px" }}>{t("gradeLabel")}</label>
+									<label
+										className="form-label"
+										htmlFor={`grade-${idx}`}
+										style={{ fontSize: "12px" }}
+									>
+										{t("gradeLabel")}
+									</label>
 									<select
 										id={`grade-${idx}`}
 										className="form-control"
@@ -80,7 +101,13 @@ export default function QPIGPAClient() {
 									</select>
 								</div>
 								<div style={{ width: "80px" }}>
-									<label className="form-label" htmlFor={`units-${idx}`} style={{ fontSize: "12px" }}>{t("unitsLabel")}</label>
+									<label
+										className="form-label"
+										htmlFor={`units-${idx}`}
+										style={{ fontSize: "12px" }}
+									>
+										{t("unitsLabel")}
+									</label>
 									<input
 										id={`units-${idx}`}
 										type="number"
@@ -121,32 +148,80 @@ export default function QPIGPAClient() {
 				</div>
 
 				<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
-					<h2 style={{ fontSize: "18px", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "8px", color: "var(--primary)" }}>
+					<h2
+						style={{
+							fontSize: "18px",
+							marginBottom: "16px",
+							borderBottom: "1px solid var(--border-color)",
+							paddingBottom: "8px",
+							color: "var(--primary)",
+						}}
+					>
 						{t("resultsTitle")}
 					</h2>
 
-					<div style={{ marginBottom: "24px", padding: "24px", backgroundColor: "rgba(13, 71, 161, 0.05)", border: "1px solid var(--primary)", borderRadius: "8px", textAlign: "center" }}>
-						<span style={{ display: "block", fontSize: "14px", color: "var(--text-secondary)", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "1px" }}>
+					<div
+						style={{
+							marginBottom: "24px",
+							padding: "24px",
+							backgroundColor: "rgba(13, 71, 161, 0.05)",
+							border: "1px solid var(--primary)",
+							borderRadius: "8px",
+							textAlign: "center",
+						}}
+					>
+						<span
+							style={{
+								display: "block",
+								fontSize: "14px",
+								color: "var(--text-secondary)",
+								marginBottom: "8px",
+								textTransform: "uppercase",
+								letterSpacing: "1px",
+							}}
+						>
 							{t("qpiLabel")}
 						</span>
-						<strong style={{ display: "block", fontSize: "48px", color: "var(--primary)", lineHeight: 1 }}>
+						<strong
+							style={{
+								display: "block",
+								fontSize: "48px",
+								color: "var(--primary)",
+								lineHeight: 1,
+							}}
+						>
 							{qpi.toFixed(3)}
 						</strong>
 					</div>
 
-					<div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: "1px dashed var(--border-color)" }}>
-						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>{t("totalUnitsLabel")}</span>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							padding: "12px 0",
+							borderBottom: "1px dashed var(--border-color)",
+						}}
+					>
+						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
+							{t("totalUnitsLabel")}
+						</span>
 						<strong style={{ fontSize: "16px" }}>{totalUnits}</strong>
 					</div>
 
-					<div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0" }}>
-						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>{t("totalQPLabel")}</span>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							padding: "12px 0",
+						}}
+					>
+						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
+							{t("totalQPLabel")}
+						</span>
 						<strong style={{ fontSize: "16px" }}>{totalQualityPoints}</strong>
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/qpi-gpa-calculator" />
 		</ToolLayout>
 	);
 }

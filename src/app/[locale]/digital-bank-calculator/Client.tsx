@@ -12,7 +12,6 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -404,8 +403,6 @@ export default function DigitalBankClient() {
 					<TipCard title="Important Note">{t("note")}</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/digital-bank-calculator" />
 		</ToolLayout>
 	);
 }

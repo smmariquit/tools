@@ -50,9 +50,7 @@ const toolToBlogMap: Record<string, string> = {
 		"/blog/philhealth-late-contribution-guide",
 	"/retail-treasury-bond-calculator": "/blog/retail-treasury-bond-guide",
 	"/shipping-logistics-estimator": "/blog/shipping-logistics-guide",
-	"/crypto-spread-calculator": "/blog/crypto-spread-guide",
-	"/crypto-p2p-cashout-calculator": "/blog/crypto-p2p-cashout-guide",
-	"/crypto-tax-calculator": "/blog/crypto-tax-guide",
+
 	"/civil-service-reviewer": "/blog/civil-service-reviewer-guide",
 	"/legal-contract-generator": "/blog/legal-contract-guide",
 	"/invoice-factoring-calculator": "/blog/invoice-factoring-guide",
@@ -76,19 +74,6 @@ const toolToBlogMap: Record<string, string> = {
 	"/qpi-gpa-calculator": "/blog/qpi-gpa-calculator-guide",
 	"/dfa-age-calculator": "/blog/dfa-age-requirements-guide",
 	"/bill-splitter-calculator": "/blog/how-to-split-bills-properly",
-
-	"/mlbb-diamond-calculator": "/blog/mlbb-diamond-topup-guide",
-	"/mlbb-winrate-calculator": "/blog/mlbb-winrate-guide",
-	"/codm-lucky-draw-calculator": "/blog/codm-lucky-draw-guide",
-	"/genshin-pity-calculator": "/blog/genshin-pity-guide",
-	"/valorant-vp-calculator": "/blog/valorant-vp-guide",
-	"/gaming-edpi-calculator": "/blog/gaming-edpi-guide",
-	"/dota2-mmr-calculator": "/blog/dota2-mmr-guide",
-	"/dota2-battlepass-calculator": "/blog/dota2-battlepass-guide",
-	"/roblox-robux-calculator": "/blog/roblox-robux-guide",
-	"/roblox-trade-calculator": "/blog/roblox-trade-guide",
-	"/web3-token-calculator": "/blog/web3-token-guide",
-	"/web3-scholar-calculator": "/blog/web3-scholar-guide",
 };
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
@@ -162,6 +147,91 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 				>
 					{t("readGuideBtn")}
 				</Link>
+			</div>
+
+			<h2
+				style={{
+					fontSize: "20px",
+					marginTop: "24px",
+					marginBottom: "16px",
+					color: "var(--text-secondary)",
+				}}
+			>
+				{t("aboutToolTitle")}
+			</h2>
+			<div
+				style={{
+					marginBottom: "32px",
+					fontSize: "14px",
+					lineHeight: "1.6",
+					color: "var(--text-secondary)",
+				}}
+			>
+				<p style={{ marginBottom: "16px" }}>{t("aboutToolDesc")}</p>
+				<h3
+					style={{
+						fontSize: "16px",
+						marginBottom: "8px",
+						color: "var(--text-primary)",
+					}}
+				>
+					{t("sourcesTitle")}
+				</h3>
+				<ul style={{ paddingLeft: "24px", marginBottom: "16px" }}>
+					<li>
+						<a
+							href="https://www.bir.gov.ph/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							{t("sourceBIR")}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.sss.gov.ph/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							{t("sourceSSS")}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.philhealth.gov.ph/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							{t("sourcePhilHealth")}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.pagibigfund.gov.ph/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							{t("sourcePagIbig")}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://dole.gov.ph/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							{t("sourceDOLE")}
+						</a>
+					</li>
+				</ul>
+				<p style={{ fontStyle: "italic", fontSize: "12px" }}>
+					{t("disclaimer")}
+				</p>
 			</div>
 
 			<h2

@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateFreelanceRate } from "../../../core/calculators/freelanceRate";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
@@ -255,8 +254,6 @@ export default function FreelanceRateClient() {
 					<TipCard title="Freelance Tax Included">{t("note")}</TipCard>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/freelance-rate-calculator" />
 		</ToolLayout>
 	);
 }

@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { calculateGSISPension } from "../../../core/calculators/gSISPension";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import InteractiveSlider from "../components/InteractiveSlider";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -161,8 +160,6 @@ export default function GSISPensionClient() {
 					</div>
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/gsis-pension-calculator" />
 		</ToolLayout>
 	);
 }

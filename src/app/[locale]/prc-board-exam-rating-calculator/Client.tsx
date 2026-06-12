@@ -7,7 +7,6 @@ import {
 	calculatePRCRating,
 } from "../../../core/calculators/pRCBoardExamRating";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
-import ToolFooter from "../../components/ToolFooter";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -218,8 +217,6 @@ export default function PRCBoardExamRatingClient() {
 					)}
 				</div>
 			</div>
-
-			<ToolFooter currentPath="/prc-board-exam-rating-calculator" />
 		</ToolLayout>
 	);
 }
