@@ -45,7 +45,9 @@
 }
 
 body {
-	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	font-family:
+		"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 	background-color: var(--bg-color);
 	color: var(--text-primary);
 	line-height: 1.6;
@@ -245,6 +247,10 @@ h6 {
 
 .mobile-menu-btn {
 	display: none;
+}
+
+.main-nav {
+	display: flex;
 }
 
 @media (max-width: 900px) {

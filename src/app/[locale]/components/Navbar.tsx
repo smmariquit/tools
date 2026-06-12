@@ -95,7 +95,6 @@ export default function Navbar() {
 				<nav
 					className={`main-nav ${isOpen ? "open" : ""}`}
 					style={{
-						display: "flex",
 						gap: "16px",
 						alignItems: "center",
 					}}
