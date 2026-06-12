@@ -15,6 +15,7 @@ import {
 import AdBanner from "../components/AdBanner";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
+import ToolLayout from "../components/ToolLayout";
 
 export default function PagIbigClient() {
 	const router = useRouter();
@@ -99,427 +100,441 @@ export default function PagIbigClient() {
 	};
 
 	return (
-		<div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-			<div style={{ marginBottom: "24px" }}>
-				<Link
-					href="/"
-					style={{
-						fontSize: "14px",
-						display: "inline-block",
-						marginBottom: "16px",
-					}}
-				>
-					&larr; Back to Tools
-				</Link>
-				<h1 className="page-title">Pag-IBIG & MP2 Savings Calculator</h1>
-				<p className="page-subtitle">
-					Calculate your mandatory Pag-IBIG contributions and estimate your MP2
-					tax-free dividend returns over 5 years.
-				</p>
-			</div>
-
-			<AdBanner dataAdSlot="pagibig-top" />
-
-			<div className="tool-grid" style={{ marginTop: "24px" }}>
-				{/* Input Card */}
-				<div className="card" style={{ alignSelf: "start" }}>
-					<h2
+		<ToolLayout>
+			<div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+				<div style={{ marginBottom: "24px" }}>
+					<Link
+						href="/"
 						style={{
-							fontSize: "18px",
+							fontSize: "14px",
+							display: "inline-block",
 							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
 						}}
 					>
-						Mandatory Pag-IBIG
-					</h2>
-
-					<InteractiveSlider
-						label="Basic Monthly Salary (PHP)"
-						value={basicSalary}
-						min={0}
-						max={150000}
-						step={1000}
-						onChange={(val) => {
-							setBasicSalaryStr(val.toString());
-							updateUrl({ salary: val.toString() });
-						}}
-						hint="Input your basic pay excluding allowances and overtime."
-					/>
-					{basicSalary >= 10000 && (
-						<div style={{ marginTop: "12px" }}>
-							<TipCard title="Max Contribution Reached">
-								Above MFS ceiling — regular contributions are capped at ₱10,000
-								basis (₱200 max)
-							</TipCard>
-						</div>
-					)}
-
-					<div
-						style={{
-							marginTop: "16px",
-							padding: "16px",
-							backgroundColor: "var(--bg-color)",
-							borderRadius: "var(--border-radius)",
-							border: "1px solid var(--border-color)",
-						}}
-					>
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-between",
-								gap: "16px",
-								marginBottom: "12px",
-								fontSize: "14px",
-							}}
-						>
-							<span style={{ color: "var(--text-secondary)" }}>
-								Employee Share (You pay)
-							</span>
-							<strong style={{ color: "var(--primary)", fontSize: "16px" }}>
-								{formatCurrency(regularEE)}
-							</strong>
-						</div>
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-between",
-								gap: "16px",
-								fontSize: "14px",
-							}}
-						>
-							<span style={{ color: "var(--text-secondary)" }}>
-								Employer Share
-							</span>
-							<strong
-								style={{ color: "var(--text-primary)", fontSize: "16px" }}
-							>
-								{formatCurrency(regularER)}
-							</strong>
-						</div>
-					</div>
-
-					<h2
-						style={{
-							fontSize: "18px",
-							marginTop: "32px",
-							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
-						}}
-					>
-						MP2 Voluntary Savings
-					</h2>
-
-					<div className="form-group">
-						<label className="form-label" htmlFor="mp2Monthly">
-							Monthly MP2 Deposit (PHP)
-						</label>
-						<input
-							type="number"
-							id="mp2Monthly"
-							className="form-control"
-							value={mp2MonthlyStr}
-							onChange={(e) => {
-								setMp2MonthlyStr(e.target.value);
-								updateUrl({ mp2: e.target.value });
-							}}
-							min="500"
-							step="500"
-						/>
-						<p className="form-hint" style={{ marginTop: "4px" }}>
-							Minimum of ₱500 per month.
-						</p>
-					</div>
-
-					<div className="form-group" style={{ marginTop: "16px" }}>
-						<label className="form-label" htmlFor="dividendRate">
-							Estimated Annual Dividend Rate (%)
-						</label>
-						<input
-							type="number"
-							id="dividendRate"
-							className="form-control"
-							value={dividendRateStr}
-							onChange={(e) => {
-								setDividendRateStr(e.target.value);
-								updateUrl({ rate: e.target.value });
-							}}
-							min="1"
-							max="15"
-							step="0.1"
-						/>
-						<p className="form-hint" style={{ marginTop: "4px" }}>
-							Historical average is between 6% and 8%.
-						</p>
-					</div>
+						&larr; Back to Tools
+					</Link>
+					<h1 className="page-title">Pag-IBIG & MP2 Savings Calculator</h1>
+					<p className="page-subtitle">
+						Calculate your mandatory Pag-IBIG contributions and estimate your
+						MP2 tax-free dividend returns over 5 years.
+					</p>
 				</div>
 
-				{/* Results Card */}
-				<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
-					<h2
-						style={{
-							fontSize: "18px",
-							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
-							color: "var(--primary)",
-						}}
-					>
-						5-Year MP2 Projection
-					</h2>
+				<AdBanner dataAdSlot="pagibig-top" />
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "16px",
-							padding: "16px",
-							backgroundColor: "#e8f5e9",
-							borderRadius: "var(--border-radius-md)",
-							border: "1px solid #c8e6c9",
-						}}
-					>
-						<div>
-							<span
-								style={{
-									display: "block",
-									fontSize: "12px",
-									color: "#2e7d32",
-									textTransform: "uppercase",
-									fontWeight: 600,
-									marginBottom: "4px",
-								}}
-							>
-								Final Value after 5 Years
-							</span>
-							<strong
-								style={{ fontSize: "28px", color: "#1b5e20", lineHeight: 1 }}
-							>
-								{formatCurrency(finalValue)}
-							</strong>
-						</div>
-					</div>
+				<div className="tool-grid" style={{ marginTop: "24px" }}>
+					{/* Input Card */}
+					<div className="card" style={{ alignSelf: "start" }}>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
+							}}
+						>
+							Mandatory Pag-IBIG
+						</h2>
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Total Principal Saved</span>
-						<span>{formatCurrency(totalPrincipal)}</span>
-					</div>
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "24px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Total Tax-Free Dividends</span>
-						<span style={{ color: "#2e7d32", fontWeight: 600 }}>
-							+ {formatCurrency(totalDividends)}
-						</span>
-					</div>
+						<InteractiveSlider
+							label="Basic Monthly Salary (PHP)"
+							value={basicSalary}
+							min={0}
+							max={150000}
+							step={1000}
+							onChange={(val) => {
+								setBasicSalaryStr(val.toString());
+								updateUrl({ salary: val.toString() });
+							}}
+							hint="Input your basic pay excluding allowances and overtime."
+						/>
+						{basicSalary >= 10000 && (
+							<div style={{ marginTop: "12px" }}>
+								<TipCard title="Max Contribution Reached">
+									Above MFS ceiling — regular contributions are capped at
+									₱10,000 basis (₱200 max)
+								</TipCard>
+							</div>
+						)}
 
-					{/* Visual Chart */}
-					{mounted && (
 						<div
 							style={{
-								height: "250px",
+								marginTop: "16px",
+								padding: "16px",
+								backgroundColor: "var(--bg-color)",
+								borderRadius: "var(--border-radius)",
+								border: "1px solid var(--border-color)",
+							}}
+						>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									gap: "16px",
+									marginBottom: "12px",
+									fontSize: "14px",
+								}}
+							>
+								<span style={{ color: "var(--text-secondary)" }}>
+									Employee Share (You pay)
+								</span>
+								<strong style={{ color: "var(--primary)", fontSize: "16px" }}>
+									{formatCurrency(regularEE)}
+								</strong>
+							</div>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									gap: "16px",
+									fontSize: "14px",
+								}}
+							>
+								<span style={{ color: "var(--text-secondary)" }}>
+									Employer Share
+								</span>
+								<strong
+									style={{ color: "var(--text-primary)", fontSize: "16px" }}
+								>
+									{formatCurrency(regularER)}
+								</strong>
+							</div>
+						</div>
+
+						<h2
+							style={{
+								fontSize: "18px",
 								marginTop: "32px",
 								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
 							}}
 						>
-							<ResponsiveContainer width="100%" height="100%">
-								<AreaChart
-									data={mp2Table}
-									margin={{ top: 10, right: 0, left: -20, bottom: 0 }}
-								>
-									<defs>
-										<linearGradient
-											id="colorPrincipal"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
-											<stop offset="5%" stopColor="#0d47a1" stopOpacity={0.3} />
-											<stop offset="95%" stopColor="#0d47a1" stopOpacity={0} />
-										</linearGradient>
-										<linearGradient
-											id="colorDividend"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
-											<stop offset="5%" stopColor="#2e7d32" stopOpacity={0.8} />
-											<stop
-												offset="95%"
-												stopColor="#2e7d32"
-												stopOpacity={0.1}
-											/>
-										</linearGradient>
-									</defs>
-									<CartesianGrid
-										strokeDasharray="3 3"
-										vertical={false}
-										stroke="var(--border-color)"
-									/>
-									<XAxis
-										dataKey="year"
-										tickFormatter={(tick) => `Yr ${tick}`}
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<YAxis
-										tickFormatter={(tick) => `₱${(tick / 1000).toFixed(0)}k`}
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<Tooltip
-										formatter={(value) => formatCurrency(Number(value) || 0)}
-										labelFormatter={(label) => `Year ${label}`}
-										contentStyle={{
-											borderRadius: "8px",
-											border: "none",
-											boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-										}}
-									/>
-									<Area
-										type="monotone"
-										dataKey="totalSaved"
-										name="Total Principal"
-										stackId="1"
-										stroke="#0d47a1"
-										fill="url(#colorPrincipal)"
-										strokeWidth={2}
-									/>
-									<Area
-										type="monotone"
-										dataKey="dividendsEarned"
-										name="Dividends Earned"
-										stackId="1"
-										stroke="#2e7d32"
-										fill="url(#colorDividend)"
-										strokeWidth={2}
-									/>
-								</AreaChart>
-							</ResponsiveContainer>
-						</div>
-					)}
+							MP2 Voluntary Savings
+						</h2>
 
-					{/* Table */}
-					<div style={{ overflowX: "auto" }}>
-						<table
+						<div className="form-group">
+							<label className="form-label" htmlFor="mp2Monthly">
+								Monthly MP2 Deposit (PHP)
+							</label>
+							<input
+								type="number"
+								id="mp2Monthly"
+								className="form-control"
+								value={mp2MonthlyStr}
+								onChange={(e) => {
+									setMp2MonthlyStr(e.target.value);
+									updateUrl({ mp2: e.target.value });
+								}}
+								min="500"
+								step="500"
+							/>
+							<p className="form-hint" style={{ marginTop: "4px" }}>
+								Minimum of ₱500 per month.
+							</p>
+						</div>
+
+						<div className="form-group" style={{ marginTop: "16px" }}>
+							<label className="form-label" htmlFor="dividendRate">
+								Estimated Annual Dividend Rate (%)
+							</label>
+							<input
+								type="number"
+								id="dividendRate"
+								className="form-control"
+								value={dividendRateStr}
+								onChange={(e) => {
+									setDividendRateStr(e.target.value);
+									updateUrl({ rate: e.target.value });
+								}}
+								min="1"
+								max="15"
+								step="0.1"
+							/>
+							<p className="form-hint" style={{ marginTop: "4px" }}>
+								Historical average is between 6% and 8%.
+							</p>
+						</div>
+					</div>
+
+					{/* Results Card */}
+					<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
+						<h2
 							style={{
-								width: "100%",
-								borderCollapse: "collapse",
-								fontSize: "13px",
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
+								color: "var(--primary)",
 							}}
 						>
-							<thead>
-								<tr
+							5-Year MP2 Projection
+						</h2>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								padding: "16px",
+								backgroundColor: "#e8f5e9",
+								borderRadius: "var(--border-radius-md)",
+								border: "1px solid #c8e6c9",
+							}}
+						>
+							<div>
+								<span
 									style={{
-										borderBottom: "2px solid var(--border-color)",
-										textAlign: "right",
+										display: "block",
+										fontSize: "12px",
+										color: "#2e7d32",
+										textTransform: "uppercase",
+										fontWeight: 600,
+										marginBottom: "4px",
 									}}
 								>
-									<th style={{ padding: "8px 4px", textAlign: "left" }}>
-										Year
-									</th>
-									<th style={{ padding: "8px 4px" }}>Principal</th>
-									<th style={{ padding: "8px 4px" }}>Dividends</th>
-									<th style={{ padding: "8px 4px" }}>Total Value</th>
-								</tr>
-							</thead>
-							<tbody>
-								{mp2Table.map((row) => (
+									Final Value after 5 Years
+								</span>
+								<strong
+									style={{ fontSize: "28px", color: "#1b5e20", lineHeight: 1 }}
+								>
+									{formatCurrency(finalValue)}
+								</strong>
+							</div>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Total Principal Saved</span>
+							<span>{formatCurrency(totalPrincipal)}</span>
+						</div>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "24px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Total Tax-Free Dividends</span>
+							<span style={{ color: "#2e7d32", fontWeight: 600 }}>
+								+ {formatCurrency(totalDividends)}
+							</span>
+						</div>
+
+						{/* Visual Chart */}
+						{mounted && (
+							<div
+								style={{
+									height: "250px",
+									marginTop: "32px",
+									marginBottom: "16px",
+								}}
+							>
+								<ResponsiveContainer width="100%" height="100%">
+									<AreaChart
+										data={mp2Table}
+										margin={{ top: 10, right: 0, left: -20, bottom: 0 }}
+									>
+										<defs>
+											<linearGradient
+												id="colorPrincipal"
+												x1="0"
+												y1="0"
+												x2="0"
+												y2="1"
+											>
+												<stop
+													offset="5%"
+													stopColor="#0d47a1"
+													stopOpacity={0.3}
+												/>
+												<stop
+													offset="95%"
+													stopColor="#0d47a1"
+													stopOpacity={0}
+												/>
+											</linearGradient>
+											<linearGradient
+												id="colorDividend"
+												x1="0"
+												y1="0"
+												x2="0"
+												y2="1"
+											>
+												<stop
+													offset="5%"
+													stopColor="#2e7d32"
+													stopOpacity={0.8}
+												/>
+												<stop
+													offset="95%"
+													stopColor="#2e7d32"
+													stopOpacity={0.1}
+												/>
+											</linearGradient>
+										</defs>
+										<CartesianGrid
+											strokeDasharray="3 3"
+											vertical={false}
+											stroke="var(--border-color)"
+										/>
+										<XAxis
+											dataKey="year"
+											tickFormatter={(tick) => `Yr ${tick}`}
+											tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
+											axisLine={false}
+											tickLine={false}
+										/>
+										<YAxis
+											tickFormatter={(tick) => `₱${(tick / 1000).toFixed(0)}k`}
+											tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
+											axisLine={false}
+											tickLine={false}
+										/>
+										<Tooltip
+											formatter={(value) => formatCurrency(Number(value) || 0)}
+											labelFormatter={(label) => `Year ${label}`}
+											contentStyle={{
+												borderRadius: "8px",
+												border: "none",
+												boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+											}}
+										/>
+										<Area
+											type="monotone"
+											dataKey="totalSaved"
+											name="Total Principal"
+											stackId="1"
+											stroke="#0d47a1"
+											fill="url(#colorPrincipal)"
+											strokeWidth={2}
+										/>
+										<Area
+											type="monotone"
+											dataKey="dividendsEarned"
+											name="Dividends Earned"
+											stackId="1"
+											stroke="#2e7d32"
+											fill="url(#colorDividend)"
+											strokeWidth={2}
+										/>
+									</AreaChart>
+								</ResponsiveContainer>
+							</div>
+						)}
+
+						{/* Table */}
+						<div style={{ overflowX: "auto" }}>
+							<table
+								style={{
+									width: "100%",
+									borderCollapse: "collapse",
+									fontSize: "13px",
+								}}
+							>
+								<thead>
 									<tr
-										key={row.year}
 										style={{
-											borderBottom: "1px solid var(--border-color)",
+											borderBottom: "2px solid var(--border-color)",
 											textAlign: "right",
 										}}
 									>
-										<td
-											style={{
-												padding: "12px 4px",
-												textAlign: "left",
-												fontWeight: 600,
-											}}
-										>
-											{row.year}
-										</td>
-										<td
-											style={{
-												padding: "12px 4px",
-												color: "var(--text-secondary)",
-											}}
-										>
-											{formatCurrency(row.totalSaved)}
-										</td>
-										<td style={{ padding: "12px 4px", color: "#2e7d32" }}>
-											{formatCurrency(row.dividendsEarned)}
-										</td>
-										<td style={{ padding: "12px 4px", fontWeight: 500 }}>
-											{formatCurrency(row.totalValue)}
-										</td>
+										<th style={{ padding: "8px 4px", textAlign: "left" }}>
+											Year
+										</th>
+										<th style={{ padding: "8px 4px" }}>Principal</th>
+										<th style={{ padding: "8px 4px" }}>Dividends</th>
+										<th style={{ padding: "8px 4px" }}>Total Value</th>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{mp2Table.map((row) => (
+										<tr
+											key={row.year}
+											style={{
+												borderBottom: "1px solid var(--border-color)",
+												textAlign: "right",
+											}}
+										>
+											<td
+												style={{
+													padding: "12px 4px",
+													textAlign: "left",
+													fontWeight: 600,
+												}}
+											>
+												{row.year}
+											</td>
+											<td
+												style={{
+													padding: "12px 4px",
+													color: "var(--text-secondary)",
+												}}
+											>
+												{formatCurrency(row.totalSaved)}
+											</td>
+											<td style={{ padding: "12px 4px", color: "#2e7d32" }}>
+												{formatCurrency(row.dividendsEarned)}
+											</td>
+											<td style={{ padding: "12px 4px", fontWeight: 500 }}>
+												{formatCurrency(row.totalValue)}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div
-				style={{
-					marginTop: "48px",
-					paddingTop: "32px",
-					borderTop: "1px solid var(--border-color)",
-					color: "var(--text-primary)",
-				}}
-			>
-				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How Does MP2 Work?
-				</h2>
-				<p style={{ marginBottom: "16px" }}>
-					The Modified Pag-IBIG II (MP2) Savings Program is a voluntary savings
-					facility with a 5-year maturity, designed for active Pag-IBIG Fund
-					members who wish to save more and earn higher tax-free dividends than
-					the regular Pag-IBIG Savings Program.
-				</p>
-				<ul
+				<div
 					style={{
-						paddingLeft: "24px",
-						marginBottom: "16px",
-						lineHeight: "1.6",
+						marginTop: "48px",
+						paddingTop: "32px",
+						borderTop: "1px solid var(--border-color)",
+						color: "var(--text-primary)",
 					}}
 				>
-					<li>
-						<strong>Tax-Free:</strong> All dividends earned are 100% tax-free.
-						You don&apos;t pay the standard 20% withholding tax applied to bank
-						deposits.
-					</li>
-					<li>
-						<strong>Government Guaranteed:</strong> Your principal is fully
-						guaranteed by the Philippine government.
-					</li>
-					<li>
-						<strong>Compound Interest:</strong> If you choose to have dividends
-						paid at the end of the 5-year term, your money compounds annually,
-						growing exponentially.
-					</li>
-				</ul>
+					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
+						How Does MP2 Work?
+					</h2>
+					<p style={{ marginBottom: "16px" }}>
+						The Modified Pag-IBIG II (MP2) Savings Program is a voluntary
+						savings facility with a 5-year maturity, designed for active
+						Pag-IBIG Fund members who wish to save more and earn higher tax-free
+						dividends than the regular Pag-IBIG Savings Program.
+					</p>
+					<ul
+						style={{
+							paddingLeft: "24px",
+							marginBottom: "16px",
+							lineHeight: "1.6",
+						}}
+					>
+						<li>
+							<strong>Tax-Free:</strong> All dividends earned are 100% tax-free.
+							You don&apos;t pay the standard 20% withholding tax applied to
+							bank deposits.
+						</li>
+						<li>
+							<strong>Government Guaranteed:</strong> Your principal is fully
+							guaranteed by the Philippine government.
+						</li>
+						<li>
+							<strong>Compound Interest:</strong> If you choose to have
+							dividends paid at the end of the 5-year term, your money compounds
+							annually, growing exponentially.
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
+		</ToolLayout>
 	);
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
+import ToolLayout from "../components/ToolLayout";
 
 export default function LtoPenaltyClient() {
 	const router = useRouter();
@@ -74,219 +75,225 @@ export default function LtoPenaltyClient() {
 	};
 
 	return (
-		<div style={{ maxWidth: "800px", margin: "0 auto" }}>
-			<div style={{ marginBottom: "24px" }}>
-				<Link
-					href="/"
-					style={{
-						fontSize: "14px",
-						display: "inline-block",
-						marginBottom: "16px",
-					}}
-				>
-					&larr; Back to Tools
-				</Link>
-				<h1 className="page-title">LTO Registration Penalty Calculator</h1>
-				<p className="page-subtitle">
-					Calculate the exact MVUC fines and penalties for late motor vehicle or
-					motorcycle registration renewal in the Philippines.
-				</p>
-			</div>
-
-			<AdBanner dataAdSlot="lto-top" />
-
-			<div className="tool-grid" style={{ marginTop: "24px" }}>
-				{/* Input Card */}
-				<div className="card" style={{ alignSelf: "start" }}>
-					<h2
+		<ToolLayout>
+			<div style={{ maxWidth: "800px", margin: "0 auto" }}>
+				<div style={{ marginBottom: "24px" }}>
+					<Link
+						href="/"
 						style={{
-							fontSize: "18px",
+							fontSize: "14px",
+							display: "inline-block",
 							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
 						}}
 					>
-						Vehicle Details
-					</h2>
-
-					<div className="form-group">
-						<label className="form-label" htmlFor="vehicleType">
-							Vehicle Type / Weight
-						</label>
-						<select
-							id="vehicleType"
-							className="form-control"
-							value={vehicleType}
-							onChange={(e) => {
-								const val = e.target.value as
-									| "motorcycle"
-									| "carLight"
-									| "carMedium"
-									| "carHeavy";
-								setVehicleType(val);
-								updateUrl({ vehicle: val });
-							}}
-						>
-							<option value="motorcycle">Motorcycle (w/ or w/o sidecar)</option>
-							<option value="carLight">
-								Passenger Car - Light (Up to 1,600 kg)
-							</option>
-							<option value="carMedium">
-								Passenger Car - Medium (1,601 - 2,300 kg)
-							</option>
-							<option value="carHeavy">
-								Passenger Car - Heavy (2,301 kg and above)
-							</option>
-						</select>
-					</div>
-
-					<div className="form-group" style={{ marginTop: "16px" }}>
-						<label className="form-label" htmlFor="monthsLate">
-							How many months late?
-						</label>
-						<input
-							type="number"
-							id="monthsLate"
-							className="form-control"
-							value={monthsLateStr}
-							onChange={(e) => {
-								setMonthsLateStr(e.target.value);
-								updateUrl({ months: e.target.value });
-							}}
-							min="0"
-							max="120"
-						/>
-						<p className="form-hint" style={{ marginTop: "4px" }}>
-							Enter 0 if registering on time.
-						</p>
-					</div>
+						&larr; Back to Tools
+					</Link>
+					<h1 className="page-title">LTO Registration Penalty Calculator</h1>
+					<p className="page-subtitle">
+						Calculate the exact MVUC fines and penalties for late motor vehicle
+						or motorcycle registration renewal in the Philippines.
+					</p>
 				</div>
 
-				{/* Results Card */}
-				<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
-					<h2
-						style={{
-							fontSize: "18px",
-							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
-							color: "var(--primary)",
-						}}
-					>
-						Estimated Renewal Fee
-					</h2>
+				<AdBanner dataAdSlot="lto-top" />
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Basic MVUC (Registration Fee)</span>
-						<span>{formatCurrency(baseMvuc)}</span>
-					</div>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Late Registration Penalty</span>
-						<span
+				<div className="tool-grid" style={{ marginTop: "24px" }}>
+					{/* Input Card */}
+					<div className="card" style={{ alignSelf: "start" }}>
+						<h2
 							style={{
-								color: penalty > 0 ? "#b71c1c" : "var(--text-secondary)",
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
 							}}
 						>
-							{penalty > 0 ? "+" : ""} {formatCurrency(penalty)}
-						</span>
+							Vehicle Details
+						</h2>
+
+						<div className="form-group">
+							<label className="form-label" htmlFor="vehicleType">
+								Vehicle Type / Weight
+							</label>
+							<select
+								id="vehicleType"
+								className="form-control"
+								value={vehicleType}
+								onChange={(e) => {
+									const val = e.target.value as
+										| "motorcycle"
+										| "carLight"
+										| "carMedium"
+										| "carHeavy";
+									setVehicleType(val);
+									updateUrl({ vehicle: val });
+								}}
+							>
+								<option value="motorcycle">
+									Motorcycle (w/ or w/o sidecar)
+								</option>
+								<option value="carLight">
+									Passenger Car - Light (Up to 1,600 kg)
+								</option>
+								<option value="carMedium">
+									Passenger Car - Medium (1,601 - 2,300 kg)
+								</option>
+								<option value="carHeavy">
+									Passenger Car - Heavy (2,301 kg and above)
+								</option>
+							</select>
+						</div>
+
+						<div className="form-group" style={{ marginTop: "16px" }}>
+							<label className="form-label" htmlFor="monthsLate">
+								How many months late?
+							</label>
+							<input
+								type="number"
+								id="monthsLate"
+								className="form-control"
+								value={monthsLateStr}
+								onChange={(e) => {
+									setMonthsLateStr(e.target.value);
+									updateUrl({ months: e.target.value });
+								}}
+								min="0"
+								max="120"
+							/>
+							<p className="form-hint" style={{ marginTop: "4px" }}>
+								Enter 0 if registering on time.
+							</p>
+						</div>
 					</div>
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Legal Research Fund (LRF)</span>
-						<span>{formatCurrency(lrfFee)}</span>
-					</div>
+					{/* Results Card */}
+					<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
+								color: "var(--primary)",
+							}}
+						>
+							Estimated Renewal Fee
+						</h2>
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "16px",
-							fontSize: "14px",
-						}}
-					>
-						<span>IT / Computer Fee</span>
-						<span>{formatCurrency(computerFee)}</span>
-					</div>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Basic MVUC (Registration Fee)</span>
+							<span>{formatCurrency(baseMvuc)}</span>
+						</div>
 
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginTop: "16px",
-							paddingTop: "16px",
-							borderTop: "2px solid var(--border-color)",
-							fontSize: "20px",
-							fontWeight: 700,
-							color: "var(--text-primary)",
-						}}
-					>
-						<span>Total Amount Due</span>
-						<span style={{ color: "#1b5e20" }}>{formatCurrency(totalDue)}</span>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Late Registration Penalty</span>
+							<span
+								style={{
+									color: penalty > 0 ? "#b71c1c" : "var(--text-secondary)",
+								}}
+							>
+								{penalty > 0 ? "+" : ""} {formatCurrency(penalty)}
+							</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Legal Research Fund (LRF)</span>
+							<span>{formatCurrency(lrfFee)}</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								fontSize: "14px",
+							}}
+						>
+							<span>IT / Computer Fee</span>
+							<span>{formatCurrency(computerFee)}</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginTop: "16px",
+								paddingTop: "16px",
+								borderTop: "2px solid var(--border-color)",
+								fontSize: "20px",
+								fontWeight: 700,
+								color: "var(--text-primary)",
+							}}
+						>
+							<span>Total Amount Due</span>
+							<span style={{ color: "#1b5e20" }}>
+								{formatCurrency(totalDue)}
+							</span>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div
-				style={{
-					marginTop: "48px",
-					paddingTop: "32px",
-					borderTop: "1px solid var(--border-color)",
-					color: "var(--text-primary)",
-				}}
-			>
-				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How LTO Computes Late Penalties
-				</h2>
-				<p style={{ marginBottom: "16px" }}>
-					The Land Transportation Office (LTO) computes your penalty based on
-					your <strong>Motor Vehicle User&apos;s Charge (MVUC)</strong>. This is
-					the base registration fee of your vehicle.
-				</p>
-				<ul
+				<div
 					style={{
-						paddingLeft: "24px",
-						marginBottom: "16px",
-						lineHeight: "1.6",
+						marginTop: "48px",
+						paddingTop: "32px",
+						borderTop: "1px solid var(--border-color)",
+						color: "var(--text-primary)",
 					}}
 				>
-					<li>
-						<strong>Late by 1 week to 12 months:</strong> 50% flat penalty
-						surcharge on top of the MVUC.
-					</li>
-					<li>
-						<strong>Delinquent beyond 1 year:</strong> 50% surcharge + 50%
-						additional penalty for every year of delinquency.
-					</li>
-				</ul>
-				<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-					Note: This calculator provides an estimate of your MVUC renewal and
-					penalty fees. It does not include the cost of CTPL Insurance, Emission
-					Testing (PETC), or other localized LTO surcharges. Verify with
-					`lto.gov.ph`.
-				</p>
+					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
+						How LTO Computes Late Penalties
+					</h2>
+					<p style={{ marginBottom: "16px" }}>
+						The Land Transportation Office (LTO) computes your penalty based on
+						your <strong>Motor Vehicle User&apos;s Charge (MVUC)</strong>. This
+						is the base registration fee of your vehicle.
+					</p>
+					<ul
+						style={{
+							paddingLeft: "24px",
+							marginBottom: "16px",
+							lineHeight: "1.6",
+						}}
+					>
+						<li>
+							<strong>Late by 1 week to 12 months:</strong> 50% flat penalty
+							surcharge on top of the MVUC.
+						</li>
+						<li>
+							<strong>Delinquent beyond 1 year:</strong> 50% surcharge + 50%
+							additional penalty for every year of delinquency.
+						</li>
+					</ul>
+					<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
+						Note: This calculator provides an estimate of your MVUC renewal and
+						penalty fees. It does not include the cost of CTPL Insurance,
+						Emission Testing (PETC), or other localized LTO surcharges. Verify
+						with `lto.gov.ph`.
+					</p>
+				</div>
 			</div>
-		</div>
+		</ToolLayout>
 	);
 }

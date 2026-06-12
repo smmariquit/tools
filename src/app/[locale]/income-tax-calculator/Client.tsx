@@ -12,6 +12,7 @@ import {
 	Tooltip,
 } from "recharts";
 import AdBanner from "../components/AdBanner";
+import ToolLayout from "../components/ToolLayout";
 
 export default function IncomeTaxCalculator() {
 	const router = useRouter();
@@ -102,342 +103,354 @@ export default function IncomeTaxCalculator() {
 	const COLORS = ["#1b5e20", "#d32f2f"];
 
 	return (
-		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
-			<div style={{ marginBottom: "24px" }}>
-				<Link
-					href="/"
-					style={{
-						fontSize: "14px",
-						display: "inline-block",
-						marginBottom: "16px",
-					}}
-				>
-					&larr; Back to All Tools
-				</Link>
-				<h1 className="page-title">Philippine Income Tax Calculator (BIR)</h1>
-				<p className="page-subtitle">
-					Calculate your withholding and annual income tax based on the updated
-					2026 TRAIN Law brackets.
-				</p>
-			</div>
-
-			<AdBanner dataAdSlot="6666666666" />
-
-			<div className="tool-grid" style={{ marginTop: "24px" }}>
-				{/* Input Card */}
-				<div className="card">
-					<h2
+		<ToolLayout>
+			<div
+				style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}
+			>
+				<div style={{ marginBottom: "24px" }}>
+					<Link
+						href="/"
 						style={{
-							fontSize: "18px",
+							fontSize: "14px",
+							display: "inline-block",
 							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
 						}}
 					>
-						Income Details
-					</h2>
+						&larr; Back to All Tools
+					</Link>
+					<h1 className="page-title">Philippine Income Tax Calculator (BIR)</h1>
+					<p className="page-subtitle">
+						Calculate your withholding and annual income tax based on the
+						updated 2026 TRAIN Law brackets.
+					</p>
+				</div>
 
-					<div className="form-group">
-						<div className="form-label">Tax Type</div>
-						<div style={{ display: "flex", gap: "12px" }}>
-							<label
-								style={{
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-									fontSize: "14px",
-									color: "var(--text-primary)",
-								}}
-							>
-								<input
-									type="radio"
-									name="taxType"
-									checked={taxType === "graduated"}
-									onChange={() => {
-										setTaxType("graduated");
-										updateUrl({ type: "graduated" });
-									}}
-								/>
-								Graduated (Employees)
-							</label>
-						</div>
-						<div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
-							<label
-								style={{
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-									fontSize: "14px",
-									color: "var(--text-primary)",
-								}}
-							>
-								<input
-									type="radio"
-									name="taxType"
-									checked={taxType === "flat8"}
-									onChange={() => {
-										setTaxType("flat8");
-										updateUrl({ type: "flat8" });
-									}}
-								/>
-								8% Flat Rate (Freelance/Self-Employed)
-							</label>
-						</div>
-					</div>
+				<AdBanner dataAdSlot="6666666666" />
 
-					<div className="form-group" style={{ marginTop: "24px" }}>
-						<label className="form-label" htmlFor="period">
-							Input Period
-						</label>
-						<select
-							id="period"
-							className="form-control"
-							value={period}
-							onChange={(e) => {
-								const val = e.target.value as "annual" | "monthly";
-								setPeriod(val);
-								updateUrl({ period: val });
-							}}
+				<div className="tool-grid" style={{ marginTop: "24px" }}>
+					{/* Input Card */}
+					<div className="card">
+						<h2
 							style={{
-								backgroundColor: "var(--surface-color)",
-								cursor: "pointer",
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
 							}}
 						>
-							<option value="annual">Annual Income</option>
-							<option value="monthly">Monthly Income</option>
-						</select>
+							Income Details
+						</h2>
+
+						<div className="form-group">
+							<div className="form-label">Tax Type</div>
+							<div style={{ display: "flex", gap: "12px" }}>
+								<label
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "6px",
+										fontSize: "14px",
+										color: "var(--text-primary)",
+									}}
+								>
+									<input
+										type="radio"
+										name="taxType"
+										checked={taxType === "graduated"}
+										onChange={() => {
+											setTaxType("graduated");
+											updateUrl({ type: "graduated" });
+										}}
+									/>
+									Graduated (Employees)
+								</label>
+							</div>
+							<div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+								<label
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: "6px",
+										fontSize: "14px",
+										color: "var(--text-primary)",
+									}}
+								>
+									<input
+										type="radio"
+										name="taxType"
+										checked={taxType === "flat8"}
+										onChange={() => {
+											setTaxType("flat8");
+											updateUrl({ type: "flat8" });
+										}}
+									/>
+									8% Flat Rate (Freelance/Self-Employed)
+								</label>
+							</div>
+						</div>
+
+						<div className="form-group" style={{ marginTop: "24px" }}>
+							<label className="form-label" htmlFor="period">
+								Input Period
+							</label>
+							<select
+								id="period"
+								className="form-control"
+								value={period}
+								onChange={(e) => {
+									const val = e.target.value as "annual" | "monthly";
+									setPeriod(val);
+									updateUrl({ period: val });
+								}}
+								style={{
+									backgroundColor: "var(--surface-color)",
+									cursor: "pointer",
+								}}
+							>
+								<option value="annual">Annual Income</option>
+								<option value="monthly">Monthly Income</option>
+							</select>
+						</div>
+
+						<div className="form-group">
+							<label className="form-label" htmlFor="income">
+								Taxable Income (PHP)
+							</label>
+							<input
+								type="number"
+								id="income"
+								className="form-control"
+								value={incomeStr}
+								onChange={(e) => {
+									setIncomeStr(e.target.value);
+									updateUrl({ income: e.target.value });
+								}}
+								min="0"
+								step="any"
+							/>
+							<span className="form-hint">
+								Income after deducting mandatory contributions (SSS, PhilHealth,
+								Pag-IBIG).
+							</span>
+						</div>
 					</div>
 
-					<div className="form-group">
-						<label className="form-label" htmlFor="income">
-							Taxable Income (PHP)
-						</label>
-						<input
-							type="number"
-							id="income"
-							className="form-control"
-							value={incomeStr}
-							onChange={(e) => {
-								setIncomeStr(e.target.value);
-								updateUrl({ income: e.target.value });
+					{/* Results Card */}
+					<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								paddingBottom: "8px",
+								color: "var(--primary)",
 							}}
-							min="0"
-							step="any"
-						/>
-						<span className="form-hint">
-							Income after deducting mandatory contributions (SSS, PhilHealth,
-							Pag-IBIG).
-						</span>
+						>
+							Tax Breakdown
+						</h2>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "12px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Annual Taxable Income</span>
+							<span style={{ fontWeight: 600 }}>
+								{formatCurrency(annualIncome)}
+							</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								paddingBottom: "16px",
+								borderBottom: "1px dashed var(--border-color)",
+								fontSize: "14px",
+							}}
+						>
+							<span>Applicable Tax Bracket</span>
+							<span style={{ color: "var(--primary)" }}>{taxBracket}</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Monthly Income Tax</span>
+							<span style={{ color: "#b71c1c" }}>
+								{formatCurrency(monthlyTax)}
+							</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								paddingBottom: "16px",
+								borderBottom: "1px solid var(--border-color)",
+								fontSize: "16px",
+								fontWeight: 600,
+							}}
+						>
+							<span>Total Annual Tax Payable</span>
+							<span style={{ color: "#b71c1c" }}>
+								{formatCurrency(annualTax)}
+							</span>
+						</div>
+
+						<h3
+							style={{
+								fontSize: "14px",
+								color: "var(--text-secondary)",
+								marginBottom: "12px",
+								textTransform: "uppercase",
+								marginTop: "24px",
+							}}
+						>
+							Net Income After Tax
+						</h3>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
+							<span>Monthly Net Income</span>
+							<span>{formatCurrency(netMonthly)}</span>
+						</div>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginTop: "8px",
+								paddingTop: "12px",
+								borderTop: "2px solid var(--border-color)",
+								fontSize: "20px",
+								fontWeight: 700,
+								color: "var(--text-primary)",
+							}}
+						>
+							<span>Annual Net Income</span>
+							<span style={{ color: "#1b5e20" }}>
+								{formatCurrency(netAnnual)}
+							</span>
+						</div>
+
+						{/* Visual Chart */}
+						{mounted && annualIncome > 0 && (
+							<div
+								style={{
+									height: "250px",
+									marginTop: "32px",
+									marginBottom: "8px",
+								}}
+							>
+								<ResponsiveContainer width="100%" height="100%">
+									<PieChart>
+										<Pie
+											data={pieData}
+											cx="50%"
+											cy="50%"
+											innerRadius={60}
+											outerRadius={90}
+											paddingAngle={2}
+											dataKey="value"
+											stroke="none"
+										>
+											{pieData.map((_entry, index) => (
+												<Cell
+													key={`cell-${index}`}
+													fill={COLORS[index % COLORS.length]}
+												/>
+											))}
+										</Pie>
+										<Tooltip
+											formatter={(value) => formatCurrency(Number(value) || 0)}
+											contentStyle={{
+												borderRadius: "8px",
+												border: "none",
+												boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+											}}
+										/>
+										<Legend
+											verticalAlign="bottom"
+											height={36}
+											iconType="circle"
+										/>
+									</PieChart>
+								</ResponsiveContainer>
+							</div>
+						)}
 					</div>
 				</div>
 
-				{/* Results Card */}
-				<div className="card" style={{ backgroundColor: "var(--bg-color)" }}>
-					<h2
-						style={{
-							fontSize: "18px",
-							marginBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							paddingBottom: "8px",
-							color: "var(--primary)",
-						}}
-					>
-						Tax Breakdown
+				{/* SEO Content */}
+				<div
+					style={{
+						marginTop: "48px",
+						paddingTop: "32px",
+						borderTop: "1px solid var(--border-color)",
+						color: "var(--text-primary)",
+					}}
+				>
+					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
+						How Philippine Income Tax is Calculated (2026)
 					</h2>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "12px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Annual Taxable Income</span>
-						<span style={{ fontWeight: 600 }}>
-							{formatCurrency(annualIncome)}
-						</span>
-					</div>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "16px",
-							paddingBottom: "16px",
-							borderBottom: "1px dashed var(--border-color)",
-							fontSize: "14px",
-						}}
-					>
-						<span>Applicable Tax Bracket</span>
-						<span style={{ color: "var(--primary)" }}>{taxBracket}</span>
-					</div>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
-						}}
-					>
-						<span>Monthly Income Tax</span>
-						<span style={{ color: "#b71c1c" }}>
-							{formatCurrency(monthlyTax)}
-						</span>
-					</div>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "16px",
-							paddingBottom: "16px",
-							borderBottom: "1px solid var(--border-color)",
-							fontSize: "16px",
-							fontWeight: 600,
-						}}
-					>
-						<span>Total Annual Tax Payable</span>
-						<span style={{ color: "#b71c1c" }}>
-							{formatCurrency(annualTax)}
-						</span>
-					</div>
+					<p style={{ marginBottom: "16px" }}>
+						In the Philippines, income tax for regular employees is governed by
+						the TRAIN Law (Republic Act No. 10963). The most recent tax brackets
+						went into effect in January 2023 and continue to apply through 2026.
+					</p>
 
 					<h3
 						style={{
-							fontSize: "14px",
-							color: "var(--text-secondary)",
-							marginBottom: "12px",
-							textTransform: "uppercase",
+							fontSize: "18px",
 							marginTop: "24px",
+							marginBottom: "12px",
 						}}
 					>
-						Net Income After Tax
+						The ₱250,000 Tax Exemption
 					</h3>
+					<p style={{ marginBottom: "16px" }}>
+						Every Filipino is entitled to an annual tax exemption of ₱250,000.
+						If your taxable income (gross income minus mandatory deductions like
+						SSS, PhilHealth, and Pag-IBIG) is ₱20,833 per month or less, you do
+						not have to pay any income tax.
+					</p>
 
-					<div
+					<h3
 						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginBottom: "8px",
-							fontSize: "14px",
+							fontSize: "18px",
+							marginTop: "24px",
+							marginBottom: "12px",
 						}}
 					>
-						<span>Monthly Net Income</span>
-						<span>{formatCurrency(netMonthly)}</span>
-					</div>
-
-					<div
-						style={{
-							display: "flex",
-							justifyContent: "space-between",
-							marginTop: "8px",
-							paddingTop: "12px",
-							borderTop: "2px solid var(--border-color)",
-							fontSize: "20px",
-							fontWeight: 700,
-							color: "var(--text-primary)",
-						}}
-					>
-						<span>Annual Net Income</span>
-						<span style={{ color: "#1b5e20" }}>
-							{formatCurrency(netAnnual)}
-						</span>
-					</div>
-
-					{/* Visual Chart */}
-					{mounted && annualIncome > 0 && (
-						<div
-							style={{
-								height: "250px",
-								marginTop: "32px",
-								marginBottom: "8px",
-							}}
-						>
-							<ResponsiveContainer width="100%" height="100%">
-								<PieChart>
-									<Pie
-										data={pieData}
-										cx="50%"
-										cy="50%"
-										innerRadius={60}
-										outerRadius={90}
-										paddingAngle={2}
-										dataKey="value"
-										stroke="none"
-									>
-										{pieData.map((_entry, index) => (
-											<Cell
-												key={`cell-${index}`}
-												fill={COLORS[index % COLORS.length]}
-											/>
-										))}
-									</Pie>
-									<Tooltip
-										formatter={(value) => formatCurrency(Number(value) || 0)}
-										contentStyle={{
-											borderRadius: "8px",
-											border: "none",
-											boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-										}}
-									/>
-									<Legend
-										verticalAlign="bottom"
-										height={36}
-										iconType="circle"
-									/>
-								</PieChart>
-							</ResponsiveContainer>
-						</div>
-					)}
+						8% Flat Rate for Freelancers and Self-Employed
+					</h3>
+					<p style={{ marginBottom: "16px" }}>
+						If you are a freelancer, professional, or self-employed individual
+						whose gross annual sales do not exceed the VAT threshold of
+						₱3,000,000, you have the option to avail of the 8% flat income tax
+						rate. This 8% is applied to your gross receipts in excess of the
+						₱250,000 exemption, in lieu of the graduated tax rates and
+						percentage tax.
+					</p>
 				</div>
 			</div>
-
-			{/* SEO Content */}
-			<div
-				style={{
-					marginTop: "48px",
-					paddingTop: "32px",
-					borderTop: "1px solid var(--border-color)",
-					color: "var(--text-primary)",
-				}}
-			>
-				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					How Philippine Income Tax is Calculated (2026)
-				</h2>
-				<p style={{ marginBottom: "16px" }}>
-					In the Philippines, income tax for regular employees is governed by
-					the TRAIN Law (Republic Act No. 10963). The most recent tax brackets
-					went into effect in January 2023 and continue to apply through 2026.
-				</p>
-
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					The ₱250,000 Tax Exemption
-				</h3>
-				<p style={{ marginBottom: "16px" }}>
-					Every Filipino is entitled to an annual tax exemption of ₱250,000. If
-					your taxable income (gross income minus mandatory deductions like SSS,
-					PhilHealth, and Pag-IBIG) is ₱20,833 per month or less, you do not
-					have to pay any income tax.
-				</p>
-
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					8% Flat Rate for Freelancers and Self-Employed
-				</h3>
-				<p style={{ marginBottom: "16px" }}>
-					If you are a freelancer, professional, or self-employed individual
-					whose gross annual sales do not exceed the VAT threshold of
-					₱3,000,000, you have the option to avail of the 8% flat income tax
-					rate. This 8% is applied to your gross receipts in excess of the
-					₱250,000 exemption, in lieu of the graduated tax rates and percentage
-					tax.
-				</p>
-			</div>
-		</div>
+		</ToolLayout>
 	);
 }
