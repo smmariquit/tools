@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toolCategories } from "../../../lib/routes";
+import ToolIcon from "../../components/ToolIcon";
 
 export default function ToolSearch() {
 	const t = useTranslations("Index");
@@ -203,8 +204,12 @@ export default function ToolSearch() {
 													fontSize: "16px",
 													color: "var(--primary)",
 													marginBottom: "8px",
+													display: "flex",
+													alignItems: "center",
+													gap: "8px",
 												}}
 											>
+												<ToolIcon path={tool.path} />
 												{tool.name}
 											</h3>
 											<p
