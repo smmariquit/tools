@@ -36,13 +36,14 @@ export default function ExpresswayMap({
 	};
 
 	const mapStyle = {
-		backgroundColor: "var(--bg-color)",
+		backgroundColor: "var(--surface-color)",
 		borderRadius: "8px",
-		padding: "16px",
+		padding: "24px",
 		border: "1px solid var(--border-color)",
 		width: "100%",
-		maxWidth: "500px",
-		margin: "0 auto",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
 	};
 
 	const textStyle = {
@@ -63,7 +64,10 @@ export default function ExpresswayMap({
 
 	return (
 		<div style={mapStyle}>
-			<svg viewBox="0 0 400 650" style={{ width: "100%", height: "auto" }}>
+			<svg
+				viewBox="0 0 400 650"
+				style={{ width: "100%", maxWidth: "500px", height: "auto" }}
+			>
 				<defs>
 					<filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
 						<feGaussianBlur stdDeviation="3" result="blur" />
@@ -370,7 +374,7 @@ export default function ExpresswayMap({
 						strokeWidth={getStrokeWidth("CALAX (Cavite-Laguna Expressway)")}
 						strokeLinecap="round"
 					/>
-					<text x="160" y="415" style={{ ...textStyle, fill: "#FBC02D" }}>
+					<text x="145" y="410" style={{ ...textStyle, fill: "#FBC02D" }}>
 						CALAX
 					</text>
 					<g
@@ -390,7 +394,7 @@ export default function ExpresswayMap({
 							stroke="#FBC02D"
 							strokeWidth="2"
 						/>
-						<text x="145" y="445" style={textStyle}>
+						<text x="135" y="445" style={textStyle}>
 							Silang
 						</text>
 					</g>
@@ -411,7 +415,7 @@ export default function ExpresswayMap({
 							stroke="#FBC02D"
 							strokeWidth="2"
 						/>
-						<text x="170" y="425" style={textStyle}>
+						<text x="175" y="455" style={textStyle}>
 							Sta. Rosa
 						</text>
 					</g>
@@ -524,18 +528,6 @@ export default function ExpresswayMap({
 					</g>
 				</g>
 			</svg>
-			<p
-				style={{
-					textAlign: "center",
-					fontSize: "12px",
-					color: "var(--text-secondary)",
-					marginTop: "8px",
-				}}
-			>
-				Click a colored route to select it in the planner.
-				<br />
-				Click nodes (circles) to set Origin and Destination.
-			</p>
 		</div>
 	);
 }

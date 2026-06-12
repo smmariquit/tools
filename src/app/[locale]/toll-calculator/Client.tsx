@@ -152,9 +152,13 @@ export default function TollCalculatorClient() {
 					{/* Interactive Map and Side Panel */}
 					<div
 						className={zoomedExpressway ? "tool-grid-even" : ""}
-						style={{ alignSelf: "stretch", transition: "all 0.3s ease" }}
+						style={{
+							alignSelf: "stretch",
+							transition: "all 0.3s ease",
+							alignItems: "stretch",
+						}}
 					>
-						<div>
+						<div style={{ display: "flex" }}>
 							<ExpresswayMap
 								onSelectExpressway={handleMapSelect}
 								onSelectNode={handleMapNodeSelect}
@@ -167,11 +171,13 @@ export default function TollCalculatorClient() {
 								className="card"
 								style={{
 									padding: "16px",
-									maxHeight: "500px",
+									height: "100%",
+									maxHeight: "650px",
 									overflowY: "auto",
 									display: "flex",
 									flexDirection: "column",
 									animation: "fadeIn 0.3s ease",
+									margin: 0,
 								}}
 							>
 								<div
@@ -279,7 +285,7 @@ export default function TollCalculatorClient() {
 															lineHeight: "1.2",
 														}}
 													>
-														NB & SB Access • ETC Ready
+														Northbound & Southbound Access • ETC Ready
 													</span>
 												</div>
 												<a
