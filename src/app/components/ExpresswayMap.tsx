@@ -223,20 +223,24 @@ export default function ExpresswayMap({
 
 				{/* Skyway */}
 				<g
-					onClick={() => onSelectExpressway("Skyway")}
+					onClick={() => onSelectExpressway("Skyway Stage 3")}
 					style={{ cursor: "pointer", transition: "opacity 0.3s ease" }}
-					opacity={getStrokeOpacity("Skyway")}
+					opacity={getStrokeOpacity("Skyway Stage 3")}
 				>
 					<path
 						d="M 200 300 L 200 380"
 						stroke="#F44336"
-						strokeWidth={getStrokeWidth("Skyway")}
+						strokeWidth={getStrokeWidth("Skyway Stage 3")}
 						strokeLinecap="round"
 					/>
 					<text x="215" y="340" style={{ ...textStyle, fill: "#F44336" }}>
 						Skyway
 					</text>
-					<g onClick={(e) => handleNodeClick(e, "Skyway", "Buendia/Alabang")}>
+					<g
+						onClick={(e) =>
+							handleNodeClick(e, "Skyway Stage 3", "Buendia/Alabang")
+						}
+					>
 						<circle
 							cx="200"
 							cy="380"
