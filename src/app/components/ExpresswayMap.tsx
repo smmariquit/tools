@@ -373,6 +373,69 @@ export default function ExpresswayMap({
 					<text x="150" y="420" style={{ ...textStyle, fill: "#FBC02D" }}>
 						CALAX
 					</text>
+					<g
+						onClick={(e) =>
+							handleNodeClick(
+								e,
+								"CALAX (Cavite-Laguna Expressway)",
+								"Silang (Aguinaldo)",
+							)
+						}
+					>
+						<circle
+							cx="160"
+							cy="430"
+							r="4"
+							fill="#fff"
+							stroke="#FBC02D"
+							strokeWidth="2"
+						/>
+						<text x="145" y="445" style={textStyle}>
+							Silang
+						</text>
+					</g>
+					<g
+						onClick={(e) =>
+							handleNodeClick(
+								e,
+								"CALAX (Cavite-Laguna Expressway)",
+								"Santa Rosa-Tagaytay",
+							)
+						}
+					>
+						<circle
+							cx="180"
+							cy="440"
+							r="4"
+							fill="#fff"
+							stroke="#FBC02D"
+							strokeWidth="2"
+						/>
+						<text x="180" y="430" style={textStyle}>
+							Sta. Rosa
+						</text>
+					</g>
+					<g
+						onClick={(e) =>
+							handleNodeClick(
+								e,
+								"CALAX (Cavite-Laguna Expressway)",
+								"Mamplasan",
+							)
+						}
+					>
+						<circle
+							cx="200"
+							cy="450"
+							r="4"
+							fill="#fff"
+							stroke="#FBC02D"
+							strokeWidth="2"
+						/>
+						<text x="215" y="455" style={textStyle}>
+							Mamplasan
+						</text>
+					</g>
 				</g>
 
 				{/* STAR Tollway */}
