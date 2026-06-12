@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ExpresswayMap from "../../components/ExpresswayMap";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
-import ExpresswayMap from "../../components/ExpresswayMap";
 import { expressways, getTollFee } from "./tollData";
 
 type TripLeg = {
@@ -46,8 +46,8 @@ export default function TollCalculatorClient() {
 	};
 
 	const updateLeg = (id: string, field: keyof TripLeg, value: string) => {
-		setLegs(
-			legs.map((leg) => {
+		setLegs((prevLegs) =>
+			prevLegs.map((leg) => {
 				if (leg.id === id) {
 					const updated = { ...leg, [field]: value };
 					if (field === "expressway") {
@@ -66,10 +66,38 @@ export default function TollCalculatorClient() {
 	};
 
 	const handleMapSelect = (name: string) => {
-		// Update the last leg with the selected expressway
 		if (legs.length > 0) {
 			updateLeg(legs[legs.length - 1].id, "expressway", name);
 		}
+	};
+
+	const handleMapNodeSelect = (expresswayName: string, nodeName: string) => {
+		if (legs.length === 0) return;
+		setLegs((prevLegs) => {
+			const newLegs = [...prevLegs];
+			const lastLegIndex = newLegs.length - 1;
+			const lastLeg = { ...newLegs[lastLegIndex] };
+
+			if (lastLeg.expressway !== expresswayName) {
+				lastLeg.expressway = expresswayName;
+				lastLeg.origin = nodeName;
+				lastLeg.destination = "";
+			} else {
+				if (lastLeg.origin && lastLeg.destination) {
+					lastLeg.origin = nodeName;
+					lastLeg.destination = "";
+				} else if (lastLeg.origin && !lastLeg.destination) {
+					if (lastLeg.origin !== nodeName) {
+						lastLeg.destination = nodeName;
+					}
+				} else {
+					lastLeg.origin = nodeName;
+					lastLeg.destination = "";
+				}
+			}
+			newLegs[lastLegIndex] = lastLeg;
+			return newLegs;
+		});
 	};
 
 	let totalToll = 0;
@@ -114,9 +142,10 @@ export default function TollCalculatorClient() {
 				<div className="tool-grid" style={{ marginTop: "24px" }}>
 					{/* Interactive Map */}
 					<div style={{ alignSelf: "start" }}>
-						<ExpresswayMap 
-							onSelectExpressway={handleMapSelect} 
-							selectedExpressway={legs[legs.length - 1]?.expressway} 
+						<ExpresswayMap
+							onSelectExpressway={handleMapSelect}
+							onSelectNode={handleMapNodeSelect}
+							selectedExpressway={legs[legs.length - 1]?.expressway}
 						/>
 					</div>
 

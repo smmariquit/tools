@@ -156,7 +156,6 @@ export default function FuelCostClient() {
 										backgroundColor: "var(--bg-color)",
 										borderRadius: "12px",
 										width: "100%",
-										width: "100%",
 										padding: "24px",
 										position: "relative",
 										maxHeight: "90vh",

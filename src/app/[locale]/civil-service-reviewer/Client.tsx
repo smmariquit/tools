@@ -20,13 +20,13 @@ export default function CivilServiceClient() {
 		setSelectedOption(index);
 		setShowExplanation(true);
 		if (index === currentQuestion.answer) {
-			setScore(s => s + 1);
+			setScore((s) => s + 1);
 		}
 	};
 
 	const handleNext = () => {
 		if (currentIndex < QUESTION_BANK.length - 1) {
-			setCurrentIndex(i => i + 1);
+			setCurrentIndex((i) => i + 1);
 			setSelectedOption(null);
 			setShowExplanation(false);
 		} else {
@@ -48,24 +48,57 @@ export default function CivilServiceClient() {
 				title="Civil Service Exam Reviewer"
 				subtitle="Offline-capable mock exams and flashcards. Progress is saved locally on your device."
 			/>
-			
+
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
-				<div style={{ display: "flex", flexDirection: "column", gap: "24px", gridColumn: "1 / -1", width: "100%", margin: "0 auto", width: "100%" }}>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "24px",
+						gridColumn: "1 / -1",
+						width: "100%",
+						margin: "0 auto",
+					}}
+				>
 					<div className="card">
 						{!isFinished ? (
 							<>
-								<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", color: "var(--text-secondary)", fontSize: "14px" }}>
-									<span>Question {currentIndex + 1} of {QUESTION_BANK.length}</span>
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "space-between",
+										marginBottom: "16px",
+										color: "var(--text-secondary)",
+										fontSize: "14px",
+									}}
+								>
+									<span>
+										Question {currentIndex + 1} of {QUESTION_BANK.length}
+									</span>
 									<span>Score: {score}</span>
 								</div>
-								
-								<h2 style={{ fontSize: "20px", marginBottom: "24px", color: "var(--primary)" }}>{currentQuestion.question}</h2>
 
-								<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+								<h2
+									style={{
+										fontSize: "20px",
+										marginBottom: "24px",
+										color: "var(--primary)",
+									}}
+								>
+									{currentQuestion.question}
+								</h2>
+
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										gap: "12px",
+									}}
+								>
 									{currentQuestion.options.map((opt, idx) => {
 										let bgColor = "var(--bg-color)";
 										let borderColor = "var(--border-color)";
-										
+
 										if (showExplanation) {
 											if (idx === currentQuestion.answer) {
 												bgColor = "rgba(16, 185, 129, 0.1)";
@@ -92,7 +125,7 @@ export default function CivilServiceClient() {
 													backgroundColor: bgColor,
 													cursor: showExplanation ? "default" : "pointer",
 													fontSize: "16px",
-													transition: "all 0.2s"
+													transition: "all 0.2s",
 												}}
 											>
 												{opt}
@@ -102,25 +135,56 @@ export default function CivilServiceClient() {
 								</div>
 
 								{showExplanation && (
-									<div style={{ marginTop: "24px", padding: "16px", backgroundColor: "rgba(13, 71, 161, 0.05)", borderRadius: "8px" }}>
-										<strong style={{ color: "var(--primary)", display: "block", marginBottom: "8px" }}>Explanation:</strong>
-										<p style={{ fontSize: "14px", lineHeight: 1.5 }}>{currentQuestion.explanation}</p>
-										
-										<button 
-											className="btn btn-primary" 
+									<div
+										style={{
+											marginTop: "24px",
+											padding: "16px",
+											backgroundColor: "rgba(13, 71, 161, 0.05)",
+											borderRadius: "8px",
+										}}
+									>
+										<strong
+											style={{
+												color: "var(--primary)",
+												display: "block",
+												marginBottom: "8px",
+											}}
+										>
+											Explanation:
+										</strong>
+										<p style={{ fontSize: "14px", lineHeight: 1.5 }}>
+											{currentQuestion.explanation}
+										</p>
+
+										<button
+											className="btn btn-primary"
 											onClick={handleNext}
 											style={{ marginTop: "16px", width: "100%" }}
 										>
-											{currentIndex < QUESTION_BANK.length - 1 ? "Next Question" : "Finish Mock Exam"}
+											{currentIndex < QUESTION_BANK.length - 1
+												? "Next Question"
+												: "Finish Mock Exam"}
 										</button>
 									</div>
 								)}
 							</>
 						) : (
 							<div style={{ textAlign: "center", padding: "32px 16px" }}>
-								<h2 style={{ fontSize: "24px", marginBottom: "16px", color: "var(--primary)" }}>Mock Exam Complete!</h2>
-								<p style={{ fontSize: "18px", marginBottom: "32px" }}>Your Score: {score} / {QUESTION_BANK.length}</p>
-								<button className="btn btn-primary" onClick={reset}>Retake Exam</button>
+								<h2
+									style={{
+										fontSize: "24px",
+										marginBottom: "16px",
+										color: "var(--primary)",
+									}}
+								>
+									Mock Exam Complete!
+								</h2>
+								<p style={{ fontSize: "18px", marginBottom: "32px" }}>
+									Your Score: {score} / {QUESTION_BANK.length}
+								</p>
+								<button className="btn btn-primary" onClick={reset}>
+									Retake Exam
+								</button>
 							</div>
 						)}
 					</div>
