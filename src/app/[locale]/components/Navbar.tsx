@@ -16,6 +16,10 @@ export default function Navbar() {
 	const pathname = usePathname();
 	const [query, setQuery] = useState("");
 
+	useEffect(() => {
+		if (pathname) setIsOpen(false);
+	}, [pathname]);
+
 	return (
 		<header
 			style={{
@@ -85,6 +89,7 @@ export default function Navbar() {
 								const qs = encodeURIComponent(query.trim());
 								if (qs.length)
 									router.push(`${localePrefix}/search?query=${qs}`);
+								setIsOpen(false);
 							}}
 							style={{ marginRight: "12px" }}
 						>
