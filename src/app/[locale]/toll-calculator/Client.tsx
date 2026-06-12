@@ -14,6 +14,28 @@ type TripLeg = {
 	destination: string;
 };
 
+const getWikiUrl = (expresswayName: string) => {
+	if (expresswayName.includes("NLEX"))
+		return "https://en.wikipedia.org/wiki/North_Luzon_Expressway";
+	if (expresswayName.includes("SLEX"))
+		return "https://en.wikipedia.org/wiki/South_Luzon_Expressway";
+	if (expresswayName.includes("Skyway"))
+		return "https://en.wikipedia.org/wiki/Skyway_(Metro_Manila)";
+	if (expresswayName.includes("TPLEX"))
+		return "https://en.wikipedia.org/wiki/Tarlac%E2%80%93Pangasinan%E2%80%93La_Union_Expressway";
+	if (expresswayName.includes("CAVITEX"))
+		return "https://en.wikipedia.org/wiki/Manila%E2%80%93Cavite_Expressway";
+	if (expresswayName.includes("NAIAX"))
+		return "https://en.wikipedia.org/wiki/NAIA_Expressway";
+	if (expresswayName.includes("CALAX"))
+		return "https://en.wikipedia.org/wiki/Cavite%E2%80%93Laguna_Expressway";
+	if (expresswayName.includes("STAR"))
+		return "https://en.wikipedia.org/wiki/Southern_Tagalog_Arterial_Road";
+	if (expresswayName.includes("CCLEX"))
+		return "https://en.wikipedia.org/wiki/Cebu%E2%80%93Cordova_Link_Expressway";
+	return "https://en.wikipedia.org/wiki/Philippine_expressway_network";
+};
+
 export default function TollCalculatorClient() {
 	const [vehicleClass, setVehicleClass] = useState<
 		"class1" | "class2" | "class3"
@@ -289,7 +311,7 @@ export default function TollCalculatorClient() {
 													</span>
 												</div>
 												<a
-													href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(`${exit} exit ${zoomedExpressway}`)}`}
+													href={getWikiUrl(zoomedExpressway)}
 													target="_blank"
 													rel="noreferrer"
 													style={{
