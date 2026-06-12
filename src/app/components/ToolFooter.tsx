@@ -523,8 +523,6 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 				borderTop: "1px solid var(--border-color)",
 				paddingTop: "32px",
 				paddingBottom: "32px",
-				maxWidth: "800px",
-				margin: "48px auto 0 auto",
 			}}
 		>
 			<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>

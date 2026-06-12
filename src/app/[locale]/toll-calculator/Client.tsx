@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
+import ExpresswayMap from "../../components/ExpresswayMap";
 import { expressways, getTollFee } from "./tollData";
 
 type TripLeg = {
@@ -64,6 +65,13 @@ export default function TollCalculatorClient() {
 		);
 	};
 
+	const handleMapSelect = (name: string) => {
+		// Update the last leg with the selected expressway
+		if (legs.length > 0) {
+			updateLeg(legs[legs.length - 1].id, "expressway", name);
+		}
+	};
+
 	let totalToll = 0;
 	const computedLegs = legs.map((leg) => {
 		const fee =
@@ -81,8 +89,8 @@ export default function TollCalculatorClient() {
 	};
 
 	return (
-		<ToolLayout>
-			<div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+		<ToolLayout maxWidth="1200px">
+			<div>
 				<div style={{ marginBottom: "24px" }}>
 					<Link
 						href="/"
@@ -104,6 +112,14 @@ export default function TollCalculatorClient() {
 				<AdBanner dataAdSlot="toll-top" />
 
 				<div className="tool-grid" style={{ marginTop: "24px" }}>
+					{/* Interactive Map */}
+					<div style={{ alignSelf: "start" }}>
+						<ExpresswayMap 
+							onSelectExpressway={handleMapSelect} 
+							selectedExpressway={legs[legs.length - 1]?.expressway} 
+						/>
+					</div>
+
 					{/* Input Card */}
 					<div className="card" style={{ alignSelf: "start" }}>
 						<div
