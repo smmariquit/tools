@@ -149,17 +149,164 @@ export default function TollCalculatorClient() {
 						gap: "24px",
 					}}
 				>
-					{/* Interactive Map */}
-					<div style={{ alignSelf: "stretch" }}>
-						<ExpresswayMap
-							onSelectExpressway={handleMapSelect}
-							onSelectNode={handleMapNodeSelect}
-							selectedExpressway={legs[legs.length - 1]?.expressway}
-						/>
+					{/* Interactive Map and Side Panel */}
+					<div
+						className={zoomedExpressway ? "tool-grid-even" : ""}
+						style={{ alignSelf: "stretch", transition: "all 0.3s ease" }}
+					>
+						<div>
+							<ExpresswayMap
+								onSelectExpressway={handleMapSelect}
+								onSelectNode={handleMapNodeSelect}
+								selectedExpressway={legs[legs.length - 1]?.expressway}
+							/>
+						</div>
+
+						{zoomedExpressway && (
+							<div
+								className="card"
+								style={{
+									padding: "16px",
+									maxHeight: "500px",
+									overflowY: "auto",
+									display: "flex",
+									flexDirection: "column",
+									animation: "fadeIn 0.3s ease",
+								}}
+							>
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "space-between",
+										alignItems: "center",
+										marginBottom: "12px",
+										borderBottom: "1px solid var(--border-color)",
+										paddingBottom: "8px",
+									}}
+								>
+									<h2 style={{ margin: 0, fontSize: "16px" }}>
+										{zoomedExpressway} Exits
+									</h2>
+									<button
+										type="button"
+										className="btn-secondary"
+										onClick={() => setZoomedExpressway(null)}
+										style={{
+											fontSize: "12px",
+											padding: "4px 8px",
+											display: "flex",
+											alignItems: "center",
+											gap: "4px",
+										}}
+									>
+										<svg
+											width="14"
+											height="14"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										>
+											<line x1="18" y1="6" x2="6" y2="18"></line>
+											<line x1="6" y1="6" x2="18" y2="18"></line>
+										</svg>
+										Close
+									</button>
+								</div>
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										gap: "8px",
+									}}
+								>
+									{expressways
+										.find((e) => e.name === zoomedExpressway)
+										?.exits.map((exit, index) => (
+											<div
+												key={exit}
+												style={{
+													display: "flex",
+													alignItems: "flex-start",
+													gap: "12px",
+													padding: "8px",
+													backgroundColor: "var(--bg-color)",
+													borderRadius: "6px",
+													border: "1px solid var(--border-color)",
+												}}
+											>
+												<div
+													style={{
+														width: "20px",
+														height: "20px",
+														borderRadius: "50%",
+														backgroundColor: "var(--primary)",
+														color: "white",
+														display: "flex",
+														justifyContent: "center",
+														alignItems: "center",
+														fontSize: "10px",
+														fontWeight: "bold",
+														flexShrink: 0,
+														marginTop: "2px",
+													}}
+												>
+													{index + 1}
+												</div>
+												<div
+													style={{
+														flex: 1,
+														display: "flex",
+														flexDirection: "column",
+														gap: "2px",
+													}}
+												>
+													<span
+														style={{
+															fontWeight: 600,
+															fontSize: "14px",
+															lineHeight: "1.2",
+														}}
+													>
+														{exit}
+													</span>
+													<span
+														style={{
+															fontSize: "11px",
+															color: "var(--text-secondary)",
+															lineHeight: "1.2",
+														}}
+													>
+														NB & SB Access • ETC Ready
+													</span>
+												</div>
+												<a
+													href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(`${exit} exit ${zoomedExpressway}`)}`}
+													target="_blank"
+													rel="noreferrer"
+													style={{
+														fontSize: "11px",
+														color: "var(--primary)",
+														textDecoration: "none",
+														backgroundColor: "rgba(0,122,255,0.1)",
+														padding: "4px 8px",
+														borderRadius: "4px",
+														whiteSpace: "nowrap",
+													}}
+												>
+													Wiki ↗
+												</a>
+											</div>
+										))}
+								</div>
+							</div>
+						)}
 					</div>
 
 					{/* Input Card */}
-					<div className="card" style={{ alignSelf: "start" }}>
+					<div className="card" style={{ alignSelf: "stretch" }}>
 						<div
 							style={{
 								display: "flex",
@@ -507,157 +654,6 @@ export default function TollCalculatorClient() {
 					</div>
 				</div>
 			</div>
-			{zoomedExpressway && (
-				<div
-					style={{
-						position: "fixed",
-						top: 0,
-						left: 0,
-						width: "100%",
-						height: "100%",
-						backgroundColor: "rgba(0,0,0,0.5)",
-						zIndex: 1000,
-						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
-					<div
-						style={{
-							backgroundColor: "var(--bg-color)",
-							padding: "24px",
-							borderRadius: "8px",
-							width: "90%",
-							maxWidth: "500px",
-							maxHeight: "80vh",
-							overflowY: "auto",
-							border: "1px solid var(--border-color)",
-							boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-						}}
-					>
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-between",
-								alignItems: "center",
-								marginBottom: "16px",
-								borderBottom: "1px solid var(--border-color)",
-								paddingBottom: "12px",
-							}}
-						>
-							<h2 style={{ margin: 0, fontSize: "20px" }}>
-								{zoomedExpressway} Exits
-							</h2>
-							<button
-								type="button"
-								className="btn-secondary"
-								onClick={() => setZoomedExpressway(null)}
-								style={{
-									fontSize: "14px",
-									padding: "6px 12px",
-									display: "flex",
-									alignItems: "center",
-									gap: "6px",
-								}}
-							>
-								<svg
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								>
-									<line x1="18" y1="6" x2="6" y2="18"></line>
-									<line x1="6" y1="6" x2="18" y2="18"></line>
-								</svg>
-								Close
-							</button>
-						</div>
-						<div
-							style={{ display: "flex", flexDirection: "column", gap: "12px" }}
-						>
-							{expressways
-								.find((e) => e.name === zoomedExpressway)
-								?.exits.map((exit, index) => (
-									<div
-										key={exit}
-										style={{
-											display: "flex",
-											alignItems: "center",
-											gap: "16px",
-											padding: "8px",
-											backgroundColor: "var(--bg-color-alt)",
-											borderRadius: "6px",
-										}}
-									>
-										<div
-											style={{
-												width: "24px",
-												height: "24px",
-												borderRadius: "50%",
-												backgroundColor: "var(--primary)",
-												color: "white",
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-												fontSize: "12px",
-												fontWeight: "bold",
-												flexShrink: 0,
-											}}
-										>
-											{index + 1}
-										</div>
-										<div
-											style={{
-												flex: 1,
-												display: "flex",
-												flexDirection: "column",
-											}}
-										>
-											<span style={{ fontWeight: 600 }}>
-												{exit} Interchange
-											</span>
-											<span
-												style={{
-													fontSize: "12px",
-													color: "var(--text-secondary)",
-												}}
-											>
-												Direction: Northbound & Southbound Access
-											</span>
-											<span
-												style={{
-													fontSize: "12px",
-													color: "var(--text-secondary)",
-												}}
-											>
-												Status: Active • Electronic Toll Collection (ETC) Ready
-											</span>
-										</div>
-										<a
-											href={`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(exit + " exit " + zoomedExpressway)}`}
-											target="_blank"
-											rel="noreferrer"
-											style={{
-												fontSize: "12px",
-												color: "var(--primary)",
-												textDecoration: "none",
-												backgroundColor: "rgba(0,122,255,0.1)",
-												padding: "4px 8px",
-												borderRadius: "4px",
-											}}
-										>
-											Wikipedia ↗
-										</a>
-									</div>
-								))}
-						</div>
-					</div>
-				</div>
-			)}
 		</ToolLayout>
 	);
 }
