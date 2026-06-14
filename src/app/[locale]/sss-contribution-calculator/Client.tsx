@@ -636,45 +636,7 @@ export default function SSSCalculator() {
 					</button>
 				</div>
 
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					For Private Employees
-				</h3>
-				<ul
-					style={{
-						paddingLeft: "24px",
-						marginBottom: "16px",
-						lineHeight: "1.6",
-					}}
-				>
-					<li>
-						<strong>Employee Share:</strong> 5% of your MSC is deducted from
-						your salary.
-					</li>
-					<li>
-						<strong>Employer Share:</strong> 10% of your MSC is paid by your
-						employer.
-					</li>
-					<li>
-						<strong>EC Fee:</strong> Your employer also pays the Employees&apos;
-						Compensation (EC) fee, which is ₱10 for MSCs below ₱15,000, and ₱30
-						for MSCs ₱15,000 and above.
-					</li>
-				</ul>
 
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					The Mandatory Provident Fund (MPF / WISP)
-				</h3>
-				<p style={{ marginBottom: "16px" }}>
-					Also known as the Workers&apos; Investment and Savings Program (WISP),
-					the MPF is an automatic retirement savings program for members with a
-					Monthly Salary Credit exceeding ₱20,000. Any portion of your MSC
-					between ₱20,000 and the ₱35,000 ceiling goes directly into this fund,
-					which earns tax-free dividends.
-				</p>
 			</div>
 		</ToolLayout>
 	);

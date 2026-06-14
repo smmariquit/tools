@@ -494,46 +494,7 @@ export default function PagIbigClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How Does MP2 Work?
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						The Modified Pag-IBIG II (MP2) Savings Program is a voluntary
-						savings facility with a 5-year maturity, designed for active
-						Pag-IBIG Fund members who wish to save more and earn higher tax-free
-						dividends than the regular Pag-IBIG Savings Program.
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>Tax-Free:</strong> All dividends earned are 100% tax-free.
-							You don&apos;t pay the standard 20% withholding tax applied to
-							bank deposits.
-						</li>
-						<li>
-							<strong>Government Guaranteed:</strong> Your principal is fully
-							guaranteed by the Philippine government.
-						</li>
-						<li>
-							<strong>Compound Interest:</strong> If you choose to have
-							dividends paid at the end of the 5-year term, your money compounds
-							annually, growing exponentially.
-						</li>
-					</ul>
-				</div>
+
 			</div>
 		</ToolLayout>
 	);
