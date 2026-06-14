@@ -263,49 +263,8 @@ export default function AmilyarClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How is Amilyar (Real Property Tax) Computed?
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						In the Philippines, <em>Amilyar</em> is governed by the Local
-						Government Code of 1991. The computation involves a three-step
-						formula:
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>Step 1 (Assessed Value):</strong> Fair Market Value ×
-							Assessment Level (e.g., 20% for residential).
-						</li>
-						<li>
-							<strong>Step 2 (Basic Tax):</strong> Assessed Value × RPT Rate (1%
-							for provinces, 2% for Metro Manila).
-						</li>
-						<li>
-							<strong>Step 3 (SEF):</strong> Assessed Value × 1% Special
-							Education Fund.
-						</li>
-					</ul>
-					<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-						Note: Local Government Units (LGUs) often offer up to a 20% discount
-						if you pay your Amilyar in full on or before January 31 of the
-						taxable year. This calculator shows the undiscounted base amount.
-					</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

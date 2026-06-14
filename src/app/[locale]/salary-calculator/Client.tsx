@@ -507,46 +507,7 @@ export default function SalaryCalculator({
 				</div>
 			)}
 
-			{/* SEO Content */}
-			<div
-				style={{
-					marginTop: "48px",
-					paddingTop: "32px",
-					borderTop: "1px solid var(--border-color)",
-					color: "var(--text-primary)",
-				}}
-			>
-				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					{t("seoTitle")}
-				</h2>
-				<p style={{ marginBottom: "16px" }}>{t("seoDesc")}</p>
 
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					{t("seoGovtTitle")}
-				</h3>
-				<ul
-					style={{
-						paddingLeft: "24px",
-						marginBottom: "16px",
-						lineHeight: "1.6",
-					}}
-				>
-					<li dangerouslySetInnerHTML={{ __html: t.raw("seoGovtSSS") }} />
-					<li
-						dangerouslySetInnerHTML={{ __html: t.raw("seoGovtPhilHealth") }}
-					/>
-					<li dangerouslySetInnerHTML={{ __html: t.raw("seoGovtPagibig") }} />
-				</ul>
-
-				<h3
-					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
-				>
-					{t("seoTaxTitle")}
-				</h3>
-				<p style={{ marginBottom: "16px" }}>{t("seoTaxDesc")}</p>
-			</div>
 		</ToolLayout>
 	);
 }

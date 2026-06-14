@@ -378,52 +378,8 @@ export default function EcommerceFeeClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How are Seller Fees Computed?
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						Selling online in the Philippines involves several layers of fees.
-						If you don&apos;t price your products correctly, you might end up
-						losing money.
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>Transaction Fee (2.24%):</strong> Charged by the payment
-							gateways. This is applied to the <em>Total Order Amount</em> (Item
-							Price + Shipping Fee). Yes, you pay a fee on the shipping cost!
-						</li>
-						<li>
-							<strong>Commission Fee (3% - 5%):</strong> Charged by
-							Shopee/Lazada for using their platform. Rate varies by product
-							category.
-						</li>
-						<li>
-							<strong>Program Fees (3% - 6%):</strong> If you join Free Shipping
-							Special (FSS) or Coins Cashback (CCB), the platform takes an extra
-							percentage from your item price.
-						</li>
-					</ul>
-					<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-						Note: Fees are subject to 12% VAT (already factored into the 2.24%
-						and 5.6% estimates above). Actual rates may slightly vary based on
-						your seller tier (Mall, Preferred, or Non-Preferred) and category.
-					</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

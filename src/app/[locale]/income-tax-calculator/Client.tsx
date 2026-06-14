@@ -398,59 +398,8 @@ export default function IncomeTaxCalculator() {
 					</div>
 				</div>
 
-				{/* SEO Content */}
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How Philippine Income Tax is Calculated (2026)
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						In the Philippines, income tax for regular employees is governed by
-						the TRAIN Law (Republic Act No. 10963). The most recent tax brackets
-						went into effect in January 2023 and continue to apply through 2026.
-					</p>
-
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						The ₱250,000 Tax Exemption
-					</h3>
-					<p style={{ marginBottom: "16px" }}>
-						Every Filipino is entitled to an annual tax exemption of ₱250,000.
-						If your taxable income (gross income minus mandatory deductions like
-						SSS, PhilHealth, and Pag-IBIG) is ₱20,833 per month or less, you do
-						not have to pay any income tax.
-					</p>
-
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						8% Flat Rate for Freelancers and Self-Employed
-					</h3>
-					<p style={{ marginBottom: "16px" }}>
-						If you are a freelancer, professional, or self-employed individual
-						whose gross annual sales do not exceed the VAT threshold of
-						₱3,000,000, you have the option to avail of the 8% flat income tax
-						rate. This 8% is applied to your gross receipts in excess of the
-						₱250,000 exemption, in lieu of the graduated tax rates and
-						percentage tax.
-					</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

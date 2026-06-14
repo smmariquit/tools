@@ -335,48 +335,7 @@ export default function PagibigRoiClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						Analyzing Pag-IBIG Acquired Assets
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						Pag-IBIG foreclosed properties offer great opportunities for
-						investors, but you must factor in the "hidden costs" of real estate
-						investing in the Philippines.
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>&quot;As-Is, Where-Is&quot;:</strong> Pag-IBIG sells
-							properties in their current physical condition. Always inspect the
-							property with a contractor to estimate repair costs accurately.
-						</li>
-						<li>
-							<strong>Rental Yield Target:</strong> In the Philippines, a good
-							gross rental yield is generally between <strong>6% to 8%</strong>.
-							If your yield is below 5%, it might be better to flip it or put
-							the money in Pag-IBIG MP2 instead.
-						</li>
-						<li>
-							<strong>Flipping Taxes:</strong> When you sell a property, you are
-							legally required to pay a 6% Capital Gains Tax (CGT) based on the
-							Gross Selling Price or Zonal Value (whichever is higher). You also
-							typically pay a 5% commission to a licensed real estate broker.
-						</li>
-					</ul>
-				</div>
+
 			</div>
 		</ToolLayout>
 	);

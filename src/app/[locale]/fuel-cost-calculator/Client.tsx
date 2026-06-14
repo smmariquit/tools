@@ -398,44 +398,8 @@ export default function FuelCostClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How to compute Fuel Consumption
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						The math behind fuel expenses is straightforward. Just divide the
-						total distance by your car&apos;s efficiency, then multiply by the
-						price of gas.
-					</p>
-					<div
-						style={{
-							padding: "16px",
-							backgroundColor: "var(--surface-color)",
-							borderRadius: "var(--border-radius-md)",
-							border: "1px solid var(--border-color)",
-							marginBottom: "16px",
-							fontFamily: "monospace",
-							textAlign: "center",
-							fontSize: "16px",
-						}}
-					>
-						(Distance in km ÷ Efficiency in km/L) × Price per Liter
-					</div>
-					<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-						Note: Traffic congestion in Metro Manila can heavily reduce your
-						km/L efficiency. If driving in heavy traffic, adjust your efficiency
-						number downwards (e.g., from 12 km/L to 7 km/L) for a more accurate
-						cost estimate.
-					</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

@@ -231,55 +231,8 @@ export default function ThirteenthMonthClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						{t("howComputedTitle")}
-					</h2>
-					<p
-						style={{ marginBottom: "16px" }}
-						dangerouslySetInnerHTML={{ __html: t.raw("howComputedDesc") }}
-					/>
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						{t("exclusionsTitle")}
-					</h3>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>{t("exclusion1")}</li>
-						<li>{t("exclusion2")}</li>
-						<li>{t("exclusion3")}</li>
-						<li>{t("exclusion4")}</li>
-						<li>{t("exclusion5")}</li>
-					</ul>
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						{t("taxabilityTitle")}
-					</h3>
-					<p style={{ marginBottom: "16px" }}>{t("taxabilityDesc")}</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

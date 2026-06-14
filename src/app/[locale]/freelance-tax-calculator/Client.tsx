@@ -400,50 +400,8 @@ export default function FreelanceTaxClient() {
 					</div>
 				)}
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						Freelancing Taxes & Fees
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						Earning in USD looks great until the platform fees, conversion
-						spreads, and BIR taxes eat into your take-home pay. Here is what you
-						need to know:
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>Upwork Fees:</strong> As of 2023, Upwork charges a flat
-							10% fee on all contracts, regardless of lifetime billings.
-						</li>
-						<li>
-							<strong>Forex Spread:</strong> Direct-to-Local-Bank transfers
-							usually have a spread of ₱0.50 to ₱1.00 lower than the real-time
-							Google rate. Using Wise or Payoneer can sometimes yield better
-							rates.
-						</li>
-						<li>
-							<strong>BIR 8% Tax:</strong> If you registered with the BIR as a
-							professional under the 8% gross receipt tax rate, you don&apos;t
-							deduct expenses. You simply pay 8% of your gross PHP income (Note:
-							the first ₱250,000 of your annual income is exempt, but this
-							calculator shows the flat 8% monthly set-aside for conservative
-							budgeting).
-						</li>
-					</ul>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

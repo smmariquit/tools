@@ -329,76 +329,8 @@ export default function HolidayClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						DOLE Holiday Pay Rules
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						In the Philippines, the Department of Labor and Employment (DOLE)
-						strictly mandates how holiday pay is computed. The rules depend on
-						whether the holiday is a <strong>Regular Holiday</strong> or a{" "}
-						<strong>Special Non-Working Day</strong>.
-					</p>
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						Regular Holidays
-					</h3>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>If unworked: You receive 100% of your daily wage.</li>
-						<li>
-							If worked (first 8 hours): You receive 200% of your daily wage.
-						</li>
-						<li>
-							If worked on your rest day: You receive 260% of your daily wage.
-						</li>
-					</ul>
-					<h3
-						style={{
-							fontSize: "18px",
-							marginTop: "24px",
-							marginBottom: "12px",
-						}}
-					>
-						Special Non-Working Days
-					</h3>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							If unworked: &quot;No Work, No Pay&quot; principle applies (unless
-							company policy states otherwise).
-						</li>
-						<li>
-							If worked (first 8 hours): You receive 130% of your daily wage.
-						</li>
-						<li>
-							If worked on your rest day: You receive 150% of your daily wage.
-						</li>
-					</ul>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+

@@ -254,46 +254,8 @@ export default function LtoPenaltyClient() {
 					</div>
 				</div>
 
-				<div
-					style={{
-						marginTop: "48px",
-						paddingTop: "32px",
-						borderTop: "1px solid var(--border-color)",
-						color: "var(--text-primary)",
-					}}
-				>
-					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						How LTO Computes Late Penalties
-					</h2>
-					<p style={{ marginBottom: "16px" }}>
-						The Land Transportation Office (LTO) computes your penalty based on
-						your <strong>Motor Vehicle User&apos;s Charge (MVUC)</strong>. This
-						is the base registration fee of your vehicle.
-					</p>
-					<ul
-						style={{
-							paddingLeft: "24px",
-							marginBottom: "16px",
-							lineHeight: "1.6",
-						}}
-					>
-						<li>
-							<strong>Late by 1 week to 12 months:</strong> 50% flat penalty
-							surcharge on top of the MVUC.
-						</li>
-						<li>
-							<strong>Delinquent beyond 1 year:</strong> 50% surcharge + 50%
-							additional penalty for every year of delinquency.
-						</li>
-					</ul>
-					<p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-						Note: This calculator provides an estimate of your MVUC renewal and
-						penalty fees. It does not include the cost of CTPL Insurance,
-						Emission Testing (PETC), or other localized LTO surcharges. Verify
-						with `lto.gov.ph`.
-					</p>
-				</div>
-			</div>
+							</div>
 		</ToolLayout>
 	);
 }
+
