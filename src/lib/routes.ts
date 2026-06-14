@@ -46,7 +46,6 @@ export const toolCategories = [
 			},
 			{
 				name: "SSS Maternity Benefit Calculator",
-				path: "/sss-maternity-calculator",
 				desc: "Calculate your 105-day Expanded Maternity Leave cash benefit based on your SSS contributions.",
 				priority: 0.9,
 			},

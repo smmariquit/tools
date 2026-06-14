@@ -184,6 +184,15 @@ export default async function RootLayout({
 														Help & FAQs
 													</Link>
 													<Link
+														href="/editorial-policy"
+														style={{
+															color: "var(--text-secondary)",
+															fontSize: "14px",
+														}}
+													>
+														Editorial Policy
+													</Link>
+													<Link
 														href="/contact"
 														style={{
 															color: "var(--text-secondary)",

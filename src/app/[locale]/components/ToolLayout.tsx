@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import ToolFooter from "../../components/ToolFooter";
+import PrintButton from "../../components/PrintButton";
 
 type ToolLayoutProps = {
 	children: React.ReactNode;
@@ -14,6 +15,9 @@ export default function ToolLayout({ children, maxWidth = "800px" }: ToolLayoutP
 	return (
 		<div style={{ maxWidth, margin: "0 auto", width: "100%" }}>
 			{children}
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <PrintButton />
+            </div>
 			<ToolFooter currentPath={currentPath} />
 		</div>
 	);

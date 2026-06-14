@@ -283,3 +283,13 @@ h6 {
 		justify-content: center;
 	}
 }
+
+@media print {
+  nav, footer, .print-button, .sidebar, .related-tools {
+    display: none !important;
+  }
+  body, .main-content {
+    background: white !important;
+    color: black !important;
+  }
+}

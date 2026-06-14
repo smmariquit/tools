@@ -28,7 +28,7 @@ export default function AuthorBio() {
                     Written by Simonee Ezekiel Mariquit
                 </h4>
                 <p style={{ margin: "0 0 8px 0", fontSize: "0.9rem", color: "var(--text-secondary, #666)" }}>
-                    Lead Developer & Researcher | Computer Science, UPLB
+                    Lead Developer & Researcher | Computer Science, UPLB | Accountancy, Business, and Management (ABM) Scholar
                 </p>
                 <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
                     <span style={{ 
