@@ -16,11 +16,11 @@ export default function ToolSearch() {
 		.map((category) => {
 			const filteredItems = category.items
 				.map((item) => {
-					const key = item.path.replace("/", "");
-					const localizedName = tRoutes.has(`${key}.name`)
+					const key = item.path ? item.path.replace("/", "") : "";
+					const localizedName = key && tRoutes.has(`${key}.name`)
 						? tRoutes(`${key}.name`)
 						: item.name;
-					const localizedDesc = tRoutes.has(`${key}.desc`)
+					const localizedDesc = key && tRoutes.has(`${key}.desc`)
 						? tRoutes(`${key}.desc`)
 						: item.desc;
 					return { ...item, name: localizedName, desc: localizedDesc };
