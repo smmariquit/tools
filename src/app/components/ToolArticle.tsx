@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPostBySlug } from "../../lib/mdx";
+import AuthorBio from "./AuthorBio";
 import AdBanner from "../../app/[locale]/components/AdBanner";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +9,32 @@ export default function ToolArticle({ slug }: { slug: string }) {
     if (!slug) return null;
     try {
         const { content } = getPostBySlug(slug);
+
+        const faqRegex = /###\s+(.+?)\n([^#]+)/g;
+        let match;
+        const faqEntities = [];
+        
+        while ((match = faqRegex.exec(content)) !== null) {
+            const question = match[1].trim();
+            const answer = match[2].trim();
+            if (question && answer) {
+                faqEntities.push({
+                    "@type": "Question",
+                    "name": question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": answer
+                    }
+                });
+            }
+        }
+
+        const faqSchema = faqEntities.length > 0 ? {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqEntities
+        } : null;
+
         const components = {
             AdBanner: (props: any) => <AdBanner {...props} />,
             ToolEmbed: () => null,
@@ -138,6 +165,14 @@ export default function ToolArticle({ slug }: { slug: string }) {
                             Read the complete guide to understand the formulas, legal basis, and rules applied in the calculator above.
                         </p>
                     </div>
+                    
+                    {faqSchema && (
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                        />
+                    )}
+                    <AuthorBio />
                     <div className="mdx-content">
                         <MDXRemote source={content} components={components} />
                     </div>
