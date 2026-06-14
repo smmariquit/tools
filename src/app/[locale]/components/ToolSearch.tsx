@@ -10,7 +10,7 @@ export default function ToolSearch() {
 	const t = useTranslations("Index");
 	const tRoutes = useTranslations("Routes");
 	const [query, setQuery] = useState("");
-	const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+	const [viewMode, setViewMode] = useState<"list" | "grid">("grid");
 
 	const filteredCategories = toolCategories
 		.map((category) => {

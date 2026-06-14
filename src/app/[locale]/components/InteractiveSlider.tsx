@@ -47,15 +47,7 @@ export default function InteractiveSlider({
 				>
 					{label}
 				</label>
-				<span
-					style={{
-						fontSize: "16px",
-						fontWeight: 700,
-						color: "var(--primary)",
-					}}
-				>
-					{formatValue ? formatValue(value) : value.toLocaleString()}
-				</span>
+
 			</div>
 
 			<div
