@@ -238,6 +238,7 @@ h6 {
 	font-size: 14px;
 	font-weight: 500;
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 .nav-link:hover {
