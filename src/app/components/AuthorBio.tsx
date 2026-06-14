@@ -18,8 +18,8 @@ export default function AuthorBio() {
                 <Image 
                     src="/images/author.jpg" 
                     alt="Simonee Ezekiel Mariquit" 
-                    width={80} 
-                    height={80} 
+                    width={56} 
+                    height={56} 
                     style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid var(--primary, #0d47a1)" }}
                 />
             </div>
@@ -39,7 +39,7 @@ export default function AuthorBio() {
                         borderRadius: "12px",
                         fontWeight: "bold"
                     }}>
-                        ✓ Fact-Checked by PHTools Editorial
+                        ✓ Mathematically Verified
                     </span>
                     <span style={{ fontSize: "0.8rem", color: "var(--text-secondary, #666)" }}>
                         Last Updated: June 2026
