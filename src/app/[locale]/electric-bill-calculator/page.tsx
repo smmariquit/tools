@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export const metadata: Metadata = {
 	title: "Electric Bill Estimator (Meralco Rate) | PHTools",
@@ -49,6 +50,7 @@ export default function ElectricBillPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="meralco-electric-bill-guide" />
 			</Suspense>
 		</>
 	);

@@ -373,7 +373,7 @@ export default function HomeLoanCalculator() {
 					<TipCard
 						title={t("refinancingTitle")}
 						description={t("refinancingDesc")}
-						icon="💡"
+						icon=""
 					/>
 				</div>
 			</div>

@@ -14,7 +14,7 @@ interface TipCardProps {
 export default function TipCard({
 	title,
 	description,
-	icon = "💡",
+	icon = "",
 	type = "info",
 	style,
 	children,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Legal Contract Generator | Philippine Templates";
@@ -18,6 +19,7 @@ export default function LegalContractPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="legal-contract-guide" />
 		</>
 	);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export const metadata: Metadata = {
 	title: "Expressway Toll Calculator (Skyway, SLEX) | PHTools",
@@ -49,6 +50,7 @@ export default function TollCalculatorPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="philippine-toll-fees-guide" />
 			</Suspense>
 		</>
 	);

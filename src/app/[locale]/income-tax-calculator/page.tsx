@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	searchParams,
@@ -105,6 +106,7 @@ export default async function IncomeTaxPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="income-tax-brackets-2026" />
 			</Suspense>
 		</>
 	);

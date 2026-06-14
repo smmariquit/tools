@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "De Minimis Tax Savings Calculator | Philippines";
@@ -41,6 +42,7 @@ export default function DeMinimisCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolArticle slug="de-minimis-benefits-guide" />
 		</>
 	);
 }

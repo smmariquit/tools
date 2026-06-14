@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "PhilHealth Late Contribution Penalty Estimator";
@@ -18,6 +19,7 @@ export default function PhilhealthLatePage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="philhealth-late-contribution-guide" />
 		</>
 	);
 }

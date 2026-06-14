@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Philippine Influencer & Talent Rate Calculator";
@@ -18,6 +19,7 @@ export default function InfluencerRatePage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="influencer-rate-guide" />
 		</>
 	);
 }

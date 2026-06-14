@@ -509,7 +509,7 @@
 		"resultsTitle": "Resulta ng Board Exam",
 		"averageLabel": "General Average",
 		"statusLabel": "Status",
-		"passed": "PASSED! 🎉",
+		"passed": "PASSED! ",
 		"failed": "FAILED",
 		"conditioned": "CONDITIONED (May bumagsak na subject)",
 		"failingSubjectsTitle": "Mga subject na mababa sa minimum:",

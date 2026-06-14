@@ -658,7 +658,7 @@ export default function BudgetCalculator() {
 								color: "var(--primary)",
 							}}
 						>
-							💡 {t("howItWorksTitle")}
+							 {t("howItWorksTitle")}
 						</h3>
 						<p
 							style={{

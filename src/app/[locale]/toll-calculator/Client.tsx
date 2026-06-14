@@ -324,7 +324,7 @@ export default function TollCalculatorClient() {
 														whiteSpace: "nowrap",
 													}}
 												>
-													Wiki ↗
+													Wiki 
 												</a>
 											</div>
 										))}
@@ -432,7 +432,7 @@ export default function TollCalculatorClient() {
 														gap: "4px",
 													}}
 												>
-													🔍 Route Details
+													 Route Details
 												</button>
 											</div>
 											<select

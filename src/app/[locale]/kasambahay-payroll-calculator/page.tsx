@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Kasambahay Monthly Contribution & Payroll Calculator";
@@ -18,6 +19,7 @@ export default function KasambahayPayrollPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="kasambahay-payroll-guide" />
 		</>
 	);
 }

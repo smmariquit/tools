@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Pro-Rated 13th Month & Final Pay Calculator";
@@ -18,6 +19,7 @@ export default function FinalPayPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="final-pay-guide" />
 		</>
 	);
 }

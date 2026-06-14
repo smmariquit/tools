@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Year-End Tax Refund Estimator | Philippines";
@@ -18,6 +19,7 @@ export default function TaxRefundPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="tax-refund-guide" />
 		</>
 	);
 }

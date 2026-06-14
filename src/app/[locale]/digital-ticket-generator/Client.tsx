@@ -69,7 +69,7 @@ export default function DigitalTicketClient() {
 						}}>
 							{/* Placeholder for actual QR code rendering library */}
 							<div style={{ padding: "16px", textAlign: "center" }}>
-								<div style={{ fontSize: "48px", marginBottom: "8px" }}>🎟️</div>
+								<div style={{ fontSize: "48px", marginBottom: "8px" }}>️</div>
 								<div style={{ fontSize: "12px", fontWeight: "bold" }}>QR Code Target</div>
 							</div>
 						</div>

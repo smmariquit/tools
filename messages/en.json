@@ -509,7 +509,7 @@
 		"resultsTitle": "Board Exam Result",
 		"averageLabel": "General Average",
 		"statusLabel": "Status",
-		"passed": "PASSED! 🎉",
+		"passed": "PASSED! ",
 		"failed": "FAILED",
 		"conditioned": "CONDITIONED (Subject below minimum)",
 		"failingSubjectsTitle": "Subjects below passing grade:",

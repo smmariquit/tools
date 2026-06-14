@@ -130,7 +130,7 @@ export default function LatinHonorsClient() {
 								lineHeight: 1.2,
 							}}
 						>
-							{hasHonor ? `🎓 ${honor}` : t("noHonor")}
+							{hasHonor ? ` ${honor}` : t("noHonor")}
 						</strong>
 					</div>
 

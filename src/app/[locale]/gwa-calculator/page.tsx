@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import GwaCalculatorClient from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export const metadata = {
 	title: "UP / PUP GWA Calculator | Target Grade Predictor",

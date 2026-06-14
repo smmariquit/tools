@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Invoice Factoring & Discount Calculator | Philippines";
@@ -18,6 +19,7 @@ export default function InvoiceFactoringPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="invoice-factoring-guide" />
 		</>
 	);
 }

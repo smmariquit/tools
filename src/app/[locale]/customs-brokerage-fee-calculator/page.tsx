@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title =
@@ -42,6 +43,7 @@ export default function CustomsBrokerageCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolArticle slug="customs-brokerage-fee-guide" />
 		</>
 	);
 }

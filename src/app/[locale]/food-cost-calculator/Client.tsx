@@ -197,7 +197,7 @@ export default function FoodCostCalculatorClient() {
 					{/* Recipe Details */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span>📝</span> 1. Recipe Details
+							<span></span> 1. Recipe Details
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 200px" }}>
@@ -227,10 +227,10 @@ export default function FoodCostCalculatorClient() {
 					<div className="card">
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
 							<h2 style={{ fontSize: "18px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
-								<span>🛒</span> 2. Ingredients Costing
+								<span></span> 2. Ingredients Costing
 							</h2>
 							<button className="btn-secondary" style={{ padding: "6px 12px", fontSize: "14px", display: "flex", alignItems: "center", gap: "4px" }} onClick={addIngredient}>
-								<span>➕</span> Add Item
+								<span></span> Add Item
 							</button>
 						</div>
 						
@@ -297,7 +297,7 @@ export default function FoodCostCalculatorClient() {
 					{/* Additional Costs */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span>🧑‍🍳</span> 3. Labor & Overhead (Per Batch)
+							<span>‍</span> 3. Labor & Overhead (Per Batch)
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
@@ -314,7 +314,7 @@ export default function FoodCostCalculatorClient() {
 					{/* PH Pricing Adjustments */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span>🇵🇭</span> 4. Philippines Taxes & Fees
+							<span></span> 4. Philippines Taxes & Fees
 						</h2>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
@@ -358,9 +358,9 @@ export default function FoodCostCalculatorClient() {
 					<div className="card" style={{ backgroundColor: "var(--bg-color)", position: "sticky", top: "100px" }}>
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "12px" }}>
 							<h2 style={{ fontSize: "20px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
-								<span>📊</span> Costing Summary
+								<span></span> Costing Summary
 							</h2>
-							{isLoaded && <span style={{ fontSize: "12px", color: "var(--text-secondary)", backgroundColor: "var(--surface-color)", padding: "4px 8px", borderRadius: "12px", border: "1px solid var(--border-color)" }}>💾 Auto-saved</span>}
+							{isLoaded && <span style={{ fontSize: "12px", color: "var(--text-secondary)", backgroundColor: "var(--surface-color)", padding: "4px 8px", borderRadius: "12px", border: "1px solid var(--border-color)" }}> Auto-saved</span>}
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>

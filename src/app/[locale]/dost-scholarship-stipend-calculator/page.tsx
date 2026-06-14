@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
 import DOSTScholarshipStipendClient from "./Client";
 import { getTranslations } from "next-intl/server";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
 	const t = await getTranslations({ locale, namespace: "DOSTScholarshipStipend" });

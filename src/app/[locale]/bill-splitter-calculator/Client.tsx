@@ -175,7 +175,7 @@ export default function BillSplitterClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							📱 {t("sendViaLabel")}
+							 {t("sendViaLabel")}
 						</strong>
 						<p
 							style={{

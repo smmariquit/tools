@@ -120,7 +120,7 @@ export default function PhilHealthClient() {
 									gap: "6px",
 								}}
 							>
-								<span>⚠️</span> Below ₱10,000 floor — minimum premium of ₱500
+								<span>️</span> Below ₱10,000 floor — minimum premium of ₱500
 								applies
 							</div>
 						)}
@@ -139,7 +139,7 @@ export default function PhilHealthClient() {
 									gap: "6px",
 								}}
 							>
-								<span>ℹ️</span> Above ₱100,000 ceiling — maximum premium of
+								<span>️</span> Above ₱100,000 ceiling — maximum premium of
 								₱5,000 applies
 							</div>
 						)}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Architectural Fee Calculator (UAP SPP 202) | Philippines";
@@ -41,6 +42,7 @@ export default function ArchitecturalFeePage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
+			<ToolArticle slug="architectural-fee-guide" />
 		</>
 	);
 }

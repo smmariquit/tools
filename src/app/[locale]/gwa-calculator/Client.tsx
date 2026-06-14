@@ -288,7 +288,7 @@ export default function GwaCalculatorClient() {
 											marginTop: "8px",
 										}}
 									>
-										🌟 University Scholar (US) Tier!
+										 University Scholar (US) Tier!
 									</p>
 								)}
 								{gwa !== null && gwa > 1.2 && gwa <= 1.75 && (
@@ -299,7 +299,7 @@ export default function GwaCalculatorClient() {
 											marginTop: "8px",
 										}}
 									>
-										✨ College Scholar (CS) Tier!
+										 College Scholar (CS) Tier!
 									</p>
 								)}
 								{gwa !== null && gwa > 3.0 && (

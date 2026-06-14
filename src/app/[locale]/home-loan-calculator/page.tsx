@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	searchParams,
@@ -88,6 +89,7 @@ export default async function HomeLoanCalculatorPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="philippine-home-loan-guide-bank-comparison" />
 			</Suspense>
 		</>
 	);

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "GoTrade vs IBKR Wise Fee Calculator";
@@ -18,6 +19,7 @@ export default function GotradeIbkrPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="gotrade-vs-ibkr-guide" />
 		</>
 	);
 }

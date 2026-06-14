@@ -218,7 +218,7 @@ export default function DFAAgeClient() {
 										marginBottom: "4px",
 									}}
 								>
-									⚠️ {t("statusMinor")}
+									️ {t("statusMinor")}
 								</strong>
 								<span
 									style={{ fontSize: "13px", color: "var(--text-secondary)" }}
@@ -243,7 +243,7 @@ export default function DFAAgeClient() {
 										marginBottom: "4px",
 									}}
 								>
-									✅ {t("statusAdult")}
+									 {t("statusAdult")}
 								</strong>
 								<span
 									style={{ fontSize: "13px", color: "var(--text-secondary)" }}
@@ -270,7 +270,7 @@ export default function DFAAgeClient() {
 										marginBottom: "4px",
 									}}
 								>
-									🎓 {t("statusPRC")}
+									 {t("statusPRC")}
 								</strong>
 								<span
 									style={{ fontSize: "13px", color: "var(--text-secondary)" }}
@@ -297,7 +297,7 @@ export default function DFAAgeClient() {
 										marginBottom: "4px",
 									}}
 								>
-									🧓 {t("statusSenior")}
+									 {t("statusSenior")}
 								</strong>
 								<span
 									style={{ fontSize: "13px", color: "var(--text-secondary)" }}

@@ -330,7 +330,7 @@ export default function BpoCalculator() {
 								fontWeight: 600,
 							}}
 						>
-							ℹ️ What is Night Differential?
+							️ What is Night Differential?
 						</h3>
 						<p
 							style={{

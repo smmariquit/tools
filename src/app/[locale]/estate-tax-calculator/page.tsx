@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Philippine Estate Tax Calculator";
@@ -18,6 +19,7 @@ export default function EstateTaxPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="estate-tax-guide" />
 		</>
 	);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	searchParams,
@@ -123,6 +124,7 @@ export default async function EcommerceFeePage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="shopee-lazada-seller-fees-explained" />
 			</Suspense>
 		</>
 	);

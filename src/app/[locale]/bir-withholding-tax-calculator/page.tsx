@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import BIRWithholdingTaxClient from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },

@@ -227,7 +227,7 @@ export default function MotorcycleLoanClient() {
 								color: "#e65100",
 							}}
 						>
-							⚠️ {t("warningTitle")}
+							️ {t("warningTitle")}
 						</strong>
 						<p
 							style={{

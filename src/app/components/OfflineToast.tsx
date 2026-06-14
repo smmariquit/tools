@@ -55,7 +55,7 @@ export default function OfflineToast() {
 					}
 				`}
 			</style>
-			<span>🚀</span>
+			<span></span>
 			<span style={{ whiteSpace: "nowrap" }}>Ready for offline use.</span>
 			<button
 				type="button"

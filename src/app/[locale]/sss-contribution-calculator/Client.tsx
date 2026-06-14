@@ -564,7 +564,7 @@ export default function SSSCalculator() {
 															fontWeight: 800,
 														}}
 													>
-														▶
+														
 													</span>
 												)}
 												{label}

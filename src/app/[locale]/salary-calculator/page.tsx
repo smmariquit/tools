@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { computeSalary } from "../../../lib/salaryLogic";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	searchParams,
@@ -75,6 +76,7 @@ export default async function SalaryCalculatorPage(props: {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client initialSalary={initialSalary} />
+			<ToolArticle slug="salary-tax-deductions-guide" />
 		</>
 	);
 }

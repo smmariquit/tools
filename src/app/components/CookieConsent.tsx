@@ -47,7 +47,7 @@ export default function CookieConsent() {
 					<strong
 						style={{ fontSize: "15px", display: "block", marginBottom: "6px" }}
 					>
-						🍪 Cookies on PHTools
+						 Cookies on PHTools
 					</strong>
 					<p
 						style={{

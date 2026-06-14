@@ -98,7 +98,7 @@ export default function Home() {
 							boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
 						}}
 					>
-						🔧 {allToolPaths.length} Tools Available
+						 {allToolPaths.length} Tools Available
 					</div>
 				</div>
 			</div>

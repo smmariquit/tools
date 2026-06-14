@@ -11,7 +11,7 @@ export default function TrustBadge({ year, lastReviewed, message }: { year: numb
 			borderRadius: "8px",
 			marginBottom: "24px"
 		}}>
-			<span style={{ fontSize: "20px" }}>🟢</span>
+			<span style={{ fontSize: "20px" }}></span>
 			<div>
 				<strong style={{ display: "block", color: "#065f46", fontSize: "14px", marginBottom: "4px" }}>
 					Verified Active for {year}

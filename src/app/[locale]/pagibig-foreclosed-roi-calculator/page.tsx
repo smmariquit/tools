@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	searchParams,
@@ -108,6 +109,7 @@ export default async function PagibigRoiPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="pagibig-foreclosed-property-roi" />
 			</Suspense>
 		</>
 	);

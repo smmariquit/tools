@@ -131,7 +131,7 @@ export default function FuelCostClient() {
 								}}
 								onClick={() => setShowMapModal(true)}
 							>
-								📍 Open Map to Select Route
+								 Open Map to Select Route
 							</button>
 						</div>
 
@@ -246,17 +246,17 @@ export default function FuelCostClient() {
 								<option value="">
 									-- Custom Efficiency / Enter Manually --
 								</option>
-								<option value="25">🏍️ Motorcycle (150cc) - ~25 km/L</option>
+								<option value="25">️ Motorcycle (150cc) - ~25 km/L</option>
 								<option value="15">
-									🚗 Small Hatchback (Wigo, Brio) - ~15 km/L
+									 Small Hatchback (Wigo, Brio) - ~15 km/L
 								</option>
 								<option value="12">
-									🚙 Compact Sedan (Vios, City) - ~12 km/L
+									 Compact Sedan (Vios, City) - ~12 km/L
 								</option>
 								<option value="9">
-									🛻 Mid-size SUV (Fortuner, Montero) - ~9 km/L
+									 Mid-size SUV (Fortuner, Montero) - ~9 km/L
 								</option>
-								<option value="7">🚐 Large Van (Hiace, Urvan) - ~7 km/L</option>
+								<option value="7"> Large Van (Hiace, Urvan) - ~7 km/L</option>
 							</select>
 						</div>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export const metadata: Metadata = {
 	title: "Free ID Photo Maker (1x1, 2x2, Passport) | PHTools",
@@ -49,6 +50,7 @@ export default function IDPhotoMakerPage() {
 				}
 			>
 				<Client />
+			<ToolArticle slug="id-picture-size-guide-philippines" />
 			</Suspense>
 		</>
 	);

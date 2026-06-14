@@ -1,0 +1,100 @@
+5af5b33 HEAD@{0}: commit: fix: Expand max width for all side-by-side tool-grid calculators
+baa84dd HEAD@{1}: reset: moving to HEAD
+baa84dd HEAD@{2}: reset: moving to HEAD
+baa84dd HEAD@{3}: commit: fix: Remove duplicate ToolFooter from page.tsx files since ToolLayout now handles it
+d728f91 HEAD@{4}: commit: feat: Add ExpresswayMap to toll-calculator and fix horizontal UX drift across layouts
+a7a50c0 HEAD@{5}: reset: moving to HEAD
+a7a50c0 HEAD@{6}: reset: moving to HEAD
+a7a50c0 HEAD@{7}: commit: fix: Wrap 15 remaining Client components with ToolLayout safely
+bfd0acf HEAD@{8}: reset: moving to HEAD~1
+556f03f HEAD@{9}: commit: fix: Wrap all remaining Client components with ToolLayout so ToolFooter and citations render correctly
+bfd0acf HEAD@{10}: reset: moving to HEAD
+bfd0acf HEAD@{11}: reset: moving to HEAD
+bfd0acf HEAD@{12}: commit: fix: Ensure all tools have deep-linked sources and citations in the ToolFooter
+1d269c7 HEAD@{13}: reset: moving to HEAD
+1d269c7 HEAD@{14}: reset: moving to HEAD
+1d269c7 HEAD@{15}: reset: moving to HEAD
+1d269c7 HEAD@{16}: reset: moving to HEAD
+1d269c7 HEAD@{17}: reset: moving to HEAD
+1d269c7 HEAD@{18}: reset: moving to HEAD
+1d269c7 HEAD@{19}: reset: moving to HEAD
+1d269c7 HEAD@{20}: reset: moving to HEAD
+1d269c7 HEAD@{21}: reset: moving to HEAD
+1d269c7 HEAD@{22}: reset: moving to HEAD
+1d269c7 HEAD@{23}: reset: moving to HEAD
+1d269c7 HEAD@{24}: reset: moving to HEAD
+1d269c7 HEAD@{25}: reset: moving to HEAD
+1d269c7 HEAD@{26}: reset: moving to HEAD
+1d269c7 HEAD@{27}: reset: moving to HEAD
+1d269c7 HEAD@{28}: reset: moving to HEAD
+1d269c7 HEAD@{29}: reset: moving to HEAD
+1d269c7 HEAD@{30}: commit: feat: Add list/grid view toggle and update FAQ with privacy info
+d2dfe7e HEAD@{31}: commit: fix: ToolLayout import path
+c310687 HEAD@{32}: commit: feat: add ads.txt for Google AdSense
+33a8a99 HEAD@{33}: reset: moving to HEAD
+33a8a99 HEAD@{34}: reset: moving to HEAD
+33a8a99 HEAD@{35}: reset: moving to HEAD
+33a8a99 HEAD@{36}: commit: docs: auto-update README state and support link
+47a8412 HEAD@{37}: commit: chore: add stale issue and PR validators
+b08801f HEAD@{38}: commit: chore: add github templates and linter
+804c6d1 HEAD@{39}: commit: feat: display tool count in OpenGraph and hero, switch to list view
+fd8f7c5 HEAD@{40}: commit: feat: implement Batch 3 Gaming & Esports tools (Roblox & Web3) with SEO guides
+c1e1b73 HEAD@{41}: commit: fix: make production builds offline-safe and optimize accessibility
+549d2cc HEAD@{42}: reset: moving to HEAD
+549d2cc HEAD@{43}: reset: moving to HEAD
+549d2cc HEAD@{44}: commit: feat: add massive liability disclaimers to B2B tools
+5298bcc HEAD@{45}: commit: feat: add Batch 2 of Gaming Utilities (Valorant, Dota 2, eDPI)
+3a46561 HEAD@{46}: commit: feat: add Batch 1 of Gaming Utilities (MLBB, CODM, Genshin)
+166c948 HEAD@{47}: commit: chore: audit project, import 100 civil service questions, fix footer mappings
+89134a9 HEAD@{48}: commit: feat: add 4 Zombie Web utility clones (CSE, Legal, Invoice, QR Ticket)
+0c82782 HEAD@{49}: commit: feat: add 3 new PH crypto tools (Spread, P2P, Tax)
+649c1ae HEAD@{50}: commit: feat: add 4 new calculators (PDIC, RTB, PhilHealth Late, Shipping)
+1ca04a3 HEAD@{51}: commit: feat: add 7 new high-utility SEO calculators
+d6791ee HEAD@{52}: commit: feat: add Architectural Fee and Customs Brokerage Fee calculators
+c3aaef3 HEAD@{53}: commit: feat: add De Minimis, LTO, and SSS Maternity calculators
+e3f2ff9 HEAD@{54}: commit: feat: add E-E-A-T trust signals (badge, privacy, attestation) to components
+ca1ae96 HEAD@{55}: commit: feat: add localstorage save and visual flair to food cost calculator
+129382e HEAD@{56}: commit: feat: add food costing calculator with VAT and senior discount
+9d3aa70 HEAD@{57}: reset: moving to HEAD
+9d3aa70 HEAD@{58}: reset: moving to HEAD
+9d3aa70 HEAD@{59}: commit: fix(honors): update PUP cutoffs and add missing blog stubs
+a1cbc17 HEAD@{60}: commit (amend): fix: move search bar into main-nav to fix mobile view
+471c04e HEAD@{61}: commit (amend): fix: move search bar into main-nav to fix mobile view
+a08eaeb HEAD@{62}: commit: fix: move search bar into main-nav to fix mobile view
+2a12074 HEAD@{63}: commit: feat: updates toll calculator, navbar, accessibility, routes and i18n
+65e8f89 HEAD@{64}: commit: fix: wrap all useSearchParams in Suspense and resolve build errors
+6a5596a HEAD@{65}: reset: moving to HEAD
+6a5596a HEAD@{66}: reset: moving to HEAD
+6a5596a HEAD@{67}: commit: feat: add client-side search bar to landing page
+1c8eae2 HEAD@{68}: commit: feat: added motor loan, bir wt, and prc board rating calculators
+706b0c5 HEAD@{69}: commit: feat: SEO utilities (DFA Age & GCash Bill Splitter) & fix vercel build issues
+8e7998d HEAD@{70}: commit: fix: resolve ts error in adbanner
+d382dfc HEAD@{71}: commit: feat: add Pag-IBIG Housing Loan Affordability Calculator
+4c8e2bf HEAD@{72}: commit: feat: add Freelance Hourly Rate Calculator
+c0cf206 HEAD@{73}: commit: feat: add SSS Maternity Benefit and Separation Pay Calculators
+d7c848e HEAD@{74}: reset: moving to HEAD
+d7c848e HEAD@{75}: reset: moving to HEAD
+d7c848e HEAD@{76}: commit: feat: add DOLE-compliant Overtime and Holiday Pay Calculator with unit tests
+6615ebe HEAD@{77}: commit: docs: generate 5 missing SEO-optimized MDX blog articles for backpay, sss pension, tax optimizer, digital banks, and pag-ibig
+e1a7f4a HEAD@{78}: commit: feat: add Pag-IBIG MP2 Dividend Calculator with compounded and annual payout simulations
+f55068a HEAD@{79}: commit: fix: resolve TS error with recharts tooltip formatter type
+d84ead8 HEAD@{80}: commit: feat: add SSS Retirement Pension Calculator with 100% test coverage
+9cef6dc HEAD@{81}: commit: test: add remaining unit tests for bpo, budget, car loan, home loan, and pag-ibig roi to reach 100% logic coverage
+292dc37 HEAD@{82}: commit: test: add unit tests for backpay and tax optimizer logic
+aa986ad HEAD@{83}: commit: feat: add 8% vs Graduated Tax Optimizer for freelancers and businesses with i18n support
+eb41351 HEAD@{84}: commit: feat: add Backpay and Final Pay calculator with dynamic pie charts and i18n support
+6159cc8 HEAD@{85}: reset: moving to HEAD
+6159cc8 HEAD@{86}: reset: moving to HEAD
+6159cc8 HEAD@{87}: commit: style: fix budget calculator mobile expenses layout
+a29aead HEAD@{88}: commit: chore: fix typescript errors for vercel build
+e865bbd HEAD@{89}: reset: moving to HEAD
+e865bbd HEAD@{90}: reset: moving to HEAD
+e865bbd HEAD@{91}: reset: moving to HEAD
+e865bbd HEAD@{92}: reset: moving to HEAD
+e865bbd HEAD@{93}: reset: moving to HEAD
+e865bbd HEAD@{94}: reset: moving to HEAD
+e865bbd HEAD@{95}: reset: moving to HEAD
+e865bbd HEAD@{96}: reset: moving to HEAD
+e865bbd HEAD@{97}: reset: moving to HEAD
+e865bbd HEAD@{98}: reset: moving to HEAD
+e865bbd HEAD@{99}: commit: style: maximize desktop screen real estate to 1200px max-width

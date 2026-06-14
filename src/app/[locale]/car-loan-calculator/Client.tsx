@@ -282,7 +282,7 @@ export default function CarLoanCalculator() {
 									marginBottom: "8px",
 								}}
 							>
-								💰 {t("bankSavingsTitle")}
+								 {t("bankSavingsTitle")}
 							</h3>
 							<p
 								style={{
@@ -483,7 +483,7 @@ export default function CarLoanCalculator() {
 								color: "var(--primary)",
 							}}
 						>
-							💡 {t("bankVsInhouseTitle")}
+							 {t("bankVsInhouseTitle")}
 						</h3>
 						<p
 							style={{

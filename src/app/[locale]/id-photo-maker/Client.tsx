@@ -188,7 +188,7 @@ export default function IDPhotoMaker() {
 									}}
 									onClick={() => fileInputRef.current?.click()}
 								>
-									<span style={{ fontSize: "20px" }}>📁</span>
+									<span style={{ fontSize: "20px" }}></span>
 									Upload Photo
 								</button>
 								<button
@@ -204,7 +204,7 @@ export default function IDPhotoMaker() {
 									}}
 									onClick={() => cameraInputRef.current?.click()}
 								>
-									<span style={{ fontSize: "20px" }}>📷</span>
+									<span style={{ fontSize: "20px" }}></span>
 									Take Photo
 								</button>
 							</div>
@@ -228,8 +228,8 @@ export default function IDPhotoMaker() {
 									disabled={isRemovingBg}
 								>
 									{isRemovingBg
-										? "✨ Removing Background (Please wait)..."
-										: "✨ Remove Background (AI)"}
+										? " Removing Background (Please wait)..."
+										: " Remove Background (AI)"}
 								</button>
 							)}
 						</div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Client from "./Client";
+import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const title = "Retail Treasury Bond (RTB) Yield Estimator | Philippines";
@@ -18,6 +19,7 @@ export default function RtbPage() {
 	return (
 		<>
 			<Client />
+			<ToolArticle slug="retail-treasury-bond-guide" />
 		</>
 	);
 }
