@@ -266,6 +266,12 @@ export const toolCategories = [
 		category: "Loans, Housing & Real Estate",
 		items: [
 			{
+				name: "BIR Zonal Value & Real Estate Tax Engine",
+				path: "/zonal-value-calculator",
+				desc: "Calculate Capital Gains Tax and DST instantly using our massive database of street-level BIR Zonal Values.",
+				priority: 0.95,
+			},
+			{
 				name: "Car Loan & Amortization Calculator",
 				path: "/car-loan-calculator",
 				desc: "Compare bank vs in-house auto loans, down payment, and monthly amortization.",
