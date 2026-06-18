@@ -529,7 +529,7 @@ export const doodles: Record<string, ReactNode> = {
 			{spark(210, 132, 6, "s")}
 		</>
 	),
-	"/legal-contract-generator": (
+	"/promissory-note-generator": (
 		<>
 			{doc(96, 44, 84, 104, "d")}
 			<path d="M150 122l34-36 10 10-34 36-14 4z" />

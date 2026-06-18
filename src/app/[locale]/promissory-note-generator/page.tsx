@@ -11,7 +11,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const t = await getTranslations({
 		locale,
-		namespace: "LegalContractGenerator",
+		namespace: "PromissoryNoteGenerator",
 	});
 	const title = t("metaTitle");
 	const description = t("metaDescription");
@@ -20,7 +20,7 @@ export async function generateMetadata({
 		description,
 		openGraph: {
 			images: ogImages({
-				tool: "legal-contract-generator",
+				tool: "promissory-note-generator",
 				title,
 				desc: description,
 			}),
@@ -28,7 +28,7 @@ export async function generateMetadata({
 	};
 }
 
-export default function LegalContractPage() {
+export default function PromissoryNotePage() {
 	return (
 		<>
 			<Client />

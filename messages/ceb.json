@@ -465,9 +465,9 @@
       "name": "Civil Service Exam Reviewer",
       "desc": "Offline-capable nga mock exams para sa Philippine Civil Service Exam (CSE)."
     },
-    "legal-contract-generator": {
-      "name": "Legal Contract Generator",
-      "desc": "Paghimo og standard nga Philippine legal documents sa luwas nga paagi."
+    "promissory-note-generator": {
+      "name": "Promissory Note Generator",
+      "desc": "Paghimo og Philippine promissory note / simpleng loan agreement (utang) sa luwas nga paagi."
     },
     "invoice-factoring-calculator": {
       "name": "Invoice Factoring & Discount Calculator",
@@ -1891,11 +1891,11 @@
     "downloadBtn": "I-download ang Ready-to-Print nga Image",
     "alertRemoveBgFailed": "Wala makuha ang background. Sulayi ang laing photo."
   },
-  "LegalContractGenerator": {
-    "metaTitle": "Generator sa Legal Contract | Mga Template sa Pilipinas",
-    "metaDescription": "Paghimo og standard nga Philippine legal documents (Lease Agreements, Promissory Notes) nga secure sa imong browser.",
-    "title": "Generator sa Legal Contract",
-    "subtitle": "Paghimo og standard nga Philippine legal documents (pananglitan Promissory Note) nga secure sa imong browser. Walay data nga gi-save sa server.",
+  "PromissoryNoteGenerator": {
+    "metaTitle": "Promissory Note Generator | Philippine Loan Agreement",
+    "metaDescription": "Paghimo og Philippine promissory note / simpleng loan agreement (utang) nga secure sa imong browser. Walay data nga gi-save sa server.",
+    "title": "Promissory Note Generator",
+    "subtitle": "Paghimo og Philippine promissory note / simpleng loan agreement nga secure sa imong browser. Walay data nga gi-save sa server.",
     "disclaimerTitle": "IMPORTANTENG LEGAL DISCLAIMER",
     "disclaimerP1": "Kini nga tool para ra sa <strong>educational ug drafting purposes</strong>. Dili kini legal advice, ug dili kini maghimo og attorney-client relationship.",
     "disclaimerP2": "Ang developers sa PHTools <strong>walay bisan unsang tulubagon</strong> sa validity, enforceability, o resulta sa paggamit sa bisan unsang dokumento nga gihimo niini nga tool. Kanunay nga mausab ang mga balaod ug regulasyon, busa kinahanglan ka mokonsulta sa lisensyadong Philippine attorney (Notary Public) aron masiguro nga pasado ang dokumento sa tanang legal requirements sa dili pa kini i-execute.",

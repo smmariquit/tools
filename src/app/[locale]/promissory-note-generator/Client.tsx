@@ -5,8 +5,8 @@ import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
-export default function LegalContractClient() {
-	const t = useTranslations("LegalContractGenerator");
+export default function PromissoryNoteClient() {
+	const t = useTranslations("PromissoryNoteGenerator");
 	const [lender, setLender] = useState("Juan Dela Cruz");
 	const [borrower, setBorrower] = useState("Maria Clara");
 	const [amount, setAmount] = useState(50000);

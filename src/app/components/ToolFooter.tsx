@@ -228,7 +228,7 @@ const toolToSourcesMap: Record<string, { name: string; url: string }[]> = {
 			url: "https://csc.gov.ph/examinations",
 		},
 	],
-	"/legal-contract-generator": [
+	"/promissory-note-generator": [
 		{
 			name: "Philippine Civil Code",
 			url: "https://www.officialgazette.gov.ph/1949/06/18/republic-act-no-386/",

@@ -918,9 +918,9 @@
       "name": "Civil Service Exam Reviewer",
       "desc": "Offline-capable mock exams para sa Philippine Civil Service Exam (CSE)."
     },
-    "legal-contract-generator": {
-      "name": "Legal Contract Generator",
-      "desc": "Gumawa ng standard na Philippine legal documents nang ligtas."
+    "promissory-note-generator": {
+      "name": "Promissory Note Generator",
+      "desc": "Gumawa ng Philippine promissory note / simpleng loan agreement (utang) nang ligtas."
     },
     "invoice-factoring-calculator": {
       "name": "Invoice Factoring & Discount Calculator",
@@ -1891,11 +1891,11 @@
     "downloadBtn": "I-download ang Ready-to-Print na Image",
     "alertRemoveBgFailed": "Hindi naalis ang background. Subukan ang ibang photo."
   },
-  "LegalContractGenerator": {
-    "metaTitle": "Legal Contract Generator | Mga Philippine Template",
-    "metaDescription": "Gumawa ng standard na Philippine legal documents (Lease Agreements, Promissory Notes) nang secure sa iyong browser.",
-    "title": "Generator ng Legal Contract",
-    "subtitle": "Gumawa ng standard na Philippine legal documents (hal. Promissory Note) nang secure sa iyong browser. Walang data na sine-save sa server.",
+  "PromissoryNoteGenerator": {
+    "metaTitle": "Promissory Note Generator | Philippine Loan Agreement",
+    "metaDescription": "Gumawa ng Philippine promissory note / simpleng loan agreement (utang) nang secure sa iyong browser. Walang data na sine-save sa server.",
+    "title": "Promissory Note Generator",
+    "subtitle": "Gumawa ng Philippine promissory note / simpleng loan agreement nang secure sa iyong browser. Walang data na sine-save sa server.",
     "disclaimerTitle": "MAHALAGANG LEGAL DISCLAIMER",
     "disclaimerP1": "Ang tool na ito ay para sa <strong>educational at drafting purposes lang</strong>. Hindi ito legal advice, at hindi ito gumagawa ng attorney-client relationship.",
     "disclaimerP2": "Ang developers ng PHTools ay <strong>walang anumang pananagutan</strong> sa validity, enforceability, o resulta ng paggamit ng anumang dokumentong ginawa gamit ang tool na ito. Madalas magbago ang mga batas at regulasyon, kaya kailangan mong kumonsulta sa lisensyadong Philippine attorney (Notary Public) para masiguro na pasok ang dokumento sa lahat ng legal requirements bago ito i-execute.",

@@ -19,6 +19,20 @@ const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: ["recharts", "next-intl"],
 	},
+	async redirects() {
+		return [
+			{
+				source: "/legal-contract-generator",
+				destination: "/promissory-note-generator",
+				permanent: true,
+			},
+			{
+				source: "/:locale(en|tl|ceb)/legal-contract-generator",
+				destination: "/:locale/promissory-note-generator",
+				permanent: true,
+			},
+		];
+	},
 };
 
 export default withPWAConfig(withNextIntl(nextConfig));
