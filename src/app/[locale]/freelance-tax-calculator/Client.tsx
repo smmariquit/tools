@@ -1,20 +1,35 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
+
 export default function FreelanceTaxClient() {
+	const t = useTranslations("FreelanceTax");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -84,30 +99,22 @@ export default function FreelanceTaxClient() {
 		currencyMode === "usd" ? platformFeeUsd * forexRate : 0;
 
 	const chartData = [
-		{ name: "Net Take Home", value: netIncome8Percent, color: "#1b5e20" },
-		{ name: "8% BIR Tax", value: eightPercentTax, color: "#b71c1c" },
-		{ name: "Upwork Fee", value: platformFeePhp, color: "#f57c00" },
+		{ name: t("chartNetTakeHome"), value: netIncome8Percent, color: "#1b5e20" },
+		{ name: t("chart8BirTax"), value: eightPercentTax, color: "#b71c1c" },
+		{ name: t("chartUpworkFee"), value: platformFeePhp, color: "#f57c00" },
 	].filter((item) => item.value > 0);
 
 	return (
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Upwork & Freelance Tax Calculator</h1>
-					<p className="page-subtitle">
-						Calculate your net PHP after Upwork fees, forex spread, and the BIR
-						8% flat income tax rate.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="freelance-tax-top" />
@@ -123,11 +130,11 @@ export default function FreelanceTaxClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Income Details (Monthly)
+							{t("incomeDetails")}
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<div className="form-label">Currency</div>
+							<div className="form-label">{t("currency")}</div>
 							<div style={{ display: "flex", gap: "12px" }}>
 								<button
 									className={`btn-secondary ${currencyMode === "usd" ? "active" : ""}`}
@@ -141,7 +148,7 @@ export default function FreelanceTaxClient() {
 										updateUrl({ currency: "usd" });
 									}}
 								>
-									USD (Upwork/Direct)
+									{t("currencyUsd")}
 								</button>
 								<button
 									className={`btn-secondary ${currencyMode === "php" ? "active" : ""}`}
@@ -155,7 +162,7 @@ export default function FreelanceTaxClient() {
 										updateUrl({ currency: "php" });
 									}}
 								>
-									PHP (Local)
+									{t("currencyPhp")}
 								</button>
 							</div>
 						</div>
@@ -164,7 +171,7 @@ export default function FreelanceTaxClient() {
 							<>
 								<div className="form-group">
 									<label className="form-label" htmlFor="usdIncome">
-										Total Gross Monthly Income (USD)
+										{t("grossUsdLabel")}
 									</label>
 									<input
 										type="number"
@@ -180,7 +187,7 @@ export default function FreelanceTaxClient() {
 								</div>
 								<div className="form-group" style={{ marginTop: "16px" }}>
 									<label className="form-label" htmlFor="forexRate">
-										Expected Forex Rate (PHP per USD)
+										{t("forexRateLabel")}
 									</label>
 									<input
 										type="number"
@@ -195,8 +202,7 @@ export default function FreelanceTaxClient() {
 										step="0.01"
 									/>
 									<p className="form-hint" style={{ marginTop: "4px" }}>
-										Banks typically take a ₱0.50 to ₱1.00 spread below the
-										Google rate.
+										{t("forexHint")}
 									</p>
 								</div>
 								<div
@@ -207,7 +213,7 @@ export default function FreelanceTaxClient() {
 									}}
 								>
 									<label className="form-label" htmlFor="platformSelect">
-										Platform Fee
+										{t("platformFee")}
 									</label>
 									<select
 										id="platformSelect"
@@ -220,20 +226,18 @@ export default function FreelanceTaxClient() {
 											});
 										}}
 									>
-										<option value="none">No Platform Fee</option>
-										<option value="upwork">Upwork (10% flat fee)</option>
+										<option value="none">{t("noPlatformFee")}</option>
+										<option value="upwork">{t("upworkOption")}</option>
 									</select>
 									<p className="form-hint" style={{ marginTop: "6px" }}>
-										Fiverr (20%), Toptal (0% to freelancer), OnlineJobs.ph
-										(employer-paid), Freelancer.com (10-20%). Select &quot;No
-										Platform Fee&quot; for direct clients.
+										{t("platformHint")}
 									</p>
 								</div>
 							</>
 						) : (
 							<div className="form-group">
 								<label className="form-label" htmlFor="grossIncome">
-									Total Gross Monthly Income (PHP)
+									{t("grossPhpLabel")}
 								</label>
 								<input
 									type="number"
@@ -259,7 +263,7 @@ export default function FreelanceTaxClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Monthly Net Breakdown
+							{t("resultsTitle")}
 						</h2>
 
 						{currencyMode === "usd" && (
@@ -272,7 +276,7 @@ export default function FreelanceTaxClient() {
 										fontSize: "14px",
 									}}
 								>
-									<span>Gross USD</span>
+									<span>{t("grossUsd")}</span>
 									<span>${usdIncome.toFixed(2)}</span>
 								</div>
 								{includeUpwork && (
@@ -284,7 +288,7 @@ export default function FreelanceTaxClient() {
 											fontSize: "14px",
 										}}
 									>
-										<span>Upwork Fee (10%)</span>
+										<span>{t("upworkFee")}</span>
 										<span style={{ color: "#d32f2f" }}>
 											- ${platformFeeUsd.toFixed(2)}
 										</span>
@@ -300,7 +304,7 @@ export default function FreelanceTaxClient() {
 										fontSize: "14px",
 									}}
 								>
-									<span>Net USD for Withdrawal</span>
+									<span>{t("netUsdWithdrawal")}</span>
 									<span style={{ fontWeight: 600 }}>${netUsd.toFixed(2)}</span>
 								</div>
 							</>
@@ -314,7 +318,7 @@ export default function FreelanceTaxClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Gross PHP Receipts</span>
+							<span>{t("grossPhpReceipts")}</span>
 							<span style={{ fontWeight: 600 }}>
 								{formatCurrency(totalPhp)}
 							</span>
@@ -332,7 +336,7 @@ export default function FreelanceTaxClient() {
 							}}
 						>
 							<span style={{ fontWeight: 500, color: "#b71c1c" }}>
-								Total Tax Due (8%)
+								{t("totalTaxDue8")}
 							</span>
 							<strong style={{ color: "#b71c1c" }}>
 								{formatCurrency(eightPercentTax)}
@@ -351,7 +355,7 @@ export default function FreelanceTaxClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Net Take-Home Pay</span>
+							<span>{t("netTakeHome")}</span>
 							<span style={{ color: "#1b5e20" }}>
 								{formatCurrency(netIncome8Percent)}
 							</span>
@@ -372,36 +376,14 @@ export default function FreelanceTaxClient() {
 								textAlign: "center",
 							}}
 						>
-							Income Breakdown
+							{t("incomeBreakdown")}
 						</h2>
 						<div style={{ width: "100%", height: 300 }}>
-							<ResponsiveContainer width="100%" height="100%">
-								<PieChart>
-									<Pie
-										data={chartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={60}
-										outerRadius={100}
-										paddingAngle={2}
-										dataKey="value"
-									>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Pie>
-									<Tooltip
-										formatter={(value) => formatCurrency(Number(value) || 0)}
-									/>
-									<Legend />
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					</div>
 				)}
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

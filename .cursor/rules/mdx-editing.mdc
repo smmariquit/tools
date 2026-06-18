@@ -1,0 +1,71 @@
+---
+description: Mandatory edited-date and changelog discipline for blog/guide MDX content
+globs: src/content/blog/**/*.mdx
+alwaysApply: false
+---
+
+# Editing PHTools MDX content
+
+ANY time you create or edit a file under `src/content/blog/**/*.mdx` (no exceptions, regardless of the task or which agent is doing it), you MUST do all of these:
+
+1. **Add visuals where applicable.** When a chart, graph, or image genuinely aids understanding, include it. Use `<MdxChart .../>` for data viz and markdown images for diagrams/screenshots. Skip on purely conceptual pieces; do not force visuals.
+1b. **Add an authority signal where a credible one exists.** A first-person voice reads as expert when it points outward. Where genuinely warranted, embed a `<YouTube id="..." title="..."/>` explainer from a real authority (gov agency / CPA / lawyer / reputable news), recommend a real book with a one-line personal aside, or link a complementary tool with a short "kudos to the devs" note. Only use verified, real items (see `research/deep-research-authority-prompt.md`); never invent a video ID, ISBN, or channel. Do not force one onto every article.
+2. **End with `## Sources` (ALWAYS).** List the primary references as live links (verify each returns HTTP 200). Place it just above `## Changelog`.
+3. Set `updatedAt: "YYYY-MM-DD"` in the frontmatter to **today's date**. Keep the original `date:` (first-published) unchanged.
+4. Prepend a one-line dated entry (newest first) to a `## Changelog` section kept as the **last section** of the body. Never delete or rewrite past entries.
+
+Canonical bottom-of-file order: the Related Tools list, then `## Sources`, then `## Changelog`.
+
+Frontmatter shape:
+
+```
+---
+title: "..."
+description: "..."
+date: "2026-05-31"        # first published; never change
+updatedAt: "2026-06-18"   # bump to today on EVERY edit
+---
+```
+
+Changelog shape (bottom of file, newest first):
+
+```
+## Changelog
+- **2026-06-18** — Rewrote intro and added the verified RA 11199 citation.
+- **2026-05-31** — Initial publication.
+```
+
+Charts (`<MdxChart>`, registered in both MDX renderers). Pass data inline; colors accept token names (`primary`, `green`, `red`, `amber`, `teal`, `indigo`) or hex:
+
+```
+<MdxChart
+  type="bar"
+  caption="2026 annual income tax by taxable-income bracket"
+  data={[{ name: "₱250k", tax: 0 }, { name: "₱400k", tax: 22500 }, { name: "₱800k", tax: 102500 }]}
+  x="name"
+  series={[{ key: "tax", label: "Annual tax", color: "primary" }]}
+  valuePrefix="₱"
+/>
+```
+
+`type` is `bar` | `line` | `area` | `pie`. Pie uses the first series and the `x` key for labels.
+
+YouTube embed (`<YouTube>`, registered in both MDX renderers). Privacy-friendly, lazy, responsive. Pass the 11-char video ID, not the URL:
+
+```
+<YouTube id="dQw4w9WgXcQ" title="BIR explains the TRAIN Law income tax brackets" />
+```
+
+Sources example (just above the changelog):
+
+```
+## Sources
+- [Social Security Act of 2018 (RA 11199)](https://lawphil.net/statutes/repacts/ra2019/ra_11199_2019.html)
+- [SSS official contribution schedule](https://www.sss.gov.ph/)
+```
+
+Rules:
+- Use `## Changelog` (h2). Do NOT use `###` for entries; `###` headings are parsed into FAQ schema by `ToolArticle`.
+- A brand-new file starts the changelog with a single `Initial publication` entry dated to `date`.
+- The edited date renders automatically on the blog post and the on-tool article; the changelog renders as the final section. Do not hand-format dates elsewhere.
+- `## Sources` is required on every writeup; verify every link is live (HTTP 200) before saving.

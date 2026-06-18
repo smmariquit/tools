@@ -6,7 +6,7 @@ A suite of free, accurate, and highly optimized online utilities and calculators
 This repository is engineered to maximize Google AdSense revenue while maintaining **$0/month in server costs** and **bypassing Data Privacy Act (RA 10173)** liabilities.
 
 *   **Framework:** Next.js 15 (App Router).
-*   **Zero-Server Compute:** All calculators are strictly Client Components. Computations happen entirely in the user's browser.
+*   **Zero-Server Compute:** Calculations run entirely in the user's browser via Client Components; no calculator data is sent to a server.
 *   **SEO Supremacy:** We use a strict Server/Client component split. `page.tsx` handles static metadata and JSON-LD schema, while `Client.tsx` handles the interactive UI.
 *   **A/B Testing & Analytics:** Handled entirely by **PostHog** (`<PostHogProvider>`). We do not use custom databases or authentication to avoid maintenance and privacy liabilities.
 *   **Legal Compliance:** All tools feature strict disclaimers stating they are estimates, protecting against Unauthorized Practice of Accountancy (RA 9298).
@@ -32,9 +32,8 @@ npm run agent:verify
 ```
 
 ## 📊 Current State of the Code
-- **Tech Stack:** React, Next.js, Node.js/NPM
-- **Repository Size:** 403 tracked files
-- **Latest Update:** `47a8412 chore: add stale issue and PR validators`
+- **Tech Stack:** React, Next.js 15, Node.js/NPM, next-intl (en/tl/ceb)
+- **Search:** Fuzzy, typo-tolerant tool search over name + description + multilingual tags (`src/lib/toolSearch.ts`).
 
 
 ---

@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Kasambahay Monthly Contribution & Payroll Calculator";
-	const description =
-		"Compute the SSS, PhilHealth, and Pag-IBIG contributions for household employees based on the Batas Kasambahay.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Kasambahay&s1v=Payroll&s2l=Contributions&s2v=Computed";
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "KasambahayPayroll" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "kasambahay-payroll-calculator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +30,7 @@ export default function KasambahayPayrollPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="kasambahay-payroll-guide" />
+			<ToolPageBottom slug="kasambahay-payroll-guide" />
 		</>
 	);
 }

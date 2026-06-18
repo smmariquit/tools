@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Food Cost & Pricing Calculator | Philippines";
-	const description =
-		"Calculate your recipe costs, maximize food business profit margins, and factor in VAT, service charge, and Senior/PWD discounts effortlessly.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl +=
-		"&s1l=Food%20Cost&s1v=30%25&s2l=Margin&s2v=70%25&s3l=Price&s3v=%E2%82%B1150";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: "FoodCost" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [
-				{
-					url: ogUrl,
-					width: 1200,
-					height: 630,
-				},
-			],
+			images: ogImages({
+				tool: "food-cost-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -51,7 +49,7 @@ export default function FoodCostCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="food-costing-pricing-guide" />
+			<ToolPageBottom slug="food-costing-pricing-guide" />
 		</>
 	);
 }

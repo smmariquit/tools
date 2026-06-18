@@ -1,20 +1,35 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
+
 export default function IncomeTaxCalculator() {
+	const t = useTranslations("IncomeTaxCalculator");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -60,27 +75,27 @@ export default function IncomeTaxCalculator() {
 	if (taxType === "flat8") {
 		// 8% flat rate for self-employed/professionals (on excess of 250k)
 		annualTax = Math.max(0, (annualIncome - 250000) * 0.08);
-		taxBracket = "8% on excess of ₱250,000";
+		taxBracket = t("bracket8");
 	} else {
 		// Graduated TRAIN Law Table (Effective Jan 2023 - 2026)
 		if (annualIncome > 8000000) {
 			annualTax = 2202500 + (annualIncome - 8000000) * 0.35;
-			taxBracket = "₱2,202,500 + 35% over ₱8M";
+			taxBracket = t("bracketOver8M");
 		} else if (annualIncome > 2000000) {
 			annualTax = 402500 + (annualIncome - 2000000) * 0.3;
-			taxBracket = "₱402,500 + 30% over ₱2M";
+			taxBracket = t("bracketOver2M");
 		} else if (annualIncome > 800000) {
 			annualTax = 102500 + (annualIncome - 800000) * 0.25;
-			taxBracket = "₱102,500 + 25% over ₱800k";
+			taxBracket = t("bracketOver800k");
 		} else if (annualIncome > 400000) {
 			annualTax = 22500 + (annualIncome - 400000) * 0.2;
-			taxBracket = "₱22,500 + 20% over ₱400k";
+			taxBracket = t("bracketOver400k");
 		} else if (annualIncome > 250000) {
 			annualTax = (annualIncome - 250000) * 0.15;
-			taxBracket = "15% over ₱250k";
+			taxBracket = t("bracketOver250k");
 		} else {
 			annualTax = 0;
-			taxBracket = "Exempt (0%)";
+			taxBracket = t("bracketExempt");
 		}
 	}
 
@@ -96,33 +111,23 @@ export default function IncomeTaxCalculator() {
 	};
 
 	const pieData = [
-		{ name: "Net Income", value: netAnnual },
-		{ name: "Income Tax", value: annualTax },
+		{ name: t("pieNetIncome"), value: netAnnual },
+		{ name: t("pieIncomeTax"), value: annualTax },
 	];
 
 	const COLORS = ["#1b5e20", "#d32f2f"];
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<div
-				style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}
-			>
+			<div style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to All Tools
-					</Link>
-					<h1 className="page-title">Philippine Income Tax Calculator (BIR)</h1>
-					<p className="page-subtitle">
-						Calculate your withholding and annual income tax based on the
-						updated 2026 TRAIN Law brackets.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="6666666666" />
@@ -138,11 +143,11 @@ export default function IncomeTaxCalculator() {
 								paddingBottom: "8px",
 							}}
 						>
-							Income Details
+							{t("incomeDetails")}
 						</h2>
 
 						<div className="form-group">
-							<div className="form-label">Tax Type</div>
+							<div className="form-label">{t("taxType")}</div>
 							<div style={{ display: "flex", gap: "12px" }}>
 								<label
 									style={{
@@ -162,7 +167,7 @@ export default function IncomeTaxCalculator() {
 											updateUrl({ type: "graduated" });
 										}}
 									/>
-									Graduated (Employees)
+									{t("graduatedLabel")}
 								</label>
 							</div>
 							<div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
@@ -184,14 +189,14 @@ export default function IncomeTaxCalculator() {
 											updateUrl({ type: "flat8" });
 										}}
 									/>
-									8% Flat Rate (Freelance/Self-Employed)
+									{t("flat8Label")}
 								</label>
 							</div>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "24px" }}>
 							<label className="form-label" htmlFor="period">
-								Input Period
+								{t("inputPeriod")}
 							</label>
 							<select
 								id="period"
@@ -207,14 +212,14 @@ export default function IncomeTaxCalculator() {
 									cursor: "pointer",
 								}}
 							>
-								<option value="annual">Annual Income</option>
-								<option value="monthly">Monthly Income</option>
+								<option value="annual">{t("annualIncomeOption")}</option>
+								<option value="monthly">{t("monthlyIncomeOption")}</option>
 							</select>
 						</div>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="income">
-								Taxable Income (PHP)
+								{t("taxableIncomeLabel")}
 							</label>
 							<input
 								type="number"
@@ -228,10 +233,7 @@ export default function IncomeTaxCalculator() {
 								min="0"
 								step="any"
 							/>
-							<span className="form-hint">
-								Income after deducting mandatory contributions (SSS, PhilHealth,
-								Pag-IBIG).
-							</span>
+							<span className="form-hint">{t("taxableIncomeHint")}</span>
 						</div>
 					</div>
 
@@ -246,7 +248,7 @@ export default function IncomeTaxCalculator() {
 								color: "var(--primary)",
 							}}
 						>
-							Tax Breakdown
+							{t("taxBreakdown")}
 						</h2>
 
 						<div
@@ -257,7 +259,7 @@ export default function IncomeTaxCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Annual Taxable Income</span>
+							<span>{t("annualTaxableIncome")}</span>
 							<span style={{ fontWeight: 600 }}>
 								{formatCurrency(annualIncome)}
 							</span>
@@ -273,7 +275,7 @@ export default function IncomeTaxCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Applicable Tax Bracket</span>
+							<span>{t("applicableTaxBracket")}</span>
 							<span style={{ color: "var(--primary)" }}>{taxBracket}</span>
 						</div>
 
@@ -285,7 +287,7 @@ export default function IncomeTaxCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Monthly Income Tax</span>
+							<span>{t("monthlyIncomeTax")}</span>
 							<span style={{ color: "#b71c1c" }}>
 								{formatCurrency(monthlyTax)}
 							</span>
@@ -302,7 +304,7 @@ export default function IncomeTaxCalculator() {
 								fontWeight: 600,
 							}}
 						>
-							<span>Total Annual Tax Payable</span>
+							<span>{t("totalAnnualTaxPayable")}</span>
 							<span style={{ color: "#b71c1c" }}>
 								{formatCurrency(annualTax)}
 							</span>
@@ -317,7 +319,7 @@ export default function IncomeTaxCalculator() {
 								marginTop: "24px",
 							}}
 						>
-							Net Income After Tax
+							{t("netIncomeAfterTax")}
 						</h3>
 
 						<div
@@ -328,7 +330,7 @@ export default function IncomeTaxCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Monthly Net Income</span>
+							<span>{t("monthlyNetIncome")}</span>
 							<span>{formatCurrency(netMonthly)}</span>
 						</div>
 
@@ -344,7 +346,7 @@ export default function IncomeTaxCalculator() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Annual Net Income</span>
+							<span>{t("annualNetIncome")}</span>
 							<span style={{ color: "#1b5e20" }}>
 								{formatCurrency(netAnnual)}
 							</span>
@@ -359,47 +361,16 @@ export default function IncomeTaxCalculator() {
 									marginBottom: "8px",
 								}}
 							>
-								<ResponsiveContainer width="100%" height="100%">
-									<PieChart>
-										<Pie
-											data={pieData}
-											cx="50%"
-											cy="50%"
-											innerRadius={60}
-											outerRadius={90}
-											paddingAngle={2}
-											dataKey="value"
-											stroke="none"
-										>
-											{pieData.map((_entry, index) => (
-												<Cell
-													key={`cell-${index}`}
-													fill={COLORS[index % COLORS.length]}
-												/>
-											))}
-										</Pie>
-										<Tooltip
-											formatter={(value) => formatCurrency(Number(value) || 0)}
-											contentStyle={{
-												borderRadius: "8px",
-												border: "none",
-												boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-											}}
-										/>
-										<Legend
-											verticalAlign="bottom"
-											height={36}
-											iconType="circle"
-										/>
-									</PieChart>
-								</ResponsiveContainer>
+								<Chart
+									data={pieData}
+									colors={COLORS}
+									formatValue={formatCurrency}
+								/>
 							</div>
 						)}
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

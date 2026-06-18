@@ -1,49 +1,18 @@
 import type { Metadata } from "next";
-import { computeSalary } from "../../../lib/salaryLogic";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata({
-	searchParams,
-}: {
-	searchParams: Promise<{ salary?: string }>;
-}): Promise<Metadata> {
-	const resolvedParams = await searchParams;
+export function generateMetadata(): Metadata {
 	const title = "Free 2026 Salary Net Pay Calculator | Philippines";
 	const description =
 		"Compute your exact 2026 net take-home pay in the Philippines. Accurately deducts SSS (with WISP), PhilHealth, Pag-IBIG, and TRAIN Law income tax.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-
-	if (resolvedParams.salary) {
-		const { tax, netPay, salary } = computeSalary(resolvedParams.salary);
-		const formatAmount = (val: number) =>
-			new Intl.NumberFormat("en-PH", {
-				style: "currency",
-				currency: "PHP",
-			}).format(val);
-
-		ogUrl += `&s1l=Gross&s1v=${encodeURIComponent(formatAmount(salary))}`;
-		ogUrl += `&s2l=Tax&s2v=${encodeURIComponent(formatAmount(tax))}`;
-		ogUrl += `&s3l=Net&s3v=${encodeURIComponent(formatAmount(netPay))}`;
-	} else {
-		ogUrl +=
-			"&s1l=Gross&s1v=%E2%82%B150k&s2l=Tax&s2v=%E2%82%B14.1k&s3l=Net&s3v=%E2%82%B143.2k";
-	}
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [
-				{
-					url: ogUrl,
-					width: 1200,
-					height: 630,
-				},
-			],
+			images: ogImages({ tool: "salary-calculator", title, desc: description }),
 		},
 	};
 }
@@ -76,7 +45,7 @@ export default async function SalaryCalculatorPage(props: {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client initialSalary={initialSalary} />
-			<ToolArticle slug="salary-tax-deductions-guide" />
+			<ToolPageBottom slug="salary-tax-deductions-guide" />
 		</>
 	);
 }

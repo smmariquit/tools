@@ -44,6 +44,56 @@ const faqs = [
 		answer:
 			"If you have a feature request, spotted a bug, or need clarification on a computation, you can reach out to us directly by emailing semariquit@gmail.com.",
 	},
+	{
+		question: "Are the calculators free to use?",
+		answer:
+			"Yes. Every calculator on PHTools is 100% free, with no sign-up, login, or subscription required. We keep the entire suite free for students, employees, freelancers, and HR practitioners by running unobtrusive ads—that is the only thing that funds the site.",
+	},
+	{
+		question: "Do I need to create an account?",
+		answer:
+			"No. We deliberately avoid accounts and logins. Open any tool and start computing immediately—nothing to register, nothing to verify, and no email required unless you choose to contact us.",
+	},
+	{
+		question: "Can I install PHTools on my phone or use it offline?",
+		answer:
+			"Yes. PHTools is a Progressive Web App (PWA), so you can use 'Add to Home Screen' on Android or iOS to install it like a regular app. Once a calculator has loaded, you can keep using it even without an internet connection.",
+	},
+	{
+		question: "What languages does PHTools support?",
+		answer:
+			"The interface is available in English, Tagalog, and Bisaya (Cebuano). You can switch languages anytime using the language selector, and your choice carries across every tool on the site.",
+	},
+	{
+		question: "How is the SSS contribution split between me and my employer?",
+		answer:
+			"For 2026, the total SSS rate is 15% of your Monthly Salary Credit (MSC): 10% shouldered by the employer and 5% by the employee. The MSC is capped at ₱35,000, and the portion based on salary above ₱20,000 is automatically funneled into the Mandatory Provident Fund (MPF/WISP) for additional retirement savings. Our SSS Contribution Calculator shows the full breakdown.",
+	},
+	{
+		question: "What is the difference between gross pay and net (take-home) pay?",
+		answer:
+			"Gross pay is your total earnings before any deductions. Net pay—your actual take-home—is what remains after subtracting mandatory contributions (SSS, PhilHealth, Pag-IBIG) and withholding tax. Our Salary Calculator itemizes each deduction so you can see exactly where your money goes.",
+	},
+	{
+		question: "Is the first ₱250,000 of my income really tax-free?",
+		answer:
+			"Yes. Under the TRAIN Law (RA 10963), the first ₱250,000 of annual taxable income is completely tax-exempt. Anything above that is taxed using progressive brackets, which our Income Tax Calculator applies automatically.",
+	},
+	{
+		question: "As a freelancer, should I choose the 8% flat tax or graduated rates?",
+		answer:
+			"It depends on your income and expenses. The 8% flat rate (on gross receipts beyond the ₱250,000 exemption) is the simplest option and often wins for low-expense freelancers, while the graduated rates can be better if you have high deductible expenses. Use our 8% vs. Graduated Tax Optimizer to compare both for your exact numbers.",
+	},
+	{
+		question: "Can I save or share my computation?",
+		answer:
+			"Yes. Most calculators store your inputs directly in the page URL, so you can bookmark a result or paste the link to a friend, your HR, or your accountant—and they will see the exact same computation you did.",
+	},
+	{
+		question: "Are the 2026 SSS, PhilHealth, and Pag-IBIG rates final?",
+		answer:
+			"We track these against the official issuances from the SSS, PhilHealth (the Universal Health Care 5% premium schedule), and the Pag-IBIG Fund. Rates can still be adjusted by new memoranda within the year; whenever that happens, we update the calculator logic and reflect the change.",
+	},
 ];
 
 export default function FAQ() {

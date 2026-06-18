@@ -1,0 +1,68 @@
+name: Link Check
+
+# Detects stale / broken EXTERNAL http(s) links across the repo using lychee.
+# Internal app routes (e.g. /salary-calculator), mailto, localhost, etc. are
+# excluded via .lycheeignore + lychee.toml. This workflow is purely additive and
+# does not touch the existing CI/CD, PR-check, or stale workflows.
+
+on:
+  # Weekly scheduled sweep (Mondays 06:00 UTC). On failure this opens/updates an issue.
+  schedule:
+    - cron: "0 6 * * 1"
+  # Manual run from the Actions tab.
+  workflow_dispatch:
+  # Run on PRs only when content/source that contains links changes.
+  # NOTE: kept NON-BLOCKING (continue-on-error) on PRs to avoid flaky external
+  # hosts / rate limits blocking merges. The job result is informational; the
+  # weekly run is the source of truth and is what files issues.
+  pull_request:
+    paths:
+      - "src/content/blog/**/*.mdx"
+      - "src/**/*.ts"
+      - "src/**/*.tsx"
+      - "research/**/*.md"
+      - ".lycheeignore"
+      - "lychee.toml"
+      - ".github/workflows/link-check.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run lychee link checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        # On pull_request, do not fail the job (external links can be flaky / rate-limited).
+        continue-on-error: ${{ github.event_name == 'pull_request' }}
+        with:
+          # Config lives in lychee.toml; args here scope the files + accepted codes.
+          args: >-
+            --no-progress
+            --scheme https
+            --scheme http
+            --accept 200,206,429
+            "src/content/blog/**/*.mdx"
+            "src/**/*.ts"
+            "src/**/*.tsx"
+            "research/**/*.md"
+          # Markdown report written to ./lychee/out.md for the issue body.
+          output: ./lychee/out.md
+          # Use the repo token so create-issue-from-file can post.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # On the scheduled run, surface broken links by opening/updating a tracking issue.
+      - name: Create or update broken-links issue
+        if: ${{ github.event_name == 'schedule' && steps.lychee.outputs.exit_code != 0 }}
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Broken / stale links detected"
+          content-filepath: ./lychee/out.md
+          labels: |
+            link-check
+            automated

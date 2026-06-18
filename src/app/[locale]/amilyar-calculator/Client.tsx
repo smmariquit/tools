@@ -1,12 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
 export default function AmilyarClient() {
+	const t = useTranslations("AmilyarCalculator");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -78,22 +82,13 @@ export default function AmilyarClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Amilyar (Real Property Tax) Calculator</h1>
-					<p className="page-subtitle">
-						Estimate your annual Philippine Real Property Tax (RPT) including
-						the Special Education Fund (SEF) based on Local Government Code
-						rates.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="amilyar-top" />
@@ -109,12 +104,12 @@ export default function AmilyarClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Property Details
+							{t("propertyDetails")}
 						</h2>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="marketValue">
-								Fair Market Value (PHP)
+								{t("marketValueLabel")}
 							</label>
 							<input
 								type="number"
@@ -129,14 +124,13 @@ export default function AmilyarClient() {
 								step="100000"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Check your property&apos;s Tax Declaration for the official
-								market value.
+								{t("marketValueHint")}
 							</p>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="propertyType">
-								Property Classification
+								{t("propertyClassification")}
 							</label>
 							<select
 								id="propertyType"
@@ -151,21 +145,15 @@ export default function AmilyarClient() {
 									updateUrl({ type: val });
 								}}
 							>
-								<option value="residential">
-									Residential (20% Assessment Level)
-								</option>
-								<option value="commercial">
-									Commercial / Industrial (50% Assessment Level)
-								</option>
-								<option value="agricultural">
-									Agricultural (40% Assessment Level)
-								</option>
+								<option value="residential">{t("residentialOption")}</option>
+								<option value="commercial">{t("commercialOption")}</option>
+								<option value="agricultural">{t("agriculturalOption")}</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="location">
-								Location
+								{t("location")}
 							</label>
 							<select
 								id="location"
@@ -177,12 +165,8 @@ export default function AmilyarClient() {
 									updateUrl({ loc: val });
 								}}
 							>
-								<option value="metroManila">
-									Metro Manila (2% Basic Rate)
-								</option>
-								<option value="province">
-									Provincial City / Municipality (1% Basic Rate)
-								</option>
+								<option value="metroManila">{t("metroManilaOption")}</option>
+								<option value="province">{t("provinceOption")}</option>
 							</select>
 						</div>
 					</div>
@@ -198,7 +182,7 @@ export default function AmilyarClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Estimated Annual Amilyar
+							{t("resultsTitle")}
 						</h2>
 
 						<div
@@ -209,7 +193,7 @@ export default function AmilyarClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Assessed Value</span>
+							<span>{t("assessedValue")}</span>
 							<span style={{ fontWeight: 600 }}>
 								{formatCurrency(assessedValue)}
 							</span>
@@ -223,7 +207,7 @@ export default function AmilyarClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Basic Real Property Tax</span>
+							<span>{t("basicRpt")}</span>
 							<span style={{ color: "var(--text-secondary)" }}>
 								{formatCurrency(basicRpt)}
 							</span>
@@ -237,7 +221,7 @@ export default function AmilyarClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Special Education Fund (SEF)</span>
+							<span>{t("sefTax")}</span>
 							<span style={{ color: "var(--text-secondary)" }}>
 								+ {formatCurrency(sefTax)}
 							</span>
@@ -255,16 +239,14 @@ export default function AmilyarClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Total Annual Tax Due</span>
+							<span>{t("totalAnnualTaxDue")}</span>
 							<span style={{ color: "#b71c1c" }}>
 								{formatCurrency(totalAmilyar)}
 							</span>
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

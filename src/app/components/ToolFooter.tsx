@@ -3,80 +3,6 @@ import { useTranslations } from "next-intl";
 import { toolCategories } from "../../lib/routes";
 import ToolIcon from "./ToolIcon";
 
-const toolToBlogMap: Record<string, string> = {
-	"/salary-calculator": "/blog/salary-tax-deductions-guide",
-	"/bpo-night-differential-calculator":
-		"/blog/bpo-night-differential-philippines",
-	"/budget-calculator": "/blog/budget-reverse-salary-calculator-guide",
-	"/sss-contribution-calculator": "/blog/sss-contribution-table-2026",
-	"/sss-pension-calculator": "/blog/how-to-compute-sss-pension",
-	"/philhealth-calculator": "/blog/philhealth-contribution-table-2026",
-	"/income-tax-calculator": "/blog/income-tax-brackets-2026",
-	"/overtime-pay-calculator": "/blog/philippine-overtime-holiday-pay-guide",
-	"/13th-month-pay-calculator": "/blog/how-to-compute-13th-month-pay",
-	"/backpay-calculator": "/blog/philippine-backpay-computation-guide",
-	"/digital-bank-calculator": "/blog/digital-banks-philippines-interest-rates",
-	"/tax-optimizer-calculator": "/blog/philippine-tax-classification-guide",
-	"/freelance-tax-calculator": "/blog/upwork-freelance-tax-guide",
-	"/shopee-lazada-fee-calculator": "/blog/shopee-lazada-seller-fees-explained",
-	"/electric-bill-calculator": "/blog/meralco-electric-bill-guide",
-	"/amilyar-calculator": "/blog/amilyar-real-property-tax-guide",
-	"/car-loan-calculator": "/blog/philippine-car-loan-guide-bank-vs-dealer",
-	"/home-loan-calculator": "/blog/philippine-home-loan-guide-bank-comparison",
-	"/pagibig-calculator": "/blog/pagibig-contribution-table-2026",
-	"/pagibig-mp2-calculator": "/blog/pagibig-mp2-dividend-calculator",
-	"/pagibig-foreclosed-roi-calculator": "/blog/pagibig-foreclosed-property-roi",
-	"/gwa-calculator": "/blog/how-to-compute-gwa-college",
-	"/id-photo-maker": "/blog/id-picture-size-guide-philippines",
-	"/holiday-calculator": "/blog/philippine-holiday-pay-rules",
-	"/fuel-cost-calculator": "/blog/philippine-fuel-cost-trip-calculator",
-	"/lto-penalty-calculator": "/blog/lto-late-registration-penalty",
-	"/toll-calculator": "/blog/philippine-toll-fees-guide",
-	"/food-cost-calculator": "/blog/food-costing-pricing-guide",
-	"/de-minimis-tax-calculator": "/blog/de-minimis-benefits-guide",
-	"/lto-registration-fee-calculator": "/blog/lto-registration-renewal-guide",
-	"/sss-maternity-benefit-calculator": "/blog/sss-maternity-benefit-guide",
-	"/bir-donors-tax-calculator": "/blog/bir-donors-tax-guide",
-	"/architectural-fee-calculator": "/blog/architectural-fee-guide",
-	"/customs-brokerage-fee-calculator": "/blog/customs-brokerage-fee-guide",
-	"/influencer-rate-calculator": "/blog/influencer-rate-guide",
-	"/final-pay-calculator": "/blog/final-pay-guide",
-	"/tax-refund-calculator": "/blog/tax-refund-guide",
-	"/kasambahay-payroll-calculator": "/blog/kasambahay-payroll-guide",
-	"/kasambahay-retirement-calculator": "/blog/kasambahay-retirement-guide",
-	"/estate-tax-calculator": "/blog/estate-tax-guide",
-	"/gotrade-vs-ibkr-calculator": "/blog/gotrade-vs-ibkr-guide",
-	"/pdic-insurance-calculator": "/blog/pdic-insurance-guide",
-	"/philhealth-late-contribution-calculator":
-		"/blog/philhealth-late-contribution-guide",
-	"/retail-treasury-bond-calculator": "/blog/retail-treasury-bond-guide",
-	"/shipping-logistics-estimator": "/blog/shipping-logistics-guide",
-
-	"/civil-service-reviewer": "/blog/civil-service-reviewer-guide",
-	"/legal-contract-generator": "/blog/legal-contract-guide",
-	"/invoice-factoring-calculator": "/blog/invoice-factoring-guide",
-	"/digital-ticket-generator": "/blog/digital-ticket-guide",
-
-	"/gsis-pension-calculator": "/blog/how-to-compute-gsis-pension",
-	"/sss-maternity-calculator": "/blog/sss-maternity-benefit-guide",
-	"/gross-from-tax-calculator": "/blog/gross-from-tax-computation-guide",
-	"/separation-pay-calculator": "/blog/philippine-separation-pay-guide",
-	"/freelance-rate-calculator": "/blog/freelance-hourly-rate-guide",
-	"/bir-withholding-tax-calculator": "/blog/bir-withholding-tax-guide",
-	"/motorcycle-loan-calculator":
-		"/blog/philippine-car-loan-guide-bank-vs-dealer",
-	"/pagibig-affordability-calculator":
-		"/blog/pagibig-housing-loan-affordability-guide",
-	"/prc-board-exam-rating-calculator": "/blog/prc-board-exam-rating-guide",
-	"/latin-honors-calculator": "/blog/philippine-latin-honors-guide",
-	"/dost-scholarship-stipend-calculator":
-		"/blog/dost-scholarship-stipend-guide",
-	"/ched-scholarship-calculator": "/blog/ched-scholarship-guide",
-	"/qpi-gpa-calculator": "/blog/qpi-gpa-calculator-guide",
-	"/dfa-age-calculator": "/blog/dfa-age-requirements-guide",
-	"/bill-splitter-calculator": "/blog/how-to-split-bills-properly",
-};
-
 const toolToSourcesMap: Record<string, { name: string; url: string }[]> = {
 	"/salary-calculator": [
 		{
@@ -120,12 +46,6 @@ const toolToSourcesMap: Record<string, { name: string; url: string }[]> = {
 		{
 			name: "GSIS RA 8291 Retirement Laws",
 			url: "https://www.gsis.gov.ph/active-members/benefits/retirement/ra-8291/",
-		},
-	],
-	"/sss-maternity-calculator": [
-		{
-			name: "RA 11210 (Expanded Maternity Leave)",
-			url: "https://www.officialgazette.gov.ph/2019/02/20/republic-act-no-11210/",
 		},
 	],
 	"/philhealth-calculator": [
@@ -464,12 +384,6 @@ const toolToSourcesMap: Record<string, { name: string; url: string }[]> = {
 			url: "https://www.erc.gov.ph/SectorPage/Electricity",
 		},
 	],
-	"/inflation-calculator": [
-		{
-			name: "PSA Official Inflation Data",
-			url: "https://psa.gov.ph/price-indices/cpi-ir",
-		},
-	],
 	"/overtime-pay-calculator": [
 		{
 			name: "DOLE Holiday and Premium Pay",
@@ -480,7 +394,6 @@ const toolToSourcesMap: Record<string, { name: string; url: string }[]> = {
 
 export default function ToolFooter({ currentPath }: { currentPath: string }) {
 	const t = useTranslations("ToolFooter");
-	const blogPath = toolToBlogMap[currentPath];
 
 	// Find the category of the current tool
 	let currentCategory = "";
@@ -492,7 +405,8 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 	}
 
 	// Find 3 related tools (same category preferred)
-	let relatedTools: any[] = [];
+	type ToolItem = (typeof toolCategories)[number]["items"][number];
+	let relatedTools: ToolItem[] = [];
 	const categoryObj = toolCategories.find(
 		(c) => c.category === currentCategory,
 	);
@@ -525,48 +439,14 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 				paddingBottom: "32px",
 			}}
 		>
-			<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-				{t("readGuideTitle")}
-			</h2>
-			<div
-				className="card"
-				style={{ marginBottom: "32px", borderLeft: "4px solid var(--primary)" }}
-			>
-				<p
-					style={{
-						marginBottom: "16px",
-						fontSize: "16px",
-						color: "var(--text-primary)",
-						lineHeight: "1.6",
-					}}
-				>
-					{t("readGuideDesc")}
-				</p>
-				<Link
-					href={blogPath || "/blog"}
-					style={{
-						fontWeight: 600,
-						display: "inline-block",
-						backgroundColor: "var(--primary)",
-						color: "white",
-						padding: "8px 16px",
-						borderRadius: "4px",
-						textDecoration: "none",
-					}}
-				>
-					{t("readGuideBtn")}
-				</Link>
-			</div>
-
 			<h2
 				style={{
 					fontSize: "20px",
-					marginTop: "24px",
 					marginBottom: "16px",
 					color: "var(--text-secondary)",
 				}}
 			>
-				{t("aboutToolTitle")}
+				{t("sourcesTitle")}
 			</h2>
 			<div
 				style={{
@@ -576,16 +456,6 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 					color: "var(--text-primary)",
 				}}
 			>
-				<p style={{ marginBottom: "16px" }}>{t("aboutToolDesc")}</p>
-				<h3
-					style={{
-						fontSize: "16px",
-						marginBottom: "8px",
-						color: "var(--text-primary)",
-					}}
-				>
-					{t("sourcesTitle")}
-				</h3>
 				{toolToSourcesMap[currentPath] &&
 				toolToSourcesMap[currentPath].length > 0 ? (
 					<ul style={{ paddingLeft: "24px", marginBottom: "16px" }}>

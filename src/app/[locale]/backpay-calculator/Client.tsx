@@ -1,20 +1,31 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 export default function BackpayClient() {
 	const t = useTranslations("BackpayCalculator");
@@ -302,33 +313,7 @@ export default function BackpayClient() {
 
 					{mounted && chartData.length > 0 && (
 						<div style={{ height: "250px", width: "100%", marginTop: "24px" }}>
-							<ResponsiveContainer width="100%" height="100%">
-								<PieChart>
-									<Pie
-										data={chartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={60}
-										outerRadius={80}
-										paddingAngle={5}
-										dataKey="value"
-									>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Pie>
-									<Tooltip
-										formatter={(value: any) => formatCurrency(Number(value))}
-										contentStyle={{
-											backgroundColor: "var(--surface-color)",
-											borderColor: "var(--border-color)",
-											color: "var(--text-primary)",
-											borderRadius: "8px",
-										}}
-									/>
-									<Legend />
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					)}
 

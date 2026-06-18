@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
 export default function InfluencerRateClient() {
+	const t = useTranslations("InfluencerRate");
 	const [platform, setPlatform] = useState("ig");
 	const [followers, setFollowers] = useState(50000);
 	const [likes, setLikes] = useState(1500);
@@ -46,64 +48,64 @@ export default function InfluencerRateClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Philippine Influencer & Talent Rate Calculator"
-				subtitle="Calculate fair creator pricing based on Engagement Rate (ER) and follower metrics."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Metrics</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("metrics")}</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Platform</label>
+							<label className="form-label">{t("platform")}</label>
 							<select className="form-control" value={platform} onChange={(e) => setPlatform(e.target.value)}>
-								<option value="ig">Instagram (Static / Reels)</option>
-								<option value="tiktok">TikTok</option>
-								<option value="yt">YouTube</option>
+								<option value="ig">{t("platformIg")}</option>
+								<option value="tiktok">{t("platformTiktok")}</option>
+								<option value="yt">{t("platformYt")}</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Follower / Subscriber Count</label>
+							<label className="form-label">{t("followerCount")}</label>
 							<input type="number" className="form-control" value={followers || ""} onChange={(e) => setFollowers(Number(e.target.value))} />
 						</div>
 
 						<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
 							<div className="form-group">
-								<label className="form-label">Avg. Likes</label>
+								<label className="form-label">{t("avgLikes")}</label>
 								<input type="number" className="form-control" value={likes || ""} onChange={(e) => setLikes(Number(e.target.value))} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Avg. Comments</label>
+								<label className="form-label">{t("avgComments")}</label>
 								<input type="number" className="form-control" value={comments || ""} onChange={(e) => setComments(Number(e.target.value))} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Avg. Shares/Saves</label>
+								<label className="form-label">{t("avgShares")}</label>
 								<input type="number" className="form-control" value={shares || ""} onChange={(e) => setShares(Number(e.target.value))} />
 							</div>
 							{platform === "tiktok" && (
 								<div className="form-group">
-									<label className="form-label">Avg. Views</label>
+									<label className="form-label">{t("avgViews")}</label>
 									<input type="number" className="form-control" value={views || ""} onChange={(e) => setViews(Number(e.target.value))} />
 								</div>
 							)}
 						</div>
 
-						<h2 style={{ fontSize: "16px", marginBottom: "12px", color: "var(--primary)" }}>Creative Premiums</h2>
+						<h2 style={{ fontSize: "16px", marginBottom: "12px", color: "var(--primary)" }}>{t("creativePremiums")}</h2>
 						
 						<div className="form-group">
 							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", marginBottom: "8px" }}>
 								<input type="checkbox" checked={isVideo} onChange={(e) => setIsVideo(e.target.checked)} />
-								<span style={{ fontSize: "14px" }}>Video Format (+25% Premium)</span>
+								<span style={{ fontSize: "14px" }}>{t("premiumVideo")}</span>
 							</label>
 							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", marginBottom: "8px" }}>
 								<input type="checkbox" checked={hasUsageRights} onChange={(e) => setHasUsageRights(e.target.checked)} />
-								<span style={{ fontSize: "14px" }}>Paid Ad Usage Rights (+75% Premium)</span>
+								<span style={{ fontSize: "14px" }}>{t("premiumUsageRights")}</span>
 							</label>
 							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
 								<input type="checkbox" checked={hasExclusivity} onChange={(e) => setHasExclusivity(e.target.checked)} />
-								<span style={{ fontSize: "14px" }}>Category Exclusivity (+35% Premium)</span>
+								<span style={{ fontSize: "14px" }}>{t("premiumExclusivity")}</span>
 							</label>
 						</div>
 					</div>
@@ -111,26 +113,26 @@ export default function InfluencerRateClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Pricing Computation</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("pricingTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Engagement Rate (ER):</span>
+							<span>{t("engagementRate")}</span>
 							<strong>{er.toFixed(2)}%</strong>
 						</div>
 
 						<div style={{ padding: "16px", backgroundColor: "rgba(16, 185, 129, 0.05)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: "8px", marginBottom: "16px", marginTop: "16px" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-								<span>Base Rate (PHP):</span>
+								<span>{t("baseRate")}</span>
 								<strong>{formatPHP(baseRatePHP)}</strong>
 							</div>
 							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: "var(--text-secondary)" }}>
-								<span>Premiums & Add-ons:</span>
+								<span>{t("premiumsAddons")}</span>
 								<span>+ {formatPHP(finalRatePHP - baseRatePHP)}</span>
 							</div>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Recommended Rate Card:</span>
+							<span>{t("recommendedRate")}</span>
 							<span>{formatPHP(finalRatePHP)}</span>
 						</div>
 					</div>

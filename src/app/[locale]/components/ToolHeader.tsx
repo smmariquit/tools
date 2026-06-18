@@ -1,6 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "./AdBanner";
 
 type ToolHeaderProps = {
@@ -21,16 +23,11 @@ export default function ToolHeader({
 	return (
 		<>
 			<div style={{ marginBottom: "24px" }}>
-				<Link
-					href={backLink}
-					style={{
-						fontSize: "14px",
-						display: "inline-block",
-						marginBottom: "16px",
-					}}
-				>
-					&larr; {backText}
-				</Link>
+				<BackButton fallbackHref={backLink} style={{ marginBottom: "16px" }}>
+					{backText}
+				</BackButton>
+				<ToolIllustration />
+				<ToolEyebrow />
 				<h1 className="page-title">{title}</h1>
 				<p className="page-subtitle">{subtitle}</p>
 			</div>

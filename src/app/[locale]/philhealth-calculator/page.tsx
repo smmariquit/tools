@@ -1,62 +1,29 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
-	searchParams,
+	params,
 }: {
-	searchParams: Promise<{ salary?: string }>;
+	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-	const resolvedParams = await searchParams;
-	const title = "PhilHealth Premium Calculator (2026) | PHTools";
-	const description =
-		"Calculate your exact monthly PhilHealth premium based on the latest 5% UHC rate.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-
-	if (resolvedParams.salary) {
-		const basicSalary = parseFloat(resolvedParams.salary || "30000") || 0;
-		const premiumRate = 0.05;
-		const floorSalary = 10000;
-		const ceilingSalary = 100000;
-
-		let applicableSalary = basicSalary;
-		if (basicSalary === 0) applicableSalary = 0;
-		else if (basicSalary < floorSalary) applicableSalary = floorSalary;
-		else if (basicSalary > ceilingSalary) applicableSalary = ceilingSalary;
-
-		const totalPremium = applicableSalary * premiumRate;
-		const employeeShare = totalPremium / 2;
-
-		const formatAmount = (val: number) =>
-			new Intl.NumberFormat("en-PH", {
-				style: "currency",
-				currency: "PHP",
-				maximumFractionDigits: 0,
-			}).format(val);
-
-		ogUrl += `&s1l=Basic%20Salary&s1v=${encodeURIComponent(formatAmount(basicSalary))}`;
-		ogUrl += `&s2l=Total%20Premium&s2v=${encodeURIComponent(formatAmount(totalPremium))}`;
-		ogUrl += `&s3l=Your%20Share&s3v=${encodeURIComponent(formatAmount(employeeShare))}`;
-	} else {
-		ogUrl +=
-			"&s1l=Basic%20Salary&s1v=%E2%82%B130%2C000&s2l=Total%20Premium&s2v=%E2%82%B11%2C500&s3l=Your%20Share&s3v=%E2%82%B1750";
-	}
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "PhilHealthCalculator" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [
-				{
-					url: ogUrl,
-					width: 1200,
-					height: 630,
-				},
-			],
+			images: ogImages({
+				tool: "philhealth-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -94,7 +61,7 @@ export default async function PhilHealthPage() {
 				}
 			>
 				<Client />
-			<ToolArticle slug="philhealth-contribution-table-2026" />
+				<ToolPageBottom slug="philhealth-contribution-table-2026" />
 			</Suspense>
 		</>
 	);

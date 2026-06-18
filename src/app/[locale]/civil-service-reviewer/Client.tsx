@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -7,6 +8,7 @@ import ToolLayout from "../components/ToolLayout";
 import { QUESTION_BANK } from "./questions";
 
 export default function CivilServiceClient() {
+	const t = useTranslations("CivilServiceReviewer");
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [selectedOption, setSelectedOption] = useState<number | null>(null);
 	const [showExplanation, setShowExplanation] = useState(false);
@@ -45,8 +47,9 @@ export default function CivilServiceClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Civil Service Exam Reviewer"
-				subtitle="Offline-capable mock exams and flashcards. Progress is saved locally on your device."
+				title={t("title")}
+				subtitle={t("subtitle")}
+				backText={t("backToTools")}
 			/>
 
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
@@ -73,9 +76,12 @@ export default function CivilServiceClient() {
 									}}
 								>
 									<span>
-										Question {currentIndex + 1} of {QUESTION_BANK.length}
+										{t("questionProgress", {
+											current: currentIndex + 1,
+											total: QUESTION_BANK.length,
+										})}
 									</span>
-									<span>Score: {score}</span>
+									<span>{t("score", { score })}</span>
 								</div>
 
 								<h2
@@ -150,7 +156,7 @@ export default function CivilServiceClient() {
 												marginBottom: "8px",
 											}}
 										>
-											Explanation:
+											{t("explanation")}
 										</strong>
 										<p style={{ fontSize: "14px", lineHeight: 1.5 }}>
 											{currentQuestion.explanation}
@@ -162,8 +168,8 @@ export default function CivilServiceClient() {
 											style={{ marginTop: "16px", width: "100%" }}
 										>
 											{currentIndex < QUESTION_BANK.length - 1
-												? "Next Question"
-												: "Finish Mock Exam"}
+												? t("nextQuestion")
+												: t("finishExam")}
 										</button>
 									</div>
 								)}
@@ -177,13 +183,16 @@ export default function CivilServiceClient() {
 										color: "var(--primary)",
 									}}
 								>
-									Mock Exam Complete!
+									{t("examComplete")}
 								</h2>
 								<p style={{ fontSize: "18px", marginBottom: "32px" }}>
-									Your Score: {score} / {QUESTION_BANK.length}
+									{t("yourScore", {
+										score,
+										total: QUESTION_BANK.length,
+									})}
 								</p>
 								<button className="btn btn-primary" onClick={reset}>
-									Retake Exam
+									{t("retakeExam")}
 								</button>
 							</div>
 						)}

@@ -1,22 +1,34 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-	Bar,
-	BarChart,
-	Legend,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
+
 export default function SSSCalculator() {
+	const t = useTranslations("SSSContribution");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -102,19 +114,21 @@ export default function SSSCalculator() {
 		}).format(amount);
 	};
 
+	const eeChartLabel = t("chartEmployeeShare");
+	const erChartLabel = t("chartEmployerShare");
 	const chartData = [
 		{
 			name: "SSS Breakdown",
-			"Employee Share": eeTotal,
-			"Employer Share": erTotal,
+			[eeChartLabel]: eeTotal,
+			[erChartLabel]: erTotal,
 		},
 	];
 
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="SSS Contribution Calculator (2026)"
-				subtitle="See your exact SSS breakdown (EE/ER/EC/MPF) based on the latest 15% table."
+				title={t("title")}
+				subtitle={t("subtitle")}
 				adSlotId="0987654321"
 			/>
 
@@ -129,12 +143,12 @@ export default function SSSCalculator() {
 							paddingBottom: "8px",
 						}}
 					>
-						Your Details
+						{t("inputTitle")}
 					</h2>
 
 					<div className="form-group">
 						<label className="form-label" htmlFor="memberType">
-							Membership Type
+							{t("membershipType")}
 						</label>
 						<select
 							id="memberType"
@@ -149,13 +163,13 @@ export default function SSSCalculator() {
 								cursor: "pointer",
 							}}
 						>
-							<option value="employed">Private Employee</option>
-							<option value="voluntary">Voluntary / Self-Employed / OFW</option>
+							<option value="employed">{t("memberEmployed")}</option>
+							<option value="voluntary">{t("memberVoluntary")}</option>
 						</select>
 					</div>
 
 					<InteractiveSlider
-						label="Basic Monthly Salary (PHP)"
+						label={t("salaryLabel")}
 						value={salary}
 						min={0}
 						max={150000}
@@ -164,20 +178,16 @@ export default function SSSCalculator() {
 							setSalaryStr(val.toString());
 							updateUrl({ salary: val.toString() });
 						}}
-						hint="Input your basic pay excluding allowances and overtime."
+						hint={t("salaryHint")}
 					/>
 					{salary > 0 && salary < 5000 && (
 						<div style={{ marginTop: "12px" }}>
-							<TipCard title="Minimum Contribution Applied">
-								Below MSC floor — minimum MSC of ₱5,000 applies
-							</TipCard>
+							<TipCard title={t("minTipTitle")}>{t("minTipBody")}</TipCard>
 						</div>
 					)}
 					{salary >= 34750 && (
 						<div style={{ marginTop: "12px" }}>
-							<TipCard title="Maximum Contribution Reached">
-								Above MSC ceiling — maximum MSC of ₱35,000 applies
-							</TipCard>
+							<TipCard title={t("maxTipTitle")}>{t("maxTipBody")}</TipCard>
 						</div>
 					)}
 				</div>
@@ -193,7 +203,7 @@ export default function SSSCalculator() {
 							color: "var(--primary)",
 						}}
 					>
-						Contribution Breakdown
+						{t("breakdownTitle")}
 					</h2>
 
 					<div
@@ -206,7 +216,7 @@ export default function SSSCalculator() {
 							border: "1px solid var(--border-color)",
 						}}
 					>
-						<span style={{ fontWeight: 500 }}>Monthly Salary Credit (MSC)</span>
+						<span style={{ fontWeight: 500 }}>{t("mscLabel")}</span>
 						<strong style={{ color: "var(--primary)" }}>
 							{formatCurrency(msc)}
 						</strong>
@@ -222,7 +232,7 @@ export default function SSSCalculator() {
 								fontStyle: "italic",
 							}}
 						>
-							* By law, the maximum MSC is capped at ₱35,000.
+							{t("mscCapNote")}
 						</p>
 					)}
 					{msc < 35000 && <div style={{ marginBottom: "16px" }}></div>}
@@ -238,8 +248,8 @@ export default function SSSCalculator() {
 							}}
 						>
 							{memberType === "employed"
-								? "Employee Share (Your Deduction)"
-								: "Your Total Contribution"}
+								? t("employeeShareTitle")
+								: t("yourTotalContribution")}
 						</h3>
 
 						<div
@@ -251,7 +261,9 @@ export default function SSSCalculator() {
 							}}
 						>
 							<span>
-								Regular SSS ({memberType === "employed" ? "5%" : "15%"})
+								{t("regularSss", {
+									rate: memberType === "employed" ? "5%" : "15%",
+								})}
 							</span>
 							<span>{formatCurrency(eeRegular)}</span>
 						</div>
@@ -264,7 +276,7 @@ export default function SSSCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Mandatory Provident Fund (MPF)</span>
+							<span>{t("mpf")}</span>
 							<span>{formatCurrency(eeMPF)}</span>
 						</div>
 
@@ -279,7 +291,9 @@ export default function SSSCalculator() {
 							}}
 						>
 							<span>
-								Total {memberType === "employed" ? "Employee" : ""} Share
+								{memberType === "employed"
+									? t("totalEmployeeShare")
+									: t("totalShare")}
 							</span>
 							<span style={{ color: "#b71c1c" }}>
 								{formatCurrency(eeTotal)}
@@ -298,7 +312,7 @@ export default function SSSCalculator() {
 									textTransform: "uppercase",
 								}}
 							>
-								Employer Share (Company Pays)
+								{t("employerShareTitle")}
 							</h3>
 
 							<div
@@ -309,7 +323,7 @@ export default function SSSCalculator() {
 									fontSize: "14px",
 								}}
 							>
-								<span>Regular SSS (10%)</span>
+								<span>{t("regularSssEr")}</span>
 								<span>{formatCurrency(erRegular)}</span>
 							</div>
 
@@ -321,7 +335,7 @@ export default function SSSCalculator() {
 									fontSize: "14px",
 								}}
 							>
-								<span>Mandatory Provident Fund (MPF)</span>
+								<span>{t("mpf")}</span>
 								<span>{formatCurrency(erMPF)}</span>
 							</div>
 
@@ -333,7 +347,7 @@ export default function SSSCalculator() {
 									fontSize: "14px",
 								}}
 							>
-								<span>EC (Employees&apos; Compensation)</span>
+								<span>{t("ec")}</span>
 								<span>{formatCurrency(ecFee)}</span>
 							</div>
 
@@ -347,7 +361,7 @@ export default function SSSCalculator() {
 									fontWeight: 600,
 								}}
 							>
-								<span>Total Employer Share</span>
+								<span>{t("totalEmployerShare")}</span>
 								<span style={{ color: "var(--text-primary)" }}>
 									{formatCurrency(erTotal)}
 								</span>
@@ -367,7 +381,7 @@ export default function SSSCalculator() {
 							color: "var(--text-primary)",
 						}}
 					>
-						<span>Total Remittance to SSS</span>
+						<span>{t("totalRemittance")}</span>
 						<span style={{ color: "#1b5e20" }}>
 							{formatCurrency(grandTotal)}
 						</span>
@@ -385,47 +399,16 @@ export default function SSSCalculator() {
 							textAlign: "center",
 						}}
 					>
-						Contribution Distribution
+						{t("chartTitle")}
 					</h2>
 					<div style={{ width: "100%", height: 300 }}>
-						<ResponsiveContainer width="100%" height="100%">
-							<BarChart
-								data={chartData}
-								layout="vertical"
-								margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-							>
-								<XAxis type="number" />
-								<YAxis dataKey="name" type="category" hide />
-								<Tooltip
-									contentStyle={{
-										backgroundColor: "var(--surface-color)",
-										borderColor: "var(--border-color)",
-										borderRadius: "var(--border-radius-sm)",
-										color: "var(--text-primary)",
-									}}
-									itemStyle={{ color: "var(--text-primary)" }}
-									labelStyle={{ display: "none" }}
-									formatter={(value) => formatCurrency(Number(value) || 0)}
-								/>
-								<Legend
-									formatter={(value) => (
-										<span
-											style={{ color: "var(--text-primary)", fontSize: "12px" }}
-										>
-											{value}
-										</span>
-									)}
-								/>
-								<Bar
-									dataKey="Employee Share"
-									stackId="a"
-									fill="var(--primary)"
-								/>
-								{memberType === "employed" && (
-									<Bar dataKey="Employer Share" stackId="a" fill="#7c4dff" />
-								)}
-							</BarChart>
-						</ResponsiveContainer>
+						<Chart
+							data={chartData}
+							eeKey={eeChartLabel}
+							erKey={erChartLabel}
+							showEr={memberType === "employed"}
+							formatValue={formatCurrency}
+						/>
 					</div>
 				</div>
 			)}
@@ -440,12 +423,12 @@ export default function SSSCalculator() {
 				}}
 			>
 				<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-					Complete 2026 SSS Contribution Table
+					{t("tableTitle")}
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
-					Your MSC bracket is <strong>highlighted</strong> below. The total
-					contribution rate is 15% (5% Employee + 10% Employer for private
-					employees).
+					{t.rich("tableIntro", {
+						b: (chunks) => <strong>{chunks}</strong>,
+					})}
 				</p>
 
 				<div style={{ overflowX: "auto", marginBottom: "24px" }}>
@@ -464,13 +447,15 @@ export default function SSSCalculator() {
 								}}
 							>
 								<th style={{ padding: "14px 12px", textAlign: "left" }}>
-									Salary Range
+									{t("colSalaryRange")}
 								</th>
-								<th style={{ padding: "14px 12px" }}>MSC</th>
-								<th style={{ padding: "14px 12px" }}>EE (5%)</th>
-								<th style={{ padding: "14px 12px" }}>ER (10%)</th>
-								<th style={{ padding: "14px 12px" }}>EC</th>
-								<th style={{ padding: "14px 12px", fontWeight: 700 }}>Total</th>
+								<th style={{ padding: "14px 12px" }}>{t("colMsc")}</th>
+								<th style={{ padding: "14px 12px" }}>{t("colEe")}</th>
+								<th style={{ padding: "14px 12px" }}>{t("colEr")}</th>
+								<th style={{ padding: "14px 12px" }}>{t("colEc")}</th>
+								<th style={{ padding: "14px 12px", fontWeight: 700 }}>
+									{t("colTotal")}
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -531,9 +516,9 @@ export default function SSSCalculator() {
 
 									const label =
 										i === 0
-											? "Below ₱5,250"
+											? t("rowBelow", { amount: "₱5,250" })
 											: i === mscValues.length - 1
-												? "₱34,750 and above"
+												? t("rowAndAbove", { amount: "₱34,750" })
 												: `₱${(low).toLocaleString(undefined, { maximumFractionDigits: 0 })} – ₱${(high).toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
 
 									rows.push(
@@ -632,7 +617,7 @@ export default function SSSCalculator() {
 						className="btn-secondary"
 						onClick={() => setIsTableExpanded(!isTableExpanded)}
 					>
-						{isTableExpanded ? "Collapse Table" : "View Full SSS Table"}
+						{isTableExpanded ? t("collapseTable") : t("viewFullTable")}
 					</button>
 				</div>
 

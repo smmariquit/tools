@@ -1,47 +1,52 @@
 ---
 title: "How to Compute Amilyar (Real Property Tax) in the Philippines"
-description: "Everything you need to know about the Philippine Amilyar: how to compute it, what the SEF is, and how to get discounts from your LGU."
+description: "Amilyar is not the tax on your property's market value, it is a tax on its assessed value, which is a fraction of that. Here is the full computation, the SEF, and the discounts."
 date: "2026-05-31"
 ---
 
-Owning a house or a piece of land in the Philippines comes with the yearly obligation of paying the **Real Property Tax (RPT)**, colloquially known as *Amilyar*. 
-
-If you fail to pay your Amilyar, the local government can impose severe penalties, and in extreme cases, auction off your property to recover the unpaid taxes. Here is a simple guide on how to compute it.
+The single biggest misconception about amilyar is that it is a tax on what your property is worth. It is not. The Real Property Tax is computed on the assessed value, which is only a fraction of the fair market value, and people who confuse the two either panic at an imagined bill or quietly overpay because they did the math on the wrong base. The whole framework comes from the [Local Government Code of 1991 (RA 7160)](https://lawphil.net/statutes/repacts/ra1991/ra_7160_1991.html), which lets local governments levy and collect this tax. I built the [amilyar calculator](/amilyar-calculator) to run the three steps cleanly, and here is the reasoning so you can check it against your own tax declaration.
 
 <AdBanner dataAdSlot="blog-in-article-1" />
 
-## The Basic Formula
+## Step one: assessed value is a fraction of market value
 
-Computing your Amilyar is a three-step process based on the Local Government Code of 1991. You will need your **Tax Declaration**, which states the Fair Market Value (FMV) of your property.
+Your tax declaration states a fair market value for the property, but you are not taxed on that figure. You are taxed on the assessed value, which is the fair market value multiplied by an assessment level that depends on how the property is classified. Under RA 7160 the assessment levels are stated as maximums, with residential land at up to 20 percent, agricultural up to 40 percent, and commercial or industrial up to 50 percent. The crucial nuance is that these are ceilings set in the Code, and the actual level your city or municipality applies is fixed by local ordinance and can be lower. So a ₱2,000,000 residential lot at a 20 percent assessment level has an assessed value of ₱400,000, and every peso of tax that follows is computed on that ₱400,000, not on the ₱2,000,000.
 
-### Step 1: Find the Assessed Value
-The Assessed Value is a percentage of your property's Fair Market Value. The percentage depends on the classification of your property:
-*   **Residential:** 20%
-*   **Commercial / Industrial:** 50%
-*   **Agricultural:** 40%
+## Step two and three: the basic rate plus the SEF
 
-*Formula:* Fair Market Value × Assessment Level = Assessed Value
+Once you have the assessed value, the basic tax rate is straightforward but geographic. RA 7160 caps the basic Real Property Tax at 2 percent of assessed value for cities and municipalities within Metro Manila, and at 1 percent for provinces. On top of the basic tax, the Code authorizes an additional 1 percent levy nationwide for the Special Education Fund, which is earmarked for public schools. People forget the SEF and then wonder why their bill is higher than the basic rate alone implies. Carrying the example forward: that ₱400,000 assessed value in Metro Manila at 2 percent is ₱8,000 in basic RPT, plus 1 percent SEF of ₱4,000, for ₱12,000 total. The same property in a province at 1 percent basic would be ₱4,000 plus the ₱4,000 SEF, or ₱8,000.
 
-### Step 2: Compute the Basic RPT
-The basic tax rate depends on where your property is located.
-*   **Metro Manila:** 2% of the Assessed Value
-*   **Provinces / Municipalities:** 1% of the Assessed Value
+| Component | Rate (on assessed value) | On ₱400,000 assessed (Metro Manila) |
+|---|---|---|
+| Basic RPT (Metro Manila) | up to 2% | ₱8,000 |
+| Basic RPT (provinces) | up to 1% | ₱4,000 |
+| Special Education Fund | 1% | ₱4,000 |
+| Total (Metro Manila) | 3% | ₱12,000 |
 
-*Formula:* Assessed Value × RPT Rate = Basic RPT
+<RegionalNote>
+The "up to 2%" ceiling is not what every Metro Manila city actually charges. **Quezon City** levies **1.5%** basic RPT on residential property (2% on commercial), and it adds a **Socialized Housing Tax of 0.5%** on the assessed value of land valued above ₱100,000. **Makati** also uses **1.5%** residential, and unusually assesses residential land at only a **12%** assessment level (well below the 20% ceiling), with a +0.25% surcharge if the residence is rented out. So a QC home worked at the generic "2% Metro Manila" rate overstates the basic tax — on a ₱320,000 assessed value, the real QC basic is ₱4,800, not ₱6,400. Your city's own revenue code and its latest Schedule of Market Values are the final word; several cities recently revised their SMVs, which raises the bill even when the rate is unchanged.
+</RegionalNote>
 
 <AdBanner dataAdSlot="blog-in-article-2" />
 
-### Step 3: Add the Special Education Fund (SEF)
-On top of the basic RPT, the government collects an additional 1% nationwide for the Special Education Fund.
+## The edge case: idle land tax and the penalty ceiling
 
-*Formula:* Assessed Value × 1% = SEF Tax
+Two things in RA 7160 catch owners off guard. The first is the additional ad valorem tax on idle lands, which a local government may impose at up to 5 percent of assessed value on top of the basic tax. If you are holding a vacant residential lot as an investment and your LGU has enacted an idle-land ordinance, your bill can be meaningfully higher than a neighbor's developed lot of the same assessed value, which surprises a lot of land bankers. The second is what happens when you do not pay: delinquency draws interest of 2 percent per month on the unpaid amount, but it is capped at a maximum of 72 percent, which is reached after 36 months. After that the LGU's remedy is no longer just interest; it can move to auction the property to recover the tax, so letting amilyar lapse for years is genuinely dangerous, not merely expensive.
 
-**Total Amilyar Due:** Basic RPT + SEF Tax
+## How to actually pay less, legally
 
-## How to Get Discounts
+The Code lets local governments grant a discount for prompt or advance payment, and most LGUs do. Pay the full year on or before the deadline, often January 31, and you typically get up to a 20 percent discount on the annual tax; pay quarterly installments on time and a smaller discount, commonly around 10 percent, may apply. The exact discount and deadline are set by local ordinance, so they vary, but the pattern holds nationwide and it is real money. On a ₱12,000 bill, a 20 percent prompt-payment discount is ₱2,400 saved for doing nothing more than paying early.
 
-Most Local Government Units (LGUs) offer up to a **20% discount** if you pay your Amilyar in full on or before January 31 of the taxable year. If you pay in quarterly installments on time, you can also get a 10% discount. 
+### Is amilyar based on the selling price of my property?
 
-Conversely, late payments incur a 2% penalty per month, capping at a maximum of 72% after 36 months of delinquency.
+No, and this is the most common error. It is based on the assessed value, which is the fair market value on your tax declaration multiplied by the assessment level for your property's classification, not on what you could sell it for today and not on the zonal value the BIR uses for transfer taxes. The market value on the tax declaration is often well below current selling prices because reassessments lag, which is one reason amilyar tends to feel modest relative to a property's actual worth. Always start the computation from the assessed value, not the price you paid or the price you hope to get.
 
-*To estimate your exact property tax, use our [Amilyar Calculator](/amilyar-calculator).*
+### What happens if I do not pay my amilyar for years?
+
+Interest accrues at 2 percent per month on the unpaid tax, accumulating until it hits the statutory ceiling of 72 percent after three years of delinquency. Beyond the financial penalty, sustained non-payment exposes the property to the local government's collection remedies under RA 7160, which can culminate in a tax delinquency sale, the auctioning of the property to satisfy the arrears. There is usually a redemption period during which you can pay the back taxes, interest, and costs to recover it, but relying on that is a precarious position. Paying annually, ideally early enough to capture the prompt-payment discount, is far cheaper than untangling a delinquency.
+
+Assessment levels, discounts, and idle-land rules are set per LGU, so your city's ordinance is the final word over any general figure here. If a number looks off against your actual bill, tell me and I will check it. You can reach me through the [about page](/about).
+
+* [Zonal Value Calculator](/zonal-value-calculator)
+* [Estate Tax Calculator](/estate-tax-calculator)
+* [Home Loan Calculator](/home-loan-calculator)

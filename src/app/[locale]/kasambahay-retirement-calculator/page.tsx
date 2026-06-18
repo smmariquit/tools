@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Batas Kasambahay Statutory Retirement Pay Calculator";
-	const description =
-		"Calculate retirement pay for domestic workers under Article 302 of the Labor Code and Batas Kasambahay.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Retirement&s1v=Pay&s2l=Kasambahay&s2v=Computed";
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({
+		locale,
+		namespace: "KasambahayRetirement",
+	});
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "kasambahay-retirement-calculator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +33,7 @@ export default function KasambahayRetirementPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="kasambahay-retirement-guide" />
+			<ToolPageBottom slug="kasambahay-retirement-guide" />
 		</>
 	);
 }

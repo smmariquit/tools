@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllPostsMeta, type PostMeta } from "../../../lib/mdx";
+import Pagination from "../components/Pagination";
 
 export const metadata = {
 	title: "PHTools Blog | Financial Guides & Tax Tips for Filipinos",
@@ -7,8 +8,21 @@ export const metadata = {
 		"Read the latest guides on how to calculate your 13th month pay, SSS contributions, and navigate Philippine tax laws.",
 };
 
-export default function BlogIndex() {
-	const posts = getAllPostsMeta();
+const POSTS_PER_PAGE = 6;
+
+export default async function BlogIndex({
+	searchParams,
+}: {
+	searchParams: Promise<{ page?: string }>;
+}) {
+	const allPosts = getAllPostsMeta();
+	const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+	const requestedPage = Number((await searchParams).page) || 1;
+	const currentPage = Math.min(Math.max(1, requestedPage), totalPages);
+	const posts = allPosts.slice(
+		(currentPage - 1) * POSTS_PER_PAGE,
+		currentPage * POSTS_PER_PAGE,
+	);
 
 	return (
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
@@ -55,13 +69,26 @@ export default function BlogIndex() {
 										whiteSpace: "nowrap",
 									}}
 								>
-									{new Date(post.date).toLocaleDateString("en-US", {
-										year: "numeric",
-										month: "long",
-										day: "numeric",
-									})}
+									{post.updatedAt && post.updatedAt !== post.date
+										? "Updated "
+										: ""}
+									{new Date(post.updatedAt || post.date).toLocaleDateString(
+										"en-US",
+										{ year: "numeric", month: "long", day: "numeric" },
+									)}
+									{" • "}
+									{post.readingMinutes} min read
 								</span>
 							</div>
+							<p
+								style={{
+									margin: "0 0 8px 0",
+									fontSize: "13px",
+									color: "var(--text-secondary)",
+								}}
+							>
+								By {post.author}
+							</p>
 							<p
 								style={{
 									margin: 0,
@@ -92,6 +119,12 @@ export default function BlogIndex() {
 					</div>
 				)}
 			</div>
+
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				baseHref="/blog"
+			/>
 		</div>
 	);
 }

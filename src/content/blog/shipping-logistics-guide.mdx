@@ -1,39 +1,47 @@
 ---
-title: "Local Shipping & Logistics Estimator Guide"
+title: "Local Shipping & Logistics Cost Guide for MSME Sellers"
+description: "How Philippine courier rates are built from base fee, excess weight, and COD handling, and why volumetric weight quietly inflates the bill on light, bulky parcels."
 date: "2026-06-01"
-excerpt: "Calculate standard delivery costs for MSME e-commerce in the Philippines."
 ---
 
-# Local Shipping & Logistics Estimator Guide
+The first time an online seller loses money on an order, it is rarely the product cost. It is shipping, computed wrong. A parcel that "should" cost ₱90 to send arrives at the courier counter priced at ₱160, and the margin on a small-ticket item evaporates. The fix is understanding that a courier rate is not one number, it is a stack: a base fee for the route, an excess-weight charge, and a handling fee if the order is cash on delivery. I built the [shipping and logistics estimator](/shipping-logistics-estimator) around exactly that stack.
 
-Calculate standard delivery costs for MSME e-commerce in the Philippines. In the Philippines, understanding the exact math behind local shipping & logistics estimator is crucial for optimizing your resources and saving money. This tool and guide were built specifically to help you bypass manual calculations.
+<AdBanner dataAdSlot="blog-in-article-1" />
 
-## Why Use This Tool?
+## How the rate is actually built
 
-Manually computing values for local shipping & logistics estimator can lead to errors, especially with changing rates, complex percentage formulas, or platform-specific fees in the Philippines. This tool provides:
-- **Instant Accuracy:** Built with real-time formulas used by professionals.
-- **Zero Privacy Risk:** All calculations are performed entirely on your device. We do not store or send your data to any servers.
-- **Mobile Optimized:** Designed to work perfectly whether you are using a PC, Android, or iOS device.
+Start with the base fee, which is set by the origin-to-destination route. Intra-city is cheapest, Luzon-to-Luzon is moderate, and anything crossing to Visayas or Mindanao steps up because it involves sea or air freight rather than a van. That base fee typically covers the first kilogram, and every kilogram beyond it adds an excess charge, often around ₱50 per additional kilogram for domestic couriers. So a 3-kilogram package is the base route fee plus roughly two kilograms of excess on top.
 
-## How to Use the Calculator
+The edge case that catches new sellers is the kilogram boundary. Couriers round up, so a parcel weighing 1.2 kilograms is billed as 2 kilograms, and a 2.1-kilogram parcel is billed as 3. Shaving even 100 grams off packaging, lighter boxes, less filler, can drop you a full billing tier. I have seen sellers add a heavy promotional insert to every order and wonder why their shipping creeped up across the board; the insert pushed a chunk of their catalog over a rounding line.
 
-Using our Local Shipping & Logistics Estimator tool is incredibly straightforward. Just follow these steps:
+## Volumetric weight is the bill nobody predicts
 
-1. **Input your Data:** Enter your current numbers into the designated input fields. Make sure to double-check your figures.
-2. **Review the Breakdown:** As you type, the tool automatically calculates the exact outputs, displaying both the primary result and any secondary metrics (like hidden fees or conversions).
-3. **Save your Results:** Since this is a client-side tool, if you refresh the page, your data will reset. Be sure to screenshot or note down your final results!
+Here is the single most expensive thing most MSME sellers do not know: couriers charge on the greater of your parcel's actual weight and its volumetric weight. Volumetric weight prices the space your box occupies in the truck, not what it weighs on a scale. The common domestic formula is length times width times height in centimeters, divided by a divisor (often around 3,500), giving a "weight" in kilograms.
 
-## Frequently Asked Questions (FAQ)
+Run a real case. You sell throw pillows, light but bulky, shipped in a 40 by 30 by 20 centimeter box. Actual weight might be 1 kilogram, but the volumetric calculation is 40 times 30 times 20, which is 24,000, divided by 3,500, which is about 6.9 kilograms. The courier charges you for 7 kilograms, not 1, and your "1-kilo" shipping estimate was off by roughly ₱300 in excess fees. Anything light and large, pillows, lampshades, snack packs, inflatables, gets billed on volume, and pricing it on the scale weight is how sellers quietly subsidize their own deliveries.
 
-### Is this tool entirely free to use?
-Yes! PHTools is committed to providing free, high-utility calculators for the Philippine digital ecosystem. There are no paywalls or hidden subscriptions.
+<AdBanner dataAdSlot="blog-in-article-2" />
 
-### How accurate are the computations?
-The formulas used in this calculator are based on standard Philippine industry metrics and algebraic constants. However, please note that for financial or legal tools, this serves as an *estimate only* and should not replace professional advisory.
+## Cash on delivery is a percentage, not a flat fee
 
-### Can I use this offline?
-Yes! PHTools is built as a Progressive Web App (PWA). Once you load the page, you can disconnect from the internet and the calculator will continue to function perfectly.
+COD is the default for a large share of Philippine e-commerce, and the handling fee for it is usually a percentage of the declared order value rather than a fixed amount, commonly around 2 percent with a floor of about ₱50. The implication that surprises people is that COD scales with the order: a ₱5,000 order carries a ₱100 COD fee, while a ₱300 order hits the ₱50 minimum and so pays a far higher effective rate. For low-value, high-frequency items, that minimum is a real drag on margin, and it is an argument for nudging customers toward prepaid payment on small orders.
 
-## Conclusion
+There is a second, quieter cost to COD: remittance lag and failed deliveries. The courier holds your money until it remits the collected cash, often a week or two out, and a refused or unclaimed COD parcel still costs you the return shipping. Both belong in your pricing even though neither shows up on the rate card. The [estimator](/shipping-logistics-estimator) builds in the base, excess, and COD layers so you can price an item with its true landed shipping cost rather than the optimistic version.
 
-Understanding local shipping & logistics estimator doesn't have to be complicated. Bookmark this page whenever you need quick, reliable computations. If you found this tool helpful, be sure to check out the rest of our utility suite!
+### Why is my actual shipping fee higher than what I quoted the customer?
+
+Almost always one of two things: the parcel was billed on volumetric weight rather than its scale weight, or the weight rounded up into the next kilogram tier. Re-measure the box's dimensions and run the volumetric formula before you set a flat shipping price for a product.
+
+### How do I lower my shipping costs as a small seller?
+
+Tighten your packaging to reduce both actual and volumetric weight, since smaller boxes win on the dimensional formula. Steer small-ticket orders toward prepaid to dodge the COD minimum, and consider building a flat shipping fee into your product price only after you know the volumetric weight, not before.
+
+### Is COD worth the extra fee?
+
+For most Philippine sellers, yes, because a large share of buyers still prefer paying on delivery and removing the option costs you orders. The fee is the price of access to those customers, but it is worth steering low-value orders to prepaid where the ₱50 minimum bites hardest.
+
+These rates are representative working figures rather than any single courier's official tariff, and couriers revise them and their volumetric divisors periodically. Always confirm against your courier's current rate card, and if the method here looks wrong, tell me through the [about page](/about).
+
+* [Shopee & Lazada Fee Calculator](/shopee-lazada-fee-calculator)
+* [Customs Brokerage Fee Calculator](/customs-brokerage-fee-calculator)
+* [Budget Calculator](/budget-calculator)

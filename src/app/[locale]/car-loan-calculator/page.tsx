@@ -1,57 +1,23 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata({
-	searchParams,
-}: {
-	searchParams: Promise<{
-		price?: string;
-		down?: string;
-		rate?: string;
-		term?: string;
-	}>;
-}): Promise<Metadata> {
-	const resolvedParams = await searchParams;
+export function generateMetadata(): Metadata {
 	const title = "Car Loan & Amortization Calculator | PHTools";
 	const description =
 		"Compare bank vs in-house auto loans, down payment, monthly amortization, and interest costs in the Philippines.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-
-	if (resolvedParams.price) {
-		const price = parseFloat(resolvedParams.price) || 0;
-		const term = parseInt(resolvedParams.term || "5", 10) || 5;
-		const formatAmount = (val: number) =>
-			new Intl.NumberFormat("en-PH", {
-				style: "currency",
-				currency: "PHP",
-				maximumFractionDigits: 0,
-			}).format(val);
-
-		ogUrl += `&s1l=Vehicle%20Price&s1v=${encodeURIComponent(
-			formatAmount(price),
-		)}`;
-		ogUrl += `&s2l=Loan%20Term&s2v=${encodeURIComponent(`${term.toString()}y`)}`;
-	} else {
-		ogUrl +=
-			"&s1l=Vehicle%20Price&s1v=%E2%82%B11%2C200%2C000&s2l=Loan%20Term&s2v=5y";
-	}
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [
-				{
-					url: ogUrl,
-					width: 1200,
-					height: 630,
-				},
-			],
+			images: ogImages({
+				tool: "car-loan-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -89,7 +55,7 @@ export default async function CarLoanCalculatorPage() {
 				}
 			>
 				<Client />
-			<ToolArticle slug="philippine-car-loan-guide-bank-vs-dealer" />
+				<ToolPageBottom slug="philippine-car-loan-guide-bank-vs-dealer" />
 			</Suspense>
 		</>
 	);

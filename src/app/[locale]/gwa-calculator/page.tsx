@@ -1,19 +1,32 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import GwaCalculatorClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export const metadata = {
-	title: "UP / PUP GWA Calculator | Target Grade Predictor",
-	description:
-		"Calculate your General Weighted Average (1.0 to 5.0 scale) for UP, PUP, and other Philippine state universities. Includes a target GWA predictor.",
-	alternates: {
-		canonical: "https://www.phtools.me/en/gwa-calculator",
-		languages: {
-			en: "https://www.phtools.me/en/gwa-calculator",
-			tl: "https://www.phtools.me/tl/gwa-calculator",
+export async function generateMetadata(props: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await props.params;
+	const t = await getTranslations({ locale, namespace: "GWACalculator" });
+	return {
+		title: t("metaTitle"),
+		description: t("metaDescription"),
+		alternates: {
+			canonical: "https://www.phtools.me/en/gwa-calculator",
+			languages: {
+				en: "https://www.phtools.me/en/gwa-calculator",
+				tl: "https://www.phtools.me/tl/gwa-calculator",
+			},
 		},
-	},
-};
+		openGraph: {
+			images: ogImages({
+				tool: "gwa-calculator",
+				title: t("metaTitle"),
+				desc: t("metaDescription"),
+			}),
+		},
+	};
+}
 
 export default async function GwaCalculatorPage(props: {
 	params: Promise<{ locale: string }>;
@@ -44,6 +57,7 @@ export default async function GwaCalculatorPage(props: {
 				}}
 			/>
 			<GwaCalculatorClient />
+			<ToolPageBottom slug="how-to-compute-gwa-college" />
 		</>
 	);
 }

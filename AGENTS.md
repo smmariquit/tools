@@ -29,3 +29,18 @@ We aim to ensure that our platform is highly accessible. Every time you create o
 2. Do NOT break keyboard navigation. Support keyboard shortcuts where logical (e.g. `Enter` to submit, `Esc` to close modals).
 3. Ensure sufficient color contrast and appropriate `aria-labels` for screen readers.
 <!-- END:a11y-agent-rules -->
+
+<!-- BEGIN:mdx-changelog-rules -->
+# MDX content: visuals, sources, edited date + changelog (mandatory, no exceptions)
+
+Whenever you create or edit ANY file under `src/content/blog/**/*.mdx`, regardless of the task or which agent is doing it, you MUST:
+1. **Visuals where applicable:** add relevant charts/graphs/images when they aid understanding. Use `<MdxChart .../>` for data viz (bar/line/area/pie) and standard markdown images for diagrams/screenshots. Do not force visuals onto purely conceptual articles.
+1b. **Authority signal where credible:** where genuinely warranted, embed a real authority's explainer with `<YouTube id="..." title="..."/>`, recommend a real book with a personal aside, or link a complementary tool with a short kudos note. Verified, real items only (`research/deep-research-authority-prompt.md`); never fabricate a video ID/ISBN/channel. Don't force one onto every article.
+2. **Sources, ALWAYS:** end every writeup with a `## Sources` section listing the primary references used, as live links (verify each returns HTTP 200). It sits just above `## Changelog`.
+3. Set `updatedAt: "YYYY-MM-DD"` in the frontmatter to today's date (keep the original `date:` unchanged).
+4. Prepend a one-line dated entry (newest first) to the `## Changelog` section, kept as the LAST section. Never delete past entries. Use `## Changelog` (h2), not `###` (which becomes FAQ schema).
+
+Canonical bottom-of-file order: Related Tools list, then `## Sources`, then `## Changelog`.
+
+Full spec and examples: `.cursor/rules/mdx-editing.mdc`.
+<!-- END:mdx-changelog-rules -->

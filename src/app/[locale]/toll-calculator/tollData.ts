@@ -4,6 +4,10 @@
 export type ExpresswayData = {
 	name: string;
 	exits: string[];
+	// closed = distance-based (tap at entry, pay on exit). When the entry tap is
+	// missing, the exit plaza defaults to the full-length terminal-to-terminal
+	// toll. open = flat barrier fee, so a missing entry record does not apply.
+	closed: boolean;
 	// Key format: "Origin|Destination"
 	rates: Record<string, { class1: number; class2: number; class3: number }>;
 };
@@ -23,6 +27,7 @@ export const expressways: ExpresswayData[] = [
 			"Balintawak",
 			"NLEX",
 		],
+		closed: true,
 		rates: {
 			"Buendia|Quirino": { class1: 105, class2: 210, class3: 315 },
 			"Buendia|Plaza Dilao": { class1: 105, class2: 210, class3: 315 },
@@ -69,6 +74,7 @@ export const expressways: ExpresswayData[] = [
 			"Dau",
 			"Santa Ines",
 		],
+		closed: true,
 		rates: {
 			"Balintawak|Mindanao Avenue": { class1: 10, class2: 20, class3: 30 },
 			"Balintawak|Karuhatan": { class1: 15, class2: 30, class3: 45 },
@@ -111,6 +117,7 @@ export const expressways: ExpresswayData[] = [
 			"Batino",
 			"Calamba",
 		],
+		closed: true,
 		rates: {
 			"Nichols|Bicutan": { class1: 13, class2: 26, class3: 39 },
 			"Nichols|Sucat": { class1: 26, class2: 52, class3: 78 },
@@ -142,6 +149,7 @@ export const expressways: ExpresswayData[] = [
 			"Ibaan",
 			"Batangas City",
 		],
+		closed: true,
 		rates: {
 			"Sto. Tomas|Tanauan": { class1: 17, class2: 34, class3: 51 },
 			"Sto. Tomas|Malvar": { class1: 32, class2: 64, class3: 96 },
@@ -167,6 +175,7 @@ export const expressways: ExpresswayData[] = [
 			"Sison",
 			"Rosario",
 		],
+		closed: true,
 		rates: {
 			"Tarlac|Victoria": { class1: 38, class2: 95, class3: 114 },
 			"Tarlac|Pura": { class1: 66, class2: 165, class3: 198 },
@@ -183,6 +192,7 @@ export const expressways: ExpresswayData[] = [
 	{
 		name: "CAVITEX",
 		exits: ["Manila (Parañaque)", "Las Piñas", "Kawit"],
+		closed: false,
 		rates: {
 			"Manila (Parañaque)|Las Piñas": { class1: 35, class2: 70, class3: 104 },
 			"Manila (Parañaque)|Kawit": { class1: 73, class2: 146, class3: 219 },
@@ -192,6 +202,7 @@ export const expressways: ExpresswayData[] = [
 	{
 		name: "NAIAX",
 		exits: ["Skyway/SLEX", "NAIA T3", "NAIA T1/T2", "Macapagal"],
+		closed: false,
 		rates: {
 			"Skyway/SLEX|NAIA T3": { class1: 35, class2: 69, class3: 104 },
 			"Skyway/SLEX|NAIA T1/T2": { class1: 45, class2: 90, class3: 135 },
@@ -210,6 +221,7 @@ export const expressways: ExpresswayData[] = [
 			"Silang East",
 			"Silang (Aguinaldo)",
 		],
+		closed: true,
 		rates: {
 			"Mamplasan|Laguna Technopark": { class1: 17, class2: 34, class3: 51 },
 			"Mamplasan|Laguna Boulevard": { class1: 33, class2: 66, class3: 99 },
@@ -232,6 +244,7 @@ export const expressways: ExpresswayData[] = [
 			"San Miguel (Luisita)",
 			"Tarlac City",
 		],
+		closed: true,
 		rates: {
 			"Subic (Tipo)|Dinalupihan": { class1: 49, class2: 98, class3: 147 },
 			"Subic (Tipo)|Floridablanca": { class1: 97, class2: 194, class3: 291 },
@@ -255,6 +268,7 @@ export const expressways: ExpresswayData[] = [
 	{
 		name: "CCLEX (Cebu-Cordova Link Expressway)",
 		exits: ["Cebu City (SRP)", "Cordova"],
+		closed: false,
 		rates: {
 			"Cebu City (SRP)|Cordova": { class1: 90, class2: 180, class3: 270 },
 		},
@@ -299,4 +313,22 @@ export const getTollFee = (
 	}
 
 	return rateObj ? rateObj[vehicleClass] : null;
+};
+
+export const isClosedSystem = (expresswayName: string): boolean => {
+	return expressways.find((e) => e.name === expresswayName)?.closed ?? false;
+};
+
+// On a closed (distance-based) expressway, when the entry tap is not recorded,
+// the exit plaza cannot compute distance and defaults to the full-length
+// terminal-to-terminal toll — i.e. the maximum rate in the matrix for that
+// vehicle class. Returns 0 if no rates exist.
+export const getMaxTollFee = (
+	expresswayName: string,
+	vehicleClass: "class1" | "class2" | "class3",
+): number => {
+	const expressway = expressways.find((e) => e.name === expresswayName);
+	if (!expressway) return 0;
+	const values = Object.values(expressway.rates).map((r) => r[vehicleClass]);
+	return values.length ? Math.max(...values) : 0;
 };

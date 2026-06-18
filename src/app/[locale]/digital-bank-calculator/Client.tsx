@@ -1,33 +1,123 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useState } from "react";
-import {
-	Area,
-	AreaChart,
-	CartesianGrid,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
-const DIGITAL_BANKS = [
-	{ id: "maya", name: "Maya Bank", rate: 3.5 },
-	{ id: "seabank", name: "SeaBank", rate: 4.5 },
-	{ id: "gotyme", name: "GoTyme Bank", rate: 4.0 },
-	{ id: "cimb", name: "CIMB Bank (GSave/UpSave)", rate: 2.5 },
-	{ id: "tonik", name: "Tonik Bank (Stash)", rate: 4.0 },
-	{ id: "uniondigital", name: "UnionDigital Bank", rate: 4.0 },
-	{ id: "netbank", name: "Netbank", rate: 5.0 },
-	{ id: "uno", name: "UNO Digital Bank", rate: 4.25 },
-	{ id: "diskartech", name: "DiskarTech (RCBC)", rate: 6.5 },
-	{ id: "komo", name: "Komo (EastWest)", rate: 2.5 },
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
+
+interface DigitalBank {
+	id: string;
+	name: string;
+	rate: number;
+	sourceUrl?: string;
+	sourceName?: string;
+	asOf?: string;
+}
+
+const DIGITAL_BANKS: DigitalBank[] = [
+	{
+		id: "maya",
+		name: "Maya Bank",
+		rate: 3.5,
+		sourceUrl: "https://www.mayabank.ph/highinterestsavings/",
+		sourceName: "mayabank.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "seabank",
+		name: "MariBank (formerly SeaBank)",
+		rate: 3.25,
+		sourceUrl: "https://www.maribank.ph/fees-rates",
+		sourceName: "maribank.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "gotyme",
+		name: "GoTyme Bank (Go Save)",
+		rate: 3.0,
+		sourceUrl:
+			"https://www.gotyme.com.ph/help/help-center-topics/go-save/computing-your-go-save-interest-rate",
+		sourceName: "gotyme.com.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "cimb",
+		name: "CIMB Bank (GSave/UpSave)",
+		rate: 2.3,
+		sourceUrl: "https://www.cimbbank.com.ph/en/products/save/gsave.html",
+		sourceName: "cimbbank.com.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "tonik",
+		name: "Tonik Bank (Solo Stash)",
+		rate: 4.0,
+		sourceUrl: "https://tonikbank.com/deposit-interest-rates",
+		sourceName: "tonikbank.com",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "uniondigital",
+		name: "UnionDigital Bank",
+		rate: 4.0,
+		sourceUrl: "https://www.uniondigitalbank.io/",
+		sourceName: "uniondigitalbank.io",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "netbank",
+		name: "Netbank",
+		rate: 3.25,
+		sourceUrl: "https://netbank.ph/netbank-mobile/",
+		sourceName: "netbank.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "uno",
+		name: "UNO Digital Bank",
+		rate: 3.5,
+		sourceUrl: "https://www.uno.bank/savings-account/",
+		sourceName: "uno.bank",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "diskartech",
+		name: "DiskarTech (RCBC)",
+		rate: 4.0,
+		sourceUrl: "https://diskartech.ph/savings-3/",
+		sourceName: "diskartech.ph",
+		asOf: "Jun 2026",
+	},
+	{
+		id: "komo",
+		name: "Komo (EastWest)",
+		rate: 2.5,
+		sourceUrl: "https://www.komo.ph/savings",
+		sourceName: "komo.ph",
+		asOf: "Jun 2026",
+	},
 	{ id: "custom", name: "Custom / Promo Rate", rate: 5.0 },
 ];
 
@@ -49,7 +139,7 @@ export default function DigitalBankClient() {
 		searchParams.get("bank") || "seabank",
 	);
 	const [interestRate, setInterestRate] = useState(
-		parseFloat(searchParams.get("rate") || "4.5"),
+		parseFloat(searchParams.get("rate") || "3.25"),
 	);
 	const [years, setYears] = useState(
 		parseFloat(searchParams.get("years") || "5"),
@@ -84,6 +174,8 @@ export default function DigitalBankClient() {
 			updateUrl({ bank: bankId });
 		}
 	};
+
+	const selectedBankData = DIGITAL_BANKS.find((b) => b.id === selectedBank);
 
 	// Simulation
 	let balance = initialDeposit;
@@ -197,6 +289,24 @@ export default function DigitalBankClient() {
 								</option>
 							))}
 						</select>
+						{selectedBankData?.sourceUrl && (
+							<a
+								href={selectedBankData.sourceUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={t("rateSourceAria", {
+									bank: selectedBankData.name,
+								})}
+								style={{
+									display: "inline-block",
+									marginTop: "8px",
+									fontSize: "13px",
+									color: "var(--primary)",
+								}}
+							>
+								{t("source")}: {selectedBankData.sourceName} ↗
+							</a>
+						)}
 					</div>
 
 					<div style={{ marginTop: "32px" }}>
@@ -332,76 +442,78 @@ export default function DigitalBankClient() {
 								marginBottom: "16px",
 							}}
 						>
-							<ResponsiveContainer width="100%" height="100%">
-								<AreaChart
-									data={chartData}
-									margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
-								>
-									<defs>
-										<linearGradient
-											id="colorBalance"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
-											<stop
-												offset="5%"
-												stopColor="var(--primary)"
-												stopOpacity={0.8}
-											/>
-											<stop
-												offset="95%"
-												stopColor="var(--primary)"
-												stopOpacity={0}
-											/>
-										</linearGradient>
-									</defs>
-									<CartesianGrid
-										strokeDasharray="3 3"
-										vertical={false}
-										stroke="var(--border-color)"
-									/>
-									<XAxis
-										dataKey="label"
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<YAxis
-										tickFormatter={(value) => `₱${value / 1000}k`}
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<Tooltip
-										formatter={(value: any) => formatCurrency(Number(value))}
-										labelStyle={{
-											color: "black",
-											fontWeight: "bold",
-											marginBottom: "8px",
-										}}
-										contentStyle={{
-											borderRadius: "8px",
-											border: "none",
-											boxShadow: "var(--shadow-md)",
-										}}
-									/>
-									<Area
-										type="monotone"
-										dataKey="balance"
-										name="Total Balance"
-										stroke="var(--primary)"
-										fillOpacity={1}
-										fill="url(#colorBalance)"
-									/>
-								</AreaChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					)}
 
 					<TipCard title="Important Note">{t("note")}</TipCard>
 				</div>
+			</div>
+
+			<div className="card" style={{ marginTop: "24px" }}>
+				<h2
+					style={{
+						fontSize: "18px",
+						marginBottom: "8px",
+						borderBottom: "1px solid var(--border-color)",
+						paddingBottom: "8px",
+					}}
+				>
+					{t("rateSourcesTitle")}
+				</h2>
+				<p
+					style={{
+						fontSize: "13px",
+						color: "var(--text-secondary)",
+						marginBottom: "16px",
+					}}
+				>
+					{t("rateSourcesNote")}
+				</p>
+				<ul
+					style={{
+						listStyle: "none",
+						padding: 0,
+						margin: 0,
+						display: "grid",
+						gap: "8px",
+					}}
+				>
+					{DIGITAL_BANKS.filter((bank) => bank.sourceUrl).map((bank) => (
+						<li
+							key={bank.id}
+							style={{
+								display: "flex",
+								flexWrap: "wrap",
+								justifyContent: "space-between",
+								gap: "8px",
+								alignItems: "baseline",
+								fontSize: "14px",
+								paddingBottom: "8px",
+								borderBottom: "1px solid var(--border-color)",
+							}}
+						>
+							<span style={{ color: "var(--text-primary)" }}>
+								<strong>{bank.name}</strong> — {bank.rate}% p.a.
+								{bank.asOf && (
+									<span style={{ color: "var(--text-secondary)" }}>
+										{" "}
+										({bank.asOf})
+									</span>
+								)}
+							</span>
+							<a
+								href={bank.sourceUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={t("rateSourceAria", { bank: bank.name })}
+								style={{ color: "var(--primary)", whiteSpace: "nowrap" }}
+							>
+								{t("source")}: {bank.sourceName} ↗
+							</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</ToolLayout>
 	);

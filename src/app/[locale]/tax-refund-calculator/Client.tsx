@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
 export default function TaxRefundClient() {
+	const t = useTranslations("TaxRefund");
 	const [grossAnnual, setGrossAnnual] = useState(600000);
 	const [mandatoryContributions, setMandatoryContributions] = useState(25000);
 	const [bonuses, setBonuses] = useState(85000);
@@ -30,35 +32,35 @@ export default function TaxRefundClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Year-End Tax Refund Estimator"
-				subtitle="Calculate your potential year-end tax refund by reconciling YTD withheld taxes against actual tax due."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Annual Financials</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("annualFinancials")}</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Gross Annual Compensation</label>
+							<label className="form-label">{t("grossAnnualLabel")}</label>
 							<input type="number" className="form-control" value={grossAnnual || ""} onChange={(e) => setGrossAnnual(Number(e.target.value))} />
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Total Mandatory Contributions (SSS, PhilHealth, Pag-IBIG)</label>
+							<label className="form-label">{t("mandatoryContributionsLabel")}</label>
 							<input type="number" className="form-control" value={mandatoryContributions || ""} onChange={(e) => setMandatoryContributions(Number(e.target.value))} />
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">13th Month & Other Bonuses</label>
+							<label className="form-label">{t("bonusesLabel")}</label>
 							<input type="number" className="form-control" value={bonuses || ""} onChange={(e) => setBonuses(Number(e.target.value))} />
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
-								Tax-exempt up to ₱90,000.
+								{t("bonusesHint")}
 							</p>
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">Total Taxes Withheld YTD (from Payslips)</label>
+							<label className="form-label">{t("taxWithheldLabel")}</label>
 							<input type="number" className="form-control" value={taxWithheldYTD || ""} onChange={(e) => setTaxWithheldYTD(Number(e.target.value))} />
 						</div>
 					</div>
@@ -66,24 +68,24 @@ export default function TaxRefundClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Tax Reconciliation</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("resultsTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Net Taxable Income:</span>
+							<span>{t("netTaxableIncome")}</span>
 							<strong>{formatPHP(taxableIncome)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary)" }}>
-							<span>Actual Annual Tax Due:</span>
+							<span>{t("actualAnnualTaxDue")}</span>
 							<span>{formatPHP(annualTaxDue)}</span>
 						</div>
 
 						<div style={{ padding: "16px", backgroundColor: taxRefund >= 0 ? "rgba(16, 185, 129, 0.05)" : "rgba(239, 68, 68, 0.05)", border: taxRefund >= 0 ? "1px solid rgba(16, 185, 129, 0.2)" : "1px solid rgba(239, 68, 68, 0.2)", borderRadius: "8px", marginBottom: "16px" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-								<span>Taxes Already Paid (YTD):</span>
+								<span>{t("taxesAlreadyPaid")}</span>
 								<strong>{formatPHP(taxWithheldYTD)}</strong>
 							</div>
 							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}>
-								<span>{taxRefund >= 0 ? "Tax Refund Due:" : "Additional Tax Payable:"}</span>
+								<span>{taxRefund >= 0 ? t("taxRefundDue") : t("additionalTaxPayable")}</span>
 								<strong style={{ color: taxRefund >= 0 ? "var(--primary)" : "red" }}>{formatPHP(Math.abs(taxRefund))}</strong>
 							</div>
 						</div>

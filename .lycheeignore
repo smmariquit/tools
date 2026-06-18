@@ -1,0 +1,35 @@
+# Lines are regexes matched against each link. Comments start with '#'.
+# See: https://github.com/lycheeverse/lychee
+
+# Internal app routes (Next.js routes, not real URLs) e.g. /salary-calculator
+^/(?!/)
+
+# Locale-prefixed internal routes e.g. /en/..., /tl/..., /ceb/...
+^/(en|tl|ceb)(/|$)
+
+# Anchors / fragment-only links
+^#
+
+# Localhost / loopback
+^https?://localhost
+^https?://127\.0\.0\.1
+^https?://0\.0\.0\.0
+
+# mailto / tel / other non-http schemes (also gated by --scheme, belt & suspenders)
+^mailto:
+^tel:
+
+# Known anti-bot / rate-limiting hosts that frequently 403/429 CI runners.
+# These reject datacenter IPs regardless of link validity.
+^https?://(www\.)?linkedin\.com
+^https?://(www\.)?facebook\.com
+^https?://(www\.)?twitter\.com
+^https?://(www\.)?x\.com
+^https?://(www\.)?instagram\.com
+^https?://(www\.)?reddit\.com
+
+# PH government portals that block datacenter IPs (live in-browser, 403/timeout from CI).
+^https?://([a-z]+\.)?dole\.gov\.ph
+^https?://(www\.)?lto\.gov\.ph
+^https?://(www\.)?csc\.gov\.ph
+^https?://(www\.)?trb\.gov\.ph

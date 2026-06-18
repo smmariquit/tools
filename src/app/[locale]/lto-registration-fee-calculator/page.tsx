@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
 	const title = "LTO Car Registration Renewal Fee Calculator | Philippines";
 	const description =
 		"Estimate your annual LTO Motor Vehicle User's Charge (MVUC) and check for any late renewal penalties based on RA 8794.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=LTO%20Fee&s1v=Estimate&s2l=Penalties&s2v=Checked";
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [{ url: ogUrl, width: 1200, height: 630 }],
+			images: ogImages({
+				tool: "lto-registration-fee-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -42,7 +42,7 @@ export default function LtoCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="lto-registration-renewal-guide" />
+			<ToolPageBottom slug="lto-registration-renewal-guide" />
 		</>
 	);
 }

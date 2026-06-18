@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -18,6 +19,7 @@ const DE_MINIMIS_CAPS = {
 };
 
 export default function DeMinimisClient() {
+	const t = useTranslations("DeMinimisTax");
 	const [uniform, setUniform] = useState(0);
 	const [rice, setRice] = useState(0);
 	const [medicalDependents, setMedicalDependents] = useState(0);
@@ -68,8 +70,8 @@ export default function DeMinimisClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="De Minimis Tax Optimization Estimator"
-				subtitle="Maximize your tax-free allowances and bonuses based on BIR regulations."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div style={{ marginTop: "24px", width: "100%" }}>
@@ -80,59 +82,59 @@ export default function DeMinimisClient() {
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>
-							Annual De Minimis Benefits
+							{t("annualBenefits")}
 						</h2>
 						<p style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "16px" }}>
-							Enter the total ANNUAL amounts provided by your employer.
+							{t("annualBenefitsHint")}
 						</p>
 
 						<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
 							<div className="form-group">
-								<label className="form-label">Rice Subsidy</label>
-								<input type="number" className="form-control" value={rice || ""} onChange={e => setRice(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.rice)}`} />
+								<label className="form-label">{t("riceLabel")}</label>
+								<input type="number" className="form-control" value={rice || ""} onChange={e => setRice(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.rice) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Uniform Allowance</label>
-								<input type="number" className="form-control" value={uniform || ""} onChange={e => setUniform(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.uniform)}`} />
+								<label className="form-label">{t("uniformLabel")}</label>
+								<input type="number" className="form-control" value={uniform || ""} onChange={e => setUniform(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.uniform) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Medical Assist.</label>
-								<input type="number" className="form-control" value={actualMedical || ""} onChange={e => setActualMedical(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.actualMedical)}`} />
+								<label className="form-label">{t("medicalAssistLabel")}</label>
+								<input type="number" className="form-control" value={actualMedical || ""} onChange={e => setActualMedical(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.actualMedical) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Laundry Allowance</label>
-								<input type="number" className="form-control" value={laundry || ""} onChange={e => setLaundry(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.laundry)}`} />
+								<label className="form-label">{t("laundryLabel")}</label>
+								<input type="number" className="form-control" value={laundry || ""} onChange={e => setLaundry(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.laundry) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Gifts (Christmas)</label>
-								<input type="number" className="form-control" value={gifts || ""} onChange={e => setGifts(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.gifts)}`} />
+								<label className="form-label">{t("giftsLabel")}</label>
+								<input type="number" className="form-control" value={gifts || ""} onChange={e => setGifts(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.gifts) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Achievement Award</label>
-								<input type="number" className="form-control" value={achievement || ""} onChange={e => setAchievement(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.achievement)}`} />
+								<label className="form-label">{t("achievementLabel")}</label>
+								<input type="number" className="form-control" value={achievement || ""} onChange={e => setAchievement(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.achievement) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Medical (Dependents)</label>
-								<input type="number" className="form-control" value={medicalDependents || ""} onChange={e => setMedicalDependents(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.medicalDependents)}`} />
+								<label className="form-label">{t("medicalDependentsLabel")}</label>
+								<input type="number" className="form-control" value={medicalDependents || ""} onChange={e => setMedicalDependents(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.medicalDependents) })} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">CBA Productivity</label>
-								<input type="number" className="form-control" value={cba || ""} onChange={e => setCba(Number(e.target.value))} placeholder={`Max ${formatPHP(DE_MINIMIS_CAPS.cba)}`} />
+								<label className="form-label">{t("cbaLabel")}</label>
+								<input type="number" className="form-control" value={cba || ""} onChange={e => setCba(Number(e.target.value))} placeholder={t("maxPlaceholder", { value: formatPHP(DE_MINIMIS_CAPS.cba) })} />
 							</div>
 						</div>
 					</div>
 
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>
-							Other Bonuses (₱90,000 Pool)
+							{t("otherBonusesTitle")}
 						</h2>
 						<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
 							<div className="form-group">
-								<label className="form-label">13th Month Pay</label>
+								<label className="form-label">{t("thirteenthMonthLabel")}</label>
 								<input type="number" className="form-control" value={thirteenthMonth || ""} onChange={e => setThirteenthMonth(Number(e.target.value))} />
 							</div>
 							<div className="form-group">
-								<label className="form-label">Other Bonuses</label>
+								<label className="form-label">{t("otherBonusesLabel")}</label>
 								<input type="number" className="form-control" value={otherBonuses || ""} onChange={e => setOtherBonuses(Number(e.target.value))} />
 							</div>
 						</div>
@@ -141,31 +143,31 @@ export default function DeMinimisClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Optimization Summary</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("resultsTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Exempt De Minimis:</span>
+							<span>{t("exemptDeMinimis")}</span>
 							<strong>{formatPHP(totalExemptDeMinimis)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary)" }}>
-							<span>De Minimis Excess:</span>
+							<span>{t("deMinimisExcess")}</span>
 							<span>{formatPHP(excessDeMinimis)}</span>
 						</div>
 
 						<div style={{ padding: "16px", backgroundColor: "rgba(16, 185, 129, 0.05)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: "8px", marginBottom: "24px" }}>
-							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "var(--primary)" }}>₱90,000 Tax-Free Pool</h3>
+							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "var(--primary)" }}>{t("poolTitle")}</h3>
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-								<span>Total in Pool:</span>
+								<span>{t("totalInPool")}</span>
 								<strong>{formatPHP(poolTotal)}</strong>
 							</div>
 							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: "var(--text-secondary)" }}>
-								<span>Taxable Overflow:</span>
+								<span>{t("taxableOverflow")}</span>
 								<strong style={{ color: poolTaxable > 0 ? "red" : "inherit" }}>{formatPHP(poolTaxable)}</strong>
 							</div>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Total Tax-Free Benefits:</span>
+							<span>{t("totalTaxFreeBenefits")}</span>
 							<span>{formatPHP(totalTaxFreeBenefits)}</span>
 						</div>
 

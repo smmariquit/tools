@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Local Shipping & Logistics Rate Estimator | Philippines";
-	const description =
-		"Calculate standard delivery and logistics costs for local MSME e-commerce utilizing standard regional matrices.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Local&s1v=Shipping&s2l=Rates&s2v=Estimated";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: "ShippingLogistics" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "shipping-logistics-estimator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +29,7 @@ export default function ShippingPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="shipping-logistics-guide" />
+			<ToolPageBottom slug="shipping-logistics-guide" />
 		</>
 	);
 }

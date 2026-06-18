@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Retail Treasury Bond (RTB) Yield Estimator | Philippines";
-	const description =
-		"Calculate your net quarterly payouts and total yield on Philippine Retail Treasury Bonds after the 20% final withholding tax.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=RTB&s1v=Yield&s2l=Tax&s2v=20%25";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: "RetailTreasuryBond" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "retail-treasury-bond-calculator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +29,7 @@ export default function RtbPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="retail-treasury-bond-guide" />
+			<ToolPageBottom slug="retail-treasury-bond-guide" />
 		</>
 	);
 }

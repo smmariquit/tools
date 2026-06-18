@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import BackpayClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,11 +16,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/backpay-calculator`,
+			canonical: `https://phtools.me/${locale}/backpay-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "backpay-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function BackpayCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><BackpayClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<BackpayClient />
+			</Suspense>
+			<ToolPageBottom slug="philippine-backpay-computation-guide" />
+		</>
+	);
 }

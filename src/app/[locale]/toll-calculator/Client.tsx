@@ -1,17 +1,21 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ExpresswayMap from "../../components/ExpresswayMap";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
-import { expressways, getTollFee } from "./tollData";
+import { expressways, getMaxTollFee, getTollFee, isClosedSystem } from "./tollData";
 
 type TripLeg = {
 	id: string;
 	expressway: string;
 	origin: string;
 	destination: string;
+	noEntryScan: boolean;
 };
 
 const getWikiUrl = (expresswayName: string) => {
@@ -37,6 +41,7 @@ const getWikiUrl = (expresswayName: string) => {
 };
 
 export default function TollCalculatorClient() {
+	const t = useTranslations("TollCalculator");
 	const [vehicleClass, setVehicleClass] = useState<
 		"class1" | "class2" | "class3"
 	>("class1");
@@ -47,6 +52,7 @@ export default function TollCalculatorClient() {
 			expressway: expressways[0].name,
 			origin: expressways[0].exits[0],
 			destination: expressways[0].exits[expressways[0].exits.length - 1],
+			noEntryScan: false,
 		},
 	]);
 
@@ -58,6 +64,7 @@ export default function TollCalculatorClient() {
 				expressway: expressways[0].name,
 				origin: expressways[0].exits[0],
 				destination: expressways[0].exits[expressways[0].exits.length - 1],
+				noEntryScan: false,
 			},
 		]);
 	};
@@ -80,11 +87,23 @@ export default function TollCalculatorClient() {
 							updated.origin = newExits[0];
 							updated.destination = newExits[newExits.length - 1];
 						}
+						// "No entry record" only applies to closed (distance) systems.
+						if (!isClosedSystem(value)) {
+							updated.noEntryScan = false;
+						}
 					}
 					return updated;
 				}
 				return leg;
 			}),
+		);
+	};
+
+	const toggleNoEntryScan = (id: string, checked: boolean) => {
+		setLegs((prevLegs) =>
+			prevLegs.map((leg) =>
+				leg.id === id ? { ...leg, noEntryScan: checked } : leg,
+			),
 		);
 	};
 
@@ -126,11 +145,14 @@ export default function TollCalculatorClient() {
 
 	let totalToll = 0;
 	const computedLegs = legs.map((leg) => {
-		const fee =
-			getTollFee(leg.expressway, leg.origin, leg.destination, vehicleClass) ||
-			0;
+		const closed = isClosedSystem(leg.expressway);
+		const maxCharged = leg.noEntryScan && closed;
+		const fee = maxCharged
+			? getMaxTollFee(leg.expressway, vehicleClass)
+			: getTollFee(leg.expressway, leg.origin, leg.destination, vehicleClass) ||
+				0;
 		totalToll += fee;
-		return { ...leg, fee };
+		return { ...leg, fee, closed, maxCharged };
 	});
 
 	const formatCurrency = (amount: number) => {
@@ -144,20 +166,14 @@ export default function TollCalculatorClient() {
 		<ToolLayout maxWidth="1200px">
 			<div>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">PH Expressway Toll Calculator</h1>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
 					<p className="page-subtitle">
-						Check TRB-approved toll fees for Skyway, SLEX, TPLEX, and other
-						major Philippine expressways.
+						{t("subtitle")}
 					</p>
 				</div>
 
@@ -213,7 +229,7 @@ export default function TollCalculatorClient() {
 									}}
 								>
 									<h2 style={{ margin: 0, fontSize: "16px" }}>
-										{zoomedExpressway} Exits
+										{t("exitsHeading", { name: zoomedExpressway })}
 									</h2>
 									<button
 										type="button"
@@ -240,7 +256,7 @@ export default function TollCalculatorClient() {
 											<line x1="18" y1="6" x2="6" y2="18"></line>
 											<line x1="6" y1="6" x2="18" y2="18"></line>
 										</svg>
-										Close
+										{t("close")}
 									</button>
 								</div>
 								<div
@@ -307,8 +323,8 @@ export default function TollCalculatorClient() {
 															lineHeight: "1.2",
 														}}
 													>
-														Northbound & Southbound Access • ETC Ready
-													</span>
+													{t("accessNote")}
+												</span>
 												</div>
 												<a
 													href={getWikiUrl(zoomedExpressway)}
@@ -324,7 +340,7 @@ export default function TollCalculatorClient() {
 														whiteSpace: "nowrap",
 													}}
 												>
-													Wiki 
+													{t("wiki")}
 												</a>
 											</div>
 										))}
@@ -345,7 +361,7 @@ export default function TollCalculatorClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							<h2 style={{ fontSize: "18px", margin: 0 }}>Trip Planner</h2>
+							<h2 style={{ fontSize: "18px", margin: 0 }}>{t("tripPlanner")}</h2>
 							<select
 								className="form-control"
 								style={{ width: "auto", padding: "4px 8px" }}
@@ -356,9 +372,9 @@ export default function TollCalculatorClient() {
 									)
 								}
 							>
-								<option value="class1">Class 1 (Cars, SUVs)</option>
-								<option value="class2">Class 2 (Buses, Light Trucks)</option>
-								<option value="class3">Class 3 (Heavy Trucks)</option>
+								<option value="class1">{t("class1")}</option>
+								<option value="class2">{t("class2")}</option>
+								<option value="class3">{t("class3")}</option>
 							</select>
 						</div>
 
@@ -387,7 +403,7 @@ export default function TollCalculatorClient() {
 												marginBottom: "12px",
 											}}
 										>
-											<strong>Leg {index + 1}</strong>
+											<strong>{t("leg", { number: index + 1 })}</strong>
 											{legs.length > 1 && (
 												<button
 													onClick={() => removeLeg(leg.id)}
@@ -398,7 +414,7 @@ export default function TollCalculatorClient() {
 														cursor: "pointer",
 													}}
 												>
-													✕ Remove
+													{t("remove")}
 												</button>
 											)}
 										</div>
@@ -418,7 +434,7 @@ export default function TollCalculatorClient() {
 													className="form-label"
 													htmlFor={`expressway-${leg.id}`}
 												>
-													Expressway
+													{t("expresswayLabel")}
 												</label>
 												<button
 													type="button"
@@ -432,7 +448,7 @@ export default function TollCalculatorClient() {
 														gap: "4px",
 													}}
 												>
-													 Route Details
+													{t("routeDetails")}
 												</button>
 											</div>
 											<select
@@ -454,7 +470,7 @@ export default function TollCalculatorClient() {
 										<div style={{ display: "flex", gap: "12px" }}>
 											<div className="form-group" style={{ flex: 1 }}>
 												<label className="form-label" htmlFor="entry-origin">
-													Entry (Origin)
+													{t("entryOrigin")}
 												</label>
 												<select
 													id="entry-origin"
@@ -476,7 +492,7 @@ export default function TollCalculatorClient() {
 													className="form-label"
 													htmlFor="exit-destination"
 												>
-													Exit (Destination)
+													{t("exitDestination")}
 												</label>
 												<select
 													id="exit-destination"
@@ -494,15 +510,63 @@ export default function TollCalculatorClient() {
 												</select>
 											</div>
 										</div>
+										{leg.closed && (
+											<div style={{ marginTop: "12px" }}>
+												<label
+													htmlFor={`no-entry-${leg.id}`}
+													style={{
+														display: "flex",
+														alignItems: "flex-start",
+														gap: "8px",
+														fontSize: "13px",
+														cursor: "pointer",
+														color: "var(--text-secondary)",
+													}}
+												>
+													<input
+														id={`no-entry-${leg.id}`}
+														type="checkbox"
+														checked={leg.noEntryScan}
+														onChange={(e) =>
+															toggleNoEntryScan(leg.id, e.target.checked)
+														}
+														style={{
+															marginTop: "2px",
+															width: "16px",
+															height: "16px",
+															flexShrink: 0,
+															cursor: "pointer",
+														}}
+													/>
+													<span>{t("noEntryScanLabel")}</span>
+												</label>
+												{leg.maxCharged && (
+													<p
+													role="note"
+													style={{
+														fontSize: "12px",
+														color: "var(--warning-text)",
+														margin: "8px 0 0",
+														paddingLeft: "24px",
+														lineHeight: 1.4,
+													}}
+													>
+														{t("noEntryScanNote")}
+													</p>
+												)}
+											</div>
+										)}
 										<div
 											style={{
 												textAlign: "right",
 												marginTop: "12px",
-												color: "var(--primary)",
+												color: leg.maxCharged
+													? "var(--warning-text)"
+													: "var(--primary)",
 												fontWeight: "bold",
 											}}
 										>
-											Fee: {formatCurrency(leg.fee)}
+											{t("feeLabel")} {formatCurrency(leg.fee)}
 										</div>
 									</div>
 								);
@@ -514,7 +578,7 @@ export default function TollCalculatorClient() {
 							className="btn-secondary"
 							style={{ width: "100%", marginTop: "16px" }}
 						>
-							+ Add Another Expressway
+							{t("addExpressway")}
 						</button>
 					</div>
 
@@ -535,7 +599,7 @@ export default function TollCalculatorClient() {
 									color: "var(--primary)",
 								}}
 							>
-								Total Toll Fees
+								{t("totalTollFees")}
 							</h2>
 							<div
 								style={{
@@ -544,7 +608,7 @@ export default function TollCalculatorClient() {
 									alignItems: "center",
 								}}
 							>
-								<span style={{ fontSize: "16px" }}>Total Estimated Cost</span>
+								<span style={{ fontSize: "16px" }}>{t("totalEstimatedCost")}</span>
 								<strong style={{ fontSize: "32px", color: "var(--primary)" }}>
 									{formatCurrency(totalToll)}
 								</strong>
@@ -578,7 +642,7 @@ export default function TollCalculatorClient() {
 									<rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
 									<line x1="2" y1="10" x2="22" y2="10"></line>
 								</svg>
-								Reload Your RFID
+								{t("reloadRfid")}
 							</h3>
 							<p
 								style={{
@@ -587,8 +651,7 @@ export default function TollCalculatorClient() {
 									marginBottom: "16px",
 								}}
 							>
-								Make sure your account has enough balance before your trip to
-								avoid penalties.
+								{t("reloadRfidDesc")}
 							</p>
 							<div
 								style={{
@@ -604,7 +667,7 @@ export default function TollCalculatorClient() {
 									className="btn-primary"
 									style={{ textAlign: "center", textDecoration: "none" }}
 								>
-									Reload Easytrip (NLEX, SCTEX, CAVITEX, CALAX)
+									{t("reloadEasytrip")}
 								</a>
 								<a
 									href="https://autosweeprfid.com"
@@ -613,7 +676,7 @@ export default function TollCalculatorClient() {
 									className="btn-secondary"
 									style={{ textAlign: "center", textDecoration: "none" }}
 								>
-									Reload Autosweep (SLEX, Skyway, STAR, TPLEX)
+									{t("reloadAutosweep")}
 								</a>
 							</div>
 						</div>
@@ -626,7 +689,7 @@ export default function TollCalculatorClient() {
 									color: "var(--primary)",
 								}}
 							>
-								Open vs. Closed Toll Systems
+								{t("openVsClosedTitle")}
 							</h3>
 							<p
 								style={{
@@ -635,8 +698,7 @@ export default function TollCalculatorClient() {
 									marginBottom: "12px",
 								}}
 							>
-								It can be confusing when you get charged! Philippine expressways
-								use two different systems:
+								{t("openVsClosedIntro")}
 							</p>
 							<ul
 								style={{
@@ -647,23 +709,20 @@ export default function TollCalculatorClient() {
 								}}
 							>
 								<li style={{ marginBottom: "8px" }}>
-									<strong>Open System (Pay on Entry/Plaza):</strong> You pay a
-									fixed flat fee immediately when you pass a toll plaza,
-									regardless of where you exit.
+									<strong>{t("openSystemTitle")}</strong> {t("openSystemDesc")}
 									<br />
 									<span style={{ fontSize: "12px", fontStyle: "italic" }}>
-										Examples: Skyway Stage 3, CAVITEX, NAIAX, NLEX Open System.
+										{t("openSystemExamples")}
 									</span>
 								</li>
 								<li>
-									<strong>Closed System (Tap on Entry, Pay on Exit):</strong>{" "}
-									You tap your RFID or get a ticket at the entry point, and the
-									system records where you came from. You only pay when you{" "}
-									<strong>exit</strong>, and the fee is based exactly on the
-									distance you traveled.
+									<strong>{t("closedSystemTitle")}</strong>{" "}
+									{t.rich("closedSystemDesc", {
+										b: (chunks) => <strong>{chunks}</strong>,
+									})}
 									<br />
 									<span style={{ fontSize: "12px", fontStyle: "italic" }}>
-										Examples: SLEX, TPLEX, STAR Tollway, NLEX Closed System.
+										{t("closedSystemExamples")}
 									</span>
 								</li>
 							</ul>
@@ -674,10 +733,37 @@ export default function TollCalculatorClient() {
 									fontStyle: "italic",
 								}}
 							>
-								Note: If you travel from NLEX to SLEX via Skyway, you will
-								experience both systems in a single trip. Make sure your RFID
-								has enough balance for the sum of all systems.
+								{t("systemsNote")}
 							</p>
+							<div
+								style={{
+									marginTop: "12px",
+									padding: "12px",
+									borderRadius: "6px",
+									backgroundColor: "var(--warning-bg)",
+									border: "1px solid var(--warning-border)",
+								}}
+							>
+								<h4
+									style={{
+										fontSize: "14px",
+										margin: "0 0 6px",
+										color: "var(--warning-text)",
+									}}
+								>
+									{t("noEntryCardTitle")}
+								</h4>
+								<p
+									style={{
+										fontSize: "13px",
+										color: "var(--text-secondary)",
+										margin: 0,
+										lineHeight: 1.5,
+									}}
+								>
+									{t("noEntryCardDesc")}
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>

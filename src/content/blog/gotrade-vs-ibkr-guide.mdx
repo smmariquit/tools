@@ -1,39 +1,44 @@
 ---
-title: "GoTrade vs IBKR Wise Fee Guide"
+title: "GoTrade vs Interactive Brokers (via Wise): Which Costs Filipinos Less?"
+description: "GoTrade looks free and IBKR looks complicated, but the real cost is in the FX spread and the funding path. Here is how the two stack up for a Filipino buying US stocks."
 date: "2026-06-01"
-excerpt: "Compare GoTrade and Interactive Brokers (via Wise) for Philippine investors."
 ---
 
-# GoTrade vs IBKR Wise Fee Guide
+A Filipino who wants to buy US stocks usually lands on one of two answers: GoTrade, because it is simple and advertises zero commission, or Interactive Brokers, because that is what serious investors seem to use. Both framings are slightly misleading. GoTrade is not free once you account for how it makes money, and IBKR is not as costly as its reputation suggests once you reach a reasonable balance. The honest comparison is about your funding path and how often you trade, not the headline commission. I built the [GoTrade vs IBKR calculator](/gotrade-vs-ibkr-calculator) to put real pesos on that decision. Fee structures at both brokers change, so verify the current rates before you commit.
 
-Compare GoTrade and Interactive Brokers (via Wise) for Philippine investors. In the Philippines, understanding the exact math behind gotrade vs ibkr wise fee is crucial for optimizing your resources and saving money. This tool and guide were built specifically to help you bypass manual calculations.
+<AdBanner dataAdSlot="blog-in-article-1" />
 
-## Why Use This Tool?
+## Where the cost actually lives: the FX spread
 
-Manually computing values for gotrade vs ibkr wise fee can lead to errors, especially with changing rates, complex percentage formulas, or platform-specific fees in the Philippines. This tool provides:
-- **Instant Accuracy:** Built with real-time formulas used by professionals.
-- **Zero Privacy Risk:** All calculations are performed entirely on your device. We do not store or send your data to any servers.
-- **Mobile Optimized:** Designed to work perfectly whether you are using a PC, Android, or iOS device.
+When you fund a US brokerage in pesos, the expensive step is almost never the commission. It is the currency conversion, and it hides as a spread baked into the exchange rate rather than as a labelled fee. A platform that converts your pesos to dollars at a rate a percent or so worse than the mid-market rate has charged you a percent of your entire deposit before you have bought anything. GoTrade earns largely this way: commission-free trades funded by a conversion margin on the way in. IBKR, by contrast, lets you convert near the interbank rate for a tiny fixed fee, but you have to get dollars to it first, and the popular route is funding a Wise account, converting there at roughly 0.4 to 0.6 percent, and wiring USD to IBKR.
 
-## How to Use the Calculator
+## The two models, side by side
 
-Using our GoTrade vs IBKR Wise Fee tool is incredibly straightforward. Just follow these steps:
+The trade-off resolves around amount and frequency. On a small, casual amount, GoTrade's simplicity usually wins because IBKR's funding friction, the Wise transfer plus the wire, is not worth it for ₱5,000. On larger or recurring amounts, IBKR's near-interbank conversion pulls ahead, because a 1 percent spread on ₱200,000 is ₱2,000 lost on funding alone, every single time you top up.
 
-1. **Input your Data:** Enter your current numbers into the designated input fields. Make sure to double-check your figures.
-2. **Review the Breakdown:** As you type, the tool automatically calculates the exact outputs, displaying both the primary result and any secondary metrics (like hidden fees or conversions).
-3. **Save your Results:** Since this is a client-side tool, if you refresh the page, your data will reset. Be sure to screenshot or note down your final results!
+| | GoTrade | IBKR (funded via Wise) |
+|---|---|---|
+| Headline commission | Effectively zero | Low per-share or tiered, often a few US cents to ~$1 |
+| Where it earns | FX conversion margin on funding | Small explicit FX fee plus commission |
+| Funding friction | Low, convert in-app | Higher, Wise then USD wire |
+| Best fit | Small, occasional buys | Larger or regular investing |
 
-## Frequently Asked Questions (FAQ)
+<AdBanner dataAdSlot="blog-in-article-2" />
 
-### Is this tool entirely free to use?
-Yes! PHTools is committed to providing free, high-utility calculators for the Philippine digital ecosystem. There are no paywalls or hidden subscriptions.
+## The edge case nobody mentions: US estate tax
 
-### How accurate are the computations?
-The formulas used in this calculator are based on standard Philippine industry metrics and algebraic constants. However, please note that for financial or legal tools, this serves as an *estimate only* and should not replace professional advisory.
+Here is the one that surprises Filipino investors holding US-listed stocks directly, and it has nothing to do with fees. The United States imposes an estate tax on US-situs assets owned by a non-resident alien, and the exemption for non-residents is only US$60,000, far below the roughly US$13 million a US citizen gets. If you hold more than US$60,000 of US shares directly and pass away, the portion above that threshold can be taxed at rates climbing toward 40 percent before your heirs can claim it. Whether GoTrade's omnibus structure or IBKR's direct holding changes your exposure is a question worth real research, but the point is that the cheapest broker is not the only variable once your US portfolio grows. Likewise, US dividends paid to a Philippine investor are typically withheld at 25 to 30 percent at source regardless of which broker you use.
 
-### Can I use this offline?
-Yes! PHTools is built as a Progressive Web App (PWA). Once you load the page, you can disconnect from the internet and the calculator will continue to function perfectly.
+### Is GoTrade really commission-free?
 
-## Conclusion
+The trades are, but the platform is not running a charity. It makes money primarily on the foreign exchange conversion when you fund your account in pesos and when you withdraw, and that spread is a real cost even though it never appears as a line item called "fee." For small, infrequent buys the convenience often justifies the spread. For larger sums the spread can quietly exceed what you would pay in explicit commissions and conversion fees on a cheaper-to-fund broker, which is the whole reason to compare them in pesos rather than by their marketing.
 
-Understanding gotrade vs ibkr wise fee doesn't have to be complicated. Bookmark this page whenever you need quick, reliable computations. If you found this tool helpful, be sure to check out the rest of our utility suite!
+### Why would I bother with the Wise-to-IBKR route?
+
+Because for larger or regular investing, converting pesos to dollars in Wise at roughly half a percent and wiring USD into IBKR can be dramatically cheaper than converting through a broker that takes a full percent or more on every funding. The catch is friction and minimums: the wire takes a day or two, there can be a fixed transfer cost that only makes sense above a certain amount, and you are managing two accounts instead of one. Below a few tens of thousands of pesos that hassle is rarely worth it; above it, the savings compound every time you add money.
+
+If a fee figure here has gone stale, brokers revise these often, please flag it. You can reach me through the [about page](/about).
+
+* [Retail Treasury Bond Calculator](/retail-treasury-bond-calculator)
+* [Digital Bank Interest Calculator](/digital-bank-calculator)
+* [Budget Calculator](/budget-calculator)

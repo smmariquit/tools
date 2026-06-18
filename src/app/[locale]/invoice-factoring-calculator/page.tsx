@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Invoice Factoring & Discount Calculator | Philippines";
-	const description =
-		"Calculate Net Present Value (NPV), annualized discount rates (APR), and ROI when selling unpaid invoices for working capital.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Invoice&s1v=Factoring&s2l=Discount&s2v=Calculator";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: "InvoiceFactoring" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "invoice-factoring-calculator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +29,7 @@ export default function InvoiceFactoringPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="invoice-factoring-guide" />
+			<ToolPageBottom slug="invoice-factoring-guide" />
 		</>
 	);
 }

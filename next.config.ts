@@ -12,6 +12,13 @@ const withPWAConfig = withPWA({
 	disable: process.env.NODE_ENV === "development",
 });
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+	compiler: {
+		removeConsole: process.env.NODE_ENV === "production",
+	},
+	experimental: {
+		optimizePackageImports: ["recharts", "next-intl"],
+	},
+};
 
 export default withPWAConfig(withNextIntl(nextConfig));

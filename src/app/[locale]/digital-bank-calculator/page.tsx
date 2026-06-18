@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import DigitalBankClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,11 +16,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/digital-bank-calculator`,
+			canonical: `https://phtools.me/${locale}/digital-bank-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "digital-bank-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function DigitalBankCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><DigitalBankClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<DigitalBankClient />
+			</Suspense>
+			<ToolPageBottom slug="digital-banks-philippines-interest-rates" />
+		</>
+	);
 }

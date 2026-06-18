@@ -1,44 +1,67 @@
 ---
 title: "Philippine Income Tax Brackets 2026: How Much Tax Will You Pay?"
-description: "Complete guide to the 2026 TRAIN Law income tax brackets. Learn how the graduated tax rates work and whether the 8% flat rate is better for you."
+description: "How the 2026 TRAIN Law graduated brackets work, where the ₱250,000 exemption comes from, and when the 8% flat rate actually beats them."
 date: "2026-05-31"
+updatedAt: "2026-06-18"
 ---
 
-Every year, Filipino employees wonder: "How is my income tax computed?" The Philippine tax system uses a **graduated bracket system** under the TRAIN Law, meaning the more you earn, the higher your tax rate.
+Income tax in the Philippines confuses people for one specific reason: almost everyone assumes the rate applies to their whole salary. It does not. The brackets are marginal, which means each slice of your income is taxed at its own rate, and the first slice is free. Once that clicks, the rest of the table is just arithmetic.
+
+The rates below come straight from the [TRAIN Law (RA 10963)](https://lawphil.net/statutes/repacts/ra2017/ra_10963_2017.html), which reset the schedule in 2018 and has not moved since.
 
 <AdBanner dataAdSlot="blog-in-article-1" />
 
-## 2026 Income Tax Brackets (Graduated Rates)
+## The 2026 graduated brackets
 
-| Annual Taxable Income | Tax Rate |
+| Annual Taxable Income | Tax |
 |---|---|
-| ₱0 – ₱250,000 | **0% (Exempt)** |
-| ₱250,001 – ₱400,000 | 15% of excess over ₱250,000 |
-| ₱400,001 – ₱800,000 | ₱22,500 + 20% of excess over ₱400,000 |
-| ₱800,001 – ₱2,000,000 | ₱102,500 + 25% of excess over ₱800,000 |
-| ₱2,000,001 – ₱8,000,000 | ₱402,500 + 30% of excess over ₱2,000,000 |
-| Over ₱8,000,000 | ₱2,202,500 + 35% of excess over ₱8,000,000 |
+| ₱0 to ₱250,000 | None. Exempt. |
+| ₱250,001 to ₱400,000 | 15% of the excess over ₱250,000 |
+| ₱400,001 to ₱800,000 | ₱22,500 + 20% of the excess over ₱400,000 |
+| ₱800,001 to ₱2,000,000 | ₱102,500 + 25% of the excess over ₱800,000 |
+| ₱2,000,001 to ₱8,000,000 | ₱402,500 + 30% of the excess over ₱2,000,000 |
+| Over ₱8,000,000 | ₱2,202,500 + 35% of the excess over ₱8,000,000 |
 
-### The ₱250,000 Exemption
+<MdxChart
+	type="bar"
+	caption="Base tax already accrued at each bracket ceiling, before the marginal rate on top is applied."
+	data={[
+		{ name: "₱250k", tax: 0 },
+		{ name: "₱400k", tax: 22500 },
+		{ name: "₱800k", tax: 102500 },
+		{ name: "₱2M", tax: 402500 },
+		{ name: "₱8M", tax: 2202500 }
+	]}
+	x="name"
+	series={[{ key: "tax", label: "Tax at bracket ceiling", color: "primary" }]}
+	valuePrefix="₱"
+/>
 
-If your annual taxable income (after SSS, PhilHealth, Pag-IBIG deductions) is **₱250,000 or below** (roughly ₱20,833/month), you do NOT pay any income tax at all.
+The number that does the most work here is the ₱250,000 exemption. Notice that it is annual *taxable* income, meaning after your SSS, PhilHealth, and Pag-IBIG contributions have already been subtracted. Spread over twelve months that exemption is about ₱20,833. A fresh graduate earning ₱18,000 a month is, after contributions, sitting comfortably below the line and paying no income tax at all, which genuinely surprises people who have been bracing for a deduction that never comes.
 
-## Graduated vs. 8% Flat Rate: Which is Better?
-
-If you are a freelancer or self-employed individual, you have the option to choose the **8% flat rate** instead of the graduated brackets.
-
-**The 8% flat rate is better when:**
-*   Your gross income is between ₱250,000 and ₱3,000,000
-*   You have very few deductible business expenses
-
-**The graduated rate is better when:**
-*   You have significant business expenses that can be itemized
-*   Your taxable income (after deductions) falls below the 15% bracket
+The thing to internalize is that crossing into a higher bracket does not retroactively tax your earlier pesos at the higher rate. If your taxable income is ₱260,000, only the last ₱10,000 is touched by the 15% rate. The ₱250,000 underneath it stays exempt. I mention this because the fear of a raise pushing you into a worse bracket is one of the most persistent myths in Filipino offices, and it is simply not how marginal brackets work.
 
 <AdBanner dataAdSlot="blog-in-article-2" />
 
-## Compute Your Tax Instantly
+## When the 8% flat rate is the smarter choice
 
-Stop manually looking up brackets. Our calculator does it all for you — graduated rates, 8% flat rate, and shows you a visual pie chart of how much the BIR is taking.
+If you are self-employed or a professional rather than a regular employee, the TRAIN Law gives you a second option: an 8% flat tax on your gross receipts, in place of both the graduated income tax and the separate percentage tax. It is only on the table if your annual gross stays under the ₱3,000,000 VAT threshold, and you have to formally elect it, usually on your first quarterly return for the year.
 
-*Use our [Income Tax Calculator with Visual Breakdown](/income-tax-calculator) to compute your exact tax due and net take-home pay!*
+The decision comes down to expenses. The 8% rate is computed on gross receipts above the same ₱250,000 relief, with no deductions for your costs, so it rewards people whose work has very little overhead, a writer or a virtual assistant, for instance. If you run a business that burns real money on inventory, rent, or equipment, the graduated rates with itemized deductions will usually land you a lower bill, because you are taxed on profit rather than on everything that came in. There is a crossover point, and it depends entirely on your expense ratio, which is exactly the sort of thing worth modeling before you commit for the year.
+
+The [income tax calculator](/income-tax-calculator) runs both paths and shows the bracket-by-bracket breakdown so you are not eyeballing the table. If a figure here ever drifts from what the BIR publishes, it means a regulation changed and I have not updated the math yet; the live schedule is always on [bir.gov.ph](https://www.bir.gov.ph/).
+
+If you want the why beneath the brackets rather than just the numbers, a book I genuinely recommend is Enrico D. Tabag's *Income Taxation* (ISBN 978-971-95999-0-6) — it is the reviewer many accountancy students and CPA candidates actually learn from, and it explains the graduated-versus-8% election with worked examples far beyond what a web page can fit.
+
+* [Income Tax Calculator](/income-tax-calculator)
+* [Freelance & 8% Tax Calculator](/freelance-tax-calculator)
+* [Salary & Net Pay Calculator](/salary-calculator)
+
+## Sources
+- [Tax Reform for Acceleration and Inclusion (TRAIN) Law, RA 10963](https://lawphil.net/statutes/repacts/ra2017/ra_10963_2017.html)
+- [Bureau of Internal Revenue, income tax information and current rates](https://www.bir.gov.ph/)
+
+## Changelog
+- **2026-06-18** — Added a recommended income-taxation reference book for readers who want deeper worked examples.
+- **2026-06-18** — Rewrote in plain-language voice, added the verified TRAIN Law citation, a bracket-ceiling chart, and this sources section.
+- **2026-05-31** — Initial publication.

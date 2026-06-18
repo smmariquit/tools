@@ -1,20 +1,50 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useId, useState } from "react";
+import {
+	getHolidays,
+	getHolidayByDate,
+	payCategoryForHoliday,
+	type PayCategory,
+} from "@/data/holidays";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
+const HOLIDAYS = getHolidays();
+
+function categoryToOvertimeDayType(category: PayCategory): string {
+	switch (category) {
+		case "regular-holiday":
+			return "regular";
+		case "special-non-working":
+			return "special";
+		case "ordinary":
+			return "ordinary";
+	}
+}
+
+function formatHolidayDate(iso: string, locale: string) {
+	const [y, m, d] = iso.split("-").map(Number);
+	return new Date(y, m - 1, d).toLocaleDateString(locale, {
+		month: "short",
+		day: "numeric",
+	});
+}
+
 export default function OvertimePayClient() {
 	const t = useTranslations("OvertimePay");
+	const th = useTranslations("Holidays");
+	const locale = useLocale();
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const selectWorkDaysId = useId();
 	const selectDayTypeId = useId();
+	const selectHolidayId = useId();
 
 	const [monthlySalary, setMonthlySalary] = useState(
 		parseFloat(searchParams.get("salary") || "25000"),
@@ -24,6 +54,9 @@ export default function OvertimePayClient() {
 	);
 	const [dayType, setDayType] = useState(
 		searchParams.get("type") || "ordinary",
+	);
+	const [selectedHolidayDate, setSelectedHolidayDate] = useState(
+		searchParams.get("holiday") || "",
 	);
 	const [hoursWorked, setHoursWorked] = useState(
 		parseFloat(searchParams.get("hours") || "10"),
@@ -148,6 +181,42 @@ export default function OvertimePayClient() {
 					</div>
 
 					<div className="form-group" style={{ marginTop: "32px" }}>
+						<label className="form-label" htmlFor={selectHolidayId}>
+							{th("pickLabel")}
+						</label>
+						<select
+							id={selectHolidayId}
+							className="form-control"
+							value={selectedHolidayDate}
+							onChange={(e) => {
+								const iso = e.target.value;
+								setSelectedHolidayDate(iso);
+								const holiday = iso ? getHolidayByDate(iso) : undefined;
+								if (holiday) {
+									const val = categoryToOvertimeDayType(
+										payCategoryForHoliday(holiday),
+									);
+									setDayType(val);
+									updateUrl({ holiday: iso, type: val });
+								} else {
+									updateUrl({ holiday: "" });
+								}
+							}}
+						>
+							<option value="">{th("pickPlaceholder")}</option>
+							{HOLIDAYS.map((h) => (
+								<option key={h.date} value={h.date}>
+									{formatHolidayDate(h.date, locale)} — {th(`names.${h.key}`)}
+									{h.approximate ? ` ${th("approximate")}` : ""}
+								</option>
+							))}
+						</select>
+						<p className="form-hint" style={{ marginTop: "4px" }}>
+							{th("sourceNote")}
+						</p>
+					</div>
+
+					<div className="form-group" style={{ marginTop: "32px" }}>
 						<label className="form-label" htmlFor={selectDayTypeId}>
 							{t("dayType")}
 						</label>
@@ -157,7 +226,8 @@ export default function OvertimePayClient() {
 							value={dayType}
 							onChange={(e) => {
 								setDayType(e.target.value);
-								updateUrl({ type: e.target.value });
+								setSelectedHolidayDate("");
+								updateUrl({ type: e.target.value, holiday: "" });
 							}}
 						>
 							<option value="ordinary">{t("ordinaryDay")}</option>

@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import PagibigAffordabilityClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -18,11 +19,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/pagibig-affordability-calculator`,
+			canonical: `https://phtools.me/${locale}/pagibig-affordability-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "pagibig-affordability-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function PagibigAffordabilityCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><PagibigAffordabilityClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<PagibigAffordabilityClient />
+			</Suspense>
+			<ToolPageBottom slug="pagibig-housing-loan-affordability-guide" />
+		</>
+	);
 }

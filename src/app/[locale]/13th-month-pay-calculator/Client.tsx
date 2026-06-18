@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { calculateThirteenthMonth } from "../../../core/calculators/thirteenthMonth";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
@@ -35,16 +37,11 @@ export default function ThirteenthMonthClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
+					<BackButton style={{ marginBottom: "16px" }}>
+						Back to Tools
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
 					<h1 className="page-title">{t("title")}</h1>
 					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
@@ -230,9 +227,7 @@ export default function ThirteenthMonthClient() {
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

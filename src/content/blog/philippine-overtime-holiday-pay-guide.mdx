@@ -1,58 +1,45 @@
 ---
 title: "Philippine Overtime & Holiday Pay Guide (DOLE Rules)"
-description: "Learn how to compute your overtime, rest day, and holiday pay correctly based on DOLE's official Handbook on Workers' Statutory Monetary Benefits."
+description: "Overtime, rest day, and holiday pay are just multipliers stacked on your hourly rate. Here are the rates, where they come from, and how they combine."
 date: "2026-05-31"
 author: "PHTools"
 tags: ["DOLE", "Overtime", "Holiday", "Salary"]
 ---
 
-# Philippine Overtime & Holiday Pay Guide
+Premium pay looks intimidating because of the multipliers, but the structure underneath is simple: figure out your hourly rate, then multiply it by whatever the day demands. The multipliers themselves are not arbitrary. They are set by the [Labor Code (PD 442)](https://lawphil.net/statutes/presdecs/pd1974/pd_442_1974.html) and consolidated in DOLE's Handbook on Workers' Statutory Monetary Benefits, which is the reference HR departments actually compute against.
 
-Working beyond 8 hours a day, or clocking in on your supposed rest day, entitles you to premium pay under the Philippine Labor Code. The Department of Labor and Employment (DOLE) mandates strict multipliers for **Overtime (OT) Pay**, **Holiday Pay**, and **Rest Day Pay**.
+<AdBanner dataAdSlot="blog-in-article-1" />
 
-Here is the exact breakdown of how your premium pay is computed based on the *DOLE Handbook on Workers' Statutory Monetary Benefits*.
+## First, your hourly rate
 
-## Step 1: Compute Your Basic Hourly Rate
+Everything starts here, and it is the step most people skip. Your daily rate is your monthly salary divided by a working-days factor, typically 21.75 for a five-day week or 26 for a six-day week. Your hourly rate is that daily figure divided by eight. Get this wrong and every premium computed on top of it is wrong too, which is why a surprising number of payslip disputes are really just an argument about the divisor.
 
-Before computing any overtime, HR first converts your monthly salary into a basic hourly rate. 
+<RegionalNote>
+The multipliers below are national, but the hourly rate they multiply is not. Your daily wage floor is set per region by the RTWPB — roughly **₱695/day in NCR**, **₱600 in CALABARZON and most of Central Luzon**, **₱540/₱500 in Central Visayas**, and rising to **₱540 in Davao** as of mid-2026 — so the same overtime hour is worth more in Metro Manila than in the provinces. There is a second regional wrinkle on the holiday side: cities declare their own special non-working days for charter days, foundation anniversaries, and fiestas, and a locally declared special day worked carries the same 30% premium as a national one. Watch both the annual Malacañang proclamation and your own city ordinance, since the local list changes every year. Confirm your region's wage order at [nwpc.dole.gov.ph](https://nwpc.dole.gov.ph/).
+</RegionalNote>
 
-1. **Daily Rate** = `Monthly Salary / Divisor`
-   *(Divisor is usually 21.75 for 5-day workweeks, or 26 for 6-day workweeks)*
-2. **Hourly Rate** = `Daily Rate / 8`
+## The multipliers, by kind of day
 
-## Step 2: The DOLE Premium Multipliers
+Once you know your hourly rate, the day you worked decides the multiplier applied to it.
 
-Once you know your basic hourly rate, DOLE applies specific multipliers depending on *what kind of day* it is. 
+| Type of day | First 8 hours | Overtime (beyond 8 hrs) |
+|---|---|---|
+| Ordinary working day | 1.00 (regular pay) | 1.25 |
+| Rest day or special non-working holiday | 1.30 | 1.69 |
+| Special non-working holiday falling on a rest day | 1.50 | 1.95 |
+| Regular holiday | 2.00 (double pay) | 2.60 |
+| Regular holiday falling on a rest day | 2.60 | 3.38 |
 
-### 1. Ordinary Working Day
-- **First 8 Hours**: 100% (No extra pay, just your regular salary)
-- **Overtime (Excess of 8 hrs)**: +25% of your hourly rate (1.25 multiplier)
+A few of these deserve a word. The overtime figures look oddly specific because overtime is not a flat add-on; it is 30% layered on top of the already-elevated rate for that day, which is how 1.30 becomes 1.69 rather than 1.60. The regular-holiday row also carries a rule people miss in the other direction: you are entitled to 100% of your daily wage on a regular holiday even if you do not report for work, so showing up is the difference between single pay for staying home and double pay for working. The night differential, a separate 10% premium for hours worked between 10 PM and 6 AM, stacks on top of all of this, which is why a BPO graveyard shift on a holiday produces such an eye-watering rate.
 
-### 2. Rest Day or Special Non-Working Holiday
-If you work on your scheduled rest day OR a Special Non-Working Holiday (like Ninoy Aquino Day):
-- **First 8 Hours**: +30% of your daily rate (1.30 multiplier)
-- **Overtime**: +30% on top of the 130% rate (1.69 multiplier)
+<AdBanner dataAdSlot="blog-in-article-2" />
 
-### 3. Special Non-Working Holiday AND Rest Day
-If a Special Non-Working Holiday falls exactly on your scheduled rest day, and you are required to work:
-- **First 8 Hours**: +50% of your daily rate (1.50 multiplier)
-- **Overtime**: +30% on top of the 150% rate (1.95 multiplier)
+## Worked through, end to end
 
-### 4. Regular Holiday
-Regular Holidays include Christmas, New Year, Labor Day, etc. If you work on these days:
-- **First 8 Hours**: +100% of your daily rate (2.00 multiplier or "Double Pay")
-- **Overtime**: +30% on top of the 200% rate (2.60 multiplier)
-*(Note: If you DO NOT work on a Regular Holiday, you are still entitled to 100% of your daily rate).*
+Say your basic hourly rate is ₱100 and you put in 10 hours on a regular holiday. The first eight hours pay at double, so 8 × ₱100 × 2.00 is ₱1,600. The two overtime hours pay at 2.60, so 2 × ₱100 × 2.60 is ₱520. The day comes to ₱2,120, against the ₱800 those same eight hours would have earned on an ordinary day.
 
-### 5. Regular Holiday AND Rest Day
-The holy grail of premium pay. If a Regular Holiday falls on your rest day and you work:
-- **First 8 Hours**: +160% of your daily rate (2.60 multiplier)
-- **Overtime**: +30% on top of the 260% rate (3.38 multiplier)
+The [overtime and holiday pay calculator](/overtime-pay-calculator) applies the right multiplier for the day you pick and stacks night differential where it belongs, so you can check a disputed payslip without reverse-engineering the table by hand.
 
-## Example Computation
-Let's say your Basic Hourly Rate is **₱100**. You work **10 hours** on a Regular Holiday.
-- **First 8 Hours**: 8 hrs x ₱100 x 2.00 = **₱1,600**
-- **Overtime (2 hrs)**: 2 hrs x ₱100 x 2.60 = **₱520**
-- **Total Pay for the Day**: **₱2,120**
-
-Want to instantly compute your exact pay without doing the math? Use our **Overtime & Holiday Pay Calculator** to automatically apply all DOLE rules to your basic salary!
+* [Overtime & Holiday Pay Calculator](/overtime-pay-calculator)
+* [Holiday Pay Calculator](/holiday-calculator)
+* [BPO Night Differential Calculator](/bpo-night-differential-calculator)

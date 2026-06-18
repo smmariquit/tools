@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
 	const title = "BIR Donor's Tax Calculator | Philippines";
 	const description =
 		"Calculate your cumulative donor's tax liability based on the BIR TRAIN Law (RA 10963) with the ₱250,000 tax-exempt threshold.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Exempt&s1v=250k&s2l=Tax%20Rate&s2v=6%25";
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [{ url: ogUrl, width: 1200, height: 630 }],
+			images: ogImages({
+				tool: "bir-donors-tax-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -42,7 +42,7 @@ export default function DonorsTaxCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="bir-donors-tax-guide" />
+			<ToolPageBottom slug="bir-donors-tax-guide" />
 		</>
 	);
 }

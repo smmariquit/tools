@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import TaxOptimizerClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,11 +16,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/tax-optimizer-calculator`,
+			canonical: `https://phtools.me/${locale}/tax-optimizer-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "tax-optimizer-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function TaxOptimizerCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><TaxOptimizerClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<TaxOptimizerClient />
+			</Suspense>
+			<ToolPageBottom slug="philippine-tax-classification-guide" />
+		</>
+	);
 }

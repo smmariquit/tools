@@ -59,6 +59,8 @@ export default function InteractiveSlider({
 			>
 				<input
 					type="range"
+					aria-label={label}
+					aria-valuetext={formatValue ? formatValue(value) : undefined}
 					min={min}
 					max={max}
 					step={step}

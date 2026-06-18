@@ -1,11 +1,30 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 import TrustBadge from "../../components/TrustBadge";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 type UnitType = "mass" | "volume" | "count";
 
@@ -41,6 +60,7 @@ interface Ingredient {
 }
 
 export default function FoodCostCalculatorClient() {
+	const t = useTranslations("FoodCost");
 	const [recipeName, setRecipeName] = useState("My Recipe");
 	const [yieldServings, setYieldServings] = useState(1);
 	
@@ -171,20 +191,17 @@ export default function FoodCostCalculatorClient() {
 	};
 
 	const chartData = [
-		{ name: 'Ingredients', value: totalIngredientsCost, fill: '#3b82f6' },
-		{ name: 'Labor', value: laborCost, fill: '#10b981' },
-		{ name: 'Overhead', value: overheadCost, fill: '#f59e0b' },
-		{ name: 'Profit', value: estimatedProfitPerServing * yieldServings, fill: '#8b5cf6' },
+		{ name: t('chartIngredients'), value: totalIngredientsCost, fill: '#3b82f6' },
+		{ name: t('chartLabor'), value: laborCost, fill: '#10b981' },
+		{ name: t('chartOverhead'), value: overheadCost, fill: '#f59e0b' },
+		{ name: t('chartProfit'), value: estimatedProfitPerServing * yieldServings, fill: '#8b5cf6' },
 	].filter(d => d.value > 0);
 
 	const formatPHP = (val: number) => new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<ToolHeader
-				title="Food Cost & Pricing Calculator"
-				subtitle="Calculate recipe costs, maximize profit margins, and price your menu perfectly."
-			/>
+			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
 			
 			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
@@ -197,21 +214,21 @@ export default function FoodCostCalculatorClient() {
 					{/* Recipe Details */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span></span> 1. Recipe Details
+							<span></span> {t("recipeDetails")}
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 200px" }}>
-								<label className="form-label">Recipe Name</label>
+								<label className="form-label">{t("recipeNameLabel")}</label>
 								<input
 									type="text"
 									className="form-control"
 									value={recipeName}
 									onChange={(e) => setRecipeName(e.target.value)}
-									placeholder="e.g. Pork Adobo"
+									placeholder={t("recipeNamePlaceholder")}
 								/>
 							</div>
 							<div className="form-group" style={{ flex: "1 1 120px" }}>
-								<label className="form-label">Yield (Servings)</label>
+								<label className="form-label">{t("yieldLabel")}</label>
 								<input
 									type="number"
 									className="form-control"
@@ -227,30 +244,30 @@ export default function FoodCostCalculatorClient() {
 					<div className="card">
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
 							<h2 style={{ fontSize: "18px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
-								<span></span> 2. Ingredients Costing
+								<span></span> {t("ingredientsCosting")}
 							</h2>
 							<button className="btn-secondary" style={{ padding: "6px 12px", fontSize: "14px", display: "flex", alignItems: "center", gap: "4px" }} onClick={addIngredient}>
-								<span></span> Add Item
+								<span></span> {t("addItem")}
 							</button>
 						</div>
 						
 						{ingredients.length === 0 && (
-							<p style={{ color: "var(--text-secondary)", fontSize: "14px" }}>No ingredients added yet.</p>
+							<p style={{ color: "var(--text-secondary)", fontSize: "14px" }}>{t("noIngredients")}</p>
 						)}
 
 						<div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
 							{ingredients.map((ing, index) => (
 								<div key={ing.id} style={{ padding: "16px", border: "1px solid var(--border-color)", borderRadius: "8px", backgroundColor: "var(--bg-color)" }}>
 									<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px" }}>
-										<strong style={{ fontSize: "14px" }}>Item {index + 1}</strong>
-										<button onClick={() => removeIngredient(ing.id)} style={{ background: "none", border: "none", color: "red", cursor: "pointer", fontSize: "12px" }}>Remove</button>
+										<strong style={{ fontSize: "14px" }}>{t("itemN", { n: index + 1 })}</strong>
+										<button onClick={() => removeIngredient(ing.id)} style={{ background: "none", border: "none", color: "red", cursor: "pointer", fontSize: "12px" }}>{t("remove")}</button>
 									</div>
 									
 									<div className="form-group" style={{ marginBottom: "12px" }}>
 										<input
 											type="text"
 											className="form-control"
-											placeholder="Ingredient name (e.g. Garlic)"
+											placeholder={t("ingredientNamePlaceholder")}
 											value={ing.name}
 											onChange={(e) => updateIngredient(ing.id, "name", e.target.value)}
 										/>
@@ -258,11 +275,11 @@ export default function FoodCostCalculatorClient() {
 
 									<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "12px" }}>
 										<div className="form-group">
-											<label className="form-label" style={{ fontSize: "12px" }}>Bought Price (₱)</label>
+											<label className="form-label" style={{ fontSize: "12px" }}>{t("boughtPrice")}</label>
 											<input type="number" className="form-control" value={ing.boughtPrice || ""} onChange={(e) => updateIngredient(ing.id, "boughtPrice", Number(e.target.value))} />
 										</div>
 										<div className="form-group">
-											<label className="form-label" style={{ fontSize: "12px" }}>Bought Qty & Unit</label>
+											<label className="form-label" style={{ fontSize: "12px" }}>{t("boughtQtyUnit")}</label>
 											<div style={{ display: "flex", gap: "4px" }}>
 												<input type="number" className="form-control" value={ing.boughtQty || ""} onChange={(e) => updateIngredient(ing.id, "boughtQty", Number(e.target.value))} style={{ flex: 1 }} />
 												<select className="form-control" value={ing.boughtUnit} onChange={(e) => updateIngredient(ing.id, "boughtUnit", e.target.value)} style={{ flex: 1, padding: "8px 4px" }}>
@@ -274,13 +291,13 @@ export default function FoodCostCalculatorClient() {
 
 									<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
 										<div className="form-group">
-											<label className="form-label" style={{ fontSize: "12px", color: "var(--primary)" }}>Cost of Used</label>
+											<label className="form-label" style={{ fontSize: "12px", color: "var(--primary)" }}>{t("costOfUsed")}</label>
 											<div style={{ padding: "8px", backgroundColor: "var(--surface-color)", border: "1px solid var(--border-color)", borderRadius: "6px", fontSize: "14px", fontWeight: 600 }}>
 												{formatPHP(calculateIngredientCost(ing))}
 											</div>
 										</div>
 										<div className="form-group">
-											<label className="form-label" style={{ fontSize: "12px" }}>Used Qty in Recipe</label>
+											<label className="form-label" style={{ fontSize: "12px" }}>{t("usedQty")}</label>
 											<div style={{ display: "flex", gap: "4px" }}>
 												<input type="number" className="form-control" value={ing.usedQty || ""} onChange={(e) => updateIngredient(ing.id, "usedQty", Number(e.target.value))} style={{ flex: 1 }} />
 												<select className="form-control" value={ing.usedUnit} onChange={(e) => updateIngredient(ing.id, "usedUnit", e.target.value)} style={{ flex: 1, padding: "8px 4px" }}>
@@ -297,15 +314,15 @@ export default function FoodCostCalculatorClient() {
 					{/* Additional Costs */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span>‍</span> 3. Labor & Overhead (Per Batch)
+							<span>‍</span> {t("laborOverhead")}
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
-								<label className="form-label">Labor Cost (₱)</label>
+								<label className="form-label">{t("laborCostLabel")}</label>
 								<input type="number" className="form-control" value={laborCost || ""} onChange={(e) => setLaborCost(Number(e.target.value))} />
 							</div>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
-								<label className="form-label">Packaging & Utilities (₱)</label>
+								<label className="form-label">{t("packagingLabel")}</label>
 								<input type="number" className="form-control" value={overheadCost || ""} onChange={(e) => setOverheadCost(Number(e.target.value))} />
 							</div>
 						</div>
@@ -314,7 +331,7 @@ export default function FoodCostCalculatorClient() {
 					{/* PH Pricing Adjustments */}
 					<div className="card">
 						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)", display: "flex", alignItems: "center", gap: "8px" }}>
-							<span></span> 4. Philippines Taxes & Fees
+							<span></span> {t("taxesFees")}
 						</h2>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
@@ -325,15 +342,15 @@ export default function FoodCostCalculatorClient() {
 									onChange={(e) => setVatIncluded(e.target.checked)} 
 									style={{ width: "18px", height: "18px" }}
 								/>
-								<span style={{ fontWeight: 500 }}>Include 12% VAT in Menu Price</span>
+								<span style={{ fontWeight: 500 }}>{t("vatLabel")}</span>
 							</label>
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px", marginLeft: "26px" }}>
-								Check this if your restaurant is VAT-registered and you want to pass the 12% to the customer.
+								{t("vatHint")}
 							</p>
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">Service Charge (%)</label>
+							<label className="form-label">{t("serviceChargeLabel")}</label>
 							<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
 								<input 
 									type="range" 
@@ -345,7 +362,7 @@ export default function FoodCostCalculatorClient() {
 								<span style={{ fontWeight: 600, minWidth: "40px" }}>{serviceChargePct}%</span>
 							</div>
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
-								Standard is 8-10% for dine-in restaurants in the Philippines.
+								{t("serviceChargeHint")}
 							</p>
 						</div>
 					</div>
@@ -358,33 +375,33 @@ export default function FoodCostCalculatorClient() {
 					<div className="card" style={{ backgroundColor: "var(--bg-color)", position: "sticky", top: "100px" }}>
 						<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", borderBottom: "1px solid var(--border-color)", paddingBottom: "12px" }}>
 							<h2 style={{ fontSize: "20px", color: "var(--primary)", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
-								<span></span> Costing Summary
+								<span></span> {t("costingSummary")}
 							</h2>
-							{isLoaded && <span style={{ fontSize: "12px", color: "var(--text-secondary)", backgroundColor: "var(--surface-color)", padding: "4px 8px", borderRadius: "12px", border: "1px solid var(--border-color)" }}> Auto-saved</span>}
+							{isLoaded && <span style={{ fontSize: "12px", color: "var(--text-secondary)", backgroundColor: "var(--surface-color)", padding: "4px 8px", borderRadius: "12px", border: "1px solid var(--border-color)" }}> {t("autoSaved")}</span>}
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Total Ingredients Cost:</span>
+							<span>{t("totalIngredientsCost")}</span>
 							<strong>{formatPHP(totalIngredientsCost)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Labor & Overhead:</span>
+							<span>{t("laborAndOverhead")}</span>
 							<strong>{formatPHP(laborCost + overheadCost)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingBottom: "16px", borderBottom: "1px dashed var(--border-color)", fontSize: "16px" }}>
-							<span>Total Batch Cost:</span>
+							<span>{t("totalBatchCost")}</span>
 							<strong>{formatPHP(totalRecipeCost)}</strong>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "24px", fontSize: "18px", color: "var(--primary)", fontWeight: 700 }}>
-							<span>Cost Per Serving:</span>
+							<span>{t("costPerServing")}</span>
 							<span>{formatPHP(costPerServing)}</span>
 						</div>
 
-						<h3 style={{ fontSize: "16px", marginBottom: "12px", color: "var(--text-primary)" }}>Pricing Strategy</h3>
+						<h3 style={{ fontSize: "16px", marginBottom: "12px", color: "var(--text-primary)" }}>{t("pricingStrategy")}</h3>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Target Profit Margin (%)</label>
+							<label className="form-label">{t("targetMargin")}</label>
 							<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
 								<input type="range" min="10" max="90" step="1" value={targetMargin} onChange={(e) => setTargetMargin(Number(e.target.value))} style={{ flex: 1 }} />
 								<span style={{ fontWeight: 600, minWidth: "40px" }}>{targetMargin}%</span>
@@ -393,31 +410,31 @@ export default function FoodCostCalculatorClient() {
 
 						<div style={{ padding: "16px", backgroundColor: "rgba(13, 71, 161, 0.05)", border: "1px solid rgba(13, 71, 161, 0.2)", borderRadius: "8px", marginBottom: "24px" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", fontSize: "14px" }}>
-								<span>Base Selling Price:</span>
+								<span>{t("baseSellingPrice")}</span>
 								<strong>{formatPHP(baseSellingPrice)}</strong>
 							</div>
 							
 							{vatIncluded && (
 								<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", fontSize: "14px", color: "var(--text-secondary)" }}>
-									<span>+ 12% VAT:</span>
+									<span>{t("vatLine")}</span>
 									<span>{formatPHP(vatAmount)}</span>
 								</div>
 							)}
 							
 							{serviceChargePct > 0 && (
 								<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", fontSize: "14px", color: "var(--text-secondary)" }}>
-									<span>+ {serviceChargePct}% Service Charge:</span>
+									<span>{t("serviceChargeLine", { pct: serviceChargePct })}</span>
 									<span>{formatPHP(scAmount)}</span>
 								</div>
 							)}
 
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)" }}>
-								<span style={{ fontSize: "16px", fontWeight: 600 }}>Final Menu Price:</span>
+								<span style={{ fontSize: "16px", fontWeight: 600 }}>{t("finalMenuPrice")}</span>
 								<strong style={{ fontSize: "22px", color: "var(--primary)" }}>{formatPHP(finalMenuPrice)}</strong>
 							</div>
 							
 							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: "var(--text-secondary)" }}>
-								<span>Estimated Profit / Serving:</span>
+								<span>{t("profitPerServing")}</span>
 								<strong style={{ color: "green" }}>+{formatPHP(estimatedProfitPerServing)}</strong>
 							</div>
 						</div>
@@ -426,33 +443,15 @@ export default function FoodCostCalculatorClient() {
 						<div style={{ padding: "12px", backgroundColor: "rgba(245, 158, 11, 0.1)", border: "1px solid rgba(245, 158, 11, 0.3)", borderRadius: "8px", marginBottom: "24px" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 								<div>
-									<h4 style={{ margin: "0 0 4px 0", fontSize: "14px", color: "#b45309" }}>Senior / PWD Price</h4>
-									<p style={{ margin: 0, fontSize: "12px", color: "var(--text-secondary)" }}>VAT Exempt + 20% Discount</p>
+									<h4 style={{ margin: "0 0 4px 0", fontSize: "14px", color: "#b45309" }}>{t("seniorTitle")}</h4>
+									<p style={{ margin: 0, fontSize: "12px", color: "var(--text-secondary)" }}>{t("seniorSubtitle")}</p>
 								</div>
 								<strong style={{ fontSize: "18px", color: "#b45309" }}>{formatPHP(seniorPrice)}</strong>
 							</div>
 						</div>
 
 						<div style={{ height: "200px", width: "100%", marginTop: "16px" }}>
-							<ResponsiveContainer width="100%" height="100%">
-								<PieChart>
-									<Pie
-										data={chartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={60}
-										outerRadius={80}
-										paddingAngle={5}
-										dataKey="value"
-									>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.fill} />
-										))}
-									</Pie>
-									<Tooltip formatter={(value: any) => formatPHP(Number(value))} />
-									<Legend />
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatPHP} />
 						</div>
 
 						<PrivacyGuarantee />

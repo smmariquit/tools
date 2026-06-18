@@ -1,14 +1,18 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolLayout from "../components/ToolLayout";
 
 export default function PhilHealthClient() {
+	const t = useTranslations("PhilHealthCalculator");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -58,23 +62,13 @@ export default function PhilHealthClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">
-						PhilHealth Contribution Calculator (2026)
-					</h1>
-					<p className="page-subtitle">
-						Calculate your exact monthly PhilHealth premium based on the latest
-						5% rate scheduled by the Universal Health Care Act.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="philhealth-top" />
@@ -90,11 +84,11 @@ export default function PhilHealthClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Monthly Salary
+							{t("inputTitle")}
 						</h2>
 
 						<InteractiveSlider
-							label="Basic Monthly Salary (PHP)"
+							label={t("salaryLabel")}
 							value={basicSalary}
 							min={0}
 							max={150000}
@@ -103,7 +97,7 @@ export default function PhilHealthClient() {
 								setBasicSalaryStr(val.toString());
 								updateUrl({ salary: val.toString() });
 							}}
-							hint="Input your basic pay excluding allowances and overtime."
+							hint={t("salaryHint")}
 						/>
 						{basicSalary > 0 && basicSalary < floorSalary && (
 							<div
@@ -120,8 +114,7 @@ export default function PhilHealthClient() {
 									gap: "6px",
 								}}
 							>
-								<span>️</span> Below ₱10,000 floor — minimum premium of ₱500
-								applies
+								<span>️</span> {t("belowFloorWarning")}
 							</div>
 						)}
 						{basicSalary >= ceilingSalary && (
@@ -139,8 +132,7 @@ export default function PhilHealthClient() {
 									gap: "6px",
 								}}
 							>
-								<span>️</span> Above ₱100,000 ceiling — maximum premium of
-								₱5,000 applies
+								<span>️</span> {t("aboveCeilingWarning")}
 							</div>
 						)}
 					</div>
@@ -156,7 +148,7 @@ export default function PhilHealthClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Monthly Contribution Breakdown
+							{t("breakdownTitle")}
 						</h2>
 
 						<div
@@ -167,7 +159,7 @@ export default function PhilHealthClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Total Premium (5%)</span>
+							<span>{t("totalPremium")}</span>
 							<span>{formatCurrency(totalPremium)}</span>
 						</div>
 
@@ -179,7 +171,7 @@ export default function PhilHealthClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Employer Share (50%)</span>
+							<span>{t("employerShare")}</span>
 							<span style={{ color: "var(--text-secondary)" }}>
 								{formatCurrency(employerShare)}
 							</span>
@@ -197,7 +189,7 @@ export default function PhilHealthClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Your Share (Deducted)</span>
+							<span>{t("yourShare")}</span>
 							<span style={{ color: "#b71c1c" }}>
 								- {formatCurrency(employeeShare)}
 							</span>
@@ -215,12 +207,12 @@ export default function PhilHealthClient() {
 					}}
 				>
 					<h2 style={{ fontSize: "24px", marginBottom: "16px" }}>
-						PhilHealth 2026 Contribution Table
+						{t("tableTitle")}
 					</h2>
 					<p style={{ marginBottom: "16px" }}>
-						Under the Universal Health Care (UHC) Law (Republic Act No. 11223),
-						the premium rate for direct contributors is 5.0%. Your bracket is{" "}
-						<strong>highlighted</strong> below.
+						{t.rich("tableIntro", {
+							b: (chunks) => <strong>{chunks}</strong>,
+						})}
 					</p>
 
 					<div style={{ overflowX: "auto", marginBottom: "24px" }}>
@@ -239,11 +231,11 @@ export default function PhilHealthClient() {
 									}}
 								>
 									<th style={{ padding: "10px 8px", textAlign: "left" }}>
-										Monthly Salary Range
+										{t("colSalaryRange")}
 									</th>
-									<th style={{ padding: "10px 8px" }}>Total Premium</th>
-									<th style={{ padding: "10px 8px" }}>Employee Share</th>
-									<th style={{ padding: "10px 8px" }}>Employer Share</th>
+									<th style={{ padding: "10px 8px" }}>{t("colTotalPremium")}</th>
+									<th style={{ padding: "10px 8px" }}>{t("colEmployeeShare")}</th>
+									<th style={{ padding: "10px 8px" }}>{t("colEmployerShare")}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -269,6 +261,12 @@ export default function PhilHealthClient() {
 												? 10000
 												: bracket.max;
 									const premium = salForCalc * 0.05;
+									const rangeLabel =
+										bracket.min === 0
+											? t("rangeAndBelow", { amount: "₱10,000" })
+											: bracket.max === Infinity
+												? t("rangeAndAbove", { amount: "₱100,001" })
+												: bracket.label;
 									return (
 										<tr
 											key={bracket.label}
@@ -293,7 +291,7 @@ export default function PhilHealthClient() {
 														▸
 													</span>
 												)}
-												{bracket.label}
+												{rangeLabel}
 											</td>
 											<td style={{ padding: "10px 8px" }}>
 												{formatCurrency(premium)}
@@ -330,24 +328,17 @@ export default function PhilHealthClient() {
 						}}
 					>
 						<li>
-							<strong>Salary Floor:</strong> ₱10,000 (Minimum contribution is
-							₱500/month).
+							<strong>{t("floorLabel")}</strong> {t("floorDesc")}
 						</li>
 						<li>
-							<strong>Salary Ceiling:</strong> ₱100,000 (Maximum contribution is
-							₱5,000/month).
+							<strong>{t("ceilingLabel")}</strong> {t("ceilingDesc")}
 						</li>
 						<li>
-							<strong>Sharing:</strong> The total premium is split evenly
-							(50/50) between the employee and the employer.
+							<strong>{t("sharingLabel")}</strong> {t("sharingDesc")}
 						</li>
 					</ul>
 					<div style={{ marginTop: "16px" }}>
-						<TipCard title="Did you know?">
-							Voluntary members, freelancers, and OFWs are required to pay the
-							full 100% of the premium rate out-of-pocket, as they do not have
-							an employer to share the cost with.
-						</TipCard>
+						<TipCard title={t("tipTitle")}>{t("tipBody")}</TipCard>
 					</div>
 				</div>
 			</div>

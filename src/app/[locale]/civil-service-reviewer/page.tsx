@@ -1,17 +1,30 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Civil Service Exam Reviewer | Philippines";
-	const description =
-		"Offline-capable mock exams and flashcards for the Philippine Civil Service Examination (CSE).";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Civil&s1v=Service&s2l=Exam&s2v=Reviewer";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({
+		locale,
+		namespace: "CivilServiceReviewer",
+	});
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "civil-service-reviewer",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +32,7 @@ export default function CivilServicePage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="civil-service-reviewer-guide" />
+			<ToolPageBottom slug="civil-service-reviewer-guide" />
 		</>
 	);
 }

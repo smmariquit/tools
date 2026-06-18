@@ -1,17 +1,30 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Legal Contract Generator | Philippine Templates";
-	const description =
-		"Generate standard Philippine legal documents (Lease Agreements, Promissory Notes) securely in your browser.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Legal&s1v=Contract&s2l=Generator&s2v=Free";
+export async function generateMetadata({
+	params: { locale },
+}: {
+	params: { locale: string };
+}): Promise<Metadata> {
+	const t = await getTranslations({
+		locale,
+		namespace: "LegalContractGenerator",
+	});
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "legal-contract-generator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +32,7 @@ export default function LegalContractPage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="legal-contract-guide" />
+			<ToolPageBottom slug="legal-contract-guide" />
 		</>
 	);
 }

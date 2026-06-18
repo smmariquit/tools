@@ -1,12 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
 export default function EcommerceFeeClient() {
+	const t = useTranslations("ShopeeLazadaFee");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -80,23 +84,13 @@ export default function EcommerceFeeClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">
-						TikTok, Shopee & Lazada Seller Fee Calculator
-					</h1>
-					<p className="page-subtitle">
-						Calculate exact deductions (Commission, Transaction, Affiliate) and
-						find out your actual net payout per item.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="ecommerce-top" />
@@ -112,11 +106,11 @@ export default function EcommerceFeeClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Order Details
+							{t("orderDetails")}
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<div className="form-label">E-Commerce Platform</div>
+							<div className="form-label">{t("platformLabel")}</div>
 							<div style={{ display: "flex", gap: "12px" }}>
 								<button
 									className={`btn-secondary ${platform === "shopee" ? "active" : ""}`}
@@ -165,7 +159,7 @@ export default function EcommerceFeeClient() {
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="itemPrice">
-								Selling Price of Item (PHP)
+								{t("sellingPriceLabel")}
 							</label>
 							<input
 								type="number"
@@ -182,7 +176,7 @@ export default function EcommerceFeeClient() {
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="shippingFee">
-								Shipping Fee paid by Buyer (PHP)
+								{t("shippingFeeLabel")}
 							</label>
 							<input
 								type="number"
@@ -196,8 +190,7 @@ export default function EcommerceFeeClient() {
 								min="0"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Transaction fees apply to the entire order amount, including
-								shipping.
+								{t("shippingHint")}
 							</p>
 						</div>
 
@@ -209,7 +202,7 @@ export default function EcommerceFeeClient() {
 							}}
 						>
 							<div className="form-label">
-								Opt-in Programs (Extra Deductions)
+								{t("optInPrograms")}
 							</div>
 
 							<label
@@ -232,8 +225,8 @@ export default function EcommerceFeeClient() {
 									style={{ width: "16px", height: "16px" }}
 								/>
 								{platform === "tiktok"
-									? "Paid to Affiliate Creators (~10% Fee)"
-									: "Joined Free Shipping Program (~5.6% Fee)"}
+									? t("affiliateOption")
+									: t("freeShippingOption")}
 							</label>
 
 							{platform !== "tiktok" && (
@@ -256,7 +249,7 @@ export default function EcommerceFeeClient() {
 										}}
 										style={{ width: "16px", height: "16px" }}
 									/>
-									Joined Cashback Program (~3.36% Fee)
+									{t("cashbackOption")}
 								</label>
 							)}
 						</div>
@@ -273,7 +266,7 @@ export default function EcommerceFeeClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Payout Breakdown
+							{t("payoutBreakdown")}
 						</h2>
 
 						<div
@@ -284,7 +277,7 @@ export default function EcommerceFeeClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Item Price</span>
+							<span>{t("itemPrice")}</span>
 							<span style={{ fontWeight: 600 }}>
 								{formatCurrency(itemPrice)}
 							</span>
@@ -298,7 +291,7 @@ export default function EcommerceFeeClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Transaction Fee (2.24%)</span>
+							<span>{t("transactionFee")}</span>
 							<span style={{ color: "var(--text-secondary)" }}>
 								- {formatCurrency(transactionFee)}
 							</span>
@@ -313,13 +306,14 @@ export default function EcommerceFeeClient() {
 							}}
 						>
 							<span>
-								Commission Fee (~
-								{platform === "shopee"
-									? "5"
-									: platform === "lazada"
-										? "4.5"
-										: "4"}
-								%)
+								{t("commissionFee", {
+									rate:
+										platform === "shopee"
+											? "5"
+											: platform === "lazada"
+												? "4.5"
+												: "4",
+								})}
 							</span>
 							<span style={{ color: "var(--text-secondary)" }}>
 								- {formatCurrency(commissionFee)}
@@ -337,8 +331,8 @@ export default function EcommerceFeeClient() {
 							>
 								<span>
 									{platform === "tiktok"
-										? "Affiliate Commission"
-										: "Program Fees (FSS/CCB)"}
+										? t("affiliateCommission")
+										: t("programFees")}
 								</span>
 								<span style={{ color: "var(--text-secondary)" }}>
 									- {formatCurrency(programFee)}
@@ -358,7 +352,7 @@ export default function EcommerceFeeClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Net Payout</span>
+							<span>{t("netPayout")}</span>
 							<span style={{ color: "#1b5e20" }}>
 								{formatCurrency(netPayout)}
 							</span>
@@ -372,14 +366,13 @@ export default function EcommerceFeeClient() {
 								color: profitMargin > 0 ? "#2e7d32" : "#b71c1c",
 							}}
 						>
-							{profitMargin > 0 ? "Margin: " : "Loss: "}{" "}
-							{profitMargin.toFixed(1)}% of Item Price
+							{profitMargin > 0
+								? t("marginText", { margin: profitMargin.toFixed(1) })
+								: t("lossText", { margin: profitMargin.toFixed(1) })}
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

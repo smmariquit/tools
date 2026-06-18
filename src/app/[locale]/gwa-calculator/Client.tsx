@@ -1,7 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 import { calculateGwa, calculateTargetAverage } from "./gwaLogic";
@@ -14,6 +17,7 @@ type Subject = {
 };
 
 export default function GwaCalculatorClient() {
+	const t = useTranslations("GWACalculator");
 	const [subjects, setSubjects] = useState<Subject[]>([
 		{ id: "1", name: "", grade: "", units: 3 },
 		{ id: "2", name: "", grade: "", units: 3 },
@@ -70,21 +74,13 @@ export default function GwaCalculatorClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">UP / PUP GWA Calculator</h1>
-					<p className="page-subtitle">
-						Calculate your General Weighted Average for State Universities (1.0
-						- 5.0 grading system).
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="gwa-top" />
@@ -102,13 +98,13 @@ export default function GwaCalculatorClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							<h2 style={{ fontSize: "18px" }}>Semester Grades</h2>
+							<h2 style={{ fontSize: "18px" }}>{t("semesterGrades")}</h2>
 							<button
 								onClick={addSubject}
 								className="btn-secondary"
 								style={{ padding: "6px 12px", fontSize: "12px" }}
 							>
-								+ Add Subject
+								{t("addSubject")}
 							</button>
 						</div>
 
@@ -123,9 +119,9 @@ export default function GwaCalculatorClient() {
 								color: "var(--text-secondary)",
 							}}
 						>
-							<div>Subject (Optional)</div>
-							<div>Grade</div>
-							<div>Units</div>
+							<div>{t("colSubject")}</div>
+							<div>{t("colGrade")}</div>
+							<div>{t("colUnits")}</div>
 							<div></div>
 						</div>
 
@@ -149,7 +145,7 @@ export default function GwaCalculatorClient() {
 								>
 									<input
 										type="text"
-										placeholder="e.g. CS 11"
+										placeholder={t("subjectPlaceholder")}
 										className="form-control"
 										value={subject.name}
 										onChange={(e) =>
@@ -176,9 +172,9 @@ export default function GwaCalculatorClient() {
 										<option value="2.25">2.25</option>
 										<option value="2.5">2.50</option>
 										<option value="2.75">2.75</option>
-										<option value="3.0">3.00 (Pass)</option>
-										<option value="4.0">4.00 (Cond)</option>
-										<option value="5.0">5.00 (Fail)</option>
+										<option value="3.0">{t("optionPass")}</option>
+										<option value="4.0">{t("optionCond")}</option>
+										<option value="5.0">{t("optionFail")}</option>
 									</select>
 									<input
 										type="number"
@@ -204,7 +200,7 @@ export default function GwaCalculatorClient() {
 											fontSize: "18px",
 											padding: "0 4px",
 										}}
-										title="Remove subject"
+										title={t("removeSubject")}
 										disabled={subjects.length <= 1}
 									>
 										&times;
@@ -231,7 +227,7 @@ export default function GwaCalculatorClient() {
 									color: "var(--primary)",
 								}}
 							>
-								Current Semester GWA
+								{t("currentSemesterGwa")}
 							</h2>
 
 							<div
@@ -256,7 +252,7 @@ export default function GwaCalculatorClient() {
 											marginBottom: "8px",
 										}}
 									>
-										General Weighted Average
+										{t("gwaLabel")}
 									</span>
 									<strong
 										style={{
@@ -278,7 +274,7 @@ export default function GwaCalculatorClient() {
 								}}
 							>
 								<p>
-									Total Units: <strong>{totalUnits}</strong>
+									{t("totalUnitsLabel")} <strong>{totalUnits}</strong>
 								</p>
 								{gwa !== null && gwa <= 1.2 && (
 									<p
@@ -288,7 +284,7 @@ export default function GwaCalculatorClient() {
 											marginTop: "8px",
 										}}
 									>
-										 University Scholar (US) Tier!
+										{t("tierUS")}
 									</p>
 								)}
 								{gwa !== null && gwa > 1.2 && gwa <= 1.75 && (
@@ -299,7 +295,7 @@ export default function GwaCalculatorClient() {
 											marginTop: "8px",
 										}}
 									>
-										 College Scholar (CS) Tier!
+										{t("tierCS")}
 									</p>
 								)}
 								{gwa !== null && gwa > 3.0 && (
@@ -310,7 +306,7 @@ export default function GwaCalculatorClient() {
 											marginTop: "8px",
 										}}
 									>
-										Warning: Failing Average
+										{t("warningFailing")}
 									</p>
 								)}
 							</div>
@@ -318,7 +314,7 @@ export default function GwaCalculatorClient() {
 
 						<div className="card">
 							<h2 style={{ fontSize: "16px", marginBottom: "12px" }}>
-								Target GWA Predictor
+								{t("targetPredictorTitle")}
 							</h2>
 							<p
 								style={{
@@ -327,8 +323,7 @@ export default function GwaCalculatorClient() {
 									marginBottom: "16px",
 								}}
 							>
-								Find out what average you need on your remaining units to hit
-								your target GWA.
+								{t("targetPredictorDesc")}
 							</p>
 
 							<div
@@ -345,7 +340,7 @@ export default function GwaCalculatorClient() {
 										style={{ fontSize: "12px" }}
 										htmlFor="current-total-units"
 									>
-										Current Total Units
+										{t("currentTotalUnits")}
 									</label>
 									<input
 										id="current-total-units"
@@ -365,7 +360,7 @@ export default function GwaCalculatorClient() {
 										style={{ fontSize: "12px" }}
 										htmlFor="current-gwa"
 									>
-										Current GWA
+										{t("currentGwa")}
 									</label>
 									<input
 										id="current-gwa"
@@ -386,7 +381,7 @@ export default function GwaCalculatorClient() {
 										style={{ fontSize: "12px" }}
 										htmlFor="remaining-units"
 									>
-										Remaining Units
+										{t("remainingUnits")}
 									</label>
 									<input
 										id="remaining-units"
@@ -406,7 +401,7 @@ export default function GwaCalculatorClient() {
 										style={{ fontSize: "12px" }}
 										htmlFor="target-gwa"
 									>
-										Target GWA
+										{t("targetGwa")}
 									</label>
 									<input
 										id="target-gwa"
@@ -438,7 +433,7 @@ export default function GwaCalculatorClient() {
 									<div
 										style={{ fontSize: "12px", color: "var(--text-secondary)" }}
 									>
-										Needed average for remaining units:
+										{t("neededAverageLabel")}
 									</div>
 									<div
 										style={{
@@ -458,7 +453,7 @@ export default function GwaCalculatorClient() {
 												marginTop: "4px",
 											}}
 										>
-											Impossible (requires better than 1.0)
+											{t("impossible")}
 										</div>
 									)}
 									{neededAverage > 3.0 && (
@@ -469,7 +464,7 @@ export default function GwaCalculatorClient() {
 												marginTop: "4px",
 											}}
 										>
-											Very achievable (passing is 3.0)
+											{t("veryAchievable")}
 										</div>
 									)}
 								</div>
@@ -477,9 +472,7 @@ export default function GwaCalculatorClient() {
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

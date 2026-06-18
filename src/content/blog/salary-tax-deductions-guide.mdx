@@ -1,46 +1,71 @@
 ---
 title: "Understanding Philippine Salary Deductions: SSS, PhilHealth, & Pag-IBIG"
-description: "Why is your take-home pay so low? Learn how to calculate mandatory government deductions (SSS, PhilHealth, Pag-IBIG) and income tax in the Philippines."
+description: "Why your take-home pay is lower than your contract salary, and what each mandatory deduction is actually doing, traced to the agency that sets the rate."
 date: "2026-05-31"
+updatedAt: "2026-06-18"
 ---
 
-When you receive your first job offer in the Philippines, a ₱35,000 monthly salary sounds great. But when payday arrives, you receive much less. 
+The first time I got a payslip, I did what most people do. I took the offer figure, divided it for the semi-monthly cutoff, and felt cheated when the real number came in lower. The gap was not an accounting mistake. It was four deductions that every Philippine employer is legally required to take before the money reaches you, and once you understand what each one is doing, the number stops feeling arbitrary.
 
-Before you get your take-home pay, both your employer and the government take a slice of the pie. These are known as **Mandatory Deductions**.
+I built the [salary calculator](/salary-calculator) because I got tired of explaining the same arithmetic to friends over merienda. What follows is the reasoning behind it. Every rate is traced back to the agency or the law that actually sets it, so you can check me.
 
 <AdBanner dataAdSlot="blog-in-article-1" />
 
-## 1. Social Security System (SSS)
+## Where your SSS contribution actually goes
 
-Your SSS contribution is essentially a mandatory pension and insurance fund. As of 2026, the contribution rate is **15%** of your Monthly Salary Credit (MSC). 
-*   **You pay:** 5%
-*   **Your Employer pays:** 10%
+The Social Security System runs on the [Social Security Act of 2018 (RA 11199)](https://lawphil.net/statutes/repacts/ra2019/ra_11199_2019.html), which put the total contribution rate on a slow staircase that finally reaches 15 percent of your Monthly Salary Credit in 2026. You carry a third of that, which is 5 percent, and your employer carries the remaining 10. Most people fixate on the deduction, but the more interesting part is the ceiling.
 
-The MSC is capped at ₱35,000. Any portion of your MSC between ₱20,000 and ₱35,000 goes into a mandatory savings program called the WISP (Workers' Investment and Savings Program), which earns tax-free dividends!
+The MSC tops out at ₱35,000. The practical meaning of that sentence is easy to miss until it happens to you: once your basic salary crosses that line, your SSS contribution simply stops growing. I have watched a friend get a ₱6,000 raise, notice that their SSS line did not move by a single peso, and assume payroll had made an error. Payroll was right. The ceiling is binding by design, and it is the single most common reason someone emails me convinced their deduction is wrong.
 
-## 2. PhilHealth (Universal Health Care)
+There is also a quieter mechanism worth knowing about. Any portion of your MSC sitting between ₱20,000 and ₱35,000 is not ordinary pension money. It gets routed into the Workers' Investment and Savings Program, a mandatory savings layer that earns tax-free dividends and that you can eventually withdraw. So a slice of what looks like money disappearing is really forced savings with your name on it. You can see the full per-bracket figures on the official [SSS contribution schedule](https://www.sss.gov.ph/), or just use the [contribution calculator](/sss-contribution-calculator).
 
-PhilHealth provides health insurance coverage for all Filipinos. The premium rate for 2026 is **5%** of your basic monthly salary, capped at a maximum salary of ₱100,000.
-*   **You pay:** 2.5%
-*   **Your Employer pays:** 2.5%
+## PhilHealth, and the floor nobody mentions
 
-## 3. Pag-IBIG Fund (HDMF)
+PhilHealth premiums come from the [Universal Health Care Act (RA 11223)](https://lawphil.net/statutes/repacts/ra2019/ra_11223_2019.html). For 2026 the premium is 5 percent of your monthly basic salary, split evenly, so you and your employer each shoulder 2.5 percent. The headline rate is the easy part. The edges are where people get tripped up.
 
-The Home Development Mutual Fund (Pag-IBIG) provides housing loans and a high-yield savings program. The maximum fund salary for computation is capped at ₱10,000.
-*   **You pay:** 2% (Maximum ₱200)
-*   **Your Employer pays:** 2% (Maximum ₱200)
+There is a floor at ₱10,000 and a ceiling at ₱100,000. If you are a new hire on a ₱9,500 probationary salary, your premium is still computed as if you earned ₱10,000, not your actual pay. I have seen more than one employer quietly get this wrong on probationary payroll and under-deduct by a few pesos a cutoff. It is a small amount, but it is the kind of small that compounds quietly until an auditor finds it. The opposite problem is just as common: if your employer is computing PhilHealth on your gross pay including allowances rather than on basic salary alone, you are being over-deducted, and that is worth a polite question to HR.
+
+## Pag-IBIG, the cheap one
+
+Pag-IBIG, formally the Home Development Mutual Fund under [RA 9679](https://lawphil.net/statutes/repacts/ra2009/ra_9679_2009.html), is the gentlest of the three. You and your employer each contribute 2 percent, but the computation is capped at ₱10,000 of monthly compensation, so in practice the most you will see leave your payslip is ₱200 a month. That modest two hundred pesos is also your entry ticket into the Fund's housing loans and its MP2 savings program, which earns a higher dividend than most banks will give you and which I get into properly in the [MP2 guide](/pagibig-mp2-calculator).
 
 <AdBanner dataAdSlot="blog-in-article-2" />
 
-## 4. Withholding Tax (BIR)
+## Then, and only then, the tax
 
-After SSS, PhilHealth, and Pag-IBIG are deducted from your gross salary, the remaining amount is your **Taxable Income**. 
+Here is the part almost everyone gets backwards. The Bureau of Internal Revenue does not tax your gross salary. It taxes what is left after SSS, PhilHealth, and Pag-IBIG have come out, and that remainder is your taxable income. The brackets themselves come from the [TRAIN Law (RA 10963)](https://lawphil.net/statutes/repacts/ra2017/ra_10963_2017.html), and the first ₱250,000 of annual taxable income is exempt. Spread across the year that works out to roughly ₱20,833 a month. Earn below that after contributions and your withholding tax is genuinely zero, which surprises a lot of entry-level employees who assume that paying income tax is a universal rite of passage.
 
-The Bureau of Internal Revenue (BIR) applies the TRAIN Law tax brackets to this amount. If your taxable income is ₱20,833 per month or below, you are completely exempt from income tax!
+The nuance most calculators skip is that withholding is an estimate your employer remits each cutoff, not the final verdict. Bonuses, a mid-year job change, and the ₱90,000 tax-free cap on your 13th month and other benefits can all push your real annual liability above or below what was actually withheld. That is why some people get a refund in January and others quietly owe a bit more. The [income tax calculator](/income-tax-calculator) handles the bracket math for a single salary; the year-end reconciliation on your BIR Form 2316 is a separate conversation.
 
-## Stop Guessing, Start Calculating
+<RegionalNote>
+The contribution rates and tax brackets above are national, but one thing depends on where you work: whether you count as a **Minimum Wage Earner (MWE)**. Under RA 9504 an MWE is exempt from income tax on the statutory minimum wage plus holiday, overtime, night-shift, and hazard pay — and "minimum wage" is set per region by the RTWPB, not nationally. As of mid-2026 the private non-agriculture daily minimum is **₱695 in NCR**, **₱600 in CALABARZON and most of Central Luzon**, **₱540/₱500 in Central Visayas (Cebu)**, and rising to **₱540 in Davao**. So ₱500/day makes you a tax-exempt MWE in Cebu but is below the legal floor in Manila. Check your region's current wage order at [nwpc.dole.gov.ph](https://nwpc.dole.gov.ph/) before assuming a flat answer.
+</RegionalNote>
 
-Calculating all these brackets manually is extremely prone to error. If you want to know exactly how much will hit your bank account next payday, use our free tools!
+### Why is my take-home pay lower than my contract salary?
 
-*   [Comprehensive Salary & Net Pay Calculator](/salary-calculator)
-*   [Standalone Income Tax Calculator](/income-tax-calculator)
+Because your contract states your gross salary, and four things come out of gross before you ever touch it: SSS, PhilHealth, and Pag-IBIG contributions, plus withholding tax on whatever is left. For a typical ₱35,000 earner the combined bite is usually in the low thousands per month, most of which is your own SSS and PhilHealth share rather than tax.
+
+### Do I still pay these as a freelancer?
+
+The arrangement changes. Without an employer there is no one to shoulder the other half or to remit on your behalf, so you register with each agency as a voluntary or self-employed member and pay the contributions yourself. Your income tax also moves to the freelancer track, where you choose between the 8 percent flat rate and the graduated rates. I cover that decision in the [freelance tax guide](/freelance-tax-calculator). If filing and paying it all yourself sounds daunting, kudos to the team behind [Taxumo](https://www.taxumo.com/) — it automates BIR filing and payment for freelancers and the self-employed, and it is the tool I most often point first-time filers toward when this calculator stops being enough.
+
+### My SSS deduction did not change after a raise. Is payroll wrong?
+
+Almost certainly not. If your basic salary is already at or above ₱35,000, you have hit the Monthly Salary Credit ceiling set under RA 11199, and your SSS contribution stays flat no matter how large the raise. Your take-home actually rises slightly because the deduction stops scaling while your pay keeps climbing.
+
+If a rate on this page ever looks off, it usually means a circular changed and I have not caught it yet. The math behind every calculator is checked against the agencies linked above, and I would rather you tell me than trust a stale number. You can reach me through the [about page](/about).
+
+* [Comprehensive Salary & Net Pay Calculator](/salary-calculator)
+* [Standalone Income Tax Calculator](/income-tax-calculator)
+* [SSS Contribution Calculator](/sss-contribution-calculator)
+
+## Sources
+- [Social Security Act of 2018 (RA 11199)](https://lawphil.net/statutes/repacts/ra2019/ra_11199_2019.html)
+- [Universal Health Care Act (RA 11223)](https://lawphil.net/statutes/repacts/ra2019/ra_11223_2019.html)
+- [Home Development Mutual Fund Law of 2009 (RA 9679)](https://lawphil.net/statutes/repacts/ra2009/ra_9679_2009.html)
+- [TRAIN Law (RA 10963)](https://lawphil.net/statutes/repacts/ra2017/ra_10963_2017.html)
+- [SSS official contribution schedule](https://www.sss.gov.ph/)
+
+## Changelog
+- **2026-06-18** — Added a kudos note to Taxumo for self-filers and this sources section.
+- **2026-05-31** — Initial publication.

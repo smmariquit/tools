@@ -1,7 +1,23 @@
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { Caveat, Inter } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
+
+const inter = Inter({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800"],
+	variable: "--font-inter",
+	display: "swap",
+});
+
+const caveat = Caveat({
+	subsets: ["latin"],
+	weight: ["600", "700"],
+	variable: "--font-caveat",
+	display: "swap",
+});
 import { NextIntlClientProvider } from "next-intl";
 import {
 	getMessages,
@@ -9,7 +25,9 @@ import {
 	setRequestLocale,
 } from "next-intl/server";
 import { ThemeProvider } from "../../components/ThemeProvider";
+import AdSenseLoader from "../components/AdSenseLoader";
 import CookieConsent from "../components/CookieConsent";
+import WavyDivider from "../components/doodle/WavyDivider";
 import Logo from "../components/Logo";
 import OfflineToast from "../components/OfflineToast";
 import Navbar from "./components/Navbar";
@@ -42,11 +60,21 @@ export const metadata: Metadata = {
 		siteName: "PHTools",
 		locale: "en_PH",
 		type: "website",
+		images: [
+			{
+				url: "/api/og?title=PH%20Tools%20%26%20Calculators&desc=Free%2C%20accurate%20calculators%20and%20tools%20for%20the%20Philippines.",
+				width: 1200,
+				height: 630,
+			},
+		],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "PH Tools & Calculators",
 		description: "Free, accurate calculators and tools for Filipinos.",
+		images: [
+			"/api/og?title=PH%20Tools%20%26%20Calculators&desc=Free%2C%20accurate%20calculators%20and%20tools%20for%20the%20Philippines.",
+		],
 	},
 };
 
@@ -63,28 +91,25 @@ export default async function RootLayout({
 	const t = await getTranslations("Navigation");
 
 	return (
-		<html lang={locale}>
+		<html
+			lang={locale}
+			suppressHydrationWarning
+			className={`${inter.variable} ${caveat.variable}`}
+		>
 			<head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
+				<Script
+					id="theme-init"
+					strategy="beforeInteractive"
+					dangerouslySetInnerHTML={{
+						__html: `(function(){try{var t=localStorage.getItem("theme")||"system";var d=t==="system"?(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t;document.documentElement.setAttribute("data-theme",d);document.documentElement.style.colorScheme=d==="dark"?"dark":"light"}catch(e){}})();`,
+					}}
 				/>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-					rel="stylesheet"
-				/>
-				<script
-					async
-					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9785940474424207"
-					crossOrigin="anonymous"
-				></script>
 			</head>
 			<body>
 				<a href="#main-content" className="skip-to-content">
 					Skip to content
 				</a>
+				<AdSenseLoader />
 				<ThemeProvider>
 					<NextIntlClientProvider messages={messages}>
 						<PostHogProvider>
@@ -101,11 +126,13 @@ export default async function RootLayout({
 							<footer
 								style={{
 									backgroundColor: "var(--surface-color)",
-									borderTop: "1px solid var(--border-color)",
-									padding: "32px 0 16px 0",
+									padding: "0 0 16px 0",
 									marginTop: "auto",
 								}}
 							>
+								<div className="container" style={{ marginBottom: "28px" }}>
+									<WavyDivider />
+								</div>
 								<div className="container">
 									<div
 										style={{
@@ -183,17 +210,28 @@ export default async function RootLayout({
 													>
 														Help & FAQs
 													</Link>
-													<Link
-														href="/contact"
-														style={{
-															color: "var(--text-secondary)",
-															fontSize: "14px",
-														}}
-													>
-														Contact
-													</Link>
-												</div>
+												<Link
+													href="/contact"
+													style={{
+														color: "var(--text-secondary)",
+														fontSize: "14px",
+													}}
+												>
+													Contact
+												</Link>
+												<a
+													href="https://kape.stimmie.dev"
+													target="_blank"
+													rel="noopener noreferrer"
+													style={{
+														color: "var(--text-secondary)",
+														fontSize: "14px",
+													}}
+												>
+													Buy me a kape ☕
+												</a>
 											</div>
+										</div>
 
 											<div>
 												<h4

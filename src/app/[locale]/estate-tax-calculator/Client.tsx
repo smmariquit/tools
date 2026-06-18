@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
 export default function EstateTaxClient() {
+	const t = useTranslations("EstateTax");
 	const [grossEstate, setGrossEstate] = useState(15000000);
 	const [familyHome, setFamilyHome] = useState(8000000);
 	const [medicalExpenses, setMedicalExpenses] = useState(500000);
@@ -24,41 +26,41 @@ export default function EstateTaxClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Philippine Estate Tax Calculator"
-				subtitle="Estimate the 6% flat estate tax under the TRAIN Law."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Estate Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("estateDetails")}</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Gross Estate (FMV or Zonal Value)</label>
+							<label className="form-label">{t("grossEstateLabel")}</label>
 							<input type="number" className="form-control" value={grossEstate || ""} onChange={(e) => setGrossEstate(Number(e.target.value))} />
 						</div>
 
-						<h2 style={{ fontSize: "16px", marginBottom: "12px", marginTop: "24px", color: "var(--primary)" }}>Deductions</h2>
+						<h2 style={{ fontSize: "16px", marginBottom: "12px", marginTop: "24px", color: "var(--primary)" }}>{t("deductions")}</h2>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Standard Deduction</label>
+							<label className="form-label">{t("standardDeductionLabel")}</label>
 							<input type="text" className="form-control" value="₱ 5,000,000.00" disabled />
 						</div>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Family Home Value</label>
+							<label className="form-label">{t("familyHomeLabel")}</label>
 							<input type="number" className="form-control" value={familyHome || ""} onChange={(e) => setFamilyHome(Number(e.target.value))} />
-							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>Max deductible is ₱10,000,000.</p>
+							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>{t("familyHomeHint")}</p>
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Medical Expenses</label>
+							<label className="form-label">{t("medicalLabel")}</label>
 							<input type="number" className="form-control" value={medicalExpenses || ""} onChange={(e) => setMedicalExpenses(Number(e.target.value))} />
-							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>Max deductible is ₱500,000.</p>
+							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>{t("medicalHint")}</p>
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">Other Allowed Deductions</label>
+							<label className="form-label">{t("otherDeductionsLabel")}</label>
 							<input type="number" className="form-control" value={otherDeductions || ""} onChange={(e) => setOtherDeductions(Number(e.target.value))} />
 						</div>
 					</div>
@@ -66,23 +68,23 @@ export default function EstateTaxClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Tax Computation</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("resultsTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Gross Estate:</span>
+							<span>{t("grossEstate")}</span>
 							<strong>{formatPHP(grossEstate)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", color: "red" }}>
-							<span>Total Deductions:</span>
+							<span>{t("totalDeductions")}</span>
 							<span>- {formatPHP(totalDeductions)}</span>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px" }}>
-							<span>Net Taxable Estate:</span>
+							<span>{t("netTaxableEstate")}</span>
 							<strong>{formatPHP(netEstate)}</strong>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Estate Tax Due (6%):</span>
+							<span>{t("estateTaxDue")}</span>
 							<span>{formatPHP(estateTaxDue)}</span>
 						</div>
 					</div>

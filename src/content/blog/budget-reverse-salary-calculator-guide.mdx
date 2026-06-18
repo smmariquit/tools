@@ -1,69 +1,44 @@
 ---
 title: "What Salary Should I Ask For? A Reverse Budget Calculator for Filipinos"
-description: "Stop guessing your asking salary! Use this reverse salary calculator to list your monthly expenses and find the exact gross salary you need to negotiate."
+description: "Most people answer the expected-salary question with their last pay plus a little extra. Working backward from your real monthly expenses gives you a defensible number instead."
 date: "2026-05-31"
 ---
 
-You're about to walk into a job interview and the interviewer asks: **"What's your expected salary?"**
-
-Most Filipinos answer this with a random number, a round figure, or whatever their last salary was plus a little extra. But what if you could calculate the *exact* gross salary you need — based on your actual monthly expenses?
-
-That's what a **Reverse Salary Calculator** does.
+The hardest question in any interview is not about your weaknesses. It is "What is your expected salary?", and most people answer it with their last salary plus a vague bump, or a round number that sounds nice. The problem with that approach is that you are negotiating a gross figure while your life runs on the net, and the two are far enough apart that a salary which looks generous can still leave you short at the end of the month. I built the [budget calculator](/budget-calculator) to run that logic in reverse: start from what your life actually costs, then find the gross salary that covers it.
 
 <AdBanner dataAdSlot="blog-in-article-1" />
 
-## The Problem with "Asking Salary"
+## You spend the net, but you negotiate the gross
 
-When you negotiate a salary, you're negotiating a **gross** number. But what actually matters to you is the **net** — the money that hits your bank account after SSS, PhilHealth, Pag-IBIG, and tax deductions.
+When an employer offers you a number, that is your gross. Before any of it reaches you, SSS, PhilHealth, and Pag-IBIG contributions come out, and then withholding tax is computed on what remains. The wedge between the two grows as your salary climbs, because the contribution ceilings flatten out while the tax brackets keep stepping up. Here is roughly how the gap looks across common salary points (approximate 2026 figures, single, no extra deductions):
 
-Here's the gap most people miss:
-
-| Gross Salary | Net Take-Home | Difference |
+| Gross monthly | Approx. net take-home | The wedge |
 |---|---|---|
-| ₱25,000 | ~₱21,500 | -₱3,500 |
-| ₱35,000 | ~₱28,800 | -₱6,200 |
-| ₱50,000 | ~₱39,400 | -₱10,600 |
-| ₱80,000 | ~₱59,200 | -₱20,800 |
+| ₱25,000 | ~₱22,300 | ~₱2,700 |
+| ₱35,000 | ~₱29,800 | ~₱5,200 |
+| ₱50,000 | ~₱40,500 | ~₱9,500 |
+| ₱80,000 | ~₱60,800 | ~₱19,200 |
 
-That ₱50,000 salary? After deductions, you're actually living on ₱39,400. If your rent is ₱15,000, groceries ₱8,000, and bills ₱5,000 — you barely have ₱11,000 left for everything else.
+The lesson is not the exact peso amount, which shifts with your circumstances. It is that a ₱50,000 offer is really a ₱40,500 life. If rent is ₱15,000, food ₱8,000, and utilities ₱5,000, you are budgeting everything else, transport, savings, family support, out of the ₱12,500 that is left.
 
-## How the Reverse Calculator Works
+## Working backward from your actual costs
 
-Instead of starting with a gross salary and seeing what's left, this tool works **backwards**:
+The reverse approach inverts the usual flow. Instead of taking a gross salary and watching what survives, you list every recurring monthly cost, total them into the net pay you genuinely need, and then solve for the gross that produces it after all four deductions. The tool does this with a binary search against the same SSS, PhilHealth, Pag-IBIG, and TRAIN Law brackets behind the [salary calculator](/salary-calculator), so the gross it returns reconciles exactly with the net pay you would actually see.
 
-1. **You list all your monthly expenses** (rent, food, transport, utilities, savings goals)
-2. **The tool adds them up** to find your required net pay
-3. **It reverse-engineers the exact gross salary** that would produce that net pay after all deductions
-
-The math uses a binary search algorithm against the same SSS, PhilHealth, Pag-IBIG, and BIR TRAIN Law tables we use in our [Salary Calculator](/salary-calculator), so the numbers are guaranteed to be consistent.
+The expense most people leave out is the one that hurts later: savings. If you want ₱10,000 a month going into an emergency fund or MP2, that is not a leftover, it is a line item. Treat it as a fixed cost in the list and the tool will quietly raise your target gross to fund it, which is the entire point. The same goes for the costs that feel invisible because they autopay, the streaming subscriptions, the gadget installment, the gym you mean to use, and the family support that is a non-negotiable for a lot of Filipino households.
 
 <AdBanner dataAdSlot="blog-in-article-2" />
 
-## Why This Matters for Your Career
+### What expenses do people forget when computing their target salary?
 
-Knowing your exact asking salary gives you a massive advantage in negotiations:
+The predictable ones, rent and food and transport, get remembered. The ones that sink a budget are the irregular and the automatic. Build in a monthly slice for an emergency fund even if you would not spend it every month, an HMO or insurance top-up if your employer's coverage is thin, the minimums on any loan or credit card, and the subscriptions and installments that leave your account without you noticing. Family support belongs in the list too, because pretending it is optional just means your "extra" money disappears anyway.
 
-- **You're backed by math, not emotion.** When an employer pushes back on your number, you can explain exactly why you need it.
-- **You won't undersell yourself.** Many Filipinos accept offers that look good on paper but can't actually cover their cost of living.
-- **You can plan salary milestones.** Want to save ₱10,000/month? The tool instantly tells you what gross salary makes that possible.
+### Is the asking salary the tool gives me what I should say in the interview?
 
-## Common Expenses to Include
+Treat it as your floor, not your opening line. The figure the calculator returns is the gross that lets your real budget break even with your savings goal intact, so quoting exactly that leaves you no cushion for inflation, a tax-bracket change, or a year where rent goes up. Most people add a sensible margin on top and let the negotiation settle somewhere above their true floor. The advantage is that you now know where the floor is, so you can hold the line when an offer dips below the number your life actually requires.
 
-Don't forget these often-overlooked monthly costs:
+If a net figure here looks off against your own payslip, it usually means a contribution table changed and I have not updated the brackets yet. The math is checked against the agency schedules, and I would rather hear about a stale number than have you negotiate on one. You can reach me through the [about page](/about).
 
-- **Emergency Fund** (recommended: at least ₱5,000/month)
-- **Health Insurance Top-Up** (HMO or private insurance)
-- **Loan Payments** (SSS Salary Loan, credit card minimums)
-- **Gadget/Phone Installments**
-- **Subscriptions** (Netflix, Spotify, gym memberships)
-- **Support for Family** (a reality for most Filipino workers)
-
-## Try It Now
-
-<ToolEmbed tool="budget-calculator" />
-
- **[Open the Full Budget Calculator here!](/budget-calculator)**
-
-- [Salary Net Pay Calculator](/salary-calculator)
-- [13th Month Pay Calculator](/13th-month-pay-calculator)
-- [Income Tax Calculator](/income-tax-calculator)
+* [Salary & Net Pay Calculator](/salary-calculator)
+* [Income Tax Calculator](/income-tax-calculator)
+* [13th Month Pay Calculator](/13th-month-pay-calculator)

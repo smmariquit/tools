@@ -1,9 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
@@ -31,6 +34,7 @@ const RouteSelectorMap = dynamic(
 );
 
 export default function FuelCostClient() {
+	const t = useTranslations("FuelCost");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -85,20 +89,14 @@ export default function FuelCostClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Fuel Cost & Trip Calculator</h1>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
 					<p className="page-subtitle">
-						Estimate your gas expenses for road trips in the Philippines.
-						Perfect for dividing costs among friends (ambagan).
+						{t("subtitle")}
 					</p>
 				</div>
 
@@ -115,7 +113,7 @@ export default function FuelCostClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Trip Details
+							{t("tripDetails")}
 						</h2>
 
 						<div style={{ marginBottom: "24px" }}>
@@ -131,7 +129,7 @@ export default function FuelCostClient() {
 								}}
 								onClick={() => setShowMapModal(true)}
 							>
-								 Open Map to Select Route
+								{t("openMapButton")}
 							</button>
 						</div>
 
@@ -181,7 +179,7 @@ export default function FuelCostClient() {
 										&times;
 									</button>
 									<h3 style={{ marginBottom: "16px", fontSize: "20px" }}>
-										Select Route on Map
+										{t("selectRouteTitle")}
 									</h3>
 									<RouteSelectorMap
 										onDistanceComputed={(dist) => {
@@ -200,10 +198,10 @@ export default function FuelCostClient() {
 										<button
 											type="button"
 											className="btn-primary"
-											onClick={() => setShowMapModal(false)}
-										>
-											Confirm Distance & Close
-										</button>
+										onClick={() => setShowMapModal(false)}
+									>
+										{t("confirmDistance")}
+									</button>
 									</div>
 								</div>
 							</div>
@@ -211,7 +209,7 @@ export default function FuelCostClient() {
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="distance">
-								Total Distance (Kilometers)
+								{t("distanceLabel")}
 							</label>
 							<input
 								type="number"
@@ -225,13 +223,13 @@ export default function FuelCostClient() {
 								min="0"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								E.g., Manila to Baguio is approx 250 km.
+								{t("distanceHint")}
 							</p>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="carType">
-								Select Common Vehicle Type
+								{t("vehicleTypeLabel")}
 							</label>
 							<select
 								id="carType"
@@ -244,25 +242,25 @@ export default function FuelCostClient() {
 								}}
 							>
 								<option value="">
-									-- Custom Efficiency / Enter Manually --
+									{t("vehicleCustom")}
 								</option>
-								<option value="25">️ Motorcycle (150cc) - ~25 km/L</option>
+								<option value="25">{t("vehicleMotorcycle")}</option>
 								<option value="15">
-									 Small Hatchback (Wigo, Brio) - ~15 km/L
+									{t("vehicleHatchback")}
 								</option>
 								<option value="12">
-									 Compact Sedan (Vios, City) - ~12 km/L
+									{t("vehicleSedan")}
 								</option>
 								<option value="9">
-									 Mid-size SUV (Fortuner, Montero) - ~9 km/L
+									{t("vehicleSuv")}
 								</option>
-								<option value="7"> Large Van (Hiace, Urvan) - ~7 km/L</option>
+								<option value="7">{t("vehicleVan")}</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="efficiency">
-								Vehicle Fuel Efficiency (km/L)
+								{t("efficiencyLabel")}
 							</label>
 							<input
 								type="number"
@@ -276,13 +274,13 @@ export default function FuelCostClient() {
 								min="0"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Average sedan gets 10-14 km/L. SUVs get 7-10 km/L.
+								{t("efficiencyHint")}
 							</p>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="fuelPrice">
-								Fuel Price (₱ per Liter)
+								{t("fuelPriceLabel")}
 							</label>
 							<input
 								type="number"
@@ -300,7 +298,7 @@ export default function FuelCostClient() {
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="passengers">
-								Number of Passengers (for Ambagan)
+								{t("passengersLabel")}
 							</label>
 							<input
 								type="number"
@@ -324,11 +322,11 @@ export default function FuelCostClient() {
 								marginBottom: "16px",
 								borderBottom: "1px solid var(--border-color)",
 								paddingBottom: "8px",
-								color: "var(--primary)",
-							}}
-						>
-							Estimated Expenses
-						</h2>
+							color: "var(--primary)",
+						}}
+					>
+						{t("estimatedExpenses")}
+					</h2>
 
 						<div
 							style={{
@@ -338,9 +336,9 @@ export default function FuelCostClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Fuel Required</span>
+							<span>{t("fuelRequired")}</span>
 							<span style={{ fontWeight: 600 }}>
-								{litersNeeded.toFixed(2)} Liters
+								{t("liters", { value: litersNeeded.toFixed(2) })}
 							</span>
 						</div>
 
@@ -366,7 +364,7 @@ export default function FuelCostClient() {
 										marginBottom: "8px",
 									}}
 								>
-									Total Gas Cost
+									{t("totalGasCost")}
 								</span>
 								<strong
 									style={{ fontSize: "42px", color: "#1b5e20", lineHeight: 1 }}
@@ -389,7 +387,7 @@ export default function FuelCostClient() {
 									color: "var(--text-primary)",
 								}}
 							>
-								<span>Cost per Person (Ambagan)</span>
+								<span>{t("costPerPerson")}</span>
 								<span style={{ color: "var(--text-secondary)" }}>
 									{formatCurrency(costPerPerson)}
 								</span>
@@ -397,9 +395,7 @@ export default function FuelCostClient() {
 						)}
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

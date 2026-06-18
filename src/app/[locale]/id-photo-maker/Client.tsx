@@ -1,7 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
@@ -14,6 +17,7 @@ const dimensions = {
 type PhotoSize = keyof typeof dimensions;
 
 export default function IDPhotoMaker() {
+	const t = useTranslations("IDPhotoMaker");
 	const [size, setSize] = useState<PhotoSize>("2x2");
 	const [imageSrc, setImageSrc] = useState<string | null>(null);
 	const [originalImageSrc, setOriginalImageSrc] = useState<string | null>(null);
@@ -34,7 +38,7 @@ export default function IDPhotoMaker() {
 			setImageSrc(url);
 		} catch (error) {
 			console.error("Failed to remove background:", error);
-			alert("Failed to remove background. Please try a different photo.");
+			alert(t("alertRemoveBgFailed"));
 		} finally {
 			setIsRemovingBg(false);
 		}
@@ -96,25 +100,15 @@ export default function IDPhotoMaker() {
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<div
-				style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}
-			>
+			<div style={{ width: "100%", margin: "0 auto", paddingBottom: "40px" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to All Tools
-					</Link>
-					<h1 className="page-title">Free ID Photo Maker</h1>
-					<p className="page-subtitle">
-						Crop your selfies into standard Philippine 2x2, 1x1, or Passport
-						sizes instantly.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToAllTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="5555555555" />
@@ -130,12 +124,12 @@ export default function IDPhotoMaker() {
 								paddingBottom: "8px",
 							}}
 						>
-							Settings
+							{t("settings")}
 						</h2>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="photoSize">
-								Select Size
+								{t("selectSize")}
 							</label>
 							<select
 								id="photoSize"
@@ -147,15 +141,15 @@ export default function IDPhotoMaker() {
 									cursor: "pointer",
 								}}
 							>
-								<option value="2x2">2x2 Inches (600x600px)</option>
-								<option value="1x1">1x1 Inch (300x300px)</option>
-								<option value="passport">Philippine Passport (35x45mm)</option>
+								<option value="2x2">{t("size2x2")}</option>
+								<option value="1x1">{t("size1x1")}</option>
+								<option value="passport">{t("sizePassport")}</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "24px" }}>
 							<label className="form-label" htmlFor="photoUpload">
-								Upload Photo
+								{t("uploadPhoto")}
 							</label>
 							<input
 								id="photoUpload"
@@ -189,7 +183,7 @@ export default function IDPhotoMaker() {
 									onClick={() => fileInputRef.current?.click()}
 								>
 									<span style={{ fontSize: "20px" }}></span>
-									Upload Photo
+									{t("uploadPhoto")}
 								</button>
 								<button
 									className="btn-secondary"
@@ -205,14 +199,14 @@ export default function IDPhotoMaker() {
 									onClick={() => cameraInputRef.current?.click()}
 								>
 									<span style={{ fontSize: "20px" }}></span>
-									Take Photo
+									{t("takePhoto")}
 								</button>
 							</div>
 							<p
 								className="form-hint"
 								style={{ marginTop: "8px", marginBottom: "16px" }}
 							>
-								Tip: Use a photo with a plain, well-lit background.
+								{t("tip")}
 							</p>
 
 							{imageSrc && (
@@ -227,9 +221,7 @@ export default function IDPhotoMaker() {
 									onClick={handleRemoveBg}
 									disabled={isRemovingBg}
 								>
-									{isRemovingBg
-										? " Removing Background (Please wait)..."
-										: " Remove Background (AI)"}
+									{isRemovingBg ? t("removingBg") : t("removeBg")}
 								</button>
 							)}
 						</div>
@@ -255,7 +247,7 @@ export default function IDPhotoMaker() {
 								color: "var(--primary)",
 							}}
 						>
-							Preview & Download
+							{t("previewDownload")}
 						</h2>
 
 						<div
@@ -276,7 +268,7 @@ export default function IDPhotoMaker() {
 								<span
 									style={{ color: "var(--text-secondary)", fontSize: "14px" }}
 								>
-									No image uploaded
+									{t("noImage")}
 								</span>
 							) : (
 								<canvas
@@ -297,13 +289,11 @@ export default function IDPhotoMaker() {
 							disabled={!imageSrc}
 							onClick={handleDownload}
 						>
-							Download Ready-to-Print Image
+							{t("downloadBtn")}
 						</button>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

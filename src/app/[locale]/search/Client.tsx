@@ -4,12 +4,13 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { toolCategories } from "../../../lib/routes";
+import { rankTools } from "../../../lib/toolSearch";
 import { useTranslations } from "next-intl";
 
 export default function SearchClient() {
 	const t = useTranslations("Search");
 	const searchParams = useSearchParams();
-	const q = (searchParams?.get("query") || "").toLowerCase();
+	const q = searchParams?.get("query") || "";
 	const pathname = usePathname();
 	const parts = (pathname || "").split("/").filter(Boolean);
 	const localePrefix = parts.length ? `/${parts[0]}` : "";
@@ -17,12 +18,9 @@ export default function SearchClient() {
 	const results = useMemo(() => {
 		if (!q) return [];
 		const items = toolCategories.flatMap((c) => c.items);
-		return items
-			.filter((it) => {
-				const hay = `${it.name} ${it.desc}`.toLowerCase();
-				return hay.includes(q);
-			})
-			.slice(0, 50);
+		return rankTools(q, items)
+			.slice(0, 50)
+			.map((r) => r.tool);
 	}, [q]);
 
 	return (

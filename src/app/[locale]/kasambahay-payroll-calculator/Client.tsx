@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
 export default function KasambahayPayrollClient() {
+	const t = useTranslations("KasambahayPayroll");
 	const [salary, setSalary] = useState(6000);
 
 	let sssEmployer = 0;
@@ -57,20 +59,20 @@ export default function KasambahayPayrollClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Kasambahay Payroll & Contribution Calculator"
-				subtitle="Compute SSS, PhilHealth, and Pag-IBIG splits for domestic workers."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Salary Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("salaryDetails")}</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Monthly Salary</label>
+							<label className="form-label">{t("monthlySalary")}</label>
 							<input type="number" className="form-control" value={salary || ""} onChange={(e) => setSalary(Number(e.target.value))} />
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
-								Salaries below ₱5,000 require the Employer to shoulder 100% of contributions.
+								{t("salaryHint")}
 							</p>
 						</div>
 					</div>
@@ -78,26 +80,26 @@ export default function KasambahayPayrollClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Payroll Computation</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("computationTitle")}</h2>
 						
 						<div style={{ padding: "16px", backgroundColor: "rgba(13, 71, 161, 0.05)", borderRadius: "8px", marginBottom: "16px" }}>
-							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "var(--primary)" }}>Employer Share</h3>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>SSS:</span> <span>{formatPHP(sssEmployer)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>PhilHealth:</span> <span>{formatPHP(phEmployer)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>Pag-IBIG:</span> <span>{formatPHP(pagibigEmployer)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", fontWeight: "bold", marginTop: "8px" }}><span>Total ER Share:</span> <span>{formatPHP(totalEmployer)}</span></div>
+							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "var(--primary)" }}>{t("employerShare")}</h3>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("sss")}</span> <span>{formatPHP(sssEmployer)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("philhealth")}</span> <span>{formatPHP(phEmployer)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("pagibig")}</span> <span>{formatPHP(pagibigEmployer)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", fontWeight: "bold", marginTop: "8px" }}><span>{t("totalErShare")}</span> <span>{formatPHP(totalEmployer)}</span></div>
 						</div>
 
 						<div style={{ padding: "16px", backgroundColor: "rgba(239, 68, 68, 0.05)", borderRadius: "8px", marginBottom: "16px" }}>
-							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "red" }}>Employee Deductions</h3>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>SSS:</span> <span>{formatPHP(sssEmployee)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>PhilHealth:</span> <span>{formatPHP(phEmployee)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>Pag-IBIG:</span> <span>{formatPHP(pagibigEmployee)}</span></div>
-							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", fontWeight: "bold", marginTop: "8px" }}><span>Total EE Deductions:</span> <span>{formatPHP(totalEmployee)}</span></div>
+							<h3 style={{ fontSize: "14px", marginBottom: "12px", color: "red" }}>{t("employeeDeductions")}</h3>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("sss")}</span> <span>{formatPHP(sssEmployee)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("philhealth")}</span> <span>{formatPHP(phEmployee)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><span>{t("pagibig")}</span> <span>{formatPHP(pagibigEmployee)}</span></div>
+							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", fontWeight: "bold", marginTop: "8px" }}><span>{t("totalEeDeductions")}</span> <span>{formatPHP(totalEmployee)}</span></div>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Net Take-Home Pay:</span>
+							<span>{t("netTakeHome")}</span>
 							<span>{formatPHP(netPay)}</span>
 						</div>
 					</div>

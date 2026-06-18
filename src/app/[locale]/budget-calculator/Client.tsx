@@ -1,12 +1,30 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { reverseSalary } from "../../../lib/reverseSalaryLogic";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: 160,
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 interface Expense {
 	id: string;
@@ -296,35 +314,13 @@ export default function BudgetCalculator() {
 							>
 								{t("expenseBreakdown")}
 							</h3>
-							<ResponsiveContainer width="100%" height={160}>
-								<PieChart>
-									<Pie
-										data={expenseChartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={45}
-										outerRadius={65}
-										dataKey="value"
-										paddingAngle={2}
-										label={false}
-									>
-										{expenseChartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Pie>
-									<Tooltip
-										contentStyle={{
-											backgroundColor: "var(--surface-color)",
-											borderColor: "var(--border-color)",
-											borderRadius: "var(--border-radius-sm)",
-											color: "var(--text-primary)",
-										}}
-										itemStyle={{ color: "var(--text-primary)" }}
-										labelStyle={{ color: "var(--text-secondary)" }}
-										formatter={(value) => formatCurrency(Number(value))}
-									/>
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart
+								data={expenseChartData}
+								formatValue={formatCurrency}
+								height={160}
+								innerRadius={45}
+								outerRadius={65}
+							/>
 
 							{/* Clean, Non-Truncated Legend List */}
 							<div
@@ -561,35 +557,13 @@ export default function BudgetCalculator() {
 							>
 								{t("whereSalaryGoes")}
 							</h3>
-							<ResponsiveContainer width="100%" height={200}>
-								<PieChart>
-									<Pie
-										data={chartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={55}
-										outerRadius={80}
-										dataKey="value"
-										paddingAngle={2}
-										label={false}
-									>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Pie>
-									<Tooltip
-										contentStyle={{
-											backgroundColor: "var(--surface-color)",
-											borderColor: "var(--border-color)",
-											borderRadius: "var(--border-radius-sm)",
-											color: "var(--text-primary)",
-										}}
-										itemStyle={{ color: "var(--text-primary)" }}
-										labelStyle={{ color: "var(--text-secondary)" }}
-										formatter={(value) => formatCurrency(Number(value))}
-									/>
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart
+								data={chartData}
+								formatValue={formatCurrency}
+								height={200}
+								innerRadius={55}
+								outerRadius={80}
+							/>
 
 							{/* Clean Deduction Legend Grid */}
 							<div

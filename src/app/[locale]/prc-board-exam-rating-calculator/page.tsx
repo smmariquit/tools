@@ -1,7 +1,8 @@
-import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import PRCBoardExamRatingClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -12,6 +13,13 @@ export async function generateMetadata({
 	return {
 		title: t("title"),
 		description: t("subtitle"),
+		openGraph: {
+			images: ogImages({
+				tool: "prc-board-exam-rating-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
+		},
 	};
 }
 
@@ -21,5 +29,12 @@ export default function Page({
 	params: { locale: string };
 }) {
 	setRequestLocale(locale);
-	return <Suspense fallback={<div className="loading">Loading...</div>}><PRCBoardExamRatingClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<PRCBoardExamRatingClient />
+			</Suspense>
+			<ToolPageBottom slug="prc-board-exam-rating-guide" />
+		</>
+	);
 }

@@ -1,11 +1,29 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: 200,
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 export default function CarLoanCalculator() {
 	const t = useTranslations("CarLoanCalculator");
@@ -440,29 +458,7 @@ export default function CarLoanCalculator() {
 							>
 								{t("totalCostBreakdown")}
 							</h3>
-							<ResponsiveContainer width="100%" height={200}>
-								<PieChart>
-									<Pie
-										data={chartData}
-										cx="50%"
-										cy="50%"
-										innerRadius={50}
-										outerRadius={85}
-										dataKey="value"
-										paddingAngle={2}
-										label={({ name, percent }) =>
-											`${name} (${((percent ?? 0) * 100).toFixed(0)}%)`
-										}
-									>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Pie>
-									<Tooltip
-										formatter={(value) => formatCurrency(Number(value))}
-									/>
-								</PieChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					)}
 

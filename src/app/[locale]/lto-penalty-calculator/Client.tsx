@@ -1,12 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
 export default function LtoPenaltyClient() {
+	const t = useTranslations("LTOPenalty");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -78,20 +82,14 @@ export default function LtoPenaltyClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">LTO Registration Penalty Calculator</h1>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
 					<p className="page-subtitle">
-						Calculate the exact MVUC fines and penalties for late motor vehicle
-						or motorcycle registration renewal in the Philippines.
+						{t("subtitle")}
 					</p>
 				</div>
 
@@ -108,12 +106,12 @@ export default function LtoPenaltyClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Vehicle Details
+							{t("vehicleDetails")}
 						</h2>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="vehicleType">
-								Vehicle Type / Weight
+								{t("vehicleTypeLabel")}
 							</label>
 							<select
 								id="vehicleType"
@@ -130,23 +128,23 @@ export default function LtoPenaltyClient() {
 								}}
 							>
 								<option value="motorcycle">
-									Motorcycle (w/ or w/o sidecar)
+									{t("vehicleMotorcycle")}
 								</option>
 								<option value="carLight">
-									Passenger Car - Light (Up to 1,600 kg)
+									{t("vehicleCarLight")}
 								</option>
 								<option value="carMedium">
-									Passenger Car - Medium (1,601 - 2,300 kg)
+									{t("vehicleCarMedium")}
 								</option>
 								<option value="carHeavy">
-									Passenger Car - Heavy (2,301 kg and above)
+									{t("vehicleCarHeavy")}
 								</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="monthsLate">
-								How many months late?
+								{t("monthsLateLabel")}
 							</label>
 							<input
 								type="number"
@@ -161,7 +159,7 @@ export default function LtoPenaltyClient() {
 								max="120"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Enter 0 if registering on time.
+								{t("monthsLateHint")}
 							</p>
 						</div>
 					</div>
@@ -177,7 +175,7 @@ export default function LtoPenaltyClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Estimated Renewal Fee
+							{t("estimatedFeeTitle")}
 						</h2>
 
 						<div
@@ -188,7 +186,7 @@ export default function LtoPenaltyClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Basic MVUC (Registration Fee)</span>
+							<span>{t("basicMvucLabel")}</span>
 							<span>{formatCurrency(baseMvuc)}</span>
 						</div>
 
@@ -200,7 +198,7 @@ export default function LtoPenaltyClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Late Registration Penalty</span>
+							<span>{t("latePenaltyLabel")}</span>
 							<span
 								style={{
 									color: penalty > 0 ? "#b71c1c" : "var(--text-secondary)",
@@ -218,7 +216,7 @@ export default function LtoPenaltyClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Legal Research Fund (LRF)</span>
+							<span>{t("lrfLabel")}</span>
 							<span>{formatCurrency(lrfFee)}</span>
 						</div>
 
@@ -230,7 +228,7 @@ export default function LtoPenaltyClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>IT / Computer Fee</span>
+							<span>{t("computerFeeLabel")}</span>
 							<span>{formatCurrency(computerFee)}</span>
 						</div>
 
@@ -246,16 +244,14 @@ export default function LtoPenaltyClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							<span>Total Amount Due</span>
+							<span>{t("totalDueLabel")}</span>
 							<span style={{ color: "#1b5e20" }}>
 								{formatCurrency(totalDue)}
 							</span>
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

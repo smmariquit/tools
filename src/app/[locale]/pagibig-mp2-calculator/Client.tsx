@@ -1,22 +1,31 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useState } from "react";
-import {
-	Bar,
-	BarChart,
-	CartesianGrid,
-	Legend,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 export default function PagibigMP2Client() {
 	const t = useTranslations("PagibigMP2");
@@ -283,46 +292,7 @@ export default function PagibigMP2Client() {
 								marginBottom: "16px",
 							}}
 						>
-							<ResponsiveContainer width="100%" height="100%">
-								<BarChart
-									data={chartData}
-									margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-								>
-									<CartesianGrid
-										strokeDasharray="3 3"
-										vertical={false}
-										stroke="var(--border-color)"
-									/>
-									<XAxis
-										dataKey="year"
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<YAxis
-										tickFormatter={(value) => `₱${value / 1000}k`}
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<Tooltip
-										formatter={(value: any) => formatCurrency(Number(value))}
-										labelStyle={{
-											color: "black",
-											fontWeight: "bold",
-											marginBottom: "8px",
-										}}
-										contentStyle={{
-											borderRadius: "8px",
-											border: "none",
-											boxShadow: "var(--shadow-md)",
-										}}
-									/>
-									<Legend />
-									<Bar dataKey="Principal" stackId="a" fill="var(--primary)" />
-									<Bar dataKey="Dividends" stackId="a" fill="#4caf50" />
-								</BarChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					)}
 

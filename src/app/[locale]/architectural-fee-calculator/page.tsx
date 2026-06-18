@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
 	const title = "Architectural Fee Calculator (UAP SPP 202) | Philippines";
 	const description =
 		"Calculate minimum basic fees for architectural design (DAEDS & DADS) based on UAP Standards of Professional Practice Document 202.";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Standard&s1v=SPP%20202&s2l=Fee&s2v=Calculated";
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [{ url: ogUrl, width: 1200, height: 630 }],
+			images: ogImages({
+				tool: "architectural-fee-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -42,7 +42,7 @@ export default function ArchitecturalFeePage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="architectural-fee-guide" />
+			<ToolPageBottom slug="architectural-fee-guide" />
 		</>
 	);
 }

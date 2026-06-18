@@ -1,7 +1,15 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import {
+	DEFAULT_UTILITY_ID,
+	distributionUtilities,
+	getUtility,
+} from "../../../data/regional/electricity";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
@@ -14,11 +22,28 @@ type Appliance = {
 };
 
 export default function ElectricBillClient() {
-	const [rateStr, setRateStr] = useState("11.50"); // Meralco avg approx 11-12 pesos per kWh
+	const t = useTranslations("ElectricBill");
+	const [utilityId, setUtilityId] = useState(DEFAULT_UTILITY_ID);
+	const [rateStr, setRateStr] = useState(
+		String(getUtility(DEFAULT_UTILITY_ID)?.ratePerKwh ?? 14.33),
+	);
+
+	const handleUtilityChange = (id: string) => {
+		setUtilityId(id);
+		const u = getUtility(id);
+		if (u) setRateStr(String(u.ratePerKwh));
+	};
+
+	const handleRateChange = (value: string) => {
+		setRateStr(value);
+		// Diverging from a preset rate means the user is on a custom rate.
+		const u = getUtility(utilityId);
+		if (u && value !== String(u.ratePerKwh)) setUtilityId("custom");
+	};
 	const [appliances, setAppliances] = useState<Appliance[]>([
 		{
 			id: Date.now().toString(),
-			name: "1.0 HP Non-Inverter Aircon",
+			name: t("nameAirconNonInverter"),
 			wattsStr: "1000",
 			hoursStr: "8",
 			daysStr: "30",
@@ -32,7 +57,7 @@ export default function ElectricBillClient() {
 			...appliances,
 			{
 				id: Date.now().toString(),
-				name: "Custom Appliance",
+				name: t("nameCustom"),
 				wattsStr: "0",
 				hoursStr: "0",
 				daysStr: "30",
@@ -96,21 +121,13 @@ export default function ElectricBillClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Electric Bill Estimator (Meralco)</h1>
-					<p className="page-subtitle">
-						Calculate your total monthly electricity cost by adding all your
-						appliances.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="electric-bill-top" />
@@ -128,26 +145,62 @@ export default function ElectricBillClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							<h2 style={{ fontSize: "18px", margin: 0 }}>Your Appliances</h2>
+							<h2 style={{ fontSize: "18px", margin: 0 }}>
+								{t("yourAppliances")}
+							</h2>
 							<div
-								style={{ display: "flex", alignItems: "center", gap: "8px" }}
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: "12px",
+									flexWrap: "wrap",
+									justifyContent: "flex-end",
+								}}
 							>
-								<label
-									style={{ fontSize: "14px", color: "var(--text-secondary)" }}
-									htmlFor="global-rate"
+								<div
+									style={{ display: "flex", alignItems: "center", gap: "8px" }}
 								>
-									Rate (₱/kWh):
-								</label>
-								<input
-									id="global-rate"
-									type="number"
-									className="form-control"
-									style={{ width: "80px", padding: "4px 8px" }}
-									value={rateStr}
-									onChange={(e) => setRateStr(e.target.value)}
-									min="0"
-									step="0.01"
-								/>
+									<label
+										style={{ fontSize: "14px", color: "var(--text-secondary)" }}
+										htmlFor="du-provider"
+									>
+										{t("providerLabel")}
+									</label>
+									<select
+										id="du-provider"
+										className="form-control"
+										style={{ width: "auto", padding: "4px 8px" }}
+										value={utilityId}
+										onChange={(e) => handleUtilityChange(e.target.value)}
+									>
+										{distributionUtilities.map((u) => (
+											<option key={u.id} value={u.id}>
+												{u.name} · ₱{u.ratePerKwh.toFixed(2)}
+											</option>
+										))}
+										<option value="custom">{t("providerCustom")}</option>
+									</select>
+								</div>
+								<div
+									style={{ display: "flex", alignItems: "center", gap: "8px" }}
+								>
+									<label
+										style={{ fontSize: "14px", color: "var(--text-secondary)" }}
+										htmlFor="global-rate"
+									>
+										{t("rateLabel")}
+									</label>
+									<input
+										id="global-rate"
+										type="number"
+										className="form-control"
+										style={{ width: "80px", padding: "4px 8px" }}
+										value={rateStr}
+										onChange={(e) => handleRateChange(e.target.value)}
+										min="0"
+										step="any"
+									/>
+								</div>
 							</div>
 						</div>
 
@@ -198,7 +251,7 @@ export default function ElectricBillClient() {
 													cursor: "pointer",
 												}}
 											>
-												✕ Remove
+												{t("remove")}
 											</button>
 										)}
 									</div>
@@ -211,28 +264,28 @@ export default function ElectricBillClient() {
 											}
 											defaultValue=""
 										>
-											<option value="">-- Load Common Appliance --</option>
-											<option value="1000|1.0 HP Non-Inverter Aircon">
-												1.0 HP Non-Inverter Aircon (1000W)
+											<option value="">{t("loadCommon")}</option>
+											<option value={`1000|${t("nameAirconNonInverter")}`}>
+												{t("optAirconNonInverter")}
 											</option>
-											<option value="600|1.0 HP Inverter Aircon">
-												1.0 HP Inverter Aircon (~600W)
+											<option value={`600|${t("nameAirconInverter")}`}>
+												{t("optAirconInverter")}
 											</option>
-											<option value="60|Electric Fan">
-												Electric Fan (60W)
+											<option value={`60|${t("nameFan")}`}>{t("optFan")}</option>
+											<option value={`150|${t("nameRef")}`}>{t("optRef")}</option>
+											<option value={`70|${t("nameTv")}`}>{t("optTv")}</option>
+											<option value={`500|${t("nameWasher")}`}>
+												{t("optWasher")}
 											</option>
-											<option value="150|Refrigerator">
-												Refrigerator - Medium (150W)
+											<option value={`400|${t("nameRice")}`}>
+												{t("optRice")}
 											</option>
-											<option value='70|LED TV 40"'>LED TV 40" (70W)</option>
-											<option value="500|Washing Machine">
-												Washing Machine (500W)
+											<option value={`1000|${t("nameFlatIron")}`}>
+												{t("optFlatIron")}
 											</option>
-											<option value="400|Rice Cooker">
-												Rice Cooker (400W)
+											<option value={`60|${t("nameLaptop")}`}>
+												{t("optLaptop")}
 											</option>
-											<option value="1000|Flat Iron">Flat Iron (1000W)</option>
-											<option value="60|Laptop">Laptop Charger (60W)</option>
 										</select>
 									</div>
 
@@ -241,7 +294,7 @@ export default function ElectricBillClient() {
 									>
 										<div className="form-group" style={{ flex: "1 1 30%" }}>
 											<label className="form-label" htmlFor={`watts-${app.id}`}>
-												Watts
+												{t("watts")}
 											</label>
 											<input
 												id={`watts-${app.id}`}
@@ -256,7 +309,7 @@ export default function ElectricBillClient() {
 										</div>
 										<div className="form-group" style={{ flex: "1 1 30%" }}>
 											<label className="form-label" htmlFor={`hrs-${app.id}`}>
-												Hrs/Day
+												{t("hrsPerDay")}
 											</label>
 											<input
 												id={`hrs-${app.id}`}
@@ -272,7 +325,7 @@ export default function ElectricBillClient() {
 										</div>
 										<div className="form-group" style={{ flex: "1 1 30%" }}>
 											<label className="form-label" htmlFor={`days-${app.id}`}>
-												Days/Mo
+												{t("daysPerMonth")}
 											</label>
 											<input
 												id={`days-${app.id}`}
@@ -303,7 +356,7 @@ export default function ElectricBillClient() {
 												color: "var(--text-secondary)",
 											}}
 										>
-											Monthly Cons: {app.kwh.toFixed(1)} kWh
+											{t("monthlyCons", { kwh: app.kwh.toFixed(1) })}
 										</span>
 										<span
 											style={{ fontWeight: "bold", color: "var(--primary)" }}
@@ -320,7 +373,7 @@ export default function ElectricBillClient() {
 							className="btn-secondary"
 							style={{ width: "100%", marginTop: "16px" }}
 						>
-							+ Add Another Appliance
+							{t("addAnother")}
 						</button>
 					</div>
 
@@ -341,7 +394,7 @@ export default function ElectricBillClient() {
 									color: "var(--primary)",
 								}}
 							>
-								Total Estimated Bill
+								{t("totalEstimatedBill")}
 							</h2>
 
 							<div
@@ -351,7 +404,7 @@ export default function ElectricBillClient() {
 									marginBottom: "12px",
 								}}
 							>
-								<span>Total Monthly Consumption</span>
+								<span>{t("totalMonthlyConsumption")}</span>
 								<strong>{totalMonthlyKwh.toFixed(2)} kWh</strong>
 							</div>
 
@@ -365,7 +418,7 @@ export default function ElectricBillClient() {
 									borderTop: "1px dashed var(--border-color)",
 								}}
 							>
-								<span style={{ fontSize: "16px" }}>Estimated Total Cost</span>
+								<span style={{ fontSize: "16px" }}>{t("estimatedTotalCost")}</span>
 								<strong style={{ fontSize: "32px", color: "var(--primary)" }}>
 									{formatCurrency(totalMonthlyCost)}
 								</strong>
@@ -380,7 +433,7 @@ export default function ElectricBillClient() {
 									color: "var(--primary)",
 								}}
 							>
-								Formula & Tips
+								{t("formulaTips")}
 							</h3>
 							<p
 								style={{
@@ -389,7 +442,7 @@ export default function ElectricBillClient() {
 									marginBottom: "12px",
 								}}
 							>
-								The formula to calculate the cost of a specific appliance is:
+								{t("formulaIntro")}
 							</p>
 							<code
 								style={{
@@ -401,7 +454,7 @@ export default function ElectricBillClient() {
 									marginBottom: "12px",
 								}}
 							>
-								(Watts / 1000) × Hours × Days × Rate
+								{t("formula")}
 							</code>
 							<ul
 								style={{
@@ -410,16 +463,9 @@ export default function ElectricBillClient() {
 									paddingLeft: "20px",
 								}}
 							>
-								<li style={{ marginBottom: "8px" }}>
-									Air conditioners are usually the biggest contributor to your
-									electric bill. Look for inverter types which save up to 40%
-									energy.
-								</li>
-								<li>
-									Inverter compressors do not use their peak wattage all the
-									time. A 1000W inverter AC may average only 500W-600W once the
-									room is cool.
-								</li>
+								<li style={{ marginBottom: "8px" }}>{t("tip1")}</li>
+								<li style={{ marginBottom: "8px" }}>{t("tip2")}</li>
+								<li>{t("tip3")}</li>
 							</ul>
 						</div>
 					</div>

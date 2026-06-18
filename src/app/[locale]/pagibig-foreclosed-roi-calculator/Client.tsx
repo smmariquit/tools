@@ -1,12 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
 export default function PagibigRoiClient() {
+	const t = useTranslations("PagibigForeclosedROI");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -69,23 +73,13 @@ export default function PagibigRoiClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">
-						Pag-IBIG Foreclosed Property ROI Calculator
-					</h1>
-					<p className="page-subtitle">
-						Calculate potential rental yield and flipping returns for Pag-IBIG
-						Acquired Assets.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="real-estate-roi-top" />
@@ -101,12 +95,12 @@ export default function PagibigRoiClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Investment Details
+							{t("inputTitle")}
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label" htmlFor="purchasePrice">
-								Discounted Purchase Price (PHP)
+								{t("purchasePriceLabel")}
 							</label>
 							<input
 								type="number"
@@ -124,7 +118,7 @@ export default function PagibigRoiClient() {
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label" htmlFor="repairCost">
-								Estimated Repair / Renovation Cost (PHP)
+								{t("repairCostLabel")}
 							</label>
 							<input
 								type="number"
@@ -139,7 +133,7 @@ export default function PagibigRoiClient() {
 								step="10000"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Foreclosures are bought "As-Is, Where-Is". Expect repairs.
+								{t("repairCostHint")}
 							</p>
 						</div>
 
@@ -152,7 +146,7 @@ export default function PagibigRoiClient() {
 							}}
 						>
 							<label className="form-label" htmlFor="monthlyRent">
-								Expected Monthly Rent (PHP)
+								{t("monthlyRentLabel")}
 							</label>
 							<input
 								type="number"
@@ -170,7 +164,7 @@ export default function PagibigRoiClient() {
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="resalePrice">
-								Expected Resale / Flipping Price (PHP)
+								{t("resalePriceLabel")}
 							</label>
 							<input
 								type="number"
@@ -198,7 +192,7 @@ export default function PagibigRoiClient() {
 								color: "var(--primary)",
 							}}
 						>
-							ROI Projections
+							{t("resultsTitle")}
 						</h2>
 
 						<div
@@ -209,7 +203,7 @@ export default function PagibigRoiClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Total Capital Needed</span>
+							<span>{t("totalCapital")}</span>
 							<span style={{ fontWeight: 700 }}>
 								{formatCurrency(totalInvestment)}
 							</span>
@@ -222,7 +216,7 @@ export default function PagibigRoiClient() {
 								marginBottom: "12px",
 							}}
 						>
-							Strategy 1: Buy and Hold (Rental)
+							{t("strategy1Title")}
 						</h3>
 						<div
 							style={{
@@ -232,7 +226,7 @@ export default function PagibigRoiClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Annual Rent Income</span>
+							<span>{t("annualRent")}</span>
 							<span style={{ color: "#2e7d32" }}>
 								{formatCurrency(annualRent)}
 							</span>
@@ -246,7 +240,7 @@ export default function PagibigRoiClient() {
 								fontWeight: 700,
 							}}
 						>
-							<span>Gross Rental Yield</span>
+							<span>{t("grossYield")}</span>
 							<span
 								style={{ color: grossRentalYield >= 8 ? "#2e7d32" : "#b71c1c" }}
 							>
@@ -261,7 +255,7 @@ export default function PagibigRoiClient() {
 								marginBottom: "12px",
 							}}
 						>
-							Strategy 2: Fix and Flip
+							{t("strategy2Title")}
 						</h3>
 						<div
 							style={{
@@ -271,7 +265,7 @@ export default function PagibigRoiClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Selling Price</span>
+							<span>{t("sellingPrice")}</span>
 							<span>{formatCurrency(resalePrice)}</span>
 						</div>
 						<div
@@ -283,7 +277,7 @@ export default function PagibigRoiClient() {
 								color: "var(--text-secondary)",
 							}}
 						>
-							<span>Capital Gains Tax (6%)</span>
+							<span>{t("capitalGainsTax")}</span>
 							<span>- {formatCurrency(capitalGainsTax)}</span>
 						</div>
 						<div
@@ -295,7 +289,7 @@ export default function PagibigRoiClient() {
 								color: "var(--text-secondary)",
 							}}
 						>
-							<span>Broker&apos;s Fee (5%)</span>
+							<span>{t("brokerFee")}</span>
 							<span>- {formatCurrency(brokerFee)}</span>
 						</div>
 						<div
@@ -306,7 +300,7 @@ export default function PagibigRoiClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Net Profit</span>
+							<span>{t("netProfit")}</span>
 							<span
 								style={{
 									color: flippingProfit > 0 ? "#2e7d32" : "#b71c1c",
@@ -327,15 +321,13 @@ export default function PagibigRoiClient() {
 								borderTop: "1px dashed var(--border-color)",
 							}}
 						>
-							<span>Flipping ROI</span>
+							<span>{t("flippingRoi")}</span>
 							<span style={{ color: flippingRoi > 0 ? "#2e7d32" : "#b71c1c" }}>
 								{flippingRoi.toFixed(2)}%
 							</span>
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</ToolLayout>
 	);

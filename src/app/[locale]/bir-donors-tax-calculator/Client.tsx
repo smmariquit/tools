@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -7,6 +8,7 @@ import TrustBadge from "../../components/TrustBadge";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
 
 export default function DonorsTaxClient() {
+	const t = useTranslations("BIRDonorsTax");
 	const [priorGifts, setPriorGifts] = useState(0);
 	const [newGift, setNewGift] = useState(0);
 	const [deductions, setDeductions] = useState(0);
@@ -30,8 +32,8 @@ export default function DonorsTaxClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="BIR Donor's Tax Cumulative Calculator"
-				subtitle="Calculate your tax liability on gifts and donations within a calendar year (RA 10963 / TRAIN Law)."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div style={{ marginTop: "24px", width: "100%" }}>
@@ -41,26 +43,26 @@ export default function DonorsTaxClient() {
 			<div className="tool-grid">
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Donation Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("donationDetails")}</h2>
 						<p style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "16px" }}>
-							Donor's tax is computed on a <strong>cumulative basis</strong> per calendar year. Enter previous gifts made this year to get an accurate tax due.
+							{t.rich("donationIntro", { strong: (chunks) => <strong>{chunks}</strong> })}
 						</p>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Total Net Gifts Made Earlier This Year</label>
-							<input type="number" className="form-control" value={priorGifts || ""} onChange={(e) => setPriorGifts(Number(e.target.value))} placeholder="₱ 0.00" />
+							<label className="form-label">{t("priorGiftsLabel")}</label>
+							<input type="number" className="form-control" value={priorGifts || ""} onChange={(e) => setPriorGifts(Number(e.target.value))} placeholder={t("placeholderZero")} />
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Current Gross Gift / Donation</label>
-							<input type="number" className="form-control" value={newGift || ""} onChange={(e) => setNewGift(Number(e.target.value))} placeholder="₱ 0.00" />
+							<label className="form-label">{t("newGiftLabel")}</label>
+							<input type="number" className="form-control" value={newGift || ""} onChange={(e) => setNewGift(Number(e.target.value))} placeholder={t("placeholderZero")} />
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">Allowable Deductions / Encumbrances</label>
-							<input type="number" className="form-control" value={deductions || ""} onChange={(e) => setDeductions(Number(e.target.value))} placeholder="₱ 0.00" />
+							<label className="form-label">{t("deductionsLabel")}</label>
+							<input type="number" className="form-control" value={deductions || ""} onChange={(e) => setDeductions(Number(e.target.value))} placeholder={t("placeholderZero")} />
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
-								E.g., Mortgages assumed by the donee.
+								{t("deductionsHint")}
 							</p>
 						</div>
 					</div>
@@ -68,34 +70,34 @@ export default function DonorsTaxClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Donor's Tax Computation</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("resultsTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Current Net Gift:</span>
+							<span>{t("currentNetGift")}</span>
 							<span>{formatPHP(netNewGift)}</span>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Total Cumulative Gifts (This Year):</span>
+							<span>{t("totalCumulativeGifts")}</span>
 							<strong>{formatPHP(totalCumulativeGifts)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary)" }}>
-							<span>Less: Tax-Exempt Threshold:</span>
+							<span>{t("lessThreshold")}</span>
 							<span>- {formatPHP(EXEMPT_THRESHOLD)}</span>
 						</div>
 						
 						<div style={{ padding: "16px", backgroundColor: "rgba(16, 185, 129, 0.05)", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: "8px", marginBottom: "16px" }}>
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-								<span>Total Tax Due (6% of excess):</span>
+								<span>{t("totalTaxDue")}</span>
 								<strong>{formatPHP(totalTaxDue)}</strong>
 							</div>
 							<div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: "var(--text-secondary)" }}>
-								<span>Less: Tax Paid on Prior Gifts:</span>
+								<span>{t("lessPriorTax")}</span>
 								<span>- {formatPHP(priorTaxPaid)}</span>
 							</div>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Tax Payable for Current Gift:</span>
+							<span>{t("taxPayableNow")}</span>
 							<span>{formatPHP(taxPayableNow)}</span>
 						</div>
 

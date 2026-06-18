@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -7,6 +8,7 @@ import TrustBadge from "../../components/TrustBadge";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
 
 export default function CustomsBrokerageClient() {
+	const t = useTranslations("CustomsBrokerageFee");
 	const [dv, setDv] = useState(250000);
 	const [isExport, setIsExport] = useState(false);
 
@@ -29,8 +31,8 @@ export default function CustomsBrokerageClient() {
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
-				title="Standard Customs Brokerage Fee Calculator"
-				subtitle="Calculate the professional fees for customs brokers based on CAO No. 1-2001."
+				title={t("title")}
+				subtitle={t("subtitle")}
 			/>
 			
 			<div style={{ marginTop: "24px", width: "100%" }}>
@@ -40,20 +42,20 @@ export default function CustomsBrokerageClient() {
 			<div className="tool-grid">
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>Shipment Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("shipmentDetails")}</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">Dutiable Value (DV) of Shipment in PHP</label>
+							<label className="form-label">{t("dvLabel")}</label>
 							<input type="number" className="form-control" value={dv || ""} onChange={(e) => setDv(Number(e.target.value))} />
 							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
-								Used to compute the bracketed fee structure.
+								{t("dvHint")}
 							</p>
 						</div>
 
 						<div className="form-group">
 							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
 								<input type="checkbox" checked={isExport} onChange={(e) => setIsExport(e.target.checked)} />
-								<span style={{ fontWeight: 500 }}>Export Declaration / Permit (50% of Formal Entry Rate)</span>
+								<span style={{ fontWeight: 500 }}>{t("exportLabel")}</span>
 							</label>
 						</div>
 					</div>
@@ -61,26 +63,26 @@ export default function CustomsBrokerageClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Computed Brokerage Fee</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("computedFeeTitle")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Formal / Warehousing Entry Rate:</span>
+							<span>{t("formalEntryLabel")}</span>
 							<strong>{formatPHP(baseFee)}</strong>
 						</div>
 						
 						{isExport && (
 							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", color: "var(--text-secondary)" }}>
-								<span>Export Adjustment (50%):</span>
+								<span>{t("exportAdjustmentLabel")}</span>
 								<span>- {formatPHP(baseFee * 0.5)}</span>
 							</div>
 						)}
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Total Brokerage Fee:</span>
+							<span>{t("totalFeeLabel")}</span>
 							<span>{formatPHP(totalFee)}</span>
 						</div>
 						<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px", textAlign: "right" }}>
-							Based on CAO No. 1-2001
+							{t("basedOnNote")}
 						</p>
 
 						<PrivacyGuarantee />

@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
 	const title =
 		"Standard Customs Brokerage Fee Calculator (CAO No. 1-2001) | Philippines";
 	const description =
 		"Calculate minimum professional fees for customs brokers based on the Dutiable Value (DV) of your shipment under BOC CAO No. 1-2001.";
 
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Formal&s1v=Entry&s2l=Brokerage&s2v=Fee";
-
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [{ url: ogUrl, width: 1200, height: 630 }],
+			images: ogImages({
+				tool: "customs-brokerage-fee-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -43,7 +43,7 @@ export default function CustomsBrokerageCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="customs-brokerage-fee-guide" />
+			<ToolPageBottom slug="customs-brokerage-fee-guide" />
 		</>
 	);
 }

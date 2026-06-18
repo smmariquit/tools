@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "SSS Maternity Benefit Calculator | Philippines";
-	const description =
-		"Calculate your expected SSS Maternity Cash Benefit based on the Expanded Maternity Leave Law (RA 11210).";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Leave&s1v=105%20Days&s2l=Benefit&s2v=Calculated";
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "SSSMaternity" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [{ url: ogUrl, width: 1200, height: 630 }],
+			images: ogImages({
+				tool: "sss-maternity-benefit-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -42,7 +48,7 @@ export default function SssMaternityCalculatorPage() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<Client />
-			<ToolArticle slug="sss-maternity-benefit-guide" />
+			<ToolPageBottom slug="sss-maternity-benefit-guide" />
 		</>
 	);
 }

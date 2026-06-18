@@ -29,8 +29,8 @@ export default function CategoriesPage() {
 						href={`/categories/${slugify(cat.category)}`}
 						style={{
 							padding: "24px",
-							backgroundColor: "var(--card-bg, #ffffff)",
-							border: "1px solid var(--border, #e0e0e0)",
+							backgroundColor: "var(--surface-color)",
+							border: "1px solid var(--border-color)",
 							borderRadius: "12px",
 							textDecoration: "none",
 							color: "inherit",

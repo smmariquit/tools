@@ -1,64 +1,23 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata({
-	searchParams,
-}: {
-	searchParams: Promise<{
-		dist?: string;
-		eff?: string;
-		price?: string;
-		pax?: string;
-	}>;
-}): Promise<Metadata> {
-	const resolvedParams = await searchParams;
+export function generateMetadata(): Metadata {
 	const title = "Philippine Fuel Cost & Trip Calculator | PHTools";
 	const description =
 		"Estimate your gas expenses for road trips in the Philippines. Perfect for dividing costs among friends (ambagan).";
-
-	let ogUrl = `/api/og?title=${encodeURIComponent(
-		title,
-	)}&desc=${encodeURIComponent(description)}`;
-
-	if (resolvedParams.dist || resolvedParams.eff || resolvedParams.price) {
-		const distance = parseFloat(resolvedParams.dist || "250") || 0;
-		const efficiency = parseFloat(resolvedParams.eff || "12") || 0;
-		const fuelPrice = parseFloat(resolvedParams.price || "65") || 0;
-		const passengers = parseInt(resolvedParams.pax || "4", 10) || 1;
-
-		const litersNeeded = efficiency > 0 ? distance / efficiency : 0;
-		const totalFuelCost = litersNeeded * fuelPrice;
-		const costPerPerson =
-			passengers > 0 ? totalFuelCost / passengers : totalFuelCost;
-
-		const formatAmount = (val: number) =>
-			new Intl.NumberFormat("en-PH", {
-				style: "currency",
-				currency: "PHP",
-				maximumFractionDigits: 0,
-			}).format(val);
-
-		ogUrl += `&s1l=Distance&s1v=${encodeURIComponent(`${distance} km`)}`;
-		ogUrl += `&s2l=Total%20Cost&s2v=${encodeURIComponent(formatAmount(totalFuelCost))}`;
-		ogUrl += `&s3l=Cost%20per%20Pax&s3v=${encodeURIComponent(formatAmount(costPerPerson))}`;
-	} else {
-		ogUrl +=
-			"&s1l=Distance&s1v=250%20km&s2l=Total%20Cost&s2v=%E2%82%B11%2C354&s3l=Cost%20per%20Pax&s3v=%E2%82%B1338";
-	}
 
 	return {
 		title,
 		description,
 		openGraph: {
-			images: [
-				{
-					url: ogUrl,
-					width: 1200,
-					height: 630,
-				},
-			],
+			images: ogImages({
+				tool: "fuel-cost-calculator",
+				title,
+				desc: description,
+			}),
 		},
 	};
 }
@@ -96,7 +55,7 @@ export default async function FuelCostPage() {
 				}
 			>
 				<Client />
-			<ToolArticle slug="philippine-fuel-cost-trip-calculator" />
+				<ToolPageBottom slug="philippine-fuel-cost-trip-calculator" />
 			</Suspense>
 		</>
 	);

@@ -1,12 +1,36 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
+import {
+	getHolidays,
+	getHolidayByDate,
+	payCategoryForHoliday,
+} from "@/data/holidays";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
 
+// Holidays with an actual DOLE premium (special working days carry none).
+const PREMIUM_HOLIDAYS = getHolidays().filter(
+	(h) => payCategoryForHoliday(h) !== "ordinary",
+);
+
+function formatHolidayDate(iso: string, locale: string) {
+	const [y, m, d] = iso.split("-").map(Number);
+	return new Date(y, m - 1, d).toLocaleDateString(locale, {
+		month: "short",
+		day: "numeric",
+	});
+}
+
 export default function HolidayClient() {
+	const t = useTranslations("HolidayCalculator");
+	const th = useTranslations("Holidays");
+	const locale = useLocale();
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -28,6 +52,9 @@ export default function HolidayClient() {
 	);
 	const [hoursWorkedStr, setHoursWorkedStr] = useState(
 		searchParams.get("hours") || "8",
+	);
+	const [selectedHolidayDate, setSelectedHolidayDate] = useState(
+		searchParams.get("holiday") || "",
 	);
 
 	const updateUrl = (updates: Record<string, string>) => {
@@ -54,11 +81,11 @@ export default function HolidayClient() {
 		if (dayType === "regular" || dayType === "regularRest") {
 			multiplier = 1.0; // 100%
 			computedPay = dailyRate;
-			breakdown = "Unworked Regular Holiday: 100% of Daily Wage";
+			breakdown = t("ruleUnworkedRegular");
 		} else {
 			multiplier = 0.0; // 0%
 			computedPay = 0;
-			breakdown = "Unworked Special Non-Working Day: No Work, No Pay";
+			breakdown = t("ruleUnworkedSpecial");
 		}
 	} else {
 		// They worked
@@ -67,21 +94,19 @@ export default function HolidayClient() {
 		switch (dayType) {
 			case "regular":
 				baseMultiplier = 2.0; // 200%
-				breakdown = "Worked on Regular Holiday: 200% of Basic Wage";
+				breakdown = t("ruleRegular");
 				break;
 			case "special":
 				baseMultiplier = 1.3; // 130%
-				breakdown = "Worked on Special Non-Working Day: 130% of Basic Wage";
+				breakdown = t("ruleSpecial");
 				break;
 			case "regularRest":
 				baseMultiplier = 2.6; // 260%
-				breakdown =
-					"Worked on Regular Holiday falling on Rest Day: 260% of Basic Wage";
+				breakdown = t("ruleRegularRest");
 				break;
 			case "specialRest":
 				baseMultiplier = 1.5; // 150%
-				breakdown =
-					"Worked on Special Holiday falling on Rest Day: 150% of Basic Wage";
+				breakdown = t("ruleSpecialRest");
 				break;
 		}
 
@@ -97,7 +122,7 @@ export default function HolidayClient() {
 			const otPay = otHours * otRate;
 
 			computedPay = regularPay + otPay;
-			breakdown += ` (Plus 30% Overtime Premium for ${otHours} excess hours)`;
+			breakdown += t("otPremium", { hours: otHours });
 		}
 		// multiplier = baseMultiplier; (removed to pass ESLint no-unused-vars)
 	}
@@ -113,21 +138,13 @@ export default function HolidayClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Holiday & Overtime Pay Calculator</h1>
-					<p className="page-subtitle">
-						Calculate your exact pay for working on Philippine Regular Holidays,
-						Special Non-Working Days, and Rest Days based on DOLE rules.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="holiday-top" />
@@ -143,12 +160,12 @@ export default function HolidayClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Work Details
+							{t("workDetails")}
 						</h2>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="dailyRate">
-								Daily Basic Rate (PHP)
+								{t("dailyRate")}
 							</label>
 							<input
 								type="number"
@@ -163,9 +180,46 @@ export default function HolidayClient() {
 							/>
 						</div>
 
+						<div className="form-group">
+							<label className="form-label" htmlFor="holidayPick">
+								{th("pickLabel")}
+							</label>
+							<select
+								id="holidayPick"
+								className="form-control"
+								value={selectedHolidayDate}
+								onChange={(e) => {
+									const iso = e.target.value;
+									setSelectedHolidayDate(iso);
+									const holiday = iso ? getHolidayByDate(iso) : undefined;
+									if (holiday) {
+										const newType =
+											payCategoryForHoliday(holiday) === "regular-holiday"
+												? "regular"
+												: "special";
+										setDayType(newType);
+										updateUrl({ holiday: iso, type: newType });
+									} else {
+										updateUrl({ holiday: "" });
+									}
+								}}
+							>
+								<option value="">{th("pickPlaceholder")}</option>
+								{PREMIUM_HOLIDAYS.map((h) => (
+									<option key={h.date} value={h.date}>
+										{formatHolidayDate(h.date, locale)} — {th(`names.${h.key}`)}
+										{h.approximate ? ` ${th("approximate")}` : ""}
+									</option>
+								))}
+							</select>
+							<p className="form-hint" style={{ marginTop: "4px" }}>
+								{th("sourceNote")}
+							</p>
+						</div>
+
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="dayType">
-								Type of Holiday
+								{t("holidayType")}
 							</label>
 							<select
 								id="dayType"
@@ -178,26 +232,19 @@ export default function HolidayClient() {
 										| "regularRest"
 										| "specialRest";
 									setDayType(val);
-									updateUrl({ type: val });
+									setSelectedHolidayDate("");
+									updateUrl({ type: val, holiday: "" });
 								}}
 							>
-								<option value="regular">
-									Regular Holiday (e.g. Christmas, Independence Day)
-								</option>
-								<option value="special">
-									Special Non-Working Day (e.g. Ninoy Aquino Day)
-								</option>
-								<option value="regularRest">
-									Regular Holiday AND It&apos;s your Rest Day
-								</option>
-								<option value="specialRest">
-									Special Holiday AND It&apos;s your Rest Day
-								</option>
+								<option value="regular">{t("optRegular")}</option>
+								<option value="special">{t("optSpecial")}</option>
+								<option value="regularRest">{t("optRegularRest")}</option>
+								<option value="specialRest">{t("optSpecialRest")}</option>
 							</select>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
-							<div className="form-label">Did you work on this day?</div>
+							<div className="form-label">{t("didWorkQuestion")}</div>
 							<div style={{ display: "flex", gap: "16px", marginTop: "8px" }}>
 								<label
 									style={{
@@ -217,7 +264,7 @@ export default function HolidayClient() {
 											updateUrl({ worked: "yes" });
 										}}
 									/>{" "}
-									Yes
+									{t("yes")}
 								</label>
 								<label
 									style={{
@@ -237,7 +284,7 @@ export default function HolidayClient() {
 											updateUrl({ worked: "no" });
 										}}
 									/>{" "}
-									No (Rest/Leave)
+									{t("noRestLeave")}
 								</label>
 							</div>
 						</div>
@@ -245,7 +292,7 @@ export default function HolidayClient() {
 						{didWork === "yes" && (
 							<div className="form-group" style={{ marginTop: "16px" }}>
 								<label className="form-label" htmlFor="hoursWorked">
-									Total Hours Worked
+									{t("hoursWorked")}
 								</label>
 								<input
 									type="number"
@@ -260,7 +307,7 @@ export default function HolidayClient() {
 									max="24"
 								/>
 								<p className="form-hint" style={{ marginTop: "4px" }}>
-									Anything over 8 hours is considered Overtime.
+									{t("overtimeHint")}
 								</p>
 							</div>
 						)}
@@ -277,7 +324,7 @@ export default function HolidayClient() {
 								color: "var(--primary)",
 							}}
 						>
-							Computed Pay for the Day
+							{t("resultsTitle")}
 						</h2>
 
 						<div
@@ -302,7 +349,7 @@ export default function HolidayClient() {
 										marginBottom: "8px",
 									}}
 								>
-									Total Holiday Pay
+									{t("totalHolidayPay")}
 								</span>
 								<strong
 									style={{ fontSize: "42px", color: "#e65100", lineHeight: 1 }}
@@ -321,16 +368,14 @@ export default function HolidayClient() {
 							}}
 						>
 							<p>
-								<strong>Rule Applied:</strong>
+								<strong>{t("ruleApplied")}</strong>
 								<br />
 								{breakdown}
 							</p>
 						</div>
 					</div>
 				</div>
-
-							</div>
+			</div>
 		</ToolLayout>
 	);
 }
-

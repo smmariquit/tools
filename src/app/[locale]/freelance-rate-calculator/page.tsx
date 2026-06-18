@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import FreelanceRateClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,11 +16,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/freelance-rate-calculator`,
+			canonical: `https://phtools.me/${locale}/freelance-rate-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "freelance-rate-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function FreelanceRateCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><FreelanceRateClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<FreelanceRateClient />
+			</Suspense>
+			<ToolPageBottom slug="freelance-hourly-rate-guide" />
+		</>
+	);
 }

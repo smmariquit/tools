@@ -1,19 +1,35 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import {
-	Bar,
-	BarChart,
-	Cell,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
+	getHolidays,
+	getHolidayByDate,
+	payCategoryForHoliday,
+	type PayCategory,
+} from "@/data/holidays";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
+
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: 200,
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
 
 type DayType =
 	| "regular"
@@ -86,8 +102,31 @@ function calculateTotalWorkHours(shiftStart: number, shiftEnd: number): number {
 
 const TIME_OPTIONS = generateTimeOptions();
 
+const HOLIDAYS = getHolidays();
+
+function categoryToBpoDayType(category: PayCategory): DayType {
+	switch (category) {
+		case "regular-holiday":
+			return "regularHoliday";
+		case "special-non-working":
+			return "special";
+		case "ordinary":
+			return "regular";
+	}
+}
+
+function formatHolidayDate(iso: string, locale: string) {
+	const [y, m, d] = iso.split("-").map(Number);
+	return new Date(y, m - 1, d).toLocaleDateString(locale, {
+		month: "short",
+		day: "numeric",
+	});
+}
+
 export default function BpoCalculator() {
 	const t = useTranslations("BpoCalculator");
+	const th = useTranslations("Holidays");
+	const locale = useLocale();
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -101,6 +140,9 @@ export default function BpoCalculator() {
 	const [shiftEnd, setShiftEnd] = useState(searchParams.get("shiftEnd") || "5");
 	const [dayType, setDayType] = useState<DayType>(
 		(searchParams.get("type") as DayType) || "regular",
+	);
+	const [selectedHolidayDate, setSelectedHolidayDate] = useState(
+		searchParams.get("holiday") || "",
 	);
 	const [mounted, setMounted] = useState(false);
 
@@ -287,6 +329,40 @@ export default function BpoCalculator() {
 						</select>
 					</div>
 
+					<div className="form-group" style={{ marginBottom: "16px" }}>
+						<label className="form-label" htmlFor="bpo-holiday-pick">
+							{th("pickLabel")}
+						</label>
+						<select
+							id="bpo-holiday-pick"
+							className="form-control"
+							value={selectedHolidayDate}
+							onChange={(e) => {
+								const iso = e.target.value;
+								setSelectedHolidayDate(iso);
+								const holiday = iso ? getHolidayByDate(iso) : undefined;
+								if (holiday) {
+									const val = categoryToBpoDayType(
+										payCategoryForHoliday(holiday),
+									);
+									setDayType(val);
+									updateUrl({ holiday: iso, type: val });
+								} else {
+									updateUrl({ holiday: "" });
+								}
+							}}
+						>
+							<option value="">{th("pickPlaceholder")}</option>
+							{HOLIDAYS.map((h) => (
+								<option key={h.date} value={h.date}>
+									{formatHolidayDate(h.date, locale)} — {th(`names.${h.key}`)}
+									{h.approximate ? ` ${th("approximate")}` : ""}
+								</option>
+							))}
+						</select>
+						<span className="form-hint">{th("sourceNote")}</span>
+					</div>
+
 					<div className="form-group" style={{ marginBottom: "20px" }}>
 						<label className="form-label" htmlFor="bpo-day-type">
 							{t("dayTypeLabel")}
@@ -298,7 +374,8 @@ export default function BpoCalculator() {
 							onChange={(e) => {
 								const val = e.target.value as DayType;
 								setDayType(val);
-								updateUrl({ type: val });
+								setSelectedHolidayDate("");
+								updateUrl({ type: val, holiday: "" });
 							}}
 						>
 							<option value="regular">{t("dayRegular")}</option>
@@ -599,35 +676,7 @@ export default function BpoCalculator() {
 							>
 								Pay Composition
 							</h3>
-							<ResponsiveContainer width="100%" height={200}>
-								<BarChart data={chartData} layout="vertical">
-									<XAxis type="number" hide />
-									<YAxis
-										type="category"
-										dataKey="name"
-										width={120}
-										tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-										axisLine={false}
-										tickLine={false}
-									/>
-									<Tooltip
-										contentStyle={{
-											backgroundColor: "var(--surface-color)",
-											borderColor: "var(--border-color)",
-											borderRadius: "var(--border-radius-sm)",
-											color: "var(--text-primary)",
-										}}
-										itemStyle={{ color: "var(--text-primary)" }}
-										labelStyle={{ color: "var(--text-secondary)" }}
-										formatter={(value) => formatCurrency(Number(value))}
-									/>
-									<Bar dataKey="value" radius={[0, 4, 4, 0]}>
-										{chartData.map((entry, index) => (
-											<Cell key={`cell-${index}`} fill={entry.color} />
-										))}
-									</Bar>
-								</BarChart>
-							</ResponsiveContainer>
+							<Chart data={chartData} formatValue={formatCurrency} />
 						</div>
 					)}
 

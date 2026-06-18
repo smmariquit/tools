@@ -1,23 +1,37 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-	Area,
-	AreaChart,
-	CartesianGrid,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
+import BackButton from "../../components/BackButton";
+import ToolEyebrow from "../../components/doodle/ToolEyebrow";
+import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
 import ToolLayout from "../components/ToolLayout";
 
+const Chart = dynamic(() => import("./Chart"), {
+	ssr: false,
+	loading: () => (
+		<div
+			style={{
+				width: "100%",
+				height: "100%",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				color: "var(--text-secondary)",
+			}}
+		>
+			…
+		</div>
+	),
+});
+
 export default function PagIbigClient() {
+	const t = useTranslations("PagibigCalculator");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -103,21 +117,13 @@ export default function PagIbigClient() {
 		<ToolLayout maxWidth="1200px">
 			<div style={{ width: "100%", margin: "0 auto" }}>
 				<div style={{ marginBottom: "24px" }}>
-					<Link
-						href="/"
-						style={{
-							fontSize: "14px",
-							display: "inline-block",
-							marginBottom: "16px",
-						}}
-					>
-						&larr; Back to Tools
-					</Link>
-					<h1 className="page-title">Pag-IBIG & MP2 Savings Calculator</h1>
-					<p className="page-subtitle">
-						Calculate your mandatory Pag-IBIG contributions and estimate your
-						MP2 tax-free dividend returns over 5 years.
-					</p>
+					<BackButton style={{ marginBottom: "16px" }}>
+						{t("backToTools")}
+					</BackButton>
+					<ToolIllustration />
+					<ToolEyebrow />
+					<h1 className="page-title">{t("title")}</h1>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="pagibig-top" />
@@ -133,11 +139,11 @@ export default function PagIbigClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							Mandatory Pag-IBIG
+							{t("mandatoryTitle")}
 						</h2>
 
 						<InteractiveSlider
-							label="Basic Monthly Salary (PHP)"
+							label={t("salaryLabel")}
 							value={basicSalary}
 							min={0}
 							max={150000}
@@ -146,14 +152,11 @@ export default function PagIbigClient() {
 								setBasicSalaryStr(val.toString());
 								updateUrl({ salary: val.toString() });
 							}}
-							hint="Input your basic pay excluding allowances and overtime."
+							hint={t("salaryHint")}
 						/>
 						{basicSalary >= 10000 && (
 							<div style={{ marginTop: "12px" }}>
-								<TipCard title="Max Contribution Reached">
-									Above MFS ceiling — regular contributions are capped at
-									₱10,000 basis (₱200 max)
-								</TipCard>
+								<TipCard title={t("maxTipTitle")}>{t("maxTipBody")}</TipCard>
 							</div>
 						)}
 
@@ -176,7 +179,7 @@ export default function PagIbigClient() {
 								}}
 							>
 								<span style={{ color: "var(--text-secondary)" }}>
-									Employee Share (You pay)
+									{t("employeeShare")}
 								</span>
 								<strong style={{ color: "var(--primary)", fontSize: "16px" }}>
 									{formatCurrency(regularEE)}
@@ -191,7 +194,7 @@ export default function PagIbigClient() {
 								}}
 							>
 								<span style={{ color: "var(--text-secondary)" }}>
-									Employer Share
+									{t("employerShare")}
 								</span>
 								<strong
 									style={{ color: "var(--text-primary)", fontSize: "16px" }}
@@ -210,12 +213,12 @@ export default function PagIbigClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							MP2 Voluntary Savings
+							{t("mp2Title")}
 						</h2>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="mp2Monthly">
-								Monthly MP2 Deposit (PHP)
+								{t("mp2DepositLabel")}
 							</label>
 							<input
 								type="number"
@@ -230,13 +233,13 @@ export default function PagIbigClient() {
 								step="500"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Minimum of ₱500 per month.
+								{t("mp2DepositHint")}
 							</p>
 						</div>
 
 						<div className="form-group" style={{ marginTop: "16px" }}>
 							<label className="form-label" htmlFor="dividendRate">
-								Estimated Annual Dividend Rate (%)
+								{t("dividendRateLabel")}
 							</label>
 							<input
 								type="number"
@@ -252,7 +255,7 @@ export default function PagIbigClient() {
 								step="0.1"
 							/>
 							<p className="form-hint" style={{ marginTop: "4px" }}>
-								Historical average is between 6% and 8%.
+								{t("dividendRateHint")}
 							</p>
 						</div>
 					</div>
@@ -268,7 +271,7 @@ export default function PagIbigClient() {
 								color: "var(--primary)",
 							}}
 						>
-							5-Year MP2 Projection
+							{t("projectionTitle")}
 						</h2>
 
 						<div
@@ -293,7 +296,7 @@ export default function PagIbigClient() {
 										marginBottom: "4px",
 									}}
 								>
-									Final Value after 5 Years
+									{t("finalValueLabel")}
 								</span>
 								<strong
 									style={{ fontSize: "28px", color: "#1b5e20", lineHeight: 1 }}
@@ -311,7 +314,7 @@ export default function PagIbigClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Total Principal Saved</span>
+							<span>{t("totalPrincipal")}</span>
 							<span>{formatCurrency(totalPrincipal)}</span>
 						</div>
 						<div
@@ -322,7 +325,7 @@ export default function PagIbigClient() {
 								fontSize: "14px",
 							}}
 						>
-							<span>Total Tax-Free Dividends</span>
+							<span>{t("totalDividends")}</span>
 							<span style={{ color: "#2e7d32", fontWeight: 600 }}>
 								+ {formatCurrency(totalDividends)}
 							</span>
@@ -337,96 +340,18 @@ export default function PagIbigClient() {
 									marginBottom: "16px",
 								}}
 							>
-								<ResponsiveContainer width="100%" height="100%">
-									<AreaChart
-										data={mp2Table}
-										margin={{ top: 10, right: 0, left: -20, bottom: 0 }}
-									>
-										<defs>
-											<linearGradient
-												id="colorPrincipal"
-												x1="0"
-												y1="0"
-												x2="0"
-												y2="1"
-											>
-												<stop
-													offset="5%"
-													stopColor="#0d47a1"
-													stopOpacity={0.3}
-												/>
-												<stop
-													offset="95%"
-													stopColor="#0d47a1"
-													stopOpacity={0}
-												/>
-											</linearGradient>
-											<linearGradient
-												id="colorDividend"
-												x1="0"
-												y1="0"
-												x2="0"
-												y2="1"
-											>
-												<stop
-													offset="5%"
-													stopColor="#2e7d32"
-													stopOpacity={0.8}
-												/>
-												<stop
-													offset="95%"
-													stopColor="#2e7d32"
-													stopOpacity={0.1}
-												/>
-											</linearGradient>
-										</defs>
-										<CartesianGrid
-											strokeDasharray="3 3"
-											vertical={false}
-											stroke="var(--border-color)"
-										/>
-										<XAxis
-											dataKey="year"
-											tickFormatter={(tick) => `Yr ${tick}`}
-											tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-											axisLine={false}
-											tickLine={false}
-										/>
-										<YAxis
-											tickFormatter={(tick) => `₱${(tick / 1000).toFixed(0)}k`}
-											tick={{ fontSize: 12, fill: "var(--text-secondary)" }}
-											axisLine={false}
-											tickLine={false}
-										/>
-										<Tooltip
-											formatter={(value) => formatCurrency(Number(value) || 0)}
-											labelFormatter={(label) => `Year ${label}`}
-											contentStyle={{
-												borderRadius: "8px",
-												border: "none",
-												boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-											}}
-										/>
-										<Area
-											type="monotone"
-											dataKey="totalSaved"
-											name="Total Principal"
-											stackId="1"
-											stroke="#0d47a1"
-											fill="url(#colorPrincipal)"
-											strokeWidth={2}
-										/>
-										<Area
-											type="monotone"
-											dataKey="dividendsEarned"
-											name="Dividends Earned"
-											stackId="1"
-											stroke="#2e7d32"
-											fill="url(#colorDividend)"
-											strokeWidth={2}
-										/>
-									</AreaChart>
-								</ResponsiveContainer>
+								<Chart
+									data={mp2Table}
+									formatValue={formatCurrency}
+									formatYearTick={(tick) =>
+										t("yrTick", { year: String(tick) })
+									}
+									formatYearLabel={(label) =>
+										t("yearLabel", { year: String(label) })
+									}
+									principalName={t("areaPrincipal")}
+									dividendsName={t("areaDividends")}
+								/>
 							</div>
 						)}
 
@@ -447,11 +372,11 @@ export default function PagIbigClient() {
 										}}
 									>
 										<th style={{ padding: "8px 4px", textAlign: "left" }}>
-											Year
+											{t("colYear")}
 										</th>
-										<th style={{ padding: "8px 4px" }}>Principal</th>
-										<th style={{ padding: "8px 4px" }}>Dividends</th>
-										<th style={{ padding: "8px 4px" }}>Total Value</th>
+										<th style={{ padding: "8px 4px" }}>{t("colPrincipal")}</th>
+										<th style={{ padding: "8px 4px" }}>{t("colDividends")}</th>
+										<th style={{ padding: "8px 4px" }}>{t("colTotalValue")}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -493,8 +418,6 @@ export default function PagIbigClient() {
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</ToolLayout>
 	);

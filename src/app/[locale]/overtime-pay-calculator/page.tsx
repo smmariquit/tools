@@ -1,8 +1,9 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import OvertimePayClient from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
 export async function generateMetadata({
 	params: { locale },
@@ -15,11 +16,25 @@ export async function generateMetadata({
 		title: t("title"),
 		description: t("subtitle"),
 		alternates: {
-			canonical: `https://phtools.com/${locale}/overtime-pay-calculator`,
+			canonical: `https://phtools.me/${locale}/overtime-pay-calculator`,
+		},
+		openGraph: {
+			images: ogImages({
+				tool: "overtime-pay-calculator",
+				title: t("title"),
+				desc: t("subtitle"),
+			}),
 		},
 	};
 }
 
 export default function OvertimePayCalculatorPage() {
-	return <Suspense fallback={<div className="loading">Loading...</div>}><OvertimePayClient /></Suspense>;
+	return (
+		<>
+			<Suspense fallback={<div className="loading">Loading...</div>}>
+				<OvertimePayClient />
+			</Suspense>
+			<ToolPageBottom slug="philippine-overtime-holiday-pay-guide" />
+		</>
+	);
 }

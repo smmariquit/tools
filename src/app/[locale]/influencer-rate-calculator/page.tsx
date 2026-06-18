@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { ogImages } from "../../../lib/og";
+import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
-import ToolArticle from "../../components/ToolArticle";
 
-export async function generateMetadata(): Promise<Metadata> {
-	const title = "Philippine Influencer & Talent Rate Calculator";
-	const description =
-		"Calculate standard creator rates based on engagement metrics (ER), follower count, and Philippine market multipliers.";
-	let ogUrl = `/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
-	ogUrl += "&s1l=Engagement&s1v=Rate&s2l=Pricing&s2v=Calculated";
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "InfluencerRate" });
+	const title = t("metaTitle");
+	const description = t("metaDescription");
 	return {
 		title,
 		description,
-		openGraph: { images: [{ url: ogUrl, width: 1200, height: 630 }] },
+		openGraph: {
+			images: ogImages({
+				tool: "influencer-rate-calculator",
+				title,
+				desc: description,
+			}),
+		},
 	};
 }
 
@@ -19,7 +30,7 @@ export default function InfluencerRatePage() {
 	return (
 		<>
 			<Client />
-			<ToolArticle slug="influencer-rate-guide" />
+			<ToolPageBottom slug="influencer-rate-guide" />
 		</>
 	);
 }

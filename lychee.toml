@@ -1,0 +1,30 @@
+# lychee configuration — https://github.com/lycheeverse/lychee
+# Used by the Link Check GitHub Actions workflow (.github/workflows/link-check.yml).
+
+# Only check external web links; internal app routes are ignored via .lycheeignore.
+scheme = ["https", "http"]
+
+# Resilience: external hosts can be slow or rate-limit CI runners.
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+max_concurrency = 8
+
+# Treat success + partial content + rate-limit as acceptable (429 is non-fatal).
+accept = [200, 206, 429]
+
+# Present as a normal browser so anti-bot hosts are less likely to block.
+user_agent = "Mozilla/5.0 (compatible; lychee link checker)"
+
+# Don't fail on transient name resolution / connection hiccups.
+require_https = false
+no_progress = true
+
+# Skip files/dirs that should never be link-checked.
+exclude_path = [
+  "node_modules",
+  ".next",
+  "playwright-report",
+  "test-results",
+  "package-lock.json",
+]

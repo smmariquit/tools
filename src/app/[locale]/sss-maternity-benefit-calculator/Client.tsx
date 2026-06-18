@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -7,6 +8,7 @@ import TrustBadge from "../../components/TrustBadge";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
 
 export default function SssMaternityClient() {
+	const t = useTranslations("SSSMaternity");
 	const [deliveryDate, setDeliveryDate] = useState("");
 	const [leaveType, setLeaveType] = useState("105");
 	const [mscs, setMscs] = useState<number[]>([30000, 30000, 30000, 30000, 30000, 30000]);
@@ -18,8 +20,8 @@ export default function SssMaternityClient() {
 	};
 
 	// Logic for Semesters and Base Period
-	let semesterContingency = "Please enter a valid date";
-	let basePeriod = "Waiting for date";
+	let semesterContingency = t("semesterPlaceholder");
+	let basePeriod = t("basePeriodPlaceholder");
 
 	if (deliveryDate) {
 		const d = new Date(deliveryDate);
@@ -38,7 +40,12 @@ export default function SssMaternityClient() {
 			prevYear = year - 1;
 		}
 
-		semesterContingency = `Q${prevQuarter} ${prevYear} and Q${quarter} ${year} (Excluded)`;
+		semesterContingency = t("semesterValue", {
+			prevQuarter: String(prevQuarter),
+			prevYear: String(prevYear),
+			quarter: String(quarter),
+			year: String(year),
+		});
 		
 		let baseStartQuarter = prevQuarter - 4;
 		let baseStartYear = prevYear;
@@ -54,7 +61,12 @@ export default function SssMaternityClient() {
 			baseEndYear -= 1;
 		}
 		
-		basePeriod = `12 Months from Q${baseStartQuarter} ${baseStartYear} to Q${baseEndQuarter} ${baseEndYear}`;
+		basePeriod = t("basePeriodValue", {
+			startQuarter: String(baseStartQuarter),
+			startYear: String(baseStartYear),
+			endQuarter: String(baseEndQuarter),
+			endYear: String(baseEndYear),
+		});
 	}
 
 	const totalMsc = mscs.reduce((a, b) => a + b, 0);
@@ -66,10 +78,7 @@ export default function SssMaternityClient() {
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<ToolHeader
-				title="SSS Maternity Benefit Estimator"
-				subtitle="Calculate your statutory cash benefit based on the Expanded Maternity Leave Law."
-			/>
+			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
 			
 			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
@@ -78,40 +87,42 @@ export default function SssMaternityClient() {
 			<div className="tool-grid">
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>1. Delivery & Leave Details</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("deliveryHeading")}</h2>
 						
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-							<label className="form-label">Expected / Actual Date of Delivery or Miscarriage</label>
+							<label className="form-label">{t("deliveryDateLabel")}</label>
 							<input type="date" className="form-control" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} />
 						</div>
 
 						<div className="form-group">
 							{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-							<label className="form-label">Type of Claim</label>
+							<label className="form-label">{t("claimTypeLabel")}</label>
 							<select className="form-control" value={leaveType} onChange={(e) => setLeaveType(e.target.value)}>
-								<option value="105">Normal / Cesarean Delivery (105 Days)</option>
-								<option value="120">Solo Parent Delivery (120 Days)</option>
-								<option value="60">Miscarriage / Emergency Termination (60 Days)</option>
+								<option value="105">{t("typeNormal")}</option>
+								<option value="120">{t("typeSoloParent")}</option>
+								<option value="60">{t("typeMiscarriage")}</option>
 							</select>
 						</div>
 					</div>
 
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>2. Contribution History</h2>
+						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("contributionHeading")}</h2>
 						<div style={{ padding: "12px", backgroundColor: "var(--bg-color)", borderRadius: "6px", marginBottom: "16px", fontSize: "13px" }}>
-							<p style={{ margin: "0 0 4px 0" }}><strong>Semester of Contingency:</strong> {semesterContingency}</p>
-							<p style={{ margin: 0, color: "var(--primary)" }}><strong>12-Month Base Period:</strong> {basePeriod}</p>
+							<p style={{ margin: "0 0 4px 0" }}><strong>{t("semesterLabel")}</strong> {semesterContingency}</p>
+							<p style={{ margin: 0, color: "var(--primary)" }}><strong>{t("basePeriodLabel")}</strong> {basePeriod}</p>
 						</div>
 						<p style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "16px" }}>
-							Enter the <strong>6 highest</strong> Monthly Salary Credits (MSC) paid within your Base Period.
+							{t.rich("mscInstruction", {
+								b: (chunks) => <strong>{chunks}</strong>,
+							})}
 						</p>
 
 						<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
 							{mscs.map((msc, i) => (
 								<div key={i} className="form-group">
 									{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-									<label className="form-label" style={{ fontSize: "12px" }}>Highest MSC #{i + 1}</label>
+									<label className="form-label" style={{ fontSize: "12px" }}>{t("highestMscLabel", { number: i + 1 })}</label>
 									<input type="number" className="form-control" value={msc || ""} onChange={(e) => handleMscChange(i, Number(e.target.value))} />
 								</div>
 							))}
@@ -121,23 +132,23 @@ export default function SssMaternityClient() {
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>Estimated Benefit</h2>
+						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("estimatedBenefitHeading")}</h2>
 						
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
-							<span>Total of 6 Highest MSCs:</span>
+							<span>{t("totalMscsLabel")}</span>
 							<strong>{formatPHP(totalMsc)}</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px", color: "var(--text-secondary)" }}>
-							<span>Daily Maternity Allowance (÷ 180):</span>
+							<span>{t("dailyAllowanceLabel")}</span>
 							<span>{formatPHP(dailyAllowance)}</span>
 						</div>
 
 						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
-							<span>Total Cash Benefit:</span>
+							<span>{t("totalCashBenefitLabel")}</span>
 							<span>{formatPHP(totalBenefit)}</span>
 						</div>
 						<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px", textAlign: "right" }}>
-							For {leaveType} days of leave
+							{t("daysOfLeave", { days: leaveType })}
 						</p>
 
 						<PrivacyGuarantee />

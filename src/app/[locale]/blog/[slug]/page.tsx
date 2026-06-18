@@ -1,11 +1,18 @@
-import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type React from "react";
+import remarkGfm from "remark-gfm";
 import {
+	AUTHOR_URL,
 	getAllPostsMeta,
 	getPostBySlug,
 	type PostMeta,
 } from "../../../../lib/mdx";
+import BackButton from "../../../components/BackButton";
+import WavyDivider from "../../../components/doodle/WavyDivider";
+import MdxChart from "../../../components/mdx/MdxChart";
+import RegionalNote from "../../../components/mdx/RegionalNote";
+import YouTube from "../../../components/mdx/YouTube";
+import { mdxTableComponents } from "../../../components/mdx/tableComponents";
 import ToolEmbed from "../../../components/ToolEmbed";
 import AdBanner from "../../components/AdBanner";
 
@@ -54,7 +61,13 @@ export default async function BlogPost({
 		headline: meta.title,
 		description: meta.description,
 		datePublished: meta.date,
+		timeRequired: `PT${meta.readingMinutes}M`,
 		author: {
+			"@type": "Person",
+			name: meta.author,
+			url: AUTHOR_URL,
+		},
+		publisher: {
 			"@type": "Organization",
 			name: "PHTools",
 		},
@@ -67,6 +80,29 @@ export default async function BlogPost({
 		),
 		ToolEmbed: (props: React.ComponentProps<typeof ToolEmbed>) => (
 			<ToolEmbed {...props} />
+		),
+		MdxChart: (props: React.ComponentProps<typeof MdxChart>) => (
+			<MdxChart {...props} />
+		),
+		YouTube: (props: React.ComponentProps<typeof YouTube>) => (
+			<YouTube {...props} />
+		),
+		RegionalNote: (props: React.ComponentProps<typeof RegionalNote>) => (
+			<RegionalNote {...props} />
+		),
+		img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+			// biome-ignore lint/a11y/useAltText: alt is forwarded from markdown source
+			<img
+				{...props}
+				style={{
+					maxWidth: "100%",
+					height: "auto",
+					borderRadius: "8px",
+					border: "1px solid var(--border-color)",
+					display: "block",
+					margin: "0 auto 8px",
+				}}
+			/>
 		),
 		h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
 			<h2
@@ -110,6 +146,7 @@ export default async function BlogPost({
 				{...props}
 			/>
 		),
+		...mdxTableComponents,
 	};
 
 	return (
@@ -121,24 +158,12 @@ export default async function BlogPost({
 			<div
 				style={{ maxWidth: "700px", margin: "0 auto", paddingBottom: "60px" }}
 			>
-				<Link
-					href="/blog"
-					style={{
-						fontSize: "14px",
-						display: "inline-block",
-						marginBottom: "24px",
-					}}
-				>
-					&larr; Back to Blog
-				</Link>
+				<BackButton fallbackHref="/blog" style={{ marginBottom: "24px" }}>
+					Back to Blog
+				</BackButton>
 
-				<header
-					style={{
-						marginBottom: "40px",
-						borderBottom: "1px solid var(--border-color)",
-						paddingBottom: "24px",
-					}}
-				>
+				<header style={{ marginBottom: "16px", paddingBottom: "8px" }}>
+					<span className="eyebrow">from the notebook ✦</span>
 					<h1
 						style={{
 							fontSize: "36px",
@@ -150,6 +175,23 @@ export default async function BlogPost({
 					>
 						{meta.title}
 					</h1>
+					<p
+						style={{
+							color: "var(--text-secondary)",
+							fontSize: "14px",
+							marginBottom: "6px",
+						}}
+					>
+						By{" "}
+						<a
+							href={AUTHOR_URL}
+							target="_blank"
+							rel="author noopener noreferrer"
+							style={{ color: "var(--primary)", textDecoration: "none" }}
+						>
+							{meta.author}
+						</a>
+					</p>
 					<p style={{ color: "var(--text-secondary)", fontSize: "14px" }}>
 						<strong>Published:</strong>{" "}
 						{new Date(meta.date).toLocaleDateString("en-US", {
@@ -164,11 +206,21 @@ export default async function BlogPost({
 							month: "long",
 							day: "numeric",
 						})}
+						{" • "}
+						{meta.readingMinutes} min read
 					</p>
 				</header>
 
+				<div style={{ marginBottom: "32px" }}>
+					<WavyDivider />
+				</div>
+
 				<article style={{ fontSize: "16px" }}>
-					<MDXRemote source={content} components={components} />
+					<MDXRemote
+						source={content}
+						components={components}
+						options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+					/>
 				</article>
 
 				<div
