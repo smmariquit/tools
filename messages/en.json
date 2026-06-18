@@ -459,7 +459,7 @@
     "sourcePhilHealth": "PhilHealth - For premium contribution schedules.",
     "sourcePagIbig": "Pag-IBIG Fund - For regular savings, MP2, and housing loan rates.",
     "sourceDOLE": "Department of Labor and Employment (DOLE) - For labor laws and mandatory pay rules.",
-    "disclaimer": "Disclaimer: This tool is intended for estimation and educational purposes only. It does not constitute professional financial or legal advice. Always consult a certified professional or your HR department for official computations."
+    "disclaimer": "Estimates only — always verify with a licensed professional or the official government agency."
   },
   "GSISPension": {
     "title": "GSIS Pension Calculator",
