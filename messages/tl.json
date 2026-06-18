@@ -1906,9 +1906,10 @@
     "principalLabel": "Halaga ng Principal (PHP)",
     "dateLabel": "Petsa ng Execution",
     "locationLabel": "Lugar ng Execution",
+    "dueDateLabel": "Petsa ng Pagbayad (Due Date)",
     "generatedDocument": "Ginawang Dokumento",
     "offlineSecure": "Offline / Ligtas",
-    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before [Insert Due Date]. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
+    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Generator ng Digital Ticketing QR",
@@ -1923,8 +1924,8 @@
     "tierVip": "VIP Pass",
     "tierBackstage": "Access sa Backstage",
     "payloadTitle": "Verifiable na Ticket Payload",
-    "qrTarget": "Target ng QR Code",
+    "qrTarget": "Scannable ticket QR code",
     "statelessJson": "Stateless na JSON Data:",
-    "productionNote": "Sa production, ang JSON na ito ay cryptographically signed at naka-encode sa QR code sa itaas. Vine-verify ng scanners ang signature nang locally gamit ang public key."
+    "productionNote": "Naka-encode bilang plain text sa QR code na ito ang ticket details sa itaas. Para sa totoong event, i-sign ang payload gamit ang private key para ma-reject ng scanner mo ang peke o binagong tickets nang locally, kahit walang internet sa gate."
   }
 }

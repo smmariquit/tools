@@ -1906,9 +1906,10 @@
     "principalLabel": "Principal Amount (PHP)",
     "dateLabel": "Execution Date",
     "locationLabel": "Execution Location",
+    "dueDateLabel": "Maturity / Due Date",
     "generatedDocument": "Generated Document",
     "offlineSecure": "Offline / Secure",
-    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before [Insert Due Date]. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
+    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Digital Ticketing QR Generator",
@@ -1923,8 +1924,8 @@
     "tierVip": "VIP Pass",
     "tierBackstage": "Backstage Access",
     "payloadTitle": "Verifiable Ticket Payload",
-    "qrTarget": "QR Code Target",
+    "qrTarget": "Scannable ticket QR code",
     "statelessJson": "Stateless JSON Data:",
-    "productionNote": "In production, this JSON is cryptographically signed and encoded into the QR code above. Scanners verify the signature locally using a public key."
+    "productionNote": "This QR code encodes the ticket details above as plain text. For a live event, sign the payload with a private key so your scanner can reject forged or edited tickets locally, even with no internet at the gate."
   }
 }

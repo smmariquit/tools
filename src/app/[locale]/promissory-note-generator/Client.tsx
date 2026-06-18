@@ -12,6 +12,7 @@ export default function PromissoryNoteClient() {
 	const [amount, setAmount] = useState(50000);
 	const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 	const [address, setAddress] = useState("Makati City, Metro Manila");
+	const [dueDate, setDueDate] = useState("December 31, 2026");
 	const [hasAgreed, setHasAgreed] = useState(false);
 
 	const formatPHP = (val: number) =>
@@ -23,6 +24,7 @@ export default function PromissoryNoteClient() {
 		address,
 		borrower,
 		lender,
+		dueDate,
 	});
 
 	return (
@@ -72,9 +74,14 @@ export default function PromissoryNoteClient() {
 							<input type="date" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
 						</div>
 						
-						<div className="form-group">
+						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("locationLabel")}</label>
 							<input type="text" className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
+						</div>
+
+						<div className="form-group">
+							<label className="form-label">{t("dueDateLabel")}</label>
+							<input type="text" className="form-control" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
 						</div>
 					</div>
 				</div>
