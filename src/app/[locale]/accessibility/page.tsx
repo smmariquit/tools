@@ -213,7 +213,7 @@ export default function AccessibilityPage() {
 							Tab your way through
 						</strong>
 						<span style={{ fontSize: "14px" }}>
-							Every calculator works with just a keyboard — <code>Tab</code>,{" "}
+							Every calculator works with just a keyboard: <code>Tab</code>,{" "}
 							<code>Enter</code>, and arrow keys. A clear focus ring always
 							shows where you are.
 						</span>

@@ -58,7 +58,7 @@ export default function CookieConsent() {
 						}}
 					>
 						We use cookies for analytics and advertising (Google Analytics &amp;
-						AdSense). No salary or financial data you enter is collected — all
+						AdSense). No salary or financial data you enter is collected: all
 						computation runs entirely in your browser.{" "}
 						<a href="/privacy-policy" style={{ color: "var(--primary)" }}>
 							Privacy Policy
