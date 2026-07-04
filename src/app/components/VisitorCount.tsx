@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 /**
@@ -74,13 +74,13 @@ export default function VisitorCount({
 	if (badge) {
 		return (
 			<span
-				aria-label={aria}
+				role="status"
 				style={{
 					display: "inline-flex",
 					alignItems: "center",
 					gap: "8px",
 					backgroundColor: "rgba(214, 51, 108, 0.08)",
-					color: "#c2255c",
+					color: "#9f1239",
 					padding: "8px 16px",
 					borderRadius: "6px",
 					fontSize: "14px",
@@ -97,7 +97,7 @@ export default function VisitorCount({
 
 	return (
 		<span
-			aria-label={aria}
+			role="status"
 			title={aria}
 			style={{
 				display: "inline-flex",
