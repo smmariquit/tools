@@ -33,7 +33,7 @@ map that must be kept in sync:
  `ToolEmbed` is the real dynamic-import embedder.
 
 Key facts that shape the design:
-- **A new component must be registered in BOTH maps** (or a shared `mdxComponents` module:  see §10 nice-to-have) or it renders as literal text in one context.
+- **A new component must be registered in BOTH maps** (or a shared `mdxComponents` module: see §10 nice-to-have) or it renders as literal text in one context.
 - **Client components work inside RSC MDX.** `MdxChart.tsx` is `"use client"` (uses recharts)
  and is imported directly into both server renderers. So a `<PortalGuide>` can carry its own
  interactivity (tab/step switching) as a client island.
@@ -264,7 +264,7 @@ These are **the** gating constraints: get them wrong and it's a trademark/passin
  per-portal namespaces like `"PortalMySss"`); labels/values/steps authored in `en.json` then
  translated to conversational Taglish (`tl.json`) and Bisaya (`ceb.json`) per
  `CONVERSATIONAL_GUIDE.md`. Field *labels* should mirror the real portal's English labels
- (users see English on the real site) while the *instructions/callouts* are Taglish/Bisaya:  decide this convention explicitly (§9).
+ (users see English on the real site) while the *instructions/callouts* are Taglish/Bisaya: decide this convention explicitly (§9).
 - **Responsive:** browser-chrome mock collapses gracefully on mobile (stack screen above the
  steps rail); `mobile-app` chrome renders as a phone frame. Use existing flex/`card` patterns;
  no fixed pixel widths that overflow small screens.
