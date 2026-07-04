@@ -26,20 +26,20 @@ If building tools related to Holiday Pay, Final Pay, or 13th Month Pay, adhere t
 
 ### Holiday Pay Nuances
 - **Regular Holidays** (e.g., Christmas, Independence Day):
-  - Not worked: 100% pay (if present/on paid leave the day prior).
-  - Worked: 200% pay for the first 8 hours.
-  - Worked + Overtime: 260% hourly rate.
-  - Worked + Rest Day: 260% for the first 8 hours.
+ - Not worked: 100% pay (if present/on paid leave the day prior).
+ - Worked: 200% pay for the first 8 hours.
+ - Worked + Overtime: 260% hourly rate.
+ - Worked + Rest Day: 260% for the first 8 hours.
 - **Special Non-Working Holidays** (e.g., Ninoy Aquino Day):
-  - Not worked: "No work, no pay" (0%).
-  - Worked: 130% pay.
-  - Worked + Rest Day: 150% pay.
+ - Not worked: "No work, no pay" (0%).
+ - Worked: 130% pay.
+ - Worked + Rest Day: 150% pay.
 
 ## 4. Taxation: TRAIN Law (RA 10963) & EOPT Act (RA 11976)
 - **₱250k Exemption:** The first ₱250,000 of annual taxable income is exempt (₱20,833/month).
 - **8% Flat Income Tax Rate:** Applicable ONLY to Self-Employed Individuals/Professionals whose gross receipts/sales are below the ₱3,000,000 VAT threshold. 
-  - **Formula:** `(Gross Sales/Receipts - ₱250,000) * 8%`.
-  - If they opt for this, they do NOT pay percentage tax.
+ - **Formula:** `(Gross Sales/Receipts - ₱250,000) * 8%`.
+ - If they opt for this, they do NOT pay percentage tax.
 - **Ease of Paying Taxes (EOPT) Act 2024 Updates:** When dealing with business taxes or invoices, remember that the EOPT Act removed the distinction between "Official Receipts" (for services) and "Sales Invoices" (for goods). Everything is now just an "Invoice."
 
 ## 5. Mandatory Contributions (2026 Caps)
