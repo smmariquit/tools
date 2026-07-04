@@ -47,7 +47,7 @@ export default function CookieConsent() {
 					<strong
 						style={{ fontSize: "15px", display: "block", marginBottom: "6px" }}
 					>
-						 Cookies on PHTools
+						Cookies on PHTools
 					</strong>
 					<p
 						style={{
@@ -66,10 +66,10 @@ export default function CookieConsent() {
 					</p>
 				</div>
 				<button
+					type="button"
 					onClick={handleAccept}
+					className="btn-primary"
 					style={{
-						backgroundColor: "var(--primary)",
-						color: "white",
 						border: "none",
 						padding: "10px 24px",
 						borderRadius: "6px",
