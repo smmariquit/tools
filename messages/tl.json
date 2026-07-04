@@ -297,7 +297,7 @@
     "source": "Source",
     "rateSourceAria": "Source ng interest rate ng {bank} (magbubukas sa bagong tab)",
     "rateSourcesTitle": "Mga Source ng Interest Rate",
-    "rateSourcesNote": "Mga advertised base savings rate noong Hunyo 2026, galing sa official website ng bawat bangko. Madalas magbago ang rates at pwedeng iba ang promo o tiered rates — laging i-confirm sa official page ng bangko bago magdesisyon."
+    "rateSourcesNote": "Mga advertised base savings rate noong Hunyo 2026, galing sa official website ng bawat bangko. Madalas magbago ang rates at pwedeng iba ang promo o tiered rates: laging i-confirm sa official page ng bangko bago magdesisyon."
   },
   "PagibigMP2": {
     "title": "Calculator ng Pag-IBIG MP2 Dividend",
@@ -459,7 +459,7 @@
     "sourcePhilHealth": "PhilHealth - Para sa premium contribution schedules.",
     "sourcePagIbig": "Pag-IBIG Fund - Para sa regular savings, MP2, at housing loan rates.",
     "sourceDOLE": "Department of Labor and Employment (DOLE) - Para sa labor laws at mandatory pay rules.",
-    "disclaimer": "Estimate lang ito — i-verify pa rin sa lisensyadong propesyonal o sa opisyal na ahensya ng gobyerno."
+    "disclaimer": "Estimate lang ito: i-verify pa rin sa lisensyadong propesyonal o sa opisyal na ahensya ng gobyerno."
   },
   "GSISPension": {
     "title": "Calculator ng GSIS Pension",
@@ -589,9 +589,9 @@
     "subtitle": "Kwentahin ang eksaktong yearly benefits ng DOST scholarship mo: living allowance, book allowance, tuition subsidy, at thesis grant.",
     "inputDetails": "Detalye ng Scholarship",
     "schoolTypeLabel": "Anong Klaseng School?",
-    "schoolSUC": "State University (SUC) — Libre ang Tuition",
-    "schoolPrivate": "Private HEI — May Tuition Subsidy",
-    "schoolPrivateNoTuition": "Private HEI — May Ibang Tuition Scholarship",
+    "schoolSUC": "State University (SUC): Libre ang Tuition",
+    "schoolPrivate": "Private HEI: May Tuition Subsidy",
+    "schoolPrivateNoTuition": "Private HEI: May Ibang Tuition Scholarship",
     "yearLabel": "Antas ng Taon",
     "isFinalYearLabel": "Final/Thesis year mo na ba ito?",
     "semLabel": "Ilang Semester Per Year?",
@@ -1142,8 +1142,8 @@
     "inputTitle": "Buwanang Sahod",
     "salaryLabel": "Basic na Buwanang Sahod (PHP)",
     "salaryHint": "Ilagay ang basic pay mo, hindi kasama ang allowances at overtime.",
-    "belowFloorWarning": "Mababa sa ₱10,000 floor — minimum premium na ₱500 ang ilalapat",
-    "aboveCeilingWarning": "Lampas sa ₱100,000 ceiling — maximum premium na ₱5,000 ang ilalapat",
+    "belowFloorWarning": "Mababa sa ₱10,000 floor: minimum premium na ₱500 ang ilalapat",
+    "aboveCeilingWarning": "Lampas sa ₱100,000 ceiling: maximum premium na ₱5,000 ang ilalapat",
     "breakdownTitle": "Buwanang Breakdown ng Contribution",
     "totalPremium": "Total na Premium (5%)",
     "employerShare": "Share ng Employer (50%)",
@@ -1177,9 +1177,9 @@
     "salaryLabel": "Basic na Buwanang Sahod (PHP)",
     "salaryHint": "Ilagay ang basic pay mo, hindi kasama ang allowances at overtime.",
     "minTipTitle": "Minimum Contribution na Ilalapat",
-    "minTipBody": "Mababa sa MSC floor — minimum MSC na ₱5,000 ang ilalapat",
+    "minTipBody": "Mababa sa MSC floor: minimum MSC na ₱5,000 ang ilalapat",
     "maxTipTitle": "Naabot na ang Maximum Contribution",
-    "maxTipBody": "Lampas sa MSC ceiling — maximum MSC na ₱35,000 ang ilalapat",
+    "maxTipBody": "Lampas sa MSC ceiling: maximum MSC na ₱35,000 ang ilalapat",
     "breakdownTitle": "Breakdown ng Contribution",
     "mscLabel": "Buwanang Salary Credit (MSC)",
     "mscCapNote": "* Ayon sa batas, ang maximum MSC ay naka-cap sa ₱35,000.",
@@ -1234,7 +1234,7 @@
     "salaryLabel": "Basic na Buwanang Sahod (PHP)",
     "salaryHint": "Ilagay ang basic pay mo, hindi kasama ang allowances at overtime.",
     "maxTipTitle": "Naabot na ang Max Contribution",
-    "maxTipBody": "Lampas sa MFS ceiling — ang regular contributions ay naka-cap sa ₱10,000 basis (₱200 max)",
+    "maxTipBody": "Lampas sa MFS ceiling: ang regular contributions ay naka-cap sa ₱10,000 basis (₱200 max)",
     "employeeShare": "Share ng Empleyado (Ikaw ang nagbabayad)",
     "employerShare": "Share ng Employer",
     "mp2Title": "Boluntaryong MP2 Savings",
@@ -1304,7 +1304,7 @@
   },
   "Holidays": {
     "pickLabel": "Pumili ng 2026 holiday",
-    "pickPlaceholder": "— Pumili ng 2026 holiday (o piliin ang type sa baba) —",
+    "pickPlaceholder": "— Pumili ng 2026 holiday (o piliin ang type sa baba): ",
     "approximate": "(tantya)",
     "sourceNote": "Mga petsa ng 2026 base sa Presidential Proclamation No. 1006 (s. 2025).",
     "names": {
@@ -1544,7 +1544,7 @@
     "distanceLabel": "Kabuuang Distansya (Kilometro)",
     "distanceHint": "Hal., Manila papuntang Baguio ay humigit-kumulang 250 km.",
     "vehicleTypeLabel": "Pumili ng Common Vehicle Type",
-    "vehicleCustom": "-- Custom Efficiency / Manual na Paglagay --",
+    "vehicleCustom": ", Custom Efficiency / Manual na Paglagay, ",
     "vehicleMotorcycle": "Motorsiklo (150cc) - ~25 km/L",
     "vehicleHatchback": "Maliit na Hatchback (Wigo, Brio) - ~15 km/L",
     "vehicleSedan": "Compact na Sedan (Vios, City) - ~12 km/L",
@@ -1651,7 +1651,7 @@
     "providerCustom": "Custom / Iba pa",
     "rateLabel": "Halaga (₱/kWh):",
     "remove": "✕ Alisin",
-    "loadCommon": "-- Pumili ng Common Appliance --",
+    "loadCommon": ", Pumili ng Common Appliance, ",
     "watts": "Watts",
     "hrsPerDay": "Oras/Araw",
     "daysPerMonth": "Araw/Buwan",
@@ -1665,7 +1665,7 @@
     "formula": "(Watts / 1000) × Oras × Araw × Rate",
     "tip1": "Ang mga aircon ang kadalasang pinakamalaki sa kuryente mo. Pumili ng inverter type na nakakatipid hanggang 40% ng enerhiya.",
     "tip2": "Hindi palaging peak wattage ang gamit ng inverter compressors. Ang 1000W inverter AC ay maaaring mag-average ng 500W-600W na lang kapag malamig na ang kwarto.",
-    "tip3": "Ang rate mo kada kWh ay depende sa distribution utility mo, hindi sa iisang national na presyo. Ang Meralco (NCR) ay nasa ₱14.33/kWh habang ang BENECO (Baguio) ay malapit sa ₱10/kWh — sa 300 kWh, mahigit ₱1,000 ang diperensya kada buwan. Piliin ang provider mo sa itaas, tapos i-adjust gamit ang eksaktong rate sa pinakabagong bill mo.",
+    "tip3": "Ang rate mo kada kWh ay depende sa distribution utility mo, hindi sa iisang national na presyo. Ang Meralco (NCR) ay nasa ₱14.33/kWh habang ang BENECO (Baguio) ay malapit sa ₱10/kWh: sa 300 kWh, mahigit ₱1,000 ang diperensya kada buwan. Piliin ang provider mo sa itaas, tapos i-adjust gamit ang eksaktong rate sa pinakabagong bill mo.",
     "nameCustom": "Custom na Appliance",
     "nameAirconNonInverter": "1.0 HP Non-Inverter na Aircon",
     "nameAirconInverter": "1.0 HP Inverter na Aircon",
@@ -1909,7 +1909,7 @@
     "dueDateLabel": "Petsa ng Pagbayad (Due Date)",
     "generatedDocument": "Ginawang Dokumento",
     "offlineSecure": "Offline / Ligtas",
-    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
+    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n___________________________\n{borrower} (Borrower)\n\n___________________________\n{lender} (Lender)\n"
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Generator ng Digital Ticketing QR",

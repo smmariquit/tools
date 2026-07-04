@@ -124,7 +124,7 @@ export default function AccessibilityPage() {
 				}}
 			>
 				<Crayon idx={0} color="var(--primary)" w={150} h={120} vb="0 0 170 120">
-					{/* "everyone" — three friends of different heights on the ground */}
+					{/* "everyone": three friends of different heights on the ground */}
 					<line x1={18} y1={108} x2={152} y2={108} />
 					<Person cx={45} cy={46} r={9} />
 					<Person cx={85} cy={34} r={11} />
@@ -224,7 +224,11 @@ export default function AccessibilityPage() {
 						<Crayon idx={2} color={C_VIOLET}>
 							{/* contrast disc: left half inked, right half empty */}
 							<circle cx={70} cy={55} r={28} />
-							<path d="M70 27 a28 28 0 0 0 0 56 z" fill={C_VIOLET} stroke="none" />
+							<path
+								d="M70 27 a28 28 0 0 0 0 56 z"
+								fill={C_VIOLET}
+								stroke="none"
+							/>
 							{/* shine marks */}
 							<path d="M104 28 l0 9 M99.5 32.5 l9 0" />
 							<path d="M34 84 l0 8 M30 88 l8 0" />

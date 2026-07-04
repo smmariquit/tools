@@ -4,7 +4,7 @@
     "subtitle": "Mga saktong calculator, generator, ug uban pang utilities nga gihimo gyud para sa Pilipinas.",
     "worksOffline": "Mogana Offline",
     "heroEyebrow": "para sa mga Pinoy ✦",
-    "searchNote": "psst — sulayi ang \"income tax\" o \"sss\"",
+    "searchNote": "psst: sulayi ang \"income tax\" o \"sss\"",
     "paginationPrev": "Miagi",
     "paginationNext": "Sunod",
     "paginationLabel": "Pagination sa mga tool",
@@ -615,7 +615,7 @@
     "source": "Source",
     "rateSourceAria": "Source sa interest rate sa {bank} (mo-abli sa bag-ong tab)",
     "rateSourcesTitle": "Mga Source sa Interest Rate",
-    "rateSourcesNote": "Mga advertised base savings rate kaniadtong Hunyo 2026, gikan sa official website sa matag bangko. Kanunay mausab ang rates ug mahimong lahi ang promo o tiered rates — kanunay i-confirm sa official page sa bangko sa dili pa modesisyon."
+    "rateSourcesNote": "Mga advertised base savings rate kaniadtong Hunyo 2026, gikan sa official website sa matag bangko. Kanunay mausab ang rates ug mahimong lahi ang promo o tiered rates: kanunay i-confirm sa official page sa bangko sa dili pa modesisyon."
   },
   "PagibigMP2": {
     "title": "Calculator sa Pag-IBIG MP2 Dividend",
@@ -777,7 +777,7 @@
     "sourcePhilHealth": "PhilHealth - Para sa premium contribution schedules.",
     "sourcePagIbig": "Pag-IBIG Fund - Para sa regular savings, MP2, ug housing loan rates.",
     "sourceDOLE": "Department of Labor and Employment (DOLE) - Para sa labor laws ug mandatory pay rules.",
-    "disclaimer": "Banabana ra ni — i-verify gihapon sa lisensyadong propesyonal o sa opisyal nga ahensya sa gobyerno."
+    "disclaimer": "Banabana ra ni: i-verify gihapon sa lisensyadong propesyonal o sa opisyal nga ahensya sa gobyerno."
   },
   "GSISPension": {
     "title": "Calculator sa GSIS Pension",
@@ -907,9 +907,9 @@
     "subtitle": "Kwentaha ang eksaktong yearly benefits sa imong DOST scholarship: living allowance, book allowance, tuition subsidy, ug thesis grant.",
     "inputDetails": "Detalye sa Scholarship",
     "schoolTypeLabel": "Unsang Klase nga Eskwelahan?",
-    "schoolSUC": "State University (SUC) — Libre ang Tuition",
-    "schoolPrivate": "Private HEI — Naay Tuition Subsidy",
-    "schoolPrivateNoTuition": "Private HEI — Naay Laing Tuition Scholarship",
+    "schoolSUC": "State University (SUC): Libre ang Tuition",
+    "schoolPrivate": "Private HEI: Naay Tuition Subsidy",
+    "schoolPrivateNoTuition": "Private HEI: Naay Laing Tuition Scholarship",
     "yearLabel": "Lebel sa Tuig",
     "isFinalYearLabel": "Final/Thesis year na ba nimo ni?",
     "semLabel": "Pila ka Semester Kada Tuig?",
@@ -1142,8 +1142,8 @@
     "inputTitle": "Binulan nga Suweldo",
     "salaryLabel": "Basic nga Binulan nga Suweldo (PHP)",
     "salaryHint": "Isulod ang imong basic pay, dili apil ang allowances ug overtime.",
-    "belowFloorWarning": "Ubos sa ₱10,000 floor — minimum premium nga ₱500 ang i-apply",
-    "aboveCeilingWarning": "Labaw sa ₱100,000 ceiling — maximum premium nga ₱5,000 ang i-apply",
+    "belowFloorWarning": "Ubos sa ₱10,000 floor: minimum premium nga ₱500 ang i-apply",
+    "aboveCeilingWarning": "Labaw sa ₱100,000 ceiling: maximum premium nga ₱5,000 ang i-apply",
     "breakdownTitle": "Binulan nga Breakdown sa Contribution",
     "totalPremium": "Total nga Premium (5%)",
     "employerShare": "Share sa Employer (50%)",
@@ -1177,9 +1177,9 @@
     "salaryLabel": "Basic nga Binulan nga Suweldo (PHP)",
     "salaryHint": "Isulod ang imong basic pay, dili apil ang allowances ug overtime.",
     "minTipTitle": "Minimum Contribution nga I-apply",
-    "minTipBody": "Ubos sa MSC floor — minimum MSC nga ₱5,000 ang i-apply",
+    "minTipBody": "Ubos sa MSC floor: minimum MSC nga ₱5,000 ang i-apply",
     "maxTipTitle": "Naabot na ang Maximum Contribution",
-    "maxTipBody": "Labaw sa MSC ceiling — maximum MSC nga ₱35,000 ang i-apply",
+    "maxTipBody": "Labaw sa MSC ceiling: maximum MSC nga ₱35,000 ang i-apply",
     "breakdownTitle": "Breakdown sa Contribution",
     "mscLabel": "Monthly Salary Credit (MSC)",
     "mscCapNote": "* Sumala sa balaod, ang maximum MSC naka-cap sa ₱35,000.",
@@ -1234,7 +1234,7 @@
     "salaryLabel": "Basic nga Binulan nga Sweldo (PHP)",
     "salaryHint": "Isulod ang imong basic pay, dili apil ang allowances ug overtime.",
     "maxTipTitle": "Naabot na ang Max Contribution",
-    "maxTipBody": "Labaw sa MFS ceiling — ang regular contributions naka-cap sa ₱10,000 basis (₱200 max)",
+    "maxTipBody": "Labaw sa MFS ceiling: ang regular contributions naka-cap sa ₱10,000 basis (₱200 max)",
     "employeeShare": "Share sa Empleyado (Ikaw ang mobayad)",
     "employerShare": "Share sa Employer",
     "mp2Title": "MP2 Voluntary Savings",
@@ -1304,7 +1304,7 @@
   },
   "Holidays": {
     "pickLabel": "Pagpili og 2026 holiday",
-    "pickPlaceholder": "— Pagpili og 2026 holiday (o pilia ang type sa ubos) —",
+    "pickPlaceholder": "— Pagpili og 2026 holiday (o pilia ang type sa ubos): ",
     "approximate": "(banabana)",
     "sourceNote": "Mga petsa sa 2026 base sa Presidential Proclamation No. 1006 (s. 2025).",
     "names": {
@@ -1544,7 +1544,7 @@
     "distanceLabel": "Tibuok Gilay-on (Kilometro)",
     "distanceHint": "Pananglitan, ang Manila padulong Baguio mga 250 km.",
     "vehicleTypeLabel": "Pagpili og Common Vehicle Type",
-    "vehicleCustom": "-- Custom Efficiency / Manwal nga Pagbutang --",
+    "vehicleCustom": ", Custom Efficiency / Manwal nga Pagbutang, ",
     "vehicleMotorcycle": "Motorsiklo (150cc) - ~25 km/L",
     "vehicleHatchback": "Gamay nga Hatchback (Wigo, Brio) - ~15 km/L",
     "vehicleSedan": "Compact Sedan (Vios, City) - ~12 km/L",
@@ -1651,7 +1651,7 @@
     "providerCustom": "Custom / Uban pa",
     "rateLabel": "Rate (₱/kWh):",
     "remove": "✕ Kuhaa",
-    "loadCommon": "-- Pagpili og Common Appliance --",
+    "loadCommon": ", Pagpili og Common Appliance, ",
     "watts": "Watts",
     "hrsPerDay": "Oras/Adlaw",
     "daysPerMonth": "Adlaw/Bulan",
@@ -1665,7 +1665,7 @@
     "formula": "(Watts / 1000) × Oras × Adlaw × Rate",
     "tip1": "Ang mga aircon kasagaran ang pinakadako sa imong kuryente. Pagpili og inverter type nga makatipig hangtod 40% sa enerhiya.",
     "tip2": "Dili kanunay peak wattage ang gamit sa inverter compressors. Ang 1000W inverter AC mahimong mag-average og 500W-600W na lang kung bugnaw na ang kwarto.",
-    "tip3": "Ang imong rate kada kWh nagdepende sa imong distribution utility, dili sa usa ka national nga presyo. Ang Meralco (NCR) naa sa ₱14.33/kWh samtang ang BENECO (Baguio) duol sa ₱10/kWh — sa 300 kWh, kapin ₱1,000 ang kalainan kada bulan. Pilia ang imong provider sa ibabaw, dayon i-adjust gamit ang eksaktong rate sa imong pinakabag-ong bill.",
+    "tip3": "Ang imong rate kada kWh nagdepende sa imong distribution utility, dili sa usa ka national nga presyo. Ang Meralco (NCR) naa sa ₱14.33/kWh samtang ang BENECO (Baguio) duol sa ₱10/kWh: sa 300 kWh, kapin ₱1,000 ang kalainan kada bulan. Pilia ang imong provider sa ibabaw, dayon i-adjust gamit ang eksaktong rate sa imong pinakabag-ong bill.",
     "nameCustom": "Custom nga Appliance",
     "nameAirconNonInverter": "1.0 HP Non-Inverter Aircon",
     "nameAirconInverter": "1.0 HP Inverter Aircon",
@@ -1909,7 +1909,7 @@
     "dueDateLabel": "Petsa sa Pagbayad (Due Date)",
     "generatedDocument": "Gihimong Dokumento",
     "offlineSecure": "Offline / Secure",
-    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
+    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n___________________________\n{borrower} (Borrower)\n\n___________________________\n{lender} (Lender)\n"
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Generator sa Digital Ticketing QR",

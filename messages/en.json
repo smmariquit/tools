@@ -4,7 +4,7 @@
     "subtitle": "Accurate calculators, generators, and utilities designed specifically for the Philippines.",
     "worksOffline": "Works Offline",
     "heroEyebrow": "made for Pinoys, by a Pinoy ✦",
-    "searchNote": "psst — try \"income tax\" or \"sss\"",
+    "searchNote": "psst: try \"income tax\" or \"sss\"",
     "paginationPrev": "Previous",
     "paginationNext": "Next",
     "paginationLabel": "Tools pagination",
@@ -297,7 +297,7 @@
     "source": "Source",
     "rateSourceAria": "{bank} interest rate source (opens in new tab)",
     "rateSourcesTitle": "Interest Rate Sources",
-    "rateSourcesNote": "Advertised base savings rates as of June 2026, taken from each bank's official website. Rates change often and promo or tiered rates may differ — always confirm on the bank's official page before deciding."
+    "rateSourcesNote": "Advertised base savings rates as of June 2026, taken from each bank's official website. Rates change often and promo or tiered rates may differ: always confirm on the bank's official page before deciding."
   },
   "PagibigMP2": {
     "title": "Pag-IBIG MP2 Dividend Calculator",
@@ -448,7 +448,7 @@
   },
   "ToolFooter": {
     "readGuideTitle": "Read the Full Guide",
-    "readGuideDesc": "Want to know the exact formula behind this calculator? Check out our comprehensive, human-written guide that explains the law, computations, and exact rules.",
+    "readGuideDesc": "Want to know the exact formula behind this calculator? Check out our full, human-written guide that explains the law, computations, and exact rules.",
     "readGuideBtn": "Read the Guide →",
     "relatedToolsTitle": "Related Tools",
     "aboutToolTitle": "About This Tool & Methodology",
@@ -459,7 +459,7 @@
     "sourcePhilHealth": "PhilHealth - For premium contribution schedules.",
     "sourcePagIbig": "Pag-IBIG Fund - For regular savings, MP2, and housing loan rates.",
     "sourceDOLE": "Department of Labor and Employment (DOLE) - For labor laws and mandatory pay rules.",
-    "disclaimer": "Estimates only — always verify with a licensed professional or the official government agency."
+    "disclaimer": "Estimates only: always verify with a licensed professional or the official government agency."
   },
   "GSISPension": {
     "title": "GSIS Pension Calculator",
@@ -589,9 +589,9 @@
     "subtitle": "Calculate your exact yearly DOST scholarship benefits: living allowance, book allowance, tuition subsidy, and thesis grant.",
     "inputDetails": "Scholarship Details",
     "schoolTypeLabel": "Type of School",
-    "schoolSUC": "State University (SUC) — Free Tuition",
-    "schoolPrivate": "Private HEI — With Tuition Subsidy",
-    "schoolPrivateNoTuition": "Private HEI — Has Separate Tuition Scholarship",
+    "schoolSUC": "State University (SUC): Free Tuition",
+    "schoolPrivate": "Private HEI: With Tuition Subsidy",
+    "schoolPrivateNoTuition": "Private HEI: Has Separate Tuition Scholarship",
     "yearLabel": "Year Level",
     "isFinalYearLabel": "Is this your final/thesis year?",
     "semLabel": "Semesters Per Year",
@@ -1142,8 +1142,8 @@
     "inputTitle": "Monthly Salary",
     "salaryLabel": "Basic Monthly Salary (PHP)",
     "salaryHint": "Input your basic pay excluding allowances and overtime.",
-    "belowFloorWarning": "Below ₱10,000 floor — minimum premium of ₱500 applies",
-    "aboveCeilingWarning": "Above ₱100,000 ceiling — maximum premium of ₱5,000 applies",
+    "belowFloorWarning": "Below ₱10,000 floor: minimum premium of ₱500 applies",
+    "aboveCeilingWarning": "Above ₱100,000 ceiling: maximum premium of ₱5,000 applies",
     "breakdownTitle": "Monthly Contribution Breakdown",
     "totalPremium": "Total Premium (5%)",
     "employerShare": "Employer Share (50%)",
@@ -1177,9 +1177,9 @@
     "salaryLabel": "Basic Monthly Salary (PHP)",
     "salaryHint": "Input your basic pay excluding allowances and overtime.",
     "minTipTitle": "Minimum Contribution Applied",
-    "minTipBody": "Below MSC floor — minimum MSC of ₱5,000 applies",
+    "minTipBody": "Below MSC floor: minimum MSC of ₱5,000 applies",
     "maxTipTitle": "Maximum Contribution Reached",
-    "maxTipBody": "Above MSC ceiling — maximum MSC of ₱35,000 applies",
+    "maxTipBody": "Above MSC ceiling: maximum MSC of ₱35,000 applies",
     "breakdownTitle": "Contribution Breakdown",
     "mscLabel": "Monthly Salary Credit (MSC)",
     "mscCapNote": "* By law, the maximum MSC is capped at ₱35,000.",
@@ -1234,7 +1234,7 @@
     "salaryLabel": "Basic Monthly Salary (PHP)",
     "salaryHint": "Input your basic pay excluding allowances and overtime.",
     "maxTipTitle": "Max Contribution Reached",
-    "maxTipBody": "Above MFS ceiling — regular contributions are capped at ₱10,000 basis (₱200 max)",
+    "maxTipBody": "Above MFS ceiling: regular contributions are capped at ₱10,000 basis (₱200 max)",
     "employeeShare": "Employee Share (You pay)",
     "employerShare": "Employer Share",
     "mp2Title": "MP2 Voluntary Savings",
@@ -1304,7 +1304,7 @@
   },
   "Holidays": {
     "pickLabel": "Quick-pick a 2026 holiday",
-    "pickPlaceholder": "— Choose a 2026 holiday (or set type below) —",
+    "pickPlaceholder": "— Choose a 2026 holiday (or set type below): ",
     "approximate": "(estimated)",
     "sourceNote": "2026 dates per Presidential Proclamation No. 1006 (s. 2025).",
     "names": {
@@ -1544,7 +1544,7 @@
     "distanceLabel": "Total Distance (Kilometers)",
     "distanceHint": "E.g., Manila to Baguio is approx 250 km.",
     "vehicleTypeLabel": "Select Common Vehicle Type",
-    "vehicleCustom": "-- Custom Efficiency / Enter Manually --",
+    "vehicleCustom": ", Custom Efficiency / Enter Manually, ",
     "vehicleMotorcycle": "Motorcycle (150cc) - ~25 km/L",
     "vehicleHatchback": "Small Hatchback (Wigo, Brio) - ~15 km/L",
     "vehicleSedan": "Compact Sedan (Vios, City) - ~12 km/L",
@@ -1651,7 +1651,7 @@
     "providerCustom": "Custom / Other",
     "rateLabel": "Rate (₱/kWh):",
     "remove": "✕ Remove",
-    "loadCommon": "-- Load Common Appliance --",
+    "loadCommon": ", Load Common Appliance, ",
     "watts": "Watts",
     "hrsPerDay": "Hrs/Day",
     "daysPerMonth": "Days/Mo",
@@ -1665,7 +1665,7 @@
     "formula": "(Watts / 1000) × Hours × Days × Rate",
     "tip1": "Air conditioners are usually the biggest contributor to your electric bill. Look for inverter types which save up to 40% energy.",
     "tip2": "Inverter compressors do not use their peak wattage all the time. A 1000W inverter AC may average only 500W-600W once the room is cool.",
-    "tip3": "Your per-kWh rate depends on your distribution utility, not a single national price. Meralco (NCR) runs around ₱14.33/kWh while BENECO (Baguio) is closer to ₱10/kWh — for 300 kWh that is a difference of over ₱1,000 a month. Pick your provider above, then fine-tune using the exact rate on your latest bill.",
+    "tip3": "Your per-kWh rate depends on your distribution utility, not a single national price. Meralco (NCR) runs around ₱14.33/kWh while BENECO (Baguio) is closer to ₱10/kWh: for 300 kWh that is a difference of over ₱1,000 a month. Pick your provider above, then fine-tune using the exact rate on your latest bill.",
     "nameCustom": "Custom Appliance",
     "nameAirconNonInverter": "1.0 HP Non-Inverter Aircon",
     "nameAirconInverter": "1.0 HP Inverter Aircon",
@@ -1830,7 +1830,7 @@
   },
   "ShippingLogistics": {
     "metaTitle": "Local Shipping & Logistics Rate Estimator | Philippines",
-    "metaDescription": "Calculate standard delivery and logistics costs for local MSME e-commerce utilizing standard regional matrices.",
+    "metaDescription": "Calculate standard delivery and logistics costs for local MSME e-commerce using standard regional matrices.",
     "title": "Local Shipping & Logistics Estimator",
     "subtitle": "Estimate freight and Cash-On-Delivery (COD) fees for MSME e-commerce shipments.",
     "shipmentRoute": "Shipment Route",
@@ -1909,7 +1909,7 @@
     "dueDateLabel": "Maturity / Due Date",
     "generatedDocument": "Generated Document",
     "offlineSecure": "Offline / Secure",
-    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n\n___________________________\n{borrower} (Borrower)\n\n\n___________________________\n{lender} (Lender)\n"
+    "template": "PROMISSORY NOTE\n\nAmount: {amount}\nDate: {date}\nLocation: {address}\n\nFOR VALUE RECEIVED, I, {borrower} (the \"Borrower\"), promise to pay {lender} (the \"Lender\"), the principal sum of {amount}, in Philippine currency.\n\nThis note shall be payable in full on or before {dueDate}. In the event of default in the payment of this note, the Borrower agrees to pay all reasonable costs of collection, including attorney''s fees.\n\nIN WITNESS WHEREOF, the Borrower has executed this Promissory Note on the date and place first above written.\n\n___________________________\n{borrower} (Borrower)\n\n___________________________\n{lender} (Lender)\n"
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Digital Ticketing QR Generator",
