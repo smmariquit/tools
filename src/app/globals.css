@@ -88,6 +88,16 @@ a:hover {
 	padding: 24px;
 }
 
+[data-theme="dark"] .btn-primary {
+	background-color: var(--primary);
+	color: #121212;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+	background-color: var(--primary-hover);
+	color: #121212;
+}
+
 .btn-primary {
 	background-color: var(--primary);
 	color: white;
