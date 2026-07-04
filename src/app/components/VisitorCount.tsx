@@ -79,13 +79,13 @@ export default function VisitorCount({
 					display: "inline-flex",
 					alignItems: "center",
 					gap: "8px",
-					backgroundColor: "rgba(214, 51, 108, 0.08)",
-					color: "#9f1239",
+					backgroundColor: "#fce7f3",
+					color: "#831843",
 					padding: "8px 16px",
 					borderRadius: "6px",
 					fontSize: "14px",
 					fontWeight: 600,
-					border: "1px solid rgba(214, 51, 108, 0.18)",
+					border: "1px solid #f9a8d4",
 					boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
 				}}
 			>
