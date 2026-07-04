@@ -289,8 +289,8 @@ h6 {
 	position: absolute;
 	top: -40px;
 	left: 0;
-	background: var(--primary);
-	color: white;
+	background: #0a2f6b;
+	color: #ffffff;
 	padding: 8px;
 	z-index: 100;
 	transition: top 0.2s;

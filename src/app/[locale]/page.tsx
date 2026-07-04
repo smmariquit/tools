@@ -114,7 +114,6 @@ export default function Home() {
 						href="https://github.com/smmariquit/tools"
 						target="_blank"
 						rel="noopener noreferrer"
-						aria-label="View PHTools source code on GitHub"
 						style={{
 							display: "inline-flex",
 							alignItems: "center",
