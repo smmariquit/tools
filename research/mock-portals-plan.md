@@ -9,95 +9,94 @@
 Reusable, hand-built **mock UI representations** of official PH portals (My.SSS, Virtual
 Pag-IBIG, BIR eFPS/ORUS, LTO ORUS, Meralco, BTr RTB, etc.), in the spirit of how
 sweldoph.com recreates UIs. Purpose: visually guide users on **how to navigate** the real
-portals step by step — "on the My.SSS dashboard, click **Contributions** → here's the
+portals step by step: "on the My.SSS dashboard, click **Contributions** → here's the
 screen → this field is your AMSC."
 
-These are **illustrative, hand-coded screens** — not scraped screenshots, not real logins,
+These are **illustrative, hand-coded screens**: not scraped screenshots, not real logins,
 no live data. They embed in MDX writeups (`src/content/blog/*.mdx`) and inside tool pages.
 
 ### Why this is worth doing
-- The biggest user friction isn't the math (our calculators handle that) — it's *finding the
-  number on the real portal*. A guided screen recreation closes that gap.
+- The biggest user friction isn't the math (our calculators handle that): it's *finding the
+ number on the real portal*. A guided screen recreation closes that gap.
 - It's defensibly original content (good for AdSense "thin content" avoidance) and reusable
-  across both blog guides and tool pages.
+ across both blog guides and tool pages.
 
 ## 2. How content embeds custom components today (investigation findings)
 
 MDX is rendered by `next-mdx-remote/rsc` in **two** places, each with its own `components`
 map that must be kept in sync:
 
-- `src/app/components/ToolArticle.tsx` — the on-tool article. Map includes `AdBanner`,
-  `ToolEmbed` (stubbed to `null` here), `MdxChart`, `YouTube`, `RegionalNote`, `img`, heading/
-  paragraph/list/table styling, and `...mdxTableComponents`.
-- `src/app/[locale]/blog/[slug]/page.tsx` — the standalone blog post. Same set, but
-  `ToolEmbed` is the real dynamic-import embedder.
+- `src/app/components/ToolArticle.tsx`: the on-tool article. Map includes `AdBanner`,
+ `ToolEmbed` (stubbed to `null` here), `MdxChart`, `YouTube`, `RegionalNote`, `img`, heading/
+ paragraph/list/table styling, and `...mdxTableComponents`.
+- `src/app/[locale]/blog/[slug]/page.tsx`: the standalone blog post. Same set, but
+ `ToolEmbed` is the real dynamic-import embedder.
 
 Key facts that shape the design:
-- **A new component must be registered in BOTH maps** (or a shared `mdxComponents` module —
-  see §10 nice-to-have) or it renders as literal text in one context.
+- **A new component must be registered in BOTH maps** (or a shared `mdxComponents` module:  see §10 nice-to-have) or it renders as literal text in one context.
 - **Client components work inside RSC MDX.** `MdxChart.tsx` is `"use client"` (uses recharts)
-  and is imported directly into both server renderers. So a `<PortalGuide>` can carry its own
-  interactivity (tab/step switching) as a client island.
+ and is imported directly into both server renderers. So a `<PortalGuide>` can carry its own
+ interactivity (tab/step switching) as a client island.
 - **Props are passed inline in MDX as JSX** (see the `<MdxChart data={[...]} series={[...]}/>`
-  pattern). A data-driven portal renderer fits this idiom cleanly.
+ pattern). A data-driven portal renderer fits this idiom cleanly.
 - `ToolEmbed.tsx` shows the established pattern for a **registry keyed by string** +
-  `next/dynamic` lazy import — the natural model for "one module per portal."
+ `next/dynamic` lazy import: the natural model for "one module per portal."
 
 ### Existing visual / illustration system
 - `src/app/components/illustrations/primitives.tsx` + `doodles.tsx`: a deliberately rough,
-  monoline **"Notion-doodle"** house style (single `currentColor` stroke, `feTurbulence`
-  roughen filter, 300×190 viewBox). `ToolIllustration.tsx` wraps it. This is *decorative*
-  and `aria-hidden`.
+ monoline **"Notion-doodle"** house style (single `currentColor` stroke, `feTurbulence`
+ roughen filter, 300×190 viewBox). `ToolIllustration.tsx` wraps it. This is *decorative*
+ and `aria-hidden`.
 - `doodle/` (`Squiggle`, `WavyDivider`, `ToolEyebrow`): small hand-drawn accents.
-- Design tokens in `src/app/globals.css`: `--primary #0d47a1`, `--surface-color`,
-  `--text-primary/secondary`, `--border-color`, `--input-border`, `--warning-*`,
-  `--shadow-sm/md`, `--border-radius`, plus a full dark-mode override block. Form primitives
-  `.card`, `.form-group`, `.form-label`, `.form-control` are already styled globally.
+- Design tokens in `src/app/globals.css`: `, primary #0d47a1`, `, surface-color`,
+ `, text-primary/secondary`, `, border-color`, `, input-border`, `, warning-*`,
+ `, shadow-sm/md`, `, border-radius`, plus a full dark-mode override block. Form primitives
+ `.card`, `.form-group`, `.form-label`, `.form-control` are already styled globally.
 
 ### i18n / a11y patterns in use
 - `next-intl`: `useTranslations("Namespace")` in client components, `getTranslations` in
-  server. Strings live in `messages/{en,tl,ceb}.json`; namespace matches component name
-  (e.g. existing `"Lgu"` namespace). `LguSelector.tsx` is the reference pattern (labels via
-  `t(...)`, `React.useId()` for stable label/control association).
+ server. Strings live in `messages/{en,tl,ceb}.json`; namespace matches component name
+ (e.g. existing `"Lgu"` namespace). `LguSelector.tsx` is the reference pattern (labels via
+ `t(...)`, `React.useId()` for stable label/control association).
 - A11y: real `<label htmlFor>`, focusable native controls, decorative SVG marked
-  `aria-hidden`, instructional SVG given `role="img"`. WCAG AAA contrast is enforced; no light
-  gray on white.
+ `aria-hidden`, instructional SVG given `role="img"`. WCAG AAA contrast is enforced; no light
+ gray on white.
 
 ## 3. Architecture options + recommendation
 
 We want one approach that scales to ~10 portals, stays cheap in author/token cost, and
 survives the real portals changing their UI a couple times a year.
 
-### Option A — Config/JSON-driven generic "portal screen" renderer ✅ RECOMMENDED
+### Option A: Config/JSON-driven generic "portal screen" renderer ✅ RECOMMENDED
 A single `<PortalGuide>` (+ small set of primitives) renders a portal screen from a **data
 object**: a faux browser/app chrome, a list of "fields" (label + sample value), "buttons"/nav
 items, and numbered **callout steps** that point at elements. One schema, many portals.
 
 - **Pros:** lowest marginal cost per portal (author data, not JSX/CSS); consistent look,
-  a11y, i18n, and legal banner for free; easy to restyle globally; a portal UI change = edit
-  a data file + bump an `asOf` date; testable (schema validation).
+ a11y, i18n, and legal banner for free; easy to restyle globally; a portal UI change = edit
+ a data file + bump an `asOf` date; testable (schema validation).
 - **Cons:** the generic renderer must cover enough layout primitives (form rows, nav rail,
-  tabs, table, dashboard cards) or some portals look generic; very bespoke screens may need an
-  "escape hatch."
-- **Token cost:** cheapest over 10 portals — the renderer is written once.
+ tabs, table, dashboard cards) or some portals look generic; very bespoke screens may need an
+ "escape hatch."
+- **Token cost:** cheapest over 10 portals: the renderer is written once.
 
-### Option B — Per-portal bespoke React components
+### Option B: Per-portal bespoke React components
 One hand-built component per portal (`MySssContributions.tsx`, etc.).
 
 - **Pros:** pixel-faithful; no schema constraints.
 - **Cons:** ~10× the code and ~10× the maintenance; styling/a11y/i18n/legal banner re-derived
-  each time and drift apart; highest token cost; every portal change is a code change + test +
-  review. Poor fit for the "reusable" goal.
+ each time and drift apart; highest token cost; every portal change is a code change + test +
+ review. Poor fit for the "reusable" goal.
 
-### Option C — Annotated static SVG / illustration
+### Option C: Annotated static SVG / illustration
 Extend the doodle system or hand-draw SVG mockups with numbered annotations.
 
 - **Pros:** matches existing hand-drawn brand; fully static; trivially `aria-hidden` +
-  caption.
+ caption.
 - **Cons:** **fails the core requirement** that SR users get *real text* (a guide that's an
-  image is useless to screen readers and weak for SEO); editing SVG paths per portal change is
-  painful; doesn't reuse form tokens. The doodle style also reads as "cute illustration," not
-  "this is what the screen looks like," which undercuts the navigational intent.
+ image is useless to screen readers and weak for SEO); editing SVG paths per portal change is
+ painful; doesn't reuse form tokens. The doodle style also reads as "cute illustration," not
+ "this is what the screen looks like," which undercuts the navigational intent.
 
 ### Recommendation
 **Option A (config-driven renderer)** as the backbone, with a **narrow Option-B escape hatch**:
@@ -107,7 +106,7 @@ This is hybrid **A + targeted B**, and it directly mirrors the existing `ToolEmb
 idiom and the `MdxChart` inline-data idiom the codebase already trusts.
 
 ### Visual style decision
-Use a **distinct "realistic-lite chrome" style**, NOT the Notion-doodle look — but built from
+Use a **distinct "realistic-lite chrome" style**, NOT the Notion-doodle look: but built from
 the **same design tokens** so it themes (light/dark) automatically. Rationale: the doodle
 style signals "illustration/decoration"; a guide screen needs to read as "this resembles the
 real screen." Keep it deliberately *generic/neutral* chrome (plain browser bar, neutral
@@ -168,19 +167,19 @@ type PortalGuideData = {
 
 ### Behavior
 - Renders faux chrome + screen body; each `Hotspot` shows a numbered badge on its target and a
-  matching numbered entry in a **steps list rendered as real, ordered text** beside/under the
-  screen (this is the SR + SEO payload).
+ matching numbered entry in a **steps list rendered as real, ordered text** beside/under the
+ screen (this is the SR + SEO payload).
 - On tool pages it can sit inside a `<div className="card">`; in MDX it self-wraps.
 - Optional `screen` prop to show one screen of a multi-screen flow; default shows all/steps
-  through them.
+ through them.
 - Interactivity is progressive: with JS, clicking a step focuses its hotspot; **without JS,
-  all steps and the screen are fully readable** (no information hidden behind interaction).
+ all steps and the screen are fully readable** (no information hidden behind interaction).
 
 ### Two embed contexts, one component
 - **MDX writeups:** authors drop `<PortalGuide id="..." />` near the relevant explanation.
 - **Tool pages (`Client.tsx`):** import `<PortalGuide>` directly (it's a client component) and
-  place it above/below the calculator, e.g. SSS contribution calc shows the My.SSS
-  Contributions screen so users know where their AMSC comes from.
+ place it above/below the calculator, e.g. SSS contribution calc shows the My.SSS
+ Contributions screen so users know where their AMSC comes from.
 
 ## 5. File structure
 
@@ -203,9 +202,9 @@ src/app/components/portal/
 
 - **One data module per portal**, each default-exporting a `PortalGuideData`.
 - `registry.ts` lazy-loads (`next/dynamic` or static import) so unused portals don't bloat any
-  one page bundle — same pattern as `ToolEmbed.tsx`.
+ one page bundle: same pattern as `ToolEmbed.tsx`.
 - Shared primitives (`PortalChrome`, `PortalField`, `PortalCalloutRail`, `LegalBanner`) keep
-  every portal consistent and cheap to add.
+ every portal consistent and cheap to add.
 
 ### Scaling note
 Adding portal #N = write `data/<portal>.ts` + register it + (optionally) a localized strings
@@ -215,61 +214,60 @@ block. No renderer changes in the common case.
 
 ### Authoring model: **data file per portal** (not inline MDX), referenced by id
 - Steps/screens live in `data/<portal>.ts`, authored once, reused by every writeup and tool
-  that references the id. Inline MDX data is allowed for one-off ad-hoc screens but is the
-  exception (it can't be reused and drifts).
+ that references the id. Inline MDX data is allowed for one-off ad-hoc screens but is the
+ exception (it can't be reused and drifts).
 - Why data-file-first: a portal flow (e.g. My.SSS → Contributions) is referenced from multiple
-  guides + the SSS tools; centralizing means one edit when the portal changes.
+ guides + the SSS tools; centralizing means one edit when the portal changes.
 
 ### Freshness discipline (mandatory per portal)
 - `asOf: "YYYY-MM-DD"` on every `PortalGuideData`, **rendered visibly** in the mock ("UI as of
-  Jun 2026 — the real portal may differ").
+ Jun 2026: the real portal may differ").
 - `officialUrl` (real portal link) + `sources[]` (where the flow was verified) required.
 - Treat `asOf` like the MDX `updatedAt`/`## Changelog` discipline already mandated in
-  `AGENTS.md`/`mdx-editing.mdc`: when a portal changes, update the data file and bump `asOf`.
+ `AGENTS.md`/`mdx-editing.mdc`: when a portal changes, update the data file and bump `asOf`.
 - Add a lightweight **staleness check** (a script/test that flags any portal whose `asOf` is
-  older than ~12 months) so guides don't silently rot. (Mirrors the existing `link-check`
-  CI + scripts under `scripts/`.)
+ older than ~12 months) so guides don't silently rot. (Mirrors the existing `link-check`
+ CI + scripts under `scripts/`.)
 
 ## 7. LEGAL / branding guardrails (call out explicitly)
 
-These are **the** gating constraints — get them wrong and it's a trademark/passing-off problem.
+These are **the** gating constraints: get them wrong and it's a trademark/passing-off problem.
 
 - **Always-on disclaimer.** `LegalBanner` renders on every mock, in the user's locale:
-  *"Unofficial illustrative recreation by PHTools. Not affiliated with, endorsed by, or
-  connected to [Agency]. The real portal may look different — always use the official site."*
-  Non-dismissible (or at minimum always present in the DOM for SR users + SEO).
+ *"Unofficial illustrative recreation by PHTools. Not affiliated with, endorsed by, or
+ connected to [Agency]. The real portal may look different: always use the official site."*
+ Non-dismissible (or at minimum always present in the DOM for SR users + SEO).
 - **No official logos, seals, coats of arms, or wordmark lockups.** Do not reproduce the SSS,
-  Pag-IBIG, BIR, LTO, DOLE, BTr, or Meralco logos/seals. Use a neutral generic placeholder or
-  the agency's *plain text name* only. (The PH government coat of arms / agency seals carry
-  separate legal protections — never render them.)
+ Pag-IBIG, BIR, LTO, DOLE, BTr, or Meralco logos/seals. Use a neutral generic placeholder or
+ the agency's *plain text name* only. (The PH government coat of arms / agency seals carry
+ separate legal protections: never render them.)
 - **Generic chrome, not pixel-perfect clone.** Deliberately stylized/neutral surfaces reduce
-  passing-off risk and make clear it's a sketch, not a screenshot.
+ passing-off risk and make clear it's a sketch, not a screenshot.
 - **No real data / no login affordances that look functional.** All values are obviously
-  illustrative ("example"); no fields that could be mistaken for a real login.
+ illustrative ("example"); no fields that could be mistaken for a real login.
 - **Link to the real portal** prominently (`officialUrl`) so users always reach the genuine
-  site.
+ site.
 - **No trademarks in URLs/titles implying affiliation.** Keep our routes/titles descriptive
-  ("How to find your AMSC on My.SSS"), not impersonating.
+ ("How to find your AMSC on My.SSS"), not impersonating.
 - **Decision to confirm with user:** whether to also add a short site-wide
-  `/disclaimer`-style note. (Open question §9.)
+ `/disclaimer`-style note. (Open question §9.)
 
 ## 8. Accessibility, i18n, responsive
 
 - **A11y (decorative-but-instructional):** the *instruction text* is real DOM text in an
-  ordered list (`PortalCalloutRail`), not baked into an image — this is the primary SR
-  experience. Numbered on-screen badges get `aria-label`s tying them to their step. Purely
-  decorative chrome flourishes are `aria-hidden`. Native focusable elements only; full keyboard
-  operability; visible focus; no info hidden behind hover/JS-only interaction. Maintain WCAG
-  AAA contrast (reuse tokens; no light gray on white).
+ ordered list (`PortalCalloutRail`), not baked into an image: this is the primary SR
+ experience. Numbered on-screen badges get `aria-label`s tying them to their step. Purely
+ decorative chrome flourishes are `aria-hidden`. Native focusable elements only; full keyboard
+ operability; visible focus; no info hidden behind hover/JS-only interaction. Maintain WCAG
+ AAA contrast (reuse tokens; no light gray on white).
 - **i18n:** namespace per portal component (e.g. `"PortalGuide"` shared chrome strings +
-  per-portal namespaces like `"PortalMySss"`); labels/values/steps authored in `en.json` then
-  translated to conversational Taglish (`tl.json`) and Bisaya (`ceb.json`) per
-  `CONVERSATIONAL_GUIDE.md`. Field *labels* should mirror the real portal's English labels
-  (users see English on the real site) while the *instructions/callouts* are Taglish/Bisaya —
-  decide this convention explicitly (§9).
+ per-portal namespaces like `"PortalMySss"`); labels/values/steps authored in `en.json` then
+ translated to conversational Taglish (`tl.json`) and Bisaya (`ceb.json`) per
+ `CONVERSATIONAL_GUIDE.md`. Field *labels* should mirror the real portal's English labels
+ (users see English on the real site) while the *instructions/callouts* are Taglish/Bisaya:  decide this convention explicitly (§9).
 - **Responsive:** browser-chrome mock collapses gracefully on mobile (stack screen above the
-  steps rail); `mobile-app` chrome renders as a phone frame. Use existing flex/`card` patterns;
-  no fixed pixel widths that overflow small screens.
+ steps rail); `mobile-app` chrome renders as a phone frame. Use existing flex/`card` patterns;
+ no fixed pixel widths that overflow small screens.
 
 ## 9. Portal → existing tool/writeup mapping
 
@@ -286,51 +284,51 @@ These are **the** gating constraints — get them wrong and it's a trademark/pas
 
 ## 10. Phased rollout
 
-### Phase 0 — Foundation (build once)
+### Phase 0: Foundation (build once)
 - `types.ts`, `PortalChrome`, `PortalField`, `PortalCalloutRail`, `LegalBanner`, `PortalGuide`,
-  `registry.ts`, register in **both** MDX maps. Add the `"PortalGuide"` i18n namespace.
+ `registry.ts`, register in **both** MDX maps. Add the `"PortalGuide"` i18n namespace.
 - **Nice-to-have refactor:** extract a single shared `mdxComponents` module imported by both
-  `ToolArticle.tsx` and `blog/[slug]/page.tsx` so future MDX components are registered once.
+ `ToolArticle.tsx` and `blog/[slug]/page.tsx` so future MDX components are registered once.
 - Vitest schema-shape test + an `asOf` staleness check script.
 - *Effort:* ~1.5–2.5 days (the renderer + primitives + plumbing are the bulk of total cost).
 
-### Phase 1 — Pilot 3 portals (highest user value)
-1. **My.SSS → Contributions** (find your AMSC) — feeds `sss-contribution-calculator` +
-   `sss-pension-calculator`; the AMSC "where do I find this number" question is our #1 gap.
-2. **Virtual Pag-IBIG → MP2 enrollment / dividends** — feeds `pagibig-mp2-calculator`;
-   high-intent, frequently asked "how do I open MP2."
-3. **BIR Form 2307 (creditable withholding)** — feeds `bir-withholding-tax-calculator` +
-   `upwork-freelance-tax-guide`; freelancers constantly struggle to read 2307.
+### Phase 1: Pilot 3 portals (highest user value)
+1. **My.SSS → Contributions** (find your AMSC): feeds `sss-contribution-calculator` +
+ `sss-pension-calculator`; the AMSC "where do I find this number" question is our #1 gap.
+2. **Virtual Pag-IBIG → MP2 enrollment / dividends**: feeds `pagibig-mp2-calculator`;
+ high-intent, frequently asked "how do I open MP2."
+3. **BIR Form 2307 (creditable withholding)**: feeds `bir-withholding-tax-calculator` +
+ `upwork-freelance-tax-guide`; freelancers constantly struggle to read 2307.
 - *Effort:* ~0.5–1 day per portal *after* Phase 0 (author data module + 3-language strings +
-  wire into 1 writeup + 1 tool + verify flow against the live portal). Pilot total ~2–3 days.
+ wire into 1 writeup + 1 tool + verify flow against the live portal). Pilot total ~2–3 days.
 
-### Phase 2 — Remaining portals
+### Phase 2: Remaining portals
 - LTO ORUS, DOLE WSMB, Meralco (+ appliance), Pag-IBIG Housing Affordability, BTr RTB /
-  digital banks, BIR eFPS/ORUS/2316. Roughly ~0.5–1 day each; batch by agency.
+ digital banks, BIR eFPS/ORUS/2316. Roughly ~0.5–1 day each; batch by agency.
 
 ## 11. Risks / open questions for the user
 
 1. **Visual fidelity vs. legal safety (biggest tradeoff).** How close to the real UI do we go?
-   Recommendation: *neutral/generic chrome* (clearly a recreation) over pixel-perfect. Confirm
-   you're comfortable trading fidelity for lower trademark risk.
+ Recommendation: *neutral/generic chrome* (clearly a recreation) over pixel-perfect. Confirm
+ you're comfortable trading fidelity for lower trademark risk.
 2. **Label language convention.** Mirror the real portal's *English* field labels (so the mock
-   matches what users actually see) while writing *callouts/instructions* in Taglish/Bisaya?
-   Or fully localize everything? Recommendation: English labels + localized instructions.
+ matches what users actually see) while writing *callouts/instructions* in Taglish/Bisaya?
+ Or fully localize everything? Recommendation: English labels + localized instructions.
 3. **Disclaimer placement.** Per-mock `LegalBanner` only, or also a site-wide
-   disclaimer/`/disclaimer` page? Recommendation: per-mock banner (always present) is the
-   minimum; site-wide page optional.
+ disclaimer/`/disclaimer` page? Recommendation: per-mock banner (always present) is the
+ minimum; site-wide page optional.
 4. **Maintenance burden acceptance.** ~10 portals × periodic UI drift = ongoing upkeep. The
-   `asOf` + staleness-check discipline mitigates but doesn't eliminate it. OK to commit to that?
+ `asOf` + staleness-check discipline mitigates but doesn't eliminate it. OK to commit to that?
 5. **Scope of interactivity.** Static numbered screens only, or clickable step-through "wizard"
-   walkthroughs? Recommendation: start static-with-progressive-focus (Phase 1), revisit
-   wizards later if engagement justifies it.
+ walkthroughs? Recommendation: start static-with-progressive-focus (Phase 1), revisit
+ wizards later if engagement justifies it.
 
 ## 12. Recommended decisions summary
 
 - **Architecture:** config/JSON-driven `<PortalGuide>` renderer (Option A) + a narrow custom-JSX
-  escape hatch; registry + per-portal data module, mirroring `ToolEmbed`/`MdxChart` idioms.
+ escape hatch; registry + per-portal data module, mirroring `ToolEmbed`/`MdxChart` idioms.
 - **Style:** distinct neutral "realistic-lite" chrome built from existing design tokens (themes
-  for dark mode); sparing doodle accents — NOT the full Notion-doodle look.
+ for dark mode); sparing doodle accents: NOT the full Notion-doodle look.
 - **Pilot:** My.SSS Contributions (AMSC), Virtual Pag-IBIG MP2, BIR Form 2307.
 - **Guardrails:** always-on unofficial-recreation banner, no logos/seals, link to official
-  portal, illustrative-only data, `asOf` + sources on every portal.
+ portal, illustrative-only data, `asOf` + sources on every portal.
