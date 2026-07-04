@@ -49,39 +49,39 @@ Output a single JSON array. Each institution is one object using **exactly** the
 
 ```json
 {
-  "id": "short-lowercase-slug",
-  "name": "Full official institution name",
-  "aliases": ["UP", "UPD", "common short names and acronyms"],
-  "scaleType": "QPI | GPA | GWA | percentage",
-  "scaleDirection": "lowIsBest | highIsBest",
-  "bestGrade": 1.0,
-  "publishesPercentageEquivalents": true,
-  "grades": [
-    {
-      "symbol": "1.00",
-      "points": 1.0,
-      "percentMin": 96,
-      "percentMax": 100,
-      "descriptor": "Excellent",
-      "passing": true
-    }
-  ],
-  "lowestPassingGrade": "3.00",
-  "failingGrades": ["5.00", "FA", "WF"],
-  "honors": {
-    "summaCumLaude": "1.000–1.200 (general undergraduate)",
-    "magnaCumLaude": "1.201–1.450",
-    "cumLaude": "1.451–1.750",
-    "honorableMention": null,
-    "deansList": "GWA ≥ 1.750 in the immediately preceding term"
-  },
-  "variesByProgram": true,
-  "variationNote": "Explain any per-college/per-program variation, what the headline values represent, and why any field is null.",
-  "sourceUrl": "https://official-domain/registrar/grades.pdf",
-  "honorsSourceUrl": "https://official-domain/handbook/honors.pdf",
-  "sourceName": "Office of the University Registrar — Grades (cite the exact document/policy number, e.g., PPS No. 1019 / Revised UP Code Art. 369)",
-  "asOf": "2024",
-  "notes": "Source document's effective year, what was verified, HTTP status you observed, any host quirks (e.g., 403-to-bots), and any conflicts/staleness."
+ "id": "short-lowercase-slug",
+ "name": "Full official institution name",
+ "aliases": ["UP", "UPD", "common short names and acronyms"],
+ "scaleType": "QPI | GPA | GWA | percentage",
+ "scaleDirection": "lowIsBest | highIsBest",
+ "bestGrade": 1.0,
+ "publishesPercentageEquivalents": true,
+ "grades": [
+ {
+ "symbol": "1.00",
+ "points": 1.0,
+ "percentMin": 96,
+ "percentMax": 100,
+ "descriptor": "Excellent",
+ "passing": true
+ }
+ ],
+ "lowestPassingGrade": "3.00",
+ "failingGrades": ["5.00", "FA", "WF"],
+ "honors": {
+ "summaCumLaude": "1.000–1.200 (general undergraduate)",
+ "magnaCumLaude": "1.201–1.450",
+ "cumLaude": "1.451–1.750",
+ "honorableMention": null,
+ "deansList": "GWA ≥ 1.750 in the immediately preceding term"
+ },
+ "variesByProgram": true,
+ "variationNote": "Explain any per-college/per-program variation, what the headline values represent, and why any field is null.",
+ "sourceUrl": "https://official-domain/registrar/grades.pdf",
+ "honorsSourceUrl": "https://official-domain/handbook/honors.pdf",
+ "sourceName": "Office of the University Registrar: Grades (cite the exact document/policy number, e.g., PPS No. 1019 / Revised UP Code Art. 369)",
+ "asOf": "2024",
+ "notes": "Source document's effective year, what was verified, HTTP status you observed, any host quirks (e.g., 403-to-bots), and any conflicts/staleness."
 }
 ```
 

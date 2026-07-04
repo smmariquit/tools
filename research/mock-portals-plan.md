@@ -16,7 +16,7 @@ These are **illustrative, hand-coded screens**: not scraped screenshots, not rea
 no live data. They embed in MDX writeups (`src/content/blog/*.mdx`) and inside tool pages.
 
 ### Why this is worth doing
-- The biggest user friction isn't the math (our calculators handle that): it's *finding the
+- Users already have the math; the hard part is *finding the
  number on the real portal*. A guided screen recreation closes that gap.
 - It's defensibly original content (good for AdSense "thin content" avoidance) and reusable
  across both blog guides and tool pages.
@@ -120,48 +120,48 @@ A client component (interactivity for step focus) driven by a typed data object.
 registered in both MDX maps.
 
 ```tsx
-// Conceptual shape — not final code.
+// Conceptual shape: not final code.
 type PortalChrome = "browser" | "mobile-app"; // faux address bar vs phone frame
 
 type FieldRow = {
-  id: string;
-  label: string;        // i18n-ready (already-translated string or message key)
-  value?: string;       // illustrative sample value, clearly fake (e.g. "₱1,560.00 (example)")
-  hint?: string;
-  highlight?: boolean;  // visually emphasize (e.g. the AMSC field)
+ id: string;
+ label: string; // i18n-ready (already-translated string or message key)
+ value?: string; // illustrative sample value, clearly fake (e.g. "₱1,560.00 (example)")
+ hint?: string;
+ highlight?: boolean; // visually emphasize (e.g. the AMSC field)
 };
 
 type NavItem = { id: string; label: string; active?: boolean };
 
 type Hotspot = {
-  step: number;         // numbered callout, drives the rail + the on-screen marker
-  targetId: string;     // refers to a FieldRow.id / NavItem.id / region id
-  title: string;
-  body: string;         // the actual instruction text (real text for SR users)
+ step: number; // numbered callout, drives the rail + the on-screen marker
+ targetId: string; // refers to a FieldRow.id / NavItem.id / region id
+ title: string;
+ body: string; // the actual instruction text (real text for SR users)
 };
 
 type PortalScreen = {
-  id: string;                 // e.g. "contributions"
-  title: string;              // screen name shown in chrome ("Contributions")
-  url: string;                // faux URL shown in address bar (display-only)
-  nav?: NavItem[];            // left rail / top nav of the mock
-  fields?: FieldRow[];        // form/detail rows
-  table?: { columns: string[]; rows: string[][] }; // optional data grid
-  hotspots: Hotspot[];        // numbered steps anchored to elements
+ id: string; // e.g. "contributions"
+ title: string; // screen name shown in chrome ("Contributions")
+ url: string; // faux URL shown in address bar (display-only)
+ nav?: NavItem[]; // left rail / top nav of the mock
+ fields?: FieldRow[]; // form/detail rows
+ table?: { columns: string[]; rows: string[][] }; // optional data grid
+ hotspots: Hotspot[]; // numbered steps anchored to elements
 };
 
 type PortalGuideData = {
-  portal: string;             // "My.SSS Member Portal"
-  chrome: PortalChrome;
-  officialUrl: string;        // real portal link (required, for the legal banner)
-  asOf: string;               // "2026-06-18" — when UI was last verified
-  sources: { label: string; href: string }[]; // where we verified the flow
-  screens: PortalScreen[];    // one or many screens (a flow)
+ portal: string; // "My.SSS Member Portal"
+ chrome: PortalChrome;
+ officialUrl: string; // real portal link (required, for the legal banner)
+ asOf: string; // "2026-06-18": when UI was last verified
+ sources: { label: string; href: string }[]; // where we verified the flow
+ screens: PortalScreen[]; // one or many screens (a flow)
 };
 
 // MDX usage (inline data) OR registry reference:
-// <PortalGuide id="my-sss-contributions" screen="contributions" />        // from registry
-// <PortalGuide data={ ...inline object... } />                            // ad-hoc
+// <PortalGuide id="my-sss-contributions" screen="contributions" /> // from registry
+// <PortalGuide data={ ...inline object... } /> // ad-hoc
 // <PortalGuide id="my-sss-contributions">{/* custom JSX escape hatch */}</PortalGuide>
 ```
 
@@ -185,19 +185,19 @@ type PortalGuideData = {
 
 ```
 src/app/components/portal/
-  PortalGuide.tsx            # the generic renderer (client component)
-  PortalChrome.tsx           # faux browser/app frame primitive
-  PortalField.tsx            # labeled field row primitive
-  PortalCalloutRail.tsx      # numbered steps list (the real-text SR payload)
-  LegalBanner.tsx            # "unofficial illustrative recreation" banner (§7)
-  registry.ts                # id -> data module map (mirrors ToolEmbed registry idiom)
-  types.ts                   # PortalGuideData etc.
-  data/
-    my-sss.ts                # one module per portal
-    virtual-pagibig.ts
-    bir-2307.ts
-    ...
-  __tests__/                 # schema/shape validation (Vitest)
+ PortalGuide.tsx # the generic renderer (client component)
+ PortalChrome.tsx # faux browser/app frame primitive
+ PortalField.tsx # labeled field row primitive
+ PortalCalloutRail.tsx # numbered steps list (the real-text SR payload)
+ LegalBanner.tsx # "unofficial illustrative recreation" banner (§7)
+ registry.ts # id -> data module map (mirrors ToolEmbed registry idiom)
+ types.ts # PortalGuideData etc.
+ data/
+ my-sss.ts # one module per portal
+ virtual-pagibig.ts
+ bir-2307.ts
+ ...
+ __tests__/ # schema/shape validation (Vitest)
 ```
 
 - **One data module per portal**, each default-exporting a `PortalGuideData`.
