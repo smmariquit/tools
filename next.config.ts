@@ -31,6 +31,26 @@ const nextConfig: NextConfig = {
 				destination: "/:locale/promissory-note-generator",
 				permanent: true,
 			},
+			{
+				source: "/privacy",
+				destination: "/en/privacy-policy",
+				permanent: false,
+			},
+			{
+				source: "/terms",
+				destination: "/en/terms-of-use",
+				permanent: false,
+			},
+			{
+				source: "/en/privacy",
+				destination: "/en/privacy-policy",
+				permanent: false,
+			},
+			{
+				source: "/en/terms",
+				destination: "/en/terms-of-use",
+				permanent: false,
+			},
 		];
 	},
 };
