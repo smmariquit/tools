@@ -116,7 +116,8 @@ export default function EcommerceFeeClient() {
 									className={`btn-secondary ${platform === "shopee" ? "active" : ""}`}
 									style={{
 										flex: 1,
-										backgroundColor: platform === "shopee" ? "#ff5722" : "",
+										backgroundColor:
+											platform === "shopee" ? "var(--warning-amber)" : "",
 										color: platform === "shopee" ? "white" : "",
 									}}
 									onClick={() => {
@@ -130,7 +131,8 @@ export default function EcommerceFeeClient() {
 									className={`btn-secondary ${platform === "lazada" ? "active" : ""}`}
 									style={{
 										flex: 1,
-										backgroundColor: platform === "lazada" ? "#0f136d" : "",
+										backgroundColor:
+											platform === "lazada" ? "var(--chart-2)" : "",
 										color: platform === "lazada" ? "white" : "",
 									}}
 									onClick={() => {
@@ -144,7 +146,8 @@ export default function EcommerceFeeClient() {
 									className={`btn-secondary ${platform === "tiktok" ? "active" : ""}`}
 									style={{
 										flex: 1,
-										backgroundColor: platform === "tiktok" ? "#000000" : "",
+										backgroundColor:
+											platform === "tiktok" ? "var(--text-primary)" : "",
 										color: platform === "tiktok" ? "white" : "",
 									}}
 									onClick={() => {
@@ -351,7 +354,7 @@ export default function EcommerceFeeClient() {
 							}}
 						>
 							<span>{t("netPayout")}</span>
-							<span style={{ color: "#1b5e20" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(netPayout)}
 							</span>
 						</div>
@@ -361,7 +364,7 @@ export default function EcommerceFeeClient() {
 								textAlign: "right",
 								marginTop: "8px",
 								fontSize: "14px",
-								color: profitMargin > 0 ? "#2e7d32" : "#b71c1c",
+								color: profitMargin > 0 ? "var(--success)" : "var(--danger)",
 							}}
 						>
 							{profitMargin > 0

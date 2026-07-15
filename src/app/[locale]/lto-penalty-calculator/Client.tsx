@@ -191,7 +191,8 @@ export default function LtoPenaltyClient() {
 							<span>{t("latePenaltyLabel")}</span>
 							<span
 								style={{
-									color: penalty > 0 ? "#b71c1c" : "var(--text-secondary)",
+									color:
+										penalty > 0 ? "var(--danger)" : "var(--text-secondary)",
 								}}
 							>
 								{penalty > 0 ? "+" : ""} {formatCurrency(penalty)}
@@ -235,7 +236,7 @@ export default function LtoPenaltyClient() {
 							}}
 						>
 							<span>{t("totalDueLabel")}</span>
-							<span style={{ color: "#1b5e20" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(totalDue)}
 							</span>
 						</div>

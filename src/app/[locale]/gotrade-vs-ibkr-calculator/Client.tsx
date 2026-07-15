@@ -128,14 +128,14 @@ export default function GotradeIbkrClient() {
 								backgroundColor: "var(--bg-color)",
 								borderRadius: "8px",
 								marginBottom: "16px",
-								borderLeft: "4px solid #0EA5E9",
+								borderLeft: "4px solid var(--chart-2)",
 							}}
 						>
 							<h3
 								style={{
 									fontSize: "14px",
 									marginBottom: "12px",
-									color: "#0EA5E9",
+									color: "var(--chart-2)",
 								}}
 							>
 								{t("gotradeTitle")}
@@ -170,14 +170,14 @@ export default function GotradeIbkrClient() {
 								backgroundColor: "var(--bg-color)",
 								borderRadius: "8px",
 								marginBottom: "16px",
-								borderLeft: "4px solid #D92D20",
+								borderLeft: "4px solid var(--danger)",
 							}}
 						>
 							<h3
 								style={{
 									fontSize: "14px",
 									marginBottom: "12px",
-									color: "#D92D20",
+									color: "var(--danger)",
 								}}
 							>
 								{t("ibkrTitle")}

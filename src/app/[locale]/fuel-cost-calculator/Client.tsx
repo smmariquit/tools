@@ -338,9 +338,9 @@ export default function FuelCostClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								padding: "16px",
-								backgroundColor: "#e8f5e9",
+								backgroundColor: "var(--success-bg)",
 								borderRadius: "var(--border-radius-md)",
-								border: "1px solid #c8e6c9",
+								border: "1px solid var(--success-bg)",
 							}}
 						>
 							<div style={{ width: "100%", textAlign: "center" }}>
@@ -348,7 +348,7 @@ export default function FuelCostClient() {
 									style={{
 										display: "block",
 										fontSize: "14px",
-										color: "#2e7d32",
+										color: "var(--success)",
 										textTransform: "uppercase",
 										fontWeight: 600,
 										marginBottom: "8px",
@@ -357,7 +357,11 @@ export default function FuelCostClient() {
 									{t("totalGasCost")}
 								</span>
 								<strong
-									style={{ fontSize: "42px", color: "#1b5e20", lineHeight: 1 }}
+									style={{
+										fontSize: "42px",
+										color: "var(--success)",
+										lineHeight: 1,
+									}}
 								>
 									{formatCurrency(totalFuelCost)}
 								</strong>

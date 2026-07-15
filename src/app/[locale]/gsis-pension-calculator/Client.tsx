@@ -138,7 +138,7 @@ export default function GSISPensionClient() {
 								style={{
 									display: "block",
 									fontSize: "14px",
-									color: "#d32f2f",
+									color: "var(--danger)",
 									marginTop: "8px",
 								}}
 							>

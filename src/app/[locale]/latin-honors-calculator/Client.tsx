@@ -105,7 +105,7 @@ export default function LatinHonorsClient() {
 							backgroundColor: hasHonor
 								? "rgba(46, 125, 50, 0.05)"
 								: "rgba(13, 71, 161, 0.05)",
-							border: `1px solid ${hasHonor ? "#2e7d32" : "var(--primary)"}`,
+							border: `1px solid ${hasHonor ? "var(--success)" : "var(--primary)"}`,
 							borderRadius: "8px",
 							textAlign: "center",
 						}}
@@ -126,7 +126,7 @@ export default function LatinHonorsClient() {
 							style={{
 								display: "block",
 								fontSize: "28px",
-								color: hasHonor ? "#1b5e20" : "var(--text-secondary)",
+								color: hasHonor ? "var(--success)" : "var(--text-secondary)",
 								lineHeight: 1.2,
 							}}
 						>
@@ -139,7 +139,7 @@ export default function LatinHonorsClient() {
 							style={{
 								padding: "16px",
 								backgroundColor: "var(--surface-color)",
-								borderLeft: "4px solid #f57c00",
+								borderLeft: "4px solid var(--warning-amber)",
 								borderRadius: "4px",
 								marginBottom: "20px",
 							}}
@@ -153,7 +153,9 @@ export default function LatinHonorsClient() {
 								}}
 							>
 								{t("gapLabel")}{" "}
-								<strong style={{ color: "#e65100" }}>{gap.toFixed(3)}</strong>{" "}
+								<strong style={{ color: "var(--warning-amber)" }}>
+									{gap.toFixed(3)}
+								</strong>{" "}
 								{t("gapSuffix")} <strong>{nextHonor}</strong>
 							</p>
 						</div>
@@ -183,7 +185,7 @@ export default function LatinHonorsClient() {
 											? "rgba(46, 125, 50, 0.08)"
 											: "transparent",
 										border: isActive
-											? "1px solid #2e7d32"
+											? "1px solid var(--success)"
 											: "1px solid var(--border-color)",
 									}}
 								>
@@ -191,7 +193,9 @@ export default function LatinHonorsClient() {
 										style={{
 											fontSize: "14px",
 											fontWeight: isActive ? 600 : 400,
-											color: isActive ? "#1b5e20" : "var(--text-secondary)",
+											color: isActive
+												? "var(--success)"
+												: "var(--text-secondary)",
 										}}
 									>
 										{isActive && "✓ "}

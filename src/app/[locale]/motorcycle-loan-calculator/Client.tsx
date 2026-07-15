@@ -187,7 +187,7 @@ export default function MotorcycleLoanClient() {
 						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
 							{t("totalInterestLabel")}
 						</span>
-						<strong style={{ fontSize: "16px", color: "#d32f2f" }}>
+						<strong style={{ fontSize: "16px", color: "var(--danger)" }}>
 							+ {formatCurrency(totalInterest)}
 						</strong>
 					</div>
@@ -205,7 +205,7 @@ export default function MotorcycleLoanClient() {
 						<span style={{ fontSize: "16px", fontWeight: 600 }}>
 							{t("totalCostLabel")}
 						</span>
-						<strong style={{ fontSize: "20px", color: "#1b5e20" }}>
+						<strong style={{ fontSize: "20px", color: "var(--success)" }}>
 							{formatCurrency(totalCost)}
 						</strong>
 					</div>
@@ -215,7 +215,7 @@ export default function MotorcycleLoanClient() {
 							padding: "16px",
 							marginTop: "24px",
 							backgroundColor: "var(--surface-color)",
-							borderLeft: "4px solid #f57c00",
+							borderLeft: "4px solid var(--warning-amber)",
 							borderRadius: "4px",
 						}}
 					>
@@ -224,7 +224,7 @@ export default function MotorcycleLoanClient() {
 								display: "block",
 								fontSize: "14px",
 								marginBottom: "6px",
-								color: "#e65100",
+								color: "var(--warning-amber)",
 							}}
 						>
 							️ {t("warningTitle")}

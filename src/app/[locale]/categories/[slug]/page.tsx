@@ -61,14 +61,14 @@ export default async function CategoryHubPage({
 			<div
 				style={{
 					marginBottom: "40px",
-					backgroundColor: "#f5f9ff",
+					backgroundColor: "var(--info-bg)",
 					padding: "24px",
 					borderRadius: "12px",
-					border: "1px solid #d0e1fd",
+					border: "1px solid var(--info-bg)",
 					color: "var(--text-secondary)",
 				}}
 			>
-				<h3 style={{ marginTop: 0, color: "var(--primary, #0d47a1)" }}>
+				<h3 style={{ marginTop: 0, color: "var(--primary, var(--primary))" }}>
 					About this Category Hub
 				</h3>
 				<p style={{ margin: 0, lineHeight: 1.6 }}>

@@ -119,9 +119,17 @@ export default function FreelanceTaxClient() {
 		currencyMode === "usd" ? platformFeeUsd * forexRate : 0;
 
 	const chartData = [
-		{ name: t("chartNetTakeHome"), value: netIncome8Percent, color: "#1b5e20" },
-		{ name: t("chart8BirTax"), value: eightPercentTax, color: "#b71c1c" },
-		{ name: t("chartUpworkFee"), value: platformFeePhp, color: "#f57c00" },
+		{
+			name: t("chartNetTakeHome"),
+			value: netIncome8Percent,
+			color: "var(--success)",
+		},
+		{ name: t("chart8BirTax"), value: eightPercentTax, color: "var(--danger)" },
+		{
+			name: t("chartUpworkFee"),
+			value: platformFeePhp,
+			color: "var(--warning-amber)",
+		},
 	].filter((item) => item.value > 0);
 
 	return (
@@ -177,7 +185,8 @@ export default function FreelanceTaxClient() {
 									className={`btn-secondary ${currencyMode === "usd" ? "active" : ""}`}
 									style={{
 										flex: 1,
-										backgroundColor: currencyMode === "usd" ? "#14a800" : "",
+										backgroundColor:
+											currencyMode === "usd" ? "var(--success)" : "",
 										color: currencyMode === "usd" ? "white" : "",
 									}}
 									onClick={() => {
@@ -191,7 +200,8 @@ export default function FreelanceTaxClient() {
 									className={`btn-secondary ${currencyMode === "php" ? "active" : ""}`}
 									style={{
 										flex: 1,
-										backgroundColor: currencyMode === "php" ? "#0f136d" : "",
+										backgroundColor:
+											currencyMode === "php" ? "var(--chart-2)" : "",
 										color: currencyMode === "php" ? "white" : "",
 									}}
 									onClick={() => {
@@ -326,7 +336,7 @@ export default function FreelanceTaxClient() {
 										}}
 									>
 										<span>{t("upworkFee")}</span>
-										<span style={{ color: "#d32f2f" }}>
+										<span style={{ color: "var(--danger)" }}>
 											- ${platformFeeUsd.toFixed(2)}
 										</span>
 									</div>
@@ -367,15 +377,15 @@ export default function FreelanceTaxClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								padding: "12px",
-								backgroundColor: "#ffebee",
+								backgroundColor: "var(--danger-bg)",
 								borderRadius: "var(--border-radius-sm)",
-								border: "1px solid #ffcdd2",
+								border: "1px solid var(--danger-bg)",
 							}}
 						>
-							<span style={{ fontWeight: 500, color: "#b71c1c" }}>
+							<span style={{ fontWeight: 500, color: "var(--danger)" }}>
 								{t("totalTaxDue8")}
 							</span>
-							<strong style={{ color: "#b71c1c" }}>
+							<strong style={{ color: "var(--danger)" }}>
 								{formatCurrency(eightPercentTax)}
 							</strong>
 						</div>
@@ -393,7 +403,7 @@ export default function FreelanceTaxClient() {
 							}}
 						>
 							<span>{t("netTakeHome")}</span>
-							<span style={{ color: "#1b5e20" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(netIncome8Percent)}
 							</span>
 						</div>

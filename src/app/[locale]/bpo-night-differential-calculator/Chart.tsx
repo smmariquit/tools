@@ -43,7 +43,8 @@ export default function BpoChart({ data, formatValue }: BpoChartProps) {
 					}}
 					itemStyle={{ color: "var(--text-primary)" }}
 					labelStyle={{ color: "var(--text-secondary)" }}
-					formatter={(value) => formatValue(Number(value))}
+					separator=""
+					formatter={(value) => [formatValue(Number(value)), ""]}
 				/>
 				<Bar dataKey="value" radius={[0, 4, 4, 0]}>
 					{data.map((entry, index) => (

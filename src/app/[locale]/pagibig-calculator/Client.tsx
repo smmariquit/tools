@@ -309,9 +309,9 @@ export default function PagIbigClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								padding: "16px",
-								backgroundColor: "#e8f5e9",
+								backgroundColor: "var(--success-bg)",
 								borderRadius: "var(--border-radius-md)",
-								border: "1px solid #c8e6c9",
+								border: "1px solid var(--success-bg)",
 							}}
 						>
 							<div>
@@ -319,7 +319,7 @@ export default function PagIbigClient() {
 									style={{
 										display: "block",
 										fontSize: "14px",
-										color: "#2e7d32",
+										color: "var(--success)",
 										textTransform: "uppercase",
 										fontWeight: 600,
 										marginBottom: "4px",
@@ -328,7 +328,11 @@ export default function PagIbigClient() {
 									{t("finalValueLabel")}
 								</span>
 								<strong
-									style={{ fontSize: "28px", color: "#1b5e20", lineHeight: 1 }}
+									style={{
+										fontSize: "28px",
+										color: "var(--success)",
+										lineHeight: 1,
+									}}
 								>
 									{formatCurrency(finalValue)}
 								</strong>
@@ -355,7 +359,7 @@ export default function PagIbigClient() {
 							}}
 						>
 							<span>{t("totalDividends")}</span>
-							<span style={{ color: "#2e7d32", fontWeight: 600 }}>
+							<span style={{ color: "var(--success)", fontWeight: 600 }}>
 								+ {formatCurrency(totalDividends)}
 							</span>
 						</div>
@@ -432,7 +436,9 @@ export default function PagIbigClient() {
 											>
 												{formatCurrency(row.totalSaved)}
 											</td>
-											<td style={{ padding: "12px 4px", color: "#2e7d32" }}>
+											<td
+												style={{ padding: "12px 4px", color: "var(--success)" }}
+											>
 												{formatCurrency(row.dividendsEarned)}
 											</td>
 											<td style={{ padding: "12px 4px", fontWeight: 500 }}>

@@ -98,11 +98,11 @@ export default async function ZonalValueDynamicPage({
 
 			<div
 				style={{
-					backgroundColor: "#fff3cd",
-					color: "#856404",
+					backgroundColor: "var(--warning-amber-bg)",
+					color: "var(--warning-amber)",
 					padding: "16px",
 					borderRadius: "8px",
-					border: "1px solid #ffeeba",
+					border: "1px solid var(--warning-amber-bg)",
 					marginBottom: "32px",
 				}}
 			>

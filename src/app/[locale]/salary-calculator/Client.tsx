@@ -122,18 +122,22 @@ export default function SalaryCalculator({
 
 	const chartData = [
 		{ name: t("chartNetPay"), value: netPay, color: "var(--primary)" },
-		{ name: t("chartTax"), value: tax, color: "#d32f2f" },
+		{ name: t("chartTax"), value: tax, color: "var(--danger)" },
 		{
 			name: employmentType === "Government" ? "GSIS" : t("chartSSS"),
 			value: sssDeduction,
-			color: "#f57c00",
+			color: "var(--warning-amber)",
 		},
 		{
 			name: t("chartPhilhealth"),
 			value: philhealthDeduction,
-			color: "#0288d1",
+			color: "var(--chart-2)",
 		},
-		{ name: t("chartPagibig"), value: pagibigDeduction, color: "#7b1fa2" },
+		{
+			name: t("chartPagibig"),
+			value: pagibigDeduction,
+			color: "var(--chart-3)",
+		},
 	].filter((item) => item.value > 0);
 
 	return (
@@ -378,7 +382,7 @@ export default function SalaryCalculator({
 							}}
 						>
 							<span>{t("philhealth")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								- {formatCurrency(philhealthDeduction)}
 							</span>
 						</div>
@@ -392,7 +396,7 @@ export default function SalaryCalculator({
 							}}
 						>
 							<span>{t("pagibig")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								- {formatCurrency(pagibigDeduction)}
 							</span>
 						</div>
@@ -434,7 +438,9 @@ export default function SalaryCalculator({
 						}}
 					>
 						<span>{t("tax")}</span>
-						<span style={{ color: "#b71c1c" }}>- {formatCurrency(tax)}</span>
+						<span style={{ color: "var(--danger)" }}>
+							- {formatCurrency(tax)}
+						</span>
 					</div>
 
 					<div
@@ -450,7 +456,9 @@ export default function SalaryCalculator({
 						}}
 					>
 						<span>{t("netPay")}</span>
-						<span style={{ color: "#1b5e20" }}>{formatCurrency(netPay)}</span>
+						<span style={{ color: "var(--success)" }}>
+							{formatCurrency(netPay)}
+						</span>
 					</div>
 
 					<button

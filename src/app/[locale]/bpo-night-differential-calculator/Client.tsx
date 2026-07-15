@@ -240,8 +240,12 @@ export default function BpoCalculator() {
 			value: basePay - holidayPremium,
 			color: "var(--primary)",
 		},
-		{ name: "Holiday Premium", value: holidayPremium, color: "#f57c00" },
-		{ name: "ND Premium", value: ndPremium, color: "#7c4dff" },
+		{
+			name: "Holiday Premium",
+			value: holidayPremium,
+			color: "var(--warning-amber)",
+		},
+		{ name: "ND Premium", value: ndPremium, color: "var(--chart-3)" },
 	].filter((item) => item.value > 0);
 
 	return (
@@ -438,7 +442,7 @@ export default function BpoCalculator() {
 						style={{
 							backgroundColor: "var(--bg-color)",
 							border: "1px solid var(--border-color)",
-							borderLeft: "4px solid #7c4dff",
+							borderLeft: "4px solid var(--chart-3)",
 							marginTop: "16px",
 						}}
 					>
@@ -446,7 +450,7 @@ export default function BpoCalculator() {
 							style={{
 								fontSize: "14px",
 								marginBottom: "8px",
-								color: "#7c4dff",
+								color: "var(--chart-3)",
 								fontWeight: 600,
 							}}
 						>
@@ -525,7 +529,7 @@ export default function BpoCalculator() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("ndHours")}
 						</span>
-						<strong style={{ color: "#7c4dff" }}>{ndHours}h</strong>
+						<strong style={{ color: "var(--chart-3)" }}>{ndHours}h</strong>
 					</div>
 
 					{/* Breakdown Section */}
@@ -569,8 +573,10 @@ export default function BpoCalculator() {
 									fontSize: "14px",
 								}}
 							>
-								<span style={{ color: "#f57c00" }}>{t("holidayPremium")}</span>
-								<span style={{ color: "#f57c00" }}>
+								<span style={{ color: "var(--warning-amber)" }}>
+									{t("holidayPremium")}
+								</span>
+								<span style={{ color: "var(--warning-amber)" }}>
 									+ {formatCurrency(holidayPremium)}
 								</span>
 							</div>
@@ -584,8 +590,8 @@ export default function BpoCalculator() {
 								fontSize: "14px",
 							}}
 						>
-							<span style={{ color: "#7c4dff" }}>{t("ndPremium")}</span>
-							<span style={{ color: "#7c4dff" }}>
+							<span style={{ color: "var(--chart-3)" }}>{t("ndPremium")}</span>
+							<span style={{ color: "var(--chart-3)" }}>
 								+ {formatCurrency(ndPremium)}
 							</span>
 						</div>
@@ -651,7 +657,9 @@ export default function BpoCalculator() {
 											key={i}
 											style={{
 												flex: 1,
-												backgroundColor: isND ? "#7c4dff" : "var(--primary)",
+												backgroundColor: isND
+													? "var(--chart-3)"
+													: "var(--primary)",
 												color: "white",
 												display: "flex",
 												alignItems: "center",
@@ -698,7 +706,7 @@ export default function BpoCalculator() {
 										width: "12px",
 										height: "12px",
 										borderRadius: "2px",
-										backgroundColor: "#7c4dff",
+										backgroundColor: "var(--chart-3)",
 										marginRight: "6px",
 									}}
 								/>
@@ -731,9 +739,17 @@ export default function BpoCalculator() {
 							fontStyle: "italic",
 						}}
 					>
-						* Based on DOLE Labor Code Art. 86-87, Art. 93-94. Rates are
-						per-shift estimates. Actual payslip may vary based on company
-						policy.
+						* Based on{" "}
+						<a
+							href="https://lawphil.net/statutes/presdecs/pd1974/pd_442_1974.html"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: "var(--primary)" }}
+						>
+							DOLE Labor Code Art. 86-87, Art. 93-94
+						</a>
+						. Rates are per-shift estimates. Actual payslip may vary based on
+						company policy.
 					</p>
 				</div>
 			</div>

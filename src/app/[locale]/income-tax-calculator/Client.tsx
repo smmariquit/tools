@@ -127,7 +127,7 @@ export default function IncomeTaxCalculator() {
 		{ name: t("pieIncomeTax"), value: annualTax },
 	];
 
-	const COLORS = ["#1b5e20", "#d32f2f"];
+	const COLORS = ["var(--success)", "var(--danger)"];
 
 	return (
 		<ToolLayout maxWidth="1200px">
@@ -317,7 +317,7 @@ export default function IncomeTaxCalculator() {
 							}}
 						>
 							<span>{t("monthlyIncomeTax")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								{formatCurrency(monthlyTax)}
 							</span>
 						</div>
@@ -334,7 +334,7 @@ export default function IncomeTaxCalculator() {
 							}}
 						>
 							<span>{t("totalAnnualTaxPayable")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								{formatCurrency(annualTax)}
 							</span>
 						</div>
@@ -376,7 +376,7 @@ export default function IncomeTaxCalculator() {
 							}}
 						>
 							<span>{t("annualNetIncome")}</span>
-							<span style={{ color: "#1b5e20" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(netAnnual)}
 							</span>
 						</div>

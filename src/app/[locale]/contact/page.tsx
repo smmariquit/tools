@@ -1,5 +1,7 @@
 "use client";
 
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 export default function Contact() {
 	return (
 		<div style={{ maxWidth: "600px", margin: "0 auto", paddingBottom: "40px" }}>
@@ -51,13 +53,43 @@ export default function Contact() {
 					target="_blank"
 					rel="noopener noreferrer"
 					style={{
+						display: "inline-flex",
+						alignItems: "center",
+						gap: "6px",
 						fontSize: "18px",
 						fontWeight: "bold",
 						color: "var(--primary)",
 						textDecoration: "none",
 					}}
 				>
+					<FaLinkedin size={18} aria-hidden="true" />
 					linkedin.com/in/stimmie
+				</a>
+				<p
+					style={{
+						color: "var(--text-secondary)",
+						margin: "24px 0 8px",
+						fontSize: "16px",
+					}}
+				>
+					Or on GitHub:
+				</p>
+				<a
+					href="https://github.com/smmariquit"
+					target="_blank"
+					rel="noopener noreferrer"
+					style={{
+						display: "inline-flex",
+						alignItems: "center",
+						gap: "6px",
+						fontSize: "18px",
+						fontWeight: "bold",
+						color: "var(--primary)",
+						textDecoration: "none",
+					}}
+				>
+					<FaGithub size={18} aria-hidden="true" />
+					github.com/smmariquit
 				</a>
 			</div>
 		</div>

@@ -219,14 +219,18 @@ export default function FoodCostCalculatorClient() {
 		{
 			name: t("chartIngredients"),
 			value: totalIngredientsCost,
-			fill: "#3b82f6",
+			fill: "var(--chart-2)",
 		},
-		{ name: t("chartLabor"), value: laborCost, fill: "#10b981" },
-		{ name: t("chartOverhead"), value: overheadCost, fill: "#f59e0b" },
+		{ name: t("chartLabor"), value: laborCost, fill: "var(--success)" },
+		{
+			name: t("chartOverhead"),
+			value: overheadCost,
+			fill: "var(--warning-amber)",
+		},
 		{
 			name: t("chartProfit"),
 			value: estimatedProfitPerServing * yieldServings,
-			fill: "#8b5cf6",
+			fill: "var(--chart-3)",
 		},
 	].filter((d) => d.value > 0);
 
@@ -893,7 +897,7 @@ export default function FoodCostCalculatorClient() {
 										style={{
 											margin: "0 0 4px 0",
 											fontSize: "14px",
-											color: "#b45309",
+											color: "var(--warning-amber)",
 										}}
 									>
 										{t("seniorTitle")}
@@ -908,7 +912,9 @@ export default function FoodCostCalculatorClient() {
 										{t("seniorSubtitle")}
 									</p>
 								</div>
-								<strong style={{ fontSize: "18px", color: "#b45309" }}>
+								<strong
+									style={{ fontSize: "18px", color: "var(--warning-amber)" }}
+								>
 									{formatPHP(seniorPrice)}
 								</strong>
 							</div>

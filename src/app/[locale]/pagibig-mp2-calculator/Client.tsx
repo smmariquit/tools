@@ -318,7 +318,7 @@ export default function PagibigMP2Client() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("totalDividends")}
 						</span>
-						<strong style={{ color: "#4caf50" }}>
+						<strong style={{ color: "var(--success)" }}>
 							+ {formatCurrency(totalDividends)}
 						</strong>
 					</div>

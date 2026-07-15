@@ -261,7 +261,7 @@ export default function FreelanceRateClient() {
 							style={{
 								display: "block",
 								fontSize: "36px",
-								color: "#4caf50",
+								color: "var(--success)",
 							}}
 						>
 							{formatCurrency(hourlyRateUsd, true)} / hr

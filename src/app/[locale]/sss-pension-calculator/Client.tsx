@@ -184,7 +184,9 @@ export default function SssPensionClient() {
 								<span style={{ color: "var(--text-secondary)" }}>
 									{t("formulaUsed")}
 								</span>
-								<strong style={{ color: "#4caf50" }}>{bestFormula}</strong>
+								<strong style={{ color: "var(--success)" }}>
+									{bestFormula}
+								</strong>
 							</div>
 
 							<div

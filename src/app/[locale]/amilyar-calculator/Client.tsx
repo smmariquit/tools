@@ -240,7 +240,7 @@ export default function AmilyarClient() {
 							}}
 						>
 							<span>{t("totalAnnualTaxDue")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								{formatCurrency(totalAmilyar)}
 							</span>
 						</div>

@@ -227,7 +227,7 @@ export default function PagibigRoiClient() {
 							}}
 						>
 							<span>{t("annualRent")}</span>
-							<span style={{ color: "#2e7d32" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(annualRent)}
 							</span>
 						</div>
@@ -242,7 +242,10 @@ export default function PagibigRoiClient() {
 						>
 							<span>{t("grossYield")}</span>
 							<span
-								style={{ color: grossRentalYield >= 8 ? "#2e7d32" : "#b71c1c" }}
+								style={{
+									color:
+										grossRentalYield >= 8 ? "var(--success)" : "var(--danger)",
+								}}
 							>
 								{grossRentalYield.toFixed(2)}%
 							</span>
@@ -303,7 +306,8 @@ export default function PagibigRoiClient() {
 							<span>{t("netProfit")}</span>
 							<span
 								style={{
-									color: flippingProfit > 0 ? "#2e7d32" : "#b71c1c",
+									color:
+										flippingProfit > 0 ? "var(--success)" : "var(--danger)",
 									fontWeight: 600,
 								}}
 							>
@@ -322,7 +326,11 @@ export default function PagibigRoiClient() {
 							}}
 						>
 							<span>{t("flippingRoi")}</span>
-							<span style={{ color: flippingRoi > 0 ? "#2e7d32" : "#b71c1c" }}>
+							<span
+								style={{
+									color: flippingRoi > 0 ? "var(--success)" : "var(--danger)",
+								}}
+							>
 								{flippingRoi.toFixed(2)}%
 							</span>
 						</div>

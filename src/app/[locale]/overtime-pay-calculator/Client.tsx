@@ -355,7 +355,7 @@ export default function OvertimePayClient() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("otPay")} ({hoursOT} hrs) @ {Math.round(otMultiplier * 100)}%
 						</span>
-						<strong style={{ color: "#4caf50" }}>
+						<strong style={{ color: "var(--success)" }}>
 							+ {formatCurrency(payOT)}
 						</strong>
 					</div>

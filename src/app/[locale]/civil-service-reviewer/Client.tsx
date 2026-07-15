@@ -108,10 +108,10 @@ export default function CivilServiceClient() {
 										if (showExplanation) {
 											if (idx === currentQuestion.answer) {
 												bgColor = "rgba(16, 185, 129, 0.1)";
-												borderColor = "#10b981";
+												borderColor = "var(--success)";
 											} else if (idx === selectedOption) {
 												bgColor = "rgba(239, 68, 68, 0.1)";
-												borderColor = "#ef4444";
+												borderColor = "var(--danger)";
 											}
 										} else if (idx === selectedOption) {
 											bgColor = "rgba(13, 71, 161, 0.1)";

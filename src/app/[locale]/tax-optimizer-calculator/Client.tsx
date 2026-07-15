@@ -193,7 +193,7 @@ export default function TaxOptimizerClient() {
 							marginBottom: "24px",
 							padding: "16px",
 							backgroundColor: "rgba(76, 175, 80, 0.1)",
-							border: "1px solid #4caf50",
+							border: "1px solid var(--success)",
 							borderRadius: "8px",
 						}}
 					>
@@ -201,7 +201,7 @@ export default function TaxOptimizerClient() {
 							style={{
 								display: "block",
 								fontSize: "14px",
-								color: "#2e7d32",
+								color: "var(--success)",
 								fontWeight: 600,
 								marginBottom: "4px",
 							}}
@@ -209,7 +209,11 @@ export default function TaxOptimizerClient() {
 							{t("bestOption")}
 						</span>
 						<strong
-							style={{ display: "block", fontSize: "24px", color: "#1b5e20" }}
+							style={{
+								display: "block",
+								fontSize: "24px",
+								color: "var(--success)",
+							}}
 						>
 							{bestOption.title}
 						</strong>
@@ -218,7 +222,7 @@ export default function TaxOptimizerClient() {
 								style={{
 									display: "block",
 									fontSize: "14px",
-									color: "#388e3c",
+									color: "var(--success)",
 									marginTop: "4px",
 								}}
 							>
@@ -234,7 +238,7 @@ export default function TaxOptimizerClient() {
 						<div
 							style={{
 								padding: "16px",
-								border: `2px solid ${bestOption.id === "8percent" ? "#4caf50" : "var(--border-color)"}`,
+								border: `2px solid ${bestOption.id === "8percent" ? "var(--success)" : "var(--border-color)"}`,
 								borderRadius: "8px",
 								opacity: isVatRegistered ? 0.5 : 1,
 							}}
@@ -252,7 +256,7 @@ export default function TaxOptimizerClient() {
 									<span
 										style={{
 											fontSize: "14px",
-											backgroundColor: "#4caf50",
+											backgroundColor: "var(--success)",
 											color: "white",
 											padding: "2px 8px",
 											borderRadius: "12px",
@@ -289,7 +293,7 @@ export default function TaxOptimizerClient() {
 									style={{
 										color:
 											bestOption.id === "8percent"
-												? "#4caf50"
+												? "var(--success)"
 												: "var(--text-primary)",
 									}}
 								>
@@ -302,7 +306,7 @@ export default function TaxOptimizerClient() {
 						<div
 							style={{
 								padding: "16px",
-								border: `2px solid ${bestOption.id === "osd" ? "#4caf50" : "var(--border-color)"}`,
+								border: `2px solid ${bestOption.id === "osd" ? "var(--success)" : "var(--border-color)"}`,
 								borderRadius: "8px",
 							}}
 						>
@@ -319,7 +323,7 @@ export default function TaxOptimizerClient() {
 									<span
 										style={{
 											fontSize: "14px",
-											backgroundColor: "#4caf50",
+											backgroundColor: "var(--success)",
 											color: "white",
 											padding: "2px 8px",
 											borderRadius: "12px",
@@ -380,7 +384,7 @@ export default function TaxOptimizerClient() {
 									style={{
 										color:
 											bestOption.id === "osd"
-												? "#4caf50"
+												? "var(--success)"
 												: "var(--text-primary)",
 									}}
 								>
@@ -393,7 +397,7 @@ export default function TaxOptimizerClient() {
 						<div
 							style={{
 								padding: "16px",
-								border: `2px solid ${bestOption.id === "itemized" ? "#4caf50" : "var(--border-color)"}`,
+								border: `2px solid ${bestOption.id === "itemized" ? "var(--success)" : "var(--border-color)"}`,
 								borderRadius: "8px",
 							}}
 						>
@@ -410,7 +414,7 @@ export default function TaxOptimizerClient() {
 									<span
 										style={{
 											fontSize: "14px",
-											backgroundColor: "#4caf50",
+											backgroundColor: "var(--success)",
 											color: "white",
 											padding: "2px 8px",
 											borderRadius: "12px",
@@ -471,7 +475,7 @@ export default function TaxOptimizerClient() {
 									style={{
 										color:
 											bestOption.id === "itemized"
-												? "#4caf50"
+												? "var(--success)"
 												: "var(--text-primary)",
 									}}
 								>

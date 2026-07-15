@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 /** Single source of truth for the human-readable "last updated" date. */
 function formatUpdated(date?: string): string | null {
@@ -96,11 +97,15 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 						target="_blank"
 						rel="noopener noreferrer"
 						style={{
+							display: "inline-flex",
+							alignItems: "center",
+							gap: "4px",
 							fontSize: "0.875rem",
 							color: "var(--primary, #0d47a1)",
 							textDecoration: "none",
 						}}
 					>
+						<FaLinkedin size={14} aria-hidden="true" />
 						LinkedIn
 					</a>
 				</div>
@@ -124,10 +129,14 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 					target="_blank"
 					rel="noopener noreferrer"
 					style={{
+						display: "inline-flex",
+						alignItems: "center",
+						gap: "4px",
 						color: "var(--primary, #0d47a1)",
 						textDecoration: "underline",
 					}}
 				>
+					<FaGithub size={14} aria-hidden="true" />
 					GitHub
 				</a>
 				. Spotted a discrepancy? Email me at{" "}

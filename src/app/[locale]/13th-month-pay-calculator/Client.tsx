@@ -192,7 +192,7 @@ export default function ThirteenthMonthClient() {
 							}}
 						>
 							<span>{t("netPay")}</span>
-							<span style={{ color: "#1b5e20" }}>
+							<span style={{ color: "var(--success)" }}>
 								{formatCurrency(thirteenthMonthPay)}
 							</span>
 						</div>
@@ -224,7 +224,7 @@ export default function ThirteenthMonthClient() {
 								}}
 							>
 								<span>{t("taxExempt")}</span>
-								<span style={{ color: "#1b5e20" }}>
+								<span style={{ color: "var(--success)" }}>
 									{formatCurrency(taxExemptAmount)}
 								</span>
 							</div>
@@ -239,7 +239,9 @@ export default function ThirteenthMonthClient() {
 								<span
 									style={{
 										color:
-											taxableAmount > 0 ? "#b71c1c" : "var(--text-secondary)",
+											taxableAmount > 0
+												? "var(--danger)"
+												: "var(--text-secondary)",
 									}}
 								>
 									{formatCurrency(taxableAmount)}

@@ -323,7 +323,7 @@ export default function SSSCalculator() {
 									? t("totalEmployeeShare")
 									: t("totalShare")}
 							</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								{formatCurrency(eeTotal)}
 							</span>
 						</div>
@@ -410,7 +410,7 @@ export default function SSSCalculator() {
 						}}
 					>
 						<span>{t("totalRemittance")}</span>
-						<span style={{ color: "#1b5e20" }}>
+						<span style={{ color: "var(--success)" }}>
 							{formatCurrency(grandTotal)}
 						</span>
 					</div>

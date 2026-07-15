@@ -114,10 +114,10 @@ export default function ZonalTaxCalculator({
 			<div
 				className="result-section"
 				style={{
-					backgroundColor: "#f5f9ff",
+					backgroundColor: "var(--info-bg)",
 					padding: "24px",
 					borderRadius: "12px",
-					border: "1px solid #d0e1fd",
+					border: "1px solid var(--info-bg)",
 				}}
 			>
 				<h3 style={{ marginTop: 0, color: "var(--primary)" }}>
@@ -149,7 +149,7 @@ export default function ZonalTaxCalculator({
 
 				<hr
 					style={{
-						borderColor: "#d0e1fd",
+						borderColor: "var(--info-bg)",
 						borderStyle: "solid",
 						marginBottom: "16px",
 					}}

@@ -77,8 +77,12 @@ export default function BackpayClient() {
 
 	const chartData = [
 		{ name: t("unpaidSalary"), value: unpaidSalary, color: "var(--primary)" },
-		{ name: t("prorated13thAmount"), value: prorated13th, color: "#4caf50" },
-		{ name: t("leaveValue"), value: leaveValue, color: "#ff9800" },
+		{
+			name: t("prorated13thAmount"),
+			value: prorated13th,
+			color: "var(--success)",
+		},
+		{ name: t("leaveValue"), value: leaveValue, color: "var(--warning-amber)" },
 	].filter((item) => item.value > 0);
 
 	const formatCurrency = (val: number) => {
@@ -271,13 +275,13 @@ export default function BackpayClient() {
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between" }}>
 							<span>{t("prorated13thAmount")}</span>
-							<strong style={{ color: "#4caf50" }}>
+							<strong style={{ color: "var(--success)" }}>
 								{formatCurrency(prorated13th)}
 							</strong>
 						</div>
 						<div style={{ display: "flex", justifyContent: "space-between" }}>
 							<span>{t("leaveValue")}</span>
-							<strong style={{ color: "#ff9800" }}>
+							<strong style={{ color: "var(--warning-amber)" }}>
 								{formatCurrency(leaveValue)}
 							</strong>
 						</div>
@@ -285,7 +289,7 @@ export default function BackpayClient() {
 							style={{
 								display: "flex",
 								justifyContent: "space-between",
-								color: "#f44336",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("otherDeductions")}</span>

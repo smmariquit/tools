@@ -61,7 +61,7 @@ export default function PagibigMP2Chart({
 				/>
 				<Legend />
 				<Bar dataKey="Principal" stackId="a" fill="var(--primary)" />
-				<Bar dataKey="Dividends" stackId="a" fill="#4caf50" />
+				<Bar dataKey="Dividends" stackId="a" fill="var(--success)" />
 			</BarChart>
 		</ResponsiveContainer>
 	);

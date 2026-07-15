@@ -20,8 +20,8 @@ export default function TipCard({
 	children,
 }: TipCardProps) {
 	const getBorderColor = () => {
-		if (type === "warning") return "#ff9800";
-		if (type === "success") return "#4caf50";
+		if (type === "warning") return "var(--warning-amber)";
+		if (type === "success") return "var(--success)";
 		return "var(--primary)";
 	};
 

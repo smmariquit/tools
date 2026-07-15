@@ -39,14 +39,14 @@ export default function PromissoryNoteClient() {
 					className="card"
 					style={{
 						marginTop: "24px",
-						border: "2px solid #ef4444",
+						border: "2px solid var(--danger)",
 						backgroundColor: "rgba(239, 68, 68, 0.05)",
 					}}
 				>
 					<h2
 						style={{
 							fontSize: "20px",
-							color: "#ef4444",
+							color: "var(--danger)",
 							marginBottom: "16px",
 							display: "flex",
 							alignItems: "center",
@@ -234,7 +234,7 @@ export default function PromissoryNoteClient() {
 										fontSize: "14px",
 										padding: "4px 8px",
 										backgroundColor: "rgba(16, 185, 129, 0.1)",
-										color: "#10b981",
+										color: "var(--success)",
 										borderRadius: "4px",
 									}}
 								>

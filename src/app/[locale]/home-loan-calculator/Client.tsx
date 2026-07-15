@@ -135,9 +135,9 @@ export default function HomeLoanCalculator() {
 	}
 
 	const chartData = [
-		{ name: "Down Payment", value: downPayment, color: "#2e7d32" },
-		{ name: "Loan Principal", value: loanAmount, color: "#1976d2" },
-		{ name: "Total Interest", value: totalInterest, color: "#b71c1c" },
+		{ name: "Down Payment", value: downPayment, color: "var(--success)" },
+		{ name: "Loan Principal", value: loanAmount, color: "var(--chart-2)" },
+		{ name: "Total Interest", value: totalInterest, color: "var(--danger)" },
 	];
 
 	return (
@@ -311,7 +311,7 @@ export default function HomeLoanCalculator() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("totalInterest")}
 						</span>
-						<strong style={{ color: "#b71c1c" }}>
+						<strong style={{ color: "var(--danger)" }}>
 							{formatCurrency(totalInterest)}
 						</strong>
 					</div>
@@ -344,7 +344,7 @@ export default function HomeLoanCalculator() {
 						}}
 					>
 						<span style={{ fontSize: "16px" }}>{t("monthlyAmortization")}</span>
-						<span style={{ color: "#1976d2" }}>
+						<span style={{ color: "var(--chart-2)" }}>
 							{formatCurrency(monthlyPayment)}
 						</span>
 					</div>

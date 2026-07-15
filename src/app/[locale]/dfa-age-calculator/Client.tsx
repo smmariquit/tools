@@ -205,14 +205,14 @@ export default function DFAAgeClient() {
 							<div
 								style={{
 									padding: "12px",
-									borderLeft: "4px solid #f57c00",
+									borderLeft: "4px solid var(--warning-amber)",
 									backgroundColor: "var(--surface-color)",
 									borderRadius: "4px",
 								}}
 							>
 								<strong
 									style={{
-										color: "#e65100",
+										color: "var(--warning-amber)",
 										display: "block",
 										fontSize: "14px",
 										marginBottom: "4px",
@@ -230,14 +230,14 @@ export default function DFAAgeClient() {
 							<div
 								style={{
 									padding: "12px",
-									borderLeft: "4px solid #2e7d32",
+									borderLeft: "4px solid var(--success)",
 									backgroundColor: "var(--surface-color)",
 									borderRadius: "4px",
 								}}
 							>
 								<strong
 									style={{
-										color: "#1b5e20",
+										color: "var(--success)",
 										display: "block",
 										fontSize: "14px",
 										marginBottom: "4px",
@@ -257,14 +257,14 @@ export default function DFAAgeClient() {
 							<div
 								style={{
 									padding: "12px",
-									borderLeft: "4px solid #1976d2",
+									borderLeft: "4px solid var(--chart-2)",
 									backgroundColor: "var(--surface-color)",
 									borderRadius: "4px",
 								}}
 							>
 								<strong
 									style={{
-										color: "#0d47a1",
+										color: "var(--primary)",
 										display: "block",
 										fontSize: "14px",
 										marginBottom: "4px",
@@ -284,14 +284,14 @@ export default function DFAAgeClient() {
 							<div
 								style={{
 									padding: "12px",
-									borderLeft: "4px solid #7b1fa2",
+									borderLeft: "4px solid var(--chart-3)",
 									backgroundColor: "var(--surface-color)",
 									borderRadius: "4px",
 								}}
 							>
 								<strong
 									style={{
-										color: "#4a148c",
+										color: "var(--chart-3)",
 										display: "block",
 										fontSize: "14px",
 										marginBottom: "4px",

@@ -71,10 +71,10 @@ function Crayon({
 	);
 }
 
-const C_BLUE = "#3b82f6";
-const C_VIOLET = "#8b5cf6";
-const C_GREEN = "#22a06b";
-const C_PINK = "#ec5f7a";
+const C_BLUE = "var(--chart-2)";
+const C_VIOLET = "var(--chart-3)";
+const C_GREEN = "var(--success)";
+const C_PINK = "var(--danger)";
 
 /** A little stick person of variable height — used for the "everyone" scene. */
 function Person({ cx, cy, r }: { cx: number; cy: number; r: number }) {
@@ -102,7 +102,7 @@ const cardStyle = {
 	minWidth: "200px",
 	padding: "16px",
 	borderRadius: "12px",
-	border: "1px dashed var(--border, #d0d7de)",
+	border: "1px dashed var(--border, var(--border-color))",
 };
 
 export default function AccessibilityPage() {

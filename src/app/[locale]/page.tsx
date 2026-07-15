@@ -99,7 +99,7 @@ export default function Home() {
 							alignItems: "center",
 							gap: "8px",
 							backgroundColor: "rgba(16, 185, 129, 0.08)",
-							color: "#10b981",
+							color: "var(--success)",
 							padding: "8px 16px",
 							borderRadius: "6px",
 							fontSize: "14px",

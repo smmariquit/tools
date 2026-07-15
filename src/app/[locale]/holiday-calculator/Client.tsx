@@ -368,9 +368,9 @@ export default function HolidayClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								padding: "16px",
-								backgroundColor: "#fff8e1",
+								backgroundColor: "var(--warning-amber-bg)",
 								borderRadius: "var(--border-radius-md)",
-								border: "1px solid #ffecb3",
+								border: "1px solid var(--warning-amber-bg)",
 							}}
 						>
 							<div style={{ width: "100%", textAlign: "center" }}>
@@ -378,7 +378,7 @@ export default function HolidayClient() {
 									style={{
 										display: "block",
 										fontSize: "14px",
-										color: "#f57f17",
+										color: "var(--warning-amber)",
 										textTransform: "uppercase",
 										fontWeight: 600,
 										marginBottom: "8px",
@@ -387,7 +387,11 @@ export default function HolidayClient() {
 									{t("totalHolidayPay")}
 								</span>
 								<strong
-									style={{ fontSize: "42px", color: "#e65100", lineHeight: 1 }}
+									style={{
+										fontSize: "42px",
+										color: "var(--warning-amber)",
+										lineHeight: 1,
+									}}
 								>
 									{formatCurrency(computedPay)}
 								</strong>

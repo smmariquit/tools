@@ -188,7 +188,7 @@ export default function GrossFromTaxClient() {
 								{t("taxLabel")}
 							</span>
 						</div>
-						<strong style={{ fontSize: "16px", color: "#b71c1c" }}>
+						<strong style={{ fontSize: "16px", color: "var(--danger)" }}>
 							{formatCurrency(result.tax)}
 						</strong>
 					</div>
@@ -206,7 +206,7 @@ export default function GrossFromTaxClient() {
 						<span style={{ fontSize: "16px", fontWeight: 700 }}>
 							{t("netPayLabel")}
 						</span>
-						<strong style={{ fontSize: "24px", color: "#1b5e20" }}>
+						<strong style={{ fontSize: "24px", color: "var(--success)" }}>
 							{formatCurrency(result.netPay)}
 						</strong>
 					</div>

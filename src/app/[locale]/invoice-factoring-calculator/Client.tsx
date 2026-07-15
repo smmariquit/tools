@@ -38,14 +38,14 @@ export default function InvoiceFactoringClient() {
 					className="card"
 					style={{
 						marginTop: "24px",
-						border: "2px solid #f59e0b",
+						border: "2px solid var(--warning-amber)",
 						backgroundColor: "rgba(245, 158, 11, 0.05)",
 					}}
 				>
 					<h2
 						style={{
 							fontSize: "20px",
-							color: "#d97706",
+							color: "var(--warning-amber)",
 							marginBottom: "16px",
 							display: "flex",
 							alignItems: "center",

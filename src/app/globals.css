@@ -13,6 +13,23 @@
 	--warning-border: #b71c1c;
 	--warning-text: #b71c1c;
 
+	/* Semantic colors — theme-aware. Use these instead of hardcoded hex so
+	   red/green flip correctly in dark mode and stay consistent across tools. */
+	--danger: #b71c1c; /* losses, deductions, negatives */
+	--danger-bg: #fdecec;
+	--success: #1b5e20; /* gains, net income, positives */
+	--success-bg: #e8f5e9;
+	--warning-amber: #b45309; /* cautions/notes (not errors) */
+	--warning-amber-bg: #fff8e1;
+
+	--info-bg: #e8f0fe; /* light-blue info/callout background */
+
+	/* Categorical chart ramp — blue-family only, no purple/orange. Cap at 4. */
+	--chart-1: #0d47a1;
+	--chart-2: #1976d2;
+	--chart-3: #64b5f6;
+	--chart-4: #90a4ae; /* neutral blue-gray for the "rest/other" slice */
+
 	--shadow-sm:
 		0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
 	--shadow-md:
@@ -39,6 +56,22 @@
 	--warning-bg: #2d1313;
 	--warning-border: #d32f2f;
 	--warning-text: #ff8a80;
+
+	/* Semantic colors — brightened for dark surfaces (this fixes the harsh
+	   sharp-red look of #b71c1c on #1e1e1e). */
+	--danger: #ff8a80;
+	--danger-bg: #2d1313;
+	--success: #81c784;
+	--success-bg: #14261a;
+	--warning-amber: #fbbf24;
+	--warning-amber-bg: #2a2410;
+	--info-bg: #1a2740;
+
+	/* Chart ramp — lightened so bars read on dark surface. */
+	--chart-1: #66b2ff;
+	--chart-2: #42a5f5;
+	--chart-3: #1e88e5;
+	--chart-4: #78909c;
 
 	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.6), 0 1px 3px 1px rgba(0, 0, 0, 0.3);
 	--shadow-md: 0 4px 6px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.3);

@@ -121,11 +121,11 @@ export default function PhilHealthClient() {
 								style={{
 									marginTop: "8px",
 									padding: "6px 10px",
-									backgroundColor: "#fff3e0",
+									backgroundColor: "var(--warning-amber-bg)",
 									borderRadius: "6px",
 									fontSize: "14px",
-									color: "#e65100",
-									border: "1px solid #ffe0b2",
+									color: "var(--warning-amber)",
+									border: "1px solid var(--warning-amber-bg)",
 									display: "flex",
 									alignItems: "center",
 									gap: "6px",
@@ -139,11 +139,11 @@ export default function PhilHealthClient() {
 								style={{
 									marginTop: "8px",
 									padding: "6px 10px",
-									backgroundColor: "#e3f2fd",
+									backgroundColor: "var(--info-bg)",
 									borderRadius: "6px",
 									fontSize: "14px",
-									color: "#0d47a1",
-									border: "1px solid #bbdefb",
+									color: "var(--primary)",
+									border: "1px solid var(--chart-2)",
 									display: "flex",
 									alignItems: "center",
 									gap: "6px",
@@ -207,7 +207,7 @@ export default function PhilHealthClient() {
 							}}
 						>
 							<span>{t("yourShare")}</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								- {formatCurrency(employeeShare)}
 							</span>
 						</div>
@@ -322,7 +322,7 @@ export default function PhilHealthClient() {
 											<td
 												style={{
 													padding: "10px 8px",
-													color: isActive ? "#b71c1c" : "inherit",
+													color: isActive ? "var(--danger)" : "inherit",
 												}}
 											>
 												{formatCurrency(premium / 2)}

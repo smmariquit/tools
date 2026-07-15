@@ -253,7 +253,7 @@ export default function DOSTScholarshipStipendClient() {
 							<strong
 								style={{
 									fontSize: "16px",
-									color: "#1b5e20",
+									color: "var(--success)",
 									whiteSpace: "nowrap",
 								}}
 							>

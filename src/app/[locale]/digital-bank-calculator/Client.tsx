@@ -412,7 +412,7 @@ export default function DigitalBankClient() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("netInterestEarned")}
 						</span>
-						<strong style={{ color: "#4caf50" }}>
+						<strong style={{ color: "var(--success)" }}>
 							+ {formatCurrency(grossInterestTotal - taxTotal)}
 						</strong>
 					</div>
@@ -428,7 +428,7 @@ export default function DigitalBankClient() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("taxDeducted")}
 						</span>
-						<strong style={{ color: "#f44336" }}>
+						<strong style={{ color: "var(--danger)" }}>
 							- {formatCurrency(taxTotal)}
 						</strong>
 					</div>

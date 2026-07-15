@@ -56,7 +56,7 @@ export default function CategoriesPage() {
 							style={{
 								fontSize: "1.2rem",
 								marginBottom: "8px",
-								color: "var(--primary, #0d47a1)",
+								color: "var(--primary, var(--primary))",
 							}}
 						>
 							{cat.category}

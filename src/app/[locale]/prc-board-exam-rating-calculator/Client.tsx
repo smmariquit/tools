@@ -148,7 +148,7 @@ export default function PRCBoardExamRatingClient() {
 							style={{
 								display: "block",
 								fontSize: "48px",
-								color: passed ? "#1b5e20" : "var(--primary)",
+								color: passed ? "var(--success)" : "var(--primary)",
 								lineHeight: 1,
 							}}
 						>
@@ -160,7 +160,7 @@ export default function PRCBoardExamRatingClient() {
 						style={{
 							padding: "16px",
 							backgroundColor: "var(--surface-color)",
-							borderLeft: `4px solid ${passed ? "#2e7d32" : "#d32f2f"}`,
+							borderLeft: `4px solid ${passed ? "var(--success)" : "var(--danger)"}`,
 							borderRadius: "4px",
 						}}
 					>
@@ -169,7 +169,7 @@ export default function PRCBoardExamRatingClient() {
 								display: "block",
 								fontSize: "14px",
 								marginBottom: "6px",
-								color: passed ? "#1b5e20" : "#b71c1c",
+								color: passed ? "var(--success)" : "var(--danger)",
 							}}
 						>
 							{t("statusLabel")}:{" "}
@@ -186,16 +186,16 @@ export default function PRCBoardExamRatingClient() {
 							style={{
 								marginTop: "16px",
 								padding: "16px",
-								backgroundColor: "#ffebee",
+								backgroundColor: "var(--danger-bg)",
 								borderRadius: "4px",
-								border: "1px solid #ffcdd2",
+								border: "1px solid var(--danger-bg)",
 							}}
 						>
 							<strong
 								style={{
 									display: "block",
 									fontSize: "14px",
-									color: "#c62828",
+									color: "var(--danger)",
 									marginBottom: "8px",
 								}}
 							>
@@ -206,7 +206,7 @@ export default function PRCBoardExamRatingClient() {
 									margin: 0,
 									paddingLeft: "20px",
 									fontSize: "14px",
-									color: "#b71c1c",
+									color: "var(--danger)",
 								}}
 							>
 								{failingSubjects.map((sub, idx) => (

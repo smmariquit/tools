@@ -236,9 +236,9 @@ export default function GwaCalculatorClient() {
 									justifyContent: "space-between",
 									marginBottom: "16px",
 									padding: "16px",
-									backgroundColor: "#e8f5e9",
+									backgroundColor: "var(--success-bg)",
 									borderRadius: "var(--border-radius-md)",
-									border: "1px solid #c8e6c9",
+									border: "1px solid var(--success-bg)",
 								}}
 							>
 								<div style={{ width: "100%", textAlign: "center" }}>
@@ -246,7 +246,7 @@ export default function GwaCalculatorClient() {
 										style={{
 											display: "block",
 											fontSize: "14px",
-											color: "#2e7d32",
+											color: "var(--success)",
 											textTransform: "uppercase",
 											fontWeight: 600,
 											marginBottom: "8px",
@@ -257,7 +257,7 @@ export default function GwaCalculatorClient() {
 									<strong
 										style={{
 											fontSize: "42px",
-											color: "#1b5e20",
+											color: "var(--success)",
 											lineHeight: 1,
 										}}
 									>
@@ -279,7 +279,7 @@ export default function GwaCalculatorClient() {
 								{gwa !== null && gwa <= 1.2 && (
 									<p
 										style={{
-											color: "#f57f17",
+											color: "var(--warning-amber)",
 											fontWeight: 600,
 											marginTop: "8px",
 										}}
@@ -290,7 +290,7 @@ export default function GwaCalculatorClient() {
 								{gwa !== null && gwa > 1.2 && gwa <= 1.75 && (
 									<p
 										style={{
-											color: "#1565c0",
+											color: "var(--chart-2)",
 											fontWeight: 600,
 											marginTop: "8px",
 										}}
@@ -301,7 +301,7 @@ export default function GwaCalculatorClient() {
 								{gwa !== null && gwa > 3.0 && (
 									<p
 										style={{
-											color: "#c62828",
+											color: "var(--danger)",
 											fontWeight: 600,
 											marginTop: "8px",
 										}}
@@ -424,8 +424,10 @@ export default function GwaCalculatorClient() {
 										marginTop: "16px",
 										padding: "12px",
 										backgroundColor:
-											neededAverage < 1.0 ? "#ffebee" : "#fff8e1",
-										border: `1px solid ${neededAverage < 1.0 ? "#ffcdd2" : "#ffecb3"}`,
+											neededAverage < 1.0
+												? "var(--danger-bg)"
+												: "var(--warning-amber-bg)",
+										border: `1px solid ${neededAverage < 1.0 ? "var(--danger-bg)" : "var(--warning-amber-bg)"}`,
 										borderRadius: "var(--border-radius-sm)",
 										textAlign: "center",
 									}}
@@ -440,7 +442,9 @@ export default function GwaCalculatorClient() {
 											fontSize: "20px",
 											fontWeight: "bold",
 											color:
-												neededAverage < 1.0 ? "#c62828" : "var(--text-primary)",
+												neededAverage < 1.0
+													? "var(--danger)"
+													: "var(--text-primary)",
 										}}
 									>
 										{neededAverage.toFixed(4)}
@@ -449,7 +453,7 @@ export default function GwaCalculatorClient() {
 										<div
 											style={{
 												fontSize: "14px",
-												color: "#c62828",
+												color: "var(--danger)",
 												marginTop: "4px",
 											}}
 										>

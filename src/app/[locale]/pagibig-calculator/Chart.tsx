@@ -42,12 +42,12 @@ export default function PagibigChart({
 			>
 				<defs>
 					<linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
-						<stop offset="5%" stopColor="#0d47a1" stopOpacity={0.3} />
-						<stop offset="95%" stopColor="#0d47a1" stopOpacity={0} />
+						<stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3} />
+						<stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
 					</linearGradient>
 					<linearGradient id="colorDividend" x1="0" y1="0" x2="0" y2="1">
-						<stop offset="5%" stopColor="#2e7d32" stopOpacity={0.8} />
-						<stop offset="95%" stopColor="#2e7d32" stopOpacity={0.1} />
+						<stop offset="5%" stopColor="var(--success)" stopOpacity={0.8} />
+						<stop offset="95%" stopColor="var(--success)" stopOpacity={0.1} />
 					</linearGradient>
 				</defs>
 				<CartesianGrid
@@ -82,7 +82,7 @@ export default function PagibigChart({
 					dataKey="totalSaved"
 					name={principalName}
 					stackId="1"
-					stroke="#0d47a1"
+					stroke="var(--primary)"
 					fill="url(#colorPrincipal)"
 					strokeWidth={2}
 				/>
@@ -91,7 +91,7 @@ export default function PagibigChart({
 					dataKey="dividendsEarned"
 					name={dividendsName}
 					stackId="1"
-					stroke="#2e7d32"
+					stroke="var(--success)"
 					fill="url(#colorDividend)"
 					strokeWidth={2}
 				/>

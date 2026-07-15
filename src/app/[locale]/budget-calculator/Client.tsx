@@ -184,10 +184,10 @@ export default function BudgetCalculator() {
 
 	const chartData = [
 		{ name: "Expenses", value: totalExpenses, color: "var(--primary)" },
-		{ name: "SSS", value: result.sss, color: "#f57c00" },
-		{ name: "PhilHealth", value: result.philhealth, color: "#0288d1" },
-		{ name: "Pag-IBIG", value: result.pagibig, color: "#7b1fa2" },
-		{ name: "Tax", value: result.tax, color: "#d32f2f" },
+		{ name: "SSS", value: result.sss, color: "var(--warning-amber)" },
+		{ name: "PhilHealth", value: result.philhealth, color: "var(--chart-2)" },
+		{ name: "Pag-IBIG", value: result.pagibig, color: "var(--chart-3)" },
+		{ name: "Tax", value: result.tax, color: "var(--danger)" },
 	].filter((item) => item.value > 0);
 
 	const expenseChartData = expenses
@@ -196,16 +196,16 @@ export default function BudgetCalculator() {
 			name: e.name || `Expense ${i + 1}`,
 			value: parseFloat(e.amount) || 0,
 			color: [
-				"#1b5e20",
-				"#2e7d32",
-				"#388e3c",
-				"#43a047",
-				"#4caf50",
-				"#66bb6a",
-				"#81c784",
-				"#a5d6a7",
-				"#c8e6c9",
-				"#e8f5e9",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success)",
+				"var(--success-bg)",
+				"var(--success-bg)",
 			][i % 10],
 		}));
 
@@ -303,7 +303,7 @@ export default function BudgetCalculator() {
 									style={{
 										background: "none",
 										border: "none",
-										color: "#b71c1c",
+										color: "var(--danger)",
 										cursor: "pointer",
 										fontSize: "18px",
 										padding: "4px 8px",
@@ -501,7 +501,7 @@ export default function BudgetCalculator() {
 							}}
 						>
 							<span>SSS</span>
-							<span style={{ color: "#f57c00" }}>
+							<span style={{ color: "var(--warning-amber)" }}>
 								+ {formatCurrency(result.sss)}
 							</span>
 						</div>
@@ -515,7 +515,7 @@ export default function BudgetCalculator() {
 							}}
 						>
 							<span>PhilHealth</span>
-							<span style={{ color: "#1976d2" }}>
+							<span style={{ color: "var(--chart-2)" }}>
 								+ {formatCurrency(result.philhealth)}
 							</span>
 						</div>
@@ -529,7 +529,7 @@ export default function BudgetCalculator() {
 							}}
 						>
 							<span>Pag-IBIG</span>
-							<span style={{ color: "#d32f2f" }}>
+							<span style={{ color: "var(--danger)" }}>
 								+ {formatCurrency(result.pagibig)}
 							</span>
 						</div>
@@ -543,7 +543,7 @@ export default function BudgetCalculator() {
 							}}
 						>
 							<span>Withholding Tax (BIR)</span>
-							<span style={{ color: "#b71c1c" }}>
+							<span style={{ color: "var(--danger)" }}>
 								+ {formatCurrency(result.tax)}
 							</span>
 						</div>
@@ -581,7 +581,7 @@ export default function BudgetCalculator() {
 						}}
 					>
 						<span style={{ fontSize: "16px" }}>{t("grossSalaryNeeded")}</span>
-						<span style={{ color: "#1b5e20" }}>
+						<span style={{ color: "var(--success)" }}>
 							{formatCurrency(result.grossSalary)}
 						</span>
 					</div>

@@ -194,7 +194,7 @@ export default function BIRWithholdingTaxClient() {
 						<span style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
 							{t("wtLabel")}
 						</span>
-						<strong style={{ fontSize: "16px", color: "#d32f2f" }}>
+						<strong style={{ fontSize: "16px", color: "var(--danger)" }}>
 							- {formatCurrency(withholdingTax)}
 						</strong>
 					</div>
@@ -245,7 +245,7 @@ export default function BIRWithholdingTaxClient() {
 							padding: "16px",
 							marginTop: "24px",
 							backgroundColor: "var(--surface-color)",
-							borderLeft: "4px solid #1976d2",
+							borderLeft: "4px solid var(--chart-2)",
 							borderRadius: "4px",
 						}}
 					>
@@ -254,7 +254,7 @@ export default function BIRWithholdingTaxClient() {
 								display: "block",
 								fontSize: "14px",
 								marginBottom: "6px",
-								color: "#0d47a1",
+								color: "var(--primary)",
 							}}
 						>
 							Form 2307 Reminder

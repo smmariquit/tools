@@ -53,7 +53,7 @@ export default function SSSChart({
 					)}
 				/>
 				<Bar dataKey={eeKey} stackId="a" fill="var(--primary)" />
-				{showEr && <Bar dataKey={erKey} stackId="a" fill="#7c4dff" />}
+				{showEr && <Bar dataKey={erKey} stackId="a" fill="var(--chart-3)" />}
 			</BarChart>
 		</ResponsiveContainer>
 	);

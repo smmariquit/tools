@@ -147,9 +147,9 @@ export default function CarLoanCalculator() {
 	}
 
 	const chartData = [
-		{ name: "Down Payment", value: downPayment, color: "#2e7d32" },
-		{ name: "Principal Loan", value: loanAmount, color: "#1976d2" },
-		{ name: "Total Interest", value: totalInterest, color: "#b71c1c" },
+		{ name: "Down Payment", value: downPayment, color: "var(--success)" },
+		{ name: "Principal Loan", value: loanAmount, color: "var(--chart-2)" },
+		{ name: "Total Interest", value: totalInterest, color: "var(--danger)" },
 	];
 
 	return (
@@ -289,7 +289,7 @@ export default function CarLoanCalculator() {
 							style={{
 								backgroundColor: "var(--bg-color)",
 								border: "1px solid var(--border-color)",
-								borderLeft: "5px solid #2e7d32",
+								borderLeft: "5px solid var(--success)",
 								marginTop: "20px",
 							}}
 						>
@@ -338,7 +338,7 @@ export default function CarLoanCalculator() {
 									>
 										{t("totalSavings")}
 									</span>
-									<strong style={{ fontSize: "20px", color: "#2e7d32" }}>
+									<strong style={{ fontSize: "20px", color: "var(--success)" }}>
 										{formatCurrency(totalSavings)}
 									</strong>
 								</div>
@@ -360,7 +360,7 @@ export default function CarLoanCalculator() {
 									>
 										{t("monthlyDifference")}
 									</span>
-									<strong style={{ fontSize: "16px", color: "#2e7d32" }}>
+									<strong style={{ fontSize: "16px", color: "var(--success)" }}>
 										-{formatCurrency(inHouseMonthly - monthlyAmortization)}/mo
 									</strong>
 								</div>
@@ -408,7 +408,7 @@ export default function CarLoanCalculator() {
 						<span style={{ color: "var(--text-secondary)" }}>
 							{t("totalInterest")}
 						</span>
-						<strong style={{ color: "#b71c1c" }}>
+						<strong style={{ color: "var(--danger)" }}>
 							{formatCurrency(totalInterest)}
 						</strong>
 					</div>
@@ -441,7 +441,7 @@ export default function CarLoanCalculator() {
 						}}
 					>
 						<span style={{ fontSize: "16px" }}>{t("monthlyAmortization")}</span>
-						<span style={{ color: "#1976d2" }}>
+						<span style={{ color: "var(--chart-2)" }}>
 							{formatCurrency(monthlyAmortization)}
 						</span>
 					</div>
