@@ -156,7 +156,7 @@ export default function SSSCalculator() {
 					<SampleCases
 						cases={[
 							{
-								label: "Minimum wage (₱15k)",
+								label: "Minimum wage (~₱15k)",
 								onSelect: () => applyCase("15000", "employed"),
 							},
 							{
@@ -164,7 +164,7 @@ export default function SSSCalculator() {
 								onSelect: () => applyCase("25000", "employed"),
 							},
 							{
-								label: "At the ceiling (₱40k)",
+								label: "Above MSC cap (₱40k gross)",
 								onSelect: () => applyCase("40000", "employed"),
 							},
 							{

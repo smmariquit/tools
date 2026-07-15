@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useState } from "react";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -63,6 +64,24 @@ export default function PagibigMP2Client() {
 		}
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
+		});
+	};
+
+	const applyCase = (
+		initial: number,
+		monthly: number,
+		rate: number,
+		payout: string,
+	) => {
+		setInitialContribution(initial);
+		setMonthlyContribution(monthly);
+		setDividendRate(rate);
+		setPayoutType(payout);
+		updateUrl({
+			initial: initial.toString(),
+			monthly: monthly.toString(),
+			rate: rate.toString(),
+			payout,
 		});
 	};
 
@@ -137,6 +156,27 @@ export default function PagibigMP2Client() {
 					>
 						{t("inputDetails")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Starter (₱500/mo)",
+								onSelect: () => applyCase(0, 500, 7, "compounded"),
+							},
+							{
+								label: "Regular saver (₱1k/mo)",
+								onSelect: () => applyCase(0, 1000, 7, "compounded"),
+							},
+							{
+								label: "With lump sum seed",
+								onSelect: () => applyCase(50000, 2000, 7, "compounded"),
+							},
+							{
+								label: "Annual payout mode",
+								onSelect: () => applyCase(0, 3000, 6.5, "annual"),
+							},
+						]}
+					/>
 
 					<InteractiveSlider
 						label={t("initialContribution")}

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import { grossFromTax } from "../../../lib/reverseSalaryLogic";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -43,6 +44,28 @@ export default function GrossFromTaxClient() {
 					>
 						{t("inputDetails")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Zero withholding target",
+								onSelect: () => updateState({ targetTax: 0 }),
+							},
+							{
+								label: "₱2,500/mo withholding",
+								onSelect: () => updateState({ targetTax: 2500 }),
+							},
+							{
+								label: "₱8,000/mo withholding",
+								onSelect: () => updateState({ targetTax: 8000 }),
+							},
+							{
+								label: "₱15k/mo withholding",
+								onSelect: () => updateState({ targetTax: 15000 }),
+							},
+						]}
+					/>
+
 					<InteractiveSlider
 						label={t("targetTaxLabel")}
 						value={state.targetTax}

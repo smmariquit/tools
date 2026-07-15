@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -18,6 +19,20 @@ export default function FinalPayClient() {
 	const silCash = dailyRate * unusedSil;
 
 	const finalPay = unpaidSalary + prorated13thMonth + silCash - taxWithheld;
+
+	const applyCase = (
+		rate: number,
+		days: number,
+		basic: number,
+		sil: number,
+		tax: number,
+	) => {
+		setDailyRate(rate);
+		setUnpaidDays(days);
+		setTotalBasicSalary(basic);
+		setUnusedSil(sil);
+		setTaxWithheld(tax);
+	};
 
 	const formatPHP = (val: number) =>
 		new Intl.NumberFormat("en-PH", {
@@ -41,6 +56,23 @@ export default function FinalPayClient() {
 						>
 							{t("employmentDetails")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "10 unpaid days",
+									onSelect: () => applyCase(1000, 10, 150000, 5, 0),
+								},
+								{
+									label: "15 unrendered days",
+									onSelect: () => applyCase(1200, 15, 180000, 3, 2500),
+								},
+								{
+									label: "With unused SIL",
+									onSelect: () => applyCase(1000, 5, 240000, 10, 0),
+								},
+							]}
+						/>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label" htmlFor="f-dailyWageRate">

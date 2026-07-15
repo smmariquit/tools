@@ -7,6 +7,7 @@ import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
+import SampleCases from "../components/SampleCases";
 import ToolLayout from "../components/ToolLayout";
 
 export default function ThirteenthMonthClient() {
@@ -61,6 +62,26 @@ export default function ThirteenthMonthClient() {
 						>
 							{t("detailsTitle")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "Full year (₱30k)",
+									onSelect: () =>
+										updateState({ salary: 30000, months: 12, absences: 0 }),
+								},
+								{
+									label: "New hire (6 months)",
+									onSelect: () =>
+										updateState({ salary: 30000, months: 6, absences: 0 }),
+								},
+								{
+									label: "₱5k absence deduction",
+									onSelect: () =>
+										updateState({ salary: 30000, months: 12, absences: 5000 }),
+								},
+							]}
+						/>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="basicSalary">

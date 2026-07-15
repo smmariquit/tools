@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { calculateFreelanceRate } from "../../../core/calculators/freelanceRate";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -26,6 +27,15 @@ export default function FreelanceRateClient() {
 		hours: billableHours,
 		vacation: vacationDays,
 	} = state;
+
+	const applyCase = (
+		net: number,
+		expenses: number,
+		hours: number,
+		vacation: number,
+	) => {
+		updateState({ net, expenses, hours, vacation });
+	};
 
 	const { grossAnnual, billableHoursPerYear, hourlyRatePhp, hourlyRateUsd } =
 		calculateFreelanceRate(
@@ -66,6 +76,23 @@ export default function FreelanceRateClient() {
 					>
 						{t("inputDetails")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "₱50k net target",
+								onSelect: () => applyCase(50000, 5000, 30, 15),
+							},
+							{
+								label: "₱80k net target",
+								onSelect: () => applyCase(80000, 8000, 35, 20),
+							},
+							{
+								label: "Side hustle (part-time)",
+								onSelect: () => applyCase(25000, 2000, 15, 30),
+							},
+						]}
+					/>
 
 					<InteractiveSlider
 						label={t("targetNet")}

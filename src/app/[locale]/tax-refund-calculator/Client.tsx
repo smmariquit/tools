@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -30,6 +31,18 @@ export default function TaxRefundClient() {
 
 	const taxRefund = taxWithheldYTD - annualTaxDue;
 
+	const applyCase = (
+		gross: number,
+		contributions: number,
+		bonus: number,
+		withheld: number,
+	) => {
+		setGrossAnnual(gross);
+		setMandatoryContributions(contributions);
+		setBonuses(bonus);
+		setTaxWithheldYTD(withheld);
+	};
+
 	const formatPHP = (val: number) =>
 		new Intl.NumberFormat("en-PH", {
 			style: "currency",
@@ -52,6 +65,23 @@ export default function TaxRefundClient() {
 						>
 							{t("annualFinancials")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "₱600k (likely refund)",
+									onSelect: () => applyCase(600000, 25000, 85000, 45000),
+								},
+								{
+									label: "₱400k (near break-even)",
+									onSelect: () => applyCase(400000, 20000, 30000, 15000),
+								},
+								{
+									label: "₱1.2M (may owe)",
+									onSelect: () => applyCase(1200000, 40000, 90000, 80000),
+								},
+							]}
+						/>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label" htmlFor="f-grossAnnualLabel">

@@ -9,6 +9,7 @@ import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolLayout from "../components/ToolLayout";
 
@@ -56,6 +57,13 @@ export default function PagIbigClient() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyCase = (salary: string, mp2: string, rate: string) => {
+		setBasicSalaryStr(salary);
+		setMp2MonthlyStr(mp2);
+		setDividendRateStr(rate);
+		updateUrl({ salary, mp2, rate });
 	};
 
 	useEffect(() => {
@@ -141,6 +149,27 @@ export default function PagIbigClient() {
 						>
 							{t("mandatoryTitle")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "1% rate (₱1.5k)",
+									onSelect: () => applyCase("1500", "0", "7"),
+								},
+								{
+									label: "Typical (₱20k)",
+									onSelect: () => applyCase("20000", "1000", "7"),
+								},
+								{
+									label: "At cap (₱10k MFS)",
+									onSelect: () => applyCase("10000", "500", "7"),
+								},
+								{
+									label: "With MP2 (₱25k + ₱2k/mo)",
+									onSelect: () => applyCase("25000", "2000", "7"),
+								},
+							]}
+						/>
 
 						<InteractiveSlider
 							label={t("salaryLabel")}

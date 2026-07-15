@@ -5,6 +5,7 @@ import { useId } from "react";
 import { calculateSeparationPay } from "../../../core/calculators/separationPay";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -38,6 +39,18 @@ export default function SeparationPayClient() {
 		end: separationDate,
 		reason,
 	} = state;
+
+	const applyCase = (salary: number, yearsAgo: number, reasonCode: string) => {
+		const end = new Date();
+		const start = new Date();
+		start.setFullYear(start.getFullYear() - yearsAgo);
+		updateState({
+			salary,
+			start: start.toISOString().split("T")[0],
+			end: end.toISOString().split("T")[0],
+			reason: reasonCode,
+		});
+	};
 
 	const { yearsOfService, multiplier, totalPay } = calculateSeparationPay(
 		monthlySalary,
@@ -77,6 +90,23 @@ export default function SeparationPayClient() {
 					>
 						{t("inputDetails")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "1 yr redundancy",
+								onSelect: () => applyCase(25000, 1, "redundancy"),
+							},
+							{
+								label: "5 yr retrenchment",
+								onSelect: () => applyCase(30000, 5, "retrenchment"),
+							},
+							{
+								label: "Closure (½ month/yr)",
+								onSelect: () => applyCase(35000, 3, "closure"),
+							},
+						]}
+					/>
 
 					<InteractiveSlider
 						label={t("monthlySalary")}

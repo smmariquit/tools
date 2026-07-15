@@ -12,6 +12,7 @@ import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
+import SampleCases from "../components/SampleCases";
 import ToolLayout from "../components/ToolLayout";
 
 // Holidays with an actual DOLE premium (special working days carry none).
@@ -66,6 +67,19 @@ export default function HolidayClient() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyCase = (
+		rate: string,
+		type: "regular" | "special" | "regularRest" | "specialRest",
+		worked: "yes" | "no",
+		hours: string,
+	) => {
+		setDailyRateStr(rate);
+		setDayType(type);
+		setDidWork(worked);
+		setHoursWorkedStr(hours);
+		updateUrl({ rate, type, worked, hours });
 	};
 
 	const dailyRate = parseFloat(dailyRateStr) || 0;
@@ -162,6 +176,27 @@ export default function HolidayClient() {
 						>
 							{t("workDetails")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "Regular holiday (worked)",
+									onSelect: () => applyCase("1000", "regular", "yes", "8"),
+								},
+								{
+									label: "Special holiday (worked)",
+									onSelect: () => applyCase("1000", "special", "yes", "8"),
+								},
+								{
+									label: "Regular holiday (rest day)",
+									onSelect: () => applyCase("1000", "regularRest", "yes", "8"),
+								},
+								{
+									label: "Did not work (regular)",
+									onSelect: () => applyCase("1000", "regular", "no", "0"),
+								},
+							]}
+						/>
 
 						<div className="form-group">
 							<label className="form-label" htmlFor="dailyRate">

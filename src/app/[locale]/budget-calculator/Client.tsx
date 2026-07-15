@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { reverseSalary } from "../../../lib/reverseSalaryLogic";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -42,6 +43,31 @@ const DEFAULT_EXPENSES: Expense[] = [
 		amount: "3000",
 	},
 	{ id: "savings", name: "Savings / Emergency Fund", amount: "5000" },
+];
+
+const LEAN_EXPENSES: Expense[] = [
+	{ id: "rent", name: "Rent / Mortgage", amount: "5000" },
+	{ id: "food", name: "Food & Groceries", amount: "4000" },
+	{ id: "transpo", name: "Transportation", amount: "1500" },
+	{
+		id: "utils",
+		name: "Utilities (Electric, Water, Internet)",
+		amount: "2000",
+	},
+	{ id: "savings", name: "Savings / Emergency Fund", amount: "2000" },
+];
+
+const FAMILY_EXPENSES: Expense[] = [
+	{ id: "rent", name: "Rent / Mortgage", amount: "15000" },
+	{ id: "food", name: "Food & Groceries", amount: "12000" },
+	{ id: "transpo", name: "Transportation", amount: "5000" },
+	{
+		id: "utils",
+		name: "Utilities (Electric, Water, Internet)",
+		amount: "4500",
+	},
+	{ id: "school", name: "School / Childcare", amount: "8000" },
+	{ id: "savings", name: "Savings / Emergency Fund", amount: "10000" },
 ];
 
 export default function BudgetCalculator() {
@@ -100,6 +126,15 @@ export default function BudgetCalculator() {
 	);
 	const extraNetAmount = parseFloat(extraNet) || 0;
 	const targetNetPay = totalExpenses + extraNetAmount;
+
+	const applyPreset = (preset: Expense[], extra: string) => {
+		setExpenses(preset);
+		setExtraNet(extra);
+		updateUrl({
+			expenses: encodeURIComponent(JSON.stringify(preset)),
+			extra,
+		});
+	};
 
 	const result = reverseSalary(targetNetPay);
 
@@ -195,6 +230,23 @@ export default function BudgetCalculator() {
 					>
 						{t("detailsTitle")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Metro typical",
+								onSelect: () => applyPreset(DEFAULT_EXPENSES, "0"),
+							},
+							{
+								label: "Lean budget",
+								onSelect: () => applyPreset(LEAN_EXPENSES, "0"),
+							},
+							{
+								label: "Family household",
+								onSelect: () => applyPreset(FAMILY_EXPENSES, "5000"),
+							},
+						]}
+					/>
 
 					{/* Expense List */}
 					<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

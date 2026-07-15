@@ -2,10 +2,13 @@
 title: "Pag-IBIG Contribution Table (2026 Update)"
 description: "Pag-IBIG doubled its salary cap to ₱10,000, so the maximum deduction is now ₱200. Here is what changed, and why the cheapest deduction is also the most useful."
 date: "2026-05-31"
+updatedAt: "2026-07-15"
 tags: ["Pag-IBIG", "Contributions", "Salary", "Finance"]
 ---
 
 Pag-IBIG is the deduction nobody complains about, partly because it is small and partly because almost everyone forgets it is there until they need a housing loan. The Home Development Mutual Fund operates under [RA 9679](https://lawphil.net/statutes/repacts/ra2009/ra_9679_2009.html), and after holding its computation base steady for decades, it finally moved it.
+
+<AdBanner dataAdSlot="blog-in-article-1" />
 
 ## The salary cap that doubled
 
@@ -14,6 +17,46 @@ For years, contributions were computed on a maximum of ₱5,000 in monthly compe
 The rate has a small wrinkle at the very bottom. If you earn ₱1,500 or less in a month, your share is 1% while your employer still puts in 2%. Above ₱1,500, both sides contribute 2%, which describes essentially everyone with a regular job. So for practical purposes, anyone earning ₱10,000 or more is looking at ₱200 out, ₱200 matched, ₱400 saved every month.
 
 That extra ₱100 a month compared to the old cap is not really a loss. It lands in your Pag-IBIG Regular Savings, which earns tax-free dividends that have historically sat somewhere around 6%, and it quietly builds the contribution history that determines how large a housing loan you can eventually take out. Of the three mandatory deductions, this is the one most clearly working as savings rather than as a shared fund you may never personally draw on.
+
+## 2026 contribution table
+
+Pag-IBIG does not publish a 50-row bracket sheet like SSS. The math is a capped percentage, so the whole schedule fits on one page. Contributions are computed on **Monthly Fund Salary (MFS)**, which is your basic monthly salary capped at ₱10,000.
+
+| Monthly basic salary | MFS used | Employee share | Employer share | Total monthly |
+| --- | --- | --- | --- | --- |
+| ₱1,500 or less | actual salary | 1% | 2% | 3% of salary |
+| ₱1,501 – ₱9,999 | actual salary | 2% | 2% | 4% of salary |
+| ₱10,000 and above | ₱10,000 (cap) | ₱200 | ₱200 | ₱400 |
+
+Worked examples at common pay levels:
+
+| Monthly basic salary | MFS | You pay | Employer pays | Saved |
+| --- | --- | --- | --- | --- |
+| ₱1,500 | ₱1,500 | ₱15 | ₱30 | ₱45 |
+| ₱5,000 | ₱5,000 | ₱100 | ₱100 | ₱200 |
+| ₱10,000 | ₱10,000 | ₱200 | ₱200 | ₱400 |
+| ₱25,000 | ₱10,000 | ₱200 | ₱200 | ₱400 |
+| ₱50,000 | ₱10,000 | ₱200 | ₱200 | ₱400 |
+
+The last three rows are the same on purpose. Once you clear ₱10,000 in basic pay, the deduction stops growing even if your salary does.
+
+<MdxChart
+  type="bar"
+  caption="Employer vs employee Pag-IBIG share at sample salary levels (2026 cap)"
+  data={[
+    { salary: "₱1.5k", employee: 15, employer: 30 },
+    { salary: "₱5k", employee: 100, employer: 100 },
+    { salary: "₱10k+", employee: 200, employer: 200 },
+  ]}
+  x="salary"
+  series={[
+    { key: "employee", label: "Employee", color: "primary" },
+    { key: "employer", label: "Employer", color: "teal" },
+  ]}
+  valuePrefix="₱"
+/>
+
+<AdBanner dataAdSlot="blog-in-article-2" />
 
 ## Paying voluntarily
 
@@ -26,3 +69,11 @@ The [Pag-IBIG calculator](/pagibig-calculator) shows your exact deduction and wh
 * [Pag-IBIG Contribution Calculator](/pagibig-calculator)
 * [Pag-IBIG MP2 Calculator](/pagibig-mp2-calculator)
 * [Salary & Net Pay Calculator](/salary-calculator)
+
+## Sources
+- [Home Development Mutual Fund Act (RA 9679)](https://lawphil.net/statutes/repacts/ra2009/ra_9679_2009.html)
+- [Pag-IBIG Fund: official website](https://www.pagibigfund.gov.ph/)
+
+## Changelog
+- **2026-07-15** — Added the 2026 contribution table, chart, AdBanner slots, and sources section.
+- **2026-05-31** — Initial publication.

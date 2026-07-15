@@ -8,6 +8,7 @@ import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
+import SampleCases from "../components/SampleCases";
 import ToolLayout from "../components/ToolLayout";
 
 const Chart = dynamic(() => import("./Chart"), {
@@ -63,6 +64,25 @@ export default function FreelanceTaxClient() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyUsdCase = (usd: string, rate: string, upwork: boolean) => {
+		setCurrencyMode("usd");
+		setUsdIncomeStr(usd);
+		setForexRateStr(rate);
+		setIncludeUpwork(upwork);
+		updateUrl({
+			currency: "usd",
+			usd,
+			rate,
+			upwork: upwork ? "true" : "false",
+		});
+	};
+
+	const applyPhpCase = (php: string) => {
+		setCurrencyMode("php");
+		setGrossIncomeStr(php);
+		updateUrl({ currency: "php", php });
 	};
 
 	useEffect(() => {
@@ -132,6 +152,23 @@ export default function FreelanceTaxClient() {
 						>
 							{t("incomeDetails")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "Upwork $2k/mo",
+									onSelect: () => applyUsdCase("2000", "57.50", true),
+								},
+								{
+									label: "Direct client $3.5k",
+									onSelect: () => applyUsdCase("3500", "57.50", false),
+								},
+								{
+									label: "₱100k/mo local",
+									onSelect: () => applyPhpCase("100000"),
+								},
+							]}
+						/>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<div className="form-label">{t("currency")}</div>

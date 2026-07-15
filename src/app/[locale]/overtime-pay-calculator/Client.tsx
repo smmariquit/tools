@@ -10,6 +10,7 @@ import {
 	payCategoryForHoliday,
 } from "@/data/holidays";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -73,6 +74,27 @@ export default function OvertimePayClient() {
 		}
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
+		});
+	};
+
+	const applyCase = (
+		salary: number,
+		days: number,
+		type: string,
+		hours: number,
+		holiday = "",
+	) => {
+		setMonthlySalary(salary);
+		setWorkDays(days);
+		setDayType(type);
+		setHoursWorked(hours);
+		setSelectedHolidayDate(holiday);
+		updateUrl({
+			salary: salary.toString(),
+			days: days.toString(),
+			type,
+			hours: hours.toString(),
+			holiday,
 		});
 	};
 
@@ -149,6 +171,27 @@ export default function OvertimePayClient() {
 					>
 						{t("inputDetails")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Ordinary day (10 hrs, 2 OT)",
+								onSelect: () => applyCase(25000, 21.75, "ordinary", 10),
+							},
+							{
+								label: "Rest day (8 hrs)",
+								onSelect: () => applyCase(25000, 21.75, "rest", 8),
+							},
+							{
+								label: "Special holiday (10 hrs, 2 OT)",
+								onSelect: () => applyCase(30000, 21.75, "special", 10),
+							},
+							{
+								label: "Regular holiday (10 hrs, 2 OT)",
+								onSelect: () => applyCase(30000, 21.75, "regular", 10),
+							},
+						]}
+					/>
 
 					<InteractiveSlider
 						label={t("monthlySalary")}

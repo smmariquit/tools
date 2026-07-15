@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import PrivacyGuarantee from "../../components/PrivacyGuarantee";
 import TrustBadge from "../../components/TrustBadge";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -66,6 +67,18 @@ export default function DeMinimisClient() {
 
 	const totalTaxFreeBenefits = totalExemptDeMinimis + poolExempt;
 
+	const applyCase = (
+		riceVal: number,
+		uniformVal: number,
+		thirteenth: number,
+		bonuses: number,
+	) => {
+		setRice(riceVal);
+		setUniform(uniformVal);
+		setThirteenthMonth(thirteenth);
+		setOtherBonuses(bonuses);
+	};
+
 	const formatPHP = (val: number) =>
 		new Intl.NumberFormat("en-PH", {
 			style: "currency",
@@ -92,6 +105,24 @@ export default function DeMinimisClient() {
 						>
 							{t("annualBenefits")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "Within all caps",
+									onSelect: () => applyCase(24000, 6000, 30000, 0),
+								},
+								{
+									label: "Over rice cap",
+									onSelect: () => applyCase(35000, 0, 30000, 5000),
+								},
+								{
+									label: "₱90k bonus pool edge",
+									onSelect: () => applyCase(0, 0, 50000, 45000),
+								},
+							]}
+						/>
+
 						<p
 							style={{
 								fontSize: "14px",

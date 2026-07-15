@@ -10,6 +10,7 @@ import {
 	type PayCategory,
 	payCategoryForHoliday,
 } from "@/data/holidays";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -160,6 +161,27 @@ export default function BpoCalculator() {
 		[router, pathname, searchParams],
 	);
 
+	const applyCase = (
+		salary: string,
+		start: string,
+		end: string,
+		type: DayType,
+		holiday = "",
+	) => {
+		setSalaryStr(salary);
+		setShiftStart(start);
+		setShiftEnd(end);
+		setDayType(type);
+		setSelectedHolidayDate(holiday);
+		updateUrl({
+			salary,
+			shiftStart: start,
+			shiftEnd: end,
+			type,
+			holiday,
+		});
+	};
+
 	useEffect(() => {
 		setMounted(true);
 		// Check if URL parameters are missing and initialize them
@@ -243,6 +265,27 @@ export default function BpoCalculator() {
 					>
 						{t("detailsTitle")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Graveyard 10pm–6am",
+								onSelect: () => applyCase("25000", "22", "6", "regular"),
+							},
+							{
+								label: "US shift 9pm–5am",
+								onSelect: () => applyCase("30000", "21", "5", "regular"),
+							},
+							{
+								label: "Rest day night shift",
+								onSelect: () => applyCase("25000", "22", "6", "rest"),
+							},
+							{
+								label: "Regular holiday night",
+								onSelect: () => applyCase("30000", "22", "6", "regularHoliday"),
+							},
+						]}
+					/>
 
 					{/* Monthly Salary Input with Slider */}
 					<div className="form-group" style={{ marginBottom: "20px" }}>

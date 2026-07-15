@@ -7,6 +7,7 @@ import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import { computeSalary, EmploymentType } from "../../../lib/salaryLogic";
 import InteractiveSlider from "../components/InteractiveSlider";
 import PremiumLegend from "../components/PremiumLegend";
+import SampleCases from "../components/SampleCases";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
 
@@ -156,6 +157,48 @@ export default function SalaryCalculator({
 					>
 						{t("detailsTitle")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Entry-level (₱15k)",
+								onSelect: () =>
+									updateState({
+										salary: "15000",
+										period: "Monthly",
+										empType: "Private",
+									}),
+							},
+							{
+								label: "Mid-level (₱30k)",
+								onSelect: () =>
+									updateState({
+										salary: "30000",
+										period: "Monthly",
+										empType: "Private",
+									}),
+							},
+							{
+								label: "Senior (₱50k)",
+								onSelect: () =>
+									updateState({
+										salary: "50000",
+										period: "Monthly",
+										empType: "Private",
+									}),
+							},
+							{
+								label: "Minimum wage (~₱15k)",
+								onSelect: () =>
+									updateState({
+										salary: "15000",
+										period: "Monthly",
+										empType: "Minimum Wage",
+									}),
+							},
+						]}
+					/>
+
 					<div className="form-group" style={{ marginBottom: "16px" }}>
 						<label className="form-label" htmlFor="employmentType">
 							{t("empTypeLabel")}
