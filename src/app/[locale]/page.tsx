@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { allToolPaths } from "../../lib/routes";
 import Squiggle from "../components/doodle/Squiggle";
@@ -107,7 +108,7 @@ export default function Home() {
 							boxShadow: "0 2px 4px rgba(0,0,0,0.02)",
 						}}
 					>
-						{allToolPaths.length} Tools Available
+						{t("toolCount", { count: allToolPaths.length })}
 					</div>
 					<VisitorCount counterKey="home" messageKey="helpedSite" badge />
 					<a
@@ -137,7 +138,7 @@ export default function Home() {
 						>
 							<path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z" />
 						</svg>
-						View on GitHub
+						{t("githubLabel")}
 					</a>
 				</div>
 			</div>
@@ -145,6 +146,79 @@ export default function Home() {
 			<div style={{ marginBottom: "40px" }}>
 				<WavyDivider />
 			</div>
+
+			<section
+				aria-labelledby="why-phtools"
+				style={{ maxWidth: "960px", margin: "0 auto 56px" }}
+			>
+				<div
+					style={{
+						textAlign: "center",
+						maxWidth: "760px",
+						margin: "0 auto 24px",
+					}}
+				>
+					<span className="eyebrow">{t("proofEyebrow")}</span>
+					<h2
+						id="why-phtools"
+						style={{ fontSize: "28px", marginBottom: "12px" }}
+					>
+						{t("proofTitle")}
+					</h2>
+					<p style={{ color: "var(--text-secondary)", lineHeight: 1.75 }}>
+						{t("proofIntro")}
+					</p>
+				</div>
+
+				<div
+					style={{
+						display: "grid",
+						gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+						gap: "16px",
+					}}
+				>
+					{(["sources", "context", "open"] as const).map((item, index) => (
+						<div className="card" key={item}>
+							<span className="hand-note" aria-hidden="true">
+								0{index + 1}
+							</span>
+							<h3 style={{ fontSize: "18px", margin: "8px 0" }}>
+								{t(`proof${item[0].toUpperCase()}${item.slice(1)}Title`)}
+							</h3>
+							<p
+								style={{
+									fontSize: "15px",
+									color: "var(--text-secondary)",
+									lineHeight: 1.7,
+								}}
+							>
+								{t(`proof${item[0].toUpperCase()}${item.slice(1)}Desc`)}
+							</p>
+						</div>
+					))}
+				</div>
+
+				<nav
+					aria-label={t("proofLinksLabel")}
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						gap: "12px",
+						flexWrap: "wrap",
+						marginTop: "24px",
+					}}
+				>
+					<Link href="/editorial-policy" className="btn-primary">
+						{t("methodologyLabel")}
+					</Link>
+					<Link href="/about" className="btn-secondary">
+						{t("aboutLabel")}
+					</Link>
+					<Link href="/blog" className="btn-secondary">
+						{t("guidesLabel")}
+					</Link>
+				</nav>
+			</section>
 
 			<ToolSearch />
 		</>

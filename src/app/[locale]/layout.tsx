@@ -18,6 +18,7 @@ const caveat = Caveat({
 	variable: "--font-caveat",
 	display: "swap",
 });
+
 import { NextIntlClientProvider } from "next-intl";
 import {
 	getMessages,
@@ -44,7 +45,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://phtools.me"),
+	metadataBase: new URL("https://www.phtools.me"),
 	title: "PH Tools & Calculators | Free Online Utilities",
 	description:
 		"Free, accurate calculators and tools for Filipinos. Compute your SSS, PhilHealth, Pag-IBIG, tax, net pay, and more.",
@@ -88,7 +89,7 @@ export default async function RootLayout({
 	const { locale } = await params;
 	setRequestLocale(locale);
 	const messages = await getMessages();
-	const t = await getTranslations("Navigation");
+	const t = await getTranslations("Footer");
 
 	return (
 		<html
@@ -104,10 +105,18 @@ export default async function RootLayout({
 						__html: `(function(){try{var t=localStorage.getItem("theme")||"system";var d=t==="system"?(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t;document.documentElement.setAttribute("data-theme",d);document.documentElement.style.colorScheme=d==="dark"?"dark":"light"}catch(e){}})();`,
 					}}
 				/>
+				<Script
+					id="grow-initializer"
+					strategy="afterInteractive"
+					data-grow-initializer=""
+					dangerouslySetInnerHTML={{
+						__html: `!(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),e.src="https://faves.grow.me/main.js",(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTo0MTQ5MTYxNS1hMTg2LTRlNjgtOTJhYy1kNDZlMzEzMmI2MDI=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();`,
+					}}
+				/>
 			</head>
 			<body>
 				<a href="#main-content" className="skip-to-content">
-					Skip to content
+					{t("skipToContent")}
 				</a>
 				<AdSenseLoader />
 				<ThemeProvider>
@@ -168,8 +177,7 @@ export default async function RootLayout({
 													maxWidth: "300px",
 												}}
 											>
-												Free, accurate, and fast online calculators and
-												utilities designed specifically for the Philippines.
+												{t("tagline")}
 											</p>
 										</div>
 
@@ -183,7 +191,7 @@ export default async function RootLayout({
 														textTransform: "uppercase",
 													}}
 												>
-													Company
+													{t("company")}
 												</h4>
 												<div
 													style={{
@@ -199,7 +207,7 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														About Us
+														{t("about")}
 													</Link>
 													<Link
 														href="/faq"
@@ -208,30 +216,30 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														Help & FAQs
+														{t("faq")}
 													</Link>
-												<Link
-													href="/contact"
-													style={{
-														color: "var(--text-secondary)",
-														fontSize: "14px",
-													}}
-												>
-													Contact
-												</Link>
-												<a
-													href="https://kape.stimmie.dev"
-													target="_blank"
-													rel="noopener noreferrer"
-													style={{
-														color: "var(--text-secondary)",
-														fontSize: "14px",
-													}}
-												>
-													Buy me a kape ☕
-												</a>
+													<Link
+														href="/contact"
+														style={{
+															color: "var(--text-secondary)",
+															fontSize: "14px",
+														}}
+													>
+														{t("contact")}
+													</Link>
+													<a
+														href="https://kape.stimmie.dev"
+														target="_blank"
+														rel="noopener noreferrer"
+														style={{
+															color: "var(--text-secondary)",
+															fontSize: "14px",
+														}}
+													>
+														{t("coffee")}
+													</a>
+												</div>
 											</div>
-										</div>
 
 											<div>
 												<h4
@@ -242,7 +250,7 @@ export default async function RootLayout({
 														textTransform: "uppercase",
 													}}
 												>
-													Legal
+													{t("legal")}
 												</h4>
 												<div
 													style={{
@@ -258,7 +266,7 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														Privacy Policy
+														{t("privacy")}
 													</Link>
 													<Link
 														href="/editorial-policy"
@@ -267,7 +275,7 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														Editorial Policy
+														{t("editorial")}
 													</Link>
 													<Link
 														href="/terms-of-use"
@@ -276,7 +284,7 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														Terms of Use
+														{t("terms")}
 													</Link>
 													<Link
 														href="/accessibility"
@@ -285,7 +293,7 @@ export default async function RootLayout({
 															fontSize: "14px",
 														}}
 													>
-														Accessibility Statement
+														{t("accessibility")}
 													</Link>
 												</div>
 											</div>
@@ -301,10 +309,7 @@ export default async function RootLayout({
 											fontSize: "13px",
 										}}
 									>
-										<p>
-											&copy; {new Date().getFullYear()} PHTools. All rights
-											reserved. Not affiliated with any government agency.
-										</p>
+										<p>{t("copyright", { year: new Date().getFullYear() })}</p>
 										<p
 											style={{
 												marginTop: "8px",
@@ -314,10 +319,7 @@ export default async function RootLayout({
 												lineHeight: "1.5",
 											}}
 										>
-											These calculators are for reference purposes only and do
-											not constitute professional tax or payroll advice. Always
-											verify with the official agencies (SSS, PhilHealth,
-											Pag-IBIG, BIR, GSIS) for exact computations.
+											{t("disclaimer")}
 										</p>
 									</div>
 								</div>

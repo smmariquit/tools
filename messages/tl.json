@@ -9,7 +9,22 @@
     "paginationNext": "Susunod",
     "paginationLabel": "Pagination ng mga tool",
     "suggestionsLabel": "Mga suggested na tool",
-    "noSuggestions": "Walang tugmang tool"
+    "noSuggestions": "Walang tugmang tool",
+    "toolCount": "{count} tools ang available",
+    "githubLabel": "Tingnan sa GitHub",
+    "proofEyebrow": "may resibo ang math ✦",
+    "proofTitle": "Walang hula-hulang computation.",
+    "proofIntro": "Ang number na walang paliwanag ay parang horoscope na may peso sign. Kaya may kasamang rules, assumptions, at madaling intindihing context ang mga practical calculator sa PHTools—para ma-check mo kung sensible talaga ang result para sa'yo.",
+    "proofSourcesTitle": "Official rules, isinalin para sa tao",
+    "proofSourcesDesc": "Ang major tax, payroll, at benefits tools ay chine-check laban sa Philippine laws, agency tables, at primary guidance—hindi kinopya sa calculator sa kabilang tab.",
+    "proofContextTitle": "May kasamang bakit ang sagot",
+    "proofContextDesc": "Kapag kailangan ng paliwanag, may worked examples, edge cases, at full guide. Simula pa lang ng sagot ang result, hindi dulo ng page.",
+    "proofOpenTitle": "Ginagawa nang bukas sa lahat",
+    "proofOpenDesc": "Open source ang formulas at tests. Kapag nagbago ang government rate o mukhang sus ang number, puwede mong i-check ang code, i-report, at makita ang correction.",
+    "proofLinksLabel": "Alamin kung paano ginagawa ang PHTools",
+    "methodologyLabel": "Tingnan ang methodology",
+    "aboutLabel": "Kilalanin ang gumawa",
+    "guidesLabel": "Basahin ang guides"
   },
   "Doodle": {
     "toolEyebrow": "tara, mag-compute na ✦",
@@ -32,6 +47,22 @@
     "searchPlaceholder": "Hanapin ang tool, e.g. sweldo, tax...",
     "pagibig": "Pag-IBIG/MP2",
     "idPhoto": "ID Photo"
+  },
+  "Footer": {
+    "skipToContent": "Diretso sa content",
+    "tagline": "Libre, accurate, at mabilis na online calculators at utilities na ginawa para sa Pilipinas.",
+    "company": "Tungkol sa amin",
+    "about": "About PHTools",
+    "faq": "Tulong at FAQs",
+    "contact": "Makipag-ugnayan",
+    "coffee": "Ililibre mo ako ng kape ☕",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "editorial": "Editorial Policy",
+    "terms": "Terms of Use",
+    "accessibility": "Accessibility Statement",
+    "copyright": "© {year} PHTools. All rights reserved. Hindi konektado sa anumang ahensya ng gobyerno.",
+    "disclaimer": "Reference lang ang mga calculator na ito at hindi professional tax o payroll advice. I-verify ang exact computation sa official agencies (SSS, PhilHealth, Pag-IBIG, BIR, at GSIS)."
   },
   "Search": {
     "title": "Maghanap ng Tools",
