@@ -209,7 +209,7 @@ export default function SssPensionClient() {
 								</div>
 								<p
 									style={{
-										fontSize: "12px",
+										fontSize: "14px",
 										color: "var(--text-secondary)",
 										margin: 0,
 									}}

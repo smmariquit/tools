@@ -111,15 +111,39 @@ export default function MdxChart({
 									<Cell key={`c-${i}`} fill={resolveColor(undefined, i)} />
 								))}
 							</Pie>
-							<Tooltip formatter={(v) => fmt(v as number)} contentStyle={tooltipStyle} />
+							<Tooltip
+								formatter={(v) => fmt(v as number)}
+								contentStyle={tooltipStyle}
+							/>
 							<Legend verticalAlign="bottom" height={36} iconType="circle" />
 						</PieChart>
 					) : type === "line" ? (
-						<LineChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 0 }}>
-							<CartesianGrid stroke="currentColor" strokeOpacity={0.15} vertical={false} />
-							<XAxis dataKey={x} tick={axisTick} stroke="currentColor" strokeOpacity={0.3} />
-							<YAxis tick={axisTick} stroke="currentColor" strokeOpacity={0.3} tickFormatter={(v) => fmt(v)} width={70} />
-							<Tooltip formatter={(v) => fmt(v as number)} contentStyle={tooltipStyle} />
+						<LineChart
+							data={data}
+							margin={{ top: 8, right: 16, left: 8, bottom: 0 }}
+						>
+							<CartesianGrid
+								stroke="currentColor"
+								strokeOpacity={0.15}
+								vertical={false}
+							/>
+							<XAxis
+								dataKey={x}
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+							/>
+							<YAxis
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+								tickFormatter={(v) => fmt(v)}
+								width={70}
+							/>
+							<Tooltip
+								formatter={(v) => fmt(v as number)}
+								contentStyle={tooltipStyle}
+							/>
 							{resolvedSeries.length > 1 && <Legend />}
 							{resolvedSeries.map((s, i) => (
 								<Line
@@ -134,11 +158,32 @@ export default function MdxChart({
 							))}
 						</LineChart>
 					) : type === "area" ? (
-						<AreaChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 0 }}>
-							<CartesianGrid stroke="currentColor" strokeOpacity={0.15} vertical={false} />
-							<XAxis dataKey={x} tick={axisTick} stroke="currentColor" strokeOpacity={0.3} />
-							<YAxis tick={axisTick} stroke="currentColor" strokeOpacity={0.3} tickFormatter={(v) => fmt(v)} width={70} />
-							<Tooltip formatter={(v) => fmt(v as number)} contentStyle={tooltipStyle} />
+						<AreaChart
+							data={data}
+							margin={{ top: 8, right: 16, left: 8, bottom: 0 }}
+						>
+							<CartesianGrid
+								stroke="currentColor"
+								strokeOpacity={0.15}
+								vertical={false}
+							/>
+							<XAxis
+								dataKey={x}
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+							/>
+							<YAxis
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+								tickFormatter={(v) => fmt(v)}
+								width={70}
+							/>
+							<Tooltip
+								formatter={(v) => fmt(v as number)}
+								contentStyle={tooltipStyle}
+							/>
 							{resolvedSeries.length > 1 && <Legend />}
 							{resolvedSeries.map((s, i) => (
 								<Area
@@ -155,11 +200,33 @@ export default function MdxChart({
 							))}
 						</AreaChart>
 					) : (
-						<BarChart data={data} margin={{ top: 8, right: 16, left: 8, bottom: 0 }}>
-							<CartesianGrid stroke="currentColor" strokeOpacity={0.15} vertical={false} />
-							<XAxis dataKey={x} tick={axisTick} stroke="currentColor" strokeOpacity={0.3} />
-							<YAxis tick={axisTick} stroke="currentColor" strokeOpacity={0.3} tickFormatter={(v) => fmt(v)} width={70} />
-							<Tooltip formatter={(v) => fmt(v as number)} contentStyle={tooltipStyle} cursor={{ fill: "currentColor", fillOpacity: 0.06 }} />
+						<BarChart
+							data={data}
+							margin={{ top: 8, right: 16, left: 8, bottom: 0 }}
+						>
+							<CartesianGrid
+								stroke="currentColor"
+								strokeOpacity={0.15}
+								vertical={false}
+							/>
+							<XAxis
+								dataKey={x}
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+							/>
+							<YAxis
+								tick={axisTick}
+								stroke="currentColor"
+								strokeOpacity={0.3}
+								tickFormatter={(v) => fmt(v)}
+								width={70}
+							/>
+							<Tooltip
+								formatter={(v) => fmt(v as number)}
+								contentStyle={tooltipStyle}
+								cursor={{ fill: "currentColor", fillOpacity: 0.06 }}
+							/>
 							{resolvedSeries.length > 1 && <Legend />}
 							{resolvedSeries.map((s, i) => (
 								<Bar
@@ -178,7 +245,7 @@ export default function MdxChart({
 			{caption && (
 				<figcaption
 					style={{
-						fontSize: "13px",
+						fontSize: "14px",
 						color: "var(--text-secondary)",
 						textAlign: "center",
 						marginTop: "8px",

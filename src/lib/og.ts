@@ -25,8 +25,8 @@ export function ogImageUrl({ title, desc, tool }: OgImageOptions): string {
 }
 
 /** Build a ready-to-spread `openGraph.images` array. */
-export function ogImages(opts: OgImageOptions): NonNullable<
-	NonNullable<Metadata["openGraph"]>["images"]
-> {
+export function ogImages(
+	opts: OgImageOptions,
+): NonNullable<NonNullable<Metadata["openGraph"]>["images"]> {
 	return [{ url: ogImageUrl(opts), width: 1200, height: 630 }];
 }

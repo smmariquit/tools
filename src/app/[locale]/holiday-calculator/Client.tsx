@@ -4,8 +4,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import {
-	getHolidays,
 	getHolidayByDate,
+	getHolidays,
 	payCategoryForHoliday,
 } from "@/data/holidays";
 import BackButton from "../../components/BackButton";
@@ -342,7 +342,7 @@ export default function HolidayClient() {
 								<span
 									style={{
 										display: "block",
-										fontSize: "12px",
+										fontSize: "14px",
 										color: "#f57f17",
 										textTransform: "uppercase",
 										fontWeight: 600,

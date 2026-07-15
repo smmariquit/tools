@@ -300,7 +300,7 @@ export default function DigitalBankClient() {
 								style={{
 									display: "inline-block",
 									marginTop: "8px",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--primary)",
 								}}
 							>
@@ -463,7 +463,7 @@ export default function DigitalBankClient() {
 				</h2>
 				<p
 					style={{
-						fontSize: "13px",
+						fontSize: "14px",
 						color: "var(--text-secondary)",
 						marginBottom: "16px",
 					}}

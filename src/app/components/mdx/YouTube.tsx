@@ -50,7 +50,7 @@ export default function YouTube({ id, title, caption, start }: Props) {
 			</div>
 			<figcaption
 				style={{
-					fontSize: "13px",
+					fontSize: "14px",
 					color: "var(--text-secondary)",
 					textAlign: "center",
 					marginTop: "8px",

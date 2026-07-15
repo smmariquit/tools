@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useCalculatorState } from "../../../hooks/useCalculatorState";
 import { computeSalary, EmploymentType } from "../../../lib/salaryLogic";
@@ -462,7 +462,7 @@ export default function SalaryCalculator({
 					<p
 						style={{
 							textAlign: "center",
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-secondary)",
 							marginTop: "16px",
 						}}
@@ -494,8 +494,6 @@ export default function SalaryCalculator({
 					/>
 				</div>
 			)}
-
-
 		</ToolLayout>
 	);
 }

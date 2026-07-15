@@ -102,7 +102,7 @@ export default function GwaCalculatorClient() {
 							<button
 								onClick={addSubject}
 								className="btn-secondary"
-								style={{ padding: "6px 12px", fontSize: "12px" }}
+								style={{ padding: "6px 12px", fontSize: "14px" }}
 							>
 								{t("addSubject")}
 							</button>
@@ -114,7 +114,7 @@ export default function GwaCalculatorClient() {
 								gridTemplateColumns: "2fr 1fr 1fr auto",
 								gap: "8px",
 								marginBottom: "8px",
-								fontSize: "12px",
+								fontSize: "14px",
 								fontWeight: 600,
 								color: "var(--text-secondary)",
 							}}
@@ -245,7 +245,7 @@ export default function GwaCalculatorClient() {
 									<span
 										style={{
 											display: "block",
-											fontSize: "12px",
+											fontSize: "14px",
 											color: "#2e7d32",
 											textTransform: "uppercase",
 											fontWeight: 600,
@@ -318,7 +318,7 @@ export default function GwaCalculatorClient() {
 							</h2>
 							<p
 								style={{
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									marginBottom: "16px",
 								}}
@@ -337,7 +337,7 @@ export default function GwaCalculatorClient() {
 								<div className="form-group" style={{ marginBottom: 0 }}>
 									<label
 										className="form-label"
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 										htmlFor="current-total-units"
 									>
 										{t("currentTotalUnits")}
@@ -357,7 +357,7 @@ export default function GwaCalculatorClient() {
 								<div className="form-group" style={{ marginBottom: 0 }}>
 									<label
 										className="form-label"
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 										htmlFor="current-gwa"
 									>
 										{t("currentGwa")}
@@ -378,7 +378,7 @@ export default function GwaCalculatorClient() {
 								<div className="form-group" style={{ marginBottom: 0 }}>
 									<label
 										className="form-label"
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 										htmlFor="remaining-units"
 									>
 										{t("remainingUnits")}
@@ -398,7 +398,7 @@ export default function GwaCalculatorClient() {
 								<div className="form-group" style={{ marginBottom: 0 }}>
 									<label
 										className="form-label"
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 										htmlFor="target-gwa"
 									>
 										{t("targetGwa")}
@@ -431,7 +431,7 @@ export default function GwaCalculatorClient() {
 									}}
 								>
 									<div
-										style={{ fontSize: "12px", color: "var(--text-secondary)" }}
+										style={{ fontSize: "14px", color: "var(--text-secondary)" }}
 									>
 										{t("neededAverageLabel")}
 									</div>
@@ -448,7 +448,7 @@ export default function GwaCalculatorClient() {
 									{neededAverage < 1.0 && (
 										<div
 											style={{
-												fontSize: "12px",
+												fontSize: "14px",
 												color: "#c62828",
 												marginTop: "4px",
 											}}
@@ -459,7 +459,7 @@ export default function GwaCalculatorClient() {
 									{neededAverage > 3.0 && (
 										<div
 											style={{
-												fontSize: "12px",
+												fontSize: "14px",
 												color: "var(--primary)",
 												marginTop: "4px",
 											}}

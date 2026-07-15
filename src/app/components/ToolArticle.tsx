@@ -6,8 +6,8 @@ import { getPostBySlug } from "../../lib/mdx";
 import AuthorBio from "./AuthorBio";
 import MdxChart from "./mdx/MdxChart";
 import RegionalNote from "./mdx/RegionalNote";
-import YouTube from "./mdx/YouTube";
 import { mdxTableComponents } from "./mdx/tableComponents";
+import YouTube from "./mdx/YouTube";
 
 export default function ToolArticle({ slug }: { slug: string }) {
 	if (!slug) return null;
@@ -209,29 +209,29 @@ export default function ToolArticle({ slug }: { slug: string }) {
 								{meta.description}
 							</p>
 						)}
-					{meta.date && (
-						<p
-							style={{
-								color: "var(--text-secondary)",
-								fontSize: "13px",
-								marginTop: "12px",
-								marginBottom: 0,
-							}}
-						>
-							<strong>Created</strong>{" "}
-							{new Date(meta.date).toLocaleDateString("en-US", {
-								year: "numeric",
-								month: "long",
-								day: "numeric",
-							})}
-							{" • "}
-							<strong>Last updated</strong>{" "}
-							{new Date(meta.updatedAt || meta.date).toLocaleDateString(
-								"en-US",
-								{ year: "numeric", month: "long", day: "numeric" },
-							)}
-						</p>
-					)}
+						{meta.date && (
+							<p
+								style={{
+									color: "var(--text-secondary)",
+									fontSize: "14px",
+									marginTop: "12px",
+									marginBottom: 0,
+								}}
+							>
+								<strong>Created</strong>{" "}
+								{new Date(meta.date).toLocaleDateString("en-US", {
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								})}
+								{" • "}
+								<strong>Last updated</strong>{" "}
+								{new Date(meta.updatedAt || meta.date).toLocaleDateString(
+									"en-US",
+									{ year: "numeric", month: "long", day: "numeric" },
+								)}
+							</p>
+						)}
 					</div>
 
 					{faqSchema && (

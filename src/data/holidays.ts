@@ -23,10 +23,7 @@
  * below are astronomical estimates and are flagged `approximate: true`.
  */
 
-export type HolidayType =
-	| "regular"
-	| "special-non-working"
-	| "special-working";
+export type HolidayType = "regular" | "special-non-working" | "special-working";
 
 /**
  * Pay treatment buckets shared across calculators. The day-type enums differ
@@ -50,42 +47,137 @@ export interface Holiday {
 }
 
 export const HOLIDAYS_YEAR = 2026;
-export const HOLIDAYS_SOURCE =
-	"Presidential Proclamation No. 1006 (s. 2025)";
-export const HOLIDAYS_SOURCE_URL =
-	"https://www.pna.gov.ph/articles/1258046";
+export const HOLIDAYS_SOURCE = "Presidential Proclamation No. 1006 (s. 2025)";
+export const HOLIDAYS_SOURCE_URL = "https://www.pna.gov.ph/articles/1258046";
 /** Date the source proclamation was signed/published. */
 export const HOLIDAYS_AS_OF = "2025-09-03";
 
 export const PH_HOLIDAYS_2026: Holiday[] = [
 	// --- Regular Holidays (Proclamation No. 1006, Sec. 1.A) ---
-	{ date: "2026-01-01", name: "New Year's Day", key: "newYear", type: "regular" },
-	{ date: "2026-04-02", name: "Maundy Thursday", key: "maundyThursday", type: "regular" },
-	{ date: "2026-04-03", name: "Good Friday", key: "goodFriday", type: "regular" },
-	{ date: "2026-04-09", name: "Araw ng Kagitingan", key: "arawNgKagitingan", type: "regular" },
+	{
+		date: "2026-01-01",
+		name: "New Year's Day",
+		key: "newYear",
+		type: "regular",
+	},
+	{
+		date: "2026-04-02",
+		name: "Maundy Thursday",
+		key: "maundyThursday",
+		type: "regular",
+	},
+	{
+		date: "2026-04-03",
+		name: "Good Friday",
+		key: "goodFriday",
+		type: "regular",
+	},
+	{
+		date: "2026-04-09",
+		name: "Araw ng Kagitingan",
+		key: "arawNgKagitingan",
+		type: "regular",
+	},
 	{ date: "2026-05-01", name: "Labor Day", key: "laborDay", type: "regular" },
-	{ date: "2026-06-12", name: "Independence Day", key: "independenceDay", type: "regular" },
-	{ date: "2026-08-31", name: "National Heroes' Day", key: "nationalHeroes", type: "regular" },
-	{ date: "2026-11-30", name: "Bonifacio Day", key: "bonifacioDay", type: "regular" },
-	{ date: "2026-12-25", name: "Christmas Day", key: "christmasDay", type: "regular" },
+	{
+		date: "2026-06-12",
+		name: "Independence Day",
+		key: "independenceDay",
+		type: "regular",
+	},
+	{
+		date: "2026-08-31",
+		name: "National Heroes' Day",
+		key: "nationalHeroes",
+		type: "regular",
+	},
+	{
+		date: "2026-11-30",
+		name: "Bonifacio Day",
+		key: "bonifacioDay",
+		type: "regular",
+	},
+	{
+		date: "2026-12-25",
+		name: "Christmas Day",
+		key: "christmasDay",
+		type: "regular",
+	},
 	{ date: "2026-12-30", name: "Rizal Day", key: "rizalDay", type: "regular" },
 
 	// --- Movable Islamic regular holidays (separate NCMF proclamation; estimates) ---
-	{ date: "2026-03-20", name: "Eid'l Fitr (estimated)", key: "eidlFitr", type: "regular", approximate: true },
-	{ date: "2026-05-27", name: "Eid'l Adha (estimated)", key: "eidlAdha", type: "regular", approximate: true },
+	{
+		date: "2026-03-20",
+		name: "Eid'l Fitr (estimated)",
+		key: "eidlFitr",
+		type: "regular",
+		approximate: true,
+	},
+	{
+		date: "2026-05-27",
+		name: "Eid'l Adha (estimated)",
+		key: "eidlAdha",
+		type: "regular",
+		approximate: true,
+	},
 
 	// --- Special (Non-Working) Days (Proclamation No. 1006, Sec. 1.B & 1.D) ---
-	{ date: "2026-02-17", name: "Chinese New Year", key: "chineseNewYear", type: "special-non-working" },
-	{ date: "2026-04-04", name: "Black Saturday", key: "blackSaturday", type: "special-non-working" },
-	{ date: "2026-08-21", name: "Ninoy Aquino Day", key: "ninoyAquinoDay", type: "special-non-working" },
-	{ date: "2026-11-01", name: "All Saints' Day", key: "allSaintsDay", type: "special-non-working" },
-	{ date: "2026-11-02", name: "All Souls' Day", key: "allSoulsDay", type: "special-non-working" },
-	{ date: "2026-12-08", name: "Feast of the Immaculate Conception of Mary", key: "immaculateConception", type: "special-non-working" },
-	{ date: "2026-12-24", name: "Christmas Eve", key: "christmasEve", type: "special-non-working" },
-	{ date: "2026-12-31", name: "Last Day of the Year", key: "lastDayOfYear", type: "special-non-working" },
+	{
+		date: "2026-02-17",
+		name: "Chinese New Year",
+		key: "chineseNewYear",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-04-04",
+		name: "Black Saturday",
+		key: "blackSaturday",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-08-21",
+		name: "Ninoy Aquino Day",
+		key: "ninoyAquinoDay",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-11-01",
+		name: "All Saints' Day",
+		key: "allSaintsDay",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-11-02",
+		name: "All Souls' Day",
+		key: "allSoulsDay",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-12-08",
+		name: "Feast of the Immaculate Conception of Mary",
+		key: "immaculateConception",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-12-24",
+		name: "Christmas Eve",
+		key: "christmasEve",
+		type: "special-non-working",
+	},
+	{
+		date: "2026-12-31",
+		name: "Last Day of the Year",
+		key: "lastDayOfYear",
+		type: "special-non-working",
+	},
 
 	// --- Special (Working) Day (Proclamation No. 1006, Sec. 1.C) ---
-	{ date: "2026-02-25", name: "EDSA People Power Revolution Anniversary", key: "edsaAnniversary", type: "special-working" },
+	{
+		date: "2026-02-25",
+		name: "EDSA People Power Revolution Anniversary",
+		key: "edsaAnniversary",
+		type: "special-working",
+	},
 ];
 
 /** Holidays sorted ascending by date. */

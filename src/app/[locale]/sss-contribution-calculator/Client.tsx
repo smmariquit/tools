@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";
@@ -224,7 +224,7 @@ export default function SSSCalculator() {
 					{msc >= 35000 && (
 						<p
 							style={{
-								fontSize: "12px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								marginTop: "4px",
 								marginBottom: "16px",
@@ -548,9 +548,7 @@ export default function SSSCalculator() {
 															marginRight: "6px",
 															fontWeight: 800,
 														}}
-													>
-														
-													</span>
+													></span>
 												)}
 												{label}
 											</td>
@@ -620,8 +618,6 @@ export default function SSSCalculator() {
 						{isTableExpanded ? t("collapseTable") : t("viewFullTable")}
 					</button>
 				</div>
-
-
 			</div>
 		</ToolLayout>
 	);

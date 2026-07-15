@@ -301,14 +301,14 @@ export default async function RootLayout({
 											paddingTop: "16px",
 											textAlign: "center",
 											color: "var(--text-secondary)",
-											fontSize: "13px",
+											fontSize: "14px",
 										}}
 									>
 										<p>{t("copyright", { year: new Date().getFullYear() })}</p>
 										<p
 											style={{
 												marginTop: "8px",
-												fontSize: "12px",
+												fontSize: "14px",
 												maxWidth: "800px",
 												margin: "8px auto 0 auto",
 												lineHeight: "1.5",

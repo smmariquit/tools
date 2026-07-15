@@ -342,7 +342,7 @@ export default function BudgetCalculator() {
 											display: "flex",
 											justifyContent: "space-between",
 											alignItems: "center",
-											fontSize: "12px",
+											fontSize: "14px",
 										}}
 									>
 										<div
@@ -536,7 +536,7 @@ export default function BudgetCalculator() {
 
 					<p
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-secondary)",
 							marginTop: "8px",
 							textAlign: "right",
@@ -586,7 +586,7 @@ export default function BudgetCalculator() {
 											display: "flex",
 											alignItems: "center",
 											gap: "6px",
-											fontSize: "12px",
+											fontSize: "14px",
 										}}
 									>
 										<span
@@ -632,11 +632,11 @@ export default function BudgetCalculator() {
 								color: "var(--primary)",
 							}}
 						>
-							 {t("howItWorksTitle")}
+							{t("howItWorksTitle")}
 						</h3>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								lineHeight: 1.6,
 								margin: 0,
@@ -648,7 +648,7 @@ export default function BudgetCalculator() {
 
 					<p
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-secondary)",
 							marginTop: "16px",
 							fontStyle: "italic",

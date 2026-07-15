@@ -65,20 +65,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 		};
 	}, [theme]);
 
-	const setTheme = useCallback<Dispatch<SetStateAction<Theme>>>(
-		(nextTheme) => {
-			setThemeState((currentTheme) => {
-				const resolvedNextTheme =
-					typeof nextTheme === "function" ? nextTheme(currentTheme) : nextTheme;
+	const setTheme = useCallback<Dispatch<SetStateAction<Theme>>>((nextTheme) => {
+		setThemeState((currentTheme) => {
+			const resolvedNextTheme =
+				typeof nextTheme === "function" ? nextTheme(currentTheme) : nextTheme;
 
-				localStorage.setItem("theme", resolvedNextTheme);
-				applyTheme(resolvedNextTheme);
+			localStorage.setItem("theme", resolvedNextTheme);
+			applyTheme(resolvedNextTheme);
 
-				return resolvedNextTheme;
-			});
-		},
-		[],
-	);
+			return resolvedNextTheme;
+		});
+	}, []);
 
 	const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 

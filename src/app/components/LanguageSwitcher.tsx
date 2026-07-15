@@ -46,7 +46,7 @@ export default function LanguageSwitcher() {
 					border: "1px solid var(--border-color, #e4e4e7)",
 					borderRadius: "6px",
 					padding: "6px 28px 6px 12px",
-					fontSize: "13px",
+					fontSize: "14px",
 					fontWeight: 500,
 					color: "var(--text-primary, #18181b)",
 					cursor: isPending ? "not-allowed" : "pointer",

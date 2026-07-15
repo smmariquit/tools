@@ -95,9 +95,7 @@ export default function FuelCostClient() {
 					<ToolIllustration />
 					<ToolEyebrow />
 					<h1 className="page-title">{t("title")}</h1>
-					<p className="page-subtitle">
-						{t("subtitle")}
-					</p>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="fuel-top" />
@@ -198,10 +196,10 @@ export default function FuelCostClient() {
 										<button
 											type="button"
 											className="btn-primary"
-										onClick={() => setShowMapModal(false)}
-									>
-										{t("confirmDistance")}
-									</button>
+											onClick={() => setShowMapModal(false)}
+										>
+											{t("confirmDistance")}
+										</button>
 									</div>
 								</div>
 							</div>
@@ -241,19 +239,11 @@ export default function FuelCostClient() {
 									}
 								}}
 							>
-								<option value="">
-									{t("vehicleCustom")}
-								</option>
+								<option value="">{t("vehicleCustom")}</option>
 								<option value="25">{t("vehicleMotorcycle")}</option>
-								<option value="15">
-									{t("vehicleHatchback")}
-								</option>
-								<option value="12">
-									{t("vehicleSedan")}
-								</option>
-								<option value="9">
-									{t("vehicleSuv")}
-								</option>
+								<option value="15">{t("vehicleHatchback")}</option>
+								<option value="12">{t("vehicleSedan")}</option>
+								<option value="9">{t("vehicleSuv")}</option>
 								<option value="7">{t("vehicleVan")}</option>
 							</select>
 						</div>
@@ -322,11 +312,11 @@ export default function FuelCostClient() {
 								marginBottom: "16px",
 								borderBottom: "1px solid var(--border-color)",
 								paddingBottom: "8px",
-							color: "var(--primary)",
-						}}
-					>
-						{t("estimatedExpenses")}
-					</h2>
+								color: "var(--primary)",
+							}}
+						>
+							{t("estimatedExpenses")}
+						</h2>
 
 						<div
 							style={{
@@ -357,7 +347,7 @@ export default function FuelCostClient() {
 								<span
 									style={{
 										display: "block",
-										fontSize: "12px",
+										fontSize: "14px",
 										color: "#2e7d32",
 										textTransform: "uppercase",
 										fontWeight: 600,

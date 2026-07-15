@@ -47,7 +47,7 @@ export default function SSSChart({
 				/>
 				<Legend
 					formatter={(value) => (
-						<span style={{ color: "var(--text-primary)", fontSize: "12px" }}>
+						<span style={{ color: "var(--text-primary)", fontSize: "14px" }}>
 							{value}
 						</span>
 					)}

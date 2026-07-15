@@ -4,10 +4,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import {
-	getHolidays,
 	getHolidayByDate,
-	payCategoryForHoliday,
+	getHolidays,
 	type PayCategory,
+	payCategoryForHoliday,
 } from "@/data/holidays";
 import InteractiveSlider from "../components/InteractiveSlider";
 import TipCard from "../components/TipCard";

@@ -231,7 +231,7 @@ export default function MotorcycleLoanClient() {
 						</strong>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								margin: 0,
 								lineHeight: 1.5,

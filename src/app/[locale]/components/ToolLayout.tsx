@@ -10,8 +10,6 @@ export default function ToolLayout({
 	maxWidth = "800px",
 }: ToolLayoutProps) {
 	return (
-		<div style={{ maxWidth, margin: "0 auto", width: "100%" }}>
-			{children}
-		</div>
+		<div style={{ maxWidth, margin: "0 auto", width: "100%" }}>{children}</div>
 	);
 }

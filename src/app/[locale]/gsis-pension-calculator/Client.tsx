@@ -60,7 +60,7 @@ export default function GSISPensionClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							marginBottom: "24px",
@@ -80,7 +80,7 @@ export default function GSISPensionClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							textAlign: "left",
@@ -137,7 +137,7 @@ export default function GSISPensionClient() {
 							<span
 								style={{
 									display: "block",
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "#d32f2f",
 									marginTop: "8px",
 								}}
@@ -149,7 +149,7 @@ export default function GSISPensionClient() {
 							<span
 								style={{
 									display: "block",
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "var(--text-tertiary)",
 									marginTop: "8px",
 								}}

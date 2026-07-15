@@ -41,7 +41,10 @@ export default function Pagination({
 	const hrefFor = (p: number) =>
 		p <= 1 ? (baseHref ?? "#") : `${baseHref}?page=${p}`;
 
-	const btnStyle = (active: boolean, disabled = false): React.CSSProperties => ({
+	const btnStyle = (
+		active: boolean,
+		disabled = false,
+	): React.CSSProperties => ({
 		minWidth: "40px",
 		height: "40px",
 		padding: "0 12px",

@@ -5,10 +5,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import {
-	getHolidays,
 	getHolidayByDate,
-	payCategoryForHoliday,
+	getHolidays,
 	type PayCategory,
+	payCategoryForHoliday,
 } from "@/data/holidays";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -411,7 +411,7 @@ export default function BpoCalculator() {
 						</h3>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								lineHeight: 1.6,
 								margin: 0,
@@ -592,7 +592,7 @@ export default function BpoCalculator() {
 								borderRadius: "6px",
 								overflow: "hidden",
 								height: "32px",
-								fontSize: "11px",
+								fontSize: "14px",
 								fontWeight: 600,
 							}}
 						>
@@ -630,7 +630,7 @@ export default function BpoCalculator() {
 								display: "flex",
 								gap: "16px",
 								marginTop: "12px",
-								fontSize: "13px",
+								fontSize: "14px",
 								fontWeight: 500,
 								color: "var(--text-secondary)",
 							}}
@@ -682,7 +682,7 @@ export default function BpoCalculator() {
 
 					<p
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-secondary)",
 							marginTop: "16px",
 							fontStyle: "italic",

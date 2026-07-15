@@ -217,7 +217,7 @@ export default function TaxOptimizerClient() {
 							<span
 								style={{
 									display: "block",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "#388e3c",
 									marginTop: "4px",
 								}}
@@ -251,7 +251,7 @@ export default function TaxOptimizerClient() {
 								{bestOption.id === "8percent" && (
 									<span
 										style={{
-											fontSize: "12px",
+											fontSize: "14px",
 											backgroundColor: "#4caf50",
 											color: "white",
 											padding: "2px 8px",
@@ -318,7 +318,7 @@ export default function TaxOptimizerClient() {
 								{bestOption.id === "osd" && (
 									<span
 										style={{
-											fontSize: "12px",
+											fontSize: "14px",
 											backgroundColor: "#4caf50",
 											color: "white",
 											padding: "2px 8px",
@@ -334,7 +334,7 @@ export default function TaxOptimizerClient() {
 								style={{
 									display: "flex",
 									justifyContent: "space-between",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									marginBottom: "4px",
 								}}
@@ -346,7 +346,7 @@ export default function TaxOptimizerClient() {
 								style={{
 									display: "flex",
 									justifyContent: "space-between",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									marginBottom: "8px",
 								}}
@@ -409,7 +409,7 @@ export default function TaxOptimizerClient() {
 								{bestOption.id === "itemized" && (
 									<span
 										style={{
-											fontSize: "12px",
+											fontSize: "14px",
 											backgroundColor: "#4caf50",
 											color: "white",
 											padding: "2px 8px",
@@ -425,7 +425,7 @@ export default function TaxOptimizerClient() {
 								style={{
 									display: "flex",
 									justifyContent: "space-between",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									marginBottom: "4px",
 								}}
@@ -437,7 +437,7 @@ export default function TaxOptimizerClient() {
 								style={{
 									display: "flex",
 									justifyContent: "space-between",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									marginBottom: "8px",
 								}}

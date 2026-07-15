@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
@@ -106,7 +106,7 @@ export default function PhilHealthClient() {
 									padding: "6px 10px",
 									backgroundColor: "#fff3e0",
 									borderRadius: "6px",
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "#e65100",
 									border: "1px solid #ffe0b2",
 									display: "flex",
@@ -124,7 +124,7 @@ export default function PhilHealthClient() {
 									padding: "6px 10px",
 									backgroundColor: "#e3f2fd",
 									borderRadius: "6px",
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "#0d47a1",
 									border: "1px solid #bbdefb",
 									display: "flex",
@@ -220,7 +220,7 @@ export default function PhilHealthClient() {
 							style={{
 								width: "100%",
 								borderCollapse: "collapse",
-								fontSize: "13px",
+								fontSize: "14px",
 							}}
 						>
 							<thead>
@@ -233,9 +233,15 @@ export default function PhilHealthClient() {
 									<th style={{ padding: "10px 8px", textAlign: "left" }}>
 										{t("colSalaryRange")}
 									</th>
-									<th style={{ padding: "10px 8px" }}>{t("colTotalPremium")}</th>
-									<th style={{ padding: "10px 8px" }}>{t("colEmployeeShare")}</th>
-									<th style={{ padding: "10px 8px" }}>{t("colEmployerShare")}</th>
+									<th style={{ padding: "10px 8px" }}>
+										{t("colTotalPremium")}
+									</th>
+									<th style={{ padding: "10px 8px" }}>
+										{t("colEmployeeShare")}
+									</th>
+									<th style={{ padding: "10px 8px" }}>
+										{t("colEmployerShare")}
+									</th>
 								</tr>
 							</thead>
 							<tbody>

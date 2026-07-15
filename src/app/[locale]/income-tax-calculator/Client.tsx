@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";

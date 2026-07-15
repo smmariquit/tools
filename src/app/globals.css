@@ -364,11 +364,15 @@ h6 {
 }
 
 @media print {
-  nav, footer, .sidebar, .related-tools {
-    display: none !important;
-  }
-  body, .main-content {
-    background: white !important;
-    color: black !important;
-  }
+	nav,
+	footer,
+	.sidebar,
+	.related-tools {
+		display: none !important;
+	}
+	body,
+	.main-content {
+		background: white !important;
+		color: black !important;
+	}
 }

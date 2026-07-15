@@ -103,7 +103,7 @@ export default function VisitorCount({
 				display: "inline-flex",
 				alignItems: "center",
 				gap: "5px",
-				fontSize: "13px",
+				fontSize: "14px",
 				fontWeight: 500,
 				color: "var(--text-secondary)",
 			}}

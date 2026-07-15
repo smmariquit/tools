@@ -82,7 +82,7 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 						<>
 							<span
 								style={{
-									fontSize: "0.8rem",
+									fontSize: "0.875rem",
 									color: "var(--text-secondary)",
 								}}
 							>
@@ -96,7 +96,7 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 						target="_blank"
 						rel="noopener noreferrer"
 						style={{
-							fontSize: "0.8rem",
+							fontSize: "0.875rem",
 							color: "var(--primary, #0d47a1)",
 							textDecoration: "none",
 						}}
@@ -108,7 +108,7 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 			<div
 				style={{
 					width: "100%",
-					fontSize: "0.85rem",
+					fontSize: "0.875rem",
 					color: "var(--text-secondary)",
 					marginTop: "8px",
 					borderTop: "1px solid var(--border-color)",

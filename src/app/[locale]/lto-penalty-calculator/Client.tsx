@@ -88,9 +88,7 @@ export default function LtoPenaltyClient() {
 					<ToolIllustration />
 					<ToolEyebrow />
 					<h1 className="page-title">{t("title")}</h1>
-					<p className="page-subtitle">
-						{t("subtitle")}
-					</p>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="lto-top" />
@@ -127,18 +125,10 @@ export default function LtoPenaltyClient() {
 									updateUrl({ vehicle: val });
 								}}
 							>
-								<option value="motorcycle">
-									{t("vehicleMotorcycle")}
-								</option>
-								<option value="carLight">
-									{t("vehicleCarLight")}
-								</option>
-								<option value="carMedium">
-									{t("vehicleCarMedium")}
-								</option>
-								<option value="carHeavy">
-									{t("vehicleCarHeavy")}
-								</option>
+								<option value="motorcycle">{t("vehicleMotorcycle")}</option>
+								<option value="carLight">{t("vehicleCarLight")}</option>
+								<option value="carMedium">{t("vehicleCarMedium")}</option>
+								<option value="carHeavy">{t("vehicleCarHeavy")}</option>
 							</select>
 						</div>
 

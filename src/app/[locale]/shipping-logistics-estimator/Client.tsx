@@ -22,7 +22,7 @@ export default function ShippingClient() {
 	};
 
 	const baseFee = baseRates[origin][destination];
-	
+
 	// Exceeding weight (per extra KG)
 	const excessWeight = Math.max(0, weightKg - 1);
 	const excessFee = excessWeight * 50; // PHP 50 per additional KG
@@ -33,21 +33,43 @@ export default function ShippingClient() {
 	const totalShipping = baseFee + excessFee + codFee;
 
 	const formatPHP = (val: number) =>
-		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
+		new Intl.NumberFormat("en-PH", {
+			style: "currency",
+			currency: "PHP",
+		}).format(val);
 
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
-			
+
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("shipmentRoute")}</h2>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("shipmentRoute")}
+						</h2>
 
-						<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+						<div
+							style={{
+								display: "grid",
+								gridTemplateColumns: "1fr 1fr",
+								gap: "16px",
+								marginBottom: "16px",
+							}}
+						>
 							<div className="form-group">
 								<label className="form-label">{t("originLabel")}</label>
-								<select className="form-control" value={origin} onChange={(e) => setOrigin(e.target.value)}>
+								<select
+									className="form-control"
+									value={origin}
+									onChange={(e) => setOrigin(e.target.value)}
+								>
 									<option value="NCR">{t("regionNcr")}</option>
 									<option value="LUZ">{t("regionLuzon")}</option>
 									<option value="VIS">{t("regionVisayas")}</option>
@@ -56,7 +78,11 @@ export default function ShippingClient() {
 							</div>
 							<div className="form-group">
 								<label className="form-label">{t("destinationLabel")}</label>
-								<select className="form-control" value={destination} onChange={(e) => setDestination(e.target.value)}>
+								<select
+									className="form-control"
+									value={destination}
+									onChange={(e) => setDestination(e.target.value)}
+								>
 									<option value="NCR">{t("regionNcr")}</option>
 									<option value="LUZ">{t("regionLuzon")}</option>
 									<option value="VIS">{t("regionVisayas")}</option>
@@ -67,49 +93,121 @@ export default function ShippingClient() {
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("weightLabel")}</label>
-							<input type="number" step="0.5" className="form-control" value={weightKg || ""} onChange={(e) => setWeightKg(Number(e.target.value))} />
+							<input
+								type="number"
+								step="0.5"
+								className="form-control"
+								value={weightKg || ""}
+								onChange={(e) => setWeightKg(Number(e.target.value))}
+							/>
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", marginBottom: "8px" }}>
-								<input type="checkbox" checked={isCod} onChange={(e) => setIsCod(e.target.checked)} />
-								<span style={{ fontSize: "14px", fontWeight: 500 }}>{t("codLabel")}</span>
+							<label
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: "8px",
+									cursor: "pointer",
+									marginBottom: "8px",
+								}}
+							>
+								<input
+									type="checkbox"
+									checked={isCod}
+									onChange={(e) => setIsCod(e.target.checked)}
+								/>
+								<span style={{ fontSize: "14px", fontWeight: 500 }}>
+									{t("codLabel")}
+								</span>
 							</label>
 						</div>
 
 						{isCod && (
 							<div className="form-group">
 								<label className="form-label">{t("itemValueLabel")}</label>
-								<input type="number" className="form-control" value={itemValue || ""} onChange={(e) => setItemValue(Number(e.target.value))} />
+								<input
+									type="number"
+									className="form-control"
+									value={itemValue || ""}
+									onChange={(e) => setItemValue(Number(e.target.value))}
+								/>
 							</div>
 						)}
 					</div>
 				</div>
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("estimatedCost")}</h2>
-						
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+					<div
+						className="card"
+						style={{
+							position: "sticky",
+							top: "100px",
+							backgroundColor: "var(--bg-color)",
+						}}
+					>
+						<h2
+							style={{
+								fontSize: "20px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("estimatedCost")}
+						</h2>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
 							<span>{t("baseFare")}</span>
 							<strong>{formatPHP(baseFee)}</strong>
 						</div>
-						
+
 						{excessFee > 0 && (
-							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									marginBottom: "8px",
+									fontSize: "14px",
+								}}
+							>
 								<span>{t("excessWeightFee")}</span>
 								<strong>{formatPHP(excessFee)}</strong>
 							</div>
 						)}
 
 						{isCod && (
-							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px" }}>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									marginBottom: "16px",
+									fontSize: "14px",
+								}}
+							>
 								<span>{t("codHandlingFee")}</span>
 								<strong>{formatPHP(codFee)}</strong>
 							</div>
 						)}
 
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								paddingTop: "12px",
+								borderTop: "1px dashed rgba(13, 71, 161, 0.2)",
+								fontSize: "18px",
+								fontWeight: 700,
+								color: "var(--primary)",
+							}}
+						>
 							<span>{t("totalEstimated")}</span>
 							<span>{formatPHP(totalShipping)}</span>
 						</div>

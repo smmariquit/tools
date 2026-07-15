@@ -100,7 +100,7 @@ export default function ToolEmbed({ tool }: ToolEmbedProps) {
 		>
 			<div
 				style={{
-					fontSize: "12px",
+					fontSize: "14px",
 					textTransform: "uppercase",
 					color: "var(--primary)",
 					fontWeight: "bold",

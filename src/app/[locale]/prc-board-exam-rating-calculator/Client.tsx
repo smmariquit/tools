@@ -205,7 +205,7 @@ export default function PRCBoardExamRatingClient() {
 								style={{
 									margin: 0,
 									paddingLeft: "20px",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "#b71c1c",
 								}}
 							>

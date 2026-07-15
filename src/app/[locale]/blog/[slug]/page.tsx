@@ -11,8 +11,8 @@ import BackButton from "../../../components/BackButton";
 import WavyDivider from "../../../components/doodle/WavyDivider";
 import MdxChart from "../../../components/mdx/MdxChart";
 import RegionalNote from "../../../components/mdx/RegionalNote";
-import YouTube from "../../../components/mdx/YouTube";
 import { mdxTableComponents } from "../../../components/mdx/tableComponents";
+import YouTube from "../../../components/mdx/YouTube";
 import ToolEmbed from "../../../components/ToolEmbed";
 import AdBanner from "../../components/AdBanner";
 

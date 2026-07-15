@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { toolCategories } from "../../../lib/routes";
 import { rankTools } from "../../../lib/toolSearch";
-import ToolIcon from "../../components/ToolIcon";
 import { doodles } from "../../components/illustrations/doodles";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
+import ToolIcon from "../../components/ToolIcon";
 import Pagination from "./Pagination";
 
 const TOOLS_PER_PAGE = 12;
@@ -103,9 +103,7 @@ export default function ToolSearch() {
 		router.push(`${localePrefix}${path}`);
 	};
 
-	const handleSearchKeyDown = (
-		e: React.KeyboardEvent<HTMLInputElement>,
-	) => {
+	const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Escape") {
 			setSuggestOpen(false);
 			setActiveIndex(-1);
@@ -328,7 +326,7 @@ export default function ToolSearch() {
 											<span
 												style={{
 													display: "block",
-													fontSize: "13px",
+													fontSize: "14px",
 													color: active ? "#ffffff" : "var(--text-secondary)",
 													overflow: "hidden",
 													textOverflow: "ellipsis",

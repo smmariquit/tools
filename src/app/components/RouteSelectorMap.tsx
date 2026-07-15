@@ -104,7 +104,7 @@ export default function RouteSelectorMap({
 		<div style={{ position: "relative" }}>
 			<div
 				style={{
-					fontSize: "12px",
+					fontSize: "14px",
 					marginBottom: "8px",
 					color: "var(--text-secondary)",
 				}}
@@ -163,7 +163,7 @@ export default function RouteSelectorMap({
 						padding: "8px 16px",
 						borderRadius: "16px",
 						boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-						fontSize: "12px",
+						fontSize: "14px",
 						fontWeight: "bold",
 						zIndex: 10,
 					}}

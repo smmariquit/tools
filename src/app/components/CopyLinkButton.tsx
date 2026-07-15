@@ -49,7 +49,7 @@ export default function CopyLinkButton() {
 				alignItems: "center",
 				gap: "5px",
 				padding: "3px 4px",
-				fontSize: "13px",
+				fontSize: "14px",
 				fontWeight: 500,
 				lineHeight: 1.2,
 				color: copied ? "#1b5e20" : "var(--text-secondary)",

@@ -47,7 +47,6 @@ export default function InteractiveSlider({
 				>
 					{label}
 				</label>
-
 			</div>
 
 			<div
@@ -107,7 +106,7 @@ export default function InteractiveSlider({
 				<span
 					style={{
 						display: "block",
-						fontSize: "12px",
+						fontSize: "14px",
 						color: "var(--text-secondary)",
 						marginTop: "4px",
 					}}

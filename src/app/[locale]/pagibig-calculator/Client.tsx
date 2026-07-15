@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
@@ -289,7 +289,7 @@ export default function PagIbigClient() {
 								<span
 									style={{
 										display: "block",
-										fontSize: "12px",
+										fontSize: "14px",
 										color: "#2e7d32",
 										textTransform: "uppercase",
 										fontWeight: 600,
@@ -343,9 +343,7 @@ export default function PagIbigClient() {
 								<Chart
 									data={mp2Table}
 									formatValue={formatCurrency}
-									formatYearTick={(tick) =>
-										t("yrTick", { year: String(tick) })
-									}
+									formatYearTick={(tick) => t("yrTick", { year: String(tick) })}
 									formatYearLabel={(label) =>
 										t("yearLabel", { year: String(label) })
 									}
@@ -361,7 +359,7 @@ export default function PagIbigClient() {
 								style={{
 									width: "100%",
 									borderCollapse: "collapse",
-									fontSize: "13px",
+									fontSize: "14px",
 								}}
 							>
 								<thead>

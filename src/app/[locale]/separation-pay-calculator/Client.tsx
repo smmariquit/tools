@@ -164,7 +164,7 @@ export default function SeparationPayClient() {
 					</div>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginBottom: "16px",
 							textAlign: "left",

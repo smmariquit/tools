@@ -2,10 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import PrivacyGuarantee from "../../components/PrivacyGuarantee";
+import TrustBadge from "../../components/TrustBadge";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
-import TrustBadge from "../../components/TrustBadge";
-import PrivacyGuarantee from "../../components/PrivacyGuarantee";
 
 export default function CustomsBrokerageClient() {
 	const t = useTranslations("CustomsBrokerageFee");
@@ -26,15 +26,15 @@ export default function CustomsBrokerageClient() {
 	const totalFee = isExport ? baseFee * 0.5 : baseFee;
 
 	const formatPHP = (val: number) =>
-		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
+		new Intl.NumberFormat("en-PH", {
+			style: "currency",
+			currency: "PHP",
+		}).format(val);
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<ToolHeader
-				title={t("title")}
-				subtitle={t("subtitle")}
-			/>
-			
+			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
+
 			<div style={{ marginTop: "24px", width: "100%" }}>
 				<TrustBadge year={2026} lastReviewed="May 2026" />
 			</div>
@@ -42,19 +42,49 @@ export default function CustomsBrokerageClient() {
 			<div className="tool-grid">
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("shipmentDetails")}</h2>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("shipmentDetails")}
+						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("dvLabel")}</label>
-							<input type="number" className="form-control" value={dv || ""} onChange={(e) => setDv(Number(e.target.value))} />
-							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
+							<input
+								type="number"
+								className="form-control"
+								value={dv || ""}
+								onChange={(e) => setDv(Number(e.target.value))}
+							/>
+							<p
+								style={{
+									fontSize: "14px",
+									color: "var(--text-secondary)",
+									marginTop: "4px",
+								}}
+							>
 								{t("dvHint")}
 							</p>
 						</div>
 
 						<div className="form-group">
-							<label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
-								<input type="checkbox" checked={isExport} onChange={(e) => setIsExport(e.target.checked)} />
+							<label
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: "8px",
+									cursor: "pointer",
+								}}
+							>
+								<input
+									type="checkbox"
+									checked={isExport}
+									onChange={(e) => setIsExport(e.target.checked)}
+								/>
 								<span style={{ fontWeight: 500 }}>{t("exportLabel")}</span>
 							</label>
 						</div>
@@ -62,26 +92,74 @@ export default function CustomsBrokerageClient() {
 				</div>
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("computedFeeTitle")}</h2>
-						
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+					<div
+						className="card"
+						style={{
+							position: "sticky",
+							top: "100px",
+							backgroundColor: "var(--bg-color)",
+						}}
+					>
+						<h2
+							style={{
+								fontSize: "20px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("computedFeeTitle")}
+						</h2>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
 							<span>{t("formalEntryLabel")}</span>
 							<strong>{formatPHP(baseFee)}</strong>
 						</div>
-						
+
 						{isExport && (
-							<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", color: "var(--text-secondary)" }}>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									marginBottom: "8px",
+									fontSize: "14px",
+									color: "var(--text-secondary)",
+								}}
+							>
 								<span>{t("exportAdjustmentLabel")}</span>
 								<span>- {formatPHP(baseFee * 0.5)}</span>
 							</div>
 						)}
 
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								paddingTop: "12px",
+								borderTop: "1px dashed rgba(13, 71, 161, 0.2)",
+								fontSize: "18px",
+								fontWeight: 700,
+								color: "var(--primary)",
+							}}
+						>
 							<span>{t("totalFeeLabel")}</span>
 							<span>{formatPHP(totalFee)}</span>
 						</div>
-						<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px", textAlign: "right" }}>
+						<p
+							style={{
+								fontSize: "14px",
+								color: "var(--text-secondary)",
+								marginTop: "4px",
+								textAlign: "right",
+							}}
+						>
 							{t("basedOnNote")}
 						</p>
 

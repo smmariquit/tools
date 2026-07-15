@@ -2,11 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import React from "react";
-import {
-	getCities,
-	getProvinces,
-	regions,
-} from "../../../data/regional/psgc";
+import { getCities, getProvinces, regions } from "../../../data/regional/psgc";
 
 export interface LguSelection {
 	regionId?: string;
@@ -58,9 +54,7 @@ export default function LguSelector({
 					id={`${baseId}-region`}
 					className="form-control"
 					value={value.regionId ?? ""}
-					onChange={(e) =>
-						onChange({ regionId: e.target.value || undefined })
-					}
+					onChange={(e) => onChange({ regionId: e.target.value || undefined })}
 				>
 					<option value="">{t("selectRegion")}</option>
 					{regionOptions.map((r) => (

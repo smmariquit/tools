@@ -51,7 +51,7 @@ export default function CookieConsent() {
 					</strong>
 					<p
 						style={{
-							fontSize: "13px",
+							fontSize: "14px",
 							color: "var(--text-secondary)",
 							lineHeight: 1.5,
 							margin: 0,

@@ -175,11 +175,11 @@ export default function BillSplitterClient() {
 								color: "var(--text-primary)",
 							}}
 						>
-							 {t("sendViaLabel")}
+							{t("sendViaLabel")}
 						</strong>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								margin: 0,
 								lineHeight: 1.5,

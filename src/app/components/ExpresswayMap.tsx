@@ -48,7 +48,7 @@ export default function ExpresswayMap({
 
 	const textStyle = {
 		fontFamily: "system-ui, sans-serif",
-		fontSize: "12px",
+		fontSize: "14px",
 		fontWeight: "600",
 		fill: "var(--text-primary)",
 		cursor: "pointer",

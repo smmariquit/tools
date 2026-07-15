@@ -257,11 +257,11 @@ export default function BIRWithholdingTaxClient() {
 								color: "#0d47a1",
 							}}
 						>
-							 Form 2307 Reminder
+							Form 2307 Reminder
 						</strong>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								margin: 0,
 								lineHeight: 1.5,

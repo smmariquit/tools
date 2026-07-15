@@ -126,7 +126,7 @@ export default async function ZonalValueDynamicPage({
 					for computing the 6% Capital Gains Tax (CGT) and 1.5% Documentary
 					Stamp Tax (DST) on the sale of real property is the{" "}
 					<strong>Actual Selling Price</strong> or the{" "}
-					<strong>BIR Zonal Value</strong>—whichever is higher.
+					<strong>BIR Zonal Value</strong>, whichever is higher.
 				</p>
 				<p>
 					This utility dynamically matches the specific street and property

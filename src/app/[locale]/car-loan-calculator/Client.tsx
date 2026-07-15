@@ -300,11 +300,11 @@ export default function CarLoanCalculator() {
 									marginBottom: "8px",
 								}}
 							>
-								 {t("bankSavingsTitle")}
+								{t("bankSavingsTitle")}
 							</h3>
 							<p
 								style={{
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									lineHeight: 1.5,
 									margin: "0 0 12px 0",
@@ -331,7 +331,7 @@ export default function CarLoanCalculator() {
 								>
 									<span
 										style={{
-											fontSize: "13px",
+											fontSize: "14px",
 											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
@@ -353,7 +353,7 @@ export default function CarLoanCalculator() {
 								>
 									<span
 										style={{
-											fontSize: "13px",
+											fontSize: "14px",
 											color: "var(--text-secondary)",
 											textTransform: "uppercase",
 										}}
@@ -479,11 +479,11 @@ export default function CarLoanCalculator() {
 								color: "var(--primary)",
 							}}
 						>
-							 {t("bankVsInhouseTitle")}
+							{t("bankVsInhouseTitle")}
 						</h3>
 						<p
 							style={{
-								fontSize: "13px",
+								fontSize: "14px",
 								color: "var(--text-secondary)",
 								lineHeight: 1.6,
 								margin: 0,

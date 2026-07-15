@@ -77,7 +77,7 @@ export default function FreelanceRateClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							marginBottom: "24px",
@@ -97,7 +97,7 @@ export default function FreelanceRateClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							marginBottom: "24px",
@@ -117,7 +117,7 @@ export default function FreelanceRateClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							marginBottom: "24px",
@@ -137,7 +137,7 @@ export default function FreelanceRateClient() {
 					/>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							marginBottom: "16px",
@@ -242,7 +242,7 @@ export default function FreelanceRateClient() {
 						<span
 							style={{
 								display: "block",
-								fontSize: "12px",
+								fontSize: "14px",
 								color: "var(--text-tertiary)",
 								marginTop: "8px",
 							}}

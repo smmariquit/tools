@@ -16,74 +16,183 @@ export default function EstateTaxClient() {
 	const allowedFamilyHome = Math.min(familyHome, 10000000);
 	const allowedMedical = Math.min(medicalExpenses, 500000);
 
-	const totalDeductions = STANDARD_DEDUCTION + allowedFamilyHome + allowedMedical + otherDeductions;
+	const totalDeductions =
+		STANDARD_DEDUCTION + allowedFamilyHome + allowedMedical + otherDeductions;
 	const netEstate = Math.max(0, grossEstate - totalDeductions);
 	const estateTaxDue = netEstate * 0.06;
 
 	const formatPHP = (val: number) =>
-		new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(val);
+		new Intl.NumberFormat("en-PH", {
+			style: "currency",
+			currency: "PHP",
+		}).format(val);
 
 	return (
 		<ToolLayout maxWidth="1200px">
-			<ToolHeader
-				title={t("title")}
-				subtitle={t("subtitle")}
-			/>
-			
+			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
+
 			<div className="tool-grid" style={{ marginTop: "24px" }}>
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
 					<div className="card">
-						<h2 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--primary)" }}>{t("estateDetails")}</h2>
+						<h2
+							style={{
+								fontSize: "18px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("estateDetails")}
+						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("grossEstateLabel")}</label>
-							<input type="number" className="form-control" value={grossEstate || ""} onChange={(e) => setGrossEstate(Number(e.target.value))} />
+							<input
+								type="number"
+								className="form-control"
+								value={grossEstate || ""}
+								onChange={(e) => setGrossEstate(Number(e.target.value))}
+							/>
 						</div>
 
-						<h2 style={{ fontSize: "16px", marginBottom: "12px", marginTop: "24px", color: "var(--primary)" }}>{t("deductions")}</h2>
-						
+						<h2
+							style={{
+								fontSize: "16px",
+								marginBottom: "12px",
+								marginTop: "24px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("deductions")}
+						</h2>
+
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("standardDeductionLabel")}</label>
-							<input type="text" className="form-control" value="₱ 5,000,000.00" disabled />
+							<label className="form-label">
+								{t("standardDeductionLabel")}
+							</label>
+							<input
+								type="text"
+								className="form-control"
+								value="₱ 5,000,000.00"
+								disabled
+							/>
 						</div>
-						
+
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("familyHomeLabel")}</label>
-							<input type="number" className="form-control" value={familyHome || ""} onChange={(e) => setFamilyHome(Number(e.target.value))} />
-							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>{t("familyHomeHint")}</p>
+							<input
+								type="number"
+								className="form-control"
+								value={familyHome || ""}
+								onChange={(e) => setFamilyHome(Number(e.target.value))}
+							/>
+							<p
+								style={{
+									fontSize: "14px",
+									color: "var(--text-secondary)",
+									marginTop: "4px",
+								}}
+							>
+								{t("familyHomeHint")}
+							</p>
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							<label className="form-label">{t("medicalLabel")}</label>
-							<input type="number" className="form-control" value={medicalExpenses || ""} onChange={(e) => setMedicalExpenses(Number(e.target.value))} />
-							<p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>{t("medicalHint")}</p>
+							<input
+								type="number"
+								className="form-control"
+								value={medicalExpenses || ""}
+								onChange={(e) => setMedicalExpenses(Number(e.target.value))}
+							/>
+							<p
+								style={{
+									fontSize: "14px",
+									color: "var(--text-secondary)",
+									marginTop: "4px",
+								}}
+							>
+								{t("medicalHint")}
+							</p>
 						</div>
 
 						<div className="form-group">
 							<label className="form-label">{t("otherDeductionsLabel")}</label>
-							<input type="number" className="form-control" value={otherDeductions || ""} onChange={(e) => setOtherDeductions(Number(e.target.value))} />
+							<input
+								type="number"
+								className="form-control"
+								value={otherDeductions || ""}
+								onChange={(e) => setOtherDeductions(Number(e.target.value))}
+							/>
 						</div>
 					</div>
 				</div>
 
 				<div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-					<div className="card" style={{ position: "sticky", top: "100px", backgroundColor: "var(--bg-color)" }}>
-						<h2 style={{ fontSize: "20px", marginBottom: "16px", color: "var(--primary)" }}>{t("resultsTitle")}</h2>
-						
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+					<div
+						className="card"
+						style={{
+							position: "sticky",
+							top: "100px",
+							backgroundColor: "var(--bg-color)",
+						}}
+					>
+						<h2
+							style={{
+								fontSize: "20px",
+								marginBottom: "16px",
+								color: "var(--primary)",
+							}}
+						>
+							{t("resultsTitle")}
+						</h2>
+
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+							}}
+						>
 							<span>{t("grossEstate")}</span>
 							<strong>{formatPHP(grossEstate)}</strong>
 						</div>
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", color: "red" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "8px",
+								fontSize: "14px",
+								color: "red",
+							}}
+						>
 							<span>{t("totalDeductions")}</span>
 							<span>- {formatPHP(totalDeductions)}</span>
 						</div>
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", fontSize: "14px" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								fontSize: "14px",
+							}}
+						>
 							<span>{t("netTaxableEstate")}</span>
 							<strong>{formatPHP(netEstate)}</strong>
 						</div>
 
-						<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px", paddingTop: "12px", borderTop: "1px dashed rgba(13, 71, 161, 0.2)", fontSize: "18px", fontWeight: 700, color: "var(--primary)" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+								marginBottom: "16px",
+								paddingTop: "12px",
+								borderTop: "1px dashed rgba(13, 71, 161, 0.2)",
+								fontSize: "18px",
+								fontWeight: 700,
+								color: "var(--primary)",
+							}}
+						>
 							<span>{t("estateTaxDue")}</span>
 							<span>{formatPHP(estateTaxDue)}</span>
 						</div>

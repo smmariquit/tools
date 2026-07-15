@@ -109,7 +109,7 @@ export default function ToolFooter({ currentPath }: { currentPath: string }) {
 			<p
 				style={{
 					marginTop: "32px",
-					fontSize: "13px",
+					fontSize: "14px",
 					lineHeight: "1.6",
 					color: "var(--text-secondary)",
 				}}

@@ -83,7 +83,7 @@ export default async function BlogIndex({
 							<p
 								style={{
 									margin: "0 0 8px 0",
-									fontSize: "13px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 								}}
 							>

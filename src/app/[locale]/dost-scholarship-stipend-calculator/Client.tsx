@@ -242,7 +242,7 @@ export default function DOSTScholarshipStipendClient() {
 								<span
 									style={{
 										display: "block",
-										fontSize: "12px",
+										fontSize: "14px",
 										color: "var(--text-secondary)",
 										marginTop: "2px",
 									}}

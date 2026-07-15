@@ -95,7 +95,7 @@ export default function PagibigAffordabilityClient() {
 					</div>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginTop: "8px",
 							textAlign: "left",
@@ -136,7 +136,7 @@ export default function PagibigAffordabilityClient() {
 					</div>
 					<div
 						style={{
-							fontSize: "12px",
+							fontSize: "14px",
 							color: "var(--text-tertiary)",
 							marginBottom: "24px",
 							textAlign: "left",
@@ -194,7 +194,7 @@ export default function PagibigAffordabilityClient() {
 							<span
 								style={{
 									display: "block",
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "var(--text-tertiary)",
 									marginTop: "8px",
 								}}

@@ -8,7 +8,12 @@ import ExpresswayMap from "../../components/ExpresswayMap";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import ToolLayout from "../components/ToolLayout";
-import { expressways, getMaxTollFee, getTollFee, isClosedSystem } from "./tollData";
+import {
+	expressways,
+	getMaxTollFee,
+	getTollFee,
+	isClosedSystem,
+} from "./tollData";
 
 type TripLeg = {
 	id: string;
@@ -172,9 +177,7 @@ export default function TollCalculatorClient() {
 					<ToolIllustration />
 					<ToolEyebrow />
 					<h1 className="page-title">{t("title")}</h1>
-					<p className="page-subtitle">
-						{t("subtitle")}
-					</p>
+					<p className="page-subtitle">{t("subtitle")}</p>
 				</div>
 
 				<AdBanner dataAdSlot="toll-top" />
@@ -236,7 +239,7 @@ export default function TollCalculatorClient() {
 										className="btn-secondary"
 										onClick={() => setZoomedExpressway(null)}
 										style={{
-											fontSize: "12px",
+											fontSize: "14px",
 											padding: "4px 8px",
 											display: "flex",
 											alignItems: "center",
@@ -291,7 +294,7 @@ export default function TollCalculatorClient() {
 														display: "flex",
 														justifyContent: "center",
 														alignItems: "center",
-														fontSize: "10px",
+														fontSize: "14px",
 														fontWeight: "bold",
 														flexShrink: 0,
 														marginTop: "2px",
@@ -318,20 +321,20 @@ export default function TollCalculatorClient() {
 													</span>
 													<span
 														style={{
-															fontSize: "11px",
+															fontSize: "14px",
 															color: "var(--text-secondary)",
 															lineHeight: "1.2",
 														}}
 													>
-													{t("accessNote")}
-												</span>
+														{t("accessNote")}
+													</span>
 												</div>
 												<a
 													href={getWikiUrl(zoomedExpressway)}
 													target="_blank"
 													rel="noreferrer"
 													style={{
-														fontSize: "11px",
+														fontSize: "14px",
 														color: "var(--primary)",
 														textDecoration: "none",
 														backgroundColor: "rgba(0,122,255,0.1)",
@@ -361,7 +364,9 @@ export default function TollCalculatorClient() {
 								paddingBottom: "8px",
 							}}
 						>
-							<h2 style={{ fontSize: "18px", margin: 0 }}>{t("tripPlanner")}</h2>
+							<h2 style={{ fontSize: "18px", margin: 0 }}>
+								{t("tripPlanner")}
+							</h2>
 							<select
 								className="form-control"
 								style={{ width: "auto", padding: "4px 8px" }}
@@ -442,7 +447,7 @@ export default function TollCalculatorClient() {
 													onClick={() => setZoomedExpressway(leg.expressway)}
 													style={{
 														padding: "4px 8px",
-														fontSize: "12px",
+														fontSize: "14px",
 														display: "flex",
 														alignItems: "center",
 														gap: "4px",
@@ -518,7 +523,7 @@ export default function TollCalculatorClient() {
 														display: "flex",
 														alignItems: "flex-start",
 														gap: "8px",
-														fontSize: "13px",
+														fontSize: "14px",
 														cursor: "pointer",
 														color: "var(--text-secondary)",
 													}}
@@ -542,14 +547,14 @@ export default function TollCalculatorClient() {
 												</label>
 												{leg.maxCharged && (
 													<p
-													role="note"
-													style={{
-														fontSize: "12px",
-														color: "var(--warning-text)",
-														margin: "8px 0 0",
-														paddingLeft: "24px",
-														lineHeight: 1.4,
-													}}
+														role="note"
+														style={{
+															fontSize: "14px",
+															color: "var(--warning-text)",
+															margin: "8px 0 0",
+															paddingLeft: "24px",
+															lineHeight: 1.4,
+														}}
 													>
 														{t("noEntryScanNote")}
 													</p>
@@ -608,7 +613,9 @@ export default function TollCalculatorClient() {
 									alignItems: "center",
 								}}
 							>
-								<span style={{ fontSize: "16px" }}>{t("totalEstimatedCost")}</span>
+								<span style={{ fontSize: "16px" }}>
+									{t("totalEstimatedCost")}
+								</span>
 								<strong style={{ fontSize: "32px", color: "var(--primary)" }}>
 									{formatCurrency(totalToll)}
 								</strong>
@@ -711,7 +718,7 @@ export default function TollCalculatorClient() {
 								<li style={{ marginBottom: "8px" }}>
 									<strong>{t("openSystemTitle")}</strong> {t("openSystemDesc")}
 									<br />
-									<span style={{ fontSize: "12px", fontStyle: "italic" }}>
+									<span style={{ fontSize: "14px", fontStyle: "italic" }}>
 										{t("openSystemExamples")}
 									</span>
 								</li>
@@ -721,14 +728,14 @@ export default function TollCalculatorClient() {
 										b: (chunks) => <strong>{chunks}</strong>,
 									})}
 									<br />
-									<span style={{ fontSize: "12px", fontStyle: "italic" }}>
+									<span style={{ fontSize: "14px", fontStyle: "italic" }}>
 										{t("closedSystemExamples")}
 									</span>
 								</li>
 							</ul>
 							<p
 								style={{
-									fontSize: "12px",
+									fontSize: "14px",
 									color: "var(--text-secondary)",
 									fontStyle: "italic",
 								}}
@@ -755,7 +762,7 @@ export default function TollCalculatorClient() {
 								</h4>
 								<p
 									style={{
-										fontSize: "13px",
+										fontSize: "14px",
 										color: "var(--text-secondary)",
 										margin: 0,
 										lineHeight: 1.5,

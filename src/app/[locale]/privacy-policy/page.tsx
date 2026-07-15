@@ -3,7 +3,7 @@ export default function PrivacyPolicy() {
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
 			<div className="page-header" style={{ marginBottom: "24px" }}>
 				<h1 className="page-title">Privacy Policy</h1>
-				<p className="page-subtitle">Last Updated: May 2026</p>
+				<p className="page-subtitle">Last Updated: June 12, 2026</p>
 			</div>
 
 			<div className="card" style={{ color: "var(--text-primary)" }}>

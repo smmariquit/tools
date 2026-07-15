@@ -271,8 +271,12 @@ export default function ElectricBillClient() {
 											<option value={`600|${t("nameAirconInverter")}`}>
 												{t("optAirconInverter")}
 											</option>
-											<option value={`60|${t("nameFan")}`}>{t("optFan")}</option>
-											<option value={`150|${t("nameRef")}`}>{t("optRef")}</option>
+											<option value={`60|${t("nameFan")}`}>
+												{t("optFan")}
+											</option>
+											<option value={`150|${t("nameRef")}`}>
+												{t("optRef")}
+											</option>
 											<option value={`70|${t("nameTv")}`}>{t("optTv")}</option>
 											<option value={`500|${t("nameWasher")}`}>
 												{t("optWasher")}
@@ -418,7 +422,9 @@ export default function ElectricBillClient() {
 									borderTop: "1px dashed var(--border-color)",
 								}}
 							>
-								<span style={{ fontSize: "16px" }}>{t("estimatedTotalCost")}</span>
+								<span style={{ fontSize: "16px" }}>
+									{t("estimatedTotalCost")}
+								</span>
 								<strong style={{ fontSize: "32px", color: "var(--primary)" }}>
 									{formatCurrency(totalMonthlyCost)}
 								</strong>
@@ -450,7 +456,7 @@ export default function ElectricBillClient() {
 									background: "var(--bg-color)",
 									padding: "12px",
 									borderRadius: "4px",
-									fontSize: "13px",
+									fontSize: "14px",
 									marginBottom: "12px",
 								}}
 							>

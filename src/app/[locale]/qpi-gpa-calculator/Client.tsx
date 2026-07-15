@@ -79,7 +79,7 @@ export default function QPIGPAClient() {
 									<label
 										className="form-label"
 										htmlFor={`grade-${idx}`}
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 									>
 										{t("gradeLabel")}
 									</label>
@@ -104,7 +104,7 @@ export default function QPIGPAClient() {
 									<label
 										className="form-label"
 										htmlFor={`units-${idx}`}
-										style={{ fontSize: "12px" }}
+										style={{ fontSize: "14px" }}
 									>
 										{t("unitsLabel")}
 									</label>
@@ -129,7 +129,7 @@ export default function QPIGPAClient() {
 										borderRadius: "4px",
 										cursor: "pointer",
 										color: "var(--text-secondary)",
-										fontSize: "13px",
+										fontSize: "14px",
 									}}
 								>
 									✕

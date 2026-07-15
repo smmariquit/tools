@@ -80,7 +80,7 @@ export default function ZonalValueHub() {
 										{city.name}{" "}
 										<span
 											style={{
-												fontSize: "0.8rem",
+												fontSize: "0.875rem",
 												color: "var(--text-secondary)",
 												fontWeight: "normal",
 											}}

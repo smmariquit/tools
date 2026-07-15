@@ -201,9 +201,7 @@ export default function EcommerceFeeClient() {
 								borderTop: "1px solid var(--border-color)",
 							}}
 						>
-							<div className="form-label">
-								{t("optInPrograms")}
-							</div>
+							<div className="form-label">{t("optInPrograms")}</div>
 
 							<label
 								style={{
