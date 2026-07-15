@@ -42,8 +42,11 @@ export default function RtbClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("investmentLabel")}</label>
+							<label className="form-label" htmlFor="f-investmentLabel">
+								{t("investmentLabel")}
+							</label>
 							<input
+								id="f-investmentLabel"
 								type="number"
 								className="form-control"
 								value={investment || ""}
@@ -52,8 +55,11 @@ export default function RtbClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("couponRateLabel")}</label>
+							<label className="form-label" htmlFor="f-couponRateLabel">
+								{t("couponRateLabel")}
+							</label>
 							<input
+								id="f-couponRateLabel"
 								type="number"
 								step="0.01"
 								className="form-control"
@@ -63,8 +69,11 @@ export default function RtbClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("holdingPeriodLabel")}</label>
+							<label className="form-label" htmlFor="f-holdingPeriodLabel">
+								{t("holdingPeriodLabel")}
+							</label>
 							<input
+								id="f-holdingPeriodLabel"
 								type="number"
 								className="form-control"
 								value={years || ""}

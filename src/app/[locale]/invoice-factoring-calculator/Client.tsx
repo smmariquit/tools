@@ -127,8 +127,11 @@ export default function InvoiceFactoringClient() {
 							</h2>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("invoiceAmountLabel")}</label>
+								<label className="form-label" htmlFor="f-invoiceAmountLabel">
+									{t("invoiceAmountLabel")}
+								</label>
 								<input
+									id="f-invoiceAmountLabel"
 									type="number"
 									className="form-control"
 									value={invoiceAmount || ""}
@@ -137,10 +140,11 @@ export default function InvoiceFactoringClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">
+								<label className="form-label" htmlFor="f-field-2">
 									{t("monthlyDiscountLabel")}
 								</label>
 								<input
+									id="f-field-2"
 									type="number"
 									step="0.1"
 									className="form-control"
@@ -161,8 +165,11 @@ export default function InvoiceFactoringClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("daysDueLabel")}</label>
+								<label className="form-label" htmlFor="f-daysDueLabel">
+									{t("daysDueLabel")}
+								</label>
 								<input
+									id="f-daysDueLabel"
 									type="number"
 									className="form-control"
 									value={daysOutstanding || ""}
@@ -171,8 +178,11 @@ export default function InvoiceFactoringClient() {
 							</div>
 
 							<div className="form-group">
-								<label className="form-label">{t("processingFeeLabel")}</label>
+								<label className="form-label" htmlFor="f-processingFeeLabel">
+									{t("processingFeeLabel")}
+								</label>
 								<input
+									id="f-processingFeeLabel"
 									type="number"
 									className="form-control"
 									value={processingFee || ""}

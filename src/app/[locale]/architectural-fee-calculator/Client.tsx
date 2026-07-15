@@ -64,8 +64,11 @@ export default function ArchitecturalFeeClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("pccLabel")}</label>
+							<label className="form-label" htmlFor="f-pccLabel">
+								{t("pccLabel")}
+							</label>
 							<input
+								id="f-pccLabel"
 								type="number"
 								className="form-control"
 								value={pcc || ""}
@@ -74,8 +77,11 @@ export default function ArchitecturalFeeClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("classificationLabel")}</label>
+							<label className="form-label" htmlFor="f-classificationLabel">
+								{t("classificationLabel")}
+							</label>
 							<select
+								id="f-classificationLabel"
 								className="form-control"
 								value={group}
 								onChange={(e) =>
@@ -91,8 +97,11 @@ export default function ArchitecturalFeeClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("modeOfServiceLabel")}</label>
+							<label className="form-label" htmlFor="f-modeOfServiceLabel">
+								{t("modeOfServiceLabel")}
+							</label>
 							<select
+								id="f-modeOfServiceLabel"
 								className="form-control"
 								value={serviceMode}
 								onChange={(e) =>

@@ -15,10 +15,10 @@ export default function ToolArticle({ slug }: { slug: string }) {
 		const { meta, content } = getPostBySlug(slug);
 
 		const faqRegex = /###\s+(.+?)\n([^#]+)/g;
-		let match;
 		const faqEntities = [];
 
-		while ((match = faqRegex.exec(content)) !== null) {
+		let match: RegExpExecArray | null = faqRegex.exec(content);
+		while (match !== null) {
 			const question = match[1].trim();
 			const answer = match[2].trim();
 			if (question && answer) {
@@ -31,6 +31,7 @@ export default function ToolArticle({ slug }: { slug: string }) {
 					},
 				});
 			}
+			match = faqRegex.exec(content);
 		}
 
 		const faqSchema =
@@ -58,6 +59,7 @@ export default function ToolArticle({ slug }: { slug: string }) {
 			),
 			img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
 				// biome-ignore lint/a11y/useAltText: alt is forwarded from markdown source
+				// biome-ignore lint/performance/noImgElement: markdown image with arbitrary src; next/image needs known dimensions/domains
 				<img
 					{...props}
 					style={{

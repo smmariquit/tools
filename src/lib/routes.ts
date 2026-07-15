@@ -931,27 +931,6 @@ export const toolCategories = [
 		],
 	},
 	{
-		category: "Creative & Media",
-		items: [
-			{
-				name: "ID Photo Maker",
-				path: "/id-photo-maker",
-				desc: "Create 2x2, 1x1, and passport photos from your selfies for free.",
-				tags: [
-					"id photo",
-					"2x2",
-					"1x1",
-					"passport photo",
-					"selfie",
-					"larawan",
-					"id picture",
-					"resize photo",
-				],
-				priority: 0.6,
-			},
-		],
-	},
-	{
 		category: "Utilities",
 		items: [
 			{

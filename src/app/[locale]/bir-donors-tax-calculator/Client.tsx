@@ -68,8 +68,11 @@ export default function DonorsTaxClient() {
 						</p>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("priorGiftsLabel")}</label>
+							<label className="form-label" htmlFor="f-priorGiftsLabel">
+								{t("priorGiftsLabel")}
+							</label>
 							<input
+								id="f-priorGiftsLabel"
 								type="number"
 								className="form-control"
 								value={priorGifts || ""}
@@ -79,8 +82,11 @@ export default function DonorsTaxClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("newGiftLabel")}</label>
+							<label className="form-label" htmlFor="f-newGiftLabel">
+								{t("newGiftLabel")}
+							</label>
 							<input
+								id="f-newGiftLabel"
 								type="number"
 								className="form-control"
 								value={newGift || ""}
@@ -90,8 +96,11 @@ export default function DonorsTaxClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("deductionsLabel")}</label>
+							<label className="form-label" htmlFor="f-deductionsLabel">
+								{t("deductionsLabel")}
+							</label>
 							<input
+								id="f-deductionsLabel"
 								type="number"
 								className="form-control"
 								value={deductions || ""}

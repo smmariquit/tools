@@ -128,8 +128,11 @@ export default function PromissoryNoteClient() {
 							</h2>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("lenderLabel")}</label>
+								<label className="form-label" htmlFor="f-lenderLabel">
+									{t("lenderLabel")}
+								</label>
 								<input
+									id="f-lenderLabel"
 									type="text"
 									className="form-control"
 									value={lender}
@@ -138,8 +141,11 @@ export default function PromissoryNoteClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("borrowerLabel")}</label>
+								<label className="form-label" htmlFor="f-borrowerLabel">
+									{t("borrowerLabel")}
+								</label>
 								<input
+									id="f-borrowerLabel"
 									type="text"
 									className="form-control"
 									value={borrower}
@@ -148,8 +154,11 @@ export default function PromissoryNoteClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("principalLabel")}</label>
+								<label className="form-label" htmlFor="f-principalLabel">
+									{t("principalLabel")}
+								</label>
 								<input
+									id="f-principalLabel"
 									type="number"
 									className="form-control"
 									value={amount}
@@ -158,8 +167,11 @@ export default function PromissoryNoteClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("dateLabel")}</label>
+								<label className="form-label" htmlFor="f-dateLabel">
+									{t("dateLabel")}
+								</label>
 								<input
+									id="f-dateLabel"
 									type="date"
 									className="form-control"
 									value={date}
@@ -168,8 +180,11 @@ export default function PromissoryNoteClient() {
 							</div>
 
 							<div className="form-group" style={{ marginBottom: "16px" }}>
-								<label className="form-label">{t("locationLabel")}</label>
+								<label className="form-label" htmlFor="f-locationLabel">
+									{t("locationLabel")}
+								</label>
 								<input
+									id="f-locationLabel"
 									type="text"
 									className="form-control"
 									value={address}
@@ -178,8 +193,11 @@ export default function PromissoryNoteClient() {
 							</div>
 
 							<div className="form-group">
-								<label className="form-label">{t("dueDateLabel")}</label>
+								<label className="form-label" htmlFor="f-dueDateLabel">
+									{t("dueDateLabel")}
+								</label>
 								<input
+									id="f-dueDateLabel"
 									type="text"
 									className="form-control"
 									value={dueDate}

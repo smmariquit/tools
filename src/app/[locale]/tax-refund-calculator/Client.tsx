@@ -54,8 +54,11 @@ export default function TaxRefundClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("grossAnnualLabel")}</label>
+							<label className="form-label" htmlFor="f-grossAnnualLabel">
+								{t("grossAnnualLabel")}
+							</label>
 							<input
+								id="f-grossAnnualLabel"
 								type="number"
 								className="form-control"
 								value={grossAnnual || ""}
@@ -64,10 +67,11 @@ export default function TaxRefundClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">
+							<label className="form-label" htmlFor="f-field-2">
 								{t("mandatoryContributionsLabel")}
 							</label>
 							<input
+								id="f-field-2"
 								type="number"
 								className="form-control"
 								value={mandatoryContributions || ""}
@@ -78,8 +82,11 @@ export default function TaxRefundClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("bonusesLabel")}</label>
+							<label className="form-label" htmlFor="f-bonusesLabel">
+								{t("bonusesLabel")}
+							</label>
 							<input
+								id="f-bonusesLabel"
 								type="number"
 								className="form-control"
 								value={bonuses || ""}
@@ -97,8 +104,11 @@ export default function TaxRefundClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("taxWithheldLabel")}</label>
+							<label className="form-label" htmlFor="f-taxWithheldLabel">
+								{t("taxWithheldLabel")}
+							</label>
 							<input
+								id="f-taxWithheldLabel"
 								type="number"
 								className="form-control"
 								value={taxWithheldYTD || ""}

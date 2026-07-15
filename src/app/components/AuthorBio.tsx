@@ -117,8 +117,8 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 			>
 				<strong>Editorial Transparency:</strong> The formulas and data used in
 				this tool are sourced from official government circulars and public
-				statutory laws. PHTools is open source &mdash; you can read every
-				formula, file an issue, or send a fix on{" "}
+				statutory laws. PHTools is open source, so you can read every formula,
+				file an issue, or send a fix on{" "}
 				<a
 					href="https://github.com/smmariquit/tools"
 					target="_blank"

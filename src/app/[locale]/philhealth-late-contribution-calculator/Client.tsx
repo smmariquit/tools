@@ -46,8 +46,11 @@ export default function PhilhealthLateClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("principalLabel")}</label>
+							<label className="form-label" htmlFor="f-principalLabel">
+								{t("principalLabel")}
+							</label>
 							<input
+								id="f-principalLabel"
 								type="number"
 								className="form-control"
 								value={missedPremium || ""}
@@ -56,8 +59,11 @@ export default function PhilhealthLateClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("monthsLateLabel")}</label>
+							<label className="form-label" htmlFor="f-monthsLateLabel">
+								{t("monthsLateLabel")}
+							</label>
 							<input
+								id="f-monthsLateLabel"
 								type="number"
 								className="form-control"
 								value={monthsLate || ""}

@@ -33,7 +33,6 @@ const tools = {
 	"holiday-calculator": dynamic(
 		() => import("../[locale]/holiday-calculator/Client"),
 	),
-	"id-photo-maker": dynamic(() => import("../[locale]/id-photo-maker/Client")),
 	"income-tax-calculator": dynamic(
 		() => import("../[locale]/income-tax-calculator/Client"),
 	),

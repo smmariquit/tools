@@ -77,8 +77,11 @@ export default function KasambahayPayrollClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("monthlySalary")}</label>
+							<label className="form-label" htmlFor="f-monthlySalary">
+								{t("monthlySalary")}
+							</label>
 							<input
+								id="f-monthlySalary"
 								type="number"
 								className="form-control"
 								value={salary || ""}

@@ -263,8 +263,11 @@ export default function FoodCostCalculatorClient() {
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 200px" }}>
-								<label className="form-label">{t("recipeNameLabel")}</label>
+								<label className="form-label" htmlFor="f-recipeNameLabel">
+									{t("recipeNameLabel")}
+								</label>
 								<input
+									id="f-recipeNameLabel"
 									type="text"
 									className="form-control"
 									value={recipeName}
@@ -273,8 +276,11 @@ export default function FoodCostCalculatorClient() {
 								/>
 							</div>
 							<div className="form-group" style={{ flex: "1 1 120px" }}>
-								<label className="form-label">{t("yieldLabel")}</label>
+								<label className="form-label" htmlFor="f-yieldLabel">
+									{t("yieldLabel")}
+								</label>
 								<input
+									id="f-yieldLabel"
 									type="number"
 									className="form-control"
 									value={yieldServings || ""}
@@ -388,11 +394,13 @@ export default function FoodCostCalculatorClient() {
 										<div className="form-group">
 											<label
 												className="form-label"
+												htmlFor={`fc-boughtPrice-${ing.id}`}
 												style={{ fontSize: "14px" }}
 											>
 												{t("boughtPrice")}
 											</label>
 											<input
+												id={`fc-boughtPrice-${ing.id}`}
 												type="number"
 												className="form-control"
 												value={ing.boughtPrice || ""}
@@ -408,12 +416,14 @@ export default function FoodCostCalculatorClient() {
 										<div className="form-group">
 											<label
 												className="form-label"
+												htmlFor={`fc-boughtQty-${ing.id}`}
 												style={{ fontSize: "14px" }}
 											>
 												{t("boughtQtyUnit")}
 											</label>
 											<div style={{ display: "flex", gap: "4px" }}>
 												<input
+													id={`fc-boughtQty-${ing.id}`}
 													type="number"
 													className="form-control"
 													value={ing.boughtQty || ""}
@@ -456,12 +466,16 @@ export default function FoodCostCalculatorClient() {
 										}}
 									>
 										<div className="form-group">
-											<label
+											<span
 												className="form-label"
-												style={{ fontSize: "14px", color: "var(--primary)" }}
+												style={{
+													display: "block",
+													fontSize: "14px",
+													color: "var(--primary)",
+												}}
 											>
 												{t("costOfUsed")}
-											</label>
+											</span>
 											<div
 												style={{
 													padding: "8px",
@@ -478,12 +492,14 @@ export default function FoodCostCalculatorClient() {
 										<div className="form-group">
 											<label
 												className="form-label"
+												htmlFor={`fc-usedQty-${ing.id}`}
 												style={{ fontSize: "14px" }}
 											>
 												{t("usedQty")}
 											</label>
 											<div style={{ display: "flex", gap: "4px" }}>
 												<input
+													id={`fc-usedQty-${ing.id}`}
 													type="number"
 													className="form-control"
 													value={ing.usedQty || ""}
@@ -534,8 +550,11 @@ export default function FoodCostCalculatorClient() {
 						</h2>
 						<div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
-								<label className="form-label">{t("laborCostLabel")}</label>
+								<label className="form-label" htmlFor="f-laborCostLabel">
+									{t("laborCostLabel")}
+								</label>
 								<input
+									id="f-laborCostLabel"
 									type="number"
 									className="form-control"
 									value={laborCost || ""}
@@ -543,8 +562,11 @@ export default function FoodCostCalculatorClient() {
 								/>
 							</div>
 							<div className="form-group" style={{ flex: "1 1 150px" }}>
-								<label className="form-label">{t("packagingLabel")}</label>
+								<label className="form-label" htmlFor="f-packagingLabel">
+									{t("packagingLabel")}
+								</label>
 								<input
+									id="f-packagingLabel"
 									type="number"
 									className="form-control"
 									value={overheadCost || ""}
@@ -599,11 +621,14 @@ export default function FoodCostCalculatorClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("serviceChargeLabel")}</label>
+							<label className="form-label" htmlFor="f-serviceChargeLabel">
+								{t("serviceChargeLabel")}
+							</label>
 							<div
 								style={{ display: "flex", alignItems: "center", gap: "12px" }}
 							>
 								<input
+									id="f-serviceChargeLabel"
 									type="range"
 									min="0"
 									max="15"
@@ -739,11 +764,14 @@ export default function FoodCostCalculatorClient() {
 						</h3>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("targetMargin")}</label>
+							<label className="form-label" htmlFor="f-targetMargin">
+								{t("targetMargin")}
+							</label>
 							<div
 								style={{ display: "flex", alignItems: "center", gap: "12px" }}
 							>
 								<input
+									id="f-targetMargin"
 									type="range"
 									min="10"
 									max="90"

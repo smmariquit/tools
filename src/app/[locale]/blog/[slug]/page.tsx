@@ -92,6 +92,7 @@ export default async function BlogPost({
 		),
 		img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
 			// biome-ignore lint/a11y/useAltText: alt is forwarded from markdown source
+			// biome-ignore lint/performance/noImgElement: markdown image with arbitrary src; next/image needs known dimensions/domains
 			<img
 				{...props}
 				style={{

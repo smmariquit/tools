@@ -104,8 +104,11 @@ export default function SssMaternityClient() {
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-							<label className="form-label">{t("deliveryDateLabel")}</label>
+							<label className="form-label" htmlFor="f-deliveryDateLabel">
+								{t("deliveryDateLabel")}
+							</label>
 							<input
+								id="f-deliveryDateLabel"
 								type="date"
 								className="form-control"
 								value={deliveryDate}
@@ -115,8 +118,11 @@ export default function SssMaternityClient() {
 
 						<div className="form-group">
 							{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-							<label className="form-label">{t("claimTypeLabel")}</label>
+							<label className="form-label" htmlFor="f-claimTypeLabel">
+								{t("claimTypeLabel")}
+							</label>
 							<select
+								id="f-claimTypeLabel"
 								className="form-control"
 								value={leaveType}
 								onChange={(e) => setLeaveType(e.target.value)}
@@ -176,10 +182,15 @@ export default function SssMaternityClient() {
 							{mscs.map((msc, i) => (
 								<div key={i} className="form-group">
 									{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-									<label className="form-label" style={{ fontSize: "14px" }}>
+									<label
+										className="form-label"
+										htmlFor="f-field-3"
+										style={{ fontSize: "14px" }}
+									>
 										{t("highestMscLabel", { number: i + 1 })}
 									</label>
 									<input
+										id="f-field-3"
 										type="number"
 										className="form-control"
 										value={msc || ""}

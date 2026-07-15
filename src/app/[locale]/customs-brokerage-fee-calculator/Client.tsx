@@ -53,8 +53,11 @@ export default function CustomsBrokerageClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("dvLabel")}</label>
+							<label className="form-label" htmlFor="f-dvLabel">
+								{t("dvLabel")}
+							</label>
 							<input
+								id="f-dvLabel"
 								type="number"
 								className="form-control"
 								value={dv || ""}

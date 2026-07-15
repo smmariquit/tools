@@ -62,8 +62,11 @@ export default function DigitalTicketClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("attendeeNameLabel")}</label>
+							<label className="form-label" htmlFor="f-attendeeNameLabel">
+								{t("attendeeNameLabel")}
+							</label>
 							<input
+								id="f-attendeeNameLabel"
 								type="text"
 								className="form-control"
 								value={attendeeName}
@@ -72,8 +75,11 @@ export default function DigitalTicketClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("eventNameLabel")}</label>
+							<label className="form-label" htmlFor="f-eventNameLabel">
+								{t("eventNameLabel")}
+							</label>
 							<input
+								id="f-eventNameLabel"
 								type="text"
 								className="form-control"
 								value={eventName}
@@ -82,8 +88,11 @@ export default function DigitalTicketClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("ticketTierLabel")}</label>
+							<label className="form-label" htmlFor="f-ticketTierLabel">
+								{t("ticketTierLabel")}
+							</label>
 							<select
+								id="f-ticketTierLabel"
 								className="form-control"
 								value={ticketType}
 								onChange={(e) => setTicketType(e.target.value)}
@@ -131,7 +140,7 @@ export default function DigitalTicketClient() {
 							}}
 						>
 							{qrDataUrl ? (
-								// eslint-disable-next-line @next/next/no-img-element
+								// biome-ignore lint/performance/noImgElement: QR is a client-generated data URL, not a remote image next/image can optimize
 								<img
 									src={qrDataUrl}
 									alt={t("qrTarget")}

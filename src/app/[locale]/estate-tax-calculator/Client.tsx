@@ -45,8 +45,11 @@ export default function EstateTaxClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("grossEstateLabel")}</label>
+							<label className="form-label" htmlFor="f-grossEstateLabel">
+								{t("grossEstateLabel")}
+							</label>
 							<input
+								id="f-grossEstateLabel"
 								type="number"
 								className="form-control"
 								value={grossEstate || ""}
@@ -66,10 +69,11 @@ export default function EstateTaxClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">
+							<label className="form-label" htmlFor="f-field-2">
 								{t("standardDeductionLabel")}
 							</label>
 							<input
+								id="f-field-2"
 								type="text"
 								className="form-control"
 								value="₱ 5,000,000.00"
@@ -78,8 +82,11 @@ export default function EstateTaxClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("familyHomeLabel")}</label>
+							<label className="form-label" htmlFor="f-familyHomeLabel">
+								{t("familyHomeLabel")}
+							</label>
 							<input
+								id="f-familyHomeLabel"
 								type="number"
 								className="form-control"
 								value={familyHome || ""}
@@ -97,8 +104,11 @@ export default function EstateTaxClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("medicalLabel")}</label>
+							<label className="form-label" htmlFor="f-medicalLabel">
+								{t("medicalLabel")}
+							</label>
 							<input
+								id="f-medicalLabel"
 								type="number"
 								className="form-control"
 								value={medicalExpenses || ""}
@@ -116,8 +126,11 @@ export default function EstateTaxClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("otherDeductionsLabel")}</label>
+							<label className="form-label" htmlFor="f-otherDeductionsLabel">
+								{t("otherDeductionsLabel")}
+							</label>
 							<input
+								id="f-otherDeductionsLabel"
 								type="number"
 								className="form-control"
 								value={otherDeductions || ""}

@@ -66,8 +66,11 @@ export default function InfluencerRateClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("platform")}</label>
+							<label className="form-label" htmlFor="f-platform">
+								{t("platform")}
+							</label>
 							<select
+								id="f-platform"
 								className="form-control"
 								value={platform}
 								onChange={(e) => setPlatform(e.target.value)}
@@ -79,8 +82,11 @@ export default function InfluencerRateClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("followerCount")}</label>
+							<label className="form-label" htmlFor="f-followerCount">
+								{t("followerCount")}
+							</label>
 							<input
+								id="f-followerCount"
 								type="number"
 								className="form-control"
 								value={followers || ""}
@@ -97,8 +103,11 @@ export default function InfluencerRateClient() {
 							}}
 						>
 							<div className="form-group">
-								<label className="form-label">{t("avgLikes")}</label>
+								<label className="form-label" htmlFor="f-avgLikes">
+									{t("avgLikes")}
+								</label>
 								<input
+									id="f-avgLikes"
 									type="number"
 									className="form-control"
 									value={likes || ""}
@@ -106,8 +115,11 @@ export default function InfluencerRateClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("avgComments")}</label>
+								<label className="form-label" htmlFor="f-avgComments">
+									{t("avgComments")}
+								</label>
 								<input
+									id="f-avgComments"
 									type="number"
 									className="form-control"
 									value={comments || ""}
@@ -115,8 +127,11 @@ export default function InfluencerRateClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("avgShares")}</label>
+								<label className="form-label" htmlFor="f-avgShares">
+									{t("avgShares")}
+								</label>
 								<input
+									id="f-avgShares"
 									type="number"
 									className="form-control"
 									value={shares || ""}
@@ -125,8 +140,11 @@ export default function InfluencerRateClient() {
 							</div>
 							{platform === "tiktok" && (
 								<div className="form-group">
-									<label className="form-label">{t("avgViews")}</label>
+									<label className="form-label" htmlFor="f-avgViews">
+										{t("avgViews")}
+									</label>
 									<input
+										id="f-avgViews"
 										type="number"
 										className="form-control"
 										value={views || ""}

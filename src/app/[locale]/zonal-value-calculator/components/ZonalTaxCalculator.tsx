@@ -61,6 +61,7 @@ export default function ZonalTaxCalculator({
 
 				<div style={{ marginBottom: "16px" }}>
 					<label
+						htmlFor="zonal-street"
 						style={{
 							display: "block",
 							marginBottom: "8px",
@@ -70,6 +71,7 @@ export default function ZonalTaxCalculator({
 						Select Street / Classification
 					</label>
 					<select
+						id="zonal-street"
 						value={selectedStreet}
 						onChange={(e) => setSelectedStreet(e.target.value)}
 						style={{

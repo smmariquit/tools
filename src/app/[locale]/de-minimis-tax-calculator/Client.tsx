@@ -110,8 +110,11 @@ export default function DeMinimisClient() {
 							}}
 						>
 							<div className="form-group">
-								<label className="form-label">{t("riceLabel")}</label>
+								<label className="form-label" htmlFor="f-riceLabel">
+									{t("riceLabel")}
+								</label>
 								<input
+									id="f-riceLabel"
 									type="number"
 									className="form-control"
 									value={rice || ""}
@@ -122,8 +125,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("uniformLabel")}</label>
+								<label className="form-label" htmlFor="f-uniformLabel">
+									{t("uniformLabel")}
+								</label>
 								<input
+									id="f-uniformLabel"
 									type="number"
 									className="form-control"
 									value={uniform || ""}
@@ -134,8 +140,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("medicalAssistLabel")}</label>
+								<label className="form-label" htmlFor="f-medicalAssistLabel">
+									{t("medicalAssistLabel")}
+								</label>
 								<input
+									id="f-medicalAssistLabel"
 									type="number"
 									className="form-control"
 									value={actualMedical || ""}
@@ -146,8 +155,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("laundryLabel")}</label>
+								<label className="form-label" htmlFor="f-laundryLabel">
+									{t("laundryLabel")}
+								</label>
 								<input
+									id="f-laundryLabel"
 									type="number"
 									className="form-control"
 									value={laundry || ""}
@@ -158,8 +170,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("giftsLabel")}</label>
+								<label className="form-label" htmlFor="f-giftsLabel">
+									{t("giftsLabel")}
+								</label>
 								<input
+									id="f-giftsLabel"
 									type="number"
 									className="form-control"
 									value={gifts || ""}
@@ -170,8 +185,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("achievementLabel")}</label>
+								<label className="form-label" htmlFor="f-achievementLabel">
+									{t("achievementLabel")}
+								</label>
 								<input
+									id="f-achievementLabel"
 									type="number"
 									className="form-control"
 									value={achievement || ""}
@@ -182,10 +200,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">
+								<label className="form-label" htmlFor="f-field-7">
 									{t("medicalDependentsLabel")}
 								</label>
 								<input
+									id="f-field-7"
 									type="number"
 									className="form-control"
 									value={medicalDependents || ""}
@@ -196,8 +215,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("cbaLabel")}</label>
+								<label className="form-label" htmlFor="f-cbaLabel">
+									{t("cbaLabel")}
+								</label>
 								<input
+									id="f-cbaLabel"
 									type="number"
 									className="form-control"
 									value={cba || ""}
@@ -228,10 +250,11 @@ export default function DeMinimisClient() {
 							}}
 						>
 							<div className="form-group">
-								<label className="form-label">
+								<label className="form-label" htmlFor="f-field-9">
 									{t("thirteenthMonthLabel")}
 								</label>
 								<input
+									id="f-field-9"
 									type="number"
 									className="form-control"
 									value={thirteenthMonth || ""}
@@ -239,8 +262,11 @@ export default function DeMinimisClient() {
 								/>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("otherBonusesLabel")}</label>
+								<label className="form-label" htmlFor="f-otherBonusesLabel">
+									{t("otherBonusesLabel")}
+								</label>
 								<input
+									id="f-otherBonusesLabel"
 									type="number"
 									className="form-control"
 									value={otherBonuses || ""}

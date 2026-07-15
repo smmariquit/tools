@@ -43,8 +43,11 @@ export default function FinalPayClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("dailyWageRate")}</label>
+							<label className="form-label" htmlFor="f-dailyWageRate">
+								{t("dailyWageRate")}
+							</label>
 							<input
+								id="f-dailyWageRate"
 								type="number"
 								className="form-control"
 								value={dailyRate || ""}
@@ -53,8 +56,11 @@ export default function FinalPayClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("unpaidWorkDays")}</label>
+							<label className="form-label" htmlFor="f-unpaidWorkDays">
+								{t("unpaidWorkDays")}
+							</label>
 							<input
+								id="f-unpaidWorkDays"
 								type="number"
 								className="form-control"
 								value={unpaidDays || ""}
@@ -63,8 +69,11 @@ export default function FinalPayClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("totalBasicSalary")}</label>
+							<label className="form-label" htmlFor="f-totalBasicSalary">
+								{t("totalBasicSalary")}
+							</label>
 							<input
+								id="f-totalBasicSalary"
 								type="number"
 								className="form-control"
 								value={totalBasicSalary || ""}
@@ -82,8 +91,11 @@ export default function FinalPayClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("unusedSil")}</label>
+							<label className="form-label" htmlFor="f-unusedSil">
+								{t("unusedSil")}
+							</label>
 							<input
+								id="f-unusedSil"
 								type="number"
 								className="form-control"
 								value={unusedSil || ""}
@@ -92,8 +104,11 @@ export default function FinalPayClient() {
 						</div>
 
 						<div className="form-group">
-							<label className="form-label">{t("pendingTax")}</label>
+							<label className="form-label" htmlFor="f-pendingTax">
+								{t("pendingTax")}
+							</label>
 							<input
+								id="f-pendingTax"
 								type="number"
 								className="form-control"
 								value={taxWithheld || ""}

@@ -45,8 +45,11 @@ export default function KasambahayRetirementClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("monthlyWage")}</label>
+							<label className="form-label" htmlFor="f-monthlyWage">
+								{t("monthlyWage")}
+							</label>
 							<input
+								id="f-monthlyWage"
 								type="number"
 								className="form-control"
 								value={monthlyWage || ""}
@@ -55,8 +58,11 @@ export default function KasambahayRetirementClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("yearsOfService")}</label>
+							<label className="form-label" htmlFor="f-yearsOfService">
+								{t("yearsOfService")}
+							</label>
 							<input
+								id="f-yearsOfService"
 								type="number"
 								className="form-control"
 								value={yearsOfService || ""}

@@ -29,8 +29,8 @@ export default async function BlogIndex({
 			<div style={{ marginBottom: "40px" }}>
 				<h1 className="page-title">The PHTools Blog</h1>
 				<p className="page-subtitle">
-					Expert guides on Philippine taxes, mandatory contributions, and
-					payroll rules.
+					Clear, well-researched guides on Philippine taxes, mandatory
+					contributions, and payroll rules.
 				</p>
 			</div>
 
@@ -50,6 +50,7 @@ export default async function BlogIndex({
 									display: "flex",
 									justifyContent: "space-between",
 									alignItems: "flex-start",
+									gap: "16px",
 									marginBottom: "12px",
 								}}
 							>

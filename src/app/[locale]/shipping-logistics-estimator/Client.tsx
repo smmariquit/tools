@@ -64,8 +64,11 @@ export default function ShippingClient() {
 							}}
 						>
 							<div className="form-group">
-								<label className="form-label">{t("originLabel")}</label>
+								<label className="form-label" htmlFor="f-originLabel">
+									{t("originLabel")}
+								</label>
 								<select
+									id="f-originLabel"
 									className="form-control"
 									value={origin}
 									onChange={(e) => setOrigin(e.target.value)}
@@ -77,8 +80,11 @@ export default function ShippingClient() {
 								</select>
 							</div>
 							<div className="form-group">
-								<label className="form-label">{t("destinationLabel")}</label>
+								<label className="form-label" htmlFor="f-destinationLabel">
+									{t("destinationLabel")}
+								</label>
 								<select
+									id="f-destinationLabel"
 									className="form-control"
 									value={destination}
 									onChange={(e) => setDestination(e.target.value)}
@@ -92,8 +98,11 @@ export default function ShippingClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("weightLabel")}</label>
+							<label className="form-label" htmlFor="f-weightLabel">
+								{t("weightLabel")}
+							</label>
 							<input
+								id="f-weightLabel"
 								type="number"
 								step="0.5"
 								className="form-control"
@@ -125,8 +134,11 @@ export default function ShippingClient() {
 
 						{isCod && (
 							<div className="form-group">
-								<label className="form-label">{t("itemValueLabel")}</label>
+								<label className="form-label" htmlFor="f-itemValueLabel">
+									{t("itemValueLabel")}
+								</label>
 								<input
+									id="f-itemValueLabel"
 									type="number"
 									className="form-control"
 									value={itemValue || ""}

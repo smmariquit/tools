@@ -37,6 +37,28 @@ export default function Contact() {
 				>
 					semariquit@gmail.com
 				</a>
+				<p
+					style={{
+						color: "var(--text-secondary)",
+						margin: "24px 0 8px",
+						fontSize: "16px",
+					}}
+				>
+					Or connect on LinkedIn:
+				</p>
+				<a
+					href="https://www.linkedin.com/in/stimmie"
+					target="_blank"
+					rel="noopener noreferrer"
+					style={{
+						fontSize: "18px",
+						fontWeight: "bold",
+						color: "var(--primary)",
+						textDecoration: "none",
+					}}
+				>
+					linkedin.com/in/stimmie
+				</a>
 			</div>
 		</div>
 	);

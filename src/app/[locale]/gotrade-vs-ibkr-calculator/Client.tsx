@@ -63,8 +63,11 @@ export default function GotradeIbkrClient() {
 						</h2>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("depositAmountLabel")}</label>
+							<label className="form-label" htmlFor="f-depositAmountLabel">
+								{t("depositAmountLabel")}
+							</label>
 							<input
+								id="f-depositAmountLabel"
 								type="number"
 								className="form-control"
 								value={depositPhp || ""}
@@ -73,8 +76,11 @@ export default function GotradeIbkrClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("baseRateLabel")}</label>
+							<label className="form-label" htmlFor="f-baseRateLabel">
+								{t("baseRateLabel")}
+							</label>
 							<input
+								id="f-baseRateLabel"
 								type="number"
 								className="form-control"
 								value={usdPhpRate || ""}
@@ -83,8 +89,11 @@ export default function GotradeIbkrClient() {
 						</div>
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
-							<label className="form-label">{t("numTradesLabel")}</label>
+							<label className="form-label" htmlFor="f-numTradesLabel">
+								{t("numTradesLabel")}
+							</label>
 							<input
+								id="f-numTradesLabel"
 								type="number"
 								className="form-control"
 								value={trades || ""}

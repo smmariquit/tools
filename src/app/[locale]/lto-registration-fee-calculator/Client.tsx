@@ -106,8 +106,11 @@ export default function LtoClient() {
 
 						<div className="form-group" style={{ marginBottom: "16px" }}>
 							{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-							<label className="form-label">{t("vehicleClassLabel")}</label>
+							<label className="form-label" htmlFor="f-vehicleClassLabel">
+								{t("vehicleClassLabel")}
+							</label>
 							<select
+								id="f-vehicleClassLabel"
 								className="form-control"
 								value={vehicleClass}
 								onChange={(e) => setVehicleClass(e.target.value)}
@@ -128,8 +131,11 @@ export default function LtoClient() {
 						>
 							<div className="form-group">
 								{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-								<label className="form-label">{t("gvwLabel")}</label>
+								<label className="form-label" htmlFor="f-gvwLabel">
+									{t("gvwLabel")}
+								</label>
 								<input
+									id="f-gvwLabel"
 									type="number"
 									className="form-control"
 									value={gvw}
@@ -138,8 +144,11 @@ export default function LtoClient() {
 							</div>
 							<div className="form-group">
 								{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-								<label className="form-label">{t("yearModelLabel")}</label>
+								<label className="form-label" htmlFor="f-yearModelLabel">
+									{t("yearModelLabel")}
+								</label>
 								<input
+									id="f-yearModelLabel"
 									type="number"
 									className="form-control"
 									value={modelYear}
@@ -170,8 +179,11 @@ export default function LtoClient() {
 						>
 							<div className="form-group">
 								{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-								<label className="form-label">{t("plateEndingLabel")}</label>
+								<label className="form-label" htmlFor="f-plateEndingLabel">
+									{t("plateEndingLabel")}
+								</label>
 								<input
+									id="f-plateEndingLabel"
 									type="number"
 									className="form-control"
 									min="0"
@@ -192,8 +204,11 @@ export default function LtoClient() {
 							</div>
 							<div className="form-group">
 								{/* biome-ignore lint/a11y/noLabelWithoutControl: simple layout */}
-								<label className="form-label">{t("plateMiddleLabel")}</label>
+								<label className="form-label" htmlFor="f-plateMiddleLabel">
+									{t("plateMiddleLabel")}
+								</label>
 								<input
+									id="f-plateMiddleLabel"
 									type="number"
 									className="form-control"
 									min="0"
