@@ -58,7 +58,8 @@ When writing logic for financial calculators, use exact, current Philippine laws
 
 ## 4. Monetization (AdSense Compliance)
 - **Ad Placements:** Every new tool page must import and render the `AdBanner` component (`import AdBanner from "../components/AdBanner";`) above the main grid layout.
-- **Legal SEO:** Every tool must feature a full explanation below the calculator (using `<h2>` and `<h3>` tags) detailing how the computation works. This is required to prevent AdSense "Thin Content" rejections.
+- **Legal SEO:** Every tool must feature a full explanation below the calculator (using `<h2>` and `<h3>` tags) detailing how the computation works. This is required to prevent AdSense "Thin Content" rejections. In practice this article is embedded via `<ToolPageBottom slug="..." />` in each tool's `page.tsx`, which renders the matching `src/content/blog/*.mdx` guide plus related tools. **Do NOT add a second explainer** (a past attempt duplicated the article — the guide is already there).
+- **RE-REVIEW MODE (active while awaiting AdSense approval):** To present content-first during review, several things are deliberately turned OFF and MUST be restored only after approval: `AdBanner` returns `null`; the Grow-by-Mediavine (`faves.grow.me`) loader is removed from `[locale]/layout.tsx`; the auto-generated `zonal-value-calculator/[region]/[city]/[barangay]` pages carry `robots: { index: false }`; and `/tl` + `/ceb` are `noindex` via `proxy.ts`. Each has a `ponytail:` comment marking the restore point. Do not re-enable without the user confirming approval.
 
 ## 5. Testing & CI/CD
 - **Mathematical Logic:** If you write a new calculator, you MUST write a corresponding unit test in the `__tests__/` directory using Vitest. Extract complex logic into pure functions to make them testable.
