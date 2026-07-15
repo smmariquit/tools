@@ -8,6 +8,7 @@ import BackButton from "../../components/BackButton";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
+import SampleCases from "../components/SampleCases";
 import ToolLayout from "../components/ToolLayout";
 
 const Chart = dynamic(() => import("./Chart"), {
@@ -57,6 +58,17 @@ export default function IncomeTaxCalculator() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyCase = (
+		income: string,
+		p: "annual" | "monthly",
+		type: "graduated" | "flat8",
+	) => {
+		setIncomeStr(income);
+		setPeriod(p);
+		setTaxType(type);
+		updateUrl({ income, period: p, type });
 	};
 
 	useEffect(() => {
@@ -145,6 +157,23 @@ export default function IncomeTaxCalculator() {
 						>
 							{t("incomeDetails")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{
+									label: "₱15k/mo employee",
+									onSelect: () => applyCase("15000", "monthly", "graduated"),
+								},
+								{
+									label: "₱30k/mo employee",
+									onSelect: () => applyCase("30000", "monthly", "graduated"),
+								},
+								{
+									label: "₱50k/mo freelancer (8%)",
+									onSelect: () => applyCase("50000", "monthly", "flat8"),
+								},
+							]}
+						/>
 
 						<div className="form-group">
 							<div className="form-label">{t("taxType")}</div>

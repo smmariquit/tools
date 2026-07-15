@@ -8,6 +8,7 @@ import ToolEyebrow from "../../components/doodle/ToolEyebrow";
 import ToolIllustration from "../../components/illustrations/ToolIllustration";
 import AdBanner from "../components/AdBanner";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolLayout from "../components/ToolLayout";
 
@@ -33,6 +34,11 @@ export default function PhilHealthClient() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyCase = (salary: string) => {
+		setBasicSalaryStr(salary);
+		updateUrl({ salary });
 	};
 
 	const basicSalary = parseFloat(basicSalaryStr) || 0;
@@ -86,6 +92,17 @@ export default function PhilHealthClient() {
 						>
 							{t("inputTitle")}
 						</h2>
+
+						<SampleCases
+							cases={[
+								{ label: "Floor (₱10k)", onSelect: () => applyCase("10000") },
+								{ label: "₱25k earner", onSelect: () => applyCase("25000") },
+								{
+									label: "At ceiling (₱100k)",
+									onSelect: () => applyCase("100000"),
+								},
+							]}
+						/>
 
 						<InteractiveSlider
 							label={t("salaryLabel")}

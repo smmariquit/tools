@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import InteractiveSlider from "../components/InteractiveSlider";
+import SampleCases from "../components/SampleCases";
 import TipCard from "../components/TipCard";
 import ToolHeader from "../components/ToolHeader";
 import ToolLayout from "../components/ToolLayout";
@@ -54,6 +55,12 @@ export default function SSSCalculator() {
 		router.replace(`${pathname}?${newSearchParams.toString()}`, {
 			scroll: false,
 		});
+	};
+
+	const applyCase = (salary: string, type: string) => {
+		setSalaryStr(salary);
+		setMemberType(type);
+		updateUrl({ salary, type });
 	};
 
 	useEffect(() => {
@@ -145,6 +152,27 @@ export default function SSSCalculator() {
 					>
 						{t("inputTitle")}
 					</h2>
+
+					<SampleCases
+						cases={[
+							{
+								label: "Minimum wage (₱15k)",
+								onSelect: () => applyCase("15000", "employed"),
+							},
+							{
+								label: "Mid-level (₱25k)",
+								onSelect: () => applyCase("25000", "employed"),
+							},
+							{
+								label: "At the ceiling (₱40k)",
+								onSelect: () => applyCase("40000", "employed"),
+							},
+							{
+								label: "Voluntary / OFW (₱25k)",
+								onSelect: () => applyCase("25000", "voluntary"),
+							},
+						]}
+					/>
 
 					<div className="form-group">
 						<label className="form-label" htmlFor="memberType">
