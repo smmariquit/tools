@@ -45,6 +45,10 @@ export async function generateMetadata({
 	return {
 		title: `2026 BIR Zonal Value & Capital Gains Tax Calculator for ${data.barangay}, ${data.city} | PHTools`,
 		description: `Instantly calculate Capital Gains Tax (6%) and Doc Stamp Tax (1.5%) using the official BIR Zonal Values (${data.doNumber}) for ${data.barangay}, ${data.city}.`,
+		// ponytail: thinnest auto-generated pages on the site. noindex during
+		// AdSense re-review so reviewers only sample the deep pages; drop this
+		// once approved to reclaim the long-tail "zonal value <barangay>" traffic.
+		robots: { index: false, follow: true },
 	};
 }
 

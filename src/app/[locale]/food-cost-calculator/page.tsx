@@ -34,7 +34,7 @@ export default function FoodCostCalculatorPage() {
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "All",
 		description:
-			"Calculate your recipe costs, maximize food business profit margins, and factor in VAT, service charge, and Senior/PWD discounts effortlessly.",
+			"Calculate recipe costs and food business profit margins, with VAT, service charge, and Senior/PWD discounts factored in.",
 		offers: {
 			"@type": "Offer",
 			price: "0",
