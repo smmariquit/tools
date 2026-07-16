@@ -196,6 +196,13 @@ a:hover {
 	border-color: var(--primary);
 }
 
+.form-control:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+	border-color: var(--primary);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
 .form-hint {
 	display: block;
 	font-size: 14px;
