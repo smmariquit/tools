@@ -47,8 +47,9 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 			<div style={{ flex: 1, minWidth: "250px" }}>
 				<h4
 					style={{
-						margin: "0 0 4px 0",
+						margin: "0 0 2px 0",
 						fontSize: "1.1rem",
+						lineHeight: 1.25,
 						color: "var(--text-primary)",
 					}}
 				>
@@ -64,8 +65,9 @@ export default function AuthorBio({ updatedAt }: { updatedAt?: string }) {
 				</h4>
 				<p
 					style={{
-						margin: "0 0 8px 0",
+						margin: "0 0 6px 0",
 						fontSize: "0.9rem",
+						lineHeight: 1.3,
 						color: "var(--text-secondary)",
 					}}
 				>

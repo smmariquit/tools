@@ -64,6 +64,7 @@ export default function About() {
 					width={96}
 					height={96}
 					priority
+					fetchPriority="high"
 					style={{
 						borderRadius: "50%",
 						objectFit: "cover",

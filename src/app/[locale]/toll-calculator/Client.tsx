@@ -195,7 +195,6 @@ export default function TollCalculatorClient() {
 						className={zoomedExpressway ? "tool-grid-even" : ""}
 						style={{
 							alignSelf: "stretch",
-							transition: "all 0.3s ease",
 							alignItems: "stretch",
 						}}
 					>
@@ -217,7 +216,6 @@ export default function TollCalculatorClient() {
 									overflowY: "auto",
 									display: "flex",
 									flexDirection: "column",
-									animation: "fadeIn 0.3s ease",
 									margin: 0,
 								}}
 							>

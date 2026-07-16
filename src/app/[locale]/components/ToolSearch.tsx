@@ -380,7 +380,8 @@ export default function ToolSearch() {
 							alignItems: "center",
 							justifyContent: "center",
 							height: "60px",
-							transition: "all 0.2s ease",
+							transition:
+								"background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
 						}}
 						aria-label="List View"
 					>
@@ -416,7 +417,8 @@ export default function ToolSearch() {
 							alignItems: "center",
 							justifyContent: "center",
 							height: "60px",
-							transition: "all 0.2s ease",
+							transition:
+								"background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
 						}}
 						aria-label="Grid View"
 					>

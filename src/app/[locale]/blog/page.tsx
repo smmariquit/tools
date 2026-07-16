@@ -41,10 +41,7 @@ export default async function BlogIndex({
 						key={post.slug}
 						style={{ textDecoration: "none" }}
 					>
-						<div
-							className="card tool-card"
-							style={{ cursor: "pointer", transition: "all 0.2s" }}
-						>
+						<div className="card tool-card" style={{ cursor: "pointer" }}>
 							<div
 								style={{
 									display: "flex",
