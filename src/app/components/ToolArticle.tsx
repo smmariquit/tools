@@ -62,6 +62,8 @@ export default function ToolArticle({ slug }: { slug: string }) {
 				// biome-ignore lint/performance/noImgElement: markdown image with arbitrary src; next/image needs known dimensions/domains
 				<img
 					{...props}
+					loading={props.loading ?? "lazy"}
+					decoding={props.decoding ?? "async"}
 					style={{
 						maxWidth: "100%",
 						height: "auto",
