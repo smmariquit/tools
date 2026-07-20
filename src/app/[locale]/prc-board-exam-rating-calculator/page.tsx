@@ -5,10 +5,11 @@ import ToolPageBottom from "../../components/ToolPageBottom";
 import PRCBoardExamRatingClient from "./Client";
 
 export async function generateMetadata({
-	params: { locale },
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }) {
+	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "PRCBoardExamRating" });
 	return {
 		title: t("title"),
@@ -23,11 +24,12 @@ export async function generateMetadata({
 	};
 }
 
-export default function Page({
-	params: { locale },
+export default async function Page({
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 	return (
 		<>

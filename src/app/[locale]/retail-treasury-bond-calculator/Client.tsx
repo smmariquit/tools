@@ -119,7 +119,7 @@ export default function RtbClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								fontSize: "14px",
-								color: "red",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("lessWithholdingTax")}</span>

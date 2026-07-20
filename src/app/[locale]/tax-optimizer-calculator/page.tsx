@@ -6,18 +6,16 @@ import ToolPageBottom from "../../components/ToolPageBottom";
 import TaxOptimizerClient from "./Client";
 
 export async function generateMetadata({
-	params: { locale },
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "TaxOptimizer" });
 
 	return {
 		title: t("title"),
 		description: t("subtitle"),
-		alternates: {
-			canonical: `https://phtools.me/${locale}/tax-optimizer-calculator`,
-		},
 		openGraph: {
 			images: ogImages({
 				tool: "tax-optimizer-calculator",

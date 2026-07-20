@@ -261,7 +261,7 @@ export default function GwaCalculatorClient() {
 											lineHeight: 1,
 										}}
 									>
-										{gwa !== null ? gwa.toFixed(4) : "0.0000"}
+										{gwa !== null ? gwa.toFixed(4) : "—"}
 									</strong>
 								</div>
 							</div>

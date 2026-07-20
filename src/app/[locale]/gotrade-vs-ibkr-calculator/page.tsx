@@ -5,10 +5,11 @@ import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
 
 export async function generateMetadata({
-	params: { locale },
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "GoTradeVsIBKR" });
 	const title = t("metaTitle");
 	const description = t("metaDescription");

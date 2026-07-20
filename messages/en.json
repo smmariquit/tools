@@ -37,6 +37,7 @@
   },
   "Share": {
     "copyLink": "Copy link",
+		"copyText": "Copy text",
     "copied": "Copied!"
   },
   "Navigation": {
@@ -959,7 +960,7 @@
     },
     "digital-ticket-generator": {
       "name": "Digital Ticketing QR Generator",
-      "desc": "Generate secure QR code tickets without a database."
+      "desc": "Generate QR code tickets without a database."
     },
     "mlbb-diamond-calculator": {
       "name": "MLBB Diamond Top-Up Optimizer",
@@ -1443,7 +1444,8 @@
     "twelfthOf13th": "1/12 of 13th Month:",
     "fiveDaysSil": "5 Days SIL Cash:",
     "totalEquivalent": "Total Equivalent:",
-    "totalRetirementPay": "Total Retirement Pay:"
+    "totalRetirementPay": "Total Retirement Pay:",
+		"underFiveYearsNote": "Heads up: the optional retirement benefit under RA 7641 generally requires at least 5 years of service (and retirement age). Below that, this figure is only a goodwill computation, not a legal entitlement."
   },
   "InfluencerRate": {
     "metaTitle": "Philippine Influencer & Talent Rate Calculator",
@@ -1522,6 +1524,12 @@
     "plateEndingLabel": "Plate Ending Digit (Month)",
     "scheduledMonthLabel": "Scheduled Month:",
     "plateMiddleLabel": "Plate Middle Digit (Week)",
+		"scheduledWeekLabel": "Scheduled week:",
+		"weeks": {
+			"w1": "1st to 7th of the month",
+			"w2": "8th to 14th of the month",
+			"w3": "15th to end of the month"
+		},
     "lateMonthLabel": "I am renewing PAST my scheduled month (50% penalty)",
     "lateWeekLabel": "I am renewing in the right month, but PAST my scheduled week (Flat penalty)",
     "estimatedFeesTitle": "Estimated LTO Fees",
@@ -1610,6 +1618,8 @@
     "entryOrigin": "Entry (Origin)",
     "exitDestination": "Exit (Destination)",
     "feeLabel": "Fee:",
+		"rateUnavailable": "No published rate for this pair",
+		"rateUnavailableNote": "One or more legs have no published rate in the current TRB matrix, so they are counted as ₱0 in the total. Check the operator's toll matrix for those segments.",
     "addExpressway": "+ Add Another Expressway",
     "totalTollFees": "Total Toll Fees",
     "totalEstimatedCost": "Total Estimated Cost",
@@ -1720,9 +1730,9 @@
   "CivilServiceReviewer": {
     "backToTools": "Back to Tools",
     "title": "Civil Service Exam Reviewer",
-    "subtitle": "Offline-capable mock exams and flashcards. Progress is saved locally on your device.",
+    "subtitle": "Offline-capable mock exam questions with instant scoring and explanations.",
     "metaTitle": "Civil Service Exam Reviewer | Philippines",
-    "metaDescription": "Offline-capable mock exams and flashcards for the Philippine Civil Service Examination (CSE).",
+    "metaDescription": "Offline-capable mock exam questions for the Philippine Civil Service Examination (CSE), with instant scoring and explanations.",
     "questionProgress": "Question {current} of {total}",
     "score": "Score: {score}",
     "explanation": "Explanation:",
@@ -1878,7 +1888,8 @@
     "baseFare": "Base Fare (First 1 KG):",
     "excessWeightFee": "Excess Weight Fee:",
     "codHandlingFee": "COD Handling Fee:",
-    "totalEstimated": "Total Estimated Shipping:"
+    "totalEstimated": "Total Estimated Shipping:",
+		"ratesDisclaimer": "Rates here are ballpark figures modeled on typical courier pricing, not live quotes. Confirm the actual rate with your courier before shipping."
   },
   "InvoiceFactoring": {
     "metaTitle": "Invoice Factoring & Discount Calculator | Philippines",
@@ -1944,9 +1955,9 @@
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Digital Ticketing QR Generator",
-    "metaDescription": "Generate secure QR code tickets for events instantly without needing a heavy database.",
+    "metaDescription": "Generate QR code tickets for events instantly without needing a heavy database.",
     "title": "Digital Ticketing QR Generator",
-    "subtitle": "Generate secure, stateless JSON payloads ready for QR encoding without a centralized database.",
+    "subtitle": "Generate stateless JSON payloads ready for QR encoding without a centralized database.",
     "attendeeDetails": "Attendee Details",
     "attendeeNameLabel": "Attendee Full Name",
     "eventNameLabel": "Event Name",

@@ -6,18 +6,16 @@ import ToolPageBottom from "../../components/ToolPageBottom";
 import SssPensionClient from "./Client";
 
 export async function generateMetadata({
-	params: { locale },
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "SSSPension" });
 
 	return {
 		title: t("title"),
 		description: t("subtitle"),
-		alternates: {
-			canonical: `https://phtools.me/${locale}/sss-pension-calculator`,
-		},
 		openGraph: {
 			images: ogImages({
 				tool: "sss-pension-calculator",

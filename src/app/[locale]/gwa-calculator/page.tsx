@@ -11,13 +11,6 @@ export async function generateMetadata(props: {
 	return {
 		title: t("metaTitle"),
 		description: t("metaDescription"),
-		alternates: {
-			canonical: "https://www.phtools.me/en/gwa-calculator",
-			languages: {
-				en: "https://www.phtools.me/en/gwa-calculator",
-				tl: "https://www.phtools.me/tl/gwa-calculator",
-			},
-		},
 		openGraph: {
 			images: ogImages({
 				tool: "gwa-calculator",

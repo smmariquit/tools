@@ -149,15 +149,19 @@ export default function TollCalculatorClient() {
 	};
 
 	let totalToll = 0;
+	let hasUnknownFee = false;
 	const computedLegs = legs.map((leg) => {
 		const closed = isClosedSystem(leg.expressway);
 		const maxCharged = leg.noEntryScan && closed;
-		const fee = maxCharged
+		const rawFee = maxCharged
 			? getMaxTollFee(leg.expressway, vehicleClass)
-			: getTollFee(leg.expressway, leg.origin, leg.destination, vehicleClass) ||
-				0;
+			: getTollFee(leg.expressway, leg.origin, leg.destination, vehicleClass);
+		// null = matrix has no rate for this pair; surface it instead of a fake ₱0
+		const feeKnown = rawFee !== null;
+		if (!feeKnown && leg.origin && leg.destination) hasUnknownFee = true;
+		const fee = rawFee ?? 0;
 		totalToll += fee;
-		return { ...leg, fee, closed, maxCharged };
+		return { ...leg, fee, feeKnown, closed, maxCharged };
 	});
 
 	const formatCurrency = (amount: number) => {
@@ -413,7 +417,7 @@ export default function TollCalculatorClient() {
 													style={{
 														background: "none",
 														border: "none",
-														color: "red",
+														color: "var(--danger)",
 														cursor: "pointer",
 													}}
 												>
@@ -569,7 +573,12 @@ export default function TollCalculatorClient() {
 												fontWeight: "bold",
 											}}
 										>
-											{t("feeLabel")} {formatCurrency(leg.fee)}
+											{t("feeLabel")}{" "}
+											{!leg.origin || !leg.destination
+												? "—"
+												: leg.feeKnown
+													? formatCurrency(leg.fee)
+													: t("rateUnavailable")}
 										</div>
 									</div>
 								);
@@ -618,6 +627,19 @@ export default function TollCalculatorClient() {
 									{formatCurrency(totalToll)}
 								</strong>
 							</div>
+							{hasUnknownFee && (
+								<p
+									style={{
+										fontSize: "13px",
+										color: "var(--warning-text)",
+										marginTop: "8px",
+										marginBottom: 0,
+										lineHeight: 1.5,
+									}}
+								>
+									{t("rateUnavailableNote")}
+								</p>
+							)}
 						</div>
 
 						<div

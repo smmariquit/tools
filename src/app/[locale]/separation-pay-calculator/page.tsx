@@ -6,18 +6,16 @@ import ToolPageBottom from "../../components/ToolPageBottom";
 import SeparationPayClient from "./Client";
 
 export async function generateMetadata({
-	params: { locale },
+	params,
 }: {
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "SeparationPay" });
 
 	return {
 		title: t("title"),
 		description: t("subtitle"),
-		alternates: {
-			canonical: `https://phtools.me/${locale}/separation-pay-calculator`,
-		},
 		openGraph: {
 			images: ogImages({
 				tool: "separation-pay-calculator",

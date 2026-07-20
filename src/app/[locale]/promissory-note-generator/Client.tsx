@@ -7,6 +7,8 @@ import ToolLayout from "../components/ToolLayout";
 
 export default function PromissoryNoteClient() {
 	const t = useTranslations("PromissoryNoteGenerator");
+	const tShare = useTranslations("Share");
+	const [copied, setCopied] = useState(false);
 	const [lender, setLender] = useState("Juan Dela Cruz");
 	const [borrower, setBorrower] = useState("Maria Clara");
 	const [amount, setAmount] = useState(50000);
@@ -229,17 +231,37 @@ export default function PromissoryNoteClient() {
 								<h2 style={{ fontSize: "20px", color: "var(--primary)" }}>
 									{t("generatedDocument")}
 								</h2>
-								<span
+								<div
 									style={{
-										fontSize: "14px",
-										padding: "4px 8px",
-										backgroundColor: "rgba(16, 185, 129, 0.1)",
-										color: "var(--success)",
-										borderRadius: "4px",
+										display: "flex",
+										alignItems: "center",
+										gap: "8px",
 									}}
 								>
-									{t("offlineSecure")}
-								</span>
+									<span
+										style={{
+											fontSize: "14px",
+											padding: "4px 8px",
+											backgroundColor: "rgba(16, 185, 129, 0.1)",
+											color: "var(--success)",
+											borderRadius: "4px",
+										}}
+									>
+										{t("offlineSecure")}
+									</span>
+									<button
+										type="button"
+										className="btn btn-secondary"
+										style={{ padding: "4px 12px", fontSize: "14px" }}
+										onClick={() => {
+											navigator.clipboard.writeText(generatedTemplate);
+											setCopied(true);
+											setTimeout(() => setCopied(false), 2000);
+										}}
+									>
+										{copied ? tShare("copied") : tShare("copyText")}
+									</button>
+								</div>
 							</div>
 
 							<textarea

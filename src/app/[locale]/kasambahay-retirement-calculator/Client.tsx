@@ -176,6 +176,19 @@ export default function KasambahayRetirementClient() {
 							<span>{t("totalRetirementPay")}</span>
 							<span>{formatPHP(totalRetirementPay)}</span>
 						</div>
+
+						{yearsOfService < 5 && (
+							<p
+								style={{
+									fontSize: "13px",
+									color: "var(--warning-text)",
+									margin: 0,
+									lineHeight: 1.5,
+								}}
+							>
+								{t("underFiveYearsNote")}
+							</p>
+						)}
 					</div>
 				</div>
 			</div>

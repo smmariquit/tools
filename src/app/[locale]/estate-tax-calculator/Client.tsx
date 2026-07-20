@@ -176,7 +176,7 @@ export default function EstateTaxClient() {
 								justifyContent: "space-between",
 								marginBottom: "8px",
 								fontSize: "14px",
-								color: "red",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("totalDeductions")}</span>

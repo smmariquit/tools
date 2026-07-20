@@ -5,7 +5,6 @@ export const metadata: Metadata = {
 	title: "About PHTools & the Person Behind It | Simonee Mariquit",
 	description:
 		"PHTools is a free, open-source suite of Philippine calculators built by Simonee Ezekiel Mariquit (stimmie.dev). Here's who I am and why I made it.",
-	alternates: { canonical: "/about" },
 	openGraph: {
 		title: "About PHTools & the Person Behind It",
 		description:

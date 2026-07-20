@@ -118,7 +118,7 @@ export default function PhilhealthLateClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								fontSize: "14px",
-								color: "red",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("interestPenalty", { rate: interestRate * 100 })}</span>

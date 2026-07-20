@@ -223,6 +223,17 @@ export default function ShippingClient() {
 							<span>{t("totalEstimated")}</span>
 							<span>{formatPHP(totalShipping)}</span>
 						</div>
+
+						<p
+							style={{
+								fontSize: "13px",
+								color: "var(--text-secondary)",
+								lineHeight: 1.5,
+								margin: 0,
+							}}
+						>
+							{t("ratesDisclaimer")}
+						</p>
 					</div>
 				</div>
 			</div>

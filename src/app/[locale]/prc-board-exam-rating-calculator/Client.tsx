@@ -38,6 +38,9 @@ export default function PRCBoardExamRatingClient() {
 	const { generalAverage, passed, remarks, failingSubjects } =
 		calculatePRCRating(currentExam, scores);
 
+	// no verdict before any score is typed; an empty form is not a FAILED exam
+	const hasScores = config.subjects.some((sub) => (scores[sub.id] ?? 0) > 0);
+
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader
@@ -152,36 +155,38 @@ export default function PRCBoardExamRatingClient() {
 								lineHeight: 1,
 							}}
 						>
-							{generalAverage}%
+							{hasScores ? `${generalAverage}%` : "—"}
 						</strong>
 					</div>
 
-					<div
-						style={{
-							padding: "16px",
-							backgroundColor: "var(--surface-color)",
-							borderLeft: `4px solid ${passed ? "var(--success)" : "var(--danger)"}`,
-							borderRadius: "4px",
-						}}
-					>
-						<strong
+					{hasScores && (
+						<div
 							style={{
-								display: "block",
-								fontSize: "14px",
-								marginBottom: "6px",
-								color: passed ? "var(--success)" : "var(--danger)",
+								padding: "16px",
+								backgroundColor: "var(--surface-color)",
+								borderLeft: `4px solid ${passed ? "var(--success)" : "var(--danger)"}`,
+								borderRadius: "4px",
 							}}
 						>
-							{t("statusLabel")}:{" "}
-							{passed
-								? t("passed")
-								: remarks.includes("CONDITIONED")
-									? t("conditioned")
-									: t("failed")}
-						</strong>
-					</div>
+							<strong
+								style={{
+									display: "block",
+									fontSize: "14px",
+									marginBottom: "6px",
+									color: passed ? "var(--success)" : "var(--danger)",
+								}}
+							>
+								{t("statusLabel")}:{" "}
+								{passed
+									? t("passed")
+									: remarks.includes("CONDITIONED")
+										? t("conditioned")
+										: t("failed")}
+							</strong>
+						</div>
+					)}
 
-					{failingSubjects.length > 0 && (
+					{hasScores && failingSubjects.length > 0 && (
 						<div
 							style={{
 								marginTop: "16px",

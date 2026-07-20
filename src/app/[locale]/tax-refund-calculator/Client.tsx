@@ -230,7 +230,9 @@ export default function TaxRefundClient() {
 										: t("additionalTaxPayable")}
 								</span>
 								<strong
-									style={{ color: taxRefund >= 0 ? "var(--primary)" : "red" }}
+									style={{
+										color: taxRefund >= 0 ? "var(--primary)" : "var(--danger)",
+									}}
 								>
 									{formatPHP(Math.abs(taxRefund))}
 								</strong>

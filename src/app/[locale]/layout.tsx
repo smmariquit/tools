@@ -27,6 +27,7 @@ import {
 } from "next-intl/server";
 import { ThemeProvider } from "../../components/ThemeProvider";
 import AdSenseLoader from "../components/AdSenseLoader";
+import Canonical from "../components/Canonical";
 import CookieConsent from "../components/CookieConsent";
 import WavyDivider from "../components/doodle/WavyDivider";
 import Logo from "../components/Logo";
@@ -114,6 +115,7 @@ export default async function RootLayout({
 					{t("skipToContent")}
 				</a>
 				<AdSenseLoader />
+				<Canonical />
 				<ThemeProvider>
 					<NextIntlClientProvider messages={messages}>
 						<PostHogProvider>

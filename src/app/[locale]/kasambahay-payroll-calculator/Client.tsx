@@ -188,7 +188,11 @@ export default function KasambahayPayrollClient() {
 							}}
 						>
 							<h3
-								style={{ fontSize: "14px", marginBottom: "12px", color: "red" }}
+								style={{
+									fontSize: "14px",
+									marginBottom: "12px",
+									color: "var(--danger)",
+								}}
 							>
 								{t("employeeDeductions")}
 							</h3>

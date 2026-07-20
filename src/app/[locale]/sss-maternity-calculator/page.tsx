@@ -1,5 +1,10 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
-export default function RedirectPage() {
-	redirect("/sss-maternity-benefit-calculator");
+export default async function RedirectPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	permanentRedirect(`/${locale}/sss-maternity-benefit-calculator`);
 }

@@ -366,7 +366,7 @@ export default function FoodCostCalculatorClient() {
 											style={{
 												background: "none",
 												border: "none",
-												color: "red",
+												color: "var(--danger)",
 												cursor: "pointer",
 												fontSize: "14px",
 											}}
@@ -869,7 +869,7 @@ export default function FoodCostCalculatorClient() {
 								}}
 							>
 								<span>{t("profitPerServing")}</span>
-								<strong style={{ color: "green" }}>
+								<strong style={{ color: "var(--success)" }}>
 									+{formatPHP(estimatedProfitPerServing)}
 								</strong>
 							</div>

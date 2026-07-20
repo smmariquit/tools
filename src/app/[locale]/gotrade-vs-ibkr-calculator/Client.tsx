@@ -155,7 +155,7 @@ export default function GotradeIbkrClient() {
 									display: "flex",
 									justifyContent: "space-between",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 									marginTop: "4px",
 								}}
 							>
@@ -197,7 +197,7 @@ export default function GotradeIbkrClient() {
 									display: "flex",
 									justifyContent: "space-between",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 									marginTop: "4px",
 								}}
 							>

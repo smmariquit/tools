@@ -208,7 +208,7 @@ export default function FinalPayClient() {
 								justifyContent: "space-between",
 								marginBottom: "16px",
 								fontSize: "14px",
-								color: "red",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("lessDeductions")}</span>

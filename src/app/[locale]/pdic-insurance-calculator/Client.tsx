@@ -180,7 +180,7 @@ export default function PdicClient() {
 								display: "flex",
 								justifyContent: "space-between",
 								fontSize: "14px",
-								color: "red",
+								color: "var(--danger)",
 							}}
 						>
 							<span>{t("uninsured")}</span>

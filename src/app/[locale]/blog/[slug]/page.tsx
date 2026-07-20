@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type React from "react";
 import remarkGfm from "remark-gfm";
+import { articleCanonicalTool } from "../../../../lib/articleCanonicals";
 import {
 	AUTHOR_URL,
 	getAllPostsMeta,
@@ -30,9 +31,13 @@ export async function generateMetadata({
 }) {
 	const resolvedParams = await params;
 	const { meta } = getPostBySlug(resolvedParams.slug);
+	const toolPath = articleCanonicalTool[resolvedParams.slug];
 	return {
 		title: `${meta.title} | PHTools Blog`,
 		description: meta.description,
+		alternates: {
+			canonical: `/en${toolPath ?? `/blog/${resolvedParams.slug}`}`,
+		},
 		openGraph: {
 			images: [
 				{

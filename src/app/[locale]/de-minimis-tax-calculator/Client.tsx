@@ -389,7 +389,11 @@ export default function DeMinimisClient() {
 								}}
 							>
 								<span>{t("taxableOverflow")}</span>
-								<strong style={{ color: poolTaxable > 0 ? "red" : "inherit" }}>
+								<strong
+									style={{
+										color: poolTaxable > 0 ? "var(--danger)" : "inherit",
+									}}
+								>
 									{formatPHP(poolTaxable)}
 								</strong>
 							</div>

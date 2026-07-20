@@ -37,6 +37,7 @@
   },
   "Share": {
     "copyLink": "Kopyahin link",
+		"copyText": "Kopyahin ang teksto",
     "copied": "Nakopya na!"
   },
   "Navigation": {
@@ -959,7 +960,7 @@
     },
     "digital-ticket-generator": {
       "name": "Digital Ticketing QR Generator",
-      "desc": "Gumawa ng secure na QR code tickets nang walang database."
+      "desc": "Gumawa ng QR code tickets nang walang database."
     },
     "mlbb-diamond-calculator": {
       "name": "MLBB Diamond Top-Up Optimizer",
@@ -1443,7 +1444,8 @@
     "twelfthOf13th": "1/12 ng 13th Month:",
     "fiveDaysSil": "5 Araw na SIL Cash:",
     "totalEquivalent": "Total na Katumbas:",
-    "totalRetirementPay": "Total na Retirement Pay:"
+    "totalRetirementPay": "Total na Retirement Pay:",
+		"underFiveYearsNote": "Paalala: ang retirement benefit sa ilalim ng RA 7641 ay karaniwang nangangailangan ng hindi bababa sa 5 taon ng serbisyo (at retirement age). Kapag kulang dito, goodwill computation lang ang halagang ito, hindi legal na karapatan."
   },
   "InfluencerRate": {
     "metaTitle": "Calculator ng Influencer & Talent Rate sa Pilipinas",
@@ -1522,6 +1524,12 @@
     "plateEndingLabel": "Plate Ending Digit (Buwan)",
     "scheduledMonthLabel": "Nakatakdang Buwan:",
     "plateMiddleLabel": "Plate Middle Digit (Linggo)",
+		"scheduledWeekLabel": "Nakatakdang linggo:",
+		"weeks": {
+			"w1": "ika-1 hanggang ika-7 ng buwan",
+			"w2": "ika-8 hanggang ika-14 ng buwan",
+			"w3": "ika-15 hanggang katapusan ng buwan"
+		},
     "lateMonthLabel": "Nagre-renew ako PAST sa nakatakdang buwan ko (50% penalty)",
     "lateWeekLabel": "Tama ang buwan, pero PAST na sa nakatakdang linggo ko (Flat penalty)",
     "estimatedFeesTitle": "Tinatayang LTO Fees",
@@ -1610,6 +1618,8 @@
     "entryOrigin": "Entry (Pinanggalingan)",
     "exitDestination": "Exit (Patutunguhan)",
     "feeLabel": "Bayad:",
+		"rateUnavailable": "Walang published rate para sa ruta na ito",
+		"rateUnavailableNote": "May leg na walang published rate sa kasalukuyang TRB matrix, kaya bilang ₱0 ito sa total. Tingnan ang toll matrix ng operator para sa mga segment na iyon.",
     "addExpressway": "+ Magdagdag ng Expressway",
     "totalTollFees": "Kabuuang Toll Fees",
     "totalEstimatedCost": "Kabuuang Estimated Cost",
@@ -1720,9 +1730,9 @@
   "CivilServiceReviewer": {
     "backToTools": "Balik sa Tools",
     "title": "Reviewer sa Civil Service Exam",
-    "subtitle": "Offline-capable na mock exams at flashcards. Naka-save locally sa device mo ang progress.",
+    "subtitle": "Offline-capable na mock exam questions na may instant scoring at explanations.",
     "metaTitle": "Civil Service Exam Reviewer | Pilipinas",
-    "metaDescription": "Offline-capable na mock exams at flashcards para sa Philippine Civil Service Examination (CSE).",
+    "metaDescription": "Offline-capable na mock exam questions para sa Philippine Civil Service Examination (CSE), may instant scoring at explanations.",
     "questionProgress": "Tanong {current} sa {total}",
     "score": "Iskor: {score}",
     "explanation": "Paliwanag:",
@@ -1878,7 +1888,8 @@
     "baseFare": "Base Fare (Unang 1 KG):",
     "excessWeightFee": "Bayad sa Sobrang Bigat:",
     "codHandlingFee": "Handling Fee sa COD:",
-    "totalEstimated": "Total na Tinatayang Shipping:"
+    "totalEstimated": "Total na Tinatayang Shipping:",
+		"ratesDisclaimer": "Ballpark figures lang ang rates dito base sa karaniwang presyo ng couriers, hindi live quotes. Kumpirmahin ang aktwal na rate sa courier mo bago mag-ship."
   },
   "InvoiceFactoring": {
     "metaTitle": "Invoice Factoring & Discount Calculator | Pilipinas",
@@ -1944,9 +1955,9 @@
   },
   "DigitalTicketGenerator": {
     "metaTitle": "Generator ng Digital Ticketing QR",
-    "metaDescription": "Gumawa ng secure na QR code tickets para sa events agad nang hindi nangangailangan ng mabigat na database.",
+    "metaDescription": "Gumawa ng QR code tickets para sa events agad nang hindi nangangailangan ng mabigat na database.",
     "title": "Generator ng Digital Ticketing QR",
-    "subtitle": "Gumawa ng secure at stateless na JSON payloads na handa para sa QR encoding nang walang centralized database.",
+    "subtitle": "Gumawa ng stateless na JSON payloads na handa para sa QR encoding nang walang centralized database.",
     "attendeeDetails": "Detalye ng Attendee",
     "attendeeNameLabel": "Buong Pangalan ng Attendee",
     "eventNameLabel": "Pangalan ng Event",

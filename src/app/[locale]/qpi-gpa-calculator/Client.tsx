@@ -121,15 +121,17 @@ export default function QPIGPAClient() {
 								</div>
 								<button
 									onClick={() => removeCourse(idx)}
+									disabled={courses.length === 1}
 									style={{
 										marginTop: "18px",
 										padding: "6px 10px",
 										backgroundColor: "transparent",
 										border: "1px solid var(--border-color)",
 										borderRadius: "4px",
-										cursor: "pointer",
+										cursor: courses.length === 1 ? "not-allowed" : "pointer",
 										color: "var(--text-secondary)",
 										fontSize: "14px",
+										opacity: courses.length === 1 ? 0.4 : 1,
 									}}
 								>
 									✕
@@ -190,7 +192,7 @@ export default function QPIGPAClient() {
 								lineHeight: 1,
 							}}
 						>
-							{qpi.toFixed(3)}
+							{totalUnits > 0 ? qpi.toFixed(3) : "—"}
 						</strong>
 					</div>
 

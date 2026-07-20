@@ -247,7 +247,7 @@ export default function ElectricBillClient() {
 												style={{
 													background: "none",
 													border: "none",
-													color: "red",
+													color: "var(--danger)",
 													cursor: "pointer",
 												}}
 											>

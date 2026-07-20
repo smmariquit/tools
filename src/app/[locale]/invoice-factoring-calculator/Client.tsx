@@ -21,7 +21,11 @@ export default function InvoiceFactoringClient() {
 
 	// APR calculation: (Total Cost of Financing / Net Advance) * (365 / Days) * 100
 	const totalCost = totalDiscountFee + processingFee;
-	const apr = (totalCost / netAdvance) * (365 / daysOutstanding) * 100;
+	// undefined when days=0 or the fees eat the whole invoice; "—" beats Infinity%
+	const apr =
+		daysOutstanding > 0 && netAdvance > 0
+			? (totalCost / netAdvance) * (365 / daysOutstanding) * 100
+			: null;
 
 	const formatPHP = (val: number) =>
 		new Intl.NumberFormat("en-PH", {
@@ -230,7 +234,7 @@ export default function InvoiceFactoringClient() {
 									justifyContent: "space-between",
 									marginBottom: "8px",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 								}}
 							>
 								<span>{t("timeDiscountFee", { days: daysOutstanding })}</span>
@@ -242,7 +246,7 @@ export default function InvoiceFactoringClient() {
 									justifyContent: "space-between",
 									marginBottom: "16px",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 								}}
 							>
 								<span>{t("processingFeeResult")}</span>
@@ -285,7 +289,7 @@ export default function InvoiceFactoringClient() {
 								}}
 							>
 								<span>{t("effectiveApr")}</span>
-								<span>{apr.toFixed(2)}%</span>
+								<span>{apr !== null ? `${apr.toFixed(2)}%` : "—"}</span>
 							</div>
 							<p
 								style={{

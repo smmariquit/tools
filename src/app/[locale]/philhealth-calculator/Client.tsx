@@ -276,7 +276,9 @@ export default function PhilHealthClient() {
 									{ min: 100001, max: Infinity, label: "₱100,001 and above" },
 								].map((bracket) => {
 									const isActive =
-										basicSalary >= bracket.min && basicSalary <= bracket.max;
+										basicSalary > 0 &&
+										basicSalary >= bracket.min &&
+										basicSalary <= bracket.max;
 									const salForCalc =
 										bracket.max === Infinity
 											? 100000

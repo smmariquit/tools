@@ -83,6 +83,14 @@ export default function LtoClient() {
 	];
 	const scheduledMonth = plateEnding === 0 ? "October" : months[plateEnding];
 
+	// LTO weekly schedule: middle digit 1-3 = 1st-7th, 4-6 = 8th-14th, 7-9/0 = 15th onward
+	const scheduledWeek =
+		plateMiddle >= 1 && plateMiddle <= 3
+			? "w1"
+			: plateMiddle >= 4 && plateMiddle <= 6
+				? "w2"
+				: "w3";
+
 	return (
 		<ToolLayout maxWidth="1200px">
 			<ToolHeader title={t("title")} subtitle={t("subtitle")} />
@@ -216,6 +224,16 @@ export default function LtoClient() {
 									value={plateMiddle}
 									onChange={(e) => setPlateMiddle(Number(e.target.value))}
 								/>
+								<p
+									style={{
+										fontSize: "14px",
+										color: "var(--text-secondary)",
+										marginTop: "4px",
+									}}
+								>
+									{t("scheduledWeekLabel")}{" "}
+									<strong>{t(`weeks.${scheduledWeek}`)}</strong>
+								</p>
 							</div>
 						</div>
 
@@ -298,7 +316,7 @@ export default function LtoClient() {
 									justifyContent: "space-between",
 									marginBottom: "8px",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 								}}
 							>
 								<span>{t("latePenaltyMonthLabel")}</span>
@@ -312,7 +330,7 @@ export default function LtoClient() {
 									justifyContent: "space-between",
 									marginBottom: "8px",
 									fontSize: "14px",
-									color: "red",
+									color: "var(--danger)",
 								}}
 							>
 								<span>{t("latePenaltyWeekLabel")}</span>
