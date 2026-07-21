@@ -36,4 +36,4 @@ npm run agent:verify
 - **Search:** Fuzzy, typo-tolerant tool search over name + description + multilingual tags (`src/lib/toolSearch.ts`).
 
 ---
-*☕ If you found this project useful, you can support my work at [kape.stimmie.dev](https://kape.stimmie.dev)!*
+*☕ If you found this project useful, you can support my work at [kape.stimmie.dev](https://kape.stimmie.dev)!*<!-- claude review smoke test 1784617418: this file intentionally adds a broken relative link [x](./does-not-exist.md) -->
