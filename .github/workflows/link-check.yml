@@ -59,7 +59,7 @@ jobs:
       # On the scheduled run, surface broken links by opening/updating a tracking issue.
       - name: Create or update broken-links issue
         if: ${{ github.event_name == 'schedule' && steps.lychee.outputs.exit_code != 0 }}
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6
         with:
           title: "Broken / stale links detected"
           content-filepath: ./lychee/out.md
