@@ -34,22 +34,22 @@ const nextConfig: NextConfig = {
 			{
 				source: "/privacy",
 				destination: "/en/privacy-policy",
-				permanent: false,
+				permanent: true,
 			},
 			{
 				source: "/terms",
 				destination: "/en/terms-of-use",
-				permanent: false,
+				permanent: true,
 			},
 			{
 				source: "/en/privacy",
 				destination: "/en/privacy-policy",
-				permanent: false,
+				permanent: true,
 			},
 			{
 				source: "/en/terms",
 				destination: "/en/terms-of-use",
-				permanent: false,
+				permanent: true,
 			},
 		];
 	},
