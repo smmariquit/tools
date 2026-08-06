@@ -109,6 +109,15 @@ export default async function RootLayout({
 				{/* ponytail: Grow by Mediavine (faves.grow.me) disabled during
 					    AdSense re-review — a competing ad/engagement network on the page
 					    reads as "made-for-ads" to reviewers. Restore after approval. */}
+				{/* GA4 exists to verify sessions for the Journey by Mediavine
+					    application; PostHog stays the real analytics. */}
+				<Script
+					src="https://www.googletagmanager.com/gtag/js?id=G-YJ28N6X4CX"
+					strategy="afterInteractive"
+				/>
+				<Script id="ga4" strategy="afterInteractive">
+					{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJ28N6X4CX');`}
+				</Script>
 			</head>
 			<body>
 				<a href="#main-content" className="skip-to-content">
