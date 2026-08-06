@@ -3,7 +3,7 @@ export default function PrivacyPolicy() {
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
 			<div className="page-header" style={{ marginBottom: "24px" }}>
 				<h1 className="page-title">Privacy Policy</h1>
-				<p className="page-subtitle">Last Updated: June 12, 2026</p>
+				<p className="page-subtitle">Last Updated: August 7, 2026</p>
 			</div>
 
 			<div className="card" style={{ color: "var(--text-primary)" }}>
@@ -56,7 +56,30 @@ export default function PrivacyPolicy() {
 				<h2
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					4. Google DoubleClick DART Cookie
+					4. Analytics
+				</h2>
+				<p style={{ marginBottom: "16px" }}>
+					We use Google Analytics and PostHog to understand how the site is used
+					in aggregate: which pages are visited, session counts, device type,
+					and approximate location (country or city level). These services use
+					cookies or similar identifiers. We do not use analytics data to
+					identify individual visitors, and calculator inputs are never sent to
+					these services. You can opt out of Google Analytics using the browser
+					add-on at{" "}
+					<a
+						href="https://tools.google.com/dlpage/gaoptout"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						https://tools.google.com/dlpage/gaoptout
+					</a>
+					.
+				</p>
+
+				<h2
+					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
+				>
+					5. Google DoubleClick DART Cookie
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
 					Google is one of a third-party vendor on our site. It also uses
@@ -78,7 +101,7 @@ export default function PrivacyPolicy() {
 				<h2
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					5. Third Party Privacy Policies
+					6. Third Party Privacy Policies
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
 					Third-party ad servers or ad networks uses technologies like cookies,
@@ -98,7 +121,7 @@ export default function PrivacyPolicy() {
 				<h2
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					6. Consent
+					7. Consent
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
 					By using our website, you hereby consent to our Privacy Policy and
@@ -108,7 +131,7 @@ export default function PrivacyPolicy() {
 				<h2
 					style={{ fontSize: "18px", marginTop: "24px", marginBottom: "12px" }}
 				>
-					7. Data Retention & Privacy Rights
+					8. Data Retention & Privacy Rights
 				</h2>
 				<p style={{ marginBottom: "16px" }}>
 					In accordance with the Data Privacy Act of 2012 (Republic Act No.
