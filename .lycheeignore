@@ -2,7 +2,7 @@
 # See: https://github.com/lycheeverse/lychee
 
 # Internal app routes (Next.js routes, not real URLs) e.g. /salary-calculator
-^/(?!/)
+^/([^/]|$)
 
 # Locale-prefixed internal routes e.g. /en/..., /tl/..., /ceb/...
 ^/(en|tl|ceb)(/|$)
