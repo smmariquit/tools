@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: ["recharts", "next-intl"],
 	},
+	// `next dev` does not read public/_redirects, so mirror its bare-root rule for local
+	// runs and the Playwright suite. Static export ignores redirects(), so production
+	// keeps relying on _redirects.
+	...(process.env.NODE_ENV === "development" && {
+		async redirects() {
+			return [{ source: "/", destination: "/en", permanent: false }];
+		},
+	}),
 };
 
 export default withPWAConfig(withNextIntl(nextConfig));
