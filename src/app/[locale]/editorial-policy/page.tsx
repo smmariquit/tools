@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
 	title: "Editorial Policy | PHTools",
@@ -6,7 +7,12 @@ export const metadata: Metadata = {
 		"Our strict guidelines for algorithm accuracy, statutory sourcing, and peer-review processes.",
 };
 
-export default function EditorialPolicyPage() {
+export default async function EditorialPolicyPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
 			<div className="page-header" style={{ marginBottom: "24px" }}>

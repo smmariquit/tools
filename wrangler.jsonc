@@ -1,0 +1,13 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "phtools",
+	"account_id": "847a37119fd03f8765b62a6775a6c204",
+	"compatibility_date": "2026-11-01",
+	"workers_dev": true,
+	// Static export only: no Worker script runs on page views.
+	"assets": {
+		"directory": "./out",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "404-page"
+	}
+}

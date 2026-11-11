@@ -1,0 +1,12 @@
+# Was next.config redirects() + next-intl middleware. Permanent so Google
+# canonicalizes bare phtools.me/ to /en. scripts/cf-postbuild.mjs appends
+# /<tool> -> /en/<tool> for every top-level route.
+/ /en 308
+/legal-contract-generator /en/promissory-note-generator 308
+/en/legal-contract-generator /en/promissory-note-generator 308
+/tl/legal-contract-generator /tl/promissory-note-generator 308
+/ceb/legal-contract-generator /ceb/promissory-note-generator 308
+/privacy /en/privacy-policy 308
+/terms /en/terms-of-use 308
+/en/privacy /en/privacy-policy 308
+/en/terms /en/terms-of-use 308

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
@@ -17,7 +18,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function TollCalculatorPage() {
+export default async function TollCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",

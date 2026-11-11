@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
@@ -29,7 +29,12 @@ export async function generateMetadata({
 	};
 }
 
-export default function PagibigAffordabilityCalculatorPage() {
+export default async function PagibigAffordabilityCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<>
 			<Suspense fallback={<div className="loading">Loading...</div>}>

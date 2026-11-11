@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
 export const metadata: Metadata = {
 	title: "About PHTools & the Person Behind It | Simonee Mariquit",
 	description:
@@ -17,7 +18,12 @@ const GITHUB_URL = "https://github.com/smmariquit/tools";
 const SITE_URL = "https://stimmie.dev";
 const COFFEE_URL = "https://kape.stimmie.dev";
 
-export default function About() {
+export default async function About({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const personLd = {
 		"@context": "https://schema.org",
 		"@type": "Person",

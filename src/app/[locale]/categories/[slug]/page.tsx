@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { toolCategories } from "../../../../lib/routes";
 import BackButton from "../../../components/BackButton";
 
@@ -37,8 +38,9 @@ export async function generateMetadata({
 export default async function CategoryHubPage({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ locale: string; slug: string }>;
 }) {
+	setRequestLocale((await params).locale);
 	const resolvedParams = await params;
 	const categoryData = toolCategories.find(
 		(cat) => slugify(cat.category) === resolvedParams.slug,

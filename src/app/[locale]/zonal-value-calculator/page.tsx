@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
 import { slugify, zonalData } from "../../../data/zonalValues";
 import { ogImages } from "../../../lib/og";
 import ToolEyebrow from "../../components/doodle/ToolEyebrow";
@@ -20,7 +21,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function ZonalValueHub() {
+export default async function ZonalValueHub({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<>
 			<ToolLayout maxWidth="1000px">

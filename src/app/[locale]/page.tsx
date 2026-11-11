@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { allToolPaths } from "../../lib/routes";
 import Squiggle from "../components/doodle/Squiggle";
 import WavyDivider from "../components/doodle/WavyDivider";
@@ -22,8 +22,13 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function Home() {
-	const t = useTranslations("Index");
+export default async function Home({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
+	const t = await getTranslations("Index");
 	return (
 		<>
 			<div

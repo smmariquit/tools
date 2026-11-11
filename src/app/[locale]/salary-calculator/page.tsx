@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
@@ -17,12 +19,13 @@ export function generateMetadata(): Metadata {
 	};
 }
 
-export default async function SalaryCalculatorPage(props: {
-	searchParams: Promise<{ salary?: string }>;
+// ponytail: ?salary= is read client-side by useCalculatorState.
+export default async function SalaryCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
 }) {
-	const searchParams = await props.searchParams;
-	const initialSalary = searchParams.salary || "30000";
-
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
@@ -44,7 +47,18 @@ export default async function SalaryCalculatorPage(props: {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<Client initialSalary={initialSalary} />
+			<Suspense
+				fallback={
+					<div
+						className="tool-grid card"
+						style={{ textAlign: "center", padding: "40px" }}
+					>
+						Loading calculator...
+					</div>
+				}
+			>
+				<Client />
+			</Suspense>
 			<ToolPageBottom slug="salary-tax-deductions-guide" />
 		</>
 	);

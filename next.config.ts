@@ -13,45 +13,15 @@ const withPWAConfig = withPWA({
 });
 
 const nextConfig: NextConfig = {
+	// Fully static: served as Cloudflare Workers static assets, no server code
+	// per page view. Redirects/headers live in public/_redirects + _headers.
+	output: "export",
+	images: { unoptimized: true },
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 	},
 	experimental: {
 		optimizePackageImports: ["recharts", "next-intl"],
-	},
-	async redirects() {
-		return [
-			{
-				source: "/legal-contract-generator",
-				destination: "/promissory-note-generator",
-				permanent: true,
-			},
-			{
-				source: "/:locale(en|tl|ceb)/legal-contract-generator",
-				destination: "/:locale/promissory-note-generator",
-				permanent: true,
-			},
-			{
-				source: "/privacy",
-				destination: "/en/privacy-policy",
-				permanent: true,
-			},
-			{
-				source: "/terms",
-				destination: "/en/terms-of-use",
-				permanent: true,
-			},
-			{
-				source: "/en/privacy",
-				destination: "/en/privacy-policy",
-				permanent: true,
-			},
-			{
-				source: "/en/terms",
-				destination: "/en/terms-of-use",
-				permanent: true,
-			},
-		];
 	},
 };
 

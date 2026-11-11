@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
@@ -20,7 +21,12 @@ export function generateMetadata(): Metadata {
 	};
 }
 
-export default function EstateTaxPage() {
+export default async function EstateTaxPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<>
 			<Client />

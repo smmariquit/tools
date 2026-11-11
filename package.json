@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "next build && node scripts/cf-postbuild.mjs",
 		"start": "next start",
 		"lint": "biome lint ./src",
 		"test": "vitest",
@@ -12,7 +12,8 @@
 		"typecheck": "tsc --noEmit",
 		"generate:tool": "node scripts/generate-tool.mjs",
 		"agent:verify": "npm run typecheck && npm run test:ci > .agent-log.txt 2>&1 || (cat .agent-log.txt && exit 1)",
-		"prepare": "husky"
+		"prepare": "husky",
+		"deploy": "npm run build && npx wrangler deploy"
 	},
 	"dependencies": {
 		"@ducanh2912/next-pwa": "^10.2.9",

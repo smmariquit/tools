@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
@@ -31,7 +31,12 @@ export async function generateMetadata({
 	};
 }
 
-export default async function PagibigRoiPage() {
+export default async function PagibigRoiPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",

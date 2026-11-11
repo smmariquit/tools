@@ -15,7 +15,7 @@ This repository is engineered to maximize Google AdSense revenue while maintaini
 This repository features an "ultimate closed-loop" agentic workflow:
 1. **Husky Pre-Commit Wall:** You cannot commit broken code. Husky enforces `eslint`, `tsc, noEmit`, and `vitest run` on every commit.
 2. **Self-Healing:** If a commit fails, run `npm run agent:verify`. This generates `.agent-log.txt` which an AI agent can read to autonomously fix its own bugs.
-3. **Vercel GitHub Actions:** Pushes to `main` deploy to production automatically. PRs deploy to preview environments.
+3. **Cloudflare Workers:** static export (`out/`) served as Workers static assets. `npm run deploy` builds and runs `wrangler deploy`.
 
 ## 🧠 AI Agent Knowledge Auto-Update
 **Core Directive:** Whenever a developer or AI agent learns a new architectural constraint or rule while working on this repository, they are mandated to automatically update this `README.md` (for humans) and `CLAUDE.md` / `LEGAL_CLAUDE.md` (for agents).

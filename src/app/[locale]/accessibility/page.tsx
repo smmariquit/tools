@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
@@ -105,7 +106,12 @@ const cardStyle = {
 	border: "1px dashed var(--border, var(--border-color))",
 };
 
-export default function AccessibilityPage() {
+export default async function AccessibilityPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<div
 			style={{

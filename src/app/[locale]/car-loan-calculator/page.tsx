@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
@@ -22,7 +23,12 @@ export function generateMetadata(): Metadata {
 	};
 }
 
-export default async function CarLoanCalculatorPage() {
+export default async function CarLoanCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",

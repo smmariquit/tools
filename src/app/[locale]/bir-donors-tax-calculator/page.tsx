@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
@@ -21,7 +22,12 @@ export function generateMetadata(): Metadata {
 	};
 }
 
-export default function DonorsTaxCalculatorPage() {
+export default async function DonorsTaxCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "FinancialProduct",

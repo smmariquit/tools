@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ogImages } from "../../../lib/og";
 import ToolPageBottom from "../../components/ToolPageBottom";
 import Client from "./Client";
@@ -27,7 +27,12 @@ export async function generateMetadata({
 	};
 }
 
-export default function SssMaternityCalculatorPage() {
+export default async function SssMaternityCalculatorPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "FinancialProduct",

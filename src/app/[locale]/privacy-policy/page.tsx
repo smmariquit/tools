@@ -1,4 +1,10 @@
-export default function PrivacyPolicy() {
+import { setRequestLocale } from "next-intl/server";
+export default async function PrivacyPolicy({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px" }}>
 			<div className="page-header" style={{ marginBottom: "24px" }}>

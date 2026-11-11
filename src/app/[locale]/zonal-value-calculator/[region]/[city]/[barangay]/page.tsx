@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import {
 	getZonalDataBySlug,
 	slugify,
@@ -55,8 +56,14 @@ export async function generateMetadata({
 export default async function ZonalValueDynamicPage({
 	params,
 }: {
-	params: Promise<{ region: string; city: string; barangay: string }>;
+	params: Promise<{
+		locale: string;
+		region: string;
+		city: string;
+		barangay: string;
+	}>;
 }) {
+	setRequestLocale((await params).locale);
 	const resolvedParams = await params;
 	const data = getZonalDataBySlug(
 		resolvedParams.region,

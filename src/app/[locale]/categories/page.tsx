@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
 import { toolCategories } from "../../../lib/routes";
 
 export const metadata: Metadata = {
@@ -16,7 +17,12 @@ function slugify(text: string) {
 		.replace(/^-+|-+$/g, "");
 }
 
-export default function CategoriesPage() {
+export default async function CategoriesPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	setRequestLocale((await params).locale);
 	return (
 		<div style={{ maxWidth: "1000px", margin: "0 auto", padding: "40px 20px" }}>
 			<h1 style={{ marginBottom: "16px" }}>PHTools Category Hubs</h1>

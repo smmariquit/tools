@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import type { ReactNode } from "react";
-import { doodles } from "../../components/illustrations/doodles";
-
-export const runtime = "edge";
+import { doodles } from "../app/components/illustrations/doodles";
 
 const DOODLE_STROKE = "#66b2ff";
 
@@ -47,10 +45,9 @@ function doodleDataUri(toolSlug: string | null): string | null {
 	return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-export function GET(request: Request) {
+/** Render the OG card. Prerendered to out/og/*.png by scripts/cf-postbuild.mjs. */
+export function renderOg(searchParams: URLSearchParams) {
 	try {
-		const { searchParams } = new URL(request.url);
-
 		const title =
 			searchParams.get("title")?.slice(0, 100) || "PHTools Calculator";
 		const desc =

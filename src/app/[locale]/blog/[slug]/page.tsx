@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type React from "react";
 import remarkGfm from "remark-gfm";
@@ -55,8 +56,9 @@ export async function generateMetadata({
 export default async function BlogPost({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ locale: string; slug: string }>;
 }) {
+	setRequestLocale((await params).locale);
 	const resolvedParams = await params;
 	const { meta, content } = getPostBySlug(resolvedParams.slug);
 

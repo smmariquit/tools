@@ -1,0 +1,19 @@
+# Was src/proxy.ts. UI is localized, long-form guides are not: keep /tl and
+# /ceb usable but out of the index until their articles are translated.
+/tl
+  X-Robots-Tag: noindex, follow
+/tl/*
+  X-Robots-Tag: noindex, follow
+/ceb
+  X-Robots-Tag: noindex, follow
+/ceb/*
+  X-Robots-Tag: noindex, follow
+
+# The workers.dev URL is a full duplicate of production.
+https://:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex, follow
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/og/*
+  Cache-Control: public, max-age=86400
